@@ -60,6 +60,7 @@ ASKED = {}   # round 3 (12 Nov 2026): questions 1 and 2 answered; PRD v1.1 align
 tester_all = " \n ".join(" ".join(c["steps"] + [b for r in c["res"] for b in r]) for c in L.CASES)
 for k, (lab, row) in L.NAMED.items():
     if not re.match(r"UFS-\d\d$", k): continue
+    row = L.UFS14[k]   # 14 Nov 2026: the messages are checked against PRD v1.4 (identical to v1.3 except row 35, "No-charge line")
     if k in ASKED:
         if ASKED[k] not in QN: probs.append(f"{k}: listed as asked, but question {ASKED[k]} is not on the sheet")
         continue
@@ -101,7 +102,8 @@ for _p in glob.glob(f"{DD}/render/render-log-[0-9].json"):
         if _f: _TXT[_f["file"].replace(".dc.html", "")] = " ".join(r["text"] for r in _b["rows"]) + " " + " ".join(a["text"] for a in _b["attrs"])
 _norm = lambda s: re.sub(r"\s+", " ", s).strip()
 import design_v3 as _V3
-def _hay(b):   # round 4: a redrawn board is checked against its v3 text and file only
+def _hay(b, v14=False):   # round 4: a redrawn board is checked against its v3 text and file only
+    if v14 and b in DR.V14_BOARDS: return _h.unescape(DR.hay14(b))   # 14 Nov 2026: a v14 case's changed board, against its v5 text and file
     if b in _V3.CHANGED: return _h.unescape(_V3.hay_text(b))
     return _TXT.get(b, "") + " " + _h.unescape(open(f"{DD}/files/project/{b}.dc.html", encoding="utf-8").read())
 with_refs = 0
@@ -113,7 +115,12 @@ for c in L.CASES:
     if not d.get("pictures"): probs.append(f"{c['key']}: References from Design without a picture")
     for x in d.get("pictures") or []:
         if not os.path.exists(f"{DD}/images/{x}"): probs.append(f"{c['key']}: design picture {x} not in design-2026-11-12/images/")
-    hay = _norm(" ".join(_hay(b) for b in d.get("boards") or []))
+    hay = _norm(" ".join(_hay(b, c.get("design") == "v14") for b in d.get("boards") or []))
+    if c.get("design") == "v14":
+        if DR.CANVAS14 not in d["pages"] or DR.CANVAS in d["pages"]: probs.append(f"{c['key']}: a v14 case without the 1794565397-7f4c canvas line")
+        if set(d.get("pictures") or []) & set(DR.V14_PIC): probs.append(f"{c['key']}: a v14 case keeps a picture of a changed board from before 1794565397-7f4c")
+        if "No Charge · Warranty" in " ".join(d.get("words") or []): probs.append(f"{c['key']}: a v14 case keeps the design words No Charge · Warranty")
+    elif set(d.get("pictures") or []) & set(DR.V14_PIC.values()): probs.append(f"{c['key']}: a -v14 picture on a case that is not in the v1.4 named set")
     for w in d.get("words") or []:
         if _norm(w) not in hay: probs.append(f"{c['key']}: design words not on its boards: {w[:60]!r}")
 _reg = json.load(open(f"{L.P}/DESIGN-DIVERGENCE-REGISTER.json"))["differences"]
@@ -146,6 +153,20 @@ for c in L.CASES:
 for k in FOLDER:
     if k not in keys: probs.append(f"FOLDER names {k}, which is not a case")
     if FOLDER[k] not in SECS: probs.append(f"FOLDER {FOLDER[k]} is not in sections.json")
+
+# ---- 14 Nov 2026: the v1.4 named set (per-case override). A v1.4 case quotes PRD v1.4 read 14 Nov 2026, carries the 11/14/2026 marker
+# unless held, names no picture of a changed board from before 1794565397-7f4c in its tester text, and no v1.3 case quotes a v1.4-only line.
+for c in L.CASES:
+    f = L.render(c); h = f["custom_expected"]; k = c["key"]
+    tester = " ".join([c["title"]] + c["pre"] + c["steps"] + [b for r in c["res"] for b in r] + [c["note"]])
+    if L.is14(c):
+        if f"version 1.4 (13 Nov 2026, Milos Vasic), {L.PRD14_READ}" not in h: probs.append(f"{k}: a v1.4 case without the v1.4 From line")
+        if not c["held"] and c["marker"] != L.MARKER14: probs.append(f"{k}: a v1.4 case without the 11/14/2026 marker")
+        if any(x in tester for x in DR.V14_PIC): probs.append(f"{k}: a v1.4 case names a picture of a changed board from before 1794565397-7f4c")
+        if re.search(r"No Charge · (?!No Charge)", re.sub(r"WO #\[number\] · No Charge · ", "", tester)): probs.append(f"{k}: a v1.4 case names the old chip text No Charge · [category]")
+    else:
+        if L.codes_of(c) & (L.V14_CODES | L.V14_UFS): probs.append(f"{k}: a v1.3 case quotes a line v1.4 changed ({sorted(L.codes_of(c) & (L.V14_CODES | L.V14_UFS))})")
+        if c.get("design") == "v14": probs.append(f"{k}: design v14 on a case that is not on PRD v1.4")
 
 # ---- report and write
 by_sec = Counter(c["sec"] for c in L.CASES); held = [c["key"] for c in L.CASES if c["held"]]

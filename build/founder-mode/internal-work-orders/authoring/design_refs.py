@@ -123,3 +123,40 @@ def for_case(c):
         if isinstance(x, str) and not x.startswith("TP-"): codes.append(x)
         elif isinstance(x, tuple) and re.match(r"S\d+-[RNE]\d+", x[0]): codes.append(x[0])
     return for_codes(codes)
+
+
+# ---- 14 Nov 2026: design version 1794565397-7f4c for the v1.4 named set (PER CASE, never global) -----------------------------------
+# po-answers-2026-11-12/V1.4-IMPACT.md section 3: of 172 files, 2 changed (WO-Detail-Artboard-v6.dc.html: NC_LINE_TEXT 'No Charge ·
+# Warranty' became 'No Charge'; canvas.json: three notes). The render of all 167 boards shows 6 changed boards, all the same edit (the chip
+# text); 161 are pixel-identical. New pictures: design-2026-11-12/images/*-v14.png. A case carrying c["design"] == "v14" (cases_zzzzz_v14.py)
+# gets: the canvas line below, the -v14 picture of each changed board, and the board's v1.4 words ("No Charge"). Every other case keeps
+# CANVAS and its pictures exactly as before.
+CANVAS14 = ('Design canvas "Internal Work Orders · All flows v6" (https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo), version 1794565397-7f4c '
+            '(read and rendered 14 Nov 2026: from version 1794561577-f903 one string changed, the chip of a no-charge line now reads "No Charge" '
+            'on 6 boards; the other 161 boards are pixel-identical)')
+V14_BOARDS = {"flow6-3", "flow6-4", "hf-32", "hf-33", "rv-6-3", "rv-6-4"}
+V14_PIC = {"iwo-flow6-03-03-line-marked-no-charge-0-00.png": "iwo-flow6-03-03-line-marked-no-charge-0-00-v14.png",
+           "iwo-flow6-04-04-line-menu-change-category-mark-as-billable.png": "iwo-flow6-04-04-line-menu-change-category-mark-as-billable-v14.png",
+           "iwo-happy-32-32-line-marked-no-charge-0-00.png": "iwo-happy-32-32-line-marked-no-charge-0-00-v14.png",
+           "iwo-happy-33-33-line-menu-change-category-mark-as-billable.png": "iwo-happy-33-33-line-menu-change-category-mark-as-billable-v14.png",
+           "iwo-review-25-6-3-32-line-marked-no-charge-0-00.png": "iwo-review-25-6-3-32-line-marked-no-charge-0-00-v14.png",
+           "iwo-review-26-6-4-33-line-menu-change-category-mark-as-billable.png": "iwo-review-26-6-4-33-line-menu-change-category-mark-as-billable-v14.png"}
+V14_WORDS = {"No Charge · Warranty": "No Charge"}     # the only text the 6 boards changed (v5-text-diff.json: removed / added)
+V5 = f"{DD}/v5-1794565397-7f4c"
+
+
+def v14(d):
+    """A copy of a References from Design block for design version 1794565397-7f4c."""
+    if CANVAS not in d.get("pages", ""): raise SystemExit("design_refs.v14: a pages line without the canvas line: " + d.get("pages", "")[:80])
+    out = dict(d)
+    out["pages"] = d["pages"].replace(CANVAS, CANVAS14)
+    out["pictures"] = [V14_PIC.get(x, x) for x in d.get("pictures") or []]
+    out["words"] = list(dict.fromkeys(V14_WORDS.get(w, w) for w in d.get("words") or []))
+    out["notes"] = list(d.get("notes") or []); out["boards"] = list(d.get("boards") or [])
+    return out
+
+
+def hay14(b):
+    """v5 rendered text and file of a changed board (for the design-words gate of a v14 case)."""
+    t = json.load(open(f"{V5}/render/v5-text-diff.json"))["boards"][b + ".dc.html"]
+    return " ".join(t["v3"].get("text", [])) + " " + open(f"{V5}/files/project/{b}.dc.html", encoding="utf-8").read()

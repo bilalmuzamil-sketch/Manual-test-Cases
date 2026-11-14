@@ -52,6 +52,21 @@ PLAN_NAME = ('"Internal Work Orders technical implementation plan", 2026-10-28, 
 PRD_VERSION = "1.3"
 PRD_NAME = 'PRD "Internal Work Orders (PRD)", Confluence 942243841, version 1.3 (12 Nov 2026, Milos Vasic)'
 PRD_READ = "read 12 Nov 2026"
+# ---- 14 Nov 2026, the v1.4 named set (QA lead: "Named set, drop S12-49 (Recommended)"): PER-CASE version override. A case carrying
+# c["prd"] == "1.4" quotes PRD v1.4 (read 14 Nov 2026) and is checked against it; every other case keeps PRD v1.3 exactly as before, so
+# its text does not change (the 606 untouched live cases keep their v1.3 From line). v1.4 changes four lines only (S12-R3, S2-R22,
+# S12-E8, section 8 row "No-charge line"); the asserts below prove nothing else differs in what this library quotes.
+PRD14_FILE = f"{P}/sources/CONFLUENCE-942243841-v1.4-read-2026-11-14.md"
+PRD14_MD = open(PRD14_FILE).read().split("## 9. Change Log")[0]
+PRD14_TXT = md_to_text(PRD14_MD)
+PRDW14 = ws(PRD14_TXT)
+PRD14_RAWW = ws(re.sub(r"<[^>]+>", "", re.sub(r"\[([^\]]*)\]\((https?:[^)]*)\)", r"\1", PRD14_MD)))
+PRD14_VERSION = "1.4"
+PRD14_NAME = 'PRD "Internal Work Orders (PRD)", Confluence 942243841, version 1.4 (13 Nov 2026, Milos Vasic)'
+PRD14_READ = "read 14 Nov 2026"
+TODAY14 = "11/14/2026"
+MARKER14 = f"AUTOMATION: Not available on Build to test Yet - Last checked {TODAY14}"
+V14_CODES = {"S12-R3", "S2-R22", "S12-E8"}; V14_UFS = {"UFS-35"}
 ANS_FILE = f"{P}/po-answers-2026-11-12/ANSWERS-Milos-Vasic-2026-11-12.json"
 ANSWERS = _json.load(open(ANS_FILE))["answers"]
 ANS_NAME = ("Milos Vasic's answers to the Internal Work Orders questions (question sheet column E, read 12 Nov 2026, "
@@ -86,6 +101,12 @@ for line in PRD_TXT.split("\n"):
     m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
     if m and m.group(1) not in CODE: CODE[m.group(1)] = m.group(2).strip()
 if len(CODE) != 206: raise SystemExit(f"PRD v{PRD_VERSION} has {len(CODE)} requirement codes; this library was written for 206 (v1.1 adds S2-E8)")
+CODE14 = {}
+for line in PRD14_TXT.split("\n"):
+    m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
+    if m and m.group(1) not in CODE14: CODE14[m.group(1)] = m.group(2).strip()
+if set(CODE14) != set(CODE) or {k for k in CODE if CODE[k] != CODE14[k]} != V14_CODES:
+    raise SystemExit(f"PRD v1.4 codes differ from v1.3 in {sorted(k for k in CODE if CODE.get(k) != CODE14.get(k))}; this library expects only {sorted(V14_CODES)}")
 
 
 def prd_line(start):
@@ -144,6 +165,15 @@ for line in PRD_MD.split("\n"):
     if _inside and line.startswith("| ") and not line.startswith("| Trigger") and not line.startswith("| ---"):
         _ufs.append(" | ".join(ws(x) for x in line.strip().strip("|").split("|")))
 if len(_ufs) != 45: raise SystemExit(f"User Feedback Summary has {len(_ufs)} rows; expected 45 (v1.1 adds row 25, Reopen done; v1.3 replaces row 16 by rows 16-18)")
+_ufs14 = []; _inside = False
+for line in PRD14_MD.split("\n"):
+    if line.startswith("## 8. User Feedback Summary"): _inside = True; continue
+    if _inside and line.startswith("## "): break
+    if _inside and line.startswith("| ") and not line.startswith("| Trigger") and not line.startswith("| ---"):
+        _ufs14.append(" | ".join(ws(x) for x in line.strip().strip("|").split("|")))
+UFS14 = {f"UFS-{i:02d}": r for i, r in enumerate(_ufs14, 1)}
+if len(_ufs14) != 45 or {f"UFS-{i:02d}" for i, (a, b) in enumerate(zip(_ufs, _ufs14), 1) if a != b} != V14_UFS:
+    raise SystemExit("PRD v1.4 User Feedback Summary differs from v1.3 beyond row 35 (No-charge line)")
 UFS_STORY = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 7, 3, 3, 3, 3, 3, 3, 8, 3, 3, 2, 4, 4, 9, 9, 5, 3, 11, 12, 12, 12, 12, 12, 12, 12, 12, 1, 1, 1, 2, 1]
 for i, row in enumerate(_ufs, 1): _n(f"UFS-{i:02d}", "User Feedback Summary", row, UFS_STORY[i - 1])
 # Key Decisions: the decision sentence(s) of each bullet (the rationale is context, not a check)
@@ -255,8 +285,10 @@ _MAPF = f"{P}/testrail-id-map.csv"
 MAPPED = {r["key"]: (r.get("prd_version") or PRD_VERSION) for r in csv.DictReader(open(_MAPF))} if os.path.exists(_MAPF) else {}
 def prd_version(c):
     """Round 3 (12 Nov 2026): every case is brought to PRD v1.1 (the QA lead's named set is rewritten; every other case is re-stamped
-    after reading), so every case quotes the current version. testrail-id-map.csv's prd_version column is updated by the write script."""
-    return PRD_VERSION
+    after reading), so every case quotes the current version. testrail-id-map.csv's prd_version column is updated by the write script.
+    14 Nov 2026: the v1.4 named set carries c["prd"] = "1.4" (cases_zzzzz_v14.py); every other case stays on PRD v1.3."""
+    return c.get("prd") or PRD_VERSION
+def is14(c): return c.get("prd") == PRD14_VERSION
 
 CASES = []
 def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, api=False, held=None, banner=""):
@@ -273,9 +305,11 @@ def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, a
 
 def quotes(c):
     out = []
+    v14 = is14(c)
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
-        elif x in CODE: out.append((x, CODE[x]))
+        elif x in CODE: out.append((x, CODE14[x] if v14 else CODE[x]))
+        elif v14 and x in UFS14: out.append((NAMED[x][0], UFS14[x]))
         elif x in TP:
             from tp_quote_fix import TPFIX     # round 2c: only the code-free behaviour wording of the plan line (none: quote dropped)
             for t in (TPFIX[x] if x in TPFIX else [TP[x]["quote"]]): out.append((f"Tech plan line {TP[x]['plan_line']} ({x})", t))
@@ -306,7 +340,15 @@ e = lambda s: html.escape(s, quote=False).replace("✓", "&#10003;")
 from design_refs import DREFS, for_case as _for_case   # round 1: an empty hook; the design round fills it
 _DCACHE = {}
 def design_for(c):
-    if c["key"] not in _DCACHE: _DCACHE[c["key"]] = _for_case(c)
+    """14 Nov 2026: a case carrying c["design"] == "v14" shows design version 1794565397-7f4c (design_refs.v14: the canvas line, the -v14
+    pictures of the 6 changed boards, and the board words "No Charge" for "No Charge · Warranty"); every other case is unchanged."""
+    if c["key"] not in _DCACHE:
+        d = _for_case(c)
+        if d and c.get("design") == "v14":
+            from design_refs import v14 as _v14
+            d = _v14(d)
+            d["notes"] = d["notes"] + [n for n in c.get("design_notes14", []) if n not in d["notes"]]
+        _DCACHE[c["key"]] = d
     return _DCACHE[c["key"]]
 
 
@@ -329,10 +371,11 @@ def quotes_block(c):
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in sn)
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    prd_name = PRD_NAME if prd_version(c) == PRD_VERSION else PRD_NAME.replace(f"version {PRD_VERSION}", f"version {prd_version(c)}")
+    prd_name = PRD14_NAME if is14(c) else PRD_NAME if prd_version(c) == PRD_VERSION else PRD_NAME.replace(f"version {PRD_VERSION}", f"version {prd_version(c)}")
     for name, g in ((prd_name, groups["prd"]), (JIRA_NAME, groups["jira"]), (PLAN_NAME, groups["plan"]), (ANS_NAME, groups["po"])):
         if not g: continue
-        h += f"<p>From: {e(name)}, {PRD_READ}" + ((f" &middot; Epic {EPIC}" + (f", {e(sto)}" if sto else "")) if first else "") + "</p>"
+        rd = PRD14_READ if (is14(c) and name == prd_name) else PRD_READ     # 14 Nov 2026: only the v1.4 PRD was read on 14 Nov
+        h += f"<p>From: {e(name)}, {rd}" + ((f" &middot; Epic {EPIC}" + (f", {e(sto)}" if sto else "")) if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in g) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -463,6 +506,8 @@ def check(c):
             if tq not in PLAN_LINES[TP[tid]["plan_line"] - 1]: p.append(f"{k}: quote {tid} not verbatim on plan line {TP[tid]['plan_line']}")
             from tp_quote_fix import CODEISH
             if CODEISH.search(tq): p.append(f"{k}: plan quote {tid} carries code or a file path ({CODEISH.search(tq).group(0)!r}): quote the behaviour, or the PRD alone")
+        elif is14(c):
+            if ws(tq) not in PRDW14 and ws(tq) not in PRD14_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v{PRD14_VERSION}")
         elif ws(tq) not in PRDW and ws(tq) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v{PRD_VERSION}")
     if not any((isinstance(x, str) and not x.startswith("TP-")) or (isinstance(x, tuple) and not x[0].startswith(("Jira", "PO answer", "Tech plan"))) for x in c["q"]):
         p.append(f"{k}: no PRD quote (Rule 57: the PRD is the source of every expected result)")

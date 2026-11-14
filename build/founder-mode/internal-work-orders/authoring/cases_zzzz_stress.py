@@ -16,7 +16,9 @@ part I3: I-P01 to I-P33 and I-S01 to I-S17), after lesson L-21 and skill 21 §6d
 - I-P16 is split three ways (Board card, Schedule card, Tech View), as the scan's own title says ("split for Schedule card, Tech View")
   and Rule 136 allows: 53 proposals, 55 cases. I-P08 does not exist in the scan. No case is NO_MANUAL: a new organization (a new
   sign-up) is the suite's own precedent for "never turned on" (S1-02, S1-90, D-02, all in TestRail).
-Every design case is added to DR.DREFS and to cases_zzz_v13.NEW_DESIGN, so build.py's design-count gate holds."""
+Every design case is added to DR.DREFS and to cases_zzz_v13.NEW_DESIGN, so build.py's design-count gate holds.
+14 Nov 2026 (PRD v1.4, design 1794565397-7f4c; QA lead: "Named set, drop S12-49 (Recommended)"): S12-49 is dropped (54 cases remain);
+cases_zzzzz_v14.py rebuilds the 54 on PRD v1.4 and design 1794565397-7f4c and rewrites D-113 and D-143."""
 import re
 from iwo_lib import C, CASES
 from common import ON, OFF, NO_ACCT, PHONE, NAME_NOTE
@@ -332,14 +334,8 @@ D("D-113", "I-P17a", "Design: A long category in the No Charge chip keeps the li
    ["The same: each chip inside the Name/Description cell, every column and the three-dots menus visible."]],
   ["S12-R3"], ["flow6-3", "flow6-4"], notes=[STRESS_NOTE], note=NAME_NOTE)
 
-P("S12-49", "I-P17b", "S12", "Print Work Order prints a long No Charge chip beside its line",
-  [ADM, ON, kB("No Charge", NOREQ), kC("No Charge", NOREQ), "Have a new customer for this test, customer A, not flagged.",
-   "Have a new work order for this test, work order 1, for customer A, billable, not invoiced, whose line 1 is marked No Charge under category B and whose line 2 is marked No Charge under category C.", FIT_CAT],
-  ["Open work order 1.", "Click the three-dots menu in the header.", "Click Print Work Order."],
-  [["Work order 1 opens."], ["The menu opens."],
-   ["The printed work order shows the chip \"No Charge · [category B's name]\" next to line 1 and \"No Charge · [category C's name]\" next to line 2.",
-    "Each chip shows the category's name in full and stays on the page; it covers no other text of the line.", EXACT]],
-  ["S12-E8"], note=NAME_NOTE)
+# S12-49 (I-P17b, Print Work Order with a long No Charge chip) was DROPPED on 14 Nov 2026 (QA lead: "Named set, drop S12-49
+# (Recommended)"): PRD v1.4 prints the chip "No Charge" only, never the category, so its point is gone; S12-36 covers the print chip.
 
 D("D-114", "I-P18", "Design: Posting summary and Close window keep long category names inside",
   [ADM, W, ON, QB, kB("No Charge", REQ + ", with no QuickBooks expense account"), kC("No Charge", NOREQ + ", with no QuickBooks expense account"),
