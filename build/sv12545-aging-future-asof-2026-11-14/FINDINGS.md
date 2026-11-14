@@ -64,3 +64,12 @@ Nothing created. Location switched to Lethbridge for check 15 and switched back 
 
 ## Learning check
 - New fact for the playbook: on staging the screen sends the BROWSER's timezone with every aging request (`timezone=Asia/Karachi` from a Karachi browser), and Chromium's built-in tz data puts America/Edmonton at UTC-7 while this machine/server use UTC-6 - test a day-boundary behaviour with a browser timezone whose offset matches the server, or results flip around local midnight.
+
+## Follow-up ticket filed — SV-12831 (14 Nov 2026, QA lead said "Yes please")
+- https://shopview.atlassian.net/browse/SV-12831 "Aging Summary PDFs: a long name with no spaces pushes the last columns off the page"
+- Story Defect, parent SV-11533, priority Medium, labels AP-AR-FM + QA_Found, Product Area Reports & Dashboards, Relates SV-12545. Milos + Chris tagged for the exact fix.
+- Staging only (production has no Download (PDF) on these reports). Build re-read before writing: v26.45.4-f3d3d2d, last-modified Fri 13 Nov 21:24:06 GMT, etag 63a39ad9… (unchanged).
+- Re-checked before writing: `61-90` / `And Over` appear on 0 of 28 pages of the A/R Summary PDF and 0 of 47 pages of the A/P Summary PDF; `31-60` appears on every page.
+- Pictures: exhibits/PIC1-ar-summary-pdf-columns-off-page.png, exhibits/PIC2-ap-summary-pdf-columns-off-page.png (uploaded as Jira attachments 64495/64496; read back in order).
+- SV-12545 status: moved to Done by the QA lead.
+- Learning check: nothing new (the ticket followed the standard; picture-render fixes in side_ex.py already noted above).
