@@ -37,6 +37,35 @@ EDITS = {   # key -> [(old, new)] applied to the draft's text (gate fixes only; 
  "DC-53": [("**Title:** Design: Remove as default Bill To confirmation reads as designed",
             "**Title:** Design: Remove as default Bill To confirmation shows its question and buttons")],
  "DC-58": [("(for example S2-16)", "(for example two work orders whose numbers both begin with the same five characters)")],
+ # 14 Nov 2026 (QA lead: "Draft all 87 + 4 questions (Recommended)"): the two held design-version cases get the layout stress names
+ # (LAYOUT-STRESS-GAP-SCAN-2026-11-13.md §B3, T06 and T23; lesson L-21). Still held on questions 9 and 10; rewritten top to bottom (Rule 134).
+ "DV-06": [("- Give customer A a name longer than 25 characters (for example \"Valders Diesel & Fleet Repair\").\n"
+            "- Have an open work order for customer B with customer A picked as its Bill To.\n",
+            "- Have a new customer for this test, customer B, the customer the work is for, so each work order bills someone else.\n"
+            "- Have a new customer for this test, customer A, with a name longer than 25 characters, with spaces (for example \"Valders Diesel & Fleet Repair\").\n"
+            "- Have a new customer for this test, customer C, with a long name with no spaces, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).\n"
+            "- Have a new customer for this test, customer D, with a name that includes each of the characters & \" ' < > (for example A&B \"Fleet\" O'Neil <Parts> & Sons).\n"
+            "- If a name field stops before the end of a name, use the longest name it takes.\n"
+            "- Have an open work order, work order 1, for customer B with customer A picked as its Bill To.\n"
+            "- Have an open work order, work order 2, for customer B with customer C picked as its Bill To.\n"
+            "- Have an open work order, work order 3, for customer B with customer D picked as its Bill To.\n"),
+           ("1. Open the work order.\n", "1. Open work order 1.\n2. Open work order 2.\n3. Open work order 3.\n"),
+           ("(for example \"Valders Diesel & Fleet Re\"), with no \"...\" and no tooltip.\n",
+            "(for example \"Valders Diesel & Fleet Re\"), with no \"...\" and no tooltip.\n"
+            "Step 2:\n- Bill To shows the start of customer C's name cut at the card's right edge, with no \"...\" and no tooltip.\n"
+            "- No part of customer C's name runs past the card into the page beside it.\n"
+            "Step 3:\n- Bill To shows customer D's name, cut at the card's right edge if it is longer than the card, with no \"...\".\n"
+            "- Every character of customer D's name that shows appears exactly as typed: & \" ' < > are not changed into other characters or codes.\n")],
+ "DV-07": [("- Have an asset of customer B with one work order billed to customer A.\n",
+            "- Have a new customer for this test, customer B, who owns the asset, so its work orders bill customers other than their own.\n"
+            "- Have a new customer for this test, customer A, with a long name with no spaces, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).\n"
+            "- Have a new customer for this test, customer C, with a name that includes each of the characters & \" ' < > (for example A&B \"Fleet\" O'Neil <Parts> & Sons).\n"
+            "- If a name field stops before the end of a name, use the longest name it takes.\n"
+            "- Have an asset of customer B with one work order billed to customer A and one billed to customer C.\n"),
+           ("- The last columns run past the right edge (the Total Price header shows only \"T\") and the table scrolls sideways.\n",
+            "- The last columns run past the right edge (the Total Price header shows only \"T\") and the table scrolls sideways.\n"
+            "- Customer A's name stays inside its own Bill To cell: no part of it covers the next column or the row under it.\n"
+            "- Customer C's name shows exactly as saved in its Bill To cell: the & \" ' < > characters appear as typed, not changed into other characters or codes.\n")],
 }
 LIB = "Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards and design library are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: design library file ds/shopview/components.css, section TOOLTIP (spec components/Tooltip/preview.html)."
 RELEASE = {   # a held design-version case settled without the PO (skill 07 §6.0 check d); QA lead's go-ahead 13 Nov 2026 ("Yes, rewrite and add")

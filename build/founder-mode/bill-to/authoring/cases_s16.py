@@ -17,10 +17,20 @@ C("S16-01", S, "The payer's portal contact sees the invoice and can pay it",
   [SIGN_B1, "Open work order 1's invoice.", "Click Pay."],
   [["Contact B1, customer B's contact, is signed in."], ["The $150.00 invoice for work order 1, customer A's work, shows.", "It has a Pay button."], ["The payment form for $150.00 opens."]],
   ["S16-R1", "INT-4", "CORE-3"])
+# 14 Nov 2026 (QA lead: "Draft all 87 + 4 questions (Recommended)"): extended with the layout stress names (lesson L-21; LAYOUT-STRESS-GAP-
+# SCAN-2026-11-13.md T25): the payer has a long name with no spaces, and a second invoice is billed to a payer whose name has & " ' < >.
 C("S16-02", S, "The customer's portal contact sees the invoice read-only with Billed to",
-  [PORTAL, A, B, INVB],
-  [SIGN_A1, "Open work order 1's invoice."],
-  [["Contact A1, customer A's contact, is signed in."], ["The invoice shows read-only.", 'Where Pay would be, it reads "Billed to [customer B\'s name]".', "There is no Pay button."]],
+  [PORTAL, A,
+   cust("B", ", the payer, with contact B1, who can sign in to the customer portal, and a long name with no spaces, at least 50 characters "
+        "(for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest)"),
+   cust("C", ", a second payer, with a name that includes each of the characters & \" ' < > (for example A&B \"Fleet\" O'Neil <Parts> & Sons)"),
+   "If a name field stops before the end of a name, use the longest name it takes.", INVB, wo(2, "A", "invoiced for $90.00, unpaid", "C")],
+  [SIGN_A1, "Open work order 1's invoice.", "Open work order 2's invoice."],
+  [["Contact A1, customer A's contact, is signed in."],
+   ["The invoice shows read-only.", 'Where Pay would be, it reads "Billed to [customer B\'s name]".', "There is no Pay button.",
+    "The \"Billed to\" line stays inside the invoice: no part of customer B's name covers the invoice's amounts or other text, or runs past the edge of the screen."],
+   ["The invoice shows read-only.", 'Where Pay would be, it reads "Billed to [customer C\'s name]".',
+    "Customer C's name shows exactly as saved: the & \" ' < > characters appear as typed, not changed into other characters or codes."]],
   ["S16-R2", UFS["Portal"], "INT-4"], banner=BAN, marker=H, note=NAME_NOTE)
 C("S16-03", S, "The invoice created email goes only to the payer's portal contacts",
   [ADMIN, PORTAL, A, B, wo(1, "A", "in Complete, ready to invoice,", "B")],

@@ -89,10 +89,19 @@ C("S14-12", S, "Picking Imported in Status disables and clears the Customer filt
   [["2 rows are listed."], ["The options show."], ["Customer C is ticked."], ["Only work order 1 is listed; work order 2 is not."],
    ['The "Customer" chip is disabled.', 'It reads "Customer: All customers": the pick was cleared.']],
   ["S14-N1"])
+# 14 Nov 2026 (QA lead: "Draft all 87 + 4 questions (Recommended)"): extended with the layout stress names (lesson L-21; LAYOUT-STRESS-GAP-
+# SCAN-2026-11-13.md C11): the two oldest rows bill a payer with a long name with no spaces and one with & " ' < >. Still held on question 14.
 C("S14-13", S, "The Bill To column shows when the payer's row is on a later page",
-  [ADMIN, A, cust("B", ", a payer"),
+  [ADMIN, A,
+   cust("B", ", a payer, with a long name with no spaces, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest)"),
+   cust("C", ", a second payer, with a name that includes each of the characters & \" ' < > (for example A&B \"Fleet\" O'Neil <Parts> & Sons)"),
+   "If a name field stops before the end of a name, use the longest name it takes.",
    "Have a new asset for this test, asset 1, owned by customer A, with more work orders at the test location than the tab shows on its first "
-   "page: all bill customer A except the oldest, work order 1, which is billed to customer B and sits on a later page."],
-  [TAB],
-  [['A "Bill To" column shows on the first page, because work order 1 bills customer B, although work order 1 is not on the first page.']],
+   "page: all bill customer A except the two oldest, work order 1, billed to customer B, and work order 2, billed to customer C, which sit "
+   "on a later page."],
+  [TAB, "Bring work order 1 and work order 2 into view (scroll down, or open the later page that holds them)."],
+  [['A "Bill To" column shows on the first page, because work order 1 and work order 2 bill someone else, although neither is on the first page.'],
+   ["Work order 1 reads customer B's name under Bill To and work order 2 reads customer C's name.",
+    "Customer B's name stays inside its own Bill To cell: no part of it covers the next column or the row under it.",
+    "Customer C's name shows exactly as saved: the & \" ' < > characters appear as typed, not changed into other characters or codes."]],
   ["S14-R6"], marker="PO:asset-tab-loaded-rows")

@@ -49,11 +49,18 @@ C("S9-05", S, "A ticked For Customer box sends the attachment to the payer",
   [["Work order 1 opens for customer A."], ["The box is unticked and contact B1, customer B's Billing contact, is ticked."], ["The box is ticked."],
    ["The email arrives at contact B1 with the attached file."]],
   ["S9-R4"])
+# 14 Nov 2026 (QA lead: "Draft all 87 + 4 questions (Recommended)"): extended with the layout stress names (lesson L-21; LAYOUT-STRESS-GAP-
+# SCAN-2026-11-13.md C17): the payer's contacts have a long name with no spaces and a name with & " ' < >. Library only (create.py NO_MANUAL).
 C("S9-06", S, "While the payer's contacts load the window shows a loading state",
-  [ADMIN, cust("A", ", with one contact, contact A1"), cust("B", ", the payer, with contact B1"), wo(1, "A", "invoiced", "B")],
+  [ADMIN, cust("A", ", with one contact, contact A1"),
+   cust("B", ", the payer, with two contacts: contact B1, whose first name is long with no spaces, at least 30 characters, and contact B2, "
+        "whose last name includes the characters & \" ' < > (for example O'Neil \"Jr\" <Parts> & Co)"),
+   "If a name field stops before the end of a name, use the longest name it takes.", wo(1, "A", "invoiced", "B")],
   [OPEN_WO, SEND],
   [["Work order 1 opens for customer A."],
-   ["Until customer B's contact B1 shows, the window shows a loading state.", "Contact A1 never shows in the list, not even for a moment."]],
+   ["Until customer B's contacts B1 and B2 show, the window shows a loading state.", "Contact A1 never shows in the list, not even for a moment.",
+    "Once loaded, each contact's name stays inside its own row: no part of contact B1's name covers contact B2's row.",
+    "Contact B2's name shows exactly as saved: the & \" ' < > characters appear as typed, not changed into other characters or codes."]],
   ["S9-R5"], marker=HOLD("the contacts load faster than a person can see the loading state"))
 C("S9-07", S, "When the customer pays for itself the email list is today's",
   [ADMIN, cust("A", ", that bills itself, with two contacts whose email addresses you can read: contact A1, marked Billing, and contact A2"),

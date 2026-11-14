@@ -134,6 +134,27 @@ QUESTIONS = [
    "(b) Wrapping as drawn is fine", "(c) Something else (please say)"],
   "One case: the wrapped numbers as the design draws them.",
   "PRD v1.0 S9-R2; design \"Internal Work Orders · All flows v6\", Flow 4 boards 05, 06; Happy flow 39, 39b; Review 7.2, 7.5 (register IWO-D45)"),
+ # Round 5 (14 Nov 2026, layout stress round, QA lead: "Draft all 87 + 4 questions (Recommended)"): questions 17 and 18, drafts for the
+ # same sheet (Rule 131); sheet rows in ../questions-2026-11-14/sheet_rows.py; skill 07 §6.0 checks in NEW-CASES.md.
+ ("columns-when-rows-change", "Columns of the work orders list and the reports when the rows change",
+    "Should the columns of the work orders list, the Internal Work Orders report and Technician Efficiency keep their place when a filter, a tab or the number of rows changes?",
+    "The design draws the work orders list with its columns at different places in different states: when Classification leaves no rows, "
+    "the headings move by up to 214 pixels; on the All tab with Status Closed, by 9 to 56 pixels. The design library sizes these columns to "
+    "their content, so a long name or an empty list moves them. No source says whether they should stay.",
+    ["(a) The columns keep their place (suggested: a table that jumps is hard to read, and we can check it)", "(b) The columns may move as the rows change, as drawn",
+     "(c) Something else (please say)"],
+    "Four design cases: the work orders list when Classification changes and on the All tab with Status Closed, the report when the rows change, Technician Efficiency when its chip changes.",
+    "PRD v1.3 S2-R14, S2-R10, S9-R2, S9-R3; design Flow 4 boards 01, 02, 03, 04, 05; Flow 1 board 09"),
+ ("lines-columns-no-charge", "Columns of a work order's lines table when a line or the work order becomes No Charge",
+    "When a line is marked No Charge, or the work order is converted, should the lines table's other columns stay where they were?",
+    "The PRD keeps the three-dots menu on a no-charge line (Change category, Mark as Billable) and hides Rate, Margin and Total on a no-charge "
+    "work order; those parts are settled and tested. The design draws the remaining headings moving: with the line's chip and menu (Flow 6 "
+    "board 04) Actual/Estimate and Status sit about 40 pixels further right than before the mark (board 01); on Convert, Rate moves about "
+    "52 pixels. No source says whether the columns should stay.",
+    ["(a) The columns stay where they were (suggested: the tester and the advisor find each column in the same place)", "(b) The columns may move, as drawn",
+     "(c) Something else (please say)"],
+    "Two design cases: the lines table when a line is marked No Charge and back, and when the work order is converted and back.",
+    "PRD v1.3 S12-R3, S12-R5, S2-R4, S2-R5, S2-R6; design Flow 6 boards 01, 03, 04; Flow 2 boards 01, 03"),
 ]
 QN = {slug: i for i, (slug, *_r) in enumerate(QUESTIONS, 1)}
 # Round 3 (12 Nov 2026): Milos Vasic answered all 16 (all option (a)); PRD v1.1 carries every answer except 10 (Open API owner pending)

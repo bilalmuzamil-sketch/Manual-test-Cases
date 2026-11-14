@@ -114,7 +114,7 @@ N("D-72", "B-P02", "Design: A long payer name on the phone customer page keeps C
 
 P = ["bt-p1-13-after-change.png", "bt-p1-14-after-change-open.png"]
 N("D-73", "B-P03", "Design: Long and unusual names stay in their rows in the Bill Invoices To window",
-  [ADMIN, W1440, cust("A", " " + LONG_SP), cust("B", " " + LONG_FROM_A), cust("C", " " + SPECIAL), FIT,
+  [ADMIN, W1440, cust("A", ", " + LONG_SP), cust("B", ", " + LONG_FROM_A), cust("C", ", " + SPECIAL), FIT,
    cust("D", ", whose Bill Invoices To is saved as customer C, so its card shows \"Change\""), PICS(*P)],
   ["Open customer D's page.", 'Click "Change" beside "Bill Invoices To" on the left card.', 'Click the "Bill Invoices To" field.',
    "Type the first word of customer A's name in the field."],
@@ -136,7 +136,7 @@ N("D-74", "B-P04", "Design: A long typed name keeps the (this customer) row insi
   [["The New Customer window opens."], ["The name field shows the whole name you typed."],
    ['The list opens; its first row reads "[the name you typed] (this customer)".',
     "That first row stays inside the list: no part of it covers the row under it, and that row's name can be read.",
-    '"(this customer)" is visible at the end of the first row, or on its own line inside that row.'],
+    '"(this customer)" can be read in the first row.'],
    ["The name field shows the new name."],
    ['The first row reads "[the new name] (this customer)".',
     "The name in that row shows exactly as typed: the & \" ' < > characters appear as typed, not changed into other characters or codes."]],
@@ -157,7 +157,7 @@ N("D-75", "B-P05", "Design: Pays for window with long names keeps its title, lin
 
 P = ["bt-p2-03-after-open.png"]
 N("D-76", "B-P07", "Design: Long and unusual names stay in their rows in the work order Bill To list",
-  [ADMIN, W1440, cust("A", " " + LONG_SP), cust("B", " " + LONG_FROM_A), cust("C", ", that bills itself, " + SPECIAL), FIT,
+  [ADMIN, W1440, cust("A", ", " + LONG_SP), cust("B", ", " + LONG_FROM_A), cust("C", ", that bills itself, " + SPECIAL), FIT,
    wo(1, "C"), PICS(*P)],
   [OPEN_WO, EXPAND, CLICK_BT, "Type the first word of customer A's name."],
   [["Work order 1 opens for customer C."], [BT_SELF],
@@ -176,12 +176,14 @@ N("D-77", "B-P08", "Design: A long payer name shows in full on the phone Custome
    ["Work order 2 opens for customer D."],
    ['"Bill To" shows customer B\'s whole name: every character can be read.',
     "The name stays inside the card: no part of it runs past the right edge of the screen."]],
-  ["FF-S3", "S3-R2"], P)
+  ["FF-S3", "S3-R2"], P,
+  notes=("On the phone the design draws the whole Bill To name on the card (its words above); the design draws ordinary names only, so "
+         "the long names follow the design-case checklist (lesson L-21).",))
 
 P = ["bt-p2-10-after-authorizer-list-top.png", "bt-p2-11-after-authorizer-list-bottom.png"]
 N("D-78", "B-P09", "Design: Long contact and payer names stay in their Authorizer list rows",
   [ADMIN, W1440,
-   cust("A", " " + LONG_SP + ", with one contact, contact A1, whose first name is long with no spaces, at least 30 characters "
+   cust("A", ", " + LONG_SP + ", with one contact, contact A1, whose first name is long with no spaces, at least 30 characters "
         "(for example Maximilianbartholomewjohnsonwilliams), who can be picked as Authorizer"),
    cust("B", ", the payer, " + LONG_FROM_A + ", with one contact, contact B1, whose last name includes the characters & \" ' < > "
         "(for example O'Neil \"Jr\" <Parts> & Co), who can be picked as Authorizer"),
@@ -217,7 +219,8 @@ N("D-80", "B-P11", "Design: Credit Hold banner with a long payer name keeps Chan
    cust("B", ", the payer, on the Credit Hold credit term, " + LONG_NO), cust("C", ", a second payer, on the Credit Hold credit term, " + SPECIAL),
    FIT, wo(1, "A", "in Complete, ready to invoice", "B"), wo(2, "A", "in Complete, ready to invoice", "C"), PICS(*P)],
   [OPEN_WO, "Open work order 2."],
-  [['The Credit Hold banner reads "' + M2.format(c="B") + '"',
+  [["Work order 1 opens for customer A; customer A is on COD, so the banner is about customer B.",
+    'The Credit Hold banner reads "' + M2.format(c="B") + '"',
     "The banner text stays inside the banner: no part of it runs past the right edge of the window or covers \"Change Bill To\".",
     'The "Change Bill To" button is fully visible.'],
    ['The Credit Hold banner reads "' + M2.format(c="C") + '"', EXACT("Customer C"), 'The "Change Bill To" button is fully visible.']],
@@ -240,9 +243,9 @@ N("D-81", "B-P12", "Design: Payment refusal toast keeps a long customer name ins
 
 ASSET = 'with an asset whose Unit is "854", Year 2024, Make "International" and Model "CV515"'
 P = ["bt-p4-02-after-modern.png"]
-N("D-82", "B-P13a", "Design: Service For band with long names stays inside the band on modern invoices",
+N("D-82", "B-P13a", "Design: Service For band keeps long names inside it on modern invoices",
   [ADMIN, W1440, "Make sure the organization's document design setting is the modern layout.",
-   cust("A", ", the customer the work is for, " + LONG_NO), cust("C", ", a second customer the work is for, " + SPECIAL), cust("B", ", the payer"),
+   cust("A", ", the customer the work is for, " + LONG_NO), cust("C", ", a second customer the work is for, " + SPECIAL), cust("B", ", the payer, so each invoice bills someone other than its customer"),
    FIT, wo(1, "A", "invoiced", "B", ", " + ASSET), wo(2, "C", "invoiced", "B", ", " + ASSET), PICS(*P)],
   [OPEN_WO, FIN, "Click the print icon on the Finance tab.", "Open the invoice's PDF.", "Open work order 2.", FIN, "Open the invoice's PDF."],
   [["Work order 1 opens for customer A."], ["The Finance tab shows the invoice."],
@@ -255,9 +258,9 @@ N("D-82", "B-P13a", "Design: Service For band with long names stays inside the b
   ["S8-R1", "S8-R2", "S8-R7"], P)
 
 P = ["bt-p4-04-after-legacy.png"]
-N("D-83", "B-P13b", "Design: Service For band with long names stays inside the band on legacy invoices",
+N("D-83", "B-P13b", "Design: Service For band keeps long names inside it on legacy invoices",
   [ADMIN, W1440, "Make sure the organization's document design setting is the legacy layout.",
-   cust("A", ", the customer the work is for, " + LONG_NO), cust("C", ", a second customer the work is for, " + SPECIAL), cust("B", ", the payer"),
+   cust("A", ", the customer the work is for, " + LONG_NO), cust("C", ", a second customer the work is for, " + SPECIAL), cust("B", ", the payer, so each invoice bills someone other than its customer"),
    FIT, wo(1, "A", "invoiced", "B", ", " + ASSET), wo(2, "C", "invoiced", "B", ", " + ASSET), PICS(*P)],
   [OPEN_WO, FIN, "Click the print icon on the Finance tab.", "Open the invoice's PDF.", "Open work order 2.", FIN, "Open the invoice's PDF."],
   [["Work order 1 opens for customer A."], ["The Finance tab shows the invoice."],
@@ -308,7 +311,7 @@ N("D-86", "B-P16", "Design: Long contact names stay in their rows in Sending inv
    FIT, wo(1, "A", "invoiced", "B"), PICS(*P)],
   [OPEN_WO, "Open the invoice's email (send) window on the Finance tab."],
   [["Work order 1 opens for customer A."],
-   ["The window lists contact B1, contact B2 and contact B3, each with its name and email address.",
+   ["The window lists customer B's contacts, contact B1, contact B2 and contact B3, each with its name and email address.",
     "Each contact's name and email stay inside the contact's own row: no part of them covers the row under it or that row's tick box.",
     "Contact B3's name shows exactly as saved: the & \" ' < > characters appear as typed, not changed into other characters or codes.",
     "The window's buttons are fully visible."]],
@@ -354,7 +357,7 @@ N("D-89", "B-P19", "Design: Work Order Log shows long Bill To names inside the D
   ["S13-R2", "S13-R1"], P)
 
 P = ["bt-p7-04-after-one-customer-picked.png", "bt-p7-05-after-applied.png", "bt-p7-07-after-1600-wide-search-s2-16.png"]
-N("D-90", "B-P20", "Design: Customer chip with a long name is shortened and the toolbar stays on one line",
+N("D-90", "B-P20", "Design: Customer chip shortens a long name and the toolbar stays on one line",
   [ADMIN, W1440, cust("A", ", the asset's owner"), cust("B", ", a payer, " + LONG_NO), FIT,
    "Have a new asset for this test, asset 1, owned by customer A, with work order 1 for customer A billed to customer B and work order 2 "
    "for customer A billing itself, both at the test location.", PICS(*P)],
@@ -366,6 +369,9 @@ N("D-90", "B-P20", "Design: Customer chip with a long name is shortened and the 
     "The search box, Status, the Customer chip and New sit on one line; nothing wraps and New is fully visible at the right."],
    ["The search box, Status, the Customer chip and New still sit on one line, with New fully visible."]],
   ["S14-R2", "S14-R4"], P,
+  notes=("The PRD does not say how a long name shows in the chip; the \"...\" and the one-line toolbar come from the design's own pictures "
+         "(its words above). The design draws the chip with an ordinary name only; the long name without spaces follows the design-case "
+         "checklist (lesson L-21).",),
   words=['Quartzsite ticked: "1 selected", and the chip reads "Customer: Quartzsite Truc...".',
          "Searching the whole history finds Kolosov's S2-16894 as well. The search box, Status, Customer chip and New sit on one line at 1600; nothing wraps."])
 
@@ -402,12 +408,12 @@ N("D-93", "B-P26", "Design: Unexported report keeps a long QuickBooks customer n
   [ADMIN, "Use a test organization connected to a QuickBooks Online sandbox company that you can sign in to.", W1440,
    cust("A", ", the customer the work is for"),
    cust("D", ", already linked to a QuickBooks customer whose name is long with no spaces, at least 50 characters "
-        "(for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest)"),
+        "(for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest), so a QuickBooks customer with that long name is already taken"),
    cust("B", ", the payer, not linked to QuickBooks, whose name is exactly the name of customer D's QuickBooks customer"), FIT,
    wo(1, "A", "in Complete, ready to invoice", "B")],
   [OPEN_WO, FIN, CREATE_INV, "Open the Unexported report."],
   [["Work order 1 opens for customer A."], ["The Finance tab shows Create Invoice."], ["The invoice is created in ShopView."],
-   ['Work order 1\'s invoice is listed with the reason "QuickBooks customer [that QuickBooks customer\'s name] is already linked to another ShopView customer."',
+   ['Work order 1\'s invoice, billed to customer B, is listed with the reason "QuickBooks customer [that QuickBooks customer\'s name] is already linked to another ShopView customer."',
     "The reason, with the long name, stays inside its own cell: no part of it covers the next column or the row under it.",
     "Every column of the report is visible."]],
   ["UFS-18", "S17-R4"], notes=(), pages=NO_PIC, note=NAME_NOTE)
@@ -426,7 +432,7 @@ N("S19-09", "B-P24", "Invoice CSV export keeps long and unusual names whole in t
 
 # ================================================ State changes (B-S01 .. B-S12) ================================================
 P = ["bt-p1-02-after-bill-invoices-to-empty.png", "bt-p1-03-after-open.png", "bt-p1-05-after-picked.png"]
-N("D-94", "B-S01", "Design: Opening the Bill Invoices To list leaves the New Customer fields in place",
+N("D-94", "B-S01", "Design: Opening the Bill Invoices To list leaves New Customer fields in place",
   [ADMIN, W1440, cust("B", ", so there is a customer to pick"), "Start on the Customers page.", PICS(*P)],
   [NEWC, SHOT, 'Click the "Bill Invoices To" field.', "Type the first word of customer B's name.", "Pick customer B in the list."],
   [['The New Customer window opens; "Bill Invoices To" reads "This customer".'], [SHOT_R],
@@ -451,7 +457,7 @@ N("D-95", "B-S02", "Design: Showing and hiding Address 2 moves no field sideways
          "checklist (layout stays put when the screen changes state).",))
 
 P = ["bt-p1-11-before-customer-page.png", "bt-p1-12-after-bill-invoices-to-line.png"]
-N("D-96", "B-S04", "Design: Saving a default adds the Bill Invoices To line and moves nothing sideways",
+N("D-96", "B-S04", "Design: Saving a default adds its card line and moves nothing sideways",
   [ADMIN, W1440, cust("A", ", with no saved Bill Invoices To, so the customer bills itself"), cust("B", ", the payer"), PICS(*P)],
   ["Open customer A's page.", SHOT, "Open customer A's Edit Customer window.", 'Click the "Bill Invoices To" field.', "Pick customer B in the list.", SAVE],
   [['Customer A\'s left card shows no "Bill Invoices To" line.'], [SHOT_R], ["Customer A's Edit Customer window opens."], ["The list opens."],
@@ -497,7 +503,7 @@ P = ["bt-p7-02-after-whole-history.png", "bt-p7-03-after-customer-chip-open.png"
 N("D-99", "B-S08", "Design: Opening the Customer chip panel leaves the table headings in place",
   [ADMIN, W1440, cust("A", ", the asset's current owner"), cust("B", ", a payer"), cust("C", ", the asset's earlier owner"), HIST2, PICS(*P)],
   ["Open asset 1's Work Orders tab from customer A's page.", SHOT, 'Click the "Customer" filter chip.', "Click outside the panel."],
-  [["Work order 1 and work order 2 are listed, with a \"Bill To\" column reading customer B's name on work order 2."], [SHOT_R],
+  [["Work order 1, for customer C, and work order 2, for customer A, are listed, with a \"Bill To\" column reading customer B's name on work order 2."], [SHOT_R],
    ["The panel opens over the table.", SAME_H], ["The panel closes; both work orders are still listed.", SAME_H]],
   ["S14-R2", "S14-R3"], P,
   notes=("The design's pictures with the panel closed and open (compared 13 Nov 2026) keep every visible heading at the same place.",))

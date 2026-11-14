@@ -187,9 +187,18 @@ C("S3-31", S, "On a phone the Customer card shows the same Bill To field",
   [["Work order 1 opens for customer A, in the phone layout."], ["The Customer card shows \"Bill To\" under Authorizer, reading customer B's name."],
    ["The searchable list opens without any hover."], ["\"Bill To\" reads customer C's name."]],
   ["FF-S3", "S3-R1", "S3-R5"])
-C("S3-32", S, "A long payer name reads in full on the Customer card",
-  [ADMIN, DESK, A_SELF, cust("B", ", the payer, with a name of at least 30 characters"), wo(1, "A")],
-  [OPEN_WO, EXPAND, CLICK_BT, "Pick customer B in the list."],
+# 14 Nov 2026 (QA lead: "Draft all 87 + 4 questions (Recommended)"): extended with the layout stress names (lesson L-21; LAYOUT-STRESS-GAP-
+# SCAN-2026-11-13.md T06): a long name with no spaces and a name with & " ' < > join the 30-character name with spaces. Still held on question 9.
+C("S3-32", S, "Long and unusual payer names read in full on the Customer card",
+  [ADMIN, DESK, A_SELF, cust("B", ", a payer, with a name of at least 30 characters, with spaces"),
+   cust("C", ", a second payer, with a long name with no spaces, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest)"),
+   cust("D", ", a third payer, with a name that includes each of the characters & \" ' < > (for example A&B \"Fleet\" O'Neil <Parts> & Sons)"),
+   "If a name field stops before the end of a name, use the longest name it takes.", wo(1, "A")],
+  [OPEN_WO, EXPAND, CLICK_BT, "Pick customer B in the list.", CLICK_BT, "Pick customer C in the list.", CLICK_BT, "Pick customer D in the list."],
   [["Work order 1 opens for customer A."], [BT_SELF], ["The list opens."],
-   ["The \"Bill To\" field reads customer B's whole name; no part of it is cut off."]],
+   ["The \"Bill To\" field reads customer B's whole name; no part of it is cut off."], ["The list opens."],
+   ["The \"Bill To\" field reads customer C's whole name; no part of it is cut off.",
+    "The name stays inside the Customer card: no part of it runs past the card's edge."], ["The list opens."],
+   ["The \"Bill To\" field reads customer D's whole name; no part of it is cut off.",
+    "Customer D's name shows exactly as saved: the & \" ' < > characters appear as typed, not changed into other characters or codes."]],
   ["S3-R2"], marker="PO:long-bill-to-name-on-card")
