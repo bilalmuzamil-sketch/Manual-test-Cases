@@ -3214,3 +3214,13 @@ It slept again **within the same session**, minutes after a successful seeding r
 against a QA branch should expect it, and any verifier should say so in its own error message
 rather than making the next person re-derive this — `verify_toggle.py` prints the wake command on a
 403 for exactly that reason.
+
+
+- **🆕 2026-11-14 — FINISHING A WORK ORDER DEPENDS ON THE SHOP'S WORK ORDER SETTINGS (QA lead).** Profile menu → Settings →
+  left menu "Settings" → "Work Orders" tab: Require Approval for New Lines · Require Review Before Completion · Require Tech
+  Story · Require Mileage · Require Engine Hours (and three parts switches). After a line's "Complete", the finishing window
+  asks for a tech story / mileage / engine hours only when that switch is on, and for the VIN only when review is OFF and the
+  vehicle has none; with review ON the VIN is asked in the "Mark Reviewed" window instead. Staging on 14 Nov: review, tech
+  story, mileage and engine hours all off (so: "Missing Details" → VIN → "Finish Work Order", no "Mark Reviewed"). Before
+  writing any Setup step that finishes a work order, READ these switches on the build and name them in the Setup.
+  Evidence: `build/ar-ap-aging-bv/probe/s08`, `s09`; code `missingVehicleDetails` in `app/src/components/ts/work-orders/Model.ts`.

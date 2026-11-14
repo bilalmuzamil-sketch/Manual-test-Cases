@@ -5,8 +5,13 @@ D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.join(
 import setup as S
 # Staging (v26.45.4-f3d3d2d, walked 14 Nov, probes s02-s07) finishes a work order differently from the old QA site:
 # Complete opens "Missing Details" (VIN) with "Finish Work Order"; there is no Tech stories window and no Mark Reviewed.
-S.FINISH = ('On the line click Complete; if a Missing Details window asks for the VIN, type one and click Finish Work Order '
-            '(the work order then reads Complete). Open the Finance tab.')
+S.FINISH = ('On the line click Complete. With the work order settings as on staging (see the Work order settings item) a Missing Details window '
+            'asks only for the VIN: type one and click Finish Work Order (the work order then reads Complete). If someone has switched on Require Tech Story, '
+            'Require Mileage or Require Engine Hours, that window also asks for the tech story, the mileage or the engine hours: fill them in. Open the Finance tab; '
+            'if Require Review Before Completion is on, click Mark Reviewed first (type the VIN there if asked, then Confirm Review).')
+WOSET = ('Work order settings', 'Click the location name and your initials at the top right of the top bar, then Settings, then Settings in the left menu, '
+         'then the Work Orders tab. Check that Require Review Before Completion, Require Tech Story, Require Mileage and Require Engine Hours are off and '
+         'Require Approval for New Lines is on, as on staging on 14 Nov 2026. Leave them as they are; the steps below are written for these settings.')
 _cust = S.Book.customer
 def _customer(b, X, name=None, phone=True, due_on_receipt=False):
     n = len(b.items); _cust(b, X, name, phone, due_on_receipt)
@@ -38,6 +43,7 @@ def plan(cases):
     out = {}
     for k, c in cases.items():
         items, unseen, un = S.setup_for(c, MANUAL)
+        if any(t.startswith('Make invoice') for t, _ in items): items = [WOSET] + items
         if k == '1145248': unseen = unseen + ['a vendor name with & " \' < > in it (a customer name with them was saved)']
         out[k] = (items, unseen, un)
     return out

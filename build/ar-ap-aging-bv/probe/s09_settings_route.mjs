@@ -1,0 +1,11 @@
+import { start } from './libs.mjs';
+const OUT = new URL('./s09/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const mclick = async (loc) => { await loc.scrollIntoViewIfNeeded(); await page.waitForTimeout(300); const bb = await loc.boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+await step('route', async () => { await go('/dashboard'); await page.waitForTimeout(3000); await mclick(page.locator('header button, .q-header button').filter({ hasText: /Staging|AS/ }).last()); await page.waitForTimeout(1200);
+  await mclick(page.locator('.q-menu:visible .q-item').filter({ hasText: /^\s*settings\s*Settings\s*$/ }).first()); await page.waitForTimeout(3500); log('after profile Settings URL', page.url());
+  { const its = page.locator('a:visible, .q-item:visible'); const tx = (await its.allInnerTexts()).map(T); const k = tx.findIndex(x => /^\S+ Settings$/.test(x) && !/^settings Settings$/.test(x)); log('left item', tx[k]); await its.nth(k).click(); } await page.waitForTimeout(3500); log('after left Settings URL', page.url()); log('tabs', JSON.stringify((await page.locator('main .q-tab').allInnerTexts()).map(T)));
+  await page.locator('main .q-tab').filter({ hasText: /^\s*Invoice\s*$/ }).first().click(); await page.waitForTimeout(2500); log('INVOICE TAB', T(await page.locator('main').last().innerText()).slice(0, 1500));
+  const tg = await page.evaluate(() => [...document.querySelectorAll('main .q-toggle')].map(e => e.getAttribute('aria-checked'))); log('invoice toggles', JSON.stringify(tg)); await dump('invoice-tab', true); });
+await r.browser?.close?.(); process.exit(0);
