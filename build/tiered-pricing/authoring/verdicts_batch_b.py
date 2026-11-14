@@ -65,9 +65,58 @@ UNUSED_BOARDS = {
           "Sale (register TPD-B410): no case expects that column."),
 }
 
-STRESS = {}
-MOVEMENT = {}
-NUMBERS = {}
+STRESS = {
+ "tier names on Sales by Tier rows and in the Priced By filter": "D-460",
+ "customer names in opened rows and in the Customer filter": "D-461",
+ "category names on Sales by Category and in the Category filter": "D-462",
+ "names in the PDF and CSV downloads (and the CSV-injection guard)": "D-463",
+ "tier names in the Part Sale Priced By column and its price details": "D-464",
+ "tier names in the work order toasts (Part added)": "D-465",
+}
+MOVEMENT = {
+ "Sales by Tier columns when a row and a customer open (20.2 vs 20.3, 20.4; held on Q42)": "D-450",
+ "Sales by Tier headings on the empty states (20.2 vs 20.11, 20.21-20.23; held on Q42)": "D-451",
+ "Sales by Category columns when a category opens (20.16 vs 20.17; held on Q42)": "D-452",
+ "work order lines table while Quick Add is open (10.5 vs 10.6, 10.7, 10.9; held on Q42)": "D-453",
+ "report filter chips when a chip widens (20.2 vs 20.9; held on Q42)": "D-454",
+ "Sales by Tier sort keeps columns (20.12 vs 20.13)": "D-455",
+ "Totals row and columns as more rows load (S1-R7, S1-R12)": "D-456",
+}
+NUMBERS = {
+ "N1 % Off per range on a line": "S10-01", "N1 Markup % from cost": "S10-03", "N1 Margin % rounding": "S10-04", "N1 + $ per unit": "S10-05",
+ "N1 $ Off": "S10-06", "N1 $ Off floor at $0.00": "S10-07", "N1 chain through two tiers": "S10-08", "N1 chain skips an archived tier": "S10-09",
+ "N1 chain ends at Default": "S10-10", "N1 no borrowing from the General Matrix": "S10-12", "N1 range boundaries both sides and the open last range": "S10-13",
+ "N1 half-cent tie and simulator parity": "S10-14", "N1 % Off rounds Default first ($10.005)": "S10-15", "N1 Part Sale side": "S10-18",
+ "N2 line total = unit × quantity": "S10-05", "N2 quantity change keeps unit price": "S11-12", "N3 negative margin below cost": "S10-28",
+ "N4 tier line received at a new cost (recorded tier)": "S11-26", "N4 recorded tier, not the current one": "S11-27", "N4 Default keeps margin": "S11-28",
+ "N4 Manual keeps margin ($2 → $3 on $4 = $6)": "S11-29", "N5 fixed line total parts amount": "S10-23", "N5 leftover cent on a quantity-1 part": "INV-23",
+ "N6 % Off details show the Default price": "D-413", "N10 Stats, invoice and tax from saved prices": "S17-01", "N10 customer discount after tier price": "S17-06",
+ "R1 Parts Invoiced per row from seeded invoices": "RPT-03", "R1 tie to Sales by Customer to the cent": "RPT-07", "R1 single-part discount": "RPT-25",
+ "R1 void never counts, open counts once invoiced": "RPT-02", "R1 date boundary both sides (invoice created date)": "RPT-37",
+ "R1 fixed line total amount and one cent less": "RPT-21", "R1 fixed line total no quantity-1 part": "RPT-22",
+ "R2 Parts Cost and margin parity": "RPT-07", "R3 credits after restocking fee, before tax": "RPT-27", "R3 goodwill and void credits excluded": "RPT-28",
+ "R3 reissued invoice credit": "RPT-30", "R4 Parts Net": "RPT-06", "R5 $0.00 margin and negatives on screen and in downloads": "RPT-14",
+ "R6 Margin % pooled, not averaged": "RPT-06", "R6 and R7 zero and negative denominators show a dash": "RPT-15", "R7 % of Total at every level": "RPT-32",
+ "R8 Sales by Category Totals = Sales by Tier Totals": "RPT-65", "R9 levels add up": "RPT-32", "R9 customer under two tiers, no double count": "RPT-33",
+ "R10 fixed line total split by cost": "RPT-72", "R10 split by quantity when parts cost $0": "RPT-73", "R11 Same as previous tier in the customer's tier row": "RPT-26",
+ "R12 Sales Type filter effect": "RPT-42", "R12 Location filter effect and Multiple": "RPT-43", "R13 downloads equal the screen": "RPT-59",
+ "R14 number sort cycle": "RPT-52", "R14 Parts Credits largest credit first": "RPT-53",
+}
 
 # Invariant rows of INVARIANTS.md §A, §E, §F (not requirement rows; listed for the report, checked by check_batch_b_coverage).
-INV_VERDICTS = {}
+INV_VERDICTS = {
+ **{f"INV-{n:02d}": f"regression case INV-{n:02d} (folder Must not change)" for n in
+    (1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 25, 26, 27, 28, 29, 34, 35, 36, 37, 38, 40, 41, 42, 43,
+     80, 81, 82, 83, 85, 86, 87, 88, 89, 90, 91, 92, 93)},
+ "INV-04": "superseded (CHANGED: half-cent ties round up) — new-behaviour case S10-14; every non-tie price unchanged is covered with INV-03",
+ "INV-19": "superseded (REPLACED: a rule-less category matrix gets a copy of the General Matrix on release day) — Story 1 release-day cases (phase 1)",
+ "INV-24": "superseded (CHANGED: a fixed line total of $0 parts splits by quantity) — new-behaviour case RPT-73 (split by quantity)",
+ "INV-30": "superseded (CHANGED: clearing a sell price restores the calculated price) — new-behaviour case S11-13",
+ "INV-31": "superseded (CHANGED: a typed catalog part number is priced by its own category) — new-behaviour case S10-19",
+ "INV-32": "superseded (CHANGED: a cost edited to $0.00 sells at $0.00) — new-behaviour case S10-25",
+ "INV-33": "superseded (CHANGED: retyping the same cost reprices) — new-behaviour cases S11-07, S11-08",
+ "INV-39": ("not testable by hand: a Maintenance Reminder canned line added at another location (appendCopy) is known only from engineering's code "
+            "read in the tech plan; neither the PRD nor the design says how a tester makes it happen; listed for the developers"),
+ "INV-84": "not testable by hand: the Open API is checked with API calls (Rule 114); listed for the automation owner",
+ "INV-82 (failure half)": "sync failures read as today: a forced failure (Rule 114, L-14); the no-integration half is INV-82",
+}

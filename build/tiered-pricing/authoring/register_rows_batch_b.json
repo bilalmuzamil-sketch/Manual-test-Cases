@@ -1,0 +1,333 @@
+[
+ {
+  "id": "TPD-B401",
+  "direction": "design-to-design",
+  "where": "proof §7b #3 (20.22 part of TPD-I03)",
+  "prd": "RPT-S4-N2: \"A download with no rows shows the existing \\\"Empty export\\\" notice\"",
+  "design": "20.22 note \"Empty export.\" vs the notice \"Empty export\"",
+  "outcome": "CLOSED",
+  "closed_by": "RPT-S4-N2 names the existing \"Empty export\" notice (no period); the canvas note is an annotation. Cases D-426, RPT-64.",
+  "cases": [
+   "D-426",
+   "RPT-64"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B402",
+  "replaces": "TPD-I04",
+  "direction": "design-to-design",
+  "where": "proof §7b #4 (20.10 vs 20.11)",
+  "prd": "RPT-S3-R1: \"one year at most\"",
+  "design": "20.10 error \"Choose a date range of one year or less.\" vs 20.11 help \"One year at most.\"",
+  "outcome": "CLOSED",
+  "closed_by": "Two states, not a conflict: the help text shows under the custom range, the red error only when the range is over a year (tech plan 2 R-D16 builds the error; the design supplies both words where the PRD is silent, QA lead's precedence). Cases RPT-37, D-420.",
+  "cases": [
+   "RPT-37",
+   "D-420"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B403",
+  "replaces": "TPD-E24",
+  "direction": "design behaviour",
+  "where": "10.5",
+  "prd": "TP S12-R10: \"A gray Manual icon always shows beside a Manual price, and only there\"",
+  "design": "Only a typed price carries an icon (gray)",
+  "outcome": "NO-DIFFERENCE",
+  "closed_by": "TP S12-R10 states the same. Cases D-400, S10-16.",
+  "cases": [
+   "D-400",
+   "S10-16"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B404",
+  "replaces": "TPD-E25",
+  "direction": "design behaviour",
+  "where": "10.11",
+  "prd": "TP S10-N1: \"the sell price is $0.00 ... The line is logged under the work order's tier\"",
+  "design": "No rule prices it: $0.00, logged under the work order's tier",
+  "outcome": "NO-DIFFERENCE",
+  "closed_by": "TP S10-N1 states the same. Cases S10-24, D-404.",
+  "cases": [
+   "S10-24",
+   "D-404"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B405",
+  "replaces": "TPD-E29",
+  "direction": "design behaviour",
+  "where": "20.8",
+  "prd": "RPT-S3-R12: \"Date range and Location always do, so they are always blue.\"",
+  "design": "Location always blue",
+  "outcome": "NO-DIFFERENCE",
+  "closed_by": "RPT-S3-R12 states the same (tech plan 2 R-D16: not clearable). Cases RPT-48, D-418.",
+  "cases": [
+   "RPT-48",
+   "D-418"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B406",
+  "replaces": "TPD-E30",
+  "direction": "design behaviour",
+  "where": "20.13",
+  "prd": "RPT-S3-R8: biggest first, second reverses, third first-load order",
+  "design": "Sort cycle; arrows on hover and on the sorted column",
+  "outcome": "NO-DIFFERENCE",
+  "closed_by": "RPT-S3-R8 states the cycle; the arrows are the design's look where the PRD is silent (PRD v37 §7: \"Layout, styling, sort indicators, scrolling and pinned columns follow the design canvas; this section states only what QA tests.\"). Cases RPT-52, D-421.",
+  "cases": [
+   "RPT-52",
+   "D-421"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B407",
+  "replaces": "TPD-E31",
+  "direction": "design behaviour",
+  "where": "20.15",
+  "prd": "RPT-S1-R14: \"A column chooser, remembered per browser\"",
+  "design": "Hidden column remembered",
+  "outcome": "NO-DIFFERENCE",
+  "closed_by": "RPT-S1-R14 (per browser) and tech plan 2 R-D16 (per report). Cases RPT-16, D-422.",
+  "cases": [
+   "RPT-16",
+   "D-422"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B408",
+  "replaces": "TPD-E32",
+  "direction": "design behaviour",
+  "where": "20.18 note",
+  "prd": "RPT-S4-R5: \"A PDF covers up to 2,000 rows and a CSV up to 50,000.\"",
+  "design": "PDF up to 2,000 rows, CSV up to 50,000",
+  "outcome": "NO-DIFFERENCE",
+  "closed_by": "RPT-S4-R5 states the same. Case RPT-60 (the CSV half is not testable by hand).",
+  "cases": [
+   "RPT-60",
+   "D-424"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B409",
+  "replaces": "TPD-E33",
+  "direction": "design behaviour",
+  "where": "20.20",
+  "prd": "RPT-S4-R7: title; \"Date Range\"; \"Locations\"; then one line each for Sales Type, Category, Priced By and Customer",
+  "design": "The CSV starts with title, date range and every filter (Priced By before Category)",
+  "outcome": "PO-CANDIDATE",
+  "question": "Q4",
+  "held_case": "D-443",
+  "cases": [
+   "RPT-62",
+   "RPT-63",
+   "D-425",
+   "D-443"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B410",
+  "direction": "design->PRD",
+  "where": "10.4, 13.2 (the prototype's entry lists)",
+  "prd": "PRD Out of Scope: \"In this release the work order's tier shows only in the Priced by details\"",
+  "design": "Work Orders and Part Sales lists with a Work Order Tier / Part Sales Tier column",
+  "outcome": "CLOSED",
+  "closed_by": "Settled by the PRD's Out of Scope sentence: no case expects the column; the boards are the prototype's entry page (\"Open one to try its pricing\"). Boards listed in UNUSED_BOARDS.",
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B411",
+  "replaces": "TPD-L01",
+  "direction": "design->PRD",
+  "where": "20.2-20.4, 20.5, 20.9, 20.12, 20.13, 20.18, 20.20",
+  "prd": "RPT-S1-R11 \"2 · Fleet\", \"(archived)\"; RPT-S3-R3 archived marked \"(archived)\"; RPT-S4-R3 tier numbers in downloads; RPT-S3-R5 \"Sales Type: All\"",
+  "design": "Rows and CSV \"Tier 2\" with no number; Priced By list \"Fleet Old\" with no \"(archived)\"; plain chips with no \": All\"",
+  "outcome": "PO-CANDIDATE",
+  "question": "Q40",
+  "held_case": "D-440",
+  "cases": [
+   "RPT-12",
+   "RPT-39",
+   "RPT-42",
+   "RPT-59",
+   "D-440"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B412",
+  "direction": "design->PRD",
+  "where": "20.7",
+  "prd": "RPT-S3-R9: \"Category: lists every category with Uncategorized first, then A to Z.\"",
+  "design": "Uncategorized in A-to-Z order (between Tires, Retread and Wipers)",
+  "outcome": "PO-CANDIDATE",
+  "question": "Q41",
+  "held_case": "D-441",
+  "cases": [
+   "RPT-40",
+   "D-441"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B413",
+  "direction": "design->PRD",
+  "where": "11.7",
+  "prd": "TP S11-R15: \"The receive window says nothing about tiers. Its 6-second notice reads \\\"Updating the cost also updates the sell price.\\\"\"",
+  "design": "Toast \"Part received\" / \"$80.00 each, Tier 2.\" and no \"Updating the cost also updates the sell price.\" notice",
+  "outcome": "PO-CANDIDATE",
+  "question": "Q44",
+  "held_case": "D-442",
+  "cases": [
+   "S11-31",
+   "D-442"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B414",
+  "direction": "design->PRD",
+  "where": "proof §6b, pages 10, 11, 20 (part of TPD-L03)",
+  "prd": "§6d line 10: no source settles these moves",
+  "design": "Sales by Tier 58-94 px on open rows and 20-36 px on empty states; Sales by Category 5-10 px; chips shift; work-order lines 19-71 px during Quick Add, 1-9 px after add/receive",
+  "outcome": "PO-CANDIDATE",
+  "question": "Q42",
+  "held_case": "D-450",
+  "cases": [
+   "D-450",
+   "D-451",
+   "D-452",
+   "D-453",
+   "D-454",
+   "D-455",
+   "D-456"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B415",
+  "direction": "design->PRD",
+  "where": "proof §6c, pages 10, 13, 20 (part of TPD-L04)",
+  "prd": "Reports PRD Key Decisions: \"the columns fit without sideways scrolling\"; RPT-S1-R11 row names",
+  "design": "Harness: a long tier name pushes Parts Margin % off the edge; filter lists cut names without ...",
+  "outcome": "CLOSED",
+  "closed_by": "Settled for the reports by the Key Decision \"the columns fit without sideways scrolling\" and §6d line 9 (wrap or \"...\", never over the next row): stress cases D-460 to D-465 expect that.",
+  "cases": [
+   "D-460",
+   "D-461",
+   "D-462",
+   "D-463",
+   "D-464",
+   "D-465"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B416",
+  "direction": "design->PRD",
+  "where": "20.8",
+  "prd": "RPT-S3-R12 Location always holds a selection; tech plan 2 R-D16 \"Location chip not clearable\"",
+  "design": "\"Clear selection\" link in the Location list",
+  "outcome": "CLOSED",
+  "closed_by": "Behaviour settled by RPT-S3-R12 (skill 07 §6.0 g): whatever the link does, the chip keeps a location and stays blue. Case RPT-48.",
+  "cases": [
+   "RPT-48",
+   "D-418"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B417",
+  "direction": "PRD->design",
+  "where": "13.3, 20.2",
+  "prd": "TP S12-R3 \"a Priced by column\"",
+  "design": "Heading \"Priced By\"",
+  "outcome": "CLOSED",
+  "closed_by": "TP S19-R9: \"Every column title, modal header, page title, tab and button uses Title Case.\" Case D-412.",
+  "cases": [
+   "D-412"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B418",
+  "direction": "design->PRD",
+  "where": "20.20",
+  "prd": "RPT-S4-R1: the menu item downloads the file",
+  "design": "A \"Summary CSV\" dialog with Close and Copy (note: \"Prototype stand-in\")",
+  "outcome": "CLOSED",
+  "closed_by": "The board's own note says the dialog is a prototype stand-in and the real item downloads the file; cases check the file. Cases D-425, RPT-57.",
+  "cases": [
+   "D-425",
+   "RPT-57"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B419",
+  "direction": "design->PRD",
+  "where": "10.8, 11.5",
+  "prd": "PRD silent (no toast text for adding a part or a split)",
+  "design": "\"Part added\" / \"<price> each, priced by <tier>.\"; \"<new> created from <old>\" / \"<n> parts moved, priced by <tier>.\"",
+  "outcome": "CLOSED",
+  "closed_by": "Design is the source of the words where the PRD is silent (QA lead's precedence, 14 Nov 2026). Cases D-402, D-409.",
+  "cases": [
+   "D-402",
+   "D-409"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B420",
+  "direction": "design->PRD",
+  "where": "11.1",
+  "prd": "TP S11-R12: the cost \"can't be re-entered on inventory parts ... as today\"",
+  "design": "Help text \"The cost of an inventory part can’t be re-entered.\"",
+  "outcome": "CLOSED",
+  "closed_by": "Compatible: the PRD sets the behaviour, the design supplies the help words where the PRD is silent. Cases S11-06, D-406.",
+  "cases": [
+   "S11-06",
+   "D-406"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B421",
+  "direction": "PRD->design",
+  "where": "page 20 (reports PRD quoted messages)",
+  "prd": "\"Unknown location\"; \"This report is too large to export. Choose a shorter date range, then try again.\"; \"Access restricted\"; \"Ooooops! An error occurred\"",
+  "design": "Not drawn",
+  "outcome": "CLOSED",
+  "closed_by": "DESIGN-SILENT: no board draws these states; the cases follow the reports PRD sentences (RPT-45, RPT-60, RPT-18; the error states are not testable by hand).",
+  "cases": [
+   "RPT-45",
+   "RPT-60",
+   "RPT-18"
+  ],
+  "in_scope": true
+ },
+ {
+  "id": "TPD-B422",
+  "direction": "PRD->design",
+  "where": "pages 10-13 (Story 11 quoted texts)",
+  "prd": "TP S11-E8 \"Saved price from canned line <canned line>. Priced by <tier> when its cost comes in.\"",
+  "design": "Not drawn (12.7 draws only the Default-work-order form)",
+  "outcome": "CLOSED",
+  "closed_by": "DESIGN-SILENT: the case follows the PRD sentence (S11-22).",
+  "cases": [
+   "S11-22"
+  ],
+  "in_scope": true
+ }
+]

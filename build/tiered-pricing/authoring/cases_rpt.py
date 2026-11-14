@@ -493,7 +493,7 @@ C("RPT-42", K, "Sales Type splits Part Sales from Work Orders and names the chip
      "Tier A reads $121.50, the work order's part ($364.50 − $243.00 = $121.50)."),
    R(S("RPT-S3-R5"), "The chip reads \"Sales Type: None\".")
    + R(S("RPT-S3-N1", "including no Sales Type selected"), "The report reads \"No record matches these filters\" with no Totals row."),
-   R(QT("closed chips read \"All\", X restores All (20.2)", "TPX-25", "TP2"), "The chip reads Sales Type with no selection, plain, and tier A reads $364.50 again.")],
+   R([S("RPT-S3-R5", "The closed filter reads \"Sales Type: All\""), QT("closed chips read \"All\", X restores All (20.2)", "TPX-25", "TP2")], "The chip reads \"Sales Type: All\" and is plain.", "Tier A reads $364.50 again.")],
   pics=["20.9", "20.21"], flags=["numbers"])
 
 C("RPT-43", K, "Location opens on your location and adds a Location column for two",
