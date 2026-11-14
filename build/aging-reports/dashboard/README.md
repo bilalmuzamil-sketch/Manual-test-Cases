@@ -19,3 +19,6 @@ https://claude.ai/artifact/E6MSrJDofWwCjyYii6tKTg (Dashboard type; private to th
   on the day-count card; the production card removed (C715462 passed on staging by another session); "what is left" = re-runs after SV-12663 / SV-12545.
 - 12 Nov 2026 15:52 UTC: re-checked against the live run — no change (463 Passed · 4 Failed · 0 Blocked; e.csv identical to d.csv). Page v15:
   snapshot time corrected to the real clock, and the day-count card now links SV-12663 and its two tests (C715471, C715472). Dataset v8 (stamps only).
+- 14 Nov 2026 06:58 UTC: after the 22 new tests on staging — 489 tests: 480 Passed · 9 Failed · 0 Blocked (dataset v9 → aging-run-results-2026-11-14.csv,
+  asset /_blob/aca08f834f330674d7be2809841a41c6; page v16, copy in page-text-2026-11-14.json). New cards: columns move (SV-12763, 4 tests), long names
+  (SV-12722 / SV-12764 + Vendor menu held, 3 tests), future as-of date now works (SV-12545). C1078980/81 passed by another hand (titles still carry "SV-12545 - ").
