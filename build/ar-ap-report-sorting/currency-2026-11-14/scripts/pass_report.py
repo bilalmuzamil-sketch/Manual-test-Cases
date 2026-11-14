@@ -70,7 +70,7 @@ A(f"| Cases of ours in the library (excluding the 14 Demo Day cases D-82 to D-95
 A(f"| Rewritten top to bottom (quote or depend on S1-R8, S4-R1, S5-E3, S8-R3; S5-37 contradicted by S5-R10b) | {cnt['REWRITE']} |")
 A(f"| ... of which the tester text changed (title, preconditions, steps or results) | {sum(1 for r in rows if r['set']=='REWRITE' and any(r[p]=='CHANGED' for p in ('title','preconditions','steps','results')))} |")
 A(f"| Re-stamped to v13 (From line only; quotes proved word for word in v13 first) | {cnt['RE-STAMP']} |")
-A(f"| New cases (S3-33 to S3-36 for S3-R7b; S5-43 for S5-R10b; S5-41b for the changed S5-E3) | {cnt['NEW']} |")
+A(f"| New cases (S3-33 to S3-36 for S3-R7b; S5-43 for S5-R10b; S5-41b for the changed S5-E3; S2-51, S2-52 for SV-12723, QA lead 14 Nov 2026) | {cnt['NEW']} |")
 A(f"| Edited outside our library since our last write (10 Nov 2026) | {len(OE)} of {cnt['REWRITE'] + cnt['RE-STAMP']} |")
 A(f"| Held out of every write (readiness check fails on live text we did not write) | {len(HELD)} ({', '.join(HELD)}) |")
 A(f"| Quotes checked word for word against their sources (final bodies) | {QC['quotes']} in {QC['cases']} cases, {len(QC['fails'])} failing |")
@@ -107,8 +107,7 @@ A("**Prepared, not run: `write/update_cases.py --on-live`.** It sends the v13 bo
   f"{', '.join(f'{k}: {v}' for k, v in Counter(x[1] for v in INV.values() for x in v['their_lines_replaced']).items())}. "
   "R1 = the From line now names version 13 (rest of their line kept); R2 = a rewritten case's own build line where the rewrite added a result no build has shown; "
   "R3 = S5-37's marker (its expected behaviour reversed); R4 = the v13 quote text (theirs only re-encoded the same quote); R5 = D-16's tech-plan note (their wording kept, "
-  "the v13 point added). D-52 keeps its live tester line and note. Lock in that mode: the 14 Nov 2026 read (fields and updated_on). Held: DATA-13 (its live preconditions name "
-  "\"ZZAUTOTEST OVERPAID C715462 Cust A\", a case id in tester text, so the readiness check refuses it; we do not edit that text).")
+  "the v13 point added). D-52 keeps its live tester line and note. Lock in that mode: the 14 Nov 2026 read (fields, folder and updated_on), re-read in full at the start and per case before each write; a second full read (live-2026-11-14b.json) and the dry run's per-case reads found 0 changes. R6 (QA lead's choice): DATA-13's live preconditions named \"ZZAUTOTEST OVERPAID C715462 Cust A\"; only the id is dropped (\"ZZAUTOTEST OVERPAID Cust A\"). The staging record keeps its full name, so the tester finds it by \"ZZAUTOTEST OVERPAID\".")
 A("")
 A("No case is moved: no script sends section_id; update reads back section_id; new cases go to \"Setup needed before testing\" (133629), where the cases that need "
   "records made and the Demo Day cases are. S1-05 and S1-07 stay in \"Retired - cannot be set up\" (re-stamp only, not in run 557).")
@@ -117,7 +116,7 @@ A("## 4. Gates")
 A("")
 A("- `authoring/build.py`: 400 cases, **0 PROBLEM lines** (every quote word for word in PRD v13; From lines name version 13; per-case build line).")
 A("- `tester_readiness_check.py build/ar-ap-report-sorting --also currency-2026-11-14/proposals-v13-on-live-writable.json`: 400 cases, **0 hard problems** "
-  "(library alone: 0 hard). With DATA-13's live text: 1 hard (held, above).")
+  "(DATA-13 included, after R6).")
 A(f"- `scripts/quote_check.py` (re-stamp proof): {QC['quotes']} quotes in {QC['cases']} final bodies, **0 failing**; every PRD From line names version 13.")
 A("- `ticket_sweep.py`: 37 tickets, **0 unhandled**, PRD v13 handled (TICKET-LEDGER.json: 11 new tickets and 18 updated rows written).")
 A("- Demo Day cases D-82 to D-95: byte-identical in proposals.json before and after (`scripts/lib_diff.py`).")
@@ -176,8 +175,8 @@ A("## 9. Unsettled / for the QA lead")
 A("")
 A("1. **Every case was edited outside our library** (section 3). Recommended: run `update_cases.py --on-live` (keeps every outside edit, proven), then "
   "`create_new.py`, `sync_run_557.py`, `folder_note.py`. Otherwise the ordered lock writes nothing and the suite stays on v11/v12 for the 19 Nov release.")
-A("2. **DATA-13 (C715462)** held: its live preconditions carry a case id in a record name; fix the text or allow it.")
-A("3. **SV-12723 gap**: no case checks that empty bucket cells on the Summaries sort to the bottom (S2-R6); outside the named set. Recommended: one new case per Summary.")
+A("2. **DATA-13 (C715462)**: the case id dropped from its live record name (R6), as the QA lead chose; nothing held.")
+A("3. **SV-12723**: S2-51 (A/R Summary) and S2-52 (A/P Summary) added on the QA lead's choice (S2-R6, checklist lines 9 and 10).")
 A("4. **SV-12540 closed as obsolete**, but PRD v13 S1-R8 still sets that only the first 100 documents are shown, then 100 more as you scroll; S1-21/S1-22 keep that "
   "(they passed 11-12 Nov). No PO question: the PRD's own words settle it (skill 07 §6.0 check b).")
 A("5. **PO questions**: no new question passes checks a-h (DD-08 is settled by the later PRD ruling, check a/c; S8-R3's 'can make the table scroll sideways' is permissive, not a must, check e; "

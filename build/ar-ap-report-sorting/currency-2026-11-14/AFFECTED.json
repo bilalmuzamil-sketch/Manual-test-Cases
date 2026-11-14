@@ -1131,8 +1131,8 @@
    }
   },
   "after_this_pass": {},
-  "after_quotes_checked": 1205,
-  "after_cases_checked": 386
+  "after_quotes_checked": 1209,
+  "after_cases_checked": 388
  },
  "candidates_read_not_dependent": {
   "S3-R7b": {
@@ -1166,12 +1166,30 @@
    "S1-01, S1-02, S3-03..S3-08, S4-23": "keyword hits only ('as', 'load' in other senses)"
   }
  },
+ "sv12723": {
+  "ticket": "SV-12723 (Ready for Production): empty bucket cells on A/R Summary sorted as $0",
+  "requirement": "S2-R6 (unchanged since v11)",
+  "v13": "A blank value (for example a vendor credit on A/P Unpaid Invoices, which has no due date and no Past Due) sorts to the bottom of its group in both directions. On A/P Detail a vendor credit shows its own date as its due date, as today, so it is not blank there.",
+  "new_cases": [
+   {
+    "key": "S2-51",
+    "case": "new, no C-id yet",
+    "link": null
+   },
+   {
+    "key": "S2-52",
+    "case": "new, no C-id yet",
+    "link": null
+   }
+  ],
+  "why": "no case covered empty bucket cells on the Summaries; QA lead 14 Nov 2026: Apply on top, + SV-12723"
+ },
  "counts": {
   "rewritten": 73,
   "behaviour_changed_in_tester_text": 15,
   "quote_only_rewrites": 58,
   "restamped": 307,
-  "new": 6,
+  "new": 8,
   "demo_day_untouched": 14
  }
 }

@@ -51,9 +51,11 @@ out["candidates_read_not_dependent"] = {
  "S8-R3 (quoting, tester text confirmed)": {"D-17": "dark theme: no sideways-scroll or wrap claim", "D-16b": "Open Balance pinned and bold only", "S4-12b": "a 1200 px window scrolls sideways anyway"},
  "S4-R1 (quoting, tester text confirmed)": {"S4-01..S4-06": "what the chevron does; its colour is checked in D-25..D-28, D-52, D-56, D-59"},
  "S1-R8": {"S1-01, S1-02, S3-03..S3-08, S4-23": "keyword hits only ('as', 'load' in other senses)"}}
+out["sv12723"] = {"ticket": "SV-12723 (Ready for Production): empty bucket cells on A/R Summary sorted as $0", "requirement": "S2-R6 (unchanged since v11)",
+                  "v13": line(v13, "S2-R6"), "new_cases": [C("S2-51"), C("S2-52")], "why": "no case covered empty bucket cells on the Summaries; QA lead 14 Nov 2026: Apply on top, + SV-12723"}
 P = json.load(open(f"{B}/authoring/proposals.json"))
 out["restamp_set"] = sorted(k for k in P if k in MAP and k not in V.REWRITE and not ("D-82" <= k <= "D-95" and k.startswith("D-")))
 out["counts"] = {"rewritten": len(V.REWRITE), "behaviour_changed_in_tester_text": len(BEHAV), "quote_only_rewrites": len(V.REWRITE) - len(BEHAV),
-                 "restamped": len(out["restamp_set"]), "new": 6, "demo_day_untouched": 14}
+                 "restamped": len(out["restamp_set"]), "new": 8, "demo_day_untouched": 14}
 json.dump(out, open(f"{W}/AFFECTED.json", "w"), indent=1, ensure_ascii=False)
 print(out["counts"]); print({c: len(v["cases"]) for c, v in out["changed"].items()})

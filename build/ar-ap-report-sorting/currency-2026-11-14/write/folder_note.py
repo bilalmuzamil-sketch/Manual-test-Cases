@@ -11,10 +11,11 @@ LOCK = json.load(open(f"{W}/live-before/live-2026-11-14.json"))["folder_90418"].
 old = LOCK
 new = NOTE if not old.strip() or old.strip() == NOTE else NOTE + "\n\n" + old
 print(f"folder {SEC}: live description as read 14 Nov 2026 = {old!r}\nnew description = {new!r}")
-if not APPLY: print("DRY RUN: nothing written."); sys.exit(0)
-readiness()
 from trlib import api, LAST
 live = api(f"get_section/{SEC}")
+print(f"live read: folder {SEC} description now {live.get('description')!r}; lock {'holds' if (live.get('description') or '') == LOCK else 'BROKEN'}")
+if not APPLY: print("DRY RUN: nothing written."); sys.exit(0)
+readiness()
 if (live.get("description") or "") != LOCK:
     sys.exit(f"REFUSED (edit lock): the folder description changed since 14 Nov 2026: {live.get('description')!r}; show it to the QA lead")
 json.dump(live, open(f"{OUT}/section-{SEC}-before-2026-11-14.json", "w"), indent=1)

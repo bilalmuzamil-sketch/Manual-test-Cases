@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""14 Nov 2026, PRD version 13. Adds the 6 new cases (authoring/cases_v13.py: S3-33, S3-34, S3-35, S3-36 for S3-R7b; S5-43 for S5-R10b; S5-41b
-for the changed S5-E3) to the folder their kind uses now: "Setup needed before testing" (133629), where the cases that need records made for
+"""14 Nov 2026, PRD version 13. Adds the 8 new cases (authoring/cases_v13.py: S3-33, S3-34, S3-35, S3-36 for S3-R7b; S5-43 for S5-R10b; S5-41b
+for the changed S5-E3; S2-51, S2-52 for SV-12723 / S2-R6, QA lead 14 Nov 2026) to the folder their kind uses now: "Setup needed before testing" (133629), where the cases that need records made for
 them and the 14 Demo Day cases are (proposals.json section_id, set by build.py). custom_atmstatus 1 ("Not Automated", APP-ACTIONS-PLAYBOOK §J).
 Resumable: a key already in testrail-id-map.csv is skipped. The folder must hold only cases in our map (Rule 38/123). Read back field by field
 and section; the map is appended. No design pictures: none of the six lists one. Dry run unless --apply.   python3 create_new.py [--apply]"""
@@ -15,8 +15,6 @@ for k in new:
     assert "Design pictures attached to this case" not in f["custom_expected"], k
 print("new cases", len(new), "| to add", len(todo), "| already added", len(new) - len(todo))
 for k in todo: print(f"  {k} -> section {PROP[k]['section_id']} (Setup needed before testing): {PROP[k]['fields']['title']}")
-if not APPLY: print("DRY RUN: nothing written."); sys.exit(0)
-readiness()
 from trlib import api, LAST
 known = set(ID.values())
 got, off = [], 0
@@ -27,6 +25,9 @@ while True:
     off += 250
 extra = [c["id"] for c in got if c["id"] not in known]
 if extra: sys.exit(f"REFUSED: folder 133629 holds cases not in our map {extra}; ask the QA lead (Rule 123)")
+print(f"live read: folder 133629 holds {len(got)} cases, all in our map")
+if not APPLY: print("DRY RUN: nothing written."); sys.exit(0)
+readiness()
 L = log("create-2026-11-14-log.jsonl"); bad = 0
 for k in todo:
     v = PROP[k]; f = v["fields"]

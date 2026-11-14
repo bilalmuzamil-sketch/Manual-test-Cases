@@ -263,11 +263,21 @@ def C(key, sec, title, pre, steps, res, q, marker=None, note="", stories=None, a
                       held=held if held is not None else marker.startswith("AUTOMATION: HOLD")))
 
 
+def _codes(txt):
+    d = {}
+    for line in txt.split("\n"):
+        m = re.match(r"^\s*-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
+        if m and m.group(1) not in d: d[m.group(1)] = m.group(2).strip()
+    return d
+CODE_BY_VERSION = {v: _codes(t[1]) for v, t in PRD_TEXTS.items()}   # a case's codes are quoted from its own version's copy
+
+
 def quotes(c):
     out = []
+    code = CODE_BY_VERSION[prd_version(c)]
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
-        elif x in CODE: out.append((x, CODE[x]))
+        elif x in code: out.append((x, code[x]))
         elif x in NAMED: out.append(NAMED[x])
         else: raise KeyError(f"{c['key']}: unknown quote key {x}")
     return out

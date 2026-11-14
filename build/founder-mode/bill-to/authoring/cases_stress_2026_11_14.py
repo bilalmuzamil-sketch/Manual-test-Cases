@@ -244,38 +244,42 @@ N("D-81", "B-P12", "Design: Payment refusal toast keeps a long customer name ins
     "No payment is recorded."]],
   ["UFS-06", "EH-S10"], notes=(), pages=NO_PIC, note=NAME_NOTE)
 
-ASSET = 'with an asset whose Unit is "854", Year 2024, Make "International" and Model "CV515"'
-P = ["bt-p4-02-after-modern.png"]
-N("D-82", "B-P13a", "Design: Service For band keeps long names inside it on modern invoices",
-  [ADMIN, W1440, "Make sure the organization's document design setting is the modern layout.",
-   cust("A", ", the customer the work is for, " + LONG_NO), cust("C", ", a second customer the work is for, " + SPECIAL), cust("B", ", the payer, so each invoice bills someone other than its customer"),
-   FIT, wo(1, "A", "invoiced", "B", ", " + ASSET), wo(2, "C", "invoiced", "B", ", " + ASSET), PICS(*P)],
-  [OPEN_WO, FIN, "Click the print icon on the Finance tab.", "Open the invoice's PDF.", "Open work order 2.", FIN, "Open the invoice's PDF."],
-  [["Work order 1 opens for customer A."], ["The Finance tab shows the invoice."],
-   ['Directly under the address row, a full-width band reads "SERVICE FOR", then customer A\'s name in bold, then "Unit 854" and "2024 International CV515".',
-    "Customer A's name stays inside the band: no part of it covers \"Unit 854\", the year, make and model, or the page's right edge.",
-    "The address row above the band keeps its blocks; the band does not reach into it."],
-   ["The PDF shows the same band, with customer A's name inside it and \"Unit 854\" and \"2024 International CV515\" fully visible."],
-   ["Work order 2 opens for customer C."], ["The Finance tab shows the invoice."],
-   ['The band reads "SERVICE FOR", then customer C\'s name in bold, then "Unit 854" and "2024 International CV515".', EXACT("Customer C")]],
-  ["S8-R1", "S8-R2", "S8-R7"], P)
+# ---- 14 Nov 2026 (Story 8 named set, Rule 134): the band now reads "SERVICE FOR", then the customer's name, " · " and that customer's own
+# address (PRD S8-R1, S8-R2 of the page edited 14 Nov 2026); page 4 redrawn (canvas version 1794608112-d8a1). D-82 and D-83 rewritten to a
+# long no-space name with a long address; D-84's References from Design re-pointed to the redrawn picture (its old words were page 4's).
+LONG_ADDR = ("with a long address on file: a street, an Address 2, a city, a province or state and a postal or ZIP code, at least 80 characters "
+             "in all (for example 8237 Brittney Divide Apartment 463, Building 891 Rear Entrance, Walshhaven, British Columbia P5H 7C4)")
+def P4PAGE(ns):
+    figs = [_DR.NEW4[n] for n in ns]
+    return (_DR.CANVAS_1114 + ': page "4 Service For band on invoices and estimates", pictures '
+            + ", ".join(f'"{f["heading"]}" ({f["badge"]}, row "{f["row"]}")' for f in figs) + ". Compare the screen with the pictures; the expected results come from the PRD.")
+BAND14 = ("The design draws the band with ordinary names and addresses only; it draws no name without spaces and no name with & \" ' < >. "
+          "The long name and long address follow the design-case checklist (lesson L-21); the line-break rule comes from the PRD and the "
+          "design's own words above.")
+for key, scan, lay, ns, where in [("D-82", "B-P13a", "modern", [2], "Directly under the address row"),
+                                 ("D-83", "B-P13b", "legacy", [4], "Under Bill To and Remit payment to, above the asset table")]:
+    P = [_DR.os.path.basename(_DR.NEW4[n]["figure_picture"]) for n in ns]
+    N(key, scan, f"Design: A long name and address stay inside the band on {lay} invoices",
+      [ADMIN, W1440, f"Make sure the organization's document design setting is the {lay} layout.",
+       cust("A", ", the customer the work is for, " + LONG_NO + ", " + LONG_ADDR),
+       cust("C", ", a second customer the work is for, " + SPECIAL + ", with an address on file"),
+       cust("B", ", the payer, so each invoice bills someone other than its customer"), FIT,
+       wo(1, "A", "invoiced", "B"), wo(2, "C", "invoiced", "B"), PICS(*P)],
+      [OPEN_WO, FIN, "Click the print icon on the Finance tab.", "Open the invoice's PDF.", "Open work order 2.", FIN, "Open the invoice's PDF."],
+      [["Work order 1 opens for customer A."], ["The Finance tab shows the invoice."],
+       [f'{where}, a full-width band prints; its first line reads "SERVICE FOR".',
+        "Its second line reads customer A's name, \" · \" and customer A's address.",
+        "Customer A's name and the whole address stay inside the band: no part of them runs past the band's right edge or the page's edge.",
+        "If the address runs onto another line, the break comes before the province or state: the province or state and the postal code are on the same line, and the postal code is never split."],
+       ["The PDF shows the same band, with customer A's name and address inside it and the province or state and postal code on one line."],
+       ["Work order 2 opens for customer C."], ["The Finance tab shows the invoice."],
+       ['The band reads "SERVICE FOR", then customer C\'s name, " · " and customer C\'s address.', EXACT("Customer C")]],
+      ["S8-R1", "S8-R2", "S8-R7"], P, notes=(BAND14,), pages=P4PAGE(ns),
+      words=['A full-width band under the address row. Line 1: "SERVICE FOR". Line 2: "Buda Truck Repair · 8237 Brittney Divide Apt. 463, Apt. 891, Walshhaven, British Columbia P5H 7C4", Buda\'s own address.']
+            if lay == "modern" else ["The same two-line band, under Bill To and Remit payment to, above the asset table.",
+                                     'A long address wraps before the province and postal code, never inside "P5H 7C4".'])
 
-P = ["bt-p4-04-after-legacy.png"]
-N("D-83", "B-P13b", "Design: Service For band keeps long names inside it on legacy invoices",
-  [ADMIN, W1440, "Make sure the organization's document design setting is the legacy layout.",
-   cust("A", ", the customer the work is for, " + LONG_NO), cust("C", ", a second customer the work is for, " + SPECIAL), cust("B", ", the payer, so each invoice bills someone other than its customer"),
-   FIT, wo(1, "A", "invoiced", "B", ", " + ASSET), wo(2, "C", "invoiced", "B", ", " + ASSET), PICS(*P)],
-  [OPEN_WO, FIN, "Click the print icon on the Finance tab.", "Open the invoice's PDF.", "Open work order 2.", FIN, "Open the invoice's PDF."],
-  [["Work order 1 opens for customer A."], ["The Finance tab shows the invoice."],
-   ['Under Bill To and Remit payment to, above the asset table, a full-width band reads "SERVICE FOR", then customer A\'s name in bold, then "Unit 854" and "2024 International CV515".',
-    "Customer A's name stays inside the band: no part of it covers \"Unit 854\", the year, make and model, or the page's right edge.",
-    "The Bill To and Remit payment to blocks above the band keep their place; the band does not reach into them."],
-   ["The PDF shows the same band, with customer A's name inside it and \"Unit 854\" and \"2024 International CV515\" fully visible."],
-   ["Work order 2 opens for customer C."], ["The Finance tab shows the invoice."],
-   ['The band reads "SERVICE FOR", then customer C\'s name in bold, then "Unit 854" and "2024 International CV515".', EXACT("Customer C")]],
-  ["S8-R1", "S8-R2", "S8-R7"], P)
-
-P = ["bt-p4-02-after-modern.png"]
+P = [_DR.os.path.basename(_DR.NEW4[2]["figure_picture"])]
 N("D-84", "B-P14", "Design: Invoice Bill To block prints a long payer name with its IBS number",
   [ADMIN, "Use a test organization connected to IBS.", cust("A", ", the customer the work is for, with its own IBS account number"),
    cust("B", ", the payer, with an IBS account number different from customer A's, " + LONG_NO),
@@ -288,7 +292,9 @@ N("D-84", "B-P14", "Design: Invoice Bill To block prints a long payer name with 
     "The IBS number is fully visible."],
    ["Work order 2 opens for customer A."], ["The Finance tab shows the invoice."],
    ['The Bill To block shows customer C\'s name followed by "(IBS#: [customer C\'s IBS number])".', EXACT("Customer C")]],
-  ["S7-R1", "S19-R3"], P, note=NAME_NOTE)
+  ["S7-R1", "S19-R3"], P, note=NAME_NOTE, pages=P4PAGE([2]), words=[],
+  notes=("The picture shows the invoice's Bill To block (the ADDRESSES box, left) with an ordinary name and no IBS number; compare only "
+         "the block's place and lines. " + SHORT_ONLY,))
 
 P = ["bt-p5-02-after-a-j-invoices.png"]
 N("D-85", "B-P15", "Design: Long Service For names never cover Memo on the payer's Invoices tab",

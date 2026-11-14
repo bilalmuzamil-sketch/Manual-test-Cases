@@ -10,10 +10,10 @@ QA lead, 14 Nov 2026: **"Named set (Recommended)"**: rewrite top to bottom (Rule
 | Rewritten top to bottom (quote or depend on S1-R8, S4-R1, S5-E3, S8-R3; S5-37 contradicted by S5-R10b) | 73 |
 | ... of which the tester text changed (title, preconditions, steps or results) | 14 |
 | Re-stamped to v13 (From line only; quotes proved word for word in v13 first) | 307 |
-| New cases (S3-33 to S3-36 for S3-R7b; S5-43 for S5-R10b; S5-41b for the changed S5-E3) | 6 |
+| New cases (S3-33 to S3-36 for S3-R7b; S5-43 for S5-R10b; S5-41b for the changed S5-E3; S2-51, S2-52 for SV-12723, QA lead 14 Nov 2026) | 8 |
 | Edited outside our library since our last write (10 Nov 2026) | 380 of 380 |
-| Held out of every write (readiness check fails on live text we did not write) | 1 (DATA-13) |
-| Quotes checked word for word against their sources (final bodies) | 1205 in 386 cases, 0 failing |
+| Held out of every write (readiness check fails on live text we did not write) | 0 () |
+| Quotes checked word for word against their sources (final bodies) | 1209 in 388 cases, 0 failing |
 
 ## 2. What changed in the PRD (v11 -> v13; diff read in full)
 
@@ -43,15 +43,15 @@ What the outside edits are (by script, `live-before/outside-edits-2026-11-14.jso
 
 Mostly: the build line became "Last checked against build …" or "Partly checked …" (366 markers now AUTOMATION: READY); a "Setup" block of concrete staging steps was added to the preconditions of 130 cases; some steps reworded ("below the last row of the report page", the network-blocking steps); 16 cases re-quoted to PRD v12 (REL cases, REL-07, DATA-13; D-52 already shows the blue header chevron, "on the QA lead's instruction"); REL titles now say "staging deploy".
 
-**Prepared, not run: `write/update_cases.py --on-live`.** It sends the v13 body built ON the live text (`proposals-v13-on-live-writable.json`, `scripts/merge_on_live.py`): a three-way merge (our 10 Nov read-back, the v13 library body, the live text) keeps every outside edit. Proof (`scripts/check_merge.py`, `merge-invariant.json`): 0 lines added that are not ours, and every outside line is still there except where a named rule replaced it: R5 tester: 1, R2 build: 10, R1 from: 36, R4 quote: 6, R3 marker: 1. R1 = the From line now names version 13 (rest of their line kept); R2 = a rewritten case's own build line where the rewrite added a result no build has shown; R3 = S5-37's marker (its expected behaviour reversed); R4 = the v13 quote text (theirs only re-encoded the same quote); R5 = D-16's tech-plan note (their wording kept, the v13 point added). D-52 keeps its live tester line and note. Lock in that mode: the 14 Nov 2026 read (fields and updated_on). Held: DATA-13 (its live preconditions name "ZZAUTOTEST OVERPAID C715462 Cust A", a case id in tester text, so the readiness check refuses it; we do not edit that text).
+**Prepared, not run: `write/update_cases.py --on-live`.** It sends the v13 body built ON the live text (`proposals-v13-on-live-writable.json`, `scripts/merge_on_live.py`): a three-way merge (our 10 Nov read-back, the v13 library body, the live text) keeps every outside edit. Proof (`scripts/check_merge.py`, `merge-invariant.json`): 0 lines added that are not ours, and every outside line is still there except where a named rule replaced it: R5 tester: 1, R2 build: 10, R1 from: 36, R4 quote: 6, R6 case id dropped: 1, R3 marker: 1. R1 = the From line now names version 13 (rest of their line kept); R2 = a rewritten case's own build line where the rewrite added a result no build has shown; R3 = S5-37's marker (its expected behaviour reversed); R4 = the v13 quote text (theirs only re-encoded the same quote); R5 = D-16's tech-plan note (their wording kept, the v13 point added). D-52 keeps its live tester line and note. Lock in that mode: the 14 Nov 2026 read (fields, folder and updated_on), re-read in full at the start and per case before each write; a second full read (live-2026-11-14b.json) and the dry run's per-case reads found 0 changes. R6 (QA lead's choice): DATA-13's live preconditions named "ZZAUTOTEST OVERPAID C715462 Cust A"; only the id is dropped ("ZZAUTOTEST OVERPAID Cust A"). The staging record keeps its full name, so the tester finds it by "ZZAUTOTEST OVERPAID".
 
 No case is moved: no script sends section_id; update reads back section_id; new cases go to "Setup needed before testing" (133629), where the cases that need records made and the Demo Day cases are. S1-05 and S1-07 stay in "Retired - cannot be set up" (re-stamp only, not in run 557).
 
 ## 4. Gates
 
 - `authoring/build.py`: 400 cases, **0 PROBLEM lines** (every quote word for word in PRD v13; From lines name version 13; per-case build line).
-- `tester_readiness_check.py build/ar-ap-report-sorting --also currency-2026-11-14/proposals-v13-on-live-writable.json`: 400 cases, **0 hard problems** (library alone: 0 hard). With DATA-13's live text: 1 hard (held, above).
-- `scripts/quote_check.py` (re-stamp proof): 1205 quotes in 386 final bodies, **0 failing**; every PRD From line names version 13.
+- `tester_readiness_check.py build/ar-ap-report-sorting --also currency-2026-11-14/proposals-v13-on-live-writable.json`: 400 cases, **0 hard problems** (DATA-13 included, after R6).
+- `scripts/quote_check.py` (re-stamp proof): 1209 quotes in 388 final bodies, **0 failing**; every PRD From line names version 13.
 - `ticket_sweep.py`: 37 tickets, **0 unhandled**, PRD v13 handled (TICKET-LEDGER.json: 11 new tickets and 18 updated rows written).
 - Demo Day cases D-82 to D-95: byte-identical in proposals.json before and after (`scripts/lib_diff.py`).
 - Read in full: 20 random rewritten or new cases (seed 20261114, `sample-20-keys.json`) and every "does not / never" result in a rewritten or new case (52 lines): each has a visible control (a positive row, a count or the chip before the change). No fault found.
@@ -66,7 +66,7 @@ No case is moved: no script sends section_id; update reads back section_id; new 
 
 Rewritten (73), part by part: title {'CONFIRMED': 70, 'CHANGED': 3}; preconditions {'CONFIRMED': 68, 'CHANGED': 5}; steps {'CONFIRMED': 69, 'CHANGED': 4}; results {'CONFIRMED': 60, 'CHANGED': 13}; notes {'CONFIRMED': 71, 'CHANGED': 2}; quotes_and_From_lines {'CHANGED': 73}; build_line {'CONFIRMED': 63, 'CHANGED': 10}; design_references {'CHANGED': 50, 'CONFIRMED': 23}; marker {'CONFIRMED': 72, 'CHANGED': 1}; refs {'CONFIRMED': 72, 'CHANGED': 1}; setup_recipe {'CONFIRMED': 68, 'CHANGED': 5}.
 
-Re-stamped (307): title {'CONFIRMED': 307}; preconditions {'CONFIRMED': 307}; steps {'CONFIRMED': 307}; results {'CONFIRMED': 307}; notes {'CONFIRMED': 307}; quotes_and_From_lines {'CHANGED': 307}; build_line {'CONFIRMED': 307}; design_references {'CONFIRMED': 307}; marker {'CONFIRMED': 307}; refs {'CONFIRMED': 307}; setup_recipe {'CONFIRMED': 306, 'CHANGED': 1}.
+Re-stamped (307): title {'CONFIRMED': 307}; preconditions {'CONFIRMED': 306, 'CHANGED': 1}; steps {'CONFIRMED': 307}; results {'CONFIRMED': 307}; notes {'CONFIRMED': 307}; quotes_and_From_lines {'CHANGED': 307}; build_line {'CONFIRMED': 307}; design_references {'CONFIRMED': 307}; marker {'CONFIRMED': 307}; refs {'CONFIRMED': 307}; setup_recipe {'CONFIRMED': 306, 'CHANGED': 1}.
 
 | Key | C-id | Set | Title | Pre | Steps | Results | Notes | Quotes+From | Build line | Design | Marker | Refs | Setup recipe | Run 557 | Folder |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -180,7 +180,7 @@ Re-stamped (307): title {'CONFIRMED': 307}; preconditions {'CONFIRMED': 307}; st
 | DATA-10 | C715459 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Setup needed before testing (133629) |
 | DATA-11 | C715460 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Setup needed before testing (133629) |
 | DATA-12 | C715461 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Setup needed before testing (133629) |
-| DATA-13 | C715462 | RE-STAMP (HELD) | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Run on Staging After the Feature Is Deployed (133628) |
+| DATA-13 | C715462 | RE-STAMP | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Run on Staging After the Feature Is Deployed (133628) |
 | DATA-14 | C715463 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Setup needed before testing (133629) |
 | DATA-15 | C715464 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Setup needed before testing (133629) |
 | DATA-16 | C715465 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Setup needed before testing (133629) |
@@ -294,6 +294,8 @@ Re-stamped (307): title {'CONFIRMED': 307}; preconditions {'CONFIRMED': 307}; st
 | S2-48 | C1062577 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: S2 — Sort by clicking any column header (90420) |
 | S2-49 | C1062578 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: Setup needed before testing (133629) |
 | S2-50 | C1062579 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: S2 — Sort by clicking any column header (90420) |
+| S2-51 | new | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | added by sync_run_557.py | Setup needed before testing (133629), new |
+| S2-52 | new | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | NEW | added by sync_run_557.py | Setup needed before testing (133629), new |
 | S3-01 | C715327 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: S3 — Export to PDF and CSV (90421) |
 | S3-01b | C715595 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: S3 — Export to PDF and CSV (90421) |
 | S3-01c | C715596 | RE-STAMP | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CHANGED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | CONFIRMED | in run (passed 11-12 Nov) | kept: S3 — Export to PDF and CSV (90421) |
@@ -879,7 +881,7 @@ Run 557 note: these rewritten cases keep their 11-12 Nov results, which were giv
 ## 9. Unsettled / for the QA lead
 
 1. **Every case was edited outside our library** (section 3). Recommended: run `update_cases.py --on-live` (keeps every outside edit, proven), then `create_new.py`, `sync_run_557.py`, `folder_note.py`. Otherwise the ordered lock writes nothing and the suite stays on v11/v12 for the 19 Nov release.
-2. **DATA-13 (C715462)** held: its live preconditions carry a case id in a record name; fix the text or allow it.
-3. **SV-12723 gap**: no case checks that empty bucket cells on the Summaries sort to the bottom (S2-R6); outside the named set. Recommended: one new case per Summary.
+2. **DATA-13 (C715462)**: the case id dropped from its live record name (R6), as the QA lead chose; nothing held.
+3. **SV-12723**: S2-51 (A/R Summary) and S2-52 (A/P Summary) added on the QA lead's choice (S2-R6, checklist lines 9 and 10).
 4. **SV-12540 closed as obsolete**, but PRD v13 S1-R8 still sets that only the first 100 documents are shown, then 100 more as you scroll; S1-21/S1-22 keep that (they passed 11-12 Nov). No PO question: the PRD's own words settle it (skill 07 §6.0 check b).
 5. **PO questions**: no new question passes checks a-h (DD-08 is settled by the later PRD ruling, check a/c; S8-R3's 'can make the table scroll sideways' is permissive, not a must, check e; everything else is quoted from the PRD, check b). Waiting on Chris Ward (sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA): 18 (no case held; S3-32 C1062581 and S5-43 avoid days before the 10th), 20, 22 (added 11 Nov by another session; no case of ours held). 19 and 21 are settled by PRD v13/v12.

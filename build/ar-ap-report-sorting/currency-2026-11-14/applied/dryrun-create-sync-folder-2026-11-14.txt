@@ -1,0 +1,20 @@
+new cases 8 | to add 8 | already added 0
+  S3-33 -> section 133629 (Setup needed before testing): A/R Detail: the PDF ends each bucket with its "Total for" row
+  S3-35 -> section 133629 (Setup needed before testing): A/P Detail: the PDF ends each bucket with its "Total for" row
+  S3-34 -> section 133629 (Setup needed before testing): A/R Collection: the PDF ends each customer with its "Total for" row
+  S3-36 -> section 133629 (Setup needed before testing): A/P Unpaid Invoices: the PDF ends each vendor with its "Total for" row
+  S5-43 -> section 133629 (Setup needed before testing): A/R Detail: the PDF and CSV print an as-of date after today
+  S5-41b -> section 133629 (Setup needed before testing): A/R Detail: a new as-of date with one location left hides the chip
+  S2-51 -> section 133629 (Setup needed before testing): A/R Summary: a blank bucket cell stays at the bottom in both sort orders
+  S2-52 -> section 133629 (Setup needed before testing): A/P Summary: a blank bucket cell stays at the bottom in both sort orders
+live read: folder 133629 holds 144 cases, all in our map
+DRY RUN: nothing written.
+---
+new cases 8 | to add to run 557 0 | not created yet: ['S3-33', 'S3-35', 'S3-34', 'S3-36', 'S5-43', 'S5-41b', 'S2-51', 'S2-52']
+live read: run 557 open, 481 tests; after the union it would hold 489 (the 8 new cases, once created, assigned to user 6); no test removed
+DRY RUN: nothing written.
+---
+folder 90418: live description as read 14 Nov 2026 = ''
+new description = 'Test cases are current as of 11/14/2026. Before you start testing, check whether the PRD, design or any other source has changed since then; if it has, update the test cases first.'
+live read: folder 90418 description now None; lock holds
+DRY RUN: nothing written.

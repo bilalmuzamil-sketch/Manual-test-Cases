@@ -11,12 +11,20 @@ RUN, ASSIGN = 557, 6
 ID = ids(); new = list(V13C.NEW13)
 missing = [k for k in new if k not in ID]
 print("new cases", len(new), "| to add to run 557", len(new) - len(missing), "| not created yet:", missing)
-if not APPLY: print("DRY RUN: nothing written."); sys.exit(0)
-if missing: sys.exit("REFUSED: run create_new.py first")
-readiness()
 from trlib import api, LAST
 run = api(f"get_run/{RUN}")
 if run.get("is_completed"): sys.exit(f"REFUSED: run {RUN} is completed; ask the QA lead")
+if not APPLY:
+    t0 = []; off = 0
+    while True:
+        t = api(f"get_tests/{RUN}&limit=250&offset={off}"); t = t["tests"] if isinstance(t, dict) else t; t0 += t
+        if len(t) < 250: break
+        off += 250
+    print(f"live read: run {RUN} open, {len(t0)} tests; after the union it would hold {len(t0) + len(new)} (the {len(new)} new cases, once created, "
+          f"assigned to user {ASSIGN}); no test removed")
+    print("DRY RUN: nothing written."); sys.exit(0)
+if missing: sys.exit("REFUSED: run create_new.py first")
+readiness()
 def tests():
     out, off = [], 0
     while True:

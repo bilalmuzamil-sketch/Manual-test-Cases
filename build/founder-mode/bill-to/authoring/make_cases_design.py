@@ -67,6 +67,9 @@ EDITS = {   # key -> [(old, new)] applied to the draft's text (gate fixes only; 
             "- Customer A's name stays inside its own Bill To cell: no part of it covers the next column or the row under it.\n"
             "- Customer C's name shows exactly as saved in its Bill To cell: the & \" ' < > characters appear as typed, not changed into other characters or codes.\n")],
 }
+# 14 Nov 2026 (Story 8 named set): page 4 redrawn; these cases still hold, only their pictures (and canvas line) change. Each picture name
+# occurs twice in the draft (precondition and "Pictures to attach"); replace_all below handles both.
+EDITS_ALL = {'DC-44': [('bt-p4-18-after-modern-pays-for-itself.png', 'bt-p4-14-after-modern-pays-for-itself-2026-11-14.png'), ('bt-p4-17-before-modern-pays-for-itself.png', 'bt-p4-13-before-modern-pays-for-itself-2026-11-14.png'), ('version 1794239066-4906, read 9 Nov 2026: page "4 Service For band on invoices and estimates"', 'version 1794608112-d8a1 (page 4 redrawn), read 14 Nov 2026: page "4 Service For band on invoices and estimates"'), ('No band. Pixel-identical to production (compared).', 'No band. Identical to production (same render, same bytes).')], 'DC-45': [('bt-p4-20-after-legacy-pays-for-itself.png', 'bt-p4-16-after-legacy-pays-for-itself-2026-11-14.png'), ('bt-p4-19-before-legacy-pays-for-itself.png', 'bt-p4-15-before-legacy-pays-for-itself-2026-11-14.png'), ('version 1794239066-4906, read 9 Nov 2026: page "4 Service For band on invoices and estimates"', 'version 1794608112-d8a1 (page 4 redrawn), read 14 Nov 2026: page "4 Service For band on invoices and estimates"'), ('No band. Pixel-identical to production (compared).', 'No band. Identical to production (same render, same bytes).')], 'DV-05': [('bt-p4-04-after-legacy.png', 'bt-p4-04-after-legacy-invoice-2026-11-14.png'), ('bt-p4-02-after-modern.png', 'bt-p4-02-after-modern-invoice-2026-11-14.png'), ('version 1794239066-4906, read 9 Nov 2026: page "4 Service For band on invoices and estimates"', 'version 1794608112-d8a1 (page 4 redrawn), read 14 Nov 2026: page "4 Service For band on invoices and estimates"'), ('The same band, under Bill To and Remit payment to, above the asset table.', 'The same two-line band, under Bill To and Remit payment to, above the asset table.')]}
 LIB = "Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards and design library are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: design library file ds/shopview/components.css, section TOOLTIP (spec components/Tooltip/preview.html)."
 RELEASE = {   # a held design-version case settled without the PO (skill 07 §6.0 check d); QA lead's go-ahead 13 Nov 2026 ("Yes, rewrite and add")
  "DV-08": dict(
@@ -88,6 +91,89 @@ RELEASE = {   # a held design-version case settled without the PO (skill 07 §6.
                    ".sv-tt-pop--left   { right: calc(100% + 10px); top: 50%; transform: translateY(-50%) translateX(4px); }"],
          "notes": ["The design library's tooltip rule decides where the tooltip sits. The \"Hover\" pictures on page \"3 When the Bill To is blocked\" draw it at the window's left edge, which breaks that rule, so this case follows the library (BT-D08; PO question 11 withdrawn 12 Nov 2026). The two pictures still attached to this case (bt-p3-03-after-hover.png, bt-p3-07-after-hover.png) show that old place: ignore them for this check."]}),
 }
+# ---- 14 Nov 2026 (Story 8 named set, QA lead's approval; Rule 134): the PRD page's Story 8 was redone and the design's page 4 redrawn
+# (canvas version 1794608112-d8a1). REWRITE replaces a draft's case completely (title, preconditions, steps, results, quotes, marker and
+# References from Design); EDITS above only swap picture names where the case itself still holds.
+F4 = {f["n"]: f for f in json.load(open(f"{P}/design-2026-11-14/DESIGN-FIGURES-P4-2026-11-14.json"))["list"]}
+C14 = ('Design canvas "Bill To design" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794608112-d8a1 (page 4 redrawn; the '
+       'other 7 boards byte-identical to version 1794239066-4906), read 14 Nov 2026')
+def P4(ns, words=None, notes=()):
+    figs = [F4[n] for n in ns]
+    pics = [os.path.basename(f["figure_picture"]) for f in figs]
+    page = C14 + ': page "4 Service For band on invoices and estimates", pictures ' + ", ".join(f'"{f["heading"]}" ({f["badge"]}, row "{f["row"]}")' for f in figs) + "."
+    if words is None: words = [figs[0]["captions"][0]]
+    return pics, {"pages": page, "pictures": pics, "words": words, "notes": list(notes)}
+def PIC(pics): return "Open the attached pictures " + ", ".join(pics) + " at 100% zoom beside the screen."
+M14 = "AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026"
+ADM, W = "Sign in as an Admin at the test location.", "Use a desktop browser window 1440 pixels wide, at 100% zoom."
+CB = "Have a new customer for this test, customer B, the customer the work is for, with a street, city, province or state and postal or ZIP code on file."
+CA = "Have a new customer for this test, customer A, the payer, so the documents bill a customer other than their own."
+MOD, LEG = ("Make sure the organization's document design setting is the modern layout.",
+            "Make sure the organization's document design setting is the legacy layout.")
+L1 = 'Its first line reads "SERVICE FOR".'
+L2 = "Its second line reads customer B's name, then \" · \", then customer B's address, in the same weight as the address (the name is not bold)."
+REWRITE = {}
+def rw(did, title, pre_extra, ns, steps, res, q, words=None, notes=()):
+    pics, refs = P4(ns, words, notes)
+    REWRITE[did] = dict(title=title, pre=[ADM, W] + pre_extra + [PIC(pics)], steps=steps, res=res, q=q, marker=None, refs=refs)
+WO_INV = ("Have a new work order for this test for customer B, billed to customer A, invoiced, with an asset that has a unit, year, make and "
+          "model (for example Unit 854, 2024 International CV515).")
+rw("DC-36", "Design: Modern invoice billed to someone else prints the two-line band", [CB, CA, WO_INV, MOD], [2, 1],
+   ["Open the work order.", "Click the print icon on the Finance tab."],
+   [["The Finance tab shows the invoice."],
+    ["Directly under the ADDRESSES box (Bill To | Remit payment to), a full-width band with a light gray fill and a thin gray border prints.", L1, L2,
+     "The band shows no unit, year, make or model; they print once, in the asset table below the band.",
+     "The Bill To block names customer A."]],
+   ["S8-R1", "S8-R4", "S8-R5", "S7-R1"],
+   words=['A full-width band under the address row. Line 1: "SERVICE FOR". Line 2: "Buda Truck Repair · 8237 Brittney Divide Apt. 463, Apt. 891, Walshhaven, British Columbia P5H 7C4", Buda\'s own address.',
+          "Unit 854 and 2024 INTERNATIONAL CV515 print once, in the asset table below.",
+          "Light gray fill and thin gray border, so it reads in black and white."])
+rw("DC-37", "Design: Legacy invoice billed to someone else prints the two-line band", [CB, CA,
+   "Have a new work order for this test for customer B, billed to customer A, invoiced.", LEG], [4, 3],
+   ["Open the work order.", "Click the print icon on the Finance tab."],
+   [["The Finance tab shows the invoice."],
+    ["The band sits under Bill To and Remit payment to and above the asset table.", L1, L2, "The Bill To block names customer A."]],
+   ["S8-R1", "S8-R6"], words=["The same two-line band, under Bill To and Remit payment to, above the asset table."])
+rw("DC-38", "Design: Modern estimate prints the band with the customer's current address", [CB, CA,
+   "Have a new work order for this test for customer B, billed to customer A, in Approved, so it has an estimate.", MOD], [6, 5],
+   ["Open the work order.", "Click the print icon on the Finance tab."],
+   [["The Finance tab shows the estimate."],
+    ["The Bill To block names customer A with its address.", 'Under it, the band reads "SERVICE FOR" on its first line.',
+     "Its second line reads customer B's name, \" · \" and the address shown on customer B's page today."]],
+   ["S8-R1", "S8-R6", "S8-R8"],
+   words=['Bill To: "Buda Truck Repair" with its address. Band: "SERVICE FOR", then "A & J Truck & Trailer Repair · 17483 Shane Drive, Patriciashire, Ontario B4Y6L9".',
+          "An estimate reads the customer's current address."])
+rw("DC-39", "Design: Legacy estimate billed to someone else prints the two-line band", [CB, CA,
+   "Have a new work order for this test for customer B, billed to customer A, in Approved, so it has an estimate.", LEG], [8, 7],
+   ["Open the work order.", "Click the print icon on the Finance tab."],
+   [["The Finance tab shows the estimate."],
+    ["The Bill To block names customer A.", "The band sits under the Bill To and Remit payment to row.", L1, L2]],
+   ["S8-R6", "S8-R1"], words=["Bill To is Buda; the same band."])
+PS_V = ("Have a new part sale for this test for customer B, billed to customer A, open, with a vehicle attached that has a unit, year, make and "
+        "model (for example Unit 4417, 2011 Hyundai Santa Fe).")
+PS_N = "Have a new part sale for this test for customer B, billed to customer A, open, with no vehicle attached."
+VNOTE = ("The design draws the part sale without a vehicle only; its words say the band is the same \"vehicle or not\", so this case "
+         "compares the band's lines with that picture.")
+for did, title, extra, lay, ns, novehicle in [
+        ("DC-40", "Design: Modern part sale with a vehicle prints the same band, with no unit", PS_V, MOD, [10, 9], False),
+        ("DC-41", "Design: Legacy part sale with a vehicle prints the same band, with no unit", PS_V, LEG, [12, 11], False),
+        ("DC-42", "Design: Modern part sale without a vehicle prints the same two-line band", PS_N, MOD, [10, 9], True),
+        ("DC-43", "Design: Legacy part sale without a vehicle prints the same two-line band", PS_N, LEG, [12, 11], True)]:
+    rw(did, title, [CB, CA, extra, lay], ns, ["Open the part sale.", "Click the print icon on the Finance tab."],
+       [["The Finance tab shows the part sale document."],
+        ["The Bill To block names customer A.", "Under the Bill To and Remit payment to row, a full-width band prints.", L1, L2]
+        + ([] if novehicle else ["The band shows no unit, year, make or model of the vehicle."])],
+       ["S8-R4", "S8-R6"],
+       words=['Bill To is 7 Star. Band: "SERVICE FOR", then "4 Star Truck Repair · 6263 Elizabeth Causeway Apt. 973, Raystad, British Columbia V4M 8Y2".',
+              "A part sale prints the same band as a work order, vehicle or not."], notes=() if novehicle else (VNOTE,))
+rw("DC-46", "Design: Batch invoice prints a band only on invoices billed to someone else", [CB, CA,
+   "Have two new invoiced work orders for this test for customer B: invoice 1 billed to customer A, invoice 2 billing customer B itself.", LEG],
+   [18, 17], ["Open customer B's Invoices tab.", "Tick invoice 1.", "Tick invoice 2.", "Print the selected invoices as one batch."],
+   [["The list opens."], ["Invoice 1's row is ticked."], ["Both rows are ticked."],
+    ['Invoice 1\'s page has the band under the Bill To row: "SERVICE FOR", then customer B\'s name, " · " and customer B\'s address.',
+     "Invoice 2's page has no band."]],
+   ["S8-R6", "S8-N1"],
+   words=['Page 1 is S2-17581 with its band. In the full PDF each invoice billed to someone else gets its own band; S2-17513 reads "SERVICE FOR", then "Orchard City Truck & Trailer Repair · 965 Smith Course, Port Peterchester, Yukon Territory Y5P 3K3". S2-17322 gets none.'])
 WHY = [   # Rule 137: a precondition record not named in the steps or results says why it is needed (generic reasons by the bullet's shape)
  (r"billed to customer|picked as its Bill To|billing customer [A-Z] itself|billed to customer [A-Z]", "so a work order bills a customer other than its own"),
  (r"Bill Invoices To in Edit Customer|saved as customer [A-Z]'s Bill Invoices To|billing customer [A-Z] by default", "so one customer is the other's saved payer"),
@@ -128,6 +214,9 @@ for i, s in enumerate(secs, 1):
     for old, new in EDITS.get(did, []):
         if old not in s: raise SystemExit(f"{did}: edit text not found: {old[:60]}")
         s = s.replace(old, new); CHANGES.append(f"{did}: {old[:50]!r} -> {new[:50]!r}")
+    for old, new in EDITS_ALL.get(did, []):
+        if old not in s: raise SystemExit(f"{did}: edit text not found: {old[:60]}")
+        s = s.replace(old, new); CHANGES.append(f"{did}: all {old[:40]!r} -> {new[:40]!r}")
     key = f"D-{i:02d}"
     title = re.search(r"\*\*Title:\*\* (.*)", s).group(1).strip()
     pre = re.findall(r"^- (.*)$", s.split("**Preconditions**")[1].split("**Steps**")[0], re.M)
@@ -168,6 +257,10 @@ for i, s in enumerate(secs, 1):
     cases.append(dict(key=key, src=did, title=conv(title), pre=fix_pre([conv(x) for x in pre], later), steps=[conv(x) for x in steps], res=res, q=q,
                       marker=marker, note=note))
     refs[key] = {"pages": page, "pictures": pics, "words": words, "notes": diffs}
+    if did in REWRITE:
+        R = REWRITE[did]; c = cases[-1]
+        c.update(title=R["title"], pre=R["pre"], steps=R["steps"], res=R["res"], q=R["q"], marker=M14, note="")
+        refs[key] = R["refs"]; CHANGES.append(f"{did}: rewritten for the 14 Nov 2026 Story 8 and page 4 (Rule 134)")
     if did in RELEASE:
         R = RELEASE[did]; c = cases[-1]
         c.update(title=R["title"], pre=R["pre"], steps=R["steps"], res=R["res"], marker=R["marker"], note="")

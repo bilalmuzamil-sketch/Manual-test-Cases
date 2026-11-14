@@ -58,7 +58,7 @@ def for_codes(codes, max_pics=4):
                 if n not in notes: notes.append(n)
     if not figs: return None
     figs = figs[:max_pics]
-    head = ((CANVAS_1114 if any(f["page"] == 4 for f in figs) else CANVAS) + ": pictures " + ", ".join(f'"{f["heading"]}" (page {f["page"]} "{f["page_name"]}", {f["badge"]})' for f in figs)
+    head = ((CANVAS_1114 if any(f["page"] == 4 for f in figs) else CANVAS) + ": pictures " + ", ".join(f'"{f["heading"]}" (page {f["page"]} "{f["page_name"]}", {f["badge"]}' + (f', row "{f["row"]}"' if f.get("row") else "") + ")" for f in figs)
             + ". Compare the screen with the pictures; the expected results come from the PRD.")
     words = []
     for f in figs:

@@ -1156,8 +1156,11 @@
  },
  "SV-12723": {
   "updated": "2026-11-13T09:25:50.569-0500",
-  "outcome": "ASKED",
-  "cases": [],
-  "note": "Re-read 14 Nov 2026 in full (Ready for Production). Ready for Production. Empty money cells on A/R Summary sort as $0 instead of going to the bottom (S2-R6, unchanged in v13). Our S2-R6 cases cover vendor credits on A/P Unpaid Invoices and A/P Detail only: no case covers empty bucket cells on the Summaries. Outside the QA lead's named set of 14 Nov 2026; proposed to him as a new case in the 14 Nov report."
+  "outcome": "NEW-CASES",
+  "cases": [
+   "S2-51 (new, A/R Summary)",
+   "S2-52 (new, A/P Summary)"
+  ],
+  "note": "Re-read 14 Nov 2026 in full (Ready for Production). Ready for Production. Empty money cells on A/R Summary sort as $0 instead of going to the bottom (S2-R6, unchanged in v13). Our S2-R6 cases cover vendor credits on A/P Unpaid Invoices and A/P Detail only: no case covers empty bucket cells on the Summaries. Outside the QA lead's named set of 14 Nov 2026; proposed to him as a new case in the 14 Nov report. QA lead, 14 Nov 2026 (\"Apply on top, + SV-12723 (Recommended)\"): one new case per Summary, S2-51 and S2-52 (S2-R6 quoted from PRD v13), folder 133629, run 557 on creation."
  }
 }
