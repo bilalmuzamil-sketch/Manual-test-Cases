@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1794492489,
  "updated_by": 3,
- "updated_on": 1794492489,
+ "updated_on": 1794635496,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -25,11 +25,11 @@
  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure the Internal Work Orders setting is on in Settings &gt; Work Orders.</li><li>Have a new customer for this test, customer A.</li><li>Have a new work order for this test, work order 1, for customer A, in status Approved, billable, with line 1 declined and line 2 approved, so an offering line can be compared.</li><li>Have a new work order for this test, work order 2, for customer A, in status Approved, billable, reversed after an invoice, whose line 1 has a return.</li></ul>",
  "custom_steps": "<ol><li>Open work order 1.</li><li>Open line 1's three-dots menu.</li><li>Open line 2's three-dots menu.</li><li>Open work order 2.</li><li>Open line 1's three-dots menu.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens.</li></ul><p>Step 2:</p><ul><li>Line 1's menu offers no \"Mark as No Charge\".</li></ul><p>Step 3:</p><ul><li>Line 2's menu offers \"Mark as No Charge\".</li></ul><p>Step 4:</p><ul><li>Work order 2 opens.</li></ul><p>Step 5:</p><ul><li>Line 1's menu offers no \"Mark as No Charge\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Internal Work Orders (PRD)\", Confluence 942243841, version 1.0 final (9 Nov 2026, Milos Vasic), read 12 Nov 2026 &middot; Epic SV-11665, story SV-12226 (Story 12, A no-charge line on a billable work order)</p><ul><li><strong>S12-E8:</strong> &ldquo;Mark as No Charge is not offered on a declined line, on a line that already has a return or a credit, or on a line of a work order that is internal or No Charge as a whole. The Board card and any list reading the stored total show the billable total of the work order; Print Work Order prints the \"No Charge · [category]\" chip next to the line. An asset carrying an Internal category that moves to a customer without the flag keeps the stored value, hidden until the customer is flagged. Reopen then Close on a work order whose category was archived in between keeps the archived category and its account. The customer page Fees &amp; Discounts tab keeps the history of removed adjustments as it does for deleted ones today.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens.</li></ul><p>Step 2:</p><ul><li>Line 1's menu offers no \"Mark as No Charge\".</li></ul><p>Step 3:</p><ul><li>Line 2's menu offers \"Mark as No Charge\".</li></ul><p>Step 4:</p><ul><li>Work order 2 opens.</li></ul><p>Step 5:</p><ul><li>Line 1's menu offers no \"Mark as No Charge\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Internal Work Orders (PRD)\", Confluence 942243841, version 1.4 (13 Nov 2026, Milos Vasic), read 14 Nov 2026 &middot; Epic SV-11665, story SV-12226 (Story 12, A no-charge line on a billable work order)</p><ul><li><strong>S12-E8:</strong> &ldquo;Mark as No Charge is not offered on a declined line, on a line that already has a return or a credit, or on a line of a work order that is internal or No Charge as a whole. The Board card and any list reading the stored total show the billable total of the work order; Print Work Order prints the \"No Charge\" chip next to the line. An asset carrying an Internal category that moves to a customer without the flag keeps the stored value, hidden until the customer is flagged. Reopen then Close on a work order whose category was archived in between keeps the archived category and its account. The customer page Fees &amp; Discounts tab keeps the history of removed adjustments as it does for deleted ones today.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/14/2026</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 3
 }

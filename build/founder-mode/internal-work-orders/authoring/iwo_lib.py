@@ -352,6 +352,9 @@ def design_for(c):
     return _DCACHE[c["key"]]
 
 
+OLD_PICTURES_LEFT = _json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "po-answers-2026-11-12", "write-v14", "old-pictures-left.json")))
+
+
 def design_block(c):
     """Rule 117 tenth amendment: design references in their own block below the quotes. Empty in round 1 (no heading at all)."""
     d = design_for(c)
@@ -359,6 +362,11 @@ def design_block(c):
     h = "<p></p><p><strong>References from Design</strong></p>"
     if d.get("pages"): h += "<p>" + e(d["pages"]) + "</p>"
     if d.get("pictures"): h += "<p>Design pictures attached to this case:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in d["pictures"]) + "</ul>"
+    # 14 Nov 2026: the pictures drawn before design 1794565397-7f4c could not be removed (TestRail keeps a picture used by a closed run), so the
+    # case names them and tells the tester to ignore them (Bill To D-68 precedent).
+    if c["key"] in OLD_PICTURES_LEFT:
+        h += ("<p>The older pictures also attached to this case (" + ", ".join(e(x) for x in OLD_PICTURES_LEFT[c["key"]]) +
+              ") show the chip as \"No Charge \u00b7 Warranty\", before the design was changed on 13 Nov 2026: ignore them for this check.</p>")
     if d.get("words"): h += "<p>The design's own words:</p><ul>" + "".join(f"<li>&ldquo;{e(w)}&rdquo;</li>" for w in d["words"]) + "</ul>"
     for n in d.get("notes") or []: h += "<p>" + e(n) + "</p>"
     return h

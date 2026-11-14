@@ -54,7 +54,7 @@ for u in ups:
     L({"op": "readback_attachments", "key": k, "case": f"C{cid}", "expected": u["pictures_add"], "ok": okp})
     for a in att:
         if a["name"] not in u["pictures_delete"]: continue
-        r, err = safe(api, f"delete_attachment/{a['id']}"); st = LAST["status"]
+        r, err = safe(api, f"delete_attachment/{a['id']}", {}); st = LAST["status"]
         body_err = (r or {}).get("error") if isinstance(r, dict) else None
         rec = L({"op": "delete_attachment", "key": k, "case": f"C{cid}", "file": a["name"], "http": st, "error": err or body_err})
         if err or body_err: dels.append((k, a["name"], err or body_err))

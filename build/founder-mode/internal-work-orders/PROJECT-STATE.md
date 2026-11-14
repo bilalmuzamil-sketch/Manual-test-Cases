@@ -31,3 +31,13 @@
 - Register: IWO-D63 (chip matches v1.4, closed), IWO-N45 (tooltip design-silent). build.py 0 PROBLEM; readiness 0 hard problems.
 - NOTHING WRITTEN. Write scripts and dry runs: `po-answers-2026-11-12/write-v14/` (lock 34/34 ok, no foreign case, run 559 615 tests).
   Report: `po-answers-2026-11-12/V1.4-NAMED-SET-PASS-REPORT.md` (candidate PO points: badge tooltip, phone tooltip, Issue Credit label).
+
+## 14 Nov 2026 — PRD v1.4 named set WRITTEN (QA lead: "Named set, drop S12-49 (Recommended)")
+- Rule 59 re-check: Confluence 942243841 last modified 13 Nov (v1.4, unchanged); design still 1794565397-7f4c.
+- 34 live cases updated (16 rewritten, 8 re-quoted, 10 re-pictured; lock 34/34; read-back 34/34). The old flow6-3/hf-32 and flow6-4/hf-33 pictures
+  could not be deleted (TestRail: attached to a closed run), so the 14 cases holding them now name them and say to ignore them (iwo_lib
+  OLD_PICTURES_LEFT; written, read-back 14/14). update_v14.py's delete call fixed to POST.
+- 54 new cases (S12-49 dropped); run 559 615 -> 663 tests, union only, 48 released new cases assigned to Mudassir; held out: D-139..D-144
+  (questions 17-18), and API-22, API-27 (API cases, not in the execution run).
+- Folder 136701 note re-dated 11/14/2026. The other 609 live cases keep their v1.3 From line (byte-identical, proved by script).
+- Question 18 corrected in place (see PO-QUESTIONS-OPEN.md). Test links: po-answers-2026-11-12/TESTS-TO-RUN-v14-2026-11-14.md.

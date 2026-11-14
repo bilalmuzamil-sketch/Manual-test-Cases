@@ -115,7 +115,7 @@ S2-32,1111945,S2,Convert to No Charge opens its confirmation with Category and b
 S2-32b,1111946,S2,Convert to No Charge confirmation shows its explanation text,https://shopview.testrail.io/index.php?/cases/view/1111946,1.3
 S2-33,1111947,S2,Converting to No Charge removes prices and writes a note,https://shopview.testrail.io/index.php?/cases/view/1111947,1.3
 S2-34,1111948,S2,Converting to Warranty stores the original and links it in the note,https://shopview.testrail.io/index.php?/cases/view/1111948,1.3
-S2-35,1111949,S2,Converting a work order with no-charge lines replaces their categories,https://shopview.testrail.io/index.php?/cases/view/1111949,1.3
+S2-35,1111949,S2,Converting a work order with no-charge lines replaces their categories,https://shopview.testrail.io/index.php?/cases/view/1111949,1.4
 S2-36,1111950,S2,Convert to No Charge is not offered once the work order is invoiced,https://shopview.testrail.io/index.php?/cases/view/1111950,1.3
 S2-37,1111951,S2,Convert to No Charge is disabled while a deposit is on the work order,https://shopview.testrail.io/index.php?/cases/view/1111951,1.3
 S2-38,1111952,S2,Add Deposit is not shown on internal and no-charge work orders,https://shopview.testrail.io/index.php?/cases/view/1111952,1.3
@@ -278,7 +278,7 @@ S7-16,1112109,S7,Closing again after Reopen sends new entries with the new date,
 S7-17,1112110,S7,The entries are sent although the closing user has no Settings — Integrations,https://shopview.testrail.io/index.php?/cases/view/1112110,1.3
 S7-18,1112111,S7,An invoice with a no-charge line reaches QuickBooks with the line at 0.00,https://shopview.testrail.io/index.php?/cases/view/1112111,1.3
 S7-19,1112112,S7,A no-charge line's part cost debits its category's account at invoicing,https://shopview.testrail.io/index.php?/cases/view/1112112,1.3
-S7-20,1112113,S7,Reversing the invoice reverses the no-charge line's entries too,https://shopview.testrail.io/index.php?/cases/view/1112113,1.3
+S7-20,1112113,S7,Reversing the invoice reverses the no-charge line's entries too,https://shopview.testrail.io/index.php?/cases/view/1112113,1.4
 S7-21,1112114,S7,A bill entered while a line is No Charge posts to the line's category,https://shopview.testrail.io/index.php?/cases/view/1112114,1.3
 S7-22,1112115,S7,Create invoice asks first when a line's bill cost will move,https://shopview.testrail.io/index.php?/cases/view/1112115,1.3
 S7-23,1112116,S7,Mark as Billable after a bill moves it back at invoicing,https://shopview.testrail.io/index.php?/cases/view/1112116,1.3
@@ -378,45 +378,45 @@ S10-14,1112210,S10,On a phone the Shop supplies field sits in the summary block 
 S12-01,1112211,S12,Every line's menu offers Mark as No Charge between Edit line and Delete line,https://shopview.testrail.io/index.php?/cases/view/1112211,1.3
 S12-02,1112212,S12,Mark as No Charge opens its dialog with the line summary and body,https://shopview.testrail.io/index.php?/cases/view/1112212,1.3
 S12-03,1112213,S12,"A category that needs the original shows the selects, required before invoicing",https://shopview.testrail.io/index.php?/cases/view/1112213,1.3
-S12-04,1112214,S12,"A marked line shows the chip and $0.00, the work order stays billable",https://shopview.testrail.io/index.php?/cases/view/1112214,1.3
-S12-05,1112215,S12,Totals and tax are computed on the billable lines only,https://shopview.testrail.io/index.php?/cases/view/1112215,1.3
+S12-04,1112214,S12,"A marked line shows the No Charge chip and $0.00, the work order stays billable",https://shopview.testrail.io/index.php?/cases/view/1112214,1.4
+S12-05,1112215,S12,Totals and tax are computed on the billable lines only,https://shopview.testrail.io/index.php?/cases/view/1112215,1.4
 S12-06,1112216,S12,Work order fees stay and are computed on the billable amounts,https://shopview.testrail.io/index.php?/cases/view/1112216,1.3
-S12-07,1112217,S12,A line discount is removed when marked and not restored,https://shopview.testrail.io/index.php?/cases/view/1112217,1.3
-S12-08,1112218,S12,A deposit larger than the new total is explained in the dialog,https://shopview.testrail.io/index.php?/cases/view/1112218,1.3
-S12-09,1112219,S12,The estimate shows the no-charge line at $0.00 with its category,https://shopview.testrail.io/index.php?/cases/view/1112219,1.3
+S12-07,1112217,S12,A line discount is removed when marked and not restored,https://shopview.testrail.io/index.php?/cases/view/1112217,1.4
+S12-08,1112218,S12,A deposit larger than the new total is explained in the dialog,https://shopview.testrail.io/index.php?/cases/view/1112218,1.4
+S12-09,1112219,S12,The estimate shows the no-charge line at $0.00 with its category,https://shopview.testrail.io/index.php?/cases/view/1112219,1.4
 S12-10,1112220,S12,Edit Line shows the No Charge checkbox with its helper,https://shopview.testrail.io/index.php?/cases/view/1112220,1.3
-S12-11,1112221,S12,A new line can be created No Charge from New Line,https://shopview.testrail.io/index.php?/cases/view/1112221,1.3
+S12-11,1112221,S12,A new line can be created No Charge from New Line,https://shopview.testrail.io/index.php?/cases/view/1112221,1.4
 S12-12,1112222,S12,A Line Builder line is marked afterwards from its menu,https://shopview.testrail.io/index.php?/cases/view/1112222,1.3
-S12-13,1112223,S12,Change category on a no-charge line saves the new category,https://shopview.testrail.io/index.php?/cases/view/1112223,1.3
-S12-14,1112224,S12,Mark as Billable prices the line as a new line would be,https://shopview.testrail.io/index.php?/cases/view/1112224,1.3
-S12-15,1112225,S12,"Marking a line writes a note with its price, cost and hours",https://shopview.testrail.io/index.php?/cases/view/1112225,1.3
+S12-13,1112223,S12,Change category on a no-charge line saves the new category,https://shopview.testrail.io/index.php?/cases/view/1112223,1.4
+S12-14,1112224,S12,Mark as Billable prices the line as a new line would be,https://shopview.testrail.io/index.php?/cases/view/1112224,1.4
+S12-15,1112225,S12,"Marking a line writes a note with its price, cost and hours",https://shopview.testrail.io/index.php?/cases/view/1112225,1.4
 S12-16,1112226,S12,The invoice shows the no-charge line at $0.00 with its category only,https://shopview.testrail.io/index.php?/cases/view/1112226,1.3
 S12-17,1112227,S12,The invoice PDF and email show the no-charge line the same way,https://shopview.testrail.io/index.php?/cases/view/1112227,1.3
 S12-18,1112228,S12,Create invoice is refused while a required original is missing,https://shopview.testrail.io/index.php?/cases/view/1112228,1.3
 S12-19,1112229,S12,When every line is No Charge the dialog says to convert instead,https://shopview.testrail.io/index.php?/cases/view/1112229,1.3
 S12-20,1112230,S12,A billable work order with every line No Charge invoices at $0.00,https://shopview.testrail.io/index.php?/cases/view/1112230,1.3
-S12-21,1112231,S12,Without See Financial Data the chip shows and prices stay hidden,https://shopview.testrail.io/index.php?/cases/view/1112231,1.3
+S12-21,1112231,S12,Without See Financial Data the chip shows and prices stay hidden,https://shopview.testrail.io/index.php?/cases/view/1112231,1.4
 S12-22,1112232,S12,Without See Financial Data Mark as No Charge and the checkbox are hidden,https://shopview.testrail.io/index.php?/cases/view/1112232,1.3
-S12-23,1112233,S12,A billable work order with no-charge lines is listed as billable,https://shopview.testrail.io/index.php?/cases/view/1112233,1.3
+S12-23,1112233,S12,A billable work order with no-charge lines is listed as billable,https://shopview.testrail.io/index.php?/cases/view/1112233,1.4
 S12-24,1112234,S12,"While the setting is off no line can be marked, existing ones can be unmarked",https://shopview.testrail.io/index.php?/cases/view/1112234,1.3
-S12-25,1112235,S12,Lines of a whole internal or no-charge work order offer no Mark as No Charge,https://shopview.testrail.io/index.php?/cases/view/1112235,1.3
+S12-25,1112235,S12,Lines of a whole internal or no-charge work order offer no Mark as No Charge,https://shopview.testrail.io/index.php?/cases/view/1112235,1.4
 S12-26,1112236,S12,On an invoiced work order the line menu offers neither action,https://shopview.testrail.io/index.php?/cases/view/1112236,1.3
-S12-27,1112237,S12,Splitting moves a no-charge line with its mark and notes on both,https://shopview.testrail.io/index.php?/cases/view/1112237,1.3
-S12-28,1112238,S12,A customer change keeps the line's mark and offers new originals,https://shopview.testrail.io/index.php?/cases/view/1112238,1.3
+S12-27,1112237,S12,Splitting moves a no-charge line with its mark and notes on both,https://shopview.testrail.io/index.php?/cases/view/1112237,1.4
+S12-28,1112238,S12,A customer change keeps the line's mark and offers new originals,https://shopview.testrail.io/index.php?/cases/view/1112238,1.4
 S12-29,1112239,S12,A core on a no-charge line charges nobody and stays at $0.00,https://shopview.testrail.io/index.php?/cases/view/1112239,1.3
-S12-30,1112240,S12,A line keeps its category after the category is archived,https://shopview.testrail.io/index.php?/cases/view/1112240,1.3
+S12-30,1112240,S12,A line keeps its category after the category is archived,https://shopview.testrail.io/index.php?/cases/view/1112240,1.4
 S12-31,1112241,S12,A deleted original work order stays as plain text,https://shopview.testrail.io/index.php?/cases/view/1112241,1.3
 S12-32,1112242,S12,A part moved onto a no-charge line loses its price and keeps its cost,https://shopview.testrail.io/index.php?/cases/view/1112242,1.3
-S12-33,1112243,S12,Issue Credit lists a no-charge line's part at a fixed $0.00,https://shopview.testrail.io/index.php?/cases/view/1112243,1.3
+S12-33,1112243,S12,Issue Credit lists a no-charge line's part at a fixed $0.00,https://shopview.testrail.io/index.php?/cases/view/1112243,1.4
 S12-34,1112244,S12,A $0.00 credit never blocks reversing the invoice,https://shopview.testrail.io/index.php?/cases/view/1112244,1.3
-S12-35,1112245,S12,Mark as No Charge is not offered on a declined line or one with a credit,https://shopview.testrail.io/index.php?/cases/view/1112245,1.3
-S12-36,1112246,S12,Print Work Order prints the chip next to the no-charge line,https://shopview.testrail.io/index.php?/cases/view/1112246,1.3
-S12-37,1112247,S12,An asset's Internal category is hidden on a regular customer,https://shopview.testrail.io/index.php?/cases/view/1112247,1.3
-S12-38,1112248,S12,Reopen then Close keeps an archived category,https://shopview.testrail.io/index.php?/cases/view/1112248,1.3
-S12-39,1112249,S12,The customer's Fees & Discounts tab keeps removed adjustments,https://shopview.testrail.io/index.php?/cases/view/1112249,1.3
+S12-35,1112245,S12,Mark as No Charge is not offered on a declined line or one with a credit,https://shopview.testrail.io/index.php?/cases/view/1112245,1.4
+S12-36,1112246,S12,Print Work Order prints the No Charge chip next to the no-charge line,https://shopview.testrail.io/index.php?/cases/view/1112246,1.4
+S12-37,1112247,S12,An asset's Internal category is hidden on a regular customer,https://shopview.testrail.io/index.php?/cases/view/1112247,1.4
+S12-38,1112248,S12,Reopen then Close keeps an archived category,https://shopview.testrail.io/index.php?/cases/view/1112248,1.4
+S12-39,1112249,S12,The customer's Fees & Discounts tab keeps removed adjustments,https://shopview.testrail.io/index.php?/cases/view/1112249,1.4
 S12-40,1112250,S12,A line with a posted vendor bill asks where the cost goes first,https://shopview.testrail.io/index.php?/cases/view/1112250,1.3
 S12-41,1112251,S12,Receiving a part on a no-charge line shows the cost-only notice,https://shopview.testrail.io/index.php?/cases/view/1112251,1.3
-S12-43,1112252,S12,The chip shows in Tech View and on the phone,https://shopview.testrail.io/index.php?/cases/view/1112252,1.3
+S12-43,1112252,S12,The No Charge chip shows in Tech View and on the phone,https://shopview.testrail.io/index.php?/cases/view/1112252,1.4
 S13-01,1112253,S13,A new organization has the four starting categories,https://shopview.testrail.io/index.php?/cases/view/1112253,1.3
 S13-02,1112254,S13,A new organization has the setting off and no internal customer,https://shopview.testrail.io/index.php?/cases/view/1112254,1.3
 S13-03,1112255,S13,A location connected to QuickBooks gets one empty row per category,https://shopview.testrail.io/index.php?/cases/view/1112255,1.3
@@ -429,7 +429,7 @@ S12P-04,1112261,S12P,Approval Required email of a billable estimate shows the li
 S12P-05,1112262,S12P,After Convert to Billable the portal shows the live prices and no stamp,https://shopview.testrail.io/index.php?/cases/view/1112262,1.3
 S12P-06,1112263,S12P,An estimate sent before Convert to No Charge shows the change on its next open,https://shopview.testrail.io/index.php?/cases/view/1112263,1.3
 S12P-07,1112264,S12P,A pending estimate whose work order was made internal cannot be approved,https://shopview.testrail.io/index.php?/cases/view/1112264,1.3
-S12P-08,1112265,S12P,A billable estimate shows a line marked after sending at $0.00 with the notice,https://shopview.testrail.io/index.php?/cases/view/1112265,1.3
+S12P-08,1112265,S12P,A billable estimate shows a line marked after sending at $0.00 with the notice,https://shopview.testrail.io/index.php?/cases/view/1112265,1.4
 S12P-09,1112266,S12P,The portal invoice shows the no-charge line at $0.00 with its category,https://shopview.testrail.io/index.php?/cases/view/1112266,1.3
 S12P-10,1112267,S12P,A closed internal work order is not listed but counts on the vehicle list,https://shopview.testrail.io/index.php?/cases/view/1112267,1.3
 API-01,1112268,API,Open API invoice lists never include the internal invoice,https://shopview.testrail.io/index.php?/cases/view/1112268,1.3
@@ -453,7 +453,7 @@ API-18,1112285,BLK,Creating an invoice through the Open API invoices a no-charge
 API-19,1112286,BLK,The changelog announces the new fields and the closed status,https://shopview.testrail.io/index.php?/cases/view/1112286,1.3
 API-20,1112287,BLK,Without Open API V1 nothing changes for the organization,https://shopview.testrail.io/index.php?/cases/view/1112287,1.3
 API-21,1112288,BLK,The fields stay after the setting is turned off,https://shopview.testrail.io/index.php?/cases/view/1112288,1.3
-API-22,1112289,BLK,The warranty flag of a line follows its No Charge category,https://shopview.testrail.io/index.php?/cases/view/1112289,1.3
+API-22,1112289,BLK,The warranty flag of a line follows its No Charge category,https://shopview.testrail.io/index.php?/cases/view/1112289,1.4
 API-23,1112290,BLK,Convert to No Charge sends work_order.updated with the lines,https://shopview.testrail.io/index.php?/cases/view/1112290,1.3
 DATA-01,1112291,DATA,"Parts cost is the same in the confirmation, document, report and QuickBooks",https://shopview.testrail.io/index.php?/cases/view/1112291,1.3
 DATA-02,1112292,DATA,"Shop supplies is the same on the work order, document, report and books",https://shopview.testrail.io/index.php?/cases/view/1112292,1.3
@@ -549,8 +549,8 @@ D-64,1112381,DESIGN,Design: Finance tab of an open no-charge work order shows th
 D-65,1112382,DESIGN,Design: Portal shows the no-charge estimate with the NO CHARGE stamp,https://shopview.testrail.io/index.php?/cases/view/1112382,1.3
 D-66,1112383,DESIGN,Design: Line menu offers Mark as No Charge between Edit line and Delete line,https://shopview.testrail.io/index.php?/cases/view/1112383,1.3
 D-67,1112384,DESIGN,Design: Mark this line as No Charge window shows the line and the category,https://shopview.testrail.io/index.php?/cases/view/1112384,1.3
-D-68,1112385,DESIGN,"Design: A no-charge line shows the chip and $0.00, the work order no badge",https://shopview.testrail.io/index.php?/cases/view/1112385,1.3
-D-69,1112386,DESIGN,Design: No-charge line menu offers Change category and Mark as Billable,https://shopview.testrail.io/index.php?/cases/view/1112386,1.3
+D-68,1112385,DESIGN,"Design: A no-charge line shows the No Charge chip and $0.00, no work order badge",https://shopview.testrail.io/index.php?/cases/view/1112385,1.4
+D-69,1112386,DESIGN,Design: No-charge line menu offers Change category and Mark as Billable,https://shopview.testrail.io/index.php?/cases/view/1112386,1.4
 D-70,1112387,DESIGN,Design: Notes tab shows the note for a line marked No Charge,https://shopview.testrail.io/index.php?/cases/view/1112387,1.3
 D-71,1112388,DESIGN,Design: Edit Line shows the No Charge checkbox at the bottom,https://shopview.testrail.io/index.php?/cases/view/1112388,1.3
 D-72,1112389,DESIGN,Design: Invoice shows the no-charge line at $0.00 with the category name,https://shopview.testrail.io/index.php?/cases/view/1112389,1.3
@@ -581,7 +581,7 @@ S1-89,1112416,S1,Default category cannot be unticked on the current default,http
 S1-90,1112417,S1,The turn-on window does not take a 51st customer,https://shopview.testrail.io/index.php?/cases/view/1112417,1.3
 S2-98,1112418,S2,An original line with no technician names the original work order's lead,https://shopview.testrail.io/index.php?/cases/view/1112418,1.3
 S2-99,1112419,S2,The Classification filter stays set after opening a work order and going back,https://shopview.testrail.io/index.php?/cases/view/1112419,1.3
-S2-100,1112420,S2,"After Convert to No Charge and back, earlier line marks do not return",https://shopview.testrail.io/index.php?/cases/view/1112420,1.3
+S2-100,1112420,S2,"After Convert to No Charge and back, earlier line marks do not return",https://shopview.testrail.io/index.php?/cases/view/1112420,1.4
 S2-101,1112421,S2,Original work order lists at most 25 and finds others by number,https://shopview.testrail.io/index.php?/cases/view/1112421,1.3
 S2-102,1112422,S2,Switching to an internal customer clears a ticked No Charge,https://shopview.testrail.io/index.php?/cases/view/1112422,1.3
 S2-103,1112423,S2,The Finance tab of an internal work order offers no payment or deposit actions,https://shopview.testrail.io/index.php?/cases/view/1112423,1.3
@@ -601,17 +601,17 @@ S8-31,1112436,S8,A bill entered after Close counts in the hub record's Parts cos
 S9-45,1112437,S9,The report explains that Parts cost is the amount at Close,https://shopview.testrail.io/index.php?/cases/view/1112437,1.3
 S9-46,1112438,S9,A no-charge line adds no tax and nothing owed,https://shopview.testrail.io/index.php?/cases/view/1112438,1.3
 S10-15,1112439,S10,"While the setting is off, Min needs a percentage again",https://shopview.testrail.io/index.php?/cases/view/1112439,1.3
-S12-44,1112440,S12,Marking a line on a sent estimate lets it be sent again,https://shopview.testrail.io/index.php?/cases/view/1112440,1.3
+S12-44,1112440,S12,Marking a line on a sent estimate lets it be sent again,https://shopview.testrail.io/index.php?/cases/view/1112440,1.4
 S12-45,1112441,S12,The legacy invoice design shows the no-charge line at $0.00,https://shopview.testrail.io/index.php?/cases/view/1112441,1.3
-S12-46,1112442,S12,Editing a no-charge line's hours keeps its mark,https://shopview.testrail.io/index.php?/cases/view/1112442,1.3
-S12-47,1112443,S12,Shop supplies by percentage leave the no-charge line's labor out,https://shopview.testrail.io/index.php?/cases/view/1112443,1.3
-S12-48,1112444,S12,Marking in Edit Line with a large deposit shows the deposit message,https://shopview.testrail.io/index.php?/cases/view/1112444,1.3
+S12-46,1112442,S12,Editing a no-charge line's hours keeps its mark,https://shopview.testrail.io/index.php?/cases/view/1112442,1.4
+S12-47,1112443,S12,Shop supplies by percentage leave the no-charge line's labor out,https://shopview.testrail.io/index.php?/cases/view/1112443,1.4
+S12-48,1112444,S12,Marking in Edit Line with a large deposit shows the deposit message,https://shopview.testrail.io/index.php?/cases/view/1112444,1.4
 S12P-11,1112445,S12P,A deposit paid on the portal after Convert to No Charge is refused,https://shopview.testrail.io/index.php?/cases/view/1112445,1.3
 S12P-12,1112446,S12P,A work order made internal leaves the portal approvals list,https://shopview.testrail.io/index.php?/cases/view/1112446,1.3
 S12P-13,1112447,S12P,The shop's approval email shows the no-charge line's category,https://shopview.testrail.io/index.php?/cases/view/1112447,1.3
 API-25,1112448,BLK,A refused Close sends no status webhook,https://shopview.testrail.io/index.php?/cases/view/1112448,1.3
 API-26,1112449,API,"Billable invoices still send their invoice webhooks, $0 included",https://shopview.testrail.io/index.php?/cases/view/1112449,1.3
-API-27,1112450,PROD,Lines that carried the warranty flag before the release keep it,https://shopview.testrail.io/index.php?/cases/view/1112450,1.3
+API-27,1112450,PROD,Lines that carried the warranty flag before the release keep it,https://shopview.testrail.io/index.php?/cases/view/1112450,1.4
 INV-15,1112451,INV,Work order and part sale status labels read as before,https://shopview.testrail.io/index.php?/cases/view/1112451,1.3
 INV-16,1112452,INV,Other Work Orders settings save as before,https://shopview.testrail.io/index.php?/cases/view/1112452,1.3
 INV-17,1112453,INV,"Administration shows the same sections as production, plus one tab",https://shopview.testrail.io/index.php?/cases/view/1112453,1.3
@@ -642,3 +642,57 @@ S1-92,1128860,S1,The Internal categories tab shows where an internal category is
 S1-93,1128861,S1,The category windows show where the category is shown,https://shopview.testrail.io/index.php?/cases/view/1128861,1.3
 S1-94,1128862,S1,Edit Customer explains the Default internal category,https://shopview.testrail.io/index.php?/cases/view/1128862,1.3
 D-93,1128863,DESIGN,Design: Cost move window names the moved part and its vendor bill,https://shopview.testrail.io/index.php?/cases/view/1128863,1.3
+D-94,1145308,DESIGN,Design: Long and unusual customer names stay inside their turn-on chips,https://shopview.testrail.io/index.php?/cases/view/1145308,1.4
+D-95,1145309,DESIGN,Design: Make internal window with long customer names keeps both buttons visible,https://shopview.testrail.io/index.php?/cases/view/1145309,1.4
+D-96,1145310,DESIGN,Design: Remove the Internal flag window stays readable with long names,https://shopview.testrail.io/index.php?/cases/view/1145310,1.4
+D-97,1145311,DESIGN,Design: Internal badge stays beside long names in the Customers list,https://shopview.testrail.io/index.php?/cases/view/1145311,1.4
+D-98,1145312,DESIGN,Design: Internal badge stays visible beside a long name in the customer header,https://shopview.testrail.io/index.php?/cases/view/1145312,1.4
+D-99,1145313,DESIGN,Design: Internal badge stays visible on the phone customer card with a long name,https://shopview.testrail.io/index.php?/cases/view/1145313,1.4
+D-100,1145314,DESIGN,Design: Long category and customer names stay inside the categories tables,https://shopview.testrail.io/index.php?/cases/view/1145314,1.4
+D-101,1145315,DESIGN,Design: Long archived category names read in full with (archived),https://shopview.testrail.io/index.php?/cases/view/1145315,1.4
+D-102,1145316,DESIGN,Design: Long category names fit the Default internal category select,https://shopview.testrail.io/index.php?/cases/view/1145316,1.4
+D-103,1145317,DESIGN,Design: Long category names fit the Internal category select on Edit Asset,https://shopview.testrail.io/index.php?/cases/view/1145317,1.4
+D-104,1145318,DESIGN,Design: Long category names keep their own rows in QuickBooks ShopView Accounts,https://shopview.testrail.io/index.php?/cases/view/1145318,1.4
+D-105,1145319,DESIGN,Design: New Work Order tooltip with a long category stays readable,https://shopview.testrail.io/index.php?/cases/view/1145319,1.4
+D-106,1145320,DESIGN,Design: Long names fit the No Charge selects in New Work Order,https://shopview.testrail.io/index.php?/cases/view/1145320,1.4
+D-107,1145321,DESIGN,Design: Long names fit the Convert to No Charge and Change category selects,https://shopview.testrail.io/index.php?/cases/view/1145321,1.4
+D-108,1145322,DESIGN,Design: Mark this line window keeps a long line title inside the window,https://shopview.testrail.io/index.php?/cases/view/1145322,1.4
+D-109,1145323,DESIGN,Design: Work orders list keeps every column visible with long customer names,https://shopview.testrail.io/index.php?/cases/view/1145323,1.4
+D-110,1145324,DESIGN,Design: Board cards keep the badge with long customer names,https://shopview.testrail.io/index.php?/cases/view/1145324,1.4
+D-111,1145325,DESIGN,Design: Schedule cards keep the badge with long customer names,https://shopview.testrail.io/index.php?/cases/view/1145325,1.4
+D-112,1145326,DESIGN,Design: Tech View keeps the badge with long customer names,https://shopview.testrail.io/index.php?/cases/view/1145326,1.4
+D-113,1145327,DESIGN,Design: Long category names show in full in the No Charge chip's tooltip,https://shopview.testrail.io/index.php?/cases/view/1145327,1.4
+D-114,1145328,DESIGN,Design: Posting summary and Close window keep long category names inside,https://shopview.testrail.io/index.php?/cases/view/1145328,1.4
+D-115,1145329,DESIGN,Design: Cost move window with long part names keeps Cancel and Continue visible,https://shopview.testrail.io/index.php?/cases/view/1145329,1.4
+D-116,1145330,DESIGN,Design: System notes with long category and line names stay inside the note,https://shopview.testrail.io/index.php?/cases/view/1145330,1.4
+D-117,1145331,DESIGN,"Design: NO CHARGE document keeps a long category line left, clear of the logo",https://shopview.testrail.io/index.php?/cases/view/1145331,1.4
+D-118,1145332,DESIGN,"Design: INTERNAL document keeps a long category line left, clear of the logo",https://shopview.testrail.io/index.php?/cases/view/1145332,1.4
+D-119,1145333,DESIGN,Design: Portal no-charge estimate keeps a long category line inside the page,https://shopview.testrail.io/index.php?/cases/view/1145333,1.4
+D-120,1145334,DESIGN,Design: Invoice shows a long category under the no-charge line title,https://shopview.testrail.io/index.php?/cases/view/1145334,1.4
+D-121,1145335,DESIGN,Design: Missing original work order message with a long line title is readable,https://shopview.testrail.io/index.php?/cases/view/1145335,1.4
+D-122,1145336,DESIGN,Design: Report summary cards with long category names stay readable,https://shopview.testrail.io/index.php?/cases/view/1145336,1.4
+D-123,1145337,DESIGN,Design: Report Category and Original technician filters show long names in rows,https://shopview.testrail.io/index.php?/cases/view/1145337,1.4
+D-124,1145338,DESIGN,Design: Long technician names stay in their rows on the By technician tab,https://shopview.testrail.io/index.php?/cases/view/1145338,1.4
+D-125,1145339,DESIGN,Design: AccountingHub Held reason with a long category stays in its row,https://shopview.testrail.io/index.php?/cases/view/1145339,1.4
+D-126,1145340,DESIGN,Design: QB Unexported row with a long customer name keeps the Internal badge,https://shopview.testrail.io/index.php?/cases/view/1145340,1.4
+D-127,1145341,DESIGN,Design: Asset Invoices tab keeps a long customer name and the badge in place,https://shopview.testrail.io/index.php?/cases/view/1145341,1.4
+D-128,1145342,DESIGN,"Design: Turning Internal Work Orders on adds the hint, the toggles above stay",https://shopview.testrail.io/index.php?/cases/view/1145342,1.4
+D-129,1145343,DESIGN,Design: Adding chips in the turn-on window moves nothing above the picker,https://shopview.testrail.io/index.php?/cases/view/1145343,1.4
+D-130,1145344,DESIGN,"Design: Switching category tabs keeps the title, tabs and columns in place",https://shopview.testrail.io/index.php?/cases/view/1145344,1.4
+D-131,1145345,DESIGN,Design: Show archived lists the archived rows without moving the columns,https://shopview.testrail.io/index.php?/cases/view/1145345,1.4
+D-132,1145346,DESIGN,Design: Ticking Internal customer adds the select without moving the fields,https://shopview.testrail.io/index.php?/cases/view/1145346,1.4
+D-133,1145347,DESIGN,"Design: Ticking No Charge adds the category fields below, nothing above moves",https://shopview.testrail.io/index.php?/cases/view/1145347,1.4
+D-134,1145348,DESIGN,Design: Closing and reopening keeps the lines table headings in place,https://shopview.testrail.io/index.php?/cases/view/1145348,1.4
+D-135,1145349,DESIGN,"Design: Switching report tabs keeps the filters, cards and tabs in place",https://shopview.testrail.io/index.php?/cases/view/1145349,1.4
+D-136,1145350,DESIGN,Design: Changing a report filter keeps the filters and tabs in place,https://shopview.testrail.io/index.php?/cases/view/1145350,1.4
+D-137,1145351,DESIGN,Design: Opening a three-dots menu leaves the lines table headings in place,https://shopview.testrail.io/index.php?/cases/view/1145351,1.4
+D-138,1145352,DESIGN,Design: Turning the setting off keeps the categories table columns in place,https://shopview.testrail.io/index.php?/cases/view/1145352,1.4
+D-139,1145353,DESIGN,Design: Work orders list columns keep their place when Classification changes,https://shopview.testrail.io/index.php?/cases/view/1145353,1.4
+D-140,1145354,DESIGN,Design: Work orders list columns keep their place on the All tab with Closed,https://shopview.testrail.io/index.php?/cases/view/1145354,1.4
+D-141,1145355,DESIGN,Design: Report table headings keep their place when the rows change,https://shopview.testrail.io/index.php?/cases/view/1145355,1.4
+D-142,1145356,DESIGN,Design: Technician Efficiency columns keep their place when the chip changes,https://shopview.testrail.io/index.php?/cases/view/1145356,1.4
+D-143,1145357,DESIGN,Design: Lines table columns keep their place when a line is marked No Charge,https://shopview.testrail.io/index.php?/cases/view/1145357,1.4
+D-144,1145358,DESIGN,Design: Lines table columns keep their place when the work order is converted,https://shopview.testrail.io/index.php?/cases/view/1145358,1.4
+S9-49,1145359,S9,Report keeps work order numbers and dates on one line with long names,https://shopview.testrail.io/index.php?/cases/view/1145359,1.4
+S9-50,1145360,S9,Report PDF and CSV keep long and unusual names whole,https://shopview.testrail.io/index.php?/cases/view/1145360,1.4
+S9-51,1145361,S9,Customer Invoice export keeps a long category with quotes and commas in one cell,https://shopview.testrail.io/index.php?/cases/view/1145361,1.4
