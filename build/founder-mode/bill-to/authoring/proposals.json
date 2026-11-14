@@ -9324,5 +9324,917 @@
    "custom_steps": "<ol><li>Open the work order.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Credit Hold banner sits under the Lines / Parts / Notes / Stats / Finance tab bar, above the lines table, not in the page header.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12309 (Story 7, Invoicing to the Bill To)</p><ul><li><strong>S7-R6:</strong> &ldquo;If the Bill To is on Credit Hold, the Credit Hold banner reads M2 with a \"Change Bill To\" button (work orders: page header; part sales: Finance tab).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794239066-4906, read 9 Nov 2026: page \"3 When the Bill To is blocked\", pictures \"Banner\" (This build), \"Finance\" (This build).</p><p>Design pictures attached to this case:</p><ul><li>bt-p3-14-after-banner.png</li><li>bt-p3-16-after-finance.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The same banner on Finance.&rdquo;</li></ul><p>Difference: S7-R6 says 'work orders: page header' (BT-D10, question 13).</p><p>AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 13)</p>"
   }
+ },
+ "D-71": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Long and unusual payer names fit the Bill Invoices To line",
+  "refs": "SV-12303",
+  "codes": [
+   "S1-R1",
+   "S1-R2"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Long and unusual payer names fit the Bill Invoices To line",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12303",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, a payer, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, a payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a payer, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have three new customers for this test, customer D, customer E and customer F, whose Bill Invoices To is saved as customer A, customer B and customer C in turn (in Edit Customer).</li><li>Open the attached picture bt-p1-12-after-bill-invoices-to-line.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer D's page.</li><li>Open customer E's page.</li><li>Open customer F's page.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Under IBS on the left card, \"Bill Invoices To\" shows customer A's name, with \"Change\" under it.</li><li>Customer A's name stays inside the card: no part of it runs past the card's right edge or covers \"Change\".</li><li>The Contacts and Assets counters below are fully visible.</li></ul><p>Step 2:</p><ul><li>\"Bill Invoices To\" shows customer B's name, with \"Change\" under it.</li><li>Customer B's name stays inside the card: no part of it runs past the card's right edge or covers \"Change\".</li><li>The Contacts and Assets counters below are fully visible.</li></ul><p>Step 3:</p><ul><li>\"Bill Invoices To\" shows customer C's name, with \"Change\" under it.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12303 (Story 1, Saved default Bill To on the customer page)</p><ul><li><strong>S1-R1:</strong> &ldquo;When a default other than the customer itself is saved, the customer page left card shows \"Bill Invoices To\" with the payer's name.&rdquo;</li><li><strong>S1-R2:</strong> &ldquo;Users who may set the default see \"Change\" beside the name; it opens the \"Bill Invoices To\" window.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Bill Invoices To line\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-12-after-bill-invoices-to-line.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Under IBS: \"Bill Invoices To\", \"A &amp; J Truck &amp; Trailer Repair\", and \"Change\".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-72": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: A long payer name on the phone customer page keeps Change visible",
+  "refs": "SV-12303",
+  "codes": [
+   "S1-R1",
+   "S1-R2"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: A long payer name on the phone customer page keeps Change visible",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12303",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Use a phone, or a browser window 390 pixels wide, signed in as an Admin at the test location.</li><li>Have a new customer for this test, customer A, a payer, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, a payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have two new customers for this test, customer D and customer E, whose Bill Invoices To is saved as customer A and customer B in turn.</li><li>Open the attached picture bt-p1-26-after-phone.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer D's page.</li><li>Open customer E's page.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The card shows \"Bill Invoices To\" with customer A's name and \"Change\".</li><li>Customer A's name stays inside the card: no part of it runs past the right edge of the screen or covers \"Change\".</li><li>\"Change\" is fully visible without scrolling the page sideways.</li></ul><p>Step 2:</p><ul><li>The card shows \"Bill Invoices To\" with customer B's name and \"Change\".</li><li>Customer B's name stays inside the card: no part of it runs past the right edge of the screen or covers \"Change\".</li><li>\"Change\" is fully visible without scrolling the page sideways.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12303 (Story 1, Saved default Bill To on the customer page)</p><ul><li><strong>S1-R2:</strong> &ldquo;Users who may set the default see \"Change\" beside the name; it opens the \"Bill Invoices To\" window.&rdquo;</li><li><strong>S1-R1:</strong> &ldquo;When a default other than the customer itself is saved, the customer page left card shows \"Bill Invoices To\" with the payer's name.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Phone\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-26-after-phone.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The same \"Bill Invoices To\" line with \"Change\", under IBS. Nothing phone-only.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-73": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Long and unusual names stay in their rows in the Bill Invoices To window",
+  "refs": "SV-12303",
+  "codes": [
+   "S1-R4",
+   "S1-R5"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Long and unusual names stay in their rows in the Bill Invoices To window",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12303",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new customer for this test, customer D, whose Bill Invoices To is saved as customer C, so its card shows \"Change\".</li><li>Open the attached pictures bt-p1-13-after-change.png, bt-p1-14-after-change-open.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer D's page.</li><li>Click \"Change\" beside \"Bill Invoices To\" on the left card.</li><li>Click the \"Bill Invoices To\" field.</li><li>Type the first word of customer A's name in the field.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The left card shows \"Bill Invoices To\" with customer C's name.</li></ul><p>Step 2:</p><ul><li>The \"Bill Invoices To\" window opens with its \"Save\" button.</li><li>The field shows customer C's name.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>The name stays inside the field: no part of it runs past the field's right edge.</li></ul><p>Step 3:</p><ul><li>The list opens; its first row reads \"[customer D's name] (this customer)\".</li></ul><p>Step 4:</p><ul><li>Customer A's row and customer B's row are listed.</li><li>Customer A's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li><li>Customer B's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12303 (Story 1, Saved default Bill To on the customer page)</p><ul><li><strong>S1-R4:</strong> &ldquo;The window has a searchable \"Bill Invoices To\" field and a \"Save\" button.&rdquo;</li><li><strong>S1-R5:</strong> &ldquo;The field's first option is \"[customer] (this customer)\"; picking it and saving clears the default.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Change\" (page 1 \"Set a customer's default Bill To\", This build), \"Change, open\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-13-after-change.png</li><li>bt-p1-14-after-change-open.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Window \"Bill Invoices To\": \"New work orders and part sales for Buda Truck Repair will be billed to this customer. Existing ones don't change.\"&rdquo;</li><li>&ldquo;The list opens above the field when there is no room below: \"Buda Truck Repair (this customer)\" first, then customers A to Z, the current pick \"A &amp; J Truck &amp; Trailer Repair\" highlighted. Closed without saving. Reshot after the tech review.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-74": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: A long typed name keeps the (this customer) row inside the list",
+  "refs": "SV-12304",
+  "codes": [
+   "S2-R4"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: A long typed name keeps the (this customer) row inside the list",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12304",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Start on the Customers page.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Open the attached picture bt-p1-03-after-open.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Click New Customer.</li><li>In the name field, type a long name with no spaces, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Click the \"Bill Invoices To\" field.</li><li>In the name field, replace the name with one that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>Click the \"Bill Invoices To\" field.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Customer window opens.</li></ul><p>Step 2:</p><ul><li>The name field shows the whole name you typed.</li></ul><p>Step 3:</p><ul><li>The list opens; its first row reads \"[the name you typed] (this customer)\".</li><li>That first row stays inside the list: no part of it covers the row under it, and that row's name can be read.</li><li>\"(this customer)\" is visible at the end of the first row, or on its own line inside that row.</li></ul><p>Step 4:</p><ul><li>The name field shows the new name.</li></ul><p>Step 5:</p><ul><li>The first row reads \"[the new name] (this customer)\".</li><li>The name in that row shows exactly as typed: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12304 (Story 2, Bill Invoices To in New Customer and Edit Customer)</p><ul><li><strong>S2-R4:</strong> &ldquo;In New Customer, the first option reads \"[name typed so far] (this customer)\", or \"New customer (this customer)\" before a name is typed.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Open\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-03-after-open.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Name typed: \"Lone Star Fleet Services\". The first option reads \"Lone Star Fleet Services (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A &amp; J Truck &amp; Trailer Repair\", \"Aberdeen Diesel Services LLC\".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-75": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Pays for window with long names keeps its title, links and Close inside",
+  "refs": "SV-12303",
+  "codes": [
+   "S1-R10",
+   "S1-R9"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Pays for window with long names keeps its title, links and Close inside",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12303",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the payer, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, whose Bill Invoices To is saved as customer A, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, whose Bill Invoices To is saved as customer A, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Open the attached picture bt-p1-18-after-pays-for-list.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer A's page.</li><li>Click the \"Pays for\" counter.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The \"Pays for\" counter shows 2.</li></ul><p>Step 2:</p><ul><li>A window titled \"[customer A's name] pays for\" opens.</li><li>The title stays inside the window: no part of it runs past the window's edge.</li><li>Customer B and customer C are listed, each as a link.</li><li>Customer B's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>The line \"These customers bill new work orders and part sales to [customer A's name] by default.\" stays inside the window.</li><li>The \"Close\" button is fully visible and nothing covers it.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12303 (Story 1, Saved default Bill To on the customer page)</p><ul><li><strong>S1-R9:</strong> &ldquo;Clicking the counter opens a window titled \"[customer] pays for\", listing each customer A to Z as a link to its page; a long list scrolls inside the window.&rdquo;</li><li><strong>S1-R10:</strong> &ldquo;The window shows the line \"These customers bill new work orders and part sales to [customer] by default.\" and a \"Close\" button.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Pays for list\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-18-after-pays-for-list.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Window \"A &amp; J Truck &amp; Trailer Repair pays for\": \"These customers bill new work orders and part sales to A &amp; J Truck &amp; Trailer Repair by default.\"&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-76": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Long and unusual names stay in their rows in the work order Bill To list",
+  "refs": "SV-12305",
+  "codes": [
+   "S3-R3"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Long and unusual names stay in their rows in the work order Bill To list",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12305",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, that bills itself, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer C, in Estimate, that bills itself.</li><li>Open the attached picture bt-p2-03-after-open.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Expand the Customer card.</li><li>Click the Bill To field.</li><li>Type the first word of customer A's name.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer C.</li></ul><p>Step 2:</p><ul><li>The Customer card shows a \"Bill To\" field under Authorizer, reading \"This customer\".</li></ul><p>Step 3:</p><ul><li>The list opens; its first row reads \"[customer C's name] (this customer)\".</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p>Step 4:</p><ul><li>Customer A's row and customer B's row are listed under the first row.</li><li>Customer A's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li><li>Customer B's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12305 (Story 3, Bill To on the work order and part sale Customer card)</p><ul><li><strong>S3-R3:</strong> &ldquo;Typing searches every customer in the organization except Counter Sale, A to Z, showing the first 50 matches; the first option is always \"[customer] (this customer)\".&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Open\" (page 2 \"Bill a work order or part sale to someone else\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p2-03-after-open.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;First option: \"Buda Truck Repair (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A &amp; J Truck &amp; Trailer Repair\", \"Aberdeen Diesel Services LLC\" and on. Never Counter Sale.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-77": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: A long payer name shows in full on the phone Customer card",
+  "refs": "SV-12305",
+  "codes": [
+   "FF-S3",
+   "S3-R2"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: A long payer name shows in full on the phone Customer card",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12305",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Use a phone, or a browser window 390 pixels wide, signed in as an Admin at the test location.</li><li>Have a new customer for this test, customer A, a payer, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, a payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer D, the customer the work is for.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer D, in Estimate, billed to customer A.</li><li>Have a new work order for this test, work order 2, for customer D, in Estimate, billed to customer B.</li><li>Open the attached picture bt-p2-21-after-s2-17579.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Tap to open the work order details.</li><li>Open work order 2.</li><li>Tap to open the work order details.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer D, in the phone layout.</li></ul><p>Step 2:</p><ul><li>The Customer card shows \"Bill To\" under Authorizer with customer A's whole name: every character can be read.</li><li>The name stays inside the card: no part of it runs past the right edge of the screen.</li></ul><p>Step 3:</p><ul><li>Work order 2 opens for customer D.</li></ul><p>Step 4:</p><ul><li>\"Bill To\" shows customer B's whole name: every character can be read.</li><li>The name stays inside the card: no part of it runs past the right edge of the screen.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12305 (Story 3, Bill To on the work order and part sale Customer card)</p><ul><li><strong>Story 3, Form factor:</strong> &ldquo;Form factor: Mobile-optimized: the same Customer card on phones; the field is a standard searchable select with no hover-only control.&rdquo;</li><li><strong>S3-R2:</strong> &ldquo;The field reads \"This customer\" when the customer pays for itself, otherwise the Bill To's name.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"S2-17579\" (page 2 \"Bill a work order or part sale to someone else\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p2-21-after-s2-17579.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The same card, with \"Bill To\" \"Valders Diesel &amp; Fleet Repair\" under Authorizer. Nothing phone-only.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-78": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Long contact and payer names stay in their Authorizer list rows",
+  "refs": "SV-12306",
+  "codes": [
+   "S4-R1",
+   "S4-R2"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Long contact and payer names stay in their Authorizer list rows",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12306",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West), with one contact, contact A1, whose first name is long with no spaces, at least 30 characters (for example Maximilianbartholomewjohnsonwilliams), who can be picked as Authorizer.</li><li>Have a new customer for this test, customer B, the payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest), with one contact, contact B1, whose last name includes the characters &amp; \" ' &lt; &gt; (for example O'Neil \"Jr\" &lt;Parts&gt; &amp; Co), who can be picked as Authorizer.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, in Estimate, billed to customer B.</li><li>Open the attached pictures bt-p2-10-after-authorizer-list-top.png, bt-p2-11-after-authorizer-list-bottom.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Expand the Customer card.</li><li>Click the Authorizer field.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Customer card's \"Bill To\" field reads customer B's name.</li></ul><p>Step 3:</p><ul><li>The list starts with \"No authorizer\", then contact A1, then contact B1.</li><li>Contact A1's name and customer A's name on the second line stay inside contact A1's row: no part of them covers contact B1's row.</li><li>Contact B1's name and customer B's name on the second line stay inside contact B1's row and inside the list.</li><li>Contact B1's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12306 (Story 4, Authorizer list when someone else pays)</p><ul><li><strong>S4-R2:</strong> &ldquo;Each contact shows its customer's name on a second line.&rdquo;</li><li><strong>S4-R1:</strong> &ldquo;The Authorizer list shows \"No authorizer\", then the customer's authorizer contacts, then the Bill To's.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Authorizer list, top\" (page 2 \"Bill a work order or part sale to someone else\", This build), \"Authorizer list, bottom\" (page 2 \"Bill a work order or part sale to someone else\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p2-10-after-authorizer-list-top.png</li><li>bt-p2-11-after-authorizer-list-bottom.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"No authorizer\", then the customer's contacts, each with \"Desert Edge Truck Service &amp; Repair\" on a second line.&rdquo;</li><li>&ldquo;The Bill To's contacts come last: \"Jaime Johnson\", \"7 Star Truck Repair\".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-79": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Deposit tooltip and toast keep a long customer name inside the box",
+  "refs": "SV-12307",
+  "codes": [
+   "UFS-01"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Deposit tooltip and toast keep a long customer name inside the box",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12307",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the customer the work is for.</li><li>Have a new customer for this test, customer B, the payer, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a second payer, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, in Approved, billed to customer B, holding one deposit of $10.00 taken on its Finance tab after customer B was picked.</li><li>Have a new work order for this test, work order 2, for customer A, in Approved, billed to customer C, holding one deposit of $10.00 taken on its Finance tab after customer C was picked.</li><li>Open the attached pictures bt-p3-07-after-hover.png, bt-p3-08-after-click.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Expand the Customer card.</li><li>Hover over the Bill To field.</li><li>Click the Bill To field.</li><li>Open work order 2.</li><li>Expand the Customer card.</li><li>Hover over the Bill To field.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Customer card's \"Bill To\" field reads customer B's name.</li></ul><p>Step 3:</p><ul><li>The tooltip reads \"This work order has a $10.00 deposit from [customer B's name]. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\"</li><li>The whole message stays inside the tooltip's box: no part of it runs past the box or off the screen.</li></ul><p>Step 4:</p><ul><li>An error toast shows the same message with \"Open Deposits\".</li><li>The whole message stays inside the toast: no part of it runs past the toast or covers \"Open Deposits\".</li><li>\"Open Deposits\" is fully visible.</li></ul><p>Step 5:</p><ul><li>Work order 2 opens for customer A.</li></ul><p>Step 6:</p><ul><li>The Customer card's \"Bill To\" field reads customer C's name.</li></ul><p>Step 7:</p><ul><li>The tooltip reads \"This work order has a $10.00 deposit from [customer C's name]. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\"</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>The whole message stays inside the tooltip's box.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12307 (Story 5, Locked Bill To: invoiced and deposits)</p><ul><li><strong>User Feedback Summary:</strong> &ldquo;M1 | Change the Bill To while one deposit is held | \"This work order has a [$amount] deposit from [customer]. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\" | Field tooltip; on click, error toast with \"Open Deposits\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Hover\" (page 3 \"When the Bill To is blocked\", This build), \"Click\" (page 3 \"When the Bill To is blocked\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p3-07-after-hover.png</li><li>bt-p3-08-after-click.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Tooltip: \"This work order has a $10.00 deposit from 7 Star Truck Repair. Reverse it, change the Bill To, then take the deposit again under the new Bill To.\"&rdquo;</li><li>&ldquo;Error toast with the same words, \"Open Deposits\" and \"Close\". \"Open Deposits\" opens the Deposits tab of the customer holding the largest share.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-80": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Credit Hold banner with a long payer name keeps Change Bill To visible",
+  "refs": "SV-12309",
+  "codes": [
+   "S7-R6",
+   "UFS-05"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Credit Hold banner with a long payer name keeps Change Bill To visible",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12309",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the customer the work is for, on the COD credit term.</li><li>Have a new customer for this test, customer B, the payer, on the Credit Hold credit term, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a second payer, on the Credit Hold credit term, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, in Complete, ready to invoice, billed to customer B.</li><li>Have a new work order for this test, work order 2, for customer A, in Complete, ready to invoice, billed to customer C.</li><li>Open the attached picture bt-p3-14-after-banner.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Open work order 2.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Credit Hold banner reads \"Cannot invoice. The Bill To customer, [customer B's name], is on Credit Hold\"</li><li>The banner text stays inside the banner: no part of it runs past the right edge of the window or covers \"Change Bill To\".</li><li>The \"Change Bill To\" button is fully visible.</li></ul><p>Step 2:</p><ul><li>The Credit Hold banner reads \"Cannot invoice. The Bill To customer, [customer C's name], is on Credit Hold\"</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>The \"Change Bill To\" button is fully visible.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12309 (Story 7, Invoicing to the Bill To)</p><ul><li><strong>S7-R6:</strong> &ldquo;If the Bill To is on Credit Hold, the Credit Hold banner reads M2 with a \"Change Bill To\" button (work orders: page header; part sales: Finance tab).&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;M2 | Create Invoice when the Bill To is on Credit Hold | \"Cannot invoice. The Bill To customer, [Bill To], is on Credit Hold\" | Banner with \"Change Bill To\"; Create Invoice tooltip; error toast with \"Change Bill To\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Banner\" (page 3 \"When the Bill To is blocked\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p3-14-after-banner.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Banner: \"Cannot invoice. The Bill To customer, Valders Diesel &amp; Fleet Repair, is on Credit Hold\", with \"Change Bill To\".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-81": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Payment refusal toast keeps a long customer name inside it",
+  "refs": "SV-12312",
+  "codes": [
+   "EH-S10",
+   "UFS-06"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Payment refusal toast keeps a long customer name inside it",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12312",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the customer the work is for.</li><li>Have a new customer for this test, customer B, the payer, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, the new payer.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, invoiced for $210.00, billed to customer B, unpaid.</li><li>Open customer B's Invoices tab in a first browser tab and work order 1 in a second tab.</li></ul>",
+   "custom_steps": "<ol><li>In the first tab, tick work order 1's invoice.</li><li>Click New Payment.</li><li>Switch to the second tab.</li><li>Open the Finance tab.</li><li>Reverse the invoice.</li><li>Expand the Customer card.</li><li>Click the Bill To field.</li><li>Pick customer C in the list.</li><li>Click Create Invoice on the Finance tab.</li><li>Switch to the first tab.</li><li>Click Make Payment.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The invoice is ticked.</li></ul><p>Step 2:</p><ul><li>The New Customer Payment window shows the invoice for $210.00.</li></ul><p>Step 3:</p><ul><li>The second tab shows work order 1 for customer A.</li></ul><p>Step 4:</p><ul><li>The Finance tab lists the invoice.</li></ul><p>Step 5:</p><ul><li>The invoice is removed and work order 1 is back to Complete.</li></ul><p>Step 6:</p><ul><li>\"Bill To\" reads customer B's name.</li></ul><p>Step 7:</p><ul><li>The list opens.</li></ul><p>Step 8:</p><ul><li>The Customer card's \"Bill To\" field reads customer C's name.</li></ul><p>Step 9:</p><ul><li>The invoice is created again for customer C.</li></ul><p>Step 10:</p><ul><li>The payment window is still open.</li></ul><p>Step 11:</p><ul><li>The payment is refused with the error toast \"This payment can only be applied to invoices billed to [customer B's name].\"</li><li>The whole message, with customer B's name, stays inside the toast: no part of it runs past the toast or off the screen.</li><li>No payment is recorded.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12312 (Story 10, Receivables follow the Bill To)</p><ul><li><strong>User Feedback Summary:</strong> &ldquo;M3 | Payment applied to another customer's invoice | \"This payment can only be applied to invoices billed to [customer].\" | Standard error toast&rdquo;</li><li><strong>Story 10, Error Handling:</strong> &ldquo;M3 and M5 show as an error toast and no payment is recorded.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: the design draws no picture of this place (all 126 pictures checked 9 Nov 2026). The expected results come from the PRD.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-82": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Service For band with long names stays inside the band on modern invoices",
+  "refs": "SV-12310",
+  "codes": [
+   "S8-R1",
+   "S8-R2",
+   "S8-R7"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Service For band with long names stays inside the band on modern invoices",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12310",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Make sure the organization's document design setting is the modern layout.</li><li>Have a new customer for this test, customer A, the customer the work is for, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a second customer the work is for, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>Have a new customer for this test, customer B, the payer.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, invoiced, billed to customer B, with an asset whose Unit is \"854\", Year 2024, Make \"International\" and Model \"CV515\".</li><li>Have a new work order for this test, work order 2, for customer C, invoiced, billed to customer B, with an asset whose Unit is \"854\", Year 2024, Make \"International\" and Model \"CV515\".</li><li>Open the attached picture bt-p4-02-after-modern.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Open the Finance tab.</li><li>Click the print icon on the Finance tab.</li><li>Open the invoice's PDF.</li><li>Open work order 2.</li><li>Open the Finance tab.</li><li>Open the invoice's PDF.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Finance tab shows the invoice.</li></ul><p>Step 3:</p><ul><li>Directly under the address row, a full-width band reads \"SERVICE FOR\", then customer A's name in bold, then \"Unit 854\" and \"2024 International CV515\".</li><li>Customer A's name stays inside the band: no part of it covers \"Unit 854\", the year, make and model, or the page's right edge.</li><li>The address row above the band keeps its blocks; the band does not reach into it.</li></ul><p>Step 4:</p><ul><li>The PDF shows the same band, with customer A's name inside it and \"Unit 854\" and \"2024 International CV515\" fully visible.</li></ul><p>Step 5:</p><ul><li>Work order 2 opens for customer C.</li></ul><p>Step 6:</p><ul><li>The Finance tab shows the invoice.</li></ul><p>Step 7:</p><ul><li>The band reads \"SERVICE FOR\", then customer C's name in bold, then \"Unit 854\" and \"2024 International CV515\".</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12310 (Story 8, \"Service For\" band on invoices and estimates)</p><ul><li><strong>S8-R1:</strong> &ldquo;A full-width band prints directly under the address row, reading \"SERVICE FOR\", then the customer's name in bold.&rdquo;</li><li><strong>S8-R2:</strong> &ldquo;On a work order with an asset, the band adds \"Unit [unit]\" and \"[year] [make] [model]\", separated by \" · \".&rdquo;</li><li><strong>S8-R7:</strong> &ldquo;The band leaves the address row free for a future Ship To block.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Modern\" (page 4 \"Service For band on invoices and estimates\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p4-02-after-modern.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A full-width band under the address row: \"SERVICE FOR\", \"Buda Truck Repair\", \"Unit 854\", \"2024 INTERNATIONAL CV515\", joined by \" · \".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-83": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Service For band with long names stays inside the band on legacy invoices",
+  "refs": "SV-12310",
+  "codes": [
+   "S8-R1",
+   "S8-R2",
+   "S8-R7"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Service For band with long names stays inside the band on legacy invoices",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12310",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Make sure the organization's document design setting is the legacy layout.</li><li>Have a new customer for this test, customer A, the customer the work is for, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a second customer the work is for, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>Have a new customer for this test, customer B, the payer.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, invoiced, billed to customer B, with an asset whose Unit is \"854\", Year 2024, Make \"International\" and Model \"CV515\".</li><li>Have a new work order for this test, work order 2, for customer C, invoiced, billed to customer B, with an asset whose Unit is \"854\", Year 2024, Make \"International\" and Model \"CV515\".</li><li>Open the attached picture bt-p4-04-after-legacy.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Open the Finance tab.</li><li>Click the print icon on the Finance tab.</li><li>Open the invoice's PDF.</li><li>Open work order 2.</li><li>Open the Finance tab.</li><li>Open the invoice's PDF.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Finance tab shows the invoice.</li></ul><p>Step 3:</p><ul><li>Under Bill To and Remit payment to, above the asset table, a full-width band reads \"SERVICE FOR\", then customer A's name in bold, then \"Unit 854\" and \"2024 International CV515\".</li><li>Customer A's name stays inside the band: no part of it covers \"Unit 854\", the year, make and model, or the page's right edge.</li><li>The Bill To and Remit payment to blocks above the band keep their place; the band does not reach into them.</li></ul><p>Step 4:</p><ul><li>The PDF shows the same band, with customer A's name inside it and \"Unit 854\" and \"2024 International CV515\" fully visible.</li></ul><p>Step 5:</p><ul><li>Work order 2 opens for customer C.</li></ul><p>Step 6:</p><ul><li>The Finance tab shows the invoice.</li></ul><p>Step 7:</p><ul><li>The band reads \"SERVICE FOR\", then customer C's name in bold, then \"Unit 854\" and \"2024 International CV515\".</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12310 (Story 8, \"Service For\" band on invoices and estimates)</p><ul><li><strong>S8-R1:</strong> &ldquo;A full-width band prints directly under the address row, reading \"SERVICE FOR\", then the customer's name in bold.&rdquo;</li><li><strong>S8-R2:</strong> &ldquo;On a work order with an asset, the band adds \"Unit [unit]\" and \"[year] [make] [model]\", separated by \" · \".&rdquo;</li><li><strong>S8-R7:</strong> &ldquo;The band leaves the address row free for a future Ship To block.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Legacy\" (page 4 \"Service For band on invoices and estimates\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p4-04-after-legacy.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The same band, under Bill To and Remit payment to, above the asset table.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-84": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Invoice Bill To block prints a long payer name with its IBS number",
+  "refs": "SV-12309,SV-12321",
+  "codes": [
+   "S19-R3",
+   "S7-R1"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Invoice Bill To block prints a long payer name with its IBS number",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12309,SV-12321",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a test organization connected to IBS.</li><li>Have a new customer for this test, customer A, the customer the work is for, with its own IBS account number.</li><li>Have a new customer for this test, customer B, the payer, with an IBS account number different from customer A's, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a second payer, with an IBS account number of its own, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, invoiced, billed to customer B.</li><li>Have a new work order for this test, work order 2, for customer A, invoiced, billed to customer C.</li><li>Open the attached picture bt-p4-02-after-modern.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Open the Finance tab.</li><li>Open the invoice's document.</li><li>Open work order 2.</li><li>Open the Finance tab.</li><li>Open the invoice's document.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Finance tab shows the invoice.</li></ul><p>Step 3:</p><ul><li>The Bill To block shows customer B's name followed by \"(IBS#: [customer B's IBS number])\", then customer B's address and phone.</li><li>Customer B's name and the IBS number stay inside the Bill To block: no part of them runs into the block beside it or past the page's edge.</li><li>The IBS number is fully visible.</li></ul><p>Step 4:</p><ul><li>Work order 2 opens for customer A.</li></ul><p>Step 5:</p><ul><li>The Finance tab shows the invoice.</li></ul><p>Step 6:</p><ul><li>The Bill To block shows customer C's name followed by \"(IBS#: [customer C's IBS number])\".</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12309 (Story 7, Invoicing to the Bill To), story SV-12321 (Story 19, IBS, invoice export and Public API)</p><ul><li><strong>S7-R1:</strong> &ldquo;The invoice's Bill To block prints the Bill To's name, address and phone, saved on the invoice when it is created.&rdquo;</li><li><strong>S19-R3:</strong> &ldquo;The remit-to, the \"(IBS#: [number])\" after the Bill To's name and the IBS batch read the saved number.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Modern\" (page 4 \"Service For band on invoices and estimates\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p4-02-after-modern.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A full-width band under the address row: \"SERVICE FOR\", \"Buda Truck Repair\", \"Unit 854\", \"2024 INTERNATIONAL CV515\", joined by \" · \".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-85": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Long Service For names never cover Memo on the payer's Invoices tab",
+  "refs": "SV-12312",
+  "codes": [
+   "S10-R6"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Long Service For names never cover Memo on the payer's Invoices tab",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12312",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, a customer the work is for, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, a customer the work is for, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a customer the work is for, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>Have a new customer for this test, customer D, the payer.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have three new work orders for this test, for customer A, customer B and customer C in turn, each invoiced and unpaid, all billed to customer D.</li><li>Open the attached picture bt-p5-02-after-a-j-invoices.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer D's page.</li><li>Click the Invoices tab.</li><li>Resize the browser window to 1536 pixels wide.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer D's page opens.</li></ul><p>Step 2:</p><ul><li>The columns read Date, Type, No., Service For, Memo, Total, Balance, Status, Action, all visible without scrolling sideways.</li><li>The Service For cells name customer A, customer B and customer C.</li><li>Each name stays inside its own Service For cell: no part of it covers the Memo column, its heading or the row under it.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p>Step 3:</p><ul><li>Every column is still visible without scrolling sideways.</li><li>Each Service For name still stays inside its own cell and does not cover Memo.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12312 (Story 10, Receivables follow the Bill To)</p><ul><li><strong>S10-R6:</strong> &ldquo;The Bill To's Invoices tab shows a \"Service For\" column naming the customer the work was for.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"A &amp; J, Invoices\" (page 5 \"Getting paid\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p5-02-after-a-j-invoices.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;New column after No.: header \"Service For\", naming the customer the work was for.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-86": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Long contact names stay in their rows in Sending invoice",
+  "refs": "SV-12311",
+  "codes": [
+   "S9-R1"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Long contact names stay in their rows in Sending invoice",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12311",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the customer the work is for.</li><li>Have a new customer for this test, customer B, the payer, with three contacts whose email addresses you can read: contact B1, whose first and last name together are long with spaces, at least 40 characters, contact B2, whose first name is long with no spaces, at least 30 characters, and contact B3, whose last name includes the characters &amp; \" ' &lt; &gt; (for example O'Neil \"Jr\" &lt;Parts&gt; &amp; Co).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, invoiced, billed to customer B.</li><li>Open the attached picture bt-p5-12-after-sending-invoice-s2-17581.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Open the invoice's email (send) window on the Finance tab.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The window lists contact B1, contact B2 and contact B3, each with its name and email address.</li><li>Each contact's name and email stay inside the contact's own row: no part of them covers the row under it or that row's tick box.</li><li>Contact B3's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>The window's buttons are fully visible.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12311 (Story 9, Invoice email to the Bill To)</p><ul><li><strong>S9-R1:</strong> &ldquo;The send window lists the Bill To's contacts.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Sending invoice (S2-17581)\" (page 5 \"Getting paid\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p5-12-after-sending-invoice-s2-17581.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Lists the Bill To's contacts and ticks \"George Thomas\" (Valders): its Billing contact, else its first.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-87": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Delete Customer window lists long dependent names inside the window",
+  "refs": "SV-12314",
+  "codes": [
+   "S12-R2",
+   "S12-R3",
+   "UFS-11"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Delete Customer window lists long dependent names inside the window",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12314",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer D, the payer, with no work orders, part sales, assets or contacts of its own, so only the Bill To rule can stop the delete.</li><li>Have a new customer for this test, customer A, whose Bill Invoices To is saved as customer D, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, whose Bill Invoices To is saved as customer D, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, whose Bill Invoices To is saved as customer D, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Open the attached picture bt-p6-05-after-delete-customer-refused.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer D's Edit Customer window.</li><li>Click Delete.</li><li>Click Delete in the Confirmation window.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer D's Edit Customer window opens.</li></ul><p>Step 2:</p><ul><li>A \"Confirmation\" window asks \"Are you sure you want to delete this company?\" with \"Cancel\" and \"Delete\".</li></ul><p>Step 3:</p><ul><li>A \"Delete Customer\" window opens: \"This customer is the default Bill To for [customer A's, customer B's and customer C's names, comma separated]. Remove it from those customers first.\"</li><li>Customer A, customer B and customer C are each listed as a link.</li><li>Every name stays inside the window: no part of it runs past the window's edge or covers the next name.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>The \"Cancel\" and \"Remove As Default Bill To\" buttons are fully visible.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12314 (Story 12, Deleting a customer that pays for others)</p><ul><li><strong>User Feedback Summary:</strong> &ldquo;D8 | Delete a customer that is someone's default | \"This customer is the default Bill To for [names, comma separated]. Remove it from [that customer / those customers] first.\" | \"Delete Customer\" window with links, \"Cancel\", \"Remove As Default Bill To\"&rdquo;</li><li><strong>S12-R2:</strong> &ldquo;The window shows the refusal message and each dependent customer as a link to its page.&rdquo;</li><li><strong>S12-R3:</strong> &ldquo;The window has \"Cancel\" and \"Remove As Default Bill To\" buttons.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Delete Customer refused\" (page 6 \"Deleting a customer that pays for others\", New, no before exists). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p6-05-after-delete-customer-refused.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Window \"Delete Customer\": \"This customer is the default Bill To for Valders Diesel &amp; Fleet Repair. Remove it from that customer first.\" Each dependent customer is a link.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-88": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Remove as default question with a long name keeps both buttons visible",
+  "refs": "SV-12314",
+  "codes": [
+   "S12-R4",
+   "UFS-12"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Remove as default question with a long name keeps both buttons visible",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12314",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer D, the payer, with no work orders, part sales, assets or contacts of its own, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer E, whose Bill Invoices To is saved as customer D, so one customer is the other's saved payer.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Open the attached picture bt-p6-06-after-remove-as-default-bill-to.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer D's Edit Customer window.</li><li>Click Delete.</li><li>Click Delete in the Confirmation window.</li><li>Click \"Remove As Default Bill To\".</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer D's Edit Customer window opens.</li></ul><p>Step 2:</p><ul><li>A \"Confirmation\" window asks \"Are you sure you want to delete this company?\" with \"Cancel\" and \"Delete\".</li></ul><p>Step 3:</p><ul><li>A \"Delete Customer\" window opens with customer E's name as a link.</li></ul><p>Step 4:</p><ul><li>A window titled \"Remove as default Bill To\" reads \"Remove [customer D's name] as the default Bill To for 1 customer? Open work orders keep their Bill To.\"</li><li>The whole question, with customer D's name, stays inside the window: no part of it runs past the window's edge or covers the buttons.</li><li>The \"Remove\" and \"Cancel\" buttons are fully visible.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12314 (Story 12, Deleting a customer that pays for others)</p><ul><li><strong>User Feedback Summary:</strong> &ldquo;D8 | Confirm removal | \"Remove [customer] as the default Bill To for [N] [customer / customers]? Open work orders keep their Bill To.\" | Confirmation with \"Remove\", \"Cancel\"&rdquo;</li><li><strong>S12-R4:</strong> &ldquo;\"Remove As Default Bill To\" asks to confirm, in a window titled \"Remove as default Bill To\" with \"Remove\" and \"Cancel\".&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Remove as default Bill To\" (page 6 \"Deleting a customer that pays for others\", New, no before exists). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p6-06-after-remove-as-default-bill-to.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"Remove as default Bill To\": \"Remove Murrieta Diesel Repair as the default Bill To for 1 customer? Open work orders keep their Bill To.\" Buttons \"Cancel\" and \"Remove\".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-89": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Work Order Log shows long Bill To names inside the Details cell",
+  "refs": "SV-12315",
+  "codes": [
+   "S13-R1",
+   "S13-R2"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Work Order Log shows long Bill To names inside the Details cell",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12315",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, that bills itself, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, a payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a second payer, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, in Estimate, that bills itself.</li><li>Open the attached picture bt-p2-15-after-work-order-log.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Expand the Customer card.</li><li>Click the Bill To field.</li><li>Pick customer B in the list.</li><li>Click the Bill To field.</li><li>Pick customer C in the list.</li><li>Open the Work Order Log.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Customer card shows a \"Bill To\" field under Authorizer, reading \"This customer\".</li></ul><p>Step 3:</p><ul><li>The list opens.</li></ul><p>Step 4:</p><ul><li>The Customer card's \"Bill To\" field reads customer B's name.</li></ul><p>Step 5:</p><ul><li>The list opens.</li></ul><p>Step 6:</p><ul><li>The Customer card's \"Bill To\" field reads customer C's name.</li></ul><p>Step 7:</p><ul><li>The two newest entries are \"Bill To changed\".</li><li>The newer one reads \"Bill To\" with customer B's name as the old value and customer C's name as the new value, each a link.</li><li>The older one reads \"Bill To\" with customer A's name as the old value and customer B's name as the new value, each a link.</li><li>Every name stays inside its own Details cell: no part of it covers the next column or the row under it.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12315 (Story 13, Work Order Log)</p><ul><li><strong>S13-R2:</strong> &ldquo;The entry shows \"Bill To\" with the old and new customer, each as a link.&rdquo;</li><li><strong>S13-R1:</strong> &ldquo;Each Bill To change adds a \"Bill To changed\" entry on the work order or part sale log.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Work Order Log\" (page 2 \"Bill a work order or part sale to someone else\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p2-15-after-work-order-log.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Event \"Bill To changed\". Details: \"Bill To:\" old customer, arrow, new customer, each a link (for example \"Buda Truck Repair\" to \"Valders Diesel &amp; Fleet Repair\").&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-90": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Customer chip with a long name is shortened and the toolbar stays on one line",
+  "refs": "SV-12316",
+  "codes": [
+   "S14-R2",
+   "S14-R4"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Customer chip with a long name is shortened and the toolbar stays on one line",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12316",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the asset's owner.</li><li>Have a new customer for this test, customer B, a payer, with a long name with no spaces that no other customer has, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new asset for this test, asset 1, owned by customer A, with work order 1 for customer A billed to customer B and work order 2 for customer A billing itself, both at the test location.</li><li>Open the attached pictures bt-p7-04-after-one-customer-picked.png, bt-p7-05-after-applied.png, bt-p7-07-after-1600-wide-search-s2-16.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open asset 1's Work Orders tab from customer A's page.</li><li>Click the \"Customer\" filter chip.</li><li>Tick customer B.</li><li>Click outside the panel.</li><li>Resize the browser window to 1536 pixels wide.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 and work order 2 are listed.</li></ul><p>Step 2:</p><ul><li>The panel opens.</li></ul><p>Step 3:</p><ul><li>Customer B is ticked and the chip reads \"Customer: \" and the start of customer B's name, shortened with \"...\".</li></ul><p>Step 4:</p><ul><li>The panel closes and only work order 1 is listed.</li><li>The search box, Status, the Customer chip and New sit on one line; nothing wraps and New is fully visible at the right.</li></ul><p>Step 5:</p><ul><li>The search box, Status, the Customer chip and New still sit on one line, with New fully visible.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12316 (Story 14, Asset Work Orders tab: whole history and Customer filter)</p><ul><li><strong>S14-R2:</strong> &ldquo;A \"Customer\" filter chip sits beside Status, defaulting to \"All customers\".&rdquo;</li><li><strong>S14-R4:</strong> &ldquo;The filter is multi-select; a work order matches when a picked customer is its customer or its Bill To.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"One customer picked\" (page 7 \"Asset Work Orders tab\", New, no before exists), \"Applied\" (page 7 \"Asset Work Orders tab\", New, no before exists), \"1600 wide, search \"S2-16\"\" (page 7 \"Asset Work Orders tab\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p7-04-after-one-customer-picked.png</li><li>bt-p7-05-after-applied.png</li><li>bt-p7-07-after-1600-wide-search-s2-16.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Quartzsite ticked: \"1 selected\", and the chip reads \"Customer: Quartzsite Truc...\".&rdquo;</li><li>&ldquo;Searching the whole history finds Kolosov's S2-16894 as well. The search box, Status, Customer chip and New sit on one line at 1600; nothing wraps.&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-91": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Long and unusual names stay in their own rows in the Customer chip panel",
+  "refs": "SV-12316",
+  "codes": [
+   "S14-R3"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Long and unusual names stay in their own rows in the Customer chip panel",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12316",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, a payer, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, a payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a payer, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>Have a new customer for this test, customer D, the asset's owner.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new asset for this test, asset 1, owned by customer D, with three work orders for customer D at the test location, billed to customer A, customer B and customer C in turn, so the chip lists all four customers.</li><li>Open the attached picture bt-p7-03-after-customer-chip-open.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open asset 1's Work Orders tab from customer D's page.</li><li>Click the \"Customer\" filter chip.</li><li>Click the tick box in the row directly under customer B's row (if customer B's row is the last one, the row directly above it).</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Three work orders are listed.</li></ul><p>Step 2:</p><ul><li>The panel lists customer A, customer B, customer C and customer D.</li><li>Customer A's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li><li>Customer B's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>Every row's tick box is fully visible.</li></ul><p>Step 3:</p><ul><li>The customer in that row is ticked; customer B stays unticked.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12316 (Story 14, Asset Work Orders tab: whole history and Customer filter)</p><ul><li><strong>S14-R3:</strong> &ldquo;Its options are every customer on the asset's work orders, as customer or Bill To, A to Z.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Customer chip open\" (page 7 \"Asset Work Orders tab\", New, no before exists). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p7-03-after-customer-chip-open.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"All customers\" ticked, then \"All customers are included. Pick one or more to narrow.\", then each customer on the asset's work orders, as customer or Bill To, A to Z: \"Kolosov's Diesel Repair\", \"Quartzsite Truck Service &amp; Repair\".&rdquo;</li></ul><p>The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-92": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Customer chip search shows long names in their own rows",
+  "refs": "SV-12316",
+  "codes": [
+   "S14-R5"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Customer chip search shows long names in their own rows",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12316",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, a payer, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer B, a payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer C, a payer, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>Have a new customer for this test, customer D, the asset's owner.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new asset for this test, asset 1, owned by customer D, with nine work orders for customer D at the test location: one billing customer D itself, three billed to customer A, customer B and customer C in turn, and five billed to five other new payers, so the chip has 9 options.</li><li>Open the attached picture bt-p7-03-after-customer-chip-open.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open asset 1's Work Orders tab from customer D's page.</li><li>Click the \"Customer\" filter chip.</li><li>Type the first word of customer A's name in Search customers.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Nine work orders are listed.</li></ul><p>Step 2:</p><ul><li>A \"Search customers\" box shows above the 9 options.</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>Customer C's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li></ul><p>Step 3:</p><ul><li>Customer A's row and customer B's row are listed.</li><li>Customer A's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li><li>Customer B's name stays inside its own row: no part of it covers the row under it, and that row's text can be read.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12316 (Story 14, Asset Work Orders tab: whole history and Customer filter)</p><ul><li><strong>S14-R5:</strong> &ldquo;With more than 8 options, the chip offers search (\"Search customers\").&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Customer chip open\" (page 7 \"Asset Work Orders tab\", New, no before exists). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p7-03-after-customer-chip-open.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"All customers\" ticked, then \"All customers are included. Pick one or more to narrow.\", then each customer on the asset's work orders, as customer or Bill To, A to Z: \"Kolosov's Diesel Repair\", \"Quartzsite Truck Service &amp; Repair\".&rdquo;</li></ul><p>The design draws the chip panel without search (fewer than 9 options); the picture shows the row look only. The design draws this place with ordinary names only; it draws no long name without spaces and no name with &amp; \" ' &lt; &gt;. The stress check follows the design-case checklist (lesson L-21); the expected words come from the PRD quotes above.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-93": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Unexported report keeps a long QuickBooks customer name inside its row",
+  "refs": "SV-12319",
+  "codes": [
+   "S17-R4",
+   "UFS-18"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Unexported report keeps a long QuickBooks customer name inside its row",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12319",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a test organization connected to a QuickBooks Online sandbox company that you can sign in to.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the customer the work is for.</li><li>Have a new customer for this test, customer D, already linked to a QuickBooks customer whose name is long with no spaces, at least 50 characters (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>Have a new customer for this test, customer B, the payer, not linked to QuickBooks, whose name is exactly the name of customer D's QuickBooks customer.</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, in Complete, ready to invoice, billed to customer B.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Open the Finance tab.</li><li>Click Create Invoice.</li><li>Open the Unexported report.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Finance tab shows Create Invoice.</li></ul><p>Step 3:</p><ul><li>The invoice is created in ShopView.</li></ul><p>Step 4:</p><ul><li>Work order 1's invoice is listed with the reason \"QuickBooks customer [that QuickBooks customer's name] is already linked to another ShopView customer.\"</li><li>The reason, with the long name, stays inside its own cell: no part of it covers the next column or the row under it.</li><li>Every column of the report is visible.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12319 (Story 17, QuickBooks sync)</p><ul><li><strong>User Feedback Summary:</strong> &ldquo;Q1 | QuickBooks: same-name customer linked to another ShopView customer | \"QuickBooks customer [name] is already linked to another ShopView customer.\" | Unexported report reason; invoice not sent&rdquo;</li><li><strong>S17-R4:</strong> &ldquo;If that QuickBooks customer is already linked to another ShopView customer, the invoice is not sent and appears on the Unexported report with Q1.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: the design draws no picture of this place (all 126 pictures checked 9 Nov 2026). The expected results come from the PRD.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "S19-09": {
+  "sec": "S19",
+  "section_name": "IBS and invoice export",
+  "section_id": 133509,
+  "title": "Invoice CSV export keeps long and unusual names whole in their cells",
+  "refs": "SV-12321",
+  "codes": [
+   "S19-R5",
+   "S19-R6"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Invoice CSV export keeps long and unusual names whole in their cells",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12321",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a new customer for this test, customer A, a customer the work is for, with a long name with spaces that no other customer has, at least 60 characters (for example Northern Plains Heavy Truck and Trailer Repair Services West).</li><li>Have a new customer for this test, customer C, a second customer the work is for, with a name that no other customer has and that includes each of the characters &amp; \" ' &lt; &gt; (for example A&amp;B \"Fleet\" O'Neil &lt;Parts&gt; &amp; Sons).</li><li>Have a new customer for this test, customer B, the payer, whose name is customer A's name with every space taken out (for example NorthernPlainsHeavyTruckandTrailerRepairServicesWest).</li><li>If a name field stops before the end of a name, use the longest name it takes.</li><li>Have a new work order for this test, work order 1, for customer A, invoiced today, billed to customer B.</li><li>Have a new work order for this test, work order 2, for customer C, invoiced today, billed to customer B.</li><li>Start on the page that exports the invoice list.</li></ul>",
+   "custom_steps": "<ol><li>Export the invoice list to CSV.</li><li>Open the CSV file in a spreadsheet program.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>A CSV file downloads.</li></ul><p>Step 2:</p><ul><li>Work order 1's invoice row reads customer B's whole name under \"Customer\" and customer A's whole name under \"Service Customer\".</li><li>Work order 2's invoice row reads customer B's whole name under \"Customer\" and customer C's name under \"Service Customer\".</li><li>Customer C's name shows exactly as saved: the &amp; \" ' &lt; &gt; characters appear as typed, not changed into other characters or codes.</li><li>No name is split across two cells: every row has its values under the same headings as the heading row.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12321 (Story 19, IBS, invoice export and Public API)</p><ul><li><strong>S19-R5:</strong> &ldquo;In the invoice CSV export, \"Customer\" is the Bill To and \"Terms\" is the term saved on the invoice.&rdquo;</li><li><strong>S19-R6:</strong> &ldquo;The export's last column, \"Service Customer\", names the customer the work was for when someone else is billed.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-94": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Opening the Bill Invoices To list leaves the New Customer fields in place",
+  "refs": "SV-12304",
+  "codes": [
+   "S2-R1"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Opening the Bill Invoices To list leaves the New Customer fields in place",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12304",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer B, so there is a customer to pick.</li><li>Start on the Customers page.</li><li>Open the attached pictures bt-p1-02-after-bill-invoices-to-empty.png, bt-p1-03-after-open.png, bt-p1-05-after-picked.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Click New Customer.</li><li>Take a screenshot of the page.</li><li>Click the \"Bill Invoices To\" field.</li><li>Type the first word of customer B's name.</li><li>Pick customer B in the list.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Customer window opens; \"Bill Invoices To\" reads \"This customer\".</li></ul><p>Step 2:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 3:</p><ul><li>The list opens over the fields under it.</li><li>Every field label you can still see and the Save button are in the same place as in your screenshot.</li></ul><p>Step 4:</p><ul><li>The list narrows to the names that match; the Save button is still in the same place as in your screenshot.</li></ul><p>Step 5:</p><ul><li>The list closes and \"Bill Invoices To\" reads customer B's name.</li><li>Every field and the Save button are in the same place as in your screenshot: none has moved up, down, left or right.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12304 (Story 2, Bill Invoices To in New Customer and Edit Customer)</p><ul><li><strong>S2-R1:</strong> &ldquo;New Customer and Edit Customer show a searchable \"Bill Invoices To\" field, reading \"This customer\" until another customer is picked.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Bill Invoices To, empty\" (page 1 \"Set a customer's default Bill To\", This build), \"Open\" (page 1 \"Set a customer's default Bill To\", This build), \"Picked\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-02-after-bill-invoices-to-empty.png</li><li>bt-p1-03-after-open.png</li><li>bt-p1-05-after-picked.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"Bill Invoices To\" sits after Credit Terms and Credit Limit and before Sales Representative. It reads \"This customer\".&rdquo;</li><li>&ldquo;Name typed: \"Lone Star Fleet Services\". The first option reads \"Lone Star Fleet Services (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A &amp; J Truck &amp; Trailer Repair\", \"Aberdeen Diesel Services LLC\".&rdquo;</li><li>&ldquo;\"A &amp; J Truck &amp; Trailer Repair\" picked. It saves with Save, right after the customer is created. Not saved here.&rdquo;</li></ul><p>The design's pictures of the closed, open and picked field keep the window's Save button at the same place (compared 13 Nov 2026).</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-95": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Showing and hiding Address 2 moves no field sideways",
+  "refs": "SV-12304",
+  "codes": [
+   "S2-R6",
+   "S2-R7"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Showing and hiding Address 2 moves no field sideways",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12304",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Start on the Customers page.</li><li>Open the attached pictures bt-p1-02-after-bill-invoices-to-empty.png, bt-p1-07-after-saved-default.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Click New Customer.</li><li>Take a screenshot of the page.</li><li>Click the + beside Address 1.</li><li>Click the x beside Address 2.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Customer window opens with no Address 2 field and a + beside Address 1.</li></ul><p>Step 2:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 3:</p><ul><li>An empty Address 2 field shows.</li><li>Address 1 and every field above it are in the same place as in your screenshot.</li><li>No field or button has moved left or right.</li></ul><p>Step 4:</p><ul><li>Address 2 is hidden again.</li><li>Every field and button is back in the same place as in your screenshot.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12304 (Story 2, Bill Invoices To in New Customer and Edit Customer)</p><ul><li><strong>S2-R6:</strong> &ldquo;An empty Address 2 is hidden; a + button beside Address 1 (tooltip \"Add Address 2\") shows it.&rdquo;</li><li><strong>S2-R7:</strong> &ldquo;A shown Address 2 has an x button (tooltip \"Remove Address 2\") that clears and hides it; nothing is saved until Save.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Bill Invoices To, empty\" (page 1 \"Set a customer's default Bill To\", This build), \"Saved default\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-02-after-bill-invoices-to-empty.png</li><li>bt-p1-07-after-saved-default.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"Bill Invoices To\" sits after Credit Terms and Credit Limit and before Sales Representative. It reads \"This customer\".&rdquo;</li><li>&ldquo;\"Bill Invoices To\" shows the saved default, \"A &amp; J Truck &amp; Trailer Repair\".&rdquo;</li></ul><p>The design draws Address 2 hidden and shown in two different windows, not as a pair; the place check follows the design-case checklist (layout stays put when the screen changes state).</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-96": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Saving a default adds the Bill Invoices To line and moves nothing sideways",
+  "refs": "SV-12303",
+  "codes": [
+   "S1-R1"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Saving a default adds the Bill Invoices To line and moves nothing sideways",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12303",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, with no saved Bill Invoices To, so the customer bills itself.</li><li>Have a new customer for this test, customer B, the payer.</li><li>Open the attached pictures bt-p1-11-before-customer-page.png, bt-p1-12-after-bill-invoices-to-line.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open customer A's page.</li><li>Take a screenshot of the page.</li><li>Open customer A's Edit Customer window.</li><li>Click the \"Bill Invoices To\" field.</li><li>Pick customer B in the list.</li><li>Click Save.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer A's left card shows no \"Bill Invoices To\" line.</li></ul><p>Step 2:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 3:</p><ul><li>Customer A's Edit Customer window opens.</li></ul><p>Step 4:</p><ul><li>The list opens.</li></ul><p>Step 5:</p><ul><li>\"Bill Invoices To\" reads customer B's name.</li></ul><p>Step 6:</p><ul><li>The window closes; under IBS the left card now shows \"Bill Invoices To\" with customer B's name and \"Change\".</li><li>Every line above the new line is in the same place as in your screenshot.</li><li>The Contacts and Assets counters keep their left-right place and only move down, below the new line.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12303 (Story 1, Saved default Bill To on the customer page)</p><ul><li><strong>S1-R1:</strong> &ldquo;When a default other than the customer itself is saved, the customer page left card shows \"Bill Invoices To\" with the payer's name.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Customer page\" (page 1 \"Set a customer's default Bill To\", Production (v26.45.2.1)), \"Bill Invoices To line\" (page 1 \"Set a customer's default Bill To\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p1-11-before-customer-page.png</li><li>bt-p1-12-after-bill-invoices-to-line.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The card ends with IBS, then Contacts and Assets.&rdquo;</li><li>&ldquo;Under IBS: \"Bill Invoices To\", \"A &amp; J Truck &amp; Trailer Repair\", and \"Change\".&rdquo;</li></ul><p>The design's before and after pictures of the customer page (compared 13 Nov 2026) show the counters pushed straight down by the new line and nothing moving sideways.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-97": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Opening the Bill To list leaves the card and the lines table in place",
+  "refs": "SV-12305",
+  "codes": [
+   "S3-R2",
+   "S3-R3"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Opening the Bill To list leaves the card and the lines table in place",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12305",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, that bills itself.</li><li>Have a new customer for this test, customer B, the payer.</li><li>Have a new work order for this test, work order 1, for customer A, in Estimate, that bills itself, with one labor line, so the lines table shows.</li><li>Open the attached pictures bt-p2-02-after-this-customer.png, bt-p2-03-after-open.png, bt-p2-06-after-picked.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Expand the Customer card.</li><li>Take a screenshot of the page.</li><li>Click the Bill To field.</li><li>Type the first word of customer B's name.</li><li>Pick customer B in the list.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A.</li></ul><p>Step 2:</p><ul><li>The Customer card shows a \"Bill To\" field under Authorizer, reading \"This customer\".</li></ul><p>Step 3:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 4:</p><ul><li>The list opens over the lines table.</li><li>The Customer card's rows and the lines table's headings are in the same place as in your screenshot.</li></ul><p>Step 5:</p><ul><li>The list narrows; the card's rows and the table's headings are still in the same place as in your screenshot.</li></ul><p>Step 6:</p><ul><li>The Customer card's \"Bill To\" field reads customer B's name.</li><li>The list closes.</li><li>The card's rows and the lines table's headings are in the same place as in your screenshot.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12305 (Story 3, Bill To on the work order and part sale Customer card)</p><ul><li><strong>S3-R2:</strong> &ldquo;The field reads \"This customer\" when the customer pays for itself, otherwise the Bill To's name.&rdquo;</li><li><strong>S3-R3:</strong> &ldquo;Typing searches every customer in the organization except Counter Sale, A to Z, showing the first 50 matches; the first option is always \"[customer] (this customer)\".&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"This customer\" (page 2 \"Bill a work order or part sale to someone else\", This build), \"Open\" (page 2 \"Bill a work order or part sale to someone else\", This build), \"Picked\" (page 2 \"Bill a work order or part sale to someone else\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p2-02-after-this-customer.png</li><li>bt-p2-03-after-open.png</li><li>bt-p2-06-after-picked.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"Bill To\" under Authorizer reads \"This customer\".&rdquo;</li><li>&ldquo;First option: \"Buda Truck Repair (this customer)\", then customers A to Z: \"4 Star Truck Repair\", \"7 Star Truck Repair\", \"A &amp; J Truck &amp; Trailer Repair\", \"Aberdeen Diesel Services LLC\" and on. Never Counter Sale.&rdquo;</li><li>&ldquo;Picking \"Valders Diesel &amp; Fleet Repair\" saves at once. The card shows \"Bill To\" \"Valders Diesel &amp; Fleet Re\", cut at the card's width.&rdquo;</li></ul><p>The design's pictures of the closed, open and picked list keep the card's rows and the lines table's headings at the same place (compared 13 Nov 2026); the list is drawn over the table.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-98": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Lines table headings keep their place when the Credit Hold banner shows",
+  "refs": "SV-12309",
+  "codes": [
+   "S7-R6",
+   "UFS-05"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Lines table headings keep their place when the Credit Hold banner shows",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12309",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the customer the work is for, on the COD credit term.</li><li>Have a new customer for this test, customer B, the payer, on the COD credit term, so the payer can be put on Credit Hold during the case.</li><li>Have a new work order for this test, work order 1, for customer A, in Complete, ready to invoice, billed to customer B, with one labor line, so the lines table shows.</li><li>Open the attached pictures bt-p3-13-before-lines.png, bt-p3-14-after-banner.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open work order 1.</li><li>Take a screenshot of the page.</li><li>Open customer B's Edit Customer window.</li><li>Choose Credit Hold in Credit Terms.</li><li>Click Save.</li><li>Open work order 1.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens for customer A with no Credit Hold banner.</li></ul><p>Step 2:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 3:</p><ul><li>Customer B's Edit Customer window opens.</li></ul><p>Step 4:</p><ul><li>Credit Terms reads Credit Hold.</li></ul><p>Step 5:</p><ul><li>The window closes.</li></ul><p>Step 6:</p><ul><li>The Credit Hold banner reads \"Cannot invoice. The Bill To customer, [customer B's name], is on Credit Hold\", with \"Change Bill To\".</li><li>Every lines-table heading is in the same left-right place as in your screenshot: the table only moves down by the banner's height.</li><li>The work order's tabs are in the same place as in your screenshot.</li></ul><p></p><p>Words in square brackets in a message stand for the value they name, such as customer B's name exactly as it is saved; every other word of the message must match exactly.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12309 (Story 7, Invoicing to the Bill To)</p><ul><li><strong>S7-R6:</strong> &ldquo;If the Bill To is on Credit Hold, the Credit Hold banner reads M2 with a \"Change Bill To\" button (work orders: page header; part sales: Finance tab).&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;M2 | Create Invoice when the Bill To is on Credit Hold | \"Cannot invoice. The Bill To customer, [Bill To], is on Credit Hold\" | Banner with \"Change Bill To\"; Create Invoice tooltip; error toast with \"Change Bill To\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Lines\" (page 3 \"When the Bill To is blocked\", Production (v26.45.2.1)), \"Banner\" (page 3 \"When the Bill To is blocked\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p3-13-before-lines.png</li><li>bt-p3-14-after-banner.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Production checks only Buda, which is on COD, so no banner.&rdquo;</li><li>&ldquo;Banner: \"Cannot invoice. The Bill To customer, Valders Diesel &amp; Fleet Repair, is on Credit Hold\", with \"Change Bill To\".&rdquo;</li></ul><p>The design's before and after pictures (compared 13 Nov 2026) keep all 8 lines-table headings at the same left-right place; the table drops by the banner's height.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-99": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Opening the Customer chip panel leaves the table headings in place",
+  "refs": "SV-12316",
+  "codes": [
+   "S14-R2",
+   "S14-R3"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Opening the Customer chip panel leaves the table headings in place",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12316",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the asset's current owner.</li><li>Have a new customer for this test, customer B, a payer.</li><li>Have a new customer for this test, customer C, the asset's earlier owner.</li><li>Have a new asset for this test, asset 1, now owned by customer A, that earlier belonged to customer C, with work order 1 for customer C billing itself (made first, while customer C owned it) and work order 2 for customer A billed to customer B (made later), both at the test location.</li><li>Open the attached pictures bt-p7-02-after-whole-history.png, bt-p7-03-after-customer-chip-open.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open asset 1's Work Orders tab from customer A's page.</li><li>Take a screenshot of the page.</li><li>Click the \"Customer\" filter chip.</li><li>Click outside the panel.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 and work order 2 are listed, with a \"Bill To\" column reading customer B's name on work order 2.</li></ul><p>Step 2:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 3:</p><ul><li>The panel opens over the table.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p>Step 4:</p><ul><li>The panel closes; both work orders are still listed.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12316 (Story 14, Asset Work Orders tab: whole history and Customer filter)</p><ul><li><strong>S14-R2:</strong> &ldquo;A \"Customer\" filter chip sits beside Status, defaulting to \"All customers\".&rdquo;</li><li><strong>S14-R3:</strong> &ldquo;Its options are every customer on the asset's work orders, as customer or Bill To, A to Z.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Whole history\" (page 7 \"Asset Work Orders tab\", This build), \"Customer chip open\" (page 7 \"Asset Work Orders tab\", New, no before exists). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p7-02-after-whole-history.png</li><li>bt-p7-03-after-customer-chip-open.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Every work order on the asset at this location, for every owner and payer, oldest first as today: Kolosov's work orders now appear too.&rdquo;</li><li>&ldquo;\"All customers\" ticked, then \"All customers are included. Pick one or more to narrow.\", then each customer on the asset's work orders, as customer or Bill To, A to Z: \"Kolosov's Diesel Repair\", \"Quartzsite Truck Service &amp; Repair\".&rdquo;</li></ul><p>The design's pictures with the panel closed and open (compared 13 Nov 2026) keep every visible heading at the same place.</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-100": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Sorting the asset Work Orders tab keeps the Bill To column in place",
+  "refs": "SV-12316",
+  "codes": [
+   "S14-R1",
+   "S14-R6"
+  ],
+  "automation": "AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026",
+  "held": false,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Sorting the asset Work Orders tab keeps the Bill To column in place",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12316",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the asset's owner.</li><li>Have a new customer for this test, customer B, a payer.</li><li>Have a new asset for this test, asset 1, owned by customer A, with three work orders at the test location: work order 1 billed to customer B, then work order 2 and work order 3 billing customer A, so a sort changes the order.</li><li>Open the attached picture bt-p7-10-after-work-orders-tab-top.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open asset 1's Work Orders tab from customer A's page.</li><li>Take a screenshot of the page.</li><li>Click the work order number column header.</li><li>Click the same header again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>A \"Bill To\" column shows after Customer: work order 1 reads customer B's name, work order 2 and work order 3 are blank.</li></ul><p>Step 2:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 3:</p><ul><li>The rows are in work order number order.</li><li>The \"Bill To\" column still shows, with customer B's name on work order 1.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p>Step 4:</p><ul><li>The rows are in the reverse order.</li><li>The \"Bill To\" column still shows, with customer B's name on work order 1.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12316 (Story 14, Asset Work Orders tab: whole history and Customer filter)</p><ul><li><strong>S14-R6:</strong> &ldquo;A \"Bill To\" column shows when at least one row bills someone else; it is blank on self-billed rows.&rdquo;</li><li><strong>S14-R1:</strong> &ldquo;The tab lists every service work order on the asset at the current location, for every customer, in today's sort.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Work Orders tab, top\" (page 7 \"Asset Work Orders tab\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p7-10-after-work-orders-tab-top.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A \"Bill To\" column sits right after Customer because a loaded row bills someone else. S2-17579 reads \"Buda Truck Repair\", \"Valders Diesel &amp; Fleet Repair\".&rdquo;</li></ul><p>The design draws no sorted picture; a sort changes no row, so the column rule is unchanged. The place check follows the design-case checklist (layout stays put when the screen changes state).</p><p>AUTOMATION: Not available on Build to test Yet - Last checked 11/9/2026</p>"
+  }
+ },
+ "D-101": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Service For column keeps its place when Open only is switched",
+  "refs": "SV-12312",
+  "codes": [
+   "S10-N1",
+   "S10-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - waiting on the PO (question 16)",
+  "held": true,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Service For column keeps its place when Open only is switched",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12312",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the customer the work is for.</li><li>Have a new customer for this test, customer B, the payer.</li><li>Have a new work order for this test, work order 1, for customer A, invoiced, billed to customer B and paid in full, so it is not open.</li><li>Have a new work order for this test, work order 2, for customer B, invoiced, unpaid, that bills itself.</li><li>Open customer B's Invoices tab and make sure \"Open only\" is switched on.</li><li>Open the attached pictures bt-p5-02-after-a-j-invoices.png, bt-p5-04-after-valders-open-only-off.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Take a screenshot of the page.</li><li>Switch \"Open only\" off.</li><li>Switch \"Open only\" on.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Only work order 2's invoice is listed.</li><li>A \"Service For\" column shows after No., blank on work order 2's row.</li><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 2:</p><ul><li>Work order 1's invoice is listed too, with customer A's name under Service For.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p>Step 3:</p><ul><li>Only work order 2's invoice is listed.</li><li>The \"Service For\" column still shows.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12312 (Story 10, Receivables follow the Bill To)</p><ul><li><strong>S10-N1:</strong> &ldquo;The \"Service For\" column is hidden when no row on the tab, before any search, is billed for someone else.&rdquo;</li><li><strong>S10-R6:</strong> &ldquo;The Bill To's Invoices tab shows a \"Service For\" column naming the customer the work was for.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"A &amp; J, Invoices\" (page 5 \"Getting paid\", This build), \"Valders, Open only off\" (page 5 \"Getting paid\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p5-02-after-a-j-invoices.png</li><li>bt-p5-04-after-valders-open-only-off.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;New column after No.: header \"Service For\", naming the customer the work was for.&rdquo;</li><li>&ldquo;S2-17581, Service For \"Buda Truck Repair\", Paid.&rdquo;</li></ul><p>The PRD says the column is hidden when no row on the tab, before any search, is billed for someone else; it does not name the Open only switch, and the design draws the column moving Date, Type, No. and Memo when it appears. These results follow the suggested answer of question 16; the case is released or rewritten when Chris Ward answers.</p><p>AUTOMATION: HOLD - waiting on the PO (question 16)</p>"
+  }
+ },
+ "D-102": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Picking a customer in the chip keeps the table headings in place",
+  "refs": "SV-12316",
+  "codes": [
+   "S14-R4",
+   "S14-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - waiting on the PO (question 17)",
+  "held": true,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Picking a customer in the chip keeps the table headings in place",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12316",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the asset's current owner.</li><li>Have a new customer for this test, customer B, a payer.</li><li>Have a new customer for this test, customer C, the asset's earlier owner.</li><li>Have a new asset for this test, asset 1, now owned by customer A, that earlier belonged to customer C, with work order 1 for customer C billing itself (made first, while customer C owned it) and work order 2 for customer A billed to customer B (made later), both at the test location.</li><li>Open the attached pictures bt-p7-02-after-whole-history.png, bt-p7-04-after-one-customer-picked.png, bt-p7-10-after-work-orders-tab-top.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open asset 1's Work Orders tab from customer A's page.</li><li>Take a screenshot of the page.</li><li>Click the \"Customer\" filter chip.</li><li>Tick customer C.</li><li>Click outside the panel.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 and work order 2 are listed; a \"Bill To\" column reads customer B's name on work order 2 and is blank on work order 1.</li></ul><p>Step 2:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 3:</p><ul><li>The panel opens.</li></ul><p>Step 4:</p><ul><li>Customer C is ticked.</li></ul><p>Step 5:</p><ul><li>Only work order 1 is listed.</li><li>The \"Bill To\" column still shows, blank on work order 1.</li><li>Every column heading of the table is in the same place as in your screenshot: none has moved left or right (the chip itself now shows customer C's name).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12316 (Story 14, Asset Work Orders tab: whole history and Customer filter)</p><ul><li><strong>S14-R6:</strong> &ldquo;A \"Bill To\" column shows when at least one row bills someone else; it is blank on self-billed rows.&rdquo;</li><li><strong>S14-R4:</strong> &ldquo;The filter is multi-select; a work order matches when a picked customer is its customer or its Bill To.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Whole history\" (page 7 \"Asset Work Orders tab\", This build), \"One customer picked\" (page 7 \"Asset Work Orders tab\", New, no before exists), \"Work Orders tab, top\" (page 7 \"Asset Work Orders tab\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p7-02-after-whole-history.png</li><li>bt-p7-04-after-one-customer-picked.png</li><li>bt-p7-10-after-work-orders-tab-top.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Every work order on the asset at this location, for every owner and payer, oldest first as today: Kolosov's work orders now appear too.&rdquo;</li><li>&ldquo;Quartzsite ticked: \"1 selected\", and the chip reads \"Customer: Quartzsite Truc...\".&rdquo;</li><li>&ldquo;A \"Bill To\" column sits right after Customer because a loaded row bills someone else. S2-17579 reads \"Buda Truck Repair\", \"Valders Diesel &amp; Fleet Repair\".&rdquo;</li></ul><p>The PRD's column rule does not say whether it counts the rows before or after a filter; the design draws no filtered list with the column, and its pictures with and without the column place the later headings 77 to 213 pixels apart. These results follow the suggested answer of question 17.</p><p>AUTOMATION: HOLD - waiting on the PO (question 17)</p>"
+  }
+ },
+ "D-103": {
+  "sec": "DESIGN",
+  "section_name": "Design — how it looks",
+  "section_id": 133514,
+  "title": "Design: Choosing Imported in Status keeps the table headings in place",
+  "refs": "SV-12316",
+  "codes": [
+   "S14-N1",
+   "S14-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - waiting on the PO (question 17)",
+  "held": true,
+  "api": false,
+  "prd_version": "0.5",
+  "fields": {
+   "title": "Design: Choosing Imported in Status keeps the table headings in place",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-12316",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Have a new customer for this test, customer A, the asset's current owner.</li><li>Have a new customer for this test, customer B, a payer.</li><li>Have a new customer for this test, customer C, the asset's earlier owner.</li><li>Have a new asset for this test, asset 1, now owned by customer A, that earlier belonged to customer C, with work order 1 for customer C billing itself (made first, while customer C owned it) and work order 2 for customer A billed to customer B (made later), both at the test location.</li><li>Open the attached picture bt-p7-10-after-work-orders-tab-top.png at 100% zoom beside the screen.</li></ul>",
+   "custom_steps": "<ol><li>Open asset 1's Work Orders tab from customer A's page.</li><li>Click the \"Customer\" filter chip.</li><li>Tick customer C.</li><li>Click outside the panel.</li><li>Take a screenshot of the page.</li><li>Add Imported to the Status filter.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 and work order 2 are listed, with a \"Bill To\" column.</li></ul><p>Step 2:</p><ul><li>The panel opens.</li></ul><p>Step 3:</p><ul><li>Customer C is ticked.</li></ul><p>Step 4:</p><ul><li>Only work order 1 is listed.</li><li>The \"Bill To\" column still shows, blank on work order 1.</li></ul><p>Step 5:</p><ul><li>You have a picture of where each heading, field and button sits before the change.</li></ul><p>Step 6:</p><ul><li>The \"Customer\" chip is disabled and reads \"Customer: All customers\".</li><li>Work order 1 and work order 2 are listed again.</li><li>The \"Bill To\" column shows customer B's name on work order 2.</li><li>Every column heading is in the same place as in your screenshot: none has moved left or right.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Bill To\", Confluence 1003585538, version 0.5 (6 Nov 2026, pending approval, Chris Ward), read 9 Nov 2026 &middot; Epic SV-12289, story SV-12316 (Story 14, Asset Work Orders tab: whole history and Customer filter)</p><ul><li><strong>S14-N1:</strong> &ldquo;When the Status filter includes Imported, the Customer filter is disabled and cleared.&rdquo;</li><li><strong>S14-R6:</strong> &ldquo;A \"Bill To\" column shows when at least one row bills someone else; it is blank on self-billed rows.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Bill To design\" (https://claude.ai/artifact/2prSHgwt2tWCz96QD2DWkd), version 1794510417-a68d (its boards are byte-identical to version 1794239066-4906 read 9 Nov 2026), read 13 Nov 2026: pictures \"Work Orders tab, top\" (page 7 \"Asset Work Orders tab\", This build). Compare the screen with the pictures; the expected results come from the PRD.</p><p>Design pictures attached to this case:</p><ul><li>bt-p7-10-after-work-orders-tab-top.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A \"Bill To\" column sits right after Customer because a loaded row bills someone else. S2-17579 reads \"Buda Truck Repair\", \"Valders Diesel &amp; Fleet Repair\".&rdquo;</li></ul><p>The design draws no Imported state. These results follow the suggested answer of question 17 (the column is decided from the asset's list before any filter).</p><p>AUTOMATION: HOLD - waiting on the PO (question 17)</p>"
+  }
  }
 }

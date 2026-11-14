@@ -26,7 +26,7 @@ titles = [c["title"] for c in L.CASES]
 for t in sorted({t for t in titles if titles.count(t) > 1}): probs.append(f"duplicate title {t!r}")
 for c in L.CASES:
     if c["sec"] not in SECS: probs.append(f"{c['key']}: section {c['sec']} unknown")
-    rx = {"DESIGN": r"D-\d\d[b-e]?$"}.get(c["sec"], re.escape(c["sec"]) + r"-\d\d[b-e]?$")
+    rx = {"DESIGN": r"D-\d{2,3}[b-e]?$"}.get(c["sec"], re.escape(c["sec"]) + r"-\d\d[b-e]?$")   # 14 Nov 2026: DESIGN keys run past D-99 (layout stress cases D-100..D-103)
     if not re.match(rx, c["key"]): probs.append(f"{c['key']}: key does not match section {c['sec']}")
     for t in [b for r in c["res"] for b in r] + [c["note"]]:
         for n in re.findall(r"\bSteps? (\d+)", t):

@@ -79,3 +79,29 @@ DROPPED.append(("Design question 13: pictures that do not match their own notes 
 # QA lead's go-ahead to release the held case, 13 Nov 2026 ("Yes, rewrite and add"): the design library's tooltip rule settles it.
 WITHDRAWN = {11: "lock-tooltip-position: the design library places a tooltip beside its trigger (.sv-tt-pop--top/bottom/left/right, "
                  "10 px away, centred) and caps it at 326 px (.sv-tt max-width); D-68 follows the library (QUESTION-REVIEW-2026-11-12.md)."}
+
+# ---- Round 3 (14 Nov 2026): the layout stress gap scan's two Bill To questions (LAYOUT-STRESS-GAP-SCAN-2026-11-13.md §B4, Q-BT-1 and
+# Q-BT-2), numbered on after the sheet's 15 (question 11 withdrawn; the sheet keeps its numbering, Rule 131). QA lead, 14 Nov 2026: "Draft
+# all 87 + 4 questions (Recommended)". Skill 07 §6.0 checks a-h re-run per question in ../questions-2026-11-14/sheet_rows.py (CHECKS).
+# DRAFT: not on the sheet until the coordinator adds the rows.
+QUESTIONS.append(("service-for-column-open-only",
+  "Bill To, the payer's Invoices tab: when the \"Open only\" switch hides the only invoice that is for another customer's work, should the "
+  "\"Service For\" column stay or go?",
+  'S10-N1: "The "Service For" column is hidden when no row on the tab, before any search, is billed for someone else." It names the '
+  "search but not the Open only switch. In the design the column moves Date, Type, No. and Memo sideways when it appears.",
+  ["(a) It stays: whether it shows is decided from every invoice of the tab, whatever Open only shows, so the columns do not move",
+   "(b) It goes when no invoice still shown is for someone else, so Date, Type, No. and Memo move",
+   "(c) Something else (please say)"],
+  "Held: one design case (the Service For column keeps its place when Open only is switched)."))
+QUESTIONS.append(("asset-tab-bill-to-column-after-filter",
+  "Bill To, the asset's Work Orders tab: when the Customer filter or the Status filter leaves only work orders that bill their own "
+  "customer, should the \"Bill To\" column stay or go?",
+  'S14-R6: "A "Bill To" column shows when at least one row bills someone else; it is blank on self-billed rows." It does not say before '
+  "or after filtering. The design draws no filtered list with the column; its pictures with and without the column place the later "
+  "columns 77 to 213 pixels apart.",
+  ["(a) It stays: whether it shows is decided from the asset's whole list before any filter, so the columns do not move",
+   "(b) It goes when no work order still shown bills someone else, so every column after it moves",
+   "(c) Something else (please say)"],
+  "Held: two design cases (picking a customer in the Customer chip; choosing Imported in Status)."))
+QN = {slug: i for i, (slug, *_r) in enumerate(QUESTIONS, 1)}
+assert QN["service-for-column-open-only"] == 16 and QN["asset-tab-bill-to-column-after-filter"] == 17, QN
