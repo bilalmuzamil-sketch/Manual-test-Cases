@@ -576,3 +576,6 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   and **TMS run 33 "Internal Work Orders - Execution"** (615 = TestRail run 559, Ahtasham), both all-latest, no doubled headings,
   no quotes section, pictures shown. Old runs 27, 30 and 32 closed and out of milestone 10000000.
 - **Lesson:** a CONFLICT can be our own formatting/picture edit — prove it from the op logs before resolving.
+- **QA lead: "If that has been deleted from testrail then delete from TMS too" / "leave them as they are".** C10000761 (= TestRail
+  C1062367) is gone from TestRail (400, no title match), no results → **deleted in TMS (restorable)**. Runs with results (e.g.
+  7, 16, 17, 26) are NOT rebuilt — they keep the older case versions by decision.
