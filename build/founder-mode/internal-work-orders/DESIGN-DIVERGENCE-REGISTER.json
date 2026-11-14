@@ -1,18 +1,18 @@
 {
  "project": "Internal Work Orders (Founder Mode), epic SV-11665",
- "design": "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794561577-f903 (boards byte-identical to 1794510020-d4ec, which redrew 15 boards on 12 Nov 2026; checked 13 Nov 2026)",
- "prd": "Confluence 942243841, version 1.3 (12 Nov 2026, Milos Vasic), saved build/founder-mode/internal-work-orders/sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md",
+ "design": "https://claude.ai/artifact/5jHR3nLeDinzks1viREFuo, canvas \"Internal Work Orders · All flows v6\", version 1794565397-7f4c (one string changed from 1794561577-f903: the no-charge line chip reads \"No Charge\" on 6 boards; read and rendered 14 Nov 2026). Cases outside the v1.4 named set still name 1794561577-f903.",
+ "prd": "Confluence 942243841, version 1.4 (13 Nov 2026, Milos Vasic), saved build/founder-mode/internal-work-orders/sources/CONFLUENCE-942243841-v1.4-read-2026-11-14.md (v1.3 for cases outside the v1.4 named set)",
  "prd_header_rule": "The PRD header (Design row) says: \"Where a frame and this text disagree, the text wins\". Differences the PRD words settle are closed by that sentence plus the named requirement; the rest go to Milos Vasic as questions.",
  "made": "12 Nov 2026, design drive build/founder-mode/internal-work-orders/design-2026-11-12/",
  "how": "Rule 130: both directions (DESIGN-TEXT-INVENTORY design -> PRD; SPEC-TO-DESIGN-2026-11-12.json PRD -> design; every dialog, menu, toast and tooltip listed by hand in DESIGN-VISUAL-INVENTORY.md)",
  "counts": {
-  "differences": 62,
+  "differences": 63,
   "settled_by_prd": 56,
-  "closed_matching": 5,
+  "closed_matching": 6,
   "held_design_version": 0,
   "rulings": 1,
   "questions": 0,
-  "not_shown": 44
+  "not_shown": 45
  },
  "unsent_questions": 6,
  "unsent_note": "Round 3 (12 Nov 2026): every question was answered by Milos Vasic (all option (a)); PRD v1.1 carries the answers. No design question is open.",
@@ -1645,6 +1645,36 @@
    "ruling_or_question": "Skill 07 §6.0 check (a): S3-R1 v1.3 closes on the press \"with no confirmation\"; check (d): the design's own notes say the same (c-hf-17 \"One press, like Create invoice: no confirmation\", c-rv-5-2 \"No Close confirmation (Nov 12)\"), so this one frame is stale. Board dropped from D-60's references. Found 13 Nov 2026 by the case worker (the design change list did not name it: the board's file did not change).",
    "held_case": "",
    "note": "Case worker, 13 Nov 2026."
+  },
+  {
+   "id": "IWO-D63",
+   "kind": "chip text",
+   "boards": "Flow 6 03, 04; Happy 32, 33; Review 6-3, 6-4 (version 1794565397-7f4c)",
+   "pictures": [
+    "images/iwo-flow6-03-03-line-marked-no-charge-0-00-v14.png",
+    "images/iwo-flow6-04-04-line-menu-change-category-mark-as-billable-v14.png",
+    "images/iwo-happy-32-32-line-marked-no-charge-0-00-v14.png",
+    "images/iwo-happy-33-33-line-menu-change-category-mark-as-billable-v14.png",
+    "images/iwo-review-25-6-3-32-line-marked-no-charge-0-00-v14.png",
+    "images/iwo-review-26-6-4-33-line-menu-change-category-mark-as-billable-v14.png"
+   ],
+   "design_words": [
+    "No Charge"
+   ],
+   "prd_code": "S12-R3 / S2-R22 / S12-E8 / section 8 (No-charge line)",
+   "prd_words": [
+    "A no-charge line shows the chip \"No Charge\" next to its title on the lines table, in Tech View and on mobile, with the tooltip \"Category: [category]\" on hover, as the work order badge has (S2-R16); the category itself is not printed in the chip;"
+   ],
+   "outcome": "CLOSED-MATCHES-PRD",
+   "ruling_or_question": "Design 1794565397-7f4c changed one string (WO-Detail-Artboard-v6.dc.html NC_LINE_TEXT 'No Charge · Warranty' -> 'No Charge'); the 6 boards that draw a no-charge line now show the chip \"No Charge\", as PRD v1.4 S12-R3 says (render v5-text-diff.json: \"No Charge · Warranty\" removed, \"No Charge\" added, 5,674 to 5,677 pixels in the chip area). Cases D-68, S12-04 and the 10 design-reference cases carry the -v14 pictures.",
+   "held_case": "",
+   "note": "Closed 14 Nov 2026 (PRD v1.4 (13 Nov 2026) and design 1794565397-7f4c), v1.4 named-set pass.",
+   "prd_words_found": [
+    true
+   ],
+   "design_words_checked": [
+    true
+   ]
   }
  ],
  "questions": {
@@ -1966,6 +1996,13 @@
    "prd_words_or_state": "the Close window when both cases apply (the original work order selects above the \"Moved from\" rows)",
    "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case",
    "checked": "13 Nov 2026, design 1794510020-d4ec, all 167 boards"
+  },
+  {
+   "id": "IWO-N45",
+   "prd_code": "S12-R3",
+   "prd_words_or_state": "the tooltip \"Category: [category]\" on hover over the chip \"No Charge\" of a no-charge line (lines table, Tech View, mobile)",
+   "outcome": "DESIGN-SILENT: nothing drawn, so no held case (Rule 130.5); the PRD-following case is the only case. The boards draw the chip with no tooltip and no title or aria text (v5 render: attrsAdded empty); the canvas notes c-flow6-3, c-hf-32 and c-rv-6-3 say \"the category sits in its tooltip, as on the work order badge\" without its text. The PRD states the tooltip word for word, so the cases (D-68, S12-04, S12-11, S12-13, S12-15, S12-21, S12-27, S12-28, S12-30, S12-43, S12-46, S2-100, S7-20, D-113) follow S12-R3 v1.4.",
+   "checked": "14 Nov 2026, design 1794565397-7f4c, all 167 boards rendered and compared with 1794561577-f903"
   }
  ],
  "spec_to_design_check": {
@@ -2492,5 +2529,6 @@
   "where": "not drawn on any of the 167 boards (checked 12 Nov 2026); listed with the not_shown rows or a NO SCREEN verdict in SPEC-TO-DESIGN-2026-11-12.json"
  },
  "v1.1_update": "12 Nov 2026, case worker round 3: IWO-D09, D19, D29, D31, D44, D45 closed from PRD v1.1 / the answers; IWO-D56 added (design worker's DESIGN-CHANGE-2026-11-12.md §4b). Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.1.json.",
- "v1.3_update": "13 Nov 2026, case worker round 4: IWO-D02, D20, D21 closed; D22, D23 narrowed; N05, N25 reworded; D57-D61 added with the coordinator's verdicts (D57 closed by check (c), case D-93 runnable); D62 added (stale Happy 28 board); N42-N44 added (design-silent). No question. Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.3.json."
+ "v1.3_update": "13 Nov 2026, case worker round 4: IWO-D02, D20, D21 closed; D22, D23 narrowed; N05, N25 reworded; D57-D61 added with the coordinator's verdicts (D57 closed by check (c), case D-93 runnable); D62 added (stale Happy 28 board); N42-N44 added (design-silent). No question. Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.3.json.",
+ "v1.4_update": "14 Nov 2026, v1.4 named-set pass: IWO-D63 added and closed (the design's chip matches PRD v1.4: \"No Charge\"); IWO-N45 added (design-silent: the tooltip \"Category: [category]\" is not drawn; the PRD states it, the cases follow the PRD). No question. Before-copy: po-answers-2026-11-12/write/DESIGN-DIVERGENCE-REGISTER-before-v1.4.json."
 }

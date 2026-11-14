@@ -16,7 +16,7 @@ for k, pid in S.items():
     v = P[k]
     m = re.search(r"question (\d+)", v["automation"])
     held = f"yes, question {m.group(1)}" if v["held"] else "no"
-    rows.append(f"| {k} | {pid} | {v['title']} | {v['section_name']} ({v['section_id']}) | {held} | PRD v1.3 {', '.join(v['codes'])} | {NEEDS.get(k, 'yes')} |")
+    rows.append(f"| {k} | {pid} | {v['title']} | {v['section_name']} ({v['section_id']}) | {held} | PRD v{v['prd_version']} {', '.join(v['codes'])} | {NEEDS.get(k, 'yes')} |")
 n = len(S); nh = sum(P[k]["held"] for k in S)
 CHECKS = {
  "17": [("a", "Precedence", "Passed. The PRD's own rule (\"Where a frame and this text disagree, the text wins\") cannot settle it: the text says nothing about where these columns sit; no other precedence statement applies."),
@@ -37,16 +37,17 @@ CHECKS = {
         ("h", "Final filter on the merged list", "Passed. Narrowed on this pass: the scan's draft also asked about the menu column, which S12-R5 settles (check a); only the column positions remain.")]}
 out = [f"# Internal Work Orders: layout stress cases (draft, 14 Nov 2026)", "",
        "The QA lead's decision of 14 Nov 2026: **\"Draft all 87 + 4 questions (Recommended)\"**. This is the Internal Work Orders part: every case the layout stress gap scan proposes (`build/founder-mode/LAYOUT-STRESS-GAP-SCAN-2026-11-13.md`, part I3) and its two questions for Milos Vasic. **Draft only: nothing was written to TestRail, Jira, Slack or Google, and nothing was committed.** The list goes to the QA lead before any TestRail write.", "",
+       "**Update, 14 Nov 2026 (PRD v1.4 and design 1794565397-7f4c; QA lead: \"Named set, drop S12-49 (Recommended)\"):** the drafts are rebuilt on PRD v1.4 and design 1794565397-7f4c (From line, design line, the 11/14/2026 marker); **S12-49 is dropped** (the print shows \"No Charge\" only, never the category; S12-36 covers the print chip), so **54 remain**; D-113 is rewritten (the long-category stress moves to the chip's tooltip \"Category: [name]\") and D-143 takes the chip text \"No Charge\" and the v14 pictures (the column move is about 12 pixels, was about 40; still held on question 18). The writes are now `po-answers-2026-11-12/write-v14/` (create_v14.py, sync_run_v14.py, folder_note_v14.py); `create_layout_stress.py` is kept for the record and refuses to write. Pass report: `po-answers-2026-11-12/V1.4-NAMED-SET-PASS-REPORT.md`. The narrative below is the 14 Nov draft round, with the counts brought up to date.", "",
        "## Counts", "",
        f"| | |", "|---|---|",
        f"| Scan proposals | 53 (36 typed text, 17 state changes) |",
        f"| New cases drafted | **{n}** (I-P16 split in three: Board card, Schedule card, Tech View, as the scan's own title says and Rule 136 allows) |",
        f"| Design cases (\"Design — how it looks\", 136719) | {sum(P[k]['story_sec']=='DESIGN' for k in S)} (D-94 to D-144) |",
-       f"| Story cases | 4: S9-49, S9-50, S9-51 (Reports, 136710), S12-49 (No-charge line, 136712) |",
+       f"| Story cases | 3: S9-49, S9-50, S9-51 (Reports, 136710); S12-49 dropped on 14 Nov 2026 (PRD v1.4) |",
        f"| Held on a new question | **{nh}** (D-139 to D-142 on question 17, D-143 and D-144 on question 18) |",
        f"| For run 559 | {n - nh} (union only, then every test assigned to user 6) |",
        f"| NO_MANUAL (a tester cannot set it up) | **0**. I-P01 and I-S02 need an organization where the setting was never on: the suite's own precedent is a new sign-up (S1-02 C1111834, S1-90 C1112417, D-02 C1112320, all in TestRail). QuickBooks, AccountingHub and portal cases follow today's suite (D-81, D-84, D-65 are in TestRail). |",
-       f"| Existing cases changed | **0** (the 665 existing proposals are byte-identical to the committed proposals.json) |", "",
+       f"| Existing cases changed | **0** by this round; the v1.4 named-set pass then changed 34 live cases (its own report); the other 609 live and 22 library-only cases are byte-identical (`po-answers-2026-11-12/v14/prove-unchanged.json`) |", "",
        "## Decisions taken while drafting (for the QA lead to see)", "",
        "1. **Held cases stay in \"Design — how it looks\", not WAIT-PO.** The brief said held cases go to WAIT-PO 136720 \"as the FOLDER logic does\". build.py's FOLDER logic skips design cases, and sections.json records the QA lead's choice that waiting design cases stay in the design folder. All six held cases are design cases, so all six go to 136719 and none to WAIT-PO. If you want them in WAIT-PO, it is a one-line change in build.py (I recommend leaving them where the standing choice puts them).",
        "2. **The stress names carry no \"ZZAUTOTEST\".** The suite's build.py refuses that word in tester text (an example record name). The names keep the scan's shapes: long with spaces (66 characters), long with no spaces (59; 60 for a category, the PRD limit), and & \" ' < >. All share the word \"Plainsview\", so one search shows them together. Where a window shows one record at a time, two records are used: customer A long with spaces and the special characters, customer B long with no spaces. Every case says \"if a name field stops before the end, use the longest name it takes\".",
@@ -58,7 +59,7 @@ out = [f"# Internal Work Orders: layout stress cases (draft, 14 Nov 2026)", "",
        "8. **Question 18 was narrowed**: the menu column is settled by S12-R5 and S2-R4 hides the price columns (check a); only the positions of the remaining columns are asked. Question 17 is kept (see the checks). No question was dropped.", "",
        "## The cases", "",
        "| Key | Scan id | Title | Folder | Held? | Source quoted | Set up by hand? |", "|---|---|---|---|---|---|---|"] + rows + ["",
-       "Every quote is a whole PRD v1.3 requirement line (or a User Feedback Summary row), checked word for word by build.py against `sources/CONFLUENCE-942243841-v1.3-read-2026-11-12.md`. Design references cite version 1794561577-f903 (boards byte-identical to 1794510020-d4ec); pictures from `design-2026-11-12/images/` (v13 pictures where the board was redrawn). Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026` (the suite's standard, as D-93); held: `AUTOMATION: HOLD - waiting on the PO (question n)`.", "",
+       "Every quote is a whole PRD v1.4 requirement line (or a User Feedback Summary row), checked word for word by build.py against `sources/CONFLUENCE-942243841-v1.4-read-2026-11-14.md` (14 Nov 2026; first drafted on v1.3). Design references cite version 1794565397-7f4c (the -v14 pictures for the 6 changed boards); pictures from `design-2026-11-12/images/` (v13 pictures where the board was redrawn). Marker: `AUTOMATION: Not available on Build to test Yet - Last checked 11/12/2026` (the suite's standard, as D-93); held: `AUTOMATION: HOLD - waiting on the PO (question n)`.", "",
        "## Questions for Milos Vasic (rows 17 and 18 of the existing sheet)", "",
        f"Sheet `{Q['SHEET']}`, rows added at the bottom (Rule 131) under a batch heading, in a new colour: **{Q['COLOUR']['name']} ({Q['COLOUR']['hex']})**, with the colour-guide line \"{Q['COLOUR_GUIDE']}\". Columns as `questions-2026-11-12/sheet_rows.py`: # · Topic · Question for you · What we know today · Your answer · Where we found it. Draft only: the coordinator adds the rows (`questions-2026-11-14/sheet_rows.py`, `sheet-values.json`). They are also rows 17 and 18 of `authoring/po_questions.py`, which holds the six cases.", "",
        f"Batch heading row: {Q['BATCH']}", ""]
@@ -68,9 +69,10 @@ for r in Q["ROWS"]:
 out += ["## Gate results", "", f"- `python3 authoring/build.py`: {BUILD}", f"- `python3 build/testing-tools/tester_readiness_check.py build/founder-mode/internal-work-orders`: {TRC}",
         "- Every new case read in full (preconditions, steps, results, notes, design block, marker), all 55; quote bodies checked by build.py's word-for-word gate. Fixes from the read: the \"Show archived\" link no longer assumes a count (D-101, D-131); each document output named on its own (D-117, D-118); controls a tester can see for three \"no longer\" results (D-107, D-114, D-132); own search word for D-139 and D-140; scrolling for D-141.",
         "- The readiness check's 28 \"does not / never\" results on the new cases were read: each sits in the same step as a positive result the tester can see (the name, chip, badge or window itself).",
-        "- `layout-stress-2026-11-14/create_layout_stress.py` dry run: 55 to add (DESIGN 51, S9 3, S12 1), 6 held, 49 for run 559, 78 picture uploads (52 files, all present), readiness check passed. Not run with --apply.", "",
+        "- 14 Nov 2026 after PRD v1.4: D-113 and D-143 read again in full; the 28 \"does not / never\" results of the 54 read again (each has a positive result in the same step); a random sample of 10 read in full.",
+        "- `po-answers-2026-11-12/write-v14/create_v14.py` dry run (with --check-live: the foreign-case guard read live): 54 to add (DESIGN 51, S9 3), 6 held, 48 for run 559, 78 picture uploads (52 files, all present), readiness check passed. Not run with --apply.", "",
         "## Files", "",
-        "- `authoring/cases_zzzz_stress.py` (new): the 55 cases",
+        "- `authoring/cases_zzzz_stress.py` (new): the cases (55 drafted; S12-49 dropped 14 Nov 2026); `authoring/cases_zzzzz_v14.py`: the v1.4 rebuild",
         "- `authoring/po_questions.py`: questions 17 and 18 appended (rows 1 to 16 untouched)",
         "- `authoring/proposals.json`: rebuilt by build.py (720 cases; the 665 existing entries unchanged)",
         "- `questions-2026-11-14/sheet_rows.py`, `sheet-values.json`: the two sheet rows",
@@ -87,8 +89,8 @@ out += ["## Gate results", "", f"- `python3 authoring/build.py`: {BUILD}", f"- `
         "| design library _ds_bundle.js (v4) | grep: every always/never line (20), the GAPS block (lines 7268-7285) |",
         "| suite machinery | build.py, iwo_lib.py, common.py, design_refs.py, design_v3.py, create.py, po_questions.py (structure), cases_zzz_v13.py (round 4 additions), write scripts of 13 Nov 2026 |", "",
         "## OUTSTANDING — what I need from you", "",
-        "1. **Your go-ahead to write** the 55 cases (49 into run 559) with `create_layout_stress.py --apply` (Rule 6). Recommended: yes, after reading this list.",
-        "2. **Send questions 17 and 18** to Milos Vasic by adding the two rows to the sheet (Rule 66: the sheet goes last). Recommended: send both; they hold six cases.",
+        "1. **Your go-ahead to write** the 54 cases (48 into run 559) with `po-answers-2026-11-12/write-v14/create_v14.py --apply` then `sync_run_v14.py --apply` (Rule 6). Recommended: yes, after reading this list.",
+        "2. **Send questions 17 and 18** (question 18's numbers and chip text still say about 40 pixels and \"No Charge · Warranty\"; the v14 pictures show about 12 pixels and \"No Charge\": update the row before it goes out) to Milos Vasic by adding the two rows to the sheet (Rule 66: the sheet goes last). Recommended: send both; they hold six cases.",
         "3. **Folder for the six held cases**: \"Design — how it looks\" (Recommended, the standing choice) or WAIT-PO 136720.",
         "", "Waiting on the PO (Rule 132): Internal Work Orders sheet, questions 1 to 16 all answered; questions 17 and 18 are drafts, not yet sent (six cases would wait on them)."]
 open(f"{H}/NEW-CASES.md", "w").write("\n".join(out) + "\n\n## Full text of every new case\n\n" + "\n".join(R.case(k) for k in S))

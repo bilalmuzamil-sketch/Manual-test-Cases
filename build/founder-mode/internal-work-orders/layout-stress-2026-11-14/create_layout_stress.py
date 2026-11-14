@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""DRAFT, NOT RUN (14 Nov 2026). Adds ONLY the 55 Internal Work Orders layout stress cases (authoring/cases_zzzz_stress.py: D-94..D-144,
+"""SUPERSEDED on 14 Nov 2026 by po-answers-2026-11-12/write-v14/ (PRD v1.4 named set; S12-49 dropped, 54 cases). Kept for the record; --apply refuses.
+DRAFT, NOT RUN (14 Nov 2026). Adds ONLY the 55 Internal Work Orders layout stress cases (authoring/cases_zzzz_stress.py: D-94..D-144,
 S9-49, S9-50, S9-51, S12-49) to TestRail and run 559, once the QA lead has said yes (Rule 6). Mirrors authoring/create.py,
 po-answers-2026-11-12/write/create_new.py, sync_run_559.py and folder_note.py.
 
@@ -25,7 +26,8 @@ import sys, os, json, csv, re, base64, uuid, time, urllib.request, urllib.error
 HERE = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(HERE); D = f"{P}/authoring"
 sys.path.insert(0, f"{P}/../../testing-tools"); import tester_readiness_check as TRC
 APPLY = "--apply" in sys.argv
-KEYS = [f"D-{n}" for n in range(94, 145)] + ["S9-49", "S9-50", "S9-51", "S12-49"]
+if APPLY: sys.exit("SUPERSEDED 14 Nov 2026: the 54 drafts are written by po-answers-2026-11-12/write-v14/create_v14.py, sync_run_v14.py and folder_note_v14.py (PRD v1.4 named set); this script is kept for the record")
+KEYS = [f"D-{n}" for n in range(94, 145)] + ["S9-49", "S9-50", "S9-51"]          # S12-49 dropped 14 Nov 2026 (PRD v1.4)
 HELD = {"D-139": 17, "D-140": 17, "D-141": 17, "D-142": 17, "D-143": 18, "D-144": 18}   # waiting on the PO (question n); not for the run
 RUN, ASSIGN, FOLDER = 559, 6, 136701
 PROP = json.load(open(f"{D}/proposals.json")); SECS = json.load(open(f"{P}/sections.json"))["sections"]

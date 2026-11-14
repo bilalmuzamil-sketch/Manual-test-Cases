@@ -41,9 +41,9 @@ assert len(TOUCHED) == 34 and len(set(TOUCHED)) == 34 and len(DRAFTS) == 54 and 
 NOCAT = 'The chip shows only the words "No Charge", with no category name in it.'
 def TIP(cat): return f'A tooltip reads "Category: {cat}".'
 def HOVER(where="line 2"): return f'Hover over the "No Charge" chip on {where}.'
-D63 = ('Difference IWO-D63 on S12-R3 (not drawn): the boards draw the chip "No Charge" but no tooltip; PRD v1.4 S12-R3 states the tooltip '
-       '"Category: [category]" on hover, so this case follows the PRD (closed: the design is silent, the PRD speaks).')
-D64 = ('Difference IWO-D64 on S12-R3 (chip text): closed, the design (version 1794565397-7f4c) draws the chip "No Charge" as PRD v1.4 S12-R3 says.')
+N45 = ('Register IWO-N45 on S12-R3 (design silent): the boards draw the chip "No Charge" but no tooltip; PRD v1.4 S12-R3 states the tooltip '
+       '"Category: [category]" on hover, so this case follows the PRD.')
+D63 = ('Difference IWO-D63 on S12-R3 (chip text): closed, the design (version 1794565397-7f4c) draws the chip "No Charge" as PRD v1.4 S12-R3 says.')
 
 
 def setc(k, why, **kw):
@@ -66,7 +66,7 @@ setc("D-68", "chip text \"No Charge\" (S12-R3 v1.4); hover step for the tooltip 
      res=[['The second line shows the chip "No Charge" next to its title; its Rate, Total and every part on it show $0.00 and Margin shows nothing.',
            NOCAT, "The work order header has no badge and no orange style."],
           [TIP("Warranty")]])
-c["design_notes14"] = [D64, D63]
+c["design_notes14"] = [D63, N45]
 
 setc("S12-04", "chip text \"No Charge\" (S12-R3 v1.4, section 8 row 35 v1.4); hover step for the tooltip; the chip shows no category; title",
      title="A marked line shows the No Charge chip and $0.00, the work order stays billable",
@@ -76,7 +76,7 @@ setc("S12-04", "chip text \"No Charge\" (S12-R3 v1.4, section 8 row 35 v1.4); ho
              "Its 1.5 hours, technician and status stay.", "The work order shows no badge and no orange header card.",
              "The original work order and line are not shown on the line."],
             [TIP("Goodwill")]])
-BY["S12-04"]["design_notes14"] = [D64, D63]
+BY["S12-04"]["design_notes14"] = [D63, N45]
 
 setc("S12-11", "chip text \"No Charge\" (S12-R3 v1.4); hover step for the tooltip; the chip shows no category",
      steps=BY["S12-11"]["steps"] + [HOVER("the new line")],
@@ -88,7 +88,7 @@ setc("S12-13", "chip text \"No Charge\" (S12-R3 v1.4); the new category is read 
      steps=_s[:5] + [HOVER()] + _s[5:],
      res=_r[:4] + [['Line 2 still shows the chip "No Charge".', NOCAT], [TIP("Comeback")]] + _r[5:])
 addq("S12-13", "S12-R3")
-BY["S12-13"]["design_notes14"] = [D63]
+BY["S12-13"]["design_notes14"] = [N45]
 
 _s, _r = BY["S12-15"]["steps"], BY["S12-15"]["res"]
 setc("S12-15", "chip text \"No Charge\" (S12-R3 v1.4); hover step for the tooltip \"Category: Comeback\"; the chip shows no category",
@@ -148,7 +148,7 @@ setc("S12-43", "chip text \"No Charge\" (S12-R3 v1.4); Tech View in a desktop br
      steps=["Open work order 1 in the desktop browser.", "Switch to the Tech View display.", HOVER(), "Open work order 1 on the phone."],
      res=[["Work order 1 opens."], ['Line 2 shows the chip "No Charge" in Tech View.', NOCAT], [TIP("Goodwill")],
           ['Line 2 shows the chip "No Charge" and $0.00 on the phone layout.', NOCAT]])
-BY["S12-43"]["design_notes14"] = [D63]
+BY["S12-43"]["design_notes14"] = [N45]
 
 _s, _r = BY["S12-46"]["steps"], BY["S12-46"]["res"]
 setc("S12-46", "chip text \"No Charge\" (S12-R3 v1.4); the kept category is read in the tooltip after the reload (hover step)",
@@ -186,7 +186,7 @@ setc("D-113", "the long-category stress moves from the chip to its tooltip (S12-
           ["A tooltip reads \"Category: [category C's name]\", inside the browser window.",
            "The category name shows exactly as you typed it: the characters " + ST.SPECIAL + " show as typed, not as \"&amp;\" or other codes."],
           ['Each chip still reads "No Charge" and stays inside the Name/Description cell; every column and the three-dots menus are visible.']])
-BY["D-113"]["design_notes14"] = [D63]
+BY["D-113"]["design_notes14"] = [N45]
 
 _r = BY["D-143"]["res"]
 assert _r[5][0] == 'Line 2 shows the chip "No Charge · Goodwill" and $0.00.'
