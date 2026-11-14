@@ -611,3 +611,153 @@ C("D-190", K, "Design: long and special tier names on the customer card and tier
    R(S("S9-R30", "The tier pickers list active tiers by number, each shown as its number and name"), "Every row of the list stays inside the picker; no row runs past the list's edge.", "The current tier is still marked.")
    + R(S("S2-R3"), "Tier C's name shows character for character as typed, & \" ' < > included.")],
   pics=["9.30", "9.31", "9.33"], flags=["stress"])
+
+# ---- page 12: seeing what priced a part ------------------------------------------------------------------------------------
+WOD = [ADMIN_WO, tier("A"), "Have a new matrix for this test, matrix A, pricing a new category made for this test, category A, with one range from $0.00: Default Markup % 50, tier A Markup % 20.",
+       "Have a new inventory part for this test, part A, in category A, cost $10.00, in a bin (for example E-11).", customer("A", ", on tier A for work orders"),
+       "Have a new work order for this test, work order 1, for customer A, with part A added.", W1440]
+OPENWO = "Open work order 1."
+
+C("D-210", K, "Design: the price details popover for a tier price",
+  WOD, [OPENWO, "Point at part A's sell price on the Lines tab."],
+  [look("12.1", "S12-R1", "Work order 1 opens on its Lines tab; part A's price shows with no icon beside it."),
+   R(QD("Why this price", "12.1", "S12-R2"), "A white popover with a shadow opens just below the price, titled \"Why this price\".")
+   + look("12.1", "S12-R2", "Its rows show a gray label at the left and the value at the right: Priced by, Matrix, Cost Range, Rule, Cost, Sell price, Priced on and From, in that order, as in picture 12.1.")
+   + R(QD("Acme Freight’s work order tier (Tier 2) prices its parts.", "12.1", "S12-R2"), "A last line in gray reads customer A's name, \"'s work order tier (\" tier A's name \") prices its parts.\"")],
+  pics=["12.1"])
+
+C("D-211", K, "Design: the price details' matrix line and Same as previous tier row",
+  [ADMIN_WO, tier("A"), tier("B", ", made right after tier A, on Same as previous tier in matrix A"),
+   "Have a new matrix for this test, matrix A, pricing a new category made for this test, category A, with one range from $0.00: Default Markup % 50, tier A Markup % 20.",
+   "Have a new inventory part for this test, part A, in category A, cost $10.00.", customer("A", ", on tier B for work orders"),
+   "Have a new work order for this test, work order 1, for customer A, with part A added.", W1440],
+  [OPENWO, "Point at part A's sell price on the Lines tab."],
+  [look("12.2", "S12-R18", "Work order 1 opens."),
+   R(QD("Same as previous tier", "12.2", "S12-R18"), "The Matrix row reads matrix A's name, \" · \" and tier A's name, with no Work Order Matrix side named.",
+     "A row labelled \"Same as previous tier\" reads tier A's name, as in picture 12.2.")],
+  pics=["12.1", "12.2"], held_on="Q29", flags=DV)
+
+C("D-212", K, "Design: the price details for a typed price",
+  WOD, [OPENWO, "Type 14 in part A's sell price.", "Press Enter.", "Point at part A's sell price."],
+  [look("12.3", "S12-R10", "Work order 1 opens."), look("12.3", "S12-R10", "The price box reads 14."),
+   R(S("S12-R10", "A gray Manual icon always shows beside a Manual price"), "A small gray Manual icon shows right after the price.")
+   + look("12.3", "S12-R10", "Its look matches picture 12.3."),
+   R(QD("A typed price stays when the quantity changes. Changing the cost or category recalculates it. Clear the sell price to go back to the calculated price.", "12.3", "S12-R4"),
+     "A popover titled \"Price typed by hand\" shows Priced by \"Manual (typed by hand)\", Typed by with the user and time, Sell price, Calculated price and From.",
+     "Its last lines read \"A typed price stays when the quantity changes. Changing the cost or category recalculates it. Clear the sell price to go back to the calculated price.\"")],
+  pics=["12.3"])
+
+C("D-213", K, "Design: the Parts tab's Priced by column",
+  WOD, [OPENWO, "Click the Parts tab."],
+  [look("12.4", "S12-R3", "Work order 1 opens."),
+   R(S("S12-R3", "a Priced by column after Sell Price"), "The columns read Description, Part Number, Quantity, Cost, Core, Sell Price, Priced By, Margin, Category, Vendor and Requested At, Priced By right after Sell Price.")
+   + look("12.4", "S12-R3", "Priced By shows plain text (tier A's name for part A), not an edit box, while the cells around it are edit boxes, as in picture 12.4.")],
+  pics=["12.4"])
+
+C("D-214", K, "Design: price details for a line priced before tiers",
+  [ADMIN_WO, STAGING, "Use a work order on staging, work order 1, with a part line priced before the release.", W1440],
+  [OPENWO, "Point at that part line's sell price."],
+  [look("12.5", "S12-R6", "Work order 1 opens; the price has no icon."),
+   R(QD("This part was priced before Tiered Pricing, so no tier or rule was recorded.", "12.5", "S12-R6"),
+     "A popover titled \"Priced before tiers\" shows Priced by \"Before tiers\", Cost, Sell price and Priced on, and reads \"This part was priced before Tiered Pricing, so no tier or rule was recorded.\", as in picture 12.5.")],
+  pics=["12.5"])
+
+C("D-215", K, "Design: price details on canned line, fixed total and moved-tier lines",
+  [ADMIN_WO, tier("B"), customer("A", ", on Default for work orders"),
+   "Have a new canned line for this test, canned line A, with a part that has a saved price.",
+   "Have a new work order for this test, work order 1, for customer A, with canned line A added, a line set to a fixed total of $450.00 whose parts come to $210.00, and an inventory part.",
+   "Before the test, set customer A's Work Order Tier to tier B, after work order 1 was made.", W1440],
+  [OPENWO, "Point at canned line A's part price.", "Point at a part price on the fixed-total line.", "Point at the inventory part's price."],
+  [look("12.7", "S12-R12", "Work order 1 opens."),
+   R(S("S12-R12", "\"Saved price from canned line <canned line>.\""), "A \"Why this price\" popover shows Priced by Default, a Canned line row and the vendor in From, ending \"Saved price from canned line\" and canned line A's name, as in picture 12.7."),
+   R(S("S12-R12", "\"Part of a fixed line total of $450.00 (parts $210.00)\""), "The popover shows Priced by \"Fixed line total\" and a Line row reading \"Part of a fixed line total of $450.00 (parts $210.00)\", as in picture 12.8."),
+   R(QD("Priced by Default, Northway Haulers’s tier when this work order was made. Northway Haulers is now on Tier 2.", "12.6", "S12-R12"),
+     "The popover ends with \"Priced by Default,\" customer A's name \"'s tier when this work order was made.\" customer A's name \"is now on\" tier B's name, as in picture 12.6.")],
+  pics=["12.6", "12.7", "12.8"])
+
+C("D-216", K, "Design: price details for a line priced for the previous customer",
+  WOD + [customer("B", ", on Default for work orders")],
+  [OPENWO, "Open work order 1's three-dot menu.", "Click Change Customer.", "Pick customer B.", "Click Update Customer.", "Point at part A's sell price."],
+  [look("12.9", "S12-R17", "Work order 1 opens."), look("14.2", "S14-R4", "The menu lists Change Customer, Split Work Order and Back to Work Orders."),
+   look("14.3", "S14-R4", "The Change Customer dialog opens."), look("14.4", "S14-R5", "Customer B is picked."), look("12.9", "S14-R2", "Work order 1 shows customer B."),
+   R(QD("Priced for the previous customer", "12.9", "S12-R17"), "A popover titled \"Priced for the previous customer\" shows a \"Priced for\" row with customer A's name.")
+   + R(S("S12-R17", "\"Priced by Fleet for Acme Freight\""), "Its last lines start \"Priced by\" tier A's name \"for\" customer A's name, as in picture 12.9.")],
+  pics=["12.9", "14.2", "14.3", "14.4"])
+
+C("D-217", K, "Design: long and special names in the price details and Parts tab",
+  [ADMIN_WO, f"Have a new tier for this test, tier A, with {STRESS_NO}.",
+   "Have a new matrix for this test, matrix A, pricing a new category made for this test, category A, with tier A on Markup % 20.",
+   "Have a new inventory part for this test, part A, in category A.",
+   f"Have a new customer for this test, customer A, with {STRESS_SP}, on tier A for work orders.",
+   f"Have a new customer for this test, customer B, with {STRESS_SPECIAL}, on tier A for work orders.",
+   "Have a new work order for this test, work order 1, for customer A, with part A added.", W1440],
+  [OPENWO, "Point at part A's sell price.", "Click the Parts tab.", "Open work order 1's three-dot menu.", "Click Change Customer.", "Pick customer B.", "Click Update Customer."],
+  [R(S("S12-R1"), "Work order 1 opens."),
+   R(S("S12-R2"), "The popover shows tier A's and customer A's names inside its own box, wrapped if needed; no text runs past the popover's edge.", "Every row of the popover stays visible."),
+   R(S("S12-R3"), "Part A's Priced By shows tier A's name inside its own cell; the Margin column stays visible beside it.", "The page does not scroll sideways."),
+   R(S("S14-R4"), "The menu lists Change Customer."), R(S("S14-R4"), "The dialog opens."),
+   R(S("S14-R5"), "Customer B's name shows character for character as typed, & \" ' < > included, inside the Customer field.", "The amber note's text stays inside the dialog."),
+   R(S("S14-R2"), "The notice shows tier A's name inside the notice bar, wrapped if needed.", "The work order's lines stay visible below it.")],
+  pics=["12.1", "12.4", "14.3", "14.8"], flags=["stress"])
+
+# ---- page 14: changing the customer ---------------------------------------------------------------------------------------
+C("D-220", K, "Design: the Change Customer dialog with the pricing sentence",
+  [ADMIN_WO, customer("A"), "Have a new work order for this test, work order 1, for customer A.", W1440],
+  [OPENWO, "Open work order 1's three-dot menu.", "Click Change Customer."],
+  [look("14.2", "S14-R4", "Work order 1 opens."),
+   look("14.2", "S14-R4", "A small menu opens below the button with Change Customer, Split Work Order and Back to Work Orders, as in picture 14.2."),
+   R(S("S14-R4", "\"Parts already on the work order keep their prices, and new parts keep this work order's pricing.\""),
+     "A dialog titled Change Customer shows today's gray caption with \"Parts already on the work order keep their prices, and new parts keep this work order's pricing.\" added at its end.")
+   + look("14.3", "S14-R4", "Customer and Contact pickers sit side by side; Cancel and a grayed Update Customer sit at the bottom right; an X at the top right, as in picture 14.3 (compare today's dialog in the Today picture).")],
+  pics=["14.2", "14.3", "today:14.1"])
+
+C("D-221", K, "Design: the amber note on a work order and on a Part Sale",
+  [ADMIN_WO, tier("A"), customer("A"), customer("B", ", on tier A for work orders and Part Sales"),
+   "Have a new work order for this test, work order 1, for customer A.", "Have a new Part Sale for this test, Part Sale 1, for customer A.", W1440],
+  [OPENWO, "Open work order 1's three-dot menu.", "Click Change Customer.", "Pick customer B.", "Click Cancel.", "Open Part Sale 1.", "Open Part Sale 1's three-dot menu.", "Click Change Customer.", "Pick customer B."],
+  [look("14.4", "S14-R5", "Work order 1 opens."), look("14.4", "S14-R5", "The menu lists Change Customer."), look("14.4", "S14-R5", "The dialog opens."),
+   R(S("S14-R5", "Red is not used."), "An amber box with an orange warning icon appears under the pickers with the note, and Update Customer turns blue.")
+   + look("14.4", "S14-R5", "The note's colours and place match picture 14.4."),
+   look("14.4", "S14-R5", "The dialog closes."), look("14.5", "S14-R5", "Part Sale 1 opens."), look("14.5", "S14-R5", "The menu lists Change Customer, Split Part Sale and Back to Part Sales."),
+   look("14.5", "S14-R4", "The dialog opens with the Part Sale wording."),
+   R(QD("This Part Sale keeps Tier 4 pricing. Default applies to new Part Sales, or split this one to use it.", "14.5", "S14-R5"),
+     "The amber note reads \"This Part Sale keeps Default pricing.\" with tier A's name \"applies to new Part Sales, or split this one to use it.\", as in picture 14.5.")],
+  pics=["14.4", "14.5", "14.7"])
+
+C("D-222", K, "Design: no amber note for a customer on the same tier",
+  [ADMIN_WO, customer("A"), customer("B"), "Have a new work order for this test, work order 1, for customer A.", W1440],
+  [OPENWO, "Open work order 1's three-dot menu.", "Click Change Customer.", "Pick customer B."],
+  [look("14.6", "S14-E1", "Work order 1 opens."), look("14.6", "S14-E1", "The menu lists Change Customer."), look("14.6", "S14-E1", "The dialog opens."),
+   R(S("S14-E1", "Changing to a customer on the same tier shows no amber note in the dialog"), "Update Customer turns blue.", "No amber box appears under the pickers.")
+   + look("14.6", "S14-E1", "The dialog matches picture 14.6.")],
+  pics=["14.6"])
+
+C("D-223", K, "Design: the notice and message after the customer changes",
+  [ADMIN_WO, tier("A"), customer("A", ", on tier A for work orders"), customer("B"),
+   "Have a new work order for this test, work order 1, for customer A, with two parts priced by tier A.", W1440],
+  [OPENWO, "Open work order 1's three-dot menu.", "Click Change Customer.", "Pick customer B.", "Click Update Customer."],
+  [look("14.8", "S14-R2", "Work order 1 opens."), look("14.7", "S14-R2", "The menu lists Change Customer."), look("14.7", "S14-R2", "The dialog opens."), look("14.7", "S14-R5", "The amber note shows."),
+   R(S("S14-R2", "After the change, a notice says how many lines were priced for the previous customer"), "An amber notice bar with a warning icon and an X appears above the tabs, its first line bold.")
+   + R(QD("They keep their prices, and their price details say who they were priced for.", "14.8", "S14-R2"), "Its second line reads \"They keep their prices, and their price details say who they were priced for.\"")
+   + look("14.8", "S14-R2", "A white message with a green check shows at the bottom right starting \"Customer changed to\" and customer B's name, as in picture 14.8.")],
+  pics=["14.7", "14.8"])
+
+C("D-224", K, "Design: the notice names Fixed price and Manual lines too",
+  [ADMIN_WO, tier("A"), customer("A", ", on tier A for work orders"), customer("B"),
+   "Have a new inventory part for this test, part F, with a fixed sell price.",
+   "Have a new work order for this test, work order 1, for customer A, with a part priced by tier A, a part with a typed price and part F.", W1440],
+  [OPENWO, "Open work order 1's three-dot menu.", "Click Change Customer.", "Pick customer B.", "Click Update Customer."],
+  [look("14.8", "S14-R2", "Work order 1 opens."), look("14.8", "S14-R2", "The menu lists Change Customer."), look("14.8", "S14-R2", "The dialog opens."), look("14.8", "S14-R2", "Customer B is picked."),
+   R(QD("4 lines priced at Tier 2, Fixed price and Manual for the previous customer", "14.8", "S14-R2"),
+     "The notice reads \"3 lines priced at\" tier A's name \", Fixed price and Manual for the previous customer\", counting the typed and fixed-price lines too (1 + 1 + 1 = 3), as in picture 14.8.")],
+  pics=["14.8"], held_on="Q30", flags=DV)
+
+C("D-225", K, "Design: the notice pushes the lines down without moving the columns",
+  [ADMIN_WO, tier("A"), customer("A", ", on tier A for work orders"), customer("B"),
+   "Have a new work order for this test, work order 1, for customer A, with a part priced by tier A.", W1440],
+  [OPENWO, "Take a screenshot of the lines.", "Open work order 1's three-dot menu.", "Click Change Customer.", "Pick customer B.", "Click Update Customer.", "Take a second screenshot of the lines."],
+  [look("14.2", "S14-R2", "Work order 1 opens."), look("14.2", "S14-R2", "The screenshot shows the Lines tab's column headings."), look("14.2", "S14-R4", "The menu lists Change Customer."),
+   look("14.3", "S14-R4", "The dialog opens."), look("14.4", "S14-R5", "Customer B is picked."), look("14.8", "S14-R2", "The notice bar appears above the tabs."),
+   look("14.8", "S14-R2", "Compared with the first screenshot, the column headings keep the same left-right place; the tabs and lines only move down by the notice's height, as pictures 14.2 and 14.8 show.",
+        "The lines show the same parts and prices.")],
+  pics=["14.2", "14.3", "14.4", "14.8", "12.9"], flags=["movement"])

@@ -21,3 +21,8 @@ QUESTIONS.update({
  "Q28": "Counter Sale: the PRD says Edit Customer shows a TOOLTIP on this customer's tier fields, \"Every walk-in sale uses this tier.\" (S9-R8); design 9.36 shows it as a light blue info box above the tier fields, always visible. Tooltip or box?",
 })
 CANDIDATE = set(QUESTIONS)
+QUESTIONS.update({
+ "Q29": "Price details: the PRD lists \"the matrix, its side (Work Order Matrix or Part Sale Matrix) and the rule\" (S12-R2) and, for Same as previous tier, \"Fleet is the same as the previous tier, Wholesale, in Brakes.\" (S12-R18); the design's popover shows the matrix as \"Tread Plus · Tier 2\" with no side (12.1) and a row \"Same as previous tier: Default\" (12.2). Which?",
+ "Q30": "Change Customer notice: the PRD counts only tier and Default lines (\"Manual, Fixed price, Fixed line total and Before tiers lines don't count\", and no tier name when several tiers priced them, S14-R2); design 14.8 reads \"4 lines priced at Tier 2, Fixed price and Manual for the previous customer\", counting Fixed price and Manual lines. Which?",
+})
+CANDIDATE = set(QUESTIONS)
