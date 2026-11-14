@@ -34,7 +34,7 @@ line date; IWO 609 keep v1.3. Their quotes are word for word in the new versions
   (193 rows, 105 boards). Batch B = Stories 10, 11, 13, 17, 18, the reports PRD, invariant sections A, E, F, design pages 10, 11, 13, 20
   (221 rows, 46 boards). Same format and rules as phase 1 (its brief is summarised in PHASE-1-REPORT.md and the guide).
 - THEN: TICKET-LEDGER verdicts, one PO question sheet for Matt Barge (merge Q2, Q5-Q19 and the batches' questions; run the skill 07 checks;
-  show the QA lead before sending), gates + sample read, drafts and counts to the QA lead, TestRail write only after his yes (create the
+  show the QA lead before sending; then share: Matt Barge editor, every QA person editor, everyone else at shopview.com read only — see tiered-pricing/PROJECT-STATE.md), gates + sample read, drafts and counts to the QA lead, TestRail write only after his yes (create the
   folders under 138770, cases, pictures, a run assigned to Mudassir, folder note).
 
 ## Outstanding with the QA lead

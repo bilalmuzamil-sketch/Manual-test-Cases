@@ -41,3 +41,11 @@ them on staging and if they can also be run on QA environment then we may run th
 - QA lead, 14 Nov 2026, Rule 119: "Read them too" — the design tool's guides, index page and viewer runtime are being read in full by a worker
   (design-2026-11-14/TOOL-FILES-READ-2026-11-14.md).
 - Case writing phase 1 (library + Stories 1-4) running; then two parallel batches for Stories 5-19 and the reports PRD.
+
+## 14 Nov 2026 — QA lead's instruction for the PO question sheet (for when it is created)
+Verbatim: "the question sheet for mat which you will create should be given the permissions to him to edit and shared with him and to all
+the QA people it should have the access to edit and for the rest of @shopview people it shoul give read only access to everyone".
+- Matt Barge: editor, shared with him (notified).
+- Every QA person: editor (the list of QA people's addresses is to be confirmed with the QA lead before sharing).
+- Everyone else at shopview.com: read only (domain-wide reader permission on the sheet).
+- Show the sheet to the QA lead before sharing it (Rule 66: the question sheet is the last thing sent).
