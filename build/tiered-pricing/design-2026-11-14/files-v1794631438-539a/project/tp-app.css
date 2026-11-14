@@ -1,0 +1,651 @@
+/* Tiered Pricing prototype: app styles on top of the ShopView design system (ds/*.css, inlined by build.py).
+   Layout: a prototype bar, then the ShopView app in a frame that scrolls sideways on narrow screens.
+   Every color is a DS token, so light and dark follow the DS's own theme rules. */
+:root {
+  --tp-frame-min: 1280px;   /* the app is a desktop screen; narrower viewports scroll the frame, never the page */
+  --tp-bar-h: 48px;
+}
+
+
+
+
+/* ---------------------------------------------------------------- prototype bar */
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 720px) {  }
+
+/* ---------------------------------------------------------------- the app frame */
+.tp-frame { flex: 1; overflow-x: auto; margin-top: 12px; border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-lg); background: var(--sv-surface-canvas); }
+.tp-app { min-width: var(--tp-frame-min); min-height: 860px; height: auto; }
+.tp-app .sv-main { min-height: 812px; }
+.tp-app .sv-content { overflow: visible; }
+
+/* header (the DS AppHeader draws inline styles; same geometry here as classes) */
+.tp-header { position: relative; height: var(--sv-header-height); flex: none; box-sizing: border-box; background: var(--sv-surface); border-bottom: 1px solid var(--sv-border-default); display: flex; align-items: center; padding: var(--sv-header-padding); gap: var(--sv-header-gap); }
+.tp-header .sv-header__logo { width: var(--sv-header-logo-size); height: var(--sv-header-logo-size); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.tp-header__sep { width: 1px; height: 24px; background: var(--sv-border-default); }
+.tp-header .sv-header__nav { display: flex; align-items: center; gap: 2px; }
+.tp-nav { display: inline-flex; align-items: center; justify-content: center; height: var(--sv-header-control-height); padding: 8px 10px; border-radius: var(--sv-header-control-radius); white-space: nowrap; font-weight: var(--sv-body-medium-weight); font-size: var(--sv-body-size); line-height: var(--sv-body-lh); color: var(--sv-text-primary); text-decoration: none; cursor: pointer; }
+.tp-nav:hover { background: var(--sv-surface-hover); }
+.tp-nav.is-on { background: var(--sv-surface-nav-selected); }
+.tp-nav.is-off { cursor: default; }
+.tp-global-search { width: 300px; }
+.tp-header__right { display: flex; align-items: center; gap: 14px; }
+.tp-header__loc { font-weight: var(--sv-body-semibold-weight); white-space: nowrap; }
+.tp-avatar { width: 36px; height: 36px; padding: 0; border-radius: 50%; border: 0; background: var(--sv-accent-subtle); color: var(--sv-accent-subtle-text); box-shadow: 0 0 0 1px var(--sv-border-default); font-weight: var(--sv-body-semibold-weight); font-size: var(--sv-dense-size); cursor: pointer; font-family: inherit; }
+
+/* side nav (gen_v5 side_nav) */
+.tp-side { width: 240px; flex: none; padding: 12px; box-sizing: border-box; background: var(--sv-surface); border-right: 1px solid var(--sv-border-default); display: flex; flex-direction: column; gap: 2px; }
+.tp-side-row { text-decoration: none; height: 36px; border-radius: var(--sv-radius-md); display: flex; align-items: center; gap: 8px; }
+.tp-side-row.is-off { cursor: default; }
+
+/* ---------------------------------------------------------------- controls */
+.tp-link { all: unset; cursor: pointer; color: var(--sv-accent-text); font-weight: var(--sv-body-medium-weight); }
+.tp-link:hover { text-decoration: underline; }
+.tp-link:focus-visible, .tp-sort:focus-visible, .tp-more:focus-visible, .tp-price-icon:focus-visible { outline: 2px solid var(--sv-border-focus); outline-offset: 2px; border-radius: 4px; }
+.tp-sort { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+.tp-sort__icon { display: inline-flex; color: var(--sv-text-muted); opacity: .6; }
+.tp-sort__icon.is-on { color: var(--sv-accent); opacity: 1; }
+.sv-num .tp-sort { flex-direction: row-reverse; }
+.tp-clip { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+.tp-more { color: var(--sv-accent-text); cursor: default; white-space: nowrap; font-weight: var(--sv-body-medium-weight); }
+.tp-disabled { color: var(--sv-text-disabled); }
+.tp-check-dash { width: 8px; height: 2px; border-radius: 1px; background: currentColor; }
+.tp-icon-tbd { display: inline-flex; align-items: center; justify-content: center; flex: none; box-sizing: border-box; border: 1px dashed currentColor; border-radius: 3px; font-size: 9px; line-height: 1; }
+.tp-field-wrap { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tp-field--prefix > input { padding-left: 24px; }
+.tp-field__prefix { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--sv-text-secondary); pointer-events: none; z-index: 1; }
+.tp-search input { all: unset; flex: 1; min-width: 0; font: inherit; color: var(--sv-text-primary); }
+.tp-search input::placeholder { color: var(--sv-text-muted); }
+
+/* the saving spinner inside a button (S17-R1) */
+.tp-spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: tp-spin .7s linear infinite; flex: none; }
+@keyframes tp-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .tp-spinner { animation-duration: 2s; } }
+
+/* filter chips and their checkbox panels (DS filter-dropdown) */
+.tp-pop-host { position: relative; display: inline-flex; }
+/* SV FilterChip (DS filter-chip.jsx): 28px borderless pill; "Label: value" on the accent-subtle fill once something is picked */
+.tp-dd-panel { position: absolute; top: calc(100% + 6px); right: 0; z-index: 60; min-width: 240px; max-height: 360px; overflow: auto; background: var(--sv-elev-2-bg); border-radius: var(--sv-radius-md); border: 1px solid var(--sv-elev-2-border); box-shadow: var(--sv-elev-2-shadow); padding-top: 6px; }
+.tp-dd-panel .sv-dd-row { width: 100%; }
+.tp-dd-foot { border-top: 1px solid var(--sv-border-subtle); padding: 10px 16px; margin-top: 6px; }
+/* a dropdown menu anchored in a .tp-pop-host */
+.tp-menu { position: absolute; top: calc(100% + 4px); right: 0; z-index: 60; min-width: 200px; }
+
+/* ---------------------------------------------------------------- price indicator and details (S9-R1, S9-R2) */
+.tp-price-icon { all: unset; display: inline-flex; flex: none; cursor: help; border-radius: 4px; }
+.tp-price-icon--info { color: var(--sv-info-text); }
+.tp-price-icon--warning { color: var(--sv-warning-text); }
+/* rule tables: the calculation a rule doesn't use is a grey block (Chris W, Nov 3) */
+td.tp-cell-off { background: var(--sv-surface-sunken); color: var(--sv-text-muted); }
+td.tp-cell-off .tp-cell { background: var(--sv-surface-sunken); }
+/* Fabian, Nov 2: the info icon keeps its place but shows only on hover over the row or price, or on keyboard focus */
+.tp-price-icon--info { opacity: 0; transition: opacity .12s; }
+tr:hover .tp-price-icon--info, .tp-price:hover .tp-price-icon--info, .tp-pricedby:hover .tp-price-icon--info, .tp-price-icon--info:focus-visible { opacity: 1; transition-delay: .3s; }
+.tp-popover { position: fixed; z-index: 400; width: 340px; max-width: calc(100vw - 24px); box-sizing: border-box; background: var(--sv-elev-2-bg); border: 1px solid var(--sv-elev-2-border); border-radius: var(--sv-radius-md); box-shadow: var(--sv-elev-2-shadow); padding: var(--sv-space-4); display: flex; flex-direction: column; gap: var(--sv-space-3); font-size: var(--sv-body2-size); }
+
+/* v3.17 (owner, Nov 6): every tooltip matches the Work In Progress report's, i.e. Quasar's default q-tooltip with ShopView's
+   font-size override (0.8125rem). The DS has no exact token for these values (its tooltip is grey-900 on a 6px radius), so they
+   are Quasar's own: grey-8 #616161, text #fafafa, 6px 10px, radius 4px, no border or shadow, max 18rem, 6px below the anchor. */
+.tp-tip { --tp-tip-bg: #616161; --tp-tip-text: #fafafa; position: fixed; z-index: 500; max-width: 18rem; padding: 6px 10px; border-radius: 4px; background: var(--tp-tip-bg); border: 0; box-shadow: none; color: var(--tp-tip-text); font-family: var(--sv-font-ui); font-size: 0.8125rem; line-height: 1.4; pointer-events: none; white-space: pre-line; overflow-wrap: break-word; }
+
+/* ---------------------------------------------------------------- modals */
+.tp-scrim { padding-top: 64px; padding-left: 16px; padding-right: 16px; box-sizing: border-box; overflow-y: auto; }
+.tp-modal { max-width: 100%; max-height: calc(100vh - 96px); }
+.tp-modal__body { overflow-y: auto; min-height: 0; }
+.tp-confirm-body { display: flex; flex-direction: column; gap: 12px; }
+.tp2-catlist { margin: -4px 0 0; padding-left: 20px; max-height: 240px; overflow-y: auto; }
+.tp-checks-wrap .sv-table td { vertical-align: top; }
+.tp-pass { color: var(--sv-success); display: inline-flex; }
+.tp-fail { color: var(--sv-danger); display: inline-flex; }
+.tp-toasts { position: fixed; right: max(24px, env(safe-area-inset-right, 0px)); bottom: max(24px, env(safe-area-inset-bottom, 0px)); }
+
+/* ---------------------------------------------------------------- Settings › Pricing (Phase 1) */
+.tp-mb { margin-bottom: var(--sv-space-3); }
+.tp-fixed { table-layout: fixed; width: 100%; }
+.tp-fixed td { overflow: hidden; }
+.tp-mname { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.tp-mname > strong { min-width: 0; overflow: hidden; }
+.tp-actions { display: inline-flex; align-items: center; gap: 2px; }
+.tp-actions-cell { text-align: right; overflow: visible !important; white-space: nowrap; }
+.tp-menu-hint { padding: 8px 12px; max-width: 280px; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); }
+.tp-menu .sv-menu__row { cursor: pointer; }
+.tp-menu .sv-menu__row.is-disabled { cursor: not-allowed; }
+.tp-reason { margin-top: 4px; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); white-space: normal; }
+.tp-note { margin: 12px 0 0; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); }
+.tp-scroll { max-height: 280px; overflow: auto; border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-md); }
+.tp-title { display: flex; align-items: center; gap: 12px; }
+.tp-name-input { box-sizing: border-box; width: 360px; max-width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--sv-border-focus); border-radius: var(--sv-radius-md); background: var(--sv-surface); color: var(--sv-text-primary); font: inherit; font-size: var(--sv-h1-size); font-weight: var(--sv-h1-weight); box-shadow: var(--sv-focus-ring); outline: none; }
+.tp-name-input.is-error { border-color: var(--sv-danger); box-shadow: 0 0 0 4px color-mix(in srgb, var(--sv-danger) 24%, transparent); }
+.tp-dot { color: var(--sv-text-muted); }
+.tp-qb { display: inline-flex; align-items: center; justify-content: center; margin-right: 6px; width: 20px; height: 16px; border-radius: 3px; background: var(--sv-surface-sunken); border: 1px solid var(--sv-border-default); font-size: 9px; font-weight: var(--sv-body-semibold-weight); text-transform: lowercase; }
+.tp-catmats { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+
+/* the matrix editor */
+.tp-form { display: flex; flex-direction: column; gap: 16px; }
+.tp-row2 { display: flex; gap: 16px; align-items: flex-start; }
+.tp-status { display: flex; align-items: center; gap: 10px; }
+.tp-status__k { color: var(--sv-text-secondary); font-size: var(--sv-body2-size); min-width: 48px; }
+.tp-status__v { color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+.tp-help { margin: 4px 0 0; padding-left: 18px; font-size: var(--sv-body2-size); }
+.tp-help li { margin: 2px 0; }
+.tp-section-label { font-weight: var(--sv-body-semibold-weight); margin-bottom: 8px; }
+.tp-rules .sv-table td, .tp-rules .sv-table th { padding-left: 10px; padding-right: 10px; }
+.tp-rules td { vertical-align: middle; height: 48px; }
+.tp-rules .tp-actions { gap: 6px; }
+.tp-row-err td { background: var(--sv-danger-fill); }
+.tp-row-open td { background: var(--sv-surface-sunken); }
+.tp-warn-row td { padding-top: 0 !important; background: var(--sv-warning-fill); }
+.tp-warn { display: flex; align-items: flex-start; gap: 8px; color: var(--sv-warning-text); font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); padding: 6px 0; white-space: normal; }
+.tp-warn svg { margin-top: 2px; }
+.tp-cellw { position: relative; display: block; }
+.tp-cellw[data-p]::before { content: attr(data-p); position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--sv-text-secondary); pointer-events: none; }
+.tp-cellw[data-s]::after { content: attr(data-s); position: absolute; right: 9px; top: 50%; transform: translateY(-50%); color: var(--sv-text-secondary); pointer-events: none; }
+.tp-cell { box-sizing: border-box; width: 100%; height: 34px; padding: 0 10px; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); background: var(--sv-surface); color: var(--sv-text-primary); font: inherit; font-size: var(--sv-body-size); outline: none; }
+.tp-cellw[data-p] .tp-cell { padding-left: 20px; }
+.tp-cellw[data-s] .tp-cell { padding-right: 22px; }
+.tp-cell:hover:not(:disabled):not(:focus) { border-color: var(--sv-text-muted); }
+.tp-cell:focus { border-color: var(--sv-border-focus); box-shadow: var(--sv-focus-ring); }
+.tp-cell.is-error, .tp-cell.is-error:hover { border-color: var(--sv-danger); }
+.tp-cell:disabled { background: var(--sv-surface-sunken); color: var(--sv-text-muted); }
+.tp-cell-static { color: var(--sv-text-secondary); }
+.tp-picker-btn { all: unset; box-sizing: border-box; display: flex; align-items: center; width: 100%; height: 40px; padding: 0 32px 0 12px; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); background: var(--sv-surface); cursor: pointer; font-size: var(--sv-body-size); overflow: hidden; }
+.tp-picker-btn:hover { border-color: var(--sv-text-muted); }
+.tp-picker-btn:focus-visible { border-color: var(--sv-border-focus); box-shadow: var(--sv-focus-ring); }
+.tp-picker-btn .tp-clip { display: block; flex: 1; min-width: 0; }
+.tp-picker-ph { color: var(--sv-text-muted); }
+.tp-picker { border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-md); background: var(--sv-surface-overlay); margin-top: -8px; overflow: hidden; }
+.tp-picker-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--sv-border-subtle); }
+.tp-picker-count { color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+.tp-picker-list { max-height: 210px; overflow: auto; }
+.tp-picker-meta { color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+.tp-picker-none { padding: 12px 16px; color: var(--sv-text-secondary); }
+.tp-dim { opacity: .55; cursor: not-allowed; }
+.tp-picker .tp-dd-foot { margin-top: 0; }
+
+/* matrix editor: two columns as on the canvas (details and help on the left, rules on the right) */
+.tp-editor { display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-start; }
+.tp-editor__side { flex: 4 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.tp-editor__rules { flex: 7 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.tp-editor .tp-rules-block { display: flex; flex-direction: column; gap: 12px; }
+.tp-editor .tp-section-label { margin-bottom: 0; }
+.tp-editor__rules .sv-card--flush { overflow-x: auto; }
+
+/* ---------------------------------------------------------------- Customers and contracts (Phase 2) */
+.sv-table.tp-vis { overflow: visible; }
+.tp-link--strong { font-weight: var(--sv-body-semibold-weight); }
+.tp-ok { display: inline-flex; align-items: center; gap: 6px; color: var(--sv-success-text); font-size: var(--sv-body2-size); }
+/* count cards on the Contracts list: buttons that look like the DS stat cards (canvas 8.4) */
+.tp-stats { padding: 16px 24px 0; margin-bottom: 12px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.tp-statcard { display: block; width: 100%; box-sizing: border-box; padding: var(--sv-space-4); font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.tp-statcard:hover { background: var(--sv-surface-hover); }
+.tp-statcard:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+.sv-card[data-sel] { border-color: var(--sv-accent) !important; box-shadow: 0 0 0 1px var(--sv-accent); }
+/* contract cards on the customer's Contracts tab (canvas 7.8, 7.12) */
+.tp-ccard { display: flex; flex-direction: column; }
+.tp-ccard__head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.tp-ccard__name { font-size: var(--sv-h3-size); font-weight: var(--sv-h3-weight); }
+.tp-ccard__dates { color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+.tp-ccard__mx { margin-top: 16px; padding-left: 16px; border-left: 2px solid var(--sv-border-default); display: flex; flex-direction: column; gap: 8px; }
+.tp-ccard__toggle { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); border-radius: 4px; }
+.tp-ccard__toggle:hover { color: var(--sv-text-primary); }
+.tp-ccard__toggle:focus-visible { outline: 2px solid var(--sv-border-focus); outline-offset: 2px; }
+/* the info icon inside a field (the contract's default matrix name, S6-R14) */
+.tp-field--info > input { padding-right: 38px; }
+/* Manage Customers (S5-R4): the DS dark bulk bar, docked over the bottom of the list (Nov 10 audit; Branko, Nov 9). Rules in the Nov 10 block at the end. */
+.sv-table th.sv-table__check, .sv-table td.sv-table__check { width: 44px; }
+.sv-table td.sv-table__check { vertical-align: middle; }
+.tp-modal__body .sv-control-row.tp-disabled { cursor: not-allowed; }
+
+/* light mode only: the page is shared for review, so it stays in the canvas's light theme whatever the viewer's setting */
+:root { color-scheme: light; }
+
+/* ---------------------------------------------------------------- Phase 3: work order and Part Sale (canvas pages 9-12) */
+.tp-popover { width: 400px; }
+.tp-pop__head { display: flex; align-items: center; gap: 8px; }
+.tp-pop__head--info { color: var(--sv-info-text); }
+.tp-pop__head--warning { color: var(--sv-warning-text); }
+.tp-pop__head strong { color: var(--sv-text-primary); }
+.tp-pop__note { color: var(--sv-text-secondary); font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); }
+.tp-popover .sv-facts__list { margin: 0; }
+.tp-lines { width: 100%; border-collapse: collapse; }
+.tp-lines th { padding: 10px 12px; font-size: var(--sv-body2-size); font-weight: var(--sv-body-medium-weight); text-align: left; vertical-align: middle; border-bottom: 1px solid var(--sv-border-default); white-space: nowrap; }
+.tp-lines td { padding: 10px 12px; font-size: var(--sv-body2-size); vertical-align: middle; }
+.tp-lines .is-right { text-align: right; }
+.tp-lines tr.tp-job td { border-top: 8px solid var(--sv-surface-canvas); }
+.tp-lines tbody tr.tp-job:first-child td { border-top: 0; }
+.tp-lines tr.tp-sunken td { background: var(--sv-surface-sunken); }
+.tp-lines .tp-muted { color: var(--sv-text-secondary); }
+.tp-job-no { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 4px; background: var(--sv-surface-selected); color: var(--sv-accent-text); }
+.tp-price { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.tp-pricedby { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; font-size: var(--sv-body2-size); color: var(--sv-text-primary); }
+.tp-parts-wrap { overflow-x: auto; background: var(--sv-surface); border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-md); }
+.tp-parts { border-collapse: collapse; table-layout: fixed; width: 1260px; }
+.tp-parts th { padding: 10px 6px; text-align: left; font-size: var(--sv-body2-size); font-weight: var(--sv-body-semibold-weight); white-space: nowrap; border-bottom: 1px solid var(--sv-border-default); }
+.tp-parts td { padding: 6px; vertical-align: middle; font-size: var(--sv-body2-size); border-bottom: 1px solid var(--sv-border-subtle); }
+.tp-parts tr.tp-sunken td { background: var(--sv-surface-sunken); padding: 10px 6px; font-size: var(--sv-body-size); color: var(--sv-text-primary); }
+.tp-cellbox { all: unset; box-sizing: border-box; display: block; width: 100%; height: 40px; border: 1px solid var(--sv-border-strong); border-radius: 4px; padding: 4px 10px; background: var(--sv-surface); cursor: pointer; overflow: hidden; }
+.tp-cellbox:hover { border-color: var(--sv-accent); }
+.tp-cellbox:focus-visible { outline: 2px solid var(--sv-border-focus); outline-offset: 1px; }
+.tp-cellbox.is-locked { cursor: default; background: var(--sv-surface-sunken); }
+.tp-cellbox.is-locked:hover { border-color: var(--sv-border-strong); }
+.tp-cellbox__k { font-size: 9px; line-height: 12px; color: var(--sv-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tp-cellbox__v { font-size: 11px; line-height: 16px; color: var(--sv-text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tp-acts { display: inline-flex; align-items: center; gap: 2px; }
+.tp-qa { display: flex; flex-direction: column; gap: var(--sv-space-3); padding: var(--sv-space-3); background: var(--sv-surface); border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-md); }
+.tp-qa__grid { display: grid; grid-template-columns: 1.1fr 1.8fr .6fr 1.4fr 1fr 1fr; gap: 12px; align-items: start; }
+.tp-qa__btns { display: flex; align-items: center; gap: 8px; }
+.tp-pm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.tp-pm-grid .is-wide { grid-column: 1 / -1; }
+.tp-pm-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: start; }
+.tp-doc-link { all: unset; cursor: pointer; color: var(--sv-accent-text); font-weight: var(--sv-body-semibold-weight); }
+.tp-doc-link:hover { text-decoration: underline; }
+.tp-doc-link:focus-visible { outline: 2px solid var(--sv-border-focus); outline-offset: 2px; border-radius: 4px; }
+.tp-wo-main { min-width: 0; display: flex; flex-direction: column; gap: var(--sv-space-3); }
+.tp-wo-bar { display: flex; align-items: center; gap: var(--sv-space-3); }
+.tp-tr-clickable { cursor: pointer; }
+.tp-datalist-field { position: relative; }
+
+/* ---------------------------------------------------------------- Phase 4: Sales by Tier (canvas 13.x) */
+/* the report's filter pills: filled with the accent tint while they hold a value, plain for Customer until one is picked */
+.tp-rchip { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px; border-radius: 100px; background-color: transparent; color: var(--sv-text-primary); font-family: var(--sv-font-ui); font-weight: var(--sv-body-weight); font-size: var(--sv-body-size); line-height: var(--sv-body-lh); white-space: nowrap; }
+.tp-rchip:hover { background-color: var(--sv-surface-hover); }
+.tp-rchip.is-filled { background-color: var(--sv-accent-subtle); color: var(--sv-accent-subtle-text); }
+.tp-rchip.is-filled:hover, .tp-rchip.is-filled.is-open { filter: brightness(0.97); }
+.tp-rchip:focus-visible { outline: 2px solid var(--sv-border-focus); outline-offset: 2px; }
+.tp-rchip__ic { width: 16px; height: 16px; display: grid; place-items: center; flex: none; }
+.tp-rchip__t { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tp-rchip__v { font-weight: var(--sv-body-semibold-weight); }
+.tp-rchip__chev { width: 20px; height: 20px; display: grid; place-items: center; margin-left: -4px; flex: none; }
+.tp-dd-panel--left { top: 36px; left: 0; right: auto; width: 240px; min-width: 240px; padding-top: 0; }
+.tp-dd-panel--left .sv-dd-row[role="radio"] { width: 100%; }
+.tp-dd-custom { border-top: 1px solid var(--sv-border-default); padding: 12px 16px; margin-top: 6px; }
+.tp-dd-custom__t { font-weight: var(--sv-body-medium-weight); margin-bottom: 8px; }
+.tp-dd-custom__row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; }
+.tp-date { display: flex; align-items: center; gap: 8px; font-size: var(--sv-body2-size); color: var(--sv-text-secondary); }
+.tp-date > span { width: 36px; flex: none; }
+.tp-date input { flex: 1; min-width: 0; height: 32px; box-sizing: border-box; border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-md); padding: 0 8px; font: inherit; color: var(--sv-text-primary); background: var(--sv-surface); }
+.tp-dd-search { padding: 12px 16px 4px; }
+.tp-dd-none { padding: 8px 16px; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+.tp-csv-text { width: 100%; box-sizing: border-box; font-family: var(--sv-font-mono); font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); padding: 10px 12px; border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-md); background: var(--sv-surface-sunken); color: var(--sv-text-primary); resize: vertical; white-space: pre; overflow: auto; }
+.tp-dd-panel--left { max-height: 440px; }
+.tp-dd-panel--end { left: auto; right: 0; }
+
+/* `hidden` must win over the display set on the popover, tooltip and toasts (the publish skeleton adds this rule; local previews don't) */
+[hidden] { display: none !important; }
+
+/* ---- Nov 2 direction (tab-pricing-v2.js) */
+.tp-mt { margin-top: var(--sv-space-4); }
+.tp2-dim { color: var(--sv-text-secondary); font-style: italic; }
+.tp2-base td { background: var(--sv-surface-sunken); }
+.tp2-on td { background: var(--sv-surface-selected); }
+.tp2-select { box-sizing: border-box; width: 100%; height: 32px; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); background: var(--sv-surface); padding: 0 8px; font: inherit; font-family: var(--sv-font-ui); font-size: var(--sv-body-size); color: var(--sv-text-primary); outline: none; transition: border-color 120ms ease, box-shadow 120ms ease; }
+.tp2-select:hover:not(:disabled):not(:focus) { border-color: var(--sv-text-muted); }
+.tp2-select:focus { border-color: var(--sv-border-focus); box-shadow: var(--sv-focus-ring); }
+.tp2-steps { display: flex; flex-direction: column; gap: 8px; }
+.tp2-step { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 4px 0; border-bottom: 1px solid var(--sv-border-default); }
+.tp2-step:last-of-type { border-bottom: 0; }
+.tp2-step .tp-field-wrap { margin: 0; }
+.tp2-step__n { flex: none; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--sv-surface-sunken); font-size: var(--sv-body2-size); font-weight: var(--sv-body-semibold-weight); }
+.tp2-step__what { min-width: 240px; font-weight: var(--sv-body-medium-weight); }
+.tp2-step .tp-actions { margin-left: auto; }
+.tp2-step.is-locked { color: var(--sv-text-secondary); }
+.tp2-step.is-locked .tp-reason { margin: 0; }
+.tp2-add { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 4px; }
+
+/* Nov 2 direction: Categories grid and the rules grid */
+.tp2-scroll { overflow-x: auto; }
+.tp2-grid { min-width: 100%; width: max-content; }
+.tp2-grid th:first-child, .tp2-grid td:first-child { position: sticky; left: 0; z-index: 1; background: var(--sv-surface); box-shadow: 1px 0 0 var(--sv-border-default); }
+.tp2-fb { display: inline-flex; align-items: center; gap: 4px; color: var(--sv-text-secondary); font-style: italic; }
+.tp2-fbcell { color: var(--sv-text-secondary); font-style: italic; }
+.tp2-legend { display: inline-flex; align-items: center; gap: 6px; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); font-style: italic; }
+.tp2-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 var(--sv-space-3); }
+.tp2-subhead td { background: var(--sv-surface-sunken); font-size: var(--sv-body2-size); color: var(--sv-text-secondary); }
+.tp2-subhead td:first-child { background: var(--sv-surface-sunken); }
+.tp2-sample td { color: var(--sv-text-secondary); }
+.tp2-sample.is-first td { border-top: 2px solid var(--sv-border-default); }
+.tp2-rulegrid td[data-act]:hover { background: var(--sv-surface-selected); cursor: pointer; }
+.tp2-cattop { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+
+/* Nov 3 feedback round */
+.tp-warn { position: relative; padding-right: 36px; }
+.tp-warn__x { position: absolute; top: 6px; right: 6px; display: inline-flex; padding: 2px; border: 0; background: transparent; color: inherit; border-radius: 4px; cursor: pointer; }
+.tp-warn__x:hover { background: var(--sv-surface-hover); }
+.tp2-scroll--tall { max-height: calc(100vh - 250px); overflow: auto; }
+.tp2-scroll--grid { max-height: 440px; overflow: auto; }
+.tp2-scroll--tall thead th, .tp2-scroll--grid thead th { position: sticky; top: 0; z-index: 2; background: var(--sv-surface); }
+.tp2-scroll--tall thead th:first-child, .tp2-scroll--grid thead th:first-child { z-index: 3; }
+.tp2-topscroll { overflow-x: auto; overflow-y: hidden; height: 14px; border-bottom: 1px solid var(--sv-border-default); }
+.tp2-topscroll > div { height: 1px; }
+.tp2-oncol { background: var(--sv-surface-selected) !important; }
+.tp2-expand > td { background: var(--sv-surface-sunken); padding: 12px 16px 16px !important; }
+.tp2-expand .tp-rules-block { margin: 0; }
+.tp2-panel { margin-top: var(--sv-space-4); border: 1px solid var(--sv-accent); border-radius: var(--sv-radius-md); padding: 16px; background: var(--sv-surface); }
+.tp2-panel__head { display: flex; flex-direction: column; gap: 2px; margin-bottom: 12px; }
+.tp2-panel__row { display: flex; align-items: center; gap: 12px; }
+.tp2-panel__k { color: var(--sv-text-secondary); min-width: 120px; }
+.tp2-panel__acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+
+/* the DS table clips its overflow, which stops sticky headers and the pinned first column */
+.tp2-grid { overflow: visible !important; }
+
+/* inside a dialog the rules grid keeps its height (the dialog body scrolls instead of squeezing it) */
+.sv-card:has(> .tp2-scroll--grid), .tp2-panel { flex: none; }
+
+/* v2 matrix editor: fields across the top like Edit Category, rules full width below */
+.tp2-edtop { align-items: flex-start; }
+.tp2-edtop__f { flex: 0 0 320px; min-width: 0; position: relative; }
+.tp2-edtop .tp-status { flex: 1; align-self: center; margin: 0; }
+.tp2-edtop .tp-picker { position: absolute; left: 0; right: 0; top: calc(100% - 20px); z-index: 20; background: var(--sv-elev-2-bg); box-shadow: var(--sv-elev-2-shadow); }
+.tp2-edbody { margin-top: var(--sv-space-4); display: flex; flex-direction: column; gap: var(--sv-space-3); }
+.tp2-edbody > .sv-card, .tp2-edbody > .tp-rules-block { flex: none; }
+.tp2-edtop .tp-picker { top: 58px; }
+
+/* Nov 3, later: the Categories list scrolls with the page; its sideways scrollbar is pinned to the bottom of the window */
+.tp2-scroll--x { overflow-x: auto; overflow-y: visible; scrollbar-width: none; }
+.tp2-scroll--x::-webkit-scrollbar { display: none; }
+.tp2-hscroll { position: sticky; bottom: 0; z-index: 6; overflow-x: auto; overflow-y: hidden; height: 16px; margin-top: -1px; background: var(--sv-surface); border: 1px solid var(--sv-border-default); border-radius: 0 0 var(--sv-radius-md) var(--sv-radius-md); }
+.tp2-hscroll > div { height: 1px; }
+/* the Work Order Matrix rules don't need the dialog's full width */
+.tp2-edbody > .tp-rules-block { max-width: 940px; }
+.tp2-hscroll { position: relative; }
+.tp2-hscroll.is-pinned { position: fixed; bottom: 0; margin: 0; border-radius: 0; box-shadow: var(--sv-elev-2-shadow); }
+
+/* Part Rules: select boxes and the bulk bar */
+.tp2-selbox { border: 0; background: none; padding: 4px; cursor: pointer; display: inline-flex; }
+.tp2-bulk { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 var(--sv-space-3); padding: 10px 14px; border: 1px solid var(--sv-accent); border-radius: var(--sv-radius-md); background: var(--sv-surface-selected); }
+
+.tp2-ord { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; border-radius: 50%; background: var(--sv-surface-sunken); font-size: var(--sv-body2-size); font-weight: var(--sv-body-semibold-weight); color: var(--sv-text-secondary); }
+.tp2-ord:empty { visibility: hidden; }
+
+.tp2-up { color: var(--sv-warning-text); display: inline-flex; vertical-align: -2px; }
+
+.tp2-blanket { border: 1px dashed var(--sv-border-default); border-radius: var(--sv-radius-md); padding: 6px 10px !important; }
+.tp2-warnset { flex: 1 1 280px; max-width: 360px; align-self: center; }
+.tp2-warnset .sv-hint { margin-top: 2px; }
+.tp2-gridbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 14px; border-bottom: 1px solid var(--sv-border-default); }
+.tp2-gridbar__t { white-space: nowrap; }
+
+/* Chris W, Nov 3: header info tooltips, and closed help banners shrunk to an info icon */
+.tp-helptip { display: inline-flex; align-items: center; gap: 6px; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+
+/* Release day view (Matt, Nov 3): the bar button reads as on */
+
+
+
+/* ShopView report standard (Chris Ward, Nov 4): white cells on the page background, square table, the Totals row sticky at the
+   bottom on the page background. Sales by Tier PRD: no pinned column; Parts Invoiced is bold (see the Nov 10 block at the end). */
+.report-card { border-radius: 0; }
+.report-scroll { overflow: auto; max-height: calc(100vh - 300px); }
+.report-table { border-radius: 0; }
+.report-table th { position: sticky; top: 0; z-index: 2; background: var(--sv-surface); border-top: 1px solid var(--sv-border-default); }
+.report-table td { background: var(--sv-surface); }
+.report-table th:first-child, .report-table td:first-child { padding-left: 2rem; }
+.report-table tr[data-level] td { background: inherit; }
+.report-table tr.report-totals td { position: sticky; bottom: 0; z-index: 2; background: var(--sv-surface-canvas); border-top: 2px solid var(--sv-border-default); font-weight: var(--sv-body-semibold-weight); }
+.report-table { overflow: visible !important; }
+
+/* Nov 5: drag to reorder tiers */
+tr.tp2-dragging { opacity: .45; }
+
+/* Nov 5 review (v34): the matrix page, the grid edited in place, the simulator, tier numbers, the inline New Tier row */
+.tp2-gridbar--end { justify-content: flex-end; }
+.tp2-cats { display: flex; align-items: baseline; gap: 10px; margin: 0 0 var(--sv-space-3); color: var(--sv-text-primary); }
+.tp2-cats__k { color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+.tp2-cats--edit { display: block; }
+.tp2-gin { display: flex; gap: 6px; align-items: center; }
+.tp2-gsel { width: auto; min-width: 84px; height: 34px; }
+.tp2-gin .tp-cellw { flex: 1; min-width: 72px; }
+.tp2-all { display: block; margin-top: 6px; }
+.tp2-editing td { vertical-align: middle; }
+.tp2-rulegrid td.tp2-chg { background: var(--sv-warning-fill); box-shadow: inset 3px 0 0 var(--sv-warning-border); }
+.tp2-protobar { margin: 0 0 8px; padding: 8px 12px; align-items: center; }
+.tp2-protobar .sv-alert__support { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; opacity: 1; }
+.tp2-protobar .sv-alert__body { padding-top: 0; }
+.tp2-protobar__t { color: var(--sv-text-primary); }
+.tp2-prev { color: var(--sv-text-secondary); }
+.tp2-range { display: flex; align-items: center; gap: 8px; }
+.tp2-range .tp-cellw { width: 104px; flex: none; }
+.tp2-addrow td { background: var(--sv-surface-sunken); }
+.tp2-sim td { border-top: 2px solid var(--sv-border-default); background: var(--sv-surface-sunken); vertical-align: top; }
+.tp2-sim .tp-cellw { width: 120px; margin-top: 6px; }
+.tp2-sim__k { font-weight: var(--sv-body-semibold-weight); font-size: var(--sv-body2-size); }
+.tp2-simbar { display: flex; align-items: center; gap: 12px; margin: 0 0 var(--sv-space-3); }
+.tp2-simbar .tp-cellw { width: 140px; }
+.tp-neg { color: var(--sv-danger-text); }
+.tp2-tnum { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; margin-right: 6px; border-radius: var(--sv-radius-pill); background: var(--sv-surface-sunken); color: var(--sv-text-secondary); font-size: var(--sv-body2-size); font-weight: var(--sv-body-semibold-weight); }
+.tp2-tnum--lg { min-width: 28px; height: 28px; border-radius: var(--sv-radius-pill); font-size: var(--sv-body-size); margin-right: 8px; }
+.tp2-ordcell { color: var(--sv-text-secondary); font-weight: var(--sv-body-semibold-weight); }
+.tp2-newtier { display: flex; align-items: center; gap: 8px; }
+.tp-name-input--sm { width: 280px; height: 36px; font-size: var(--sv-body-l-size); font-weight: var(--sv-body-medium-weight); }
+/* v35: "Same as previous tier" cells in edit mode show the previous tier's values, muted until changed */
+.tp2-inheritcell { background: var(--sv-surface-sunken); }
+.tp2-inherit { color: var(--sv-text-secondary); border-style: dashed; font-style: italic; }
+.tp2-inherit:focus { font-style: normal; color: var(--sv-text-primary); border-style: solid; }
+.tp2-cats__tip { display: inline-block; margin-left: 4px; vertical-align: middle; }
+.tp2-cats--edit { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+/* v36: the grid shows up to 5 cost ranges without a vertical scrollbar; Edit Category's read-only matrix card; Set Rule For Entire Tier */
+.tp2-scroll--grid.tp2-scroll--fit { max-height: none; overflow-y: visible; }
+.tp2-mxcard { display: flex; align-items: center; gap: 16px; width: 100%; text-align: left; padding: 14px 16px; border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-md); background: var(--sv-surface); cursor: pointer; font: inherit; color: inherit; }
+.tp2-mxcard:hover, .tp2-mxcard:focus-visible { border-color: var(--sv-border-focus); background: var(--sv-surface-hover); outline: none; }
+.tp2-mxcard__name { font-weight: var(--sv-body-semibold-weight); white-space: nowrap; }
+.tp2-mxcard__sum { flex: 1; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); }
+.tp2-mxcard__go { display: inline-flex; align-items: center; gap: 4px; color: var(--sv-accent-text); white-space: nowrap; }
+.tp2-setrule { margin: 0 0 12px; }
+.tp2-setrule .tp2-panel__row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tp2-backlink { display: inline-flex; align-items: center; gap: 2px; margin: 0 0 8px; }
+.tp2-setrule-bar { display: flex; justify-content: flex-start; margin: 0 0 12px; }
+/* v3.6: a name and its Default badge stay on one line, side by side (General Matrix, Default tier, Uncategorized) */
+.sv-table td:has(> .tp-default-badge), .sv-table td:has(> strong + .tp-default-badge), .sv-table td:has(.tp-mname .tp-default-badge) { white-space: nowrap; }
+.tp-mname { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; max-width: 100%; }
+.tp-mname > strong { overflow: hidden; text-overflow: ellipsis; }
+.tp-default-badge { flex: none; white-space: nowrap; vertical-align: middle; }
+.tp2-mxstatus { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; }
+.tp2-tiersnum { white-space: nowrap; }
+
+/* v3.15 DS pass */
+/* a status icon beside a value (U.statusIcon): the DS alert glyph in the tone's DS text colour, light tooltip on hover or focus */
+.tp-status-icon { display: inline-flex; vertical-align: -2px; margin-left: 4px; cursor: help; border-radius: 50%; }
+.tp-status-icon:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+.tp-status-icon--warning { color: var(--sv-warning-text); }
+.tp-status-icon--danger { color: var(--sv-danger-text); }
+.tp-status-icon--info { color: var(--sv-info-text); }
+/* the DS toast's countdown keeps its place when the toasts redraw */
+.sv-toast__timer::after { animation-delay: var(--toast-delay, 0ms); }
+.tp-toast-action { padding-left: 0; padding-right: 0; height: auto; }
+/* the DS checkbox inside filter rows and pickers (was a hand-built box) */
+.sv-dd-row .sv-check, .tp2-selbox .sv-check { pointer-events: none; }
+/* the archived view of a matrix; Tax Exempt on a category page */
+.tp2-archnote .sv-alert__body { padding-top: 0; align-self: center; }
+.tp2-archnote { align-items: center; }
+.tp2-taxrow { margin-top: var(--sv-space-3); }
+.tp2-taxrow .sv-control-row { user-select: none; }
+.tp2-taxrow .tp-disabled { cursor: not-allowed; }
+
+/* v3.17 (owner, Nov 6): the info (tooltip) icon = the Work In Progress report's ReportInfoIcon.vue (q-icon info_outline, size xs):
+   18px, muted text, primary on hover and keyboard focus with a round 2px primary ring, pointer, 44px hit area (padding/margin) */
+.tp-info-icon { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; width: 18px; height: 18px; box-sizing: content-box; padding: 0.25rem; margin: -0.25rem; color: var(--sv-text-muted); cursor: pointer; border-radius: 50%; transition: color .15s; }
+.tp-info-icon:hover, .tp-info-icon:focus-visible { color: var(--sv-accent); }
+.tp-info-icon:focus { outline: none; }
+.tp-info-icon:focus-visible { outline: 2px solid var(--sv-accent); outline-offset: -2px; }
+.tp-hinfo { margin-left: 0; }
+.tp-field__info { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); margin: 0; }
+
+/* v3.19: the matrix page's Categories picker keeps a steady width so its label never wraps */
+.tp2-catfield { width: 360px; max-width: 100%; }
+.tp2-catfield .sv-field > label { white-space: nowrap; }
+
+/* Nov 6 (Matt): a paused toast's timer bar stops too */
+.sv-toast.is-paused .sv-toast__timer::after { animation-play-state: paused; }
+
+/* Nov 6: the customer card's Pricing group heading */
+.tp-side-sub { font-size: var(--sv-text-xs, 0.75rem); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--sv-text-muted); margin: 0 0 var(--sv-space-2, 8px); }
+
+/* ---- v4.0 (Nov 6 review) */
+/* each column's rule picker beside its name, in the header (no grey "How it's priced" row) */
+.tp2-th { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+.tp2-th__name { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tp2-thsel { width: 100%; min-width: 0; max-width: none; height: 30px; font-weight: var(--sv-body-weight, 400); font-size: var(--sv-body2-size); text-transform: none; letter-spacing: 0; }
+/* a value auto-filled from the top row stays grey until typed over */
+.tp-cell.tp2-auto { color: var(--sv-text-secondary); }
+/* the delete button sits at the left of every range, so they line up; the first range has a gap of the same width */
+.tp2-range { gap: 6px; }
+.tp2-delgap { display: inline-block; width: 24px; flex: none; }   /* final review (Nov 9, Fabian): the same width as the delete button, so the first range lines up */
+.tp2-rstart { min-width: 68px; }
+.tp2-range .tp-cellw { width: 104px; flex: none; }
+/* the warning sits to the right of the value */
+.tp2-gin .tp-status-icon { flex: none; }
+/* the Price Part Simulator: its own titled table under the matrix */
+.tp2-simtitle { display: flex; align-items: center; gap: 4px; margin: var(--sv-space-5, 20px) 0 var(--sv-space-2, 8px); }
+.tp2-simgrid .tp-cellw { width: 130px; }
+/* a greyed Edit keeps its tooltip */
+.tp2-editblock { display: inline-flex; }
+.tp2-gridbar .tp-link { margin-left: 8px; }
+.tp2-audit td { vertical-align: top; }
+
+/* Matt, Nov 9: tier columns keep one fixed width (TIER_W) and the grid doesn't stretch to fill, so more tiers fit without
+   scrolling sideways; the rule picker sits under the tier's name */
+.tp2-rulegrid.tp-fixed, .tp2-simgrid.tp-fixed { width: 1px; }   /* fixed layout needs a set width; the columns' own widths then decide it */
+.tp2-rulegrid th, .tp2-simgrid th { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tp2-rulegrid .tp2-gin .tp-cellw { min-width: 0; }
+.tp2-simgrid .tp-cellw { width: 100%; }
+
+/* Matt, Nov 9: a From cost cell's symbol is a small picker for that range's rule type (a native select laid over it) */
+.tp2-ucell { position: relative; }
+.tp2-unit { position: absolute; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 2px; padding: 2px 4px; border-radius: 4px; color: var(--sv-text-secondary); font-size: var(--sv-body2-size); white-space: nowrap; }
+.tp2-unit--l { left: 3px; } .tp2-unit--r { right: 3px; }
+.tp2-unit:hover, .tp2-unit:focus-within { background: var(--sv-surface-selected); color: var(--sv-text-primary); }
+.tp2-unit__c { display: inline-flex; }
+.tp2-ucell--l .tp2-unit { flex-direction: row; }
+.tp2-unitsel { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; border: 0; padding: 0; }
+.tp2-ucell--l .tp-cell { padding-left: 30px; }
+.tp2-ucell--r .tp-cell { padding-right: 30px; }
+.tp2-ucell--rw .tp-cell { padding-right: 74px; }
+
+/* Matt, Nov 9: a greyed menu row with an info icon (Delete on a tier that priced lines); the icon stays clickable */
+.tp-menu-row--info { display: flex; align-items: center; gap: 6px; cursor: default; }
+.tp-menu-row--info .tp-menu-info { margin-left: auto; color: var(--sv-text-secondary); opacity: 1; pointer-events: auto; cursor: pointer; }
+
+/* Matt, Nov 9: a menu that would be cut off at the bottom opens upward */
+.tp-menu.tp-menu--up { top: auto; bottom: calc(100% + 4px); }
+
+/* ---- v4.10 (Branko, Nov 9) */
+/* tier columns: 136px at 1920 wide, down to 126px on smaller screens, never wider than 142px; the grid's box grows with the window */
+:root { --tp2-col-min: 128px; --tp2-col-max: 176px; --tp2-grid-max: 1760px; }
+/* v4.12: the grid's box is the size container its columns divide up; the grid card stops growing at --tp2-grid-max */
+.tp2-scroll--grid { container-type: inline-size; }
+.sv-card:has(> .tp2-scroll--grid) { max-width: var(--tp2-grid-max); }
+/* the $ of a + $ cell is a plain unit on the left; the rule picker's chevron is always at the far right */
+.tp2-unit-pre { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--sv-text-secondary); pointer-events: none; font-size: var(--sv-body2-size); }
+.tp2-ucell--l .tp-cell { padding-left: 20px; padding-right: 26px; }
+.tp2-wslot { flex: none; width: 16px; display: inline-flex; justify-content: center; margin-left: 0; }
+.tp2-gin { gap: 4px; }
+/* Branko, Nov 9: no number pill (the DS has none); a tier's number is plain text */
+.tp2-tnum, .tp2-tnum--lg { display: inline; min-width: 0; height: auto; padding: 0; margin-right: 6px; border-radius: 0; background: none; color: var(--sv-text-secondary); font-size: inherit; font-weight: var(--sv-body-semibold-weight); }
+.tp2-tnum--lg { margin-right: 10px; }
+/* Tiers list: each number centered under the #, the info icon right beside the # */
+.tp2-ordn { display: inline-block; min-width: 14px; text-align: center; }
+th.tp2-ordh > * { vertical-align: middle; }
+th.tp2-ordh .tp-info-icon { margin-left: 0; }
+/* Branko, Nov 9: a title's rename pencil shows while the pointer is over the name (or it has focus); always shown without hover (touch) */
+@media (hover: hover) {
+  .tp-title--hoveredit > .sv-icon-btn { opacity: 0; transition: opacity .12s; }
+  .tp-title--hoveredit:hover > .sv-icon-btn, .tp-title--hoveredit:focus-within > .sv-icon-btn { opacity: 1; }
+}
+/* Branko, Nov 9: the tier page's bulk bar (DS SV.BulkBar, dark): rule picker, value, Set Rule */
+.tp2-srbar { gap: var(--sv-space-2); }
+.tp2-srbar__k { padding: 0 var(--sv-space-1); }
+.tp2-srbar .tp2-gsel, .tp2-srbar .tp-cell { height: 34px; }
+.tp2-srbar__err { pointer-events: auto; padding: 4px 10px; border-radius: var(--sv-radius-sm); background: var(--sv-danger-fill, #fde8e8); color: var(--sv-danger-text); font-size: var(--sv-body2-size); }
+.sv-menu__row.tp-menu-row--why { cursor: default; pointer-events: auto; }
+/* Branko, Nov 9: price details open from the price itself; a typed price keeps one grey marker */
+.tp-price-hover { cursor: help; display: inline-flex; align-items: center; gap: 4px; border-radius: 4px; }
+.tp-price-hover:focus-visible { outline: 2px solid var(--sv-border-focus); outline-offset: 2px; }
+.tp-price-mark { display: inline-flex; flex: none; color: var(--sv-text-muted); }
+th.tp2-ordh { white-space: nowrap; }
+/* the grid never stretches its columns to fill a wide box: spare width stays to the right */
+.tp2-rulegrid.tp2-grid, .tp2-simgrid.tp2-grid { min-width: 0; }
+/* narrower cell padding in the tier columns, so the inputs keep their room at ~126px; a mixed column's "% margin" label is a little smaller */
+.tp2-rulegrid th:not(:first-child), .tp2-rulegrid td:not(:first-child), .tp2-simgrid th:not(:first-child), .tp2-simgrid td:not(:first-child) { padding-left: 8px; padding-right: 8px; }
+.tp2-ucell--rw .tp2-unit { font-size: 11px; gap: 0; padding: 2px 2px; right: 2px; letter-spacing: -0.1px; }
+.tp2-ucell--rw .tp-cell { padding-left: 7px; padding-right: 58px; }
+/* Matt, Nov 9: the tier page's bulk bar sits at the top of the matrix list, full width, and stays in view while scrolling */
+.tp2-srwrap { position: sticky; top: 0; z-index: 5; margin-bottom: var(--sv-space-3); }
+.tp2-srwrap .tp2-srbar { display: flex; width: 100%; box-shadow: none; }
+.tp2-srwrap .tp2-srbar > .sv-bulkbar__btn--icon { margin-left: auto; }
+.tp2-srwrap .tp2-srbar__err { display: inline-block; margin-top: 6px; }
+
+/* Nov 10 audit: customers and work orders */
+/* Manage Customers: the list is the positioned container the DS bulk bar docks in (.sv-bulkbar-dock--container); room below the last row for the bar */
+.tp-mg-list { position: relative; }
+.tp-mg-bar { margin-bottom: var(--sv-space-3); }
+.tp-mg-bar .sv-bulkbar { width: 100%; box-sizing: border-box; }
+.tp-mg-bar .sv-bulkbar .sv-control-row { margin: 0 var(--sv-space-2); color: inherit; }
+.tp-mg-bar .sv-bulkbar .sv-control-row.tp-disabled { color: color-mix(in srgb, var(--sv-text-on-inverse) 40%, transparent); cursor: not-allowed; }
+/* the checkbox drawn on inverse (the DS has no inverse checkbox yet; same on-inverse mixes as the bar's own buttons): outline in on-inverse, checked = filled on-inverse with an inverse tick */
+.tp-mg-bar .sv-bulkbar .sv-check { background: transparent; border-color: color-mix(in srgb, var(--sv-text-on-inverse) 60%, transparent); color: var(--sv-surface-inverse); }
+.tp-mg-bar .sv-bulkbar .sv-check:hover:not(.is-checked):not(.is-disabled) { background: color-mix(in srgb, var(--sv-text-on-inverse) 12%, transparent); }
+.tp-mg-bar .sv-bulkbar .sv-check.is-checked { background: var(--sv-text-on-inverse); border-color: var(--sv-text-on-inverse); }
+.tp-mg-bar .sv-bulkbar .sv-check.is-disabled { background: transparent; border-color: color-mix(in srgb, var(--sv-text-on-inverse) 25%, transparent); }
+/* Edit Customer: the searchable tier picker (S9-R30), an .sv-menu under the DS Select field, as wide as the field */
+.tp-pop-host.tp-tierpick { display: block; }
+.tp-tierpick .sv-field--select > input { cursor: pointer; caret-color: transparent; }
+.tp-tierpick > .tp-menu.tp-tierpick__menu { left: 0; right: 0; width: auto; padding-top: 0; }
+.tp-tierpick__search { padding: var(--sv-space-2); border-bottom: 1px solid var(--sv-border-subtle); }
+.tp-tierpick__list { max-height: 240px; overflow-y: auto; padding-top: 6px; display: flex; flex-direction: column; gap: 2px; }
+/* an open picker may run past the dialog body; the dialog doesn't clip it */
+.sv-modal:has(.tp-tierpick__menu), .sv-modal:has(.tp-tierpick__menu) .tp-modal__body { overflow: visible; }
+
+/* Nov 10 audit: reports */
+/* Parts Invoiced is the bold headline column, third and not pinned (Sales by Tier S1-R6); the last column keeps the shell's right inset */
+.report-table th.report-col-headline { font-weight: var(--sv-body-semibold-weight); color: var(--sv-text-primary); }
+.report-table th:last-child, .report-table td:last-child { padding-right: 2rem; }
+/* DS .sv-table__sort in a right-aligned number header: the (quiet) arrow sits left of the label, so labels line up with the numbers */
+.report-table th.sv-num .sv-table__sort { flex-direction: row-reverse; }
+.report-table th .tp-info-icon { margin-left: var(--sv-space-1); }
+/* Nov 10: a goodwill credit's "applied to Invoice …: −$…" sits on the credit's row, in the row's text colour */
+.report-applied { color: var(--sv-text-primary); }
+/* Nov 10: the custom range's From/To are the DS .sv-field (floating label) holding a date input; only the gap is set here */
+.tp-dd-custom__row { gap: var(--sv-space-3); }
+
+/* Nov 10 audit: pricing */
+/* Grid, Set Rule bar, simulator and Part Rules fields are the DS field (.sv-field > input / select, .sv-field__affix,
+   .sv-field__chevron) resized to fit a cell (Branko, Nov 9: resizing is fine). Only the size changes here; the look is the DS's. */
+.sv-field.tp-cellw { height: 34px; }
+.tp-cellw > input { height: 34px; padding: 0 10px; }
+.tp-cellw.sv-field--prefix > input { padding-left: 20px; }
+.tp-cellw.sv-field--suffix > input { padding-right: 22px; }
+.tp-cellw > .sv-field__affix--prefix { left: 9px; }
+.tp-cellw > .sv-field__affix--suffix { right: 9px; }
+.tp2-ucell > .sv-field__affix { font-size: var(--sv-body2-size); }
+.sv-field.tp2-selw { display: inline-block; height: auto; vertical-align: middle; }
+.tp2-selw > select { width: auto; height: 34px; padding: 0 30px 0 10px; }
+.tp2-selw > select.tp2-gsel { min-width: 84px; }
+.tp2-selw > .sv-field__chevron { right: 8px; }
+.sv-field.tp2-selw--th { display: block; width: 100%; }
+.tp2-selw--th > select { width: 100%; height: 30px; padding: 0 26px 0 8px; font-size: var(--sv-body2-size); }
+.tp2-selw--th > .sv-field__chevron { right: 6px; }
+/* the DS link button inside the grid's Add Range row keeps the row's height */
+.tp2-addrow .sv-btn--link { height: auto; padding-top: 0; padding-bottom: 0; }
+
+/* ---- canvas boards: the app at 1440, dialogs, toasts and popovers drawn in place */
+.tpc-board { position: relative; width: 1440px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary); }
+.tpc-board > .sv-app.tp-app { width: 1440px; min-width: 1440px; }
+.tpc-board .sv-scrim.tpc-abs { position: absolute; inset: 0; }
+.tpc-board .tpc-toasts { position: absolute; right: 24px; bottom: 24px; }
+.tpc-board .tp-popover, .tpc-board .tp-tip { position: absolute; }
+.tpc-board .tp-title--hoveredit.tpc-hover > .sv-icon-btn { opacity: 1; }
+/* the element the user clicks, hovers or types in for this step (an annotation, not part of the UI) */
+.tpc-board .tpc-hl { outline: 3px solid #f97316 !important; outline-offset: 2px; box-shadow: 0 0 0 7px rgba(249, 115, 22, .28) !important; border-radius: 6px; position: relative; z-index: 6; }
