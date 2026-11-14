@@ -557,3 +557,12 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   Title, preconditions (pictures), steps verified unchanged. **21,991 run entries photographed (1,317 with results) — 0 changed.**
 - `tms_sync.py` `cut_quotes()` now also drops that leading heading from TestRail's expected result, so syncs never restore it.
 - The preconditions text likewise begins with its own "Preconditions" heading under TMS's "Preconditions" label — asked, not changed.
+
+## 30 · 2026-11-14 — Bill To pictures, duplicate Preconditions heading, run rebuilds (in progress)
+
+- QA lead answers: remove the doubled **"Preconditions"** heading (cases AND runs) — YES; rebuild TMS run 30 (Ahtasham) and
+  TMS run 27 (Mudassir) — YES; **TMS run 26: Mudassir's 7 Blocked results stay** (*"If mudassir blocked them then leave them as it is"*).
+- `tms_sync.py`: `cut_precond_head()` drops the leading `<p><strong>Preconditions</strong></p>` from TestRail's text on compare and
+  update (the pictures block stays ignored and preserved).
+- **Bill To pictures:** 203 cases (409 pictures) — TestRail links replaced by embedded TMS pictures. **28 Bill To cases with
+  pictures are not in TMS** (new in TestRail since the 10 Nov sync) — reported, not synced.

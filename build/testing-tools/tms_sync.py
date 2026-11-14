@@ -150,6 +150,7 @@ def desired(tr):
     body = {f2: tr.get(f1) for f1, f2 in SCALAR}
     body.update({f2: escape_placeholders(tr.get(f1)) for f1, f2 in TEXT})
     body["expected"] = cut_quotes(body.get("expected"))
+    body["preconditions"] = cut_precond_head(body.get("preconditions"))
     body["refs"] = tr.get("refs")
     sep = tr.get("custom_steps_separated")
     body["steps_separated"] = [{"content": escape_placeholders(x.get("content")),
@@ -180,6 +181,14 @@ QUOTES_HEAD = "<p><strong>Exact quotes from the source (for reproducibility)"
 EXPECTED_HEAD = re.compile(r"^\s*<p>\s*<strong>\s*Expected Result\s*</strong>\s*</p>\s*", re.I)
 
 
+PRECOND_HEAD = re.compile(r"^\s*<p>\s*<strong>\s*Preconditions\s*</strong>\s*</p>\s*", re.I)
+
+
+def cut_precond_head(v):
+    """QA lead 2026-11-14: TMS labels the field "Preconditions"; drop the text's own leading heading (TMS only)."""
+    return PRECOND_HEAD.sub("", v, count=1) if isinstance(v, str) else v
+
+
 def cut_quotes(v):
     if not isinstance(v, str):
         return v
@@ -190,7 +199,8 @@ def cut_quotes(v):
 
 
 def differences(tr, tm):
-    tr = dict(tr, custom_expected=cut_quotes(tr.get("custom_expected")))
+    tr = dict(tr, custom_expected=cut_quotes(tr.get("custom_expected")),
+              custom_preconds=cut_precond_head(tr.get("custom_preconds")))
     d = [f2 for f1, f2 in SCALAR if tr.get(f1) != tm.get(f2)]
     d += [f2 for f1, f2 in TEXT
           if norm(tr.get(f1)) != norm(split_pictures(tm.get(f2))[0] if f2 == "preconditions" else tm.get(f2))]
