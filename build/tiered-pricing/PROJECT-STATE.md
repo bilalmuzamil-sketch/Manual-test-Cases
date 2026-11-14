@@ -49,3 +49,10 @@ the QA people it should have the access to edit and for the rest of @shopview pe
 - Every QA person: editor (the list of QA people's addresses is to be confirmed with the QA lead before sharing).
 - Everyone else at shopview.com: read only (domain-wide reader permission on the sheet).
 - Show the sheet to the QA lead before sharing it (Rule 66: the question sheet is the last thing sent).
+
+## 14 Nov 2026 — consolidation done; ready to write (nothing written to TestRail, Jira, Slack or Google)
+- 818 cases (763 for the run, 55 held), 23 folders, 1,575 pictures; build.py 0 PROBLEM lines, readiness check 0 hard problems; ticket_sweep.py exits 0.
+- Library: Rule 137 Admin sign-in lines computed from the PRD Permissions table (`authoring/perms.py`); one action per step for Quick Add, Set Rule,
+  Edit Customer tier and Change Customer (`authoring/expand.py`); full-height pictures; PERM refs; QI invariant helper (INV-78 written; INV-76 not).
+- Register: 133 rows, all in scope, closed or held. Questions: one merged list of 31 for Matt Barge (`questions-2026-11-14/`), sheet not created.
+- Write scripts and dry runs: `write/` (apply order in `WRITE-READY-REPORT.md`). Report for the QA lead: `WRITE-READY-REPORT.md`.
