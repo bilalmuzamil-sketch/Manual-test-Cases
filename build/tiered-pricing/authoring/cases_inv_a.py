@@ -6,8 +6,11 @@ Today picture (production before the release) as the visible baseline.
 Where to run (QA lead, 14 Nov 2026): staging first; the Tiered Pricing QA site too once it exists (its address is not known yet:
 sv11692.qa.shopview.com does not resolve); production only when neither can show it — none of these needs production.
 Superseded rows (their new behaviour is a story case): INV-50 → S6-01, INV-52 → S7-01 / D-140, INV-53 → S7-16, INV-57 → S8-09, INV-60 → the
-Story 3 margin check (phase 1). Not written: INV-76 and INV-78 (no PRD or tech-plan sentence the library can cite; LIB-REQUESTS-BATCH-A.md)."""
-from tp_lib import C, R, B, S, QP, QD, QL, QT, QJ
+Story 3 margin check (phase 1). INV-78 is written by the consolidation worker (14 Nov 2026) on tech plan 1's own words with the new QI helper.
+Not written: INV-76 (existing screens' empty-state and load-error wording): tech plan 1 names no screen that uses "No X found" / "Clear all
+filters", so a tester's expected words would be invented, and the load-error half needs a forced failure (not testable by hand); engineering
+plans its own snapshot check ("defaults render identically (snapshot one consumer)", tech plan 1 §8)."""
+from tp_lib import C, R, B, S, QP, QD, QL, QT, QJ, QI
 from common import *
 
 K = "INV"
@@ -288,3 +291,23 @@ C("INV-103", K, "A category change still mirrors to the catalog and every locati
      "At location 2 part A's category also reads category B.")
    + R(QJ("On category change recalculate price only if part doesn’t have fixed price", "SV-3411", "S11-R3"), "Its sell price is recalculated from category B's matrix, as it has no fixed price.")],
   nopic="no design board draws the inventory or catalog")
+
+# ---- INV-78 (consolidation, 14 Nov 2026): PRD silent; tech plan 1 Appendix B §7 states the shared title field keeps no length limit there
+T60 = "Northern Alberta Heavy Equipment Fleet Inspection Template 1"     # 60 characters
+C("INV-78", K, "Inspection and maintenance titles still take more than 50 characters",
+  [ADMIN, WHERE, "Have a new inspection template for this test in the Digital Vehicle Inspection builder.",
+   "Have a new maintenance schedule for this test in the maintenance editor.", DESK],
+  ["Open the new inspection template in the Digital Vehicle Inspection builder.", "Click the template's title.",
+   f"Type a 60-character title (for example {T60}).", "Open the new maintenance schedule in the maintenance editor.", "Click the schedule's title.",
+   f"Type a 60-character title (for example {T60}).", TIERS, "Click New Tier.", f"Type the same 60 characters in the tier name (for example {T60})."],
+  [R(QI("maintenance editor, DVI builder", "INV-78"), "The builder opens with the template's title."),
+   R(QI("maintenance editor, DVI builder", "INV-78"), "The title can be typed in."),
+   R([QI("unchanged without the prop", "INV-78"), QI("maxlength?: number passed to the inner Input (for PQ5)", "INV-78")],
+     "All 60 characters are in the title: typing goes on past the 50th character."),
+   R(QI("maintenance editor, DVI builder", "INV-78"), "The maintenance editor opens with the schedule's title."),
+   R(QI("maintenance editor, DVI builder", "INV-78"), "The title can be typed in."),
+   R([QI("unchanged without the prop", "INV-78"), QI("maxlength?: number passed to the inner Input (for PQ5)", "INV-78")],
+     "All 60 characters are in the title: typing goes on past the 50th character."),
+   R(S("S2-R3"), "The Tiers list shows."), R(S("S2-R3"), "The New Tier page opens with an empty name."),
+   R(S("S2-R3", "The field stops accepting characters at 50."), "The tier name stops at 50 characters: the 50-character limit is the tier name's own, not the other titles'.")],
+  nopic="no design board or Today picture draws the inspection builder or the maintenance editor")

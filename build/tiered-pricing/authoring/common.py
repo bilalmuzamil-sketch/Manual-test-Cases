@@ -8,8 +8,8 @@ ADMIN_CUST = ("Sign in as an Admin whose role has 'Settings — Parts', 'See Fin
               "'Customers — Create & Edit'.")
 ADMIN_WO = ("Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — Create & Edit', "
             "'Work Orders — Order Parts' and 'Work Order Lines — Create & Edit'.")
-DESK = "Use a desktop browser window at least 1440 pixels wide, at 100% zoom."
-W1440 = "Use a desktop browser window exactly 1440 pixels wide, at 100% zoom."
+DESK = "Use a desktop browser window at least 1440 pixels wide, at 100% zoom, so every column of the page shows."
+W1440 = "Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size."
 STAGING = "Use the staging site, where the Tiered Pricing release is deployed on top of data from before the release."
 NEW_NAME = "with a name no other tier uses"
 STRESS_SP = ("a long name with spaces that no other record of that kind has, at least 50 characters "

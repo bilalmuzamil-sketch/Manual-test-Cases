@@ -101,6 +101,13 @@ def QL(board, row, what=""):
     return Src("look", row_id(row), what or None, board)
 
 
+def QI(text, inv, doc="TP1"):
+    """Verbatim text of a saved source (doc: "TP1"/"TP2" tech plan, "PRD", "RPT" or "JIRA") stating today's behaviour for an invariant row
+    of INVARIANTS.md that the PRD is silent on (Rule 96: silence defaults to "must not change"). Checked word for word in that source;
+    the INV row must exist. It ties to no PRD row, so the case still needs a PRD-sourced bullet (consolidation, 14 Nov 2026; LIB request 3)."""
+    return Src("inv", inv, text, doc)
+
+
 def QJ(text, ticket, row):
     """Verbatim text of a saved Jira copy (sources/jira/...), tied to a PRD row."""
     return Src("jira", row_id(row), text, ticket)
@@ -135,11 +142,26 @@ def C(key, sec, title, pre, steps, res, pics=None, nopic=None, marker=None, held
     pics: design board ids ("2.24", "today:2.1"). nopic: reason when no board draws the screen. marker: AUTOMATION line (default MARKER).
     held_on: PO question id ("Q2") — the case is held and goes to the waiting folder (non-design) or stays in Design (design version).
     flags: "stress", "movement", "numbers", "design-version". stories: override the story list for refs. extra_refs: extra tickets."""
+    import expand as _X, perms as _PM, design_refs as _DR
+    first_row = next((x.row for r_ in res for b_ in r_ for x in b_.src if x.kind in ("row", "prd")), None)
+    pre, steps, res, pics, n_exp = _X.expand(list(pre), list(steps), [list(r_) for r_ in res], list(pics or []), first_row, B, QD)
+    adm = [x for x in pre if _PM.ADMIN_RX.match(x)]
+    orig_admin = adm[0] if adm else None
+    if adm:
+        rest = [x for x in pre if x not in adm]
+        need = _PM.needed(rest, steps, [b_.t for r_ in res for b_ in r_])
+        new_line = _PM.line(need)
+        pre = [new_line if x == adm[0] else x for x in pre if not (x in adm[1:])]
+        if "View and Manage AP/AR Data" in need: pre = [x for x in pre if x != "Sign in with 'View and Manage AP/AR Data' too."]
+    pics = list(pics or [])
+    for p_ in list(pics):
+        if p_ in _DR.FULL and f"full:{p_}" not in pics: pics.insert(pics.index(p_) + 1, f"full:{p_}")
     if held_on and not marker:
         marker = HOLD(f"waiting on the PO ({held_on})") if sec != "DESIGN" else HOLD("the design differs from the PRD, waiting on the PO")
     CASES.append(dict(key=key, sec=sec, title=title, pre=list(pre), steps=list(steps), res=[list(r) for r in res], pics=list(pics or []),
                       nopic=nopic, marker=marker or MARKER, held_on=held_on, note=note, flags=set(flags), stories=stories,
-                      extra_refs=list(extra_refs), held=bool(held_on) or (marker or MARKER).startswith("AUTOMATION: HOLD")))
+                      extra_refs=list(extra_refs), held=bool(held_on) or (marker or MARKER).startswith("AUTOMATION: HOLD"),
+                      expanded=n_exp, orig_admin=orig_admin))
 
 
 def bullets(c): return [b for r in c["res"] for b in r]
@@ -166,7 +188,7 @@ def refs_of(c):
     groups = {}
     for rid in rows_of(c):
         doc, st, tk = story_of_row(rid)
-        r = ROWS[rid]; code = r.get("prd_id") or rid.replace("TP-", "")
+        r = ROWS[rid]; code = rid.replace("TP-", "") if "-PERM-" in rid else (r.get("prd_id") or rid.replace("TP-", ""))
         label = ("Reports Story " if doc == "RPT" else "Story ") + str(st)
         groups.setdefault(tk, {}).setdefault(label, [])
         if code not in groups[tk][label]: groups[tk][label].append(code)
@@ -174,6 +196,8 @@ def refs_of(c):
         rel = [x.strip() for x in TPX[t]["related_prd"].split(",") if x.strip() in ROWS]
         tk = ROWS[rel[0]]["ticket"] if rel else "SV-11692"
         groups.setdefault(tk, {}).setdefault("tech plan", []).append(t)
+    for inv in sorted({s.row for b in bullets(c) for s in b.src if s.kind == "inv"}):
+        groups.setdefault("SV-11692", {}).setdefault("tech plan", []).append(inv)
     parts = []
     for tk, labs in groups.items():
         inner = " ".join(f"{lab} " + " ".join(codes) if lab != "tech plan" else " ".join(codes) for lab, codes in labs.items())
@@ -208,6 +232,9 @@ def check_src(s):
         return None if ws(s.text) in doc_text(doc) else f"not word for word in the {doc}: {s.text[:70]!r}"
     if s.kind == "plan":
         if s.row not in TPX: return f"unknown tech-plan row {s.row}"
+        return None if ws(s.text) in doc_text(s.where) else f"not word for word in {s.where}: {s.text[:70]!r}"
+    if s.kind == "inv":
+        if not re.search(rf"^\| {re.escape(s.row)} \|", open(f"{P}/INVARIANTS.md").read(), re.M): return f"unknown invariant row {s.row}"
         return None if ws(s.text) in doc_text(s.where) else f"not word for word in {s.where}: {s.text[:70]!r}"
     if s.kind == "jira":
         return None if ws(s.text) in doc_text("JIRA") else f"not word for word in the saved Jira copies: {s.text[:70]!r}"

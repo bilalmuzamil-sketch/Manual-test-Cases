@@ -1,0 +1,152 @@
+[
+ {
+  "case": "S10-18",
+  "step": 9,
+  "text": "Add a part with category A and cost 100.00.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ },
+ {
+  "case": "S10-22",
+  "step": 2,
+  "text": "Add a special-order part (Source: Vendor) to line 1 with category A and cost 100.00.",
+  "why": "a special-order part's Source field: no source draws it"
+ },
+ {
+  "case": "S10-34",
+  "step": 16,
+  "text": "Create a new work order, work order 2, for customer A with one labor line.",
+  "why": "making a work order with today's flow, which no source draws"
+ },
+ {
+  "case": "INV-59",
+  "step": 2,
+  "text": "Create a new category from part A's category field, named with a name no other category uses.",
+  "why": "making a record from a picker with today's flow, which no source draws"
+ },
+ {
+  "case": "INV-67",
+  "step": 3,
+  "text": "Create a new customer from the dialog's customer field, with a name no other customer uses.",
+  "why": "making a record from a picker with today's flow, which no source draws"
+ },
+ {
+  "case": "INV-40",
+  "step": 1,
+  "text": "Add a part with category A and cost 100.00 to line 1 in Tech View.",
+  "why": "Tech View's add-part flow: no source draws its fields"
+ },
+ {
+  "case": "RPT-08",
+  "step": 2,
+  "text": "Invoice a new work order for customer A with a part in category A, cost $100.00.",
+  "why": "making and invoicing a work order with today's flow, which no source draws"
+ },
+ {
+  "case": "RPT-27",
+  "step": 1,
+  "text": "Return 2 units from Part Sale 1 with a $5.00 restocking fee, without applying the credit.",
+  "why": "returning units from a Part Sale: today's return flow, which no source draws"
+ },
+ {
+  "case": "RPT-28",
+  "step": 1,
+  "text": "Make a $50.00 goodwill credit for customer A on the customer page.",
+  "why": "today's credit flow, which no source draws"
+ },
+ {
+  "case": "RPT-28",
+  "step": 2,
+  "text": "Return 1 unit from Part Sale 1 with no restocking fee.",
+  "why": "returning units from a Part Sale: today's return flow, which no source draws"
+ },
+ {
+  "case": "RPT-29",
+  "step": 5,
+  "text": "Return the part line from that Part Sale with no restocking fee.",
+  "why": "returning units from a Part Sale: today's return flow, which no source draws"
+ },
+ {
+  "case": "RPT-76",
+  "step": 1,
+  "text": "Make a $40.00 credit memo for the part line of work order 1's invoice.",
+  "why": "today's credit flow, which no source draws"
+ },
+ {
+  "case": "S11-01",
+  "step": 2,
+  "text": "Add a special-order part (Source: Vendor) to line 1 with category A and no cost.",
+  "why": "a special-order part's Source field: no source draws it"
+ },
+ {
+  "case": "S11-05",
+  "step": 2,
+  "text": "Add a special-order part (Source: Vendor) to line 1 with category A, no cost and sell price 50.00.",
+  "why": "a special-order part's Source field: no source draws it"
+ },
+ {
+  "case": "S11-17",
+  "step": 8,
+  "text": "Add a part to line 1 from the part request modal, category A and cost 100.00.",
+  "why": "the part request modal: no source draws its fields"
+ },
+ {
+  "case": "S11-18",
+  "step": 1,
+  "text": "Add a part with category A and cost 100.00 to line 1 in Tech View.",
+  "why": "Tech View's add-part flow: no source draws its fields"
+ },
+ {
+  "case": "S13-01",
+  "step": 2,
+  "text": "Add a part with category A and cost 100.00 to Part Sale 1.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ },
+ {
+  "case": "S13-02",
+  "step": 2,
+  "text": "Add a part with category A and cost 100.00 to Part Sale 1.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ },
+ {
+  "case": "S13-03",
+  "step": 2,
+  "text": "Add a part with category A and cost 100.00 to Part Sale 1.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ },
+ {
+  "case": "S17-02",
+  "step": 2,
+  "text": "Add a part with category A and cost 100.00 to Part Sale 1.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ },
+ {
+  "case": "S17-04",
+  "step": 1,
+  "text": "Return 2 units from Part Sale 1 with a $5.00 restocking fee.",
+  "why": "returning units from a Part Sale: today's return flow, which no source draws"
+ },
+ {
+  "case": "S3-32",
+  "step": 6,
+  "text": "Add a part with a cost of $100.00 in category A.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ },
+ {
+  "case": "S3-34",
+  "step": 15,
+  "text": "Add a part with a cost of $100.00 in category A.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ },
+ {
+  "case": "S9-23",
+  "step": 14,
+  "text": "Add a category A part to the new work order at a cost of $20.00.",
+  "why": "a work order made in the steps, whose line no source sets up: today's flow"
+ },
+ {
+  "case": "S9-24",
+  "step": 7,
+  "text": "Add a category A part to the Part Sale at a cost of $20.00.",
+  "why": "a Part Sale's add-part row: no source draws its fields"
+ }
+]

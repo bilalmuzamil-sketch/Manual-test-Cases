@@ -48,6 +48,36 @@ def two_actions(s):
     sents = [x.strip() for x in re.split(r"(?<=\.)\s+", t) if x.strip()]
     return len([x for x in sents if re.match(VERBS, x, re.I)]) > 1
 
+# ---- bundled data entry (Rule 135; LIB request 4): "Add a … in its dialog", "Add a part to line 1 with category A and cost 100.00" open, fill
+# and save in one step. The work order Quick Add is split by expand.py (labels on design board 10.6); flows no source draws stay whole,
+# each listed here with the reason, because splitting them would invent field labels (Rule 57).
+DATA_STEP = re.compile(r"^(Add|Create|Make|Fill|Set up|Enter|Give|Invoice|Return|Put)\b")
+def bundled(s):
+    if re.search(r"^(Add|Create|Set|Make|Fill|Give|Put)\b.*\bin (its|the|that) (dialog|window|modal|form)\b", s): return "opens a dialog, fills it and saves in one step"
+    if DATA_STEP.match(s):
+        b = re.sub(r"\([^)]*\)", "", s)
+        if re.search(r"\bwith\b", b) or re.search(r", (cost|category|sell price|quantity|no cost)", b) or re.search(r"\b(at) (a |an )?(cost|price)", b) or re.search(r"\$\d", b):
+            return "opens a form, fills several values and saves in one step"
+    return None
+KEEP_WHOLE = [
+    (r"to Part Sale \d|to the Part Sale|Add a part with category [A-Z] and cost [\d.]+\.$|Add a part with a cost of \$[\d.]+ in category [A-Z]\.$",
+     "a Part Sale's add-part row: no source draws its fields"),
+    (r"in Tech View", "Tech View's add-part flow: no source draws its fields"),
+    (r"part request modal", "the part request modal: no source draws its fields"),
+    (r"special-order part \(Source: Vendor\)", "a special-order part's Source field: no source draws it"),
+    (r"^Return ", "returning units from a Part Sale: today's return flow, which no source draws"),
+    (r"credit memo|goodwill credit", "today's credit flow, which no source draws"),
+    (r"^Invoice a new work order", "making and invoicing a work order with today's flow, which no source draws"),
+    (r"^Create a new (category|customer) from", "making a record from a picker with today's flow, which no source draws"),
+    (r"^Create a new work order", "making a work order with today's flow, which no source draws"),
+    (r"to the new work order", "a work order made in the steps, whose line no source sets up: today's flow"),
+]
+def keep_whole(s):
+    for rx, why in KEEP_WHOLE:
+        if re.search(rx, s): return why
+    return None
+KEPT_WHOLE = []
+
 KEYRX = re.compile(r"\b(S\d{1,2}|D|DATA|REL|INV|RPT|DR)-\d{1,3}[a-e]?\b|\bC\d{5,6}\b")
 JARGON = re.compile(r"\b(HTTP|endpoint|database|devtools|DevTools|console|SQL|JSON|payload|backend|server|API|webhook|409|422)\b")
 VAGUE = re.compile(r"\bnative\b|as described\b|looks right|the same style\b|as designed\b|as in the layout being checked", re.I)
@@ -77,6 +107,22 @@ for c in L.CASES:
     if len(c["res"]) != len(c["steps"]): P(f"{k}: {len(c['res'])} results for {len(c['steps'])} steps")
     for i, s in enumerate(c["steps"], 1):
         if two_actions(s): P(f"{k}: step {i} has two UI actions: {s!r}")
+        why = bundled(s)
+        if why:
+            kw = keep_whole(s)
+            if kw: KEPT_WHOLE.append((k, i, s, kw))
+            else: P(f"{k}: step {i} {why}: {s!r}")
+    # Rule 137: an Admin sign-in line lists exactly the permissions the case uses (perms.py, from the PRD Permissions table)
+    import perms as PM
+    adm = [x for x in c["pre"] if PM.ADMIN_RX.match(x) or x == "Sign in as an Admin."]
+    if len(adm) > 1: P(f"{k}: two Admin sign-in lines")
+    if adm:
+        rest = [x for x in c["pre"] if x not in adm]
+        want = PM.line(PM.needed(rest, c["steps"], [b.t for b in L.bullets(c)]))
+        if adm[0] != want: P(f"{k}: the Admin sign-in line asks for other permissions than the case uses: {adm[0]!r} (wants {want!r})")
+    for x in c["pre"]:
+        if x.startswith("Use a desktop browser window") and c["sec"] != "DESIGN" and "exactly" in x and " so " not in x:
+            P(f"{k}: an exact window size on a behaviour case without saying why: {x!r}")
     if not c["pre"]: P(f"{k}: no preconditions")
     for x in c["pre"]:
         for rx, what in BANNED_PRE:
@@ -262,6 +308,11 @@ print("in-scope stories", sorted(IN_SCOPE_STORIES), "| rows", len(scope_rows), "
 print("pending rows (stories outside phase scope, for the next batches):", len(pending))
 print("questions", len(QUESTIONS), "| holding cases", dict(held_q))
 print("register rows", len(reg), "| in scope", sum(1 for r in reg if r.get("in_scope")), "| for later batches", sum(1 for r in reg if not r.get("in_scope")))
+print("Admin sign-in lines narrowed or widened to the permissions the case uses:", sum(1 for c in L.CASES if c.get("orig_admin") and c["orig_admin"] not in c["pre"]),
+      "of", sum(1 for c in L.CASES if c.get("orig_admin")))
+print("Quick Add steps split into one action per step:", sum(c.get("expanded", 0) for c in L.CASES), "in", sum(1 for c in L.CASES if c.get("expanded")), "cases")
+print("bundled steps kept whole (flows no source draws):", len(KEPT_WHOLE), dict(Counter(w for *_, w in KEPT_WHOLE)))
+json.dump([{"case": k, "step": i, "text": s, "why": w} for k, i, s, w in KEPT_WHOLE], open(f"{D}/kept-whole-steps.json", "w"), indent=1, ensure_ascii=False)
 print("markers", dict(Counter(re.sub(r" - .*", "", c["marker"]) if c["marker"].startswith("AUTOMATION: HOLD") else c["marker"] for c in L.CASES)))
 for p in probs: print("PROBLEM", p)
 print("PROBLEM lines:", len(probs))

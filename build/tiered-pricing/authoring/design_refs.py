@@ -18,9 +18,17 @@ for t in json.load(open(f"{DD}/images/today/TODAY-PICTURES.json")):
     for n in t["numbers"]: TODAY[n] = os.path.basename(t["file"])
 
 
+FULL = {}      # "9.30" -> the full-height picture of a board taller than its canvas frame (proof §2, §7b #8; LIB request 1)
+for _b, _v in BOARD.items():
+    _f = _v["image"].replace(".png", "-full-height.png")
+    if os.path.exists(f"{DD}/images/{_f}"): FULL[_b] = _f
+
+
 def picture(pid):
-    """The file name a case attaches for a board id; KeyError when unknown or the file is missing."""
-    if pid.startswith("today:"):
+    """The file name a case attaches for a board id ("2.24", "today:2.1", "full:9.30"); KeyError when unknown or the file is missing."""
+    if pid.startswith("full:"):
+        f = FULL[pid[5:]]; path = f"{DD}/images/{f}"
+    elif pid.startswith("today:"):
         f = TODAY[pid[6:]]; path = f"{DD}/images/today/{f}"
     else:
         f = BOARD[pid]["image"]; path = f"{DD}/images/{f}"
