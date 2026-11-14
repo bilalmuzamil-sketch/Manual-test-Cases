@@ -1,7 +1,7 @@
 """Batch A verdicts (stories 5, 6, 7, 8, 9, 12, 14, 15, 16, 19) and checklist registries, merged by verdicts.py."""
 FORCED = ("a manual tester cannot make a load or save fail on purpose; listed for the developers' own automated checks "
           "(the requirement map's verdict: not manually testable, forced failure)")
-IN_SCOPE_STORIES = {5, 6, 7, 8, 9, 12, 14, 15}
+IN_SCOPE_STORIES = {5, 6, 7, 8, 9, 12, 14, 15, 16, 19}
 
 NOT_TESTABLE = {
  "TP-S5-EH1": "The PRD states it does not apply (\"the simulator calculates on screen and saves nothing\"); there is nothing to look at.",
@@ -14,10 +14,18 @@ NOT_TESTABLE = {
  "TPX-19": "The customer card's Pricing section skeleton shows only while it loads and its inline error only on a failed load: " + FORCED + "; a slow load can be shown only with browser developer tools, which manual cases do not use.",
  "TP-S12-EH1": "A failed price details load: " + FORCED + ".",
  "TP-S14-EH1": "Change Customer's failures (\"exactly as they do today\"): " + FORCED + ".",
+ "TP-S19-R7": "Loading skeletons show only while a page loads; on a normal connection they flash too briefly to judge, and slowing the page needs browser developer tools, which manual cases do not use. Listed for the automation owner.",
+ "TP-S19-R10": "A failed load (\"Ooooops! An error occurred\" with Try again): " + FORCED + ".",
+ "TP-S19-EH1": "A failed save (today's error toast): " + FORCED + ".",
+ "TP-S19-R12": "Keeping changes for all time can be seen only long after the release (ShopView's internal copy follows a 90-day cleanup, which is not visible to a tester); listed for engineering, who confirm it in the tech plan.",
  "TP-S15-EH1": "The PRD states it does not apply (\"the warning is calculated on screen and saves nothing\"); there is nothing to look at.",
 }
 HELD = {}
 PARTIAL = {
+ "TP-S16-R6": "\"No new permission appears in settings\" is checked (Roles & Permissions); \"any internal check engineering adds\" is not visible to a tester.",
+ "TP-S16-R5": "Hidden screens without each permission and a save refused after the permission is removed in a second session are checked; refusals reached only by a direct request are for the automation owner (Rule 114).",
+ "TP-S19-R5": "The Priced by column and price details naming the source in words are checked; the screen reader names of the Manual and warning icons need a screen reader and are left to the accessibility check.",
+ "TP-S19-R1": "The double-click guard, dialogs closing only with Cancel or the X, and the expired session are checked; the spinner itself flashes too briefly to judge by eye.",
  "TP-S12-R10": "The gray Manual icon and where it shows are checked; its screen reader name \"Price typed by hand: see details\" needs a screen reader and is checked in the design case's hover words only.",
  "TP-S12-R15": "The line keeps its price after a rename and Priced by shows the current name (Story 12); Sales by Tier grouping a renamed tier under its current name is the reports batch's case.",
  "TP-S12-N2": "A part with no cost opening details at $0.00 is checked; a found part's typed price showing Manual (S11-E7) is the Story 11 batch's case.",
@@ -77,5 +85,9 @@ NUMBERS = {
  "N moved-tier line keeps its price": "S12-08",
  "N matrix edit leaves a recorded line": "S12-14",
  "N Change Customer notice count": "S14-06",
+ "N double click creates one tier": "S19-01",
+ "N cancelled New Tier leaves the count": "S19-05",
+ "N technician part priced by the tier unseen": "S16-08",
+ "N split reprices by the current tier": "S16-10",
  "N new parts after Change Customer use the work order tier": "S14-07",
 }
