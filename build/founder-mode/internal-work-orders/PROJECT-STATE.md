@@ -21,3 +21,13 @@
   with no board changed. Question review: 8 of 16 were avoidable (`po-answers-2026-11-12/QUESTION-REVIEW.md`); skill 07 §6.0 and lesson
   L-20 recorded on the QA lead's approval. QA lead: "Named set" (rewrite ~166 affected, new cases for v1.1 additions, release held, stamp
   the rest after reading each) and "Yes, delete the 3" (C1112404 D-87, C1112406 D-89, C1112408 D-91). Case worker drafting round 3.
+
+## 14 Nov 2026 — PRD v1.4 / design 1794565397-7f4c, named set (QA lead: "Named set, drop S12-49 (Recommended)")
+- PRD v1.4 (13 Nov 2026): the no-charge line chip reads "No Charge", category in the tooltip "Category: [category]" (S12-R3, S2-R22,
+  S12-E8, section 8). Design 1794565397-7f4c: the same string on 6 boards, no tooltip drawn. Impact: `po-answers-2026-11-12/V1.4-IMPACT.md`.
+- Library: per-case override (`authoring/cases_zzzzz_v14.py`, `iwo_lib.prd_version/is14`, `design_refs.v14`). 34 touched live cases on
+  v1.4 (16 rewritten, 8 re-quoted, 10 re-pictured), S12-24 confirmed, 54 drafts on v1.4 (S12-49 dropped; D-113, D-143 rewritten).
+  The other 609 live and 22 library-only cases byte-identical (`po-answers-2026-11-12/v14/prove-unchanged.json`).
+- Register: IWO-D63 (chip matches v1.4, closed), IWO-N45 (tooltip design-silent). build.py 0 PROBLEM; readiness 0 hard problems.
+- NOTHING WRITTEN. Write scripts and dry runs: `po-answers-2026-11-12/write-v14/` (lock 34/34 ok, no foreign case, run 559 615 tests).
+  Report: `po-answers-2026-11-12/V1.4-NAMED-SET-PASS-REPORT.md` (candidate PO points: badge tooltip, phone tooltip, Issue Credit label).

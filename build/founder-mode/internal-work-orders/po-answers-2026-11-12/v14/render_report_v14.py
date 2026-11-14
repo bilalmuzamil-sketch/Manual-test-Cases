@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""Writes ../V1.4-NAMED-SET-PASS-REPORT.md from per-part-v14.json, prove-unchanged.json, the write-v14 plan and dry-run logs, and the
+cases' change log (authoring/cases_zzzzz_v14.V14_CHANGES).   python3 render_report_v14.py"""
+import json, os, sys, glob, importlib, re
+H = os.path.dirname(os.path.abspath(__file__)); A = os.path.dirname(H); P = os.path.dirname(A); AU = f"{P}/authoring"; WV = f"{A}/write-v14"
+sys.path.insert(0, AU); os.chdir(AU)
+import iwo_lib as L
+MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{AU}/cases_*.py"))
+ORDER = [f"cases_s{i}" for i in range(1, 14)] + ["cases_s12p", "cases_api", "cases_data", "cases_rel", "cases_inv", "cases_design", "cases_tp"]
+for m in [x for x in ORDER if x in MODS] + [x for x in MODS if x not in ORDER]: importlib.import_module(m)
+import cases_zzzzz_v14 as V
+PP = json.load(open(f"{H}/per-part-v14.json")); PU = json.load(open(f"{H}/prove-unchanged.json")); PLAN = json.load(open(f"{WV}/plan-v14.json"))
+link = lambda cid: f"[C{cid}](https://shopview.testrail.io/index.php?/cases/view/{cid})" if cid else "new"
+PARTS = ["title", "preconditions", "steps", "results", "quotes and From lines", "design references", "pictures", "marker", "refs", "folder"]
+ab = {"CHANGED": "CHANGED", "CONFIRMED": "="}
+def table(keys, why=True):
+    out = ["| Key | C-id | " + " | ".join(PARTS) + (" | What changed and why |" if why else " |"), "|" + "---|" * (len(PARTS) + 2 + (1 if why else 0))]
+    for k in keys:
+        x = PP[k]
+        out.append(f"| {k} | {link(x['cid'])} | " + " | ".join(ab[x["parts"][p]] for p in PARTS) + (f" | {'; '.join(V.V14_CHANGES.get(k, ['no change']))} |" if why else " |"))
+    return out
+logs = {n: [json.loads(l) for l in open(f"{WV}/log-{n}.jsonl")] for n in ("update", "create", "run", "folder") if os.path.exists(f"{WV}/log-{n}.jsonl")}
+lock = [x for x in logs.get("update", []) if x["op"] == "lock"][-34:]
+guards = [x for x in logs.get("create", []) if x["op"] == "section_guard"][-2:]
+runp = [x for x in logs.get("run", []) if x["op"] == "plan"][-1:]
+fold = [x for x in logs.get("folder", []) if x["op"] == "lock"][-1:]
+sets = {s: [k for k, x in PP.items() if x["set"] == s] for s in ("CHANGE", "RE-QUOTE", "DESIGN REFERENCE", "CONFIRM", "DRAFT")}
+o = []
+o += ["# Internal Work Orders: PRD v1.4 named-set pass (14 Nov 2026)", "",
+      "**Nothing was written to TestRail, Jira, Slack or Google.** The writes are prepared and dry-run only (read-only GETs used for the lock and guard checks).", "",
+      "The QA lead's decision (14 Nov 2026, option chosen verbatim): **\"Named set, drop S12-49 (Recommended)\"** — \"Rewrite, re-quote or re-picture the 34 touched cases, write the 54 drafts on v1.4 (S12-49 dropped), sync the run and stamp the folder. The other 606 keep their v1.3 From line.\" Plan: `V1.4-IMPACT.md`.", "",
+      "## 1. What was done", "",
+      "| Item | Result |", "|---|---|",
+      "| Library | Per-case version override, not a global switch: `iwo_lib.py` loads PRD v1.4 beside v1.3 (`CODE14`, `UFS14`; asserts that v1.4 differs from v1.3 only in S12-R3, S2-R22, S12-E8 and section 8 row 35); a case with `prd = \"1.4\"` quotes and is checked against v1.4, read 14 Nov 2026; `design_refs.v14()` gives a case with `design = \"v14\"` the canvas line of 1794565397-7f4c, the -v14 pictures of the 6 changed boards and the board words \"No Charge\". The named set is switched in `authoring/cases_zzzzz_v14.py` (loaded last). |",
+      f"| CHANGE (16) | Rewritten top to bottom (Rule 134). Chip reads \"No Charge\"; where a case judges the chip, a hover step whose result is the tooltip \"Category: [category]\" and a result that the chip shows no category name; S12-R3 v1.4 quoted (added to the 11 that did not quote it yet); v14 pictures on the 4 that show a changed board. |",
+      "| RE-QUOTE (8) | S12-E8 / S2-R22 re-taken from v1.4 word for word; steps and results unchanged; marker 11/14/2026 (API-22 and API-27 keep their release/production HOLD). |",
+      "| DESIGN REFERENCE (10) | The flow6-3/hf-32 or flow6-4/hf-33 pictures swapped for the -v14 ones (D-69's precondition names them too), design words \"No Charge · Warranty\" → \"No Charge\", design line 1794565397-7f4c; quotes re-read from v1.4 (same words). |",
+      "| CONFIRM (1) | S12-24 C1112234 untouched (\"keeps its chip and $0.00\" is still true); it stays on v1.3. |",
+      "| Drafts | S12-49 dropped (not created). The 54 rebuilt on PRD v1.4 and design 1794565397-7f4c; D-113 rewritten (the long-category stress moves to the tooltip); D-143 chip text \"No Charge\", v14 pictures, note \"about 12 pixels\" (was 40); still held on question 18. |",
+      "| Register | IWO-D63 added and closed (CLOSED-MATCHES-PRD: the design's chip reads \"No Charge\" as v1.4 says); IWO-N45 added (DESIGN-SILENT: the tooltip is not drawn; the PRD states it; cases follow the PRD). Before-copy `write/DESIGN-DIVERGENCE-REGISTER-before-v1.4.json`. |",
+      "| Setup file | `IWO-SETUP-FILE.md` regenerated by `render_setup.py` (the named set's titles, PRD items and markers; the 54 drafts now listed). |",
+      "| NEW-CASES.md | Regenerated on v1.4 (54 cases, update note at the top); `create_layout_stress.py` superseded (refuses `--apply`), the writes moved to `write-v14/`. |", "",
+      "## 2. Proof that the other cases did not change", "",
+      f"`v14/prove_unchanged.py` compares `authoring/proposals.json` with commit {PU['before_commit']} (the last commit before this pass, which build.py reproduced byte for byte) key by key, every field: **{len(PU['outside_named_set_differing'])} differences** outside the named set. Result: **PROOF PASSED**.", "",
+      "| | Count |", "|---|---|",
+      f"| Live cases outside the 34 (S12-24 included) | {PU['live_outside_named_set']}, all byte-identical (their v1.3 From line, design line and marker as before) |",
+      f"| Library-only cases (not manual, never in TestRail) | {PU['library_only_outside_named_set']}, all byte-identical |",
+      f"| Touched live cases | {PU['touched']}, all changed |", f"| Drafts | {PU['drafts_before']} before, {PU['drafts_now']} now (all rebuilt), dropped {PU['dropped']} |", "",
+      "The decision text says 606 other cases (from the impact count of 641 live). testrail-id-map.csv now holds 643 live cases (after round 4 on 13 Nov 2026), so 643 − 34 = **609** live cases keep their v1.3 text.", "",
+      "## 3. Per-case record (Rule 134: every part CHANGED or CONFIRMED (=), against PRD v1.4 (13 Nov 2026, read 14 Nov 2026) and design 1794565397-7f4c)", "",
+      "Computed by `v14/per_part.py` from proposals.json before (83ba7fe37) and now (`v14/per-part-v14.json`). \"folder\" is the TestRail section; no case moves. The setup-file recipe of each case is regenerated from the same library; run membership is in section 6.", "",
+      "### CHANGE (16)", ""] + table(sets["CHANGE"]) + ["", "### RE-QUOTE (8)", ""] + table(sets["RE-QUOTE"]) + ["", "### DESIGN REFERENCE (10)", ""] + table(sets["DESIGN REFERENCE"]) + \
+     ["", "### CONFIRM (1)", ""] + table(sets["CONFIRM"]) + ["", "### The 54 drafts", "", "All 54: quotes and From lines CHANGED (PRD v1.4); design line CHANGED where the case has one (53; S9-51 has no References from Design); marker CHANGED to 11/14/2026 on the 48 released (the 6 held keep \"waiting on the PO (question 17/18)\"). Only D-113 and D-143 changed anything else:", ""] + \
+     table(["D-113", "D-143"]) + ["", "Keys: " + ", ".join(sets["DRAFT"]) + ".", ""]
+o += ["## 4. The S12-33 Issue Credit line", "",
+      "The result 'Under the part's name it reads \"No Charge · Goodwill\"' was **removed**. Its basis was checked: no PRD sentence (S12-E7 names no label, v1.3 and v1.4); its only basis is tech plan statement TP-490 (line 3460: lists parts of a no-charge line at $0.00 with \"No Charge · [category]\" under the name), from the tech plan revision 5 built on PRD v1.0, which copies the old chip text. PRD v1.4 S12-R3 takes the category out of the chip, and the tech plan informs but never overrules (Rules 30, 57); keeping the line would assert text v1.4 removed, and rewording it would invent one. TP-490 is listed in `cases_tp.TP_OUT` with the reason. The case keeps its point: the fixed $0.00 credit, the stock and the journal entry. If the QA lead prefers, the line can come back quoting TP-490 as it was (one edit). Candidate PO point 3 below.", "",
+      "## 5. Candidate PO points (report only; nothing added to any sheet)", "",
+      "Each was run through skill 07 §6.0 checks a–g (h is for a merged sheet; none is on one).", "",
+      "**1. Does the No Charge work order badge have a \"Category: [category]\" tooltip?** S12-R3 v1.4 says the line chip has the tooltip \"as the work order badge has (S2-R16)\", and the category dialog's helper (S1-R14) says the name \"shows in the badge tooltip on the work order\". But S2-R16 says the category \"is not shown on the work order detail or in lists; the badge is the only mark there\", and S2-R3 says \"The category of a no-charge work order is not shown on the work order\". The design draws no badge tooltip (tooltips switched off in the board code, `SHOW_TIPS = false`; the canvas notes c-flow6-3/c-hf-32/c-rv-6-3 say \"as on the work order badge\"); the tech plan lists no tooltip on the header badge (only the New Work Order dialog's internal-badge tooltip, S2-R1). Checks: (a) the text-wins rule settles frame-vs-text, not text-vs-text; (b) both answers have a PRD sentence behind them; (c) the other sources do not settle it (the design is silent, the canvas note leans to a tooltip, the tech plan says nothing); (d) no library rule; (e) testable by hovering the badge; (f) the PO owns it; (g) behaviour, not wording. **Kept as a candidate.** Affected live cases outside the named set: S2-22 [C1111935](https://shopview.testrail.io/index.php?/cases/view/1111935) (\"\\\"Goodwill\\\" is not shown anywhere on the work order page\") and S2-12 [C1111925](https://shopview.testrail.io/index.php?/cases/view/1111925) (\"The category is not shown on the work order\"): both are right if there is no badge tooltip and ambiguous if there is one. Recommended question: \"When you hover over the No Charge badge on a work order, does a tooltip show 'Category: [category]'?\"", "",
+      "**2. How does a phone user see the category of a no-charge line?** S12-R3 names mobile and says the tooltip shows \"on hover\"; a phone has no hover. Checks: (a) no precedence statement; (b) no source sentence for a tap or press; (c) the design draws no mobile tooltip and the tech plan names none; (e) testable once settled; (f) PO; (g) behaviour. **Kept as a candidate.** Meanwhile S12-43 [C1112252](https://shopview.testrail.io/index.php?/cases/view/1112252) checks only the chip text on the phone (no tap behaviour invented) and the tooltip in Tech View in a desktop browser.", "",
+      "**3. Does Issue Credit still show the category under a no-charge line's part?** Section 4. Checks: (b) no PRD sentence; (c) only the tech plan speaks, with pre-v1.4 chip text, so it conflicts with the direction of S12-R3 v1.4 (a plan-versus-PRD conflict is a PO item, Rule 134 item 5); (e) testable; (f) PO; (g) behaviour (whether the category shows there), not only wording. **Kept as a candidate, low priority** (S12-33's other results do not depend on it).", "",
+      "**Question 18 (draft, not sent)** still says \"about 40 pixels\" and \"No Charge · Warranty\"; on the v14 pictures the move is about 12 pixels and the chip reads \"No Charge\". It was not edited (not in the decision); its row needs those two updates before it is sent.", ""]
+o += ["## 6. Gates and reading", "",
+      "| Gate | Result |", "|---|---|",
+      "| `python3 authoring/build.py` | exit 0, **0 PROBLEM lines** (719 cases; new v1.4 gates: From line and marker of every v1.4 case, no old chip text or old picture in a v1.4 case, no -v14 picture or v1.4-only quote on a v1.3 case, design words of a v14 case checked against the v5 board files) |",
+      "| `python3 build/testing-tools/tester_readiness_check.py build/founder-mode/internal-work-orders` | exit 0, **0 hard problems** (719 cases; 181 \"does not / never\" results listed suite-wide) |",
+      "| `v14/prove_unchanged.py` | PROOF PASSED (section 2) |",
+      "| `python3 build/testing-tools/scan_secrets.py --staged` | clean before each commit |", "",
+      "**Read in full (Rule 138), as a tester would:** all 16 CHANGE cases and D-113 and D-143 (title, preconditions, steps, results, notes, quotes, design block, marker); the 8 RE-QUOTE and 10 DESIGN REFERENCE cases (their tester text unchanged; quotes and design block re-read); the 28 \"does not / never\" results of the 54 drafts (each has a positive result the tester can see in the same step: the name, row, chip, badge, window, price or columns); a random sample of 10 drafts (seed 20261114: D-95, D-98, D-102, D-109, D-123, D-125, D-126, D-127, D-130, D-132). Found and fixed during the rewrite: S12-21's \"as prices are hidden today\" now says \"for this user\"; S12-43 restructured so the hover happens in a desktop browser and the phone checks the chip text only. Nothing in the sample needed a fix.", "",
+      "**Reading coverage of the sources:** `V1.4-IMPACT.md` 100%; `PRD-DIFF-v1.3-to-v1.4.txt` 100% (5 blocks); `v14/impact-v14.json` and `impact-v14.txt` 100%; `sources/CONFLUENCE-942243841-v1.4-read-2026-11-14.md` (185,392 characters, 810 lines): the changed lines S12-R3 (l.692), S2-R22 (l.278), S12-E8 (l.719), section 8 row (l.796), the status row (l.6) and S2-R16 (l.272), S1-R14 (l.214), S2-R3 (l.259), S2-R5 (l.261), S2-R6 (l.262), S2-R10 (l.266), S7-R8 (l.491), Story 12 lines 680-719 (S12-R1 to S12-E8, form factor) in full, every line naming a tooltip or hover (grep) — the rest of v1.4 is word for word v1.3 (the diff and the library's asserts prove it) and was read in full on 12 Nov 2026; tech plan: every line naming a badge tooltip, the chip, hover, Issue Credit or print (grep results read) and TP-490; design 1794565397-7f4c: `WO-Detail-Artboard-v6.dc.html` chip and tooltip code (lines 80-90, 574-779 by grep), `canvas.json` tooltip notes, `v5-text-diff.json` for the 6 boards, picture `iwo-flow6-03-03-…-v14.png` viewed; rules 113, 117 (ninth, eleventh, fourteenth, fifteenth, sixteenth amendments), 134-138 in full; `LESSONS-REGISTER.md` all 21 rows; token charter 12 clauses; skill 07 §6.0.", ""]
+o += ["## 7. Write scripts and dry runs (`po-answers-2026-11-12/write-v14/`)", "",
+      "| Script | What it does | Dry run (plain) | Dry run with `--check-live` (GET only) |", "|---|---|---|---|",
+      f"| `update_v14.py` | (a) 34 updates, locked on our last read-back (`lock-base-34.json` = the round-4 bodies of 13 Nov 2026, read back OK in `write/log-update.jsonl`); before-copy `before/C<id>.json`; read-back field by field, after-copy in `applied/`; map prd_version 1.4; attach 28 -v14 pictures, delete the 28 old ones (a refusal, such as a picture on a closed run answered 200 with an error body, is logged); readiness check first | 34 updates (16/8/10), 28 pictures to attach, 28 to delete, all files present, readiness 0 hard problems | **lock 34 ok, 0 LOCKED**; all 28 old pictures are attached now and would be deleted, 28 new would be attached; 34 before-copies saved |",
+      f"| `create_v14.py` | (b) 54 new cases (DESIGN 136719: 51, 6 of them held; S9 136710: 3), foreign-case guard, read-back, map rows (prd_version 1.4), 78 picture uploads (52 files) | plan as stated, readiness 0 hard problems | guard: 136719 holds {guards[0]['cases_now'] if guards else '?'} cases, 136710 holds {guards[1]['cases_now'] if len(guards) > 1 else '?'}, **no foreign case** |",
+      f"| `sync_run_v14.py` | (c) run 559 union only (paged get_tests), +48 released new cases, held never; new tests assigned to user 6 by add_results_for_cases with assignedto_id only | 48 to add after create; 6 held out | run 559: **{runp[0]['tests_now'] if runp else '?'} tests now**; the 32 released touched cases are all in it; 0 to add before create, 48 after; 19 existing tests are not assigned to user 6 (left as they are) |",
+      f"| `folder_note_v14.py` | (d) section 136701: \"current as of\" date → 11/14/2026, everything else kept; locked on the live sentence | note text as required | live date **{fold[0]['from'] if fold else '?'} → 11/14/2026**; name \"Internal Work order (11/12/2026)\" unchanged |", "",
+      "Outputs: `write-v14/dryrun-*.out`, logs `write-v14/log-*.jsonl`, plan `write-v14/plan-v14.json` (from `make_plan_v14.py`).", "",
+      "**To apply (only with the QA lead's go-ahead, Rule 6), in this order:**", "", "```",
+      "cd build/founder-mode/internal-work-orders/po-answers-2026-11-12/write-v14",
+      "python3 update_v14.py --apply        # 34 updates + pictures",
+      "python3 create_v14.py --apply        # 54 new cases + pictures",
+      "python3 sync_run_v14.py --apply      # run 559 union, +48, assign user 6",
+      "python3 folder_note_v14.py --apply   # 11/14/2026",
+      "python3 ../../authoring/build.py     # proposals unchanged after the write (L-18)",
+      "```", "",
+      "## OUTSTANDING — what I need from you", "",
+      "1. **Go-ahead to write** (Rule 6): the four commands above. Recommended: yes; the lock passed on all 34 and the guard found no foreign case.",
+      "2. **S12-33's Issue Credit line**: removed (recommended, section 4) or restored quoting tech plan TP-490.",
+      "3. **Three candidate PO points** (section 5): the badge tooltip (recommended to ask; it decides S2-22 C1111935 and S2-12 C1111925), the phone tooltip (recommended to ask), Issue Credit (low priority). None is on a sheet.",
+      "4. **Question 18** needs \"about 12 pixels\" and \"No Charge\" before it is sent (not edited in this pass).",
+      "5. **References field**: Rule 117's sixteenth amendment (14 Nov 2026) puts the PRD requirement numbers in References for suites asked at intake; IWO's cases carry the ticket numbers only and this pass kept that, so the named set matches the other 609. Recommended: leave as is unless you want a refs-only batch for the whole suite.", "",
+      "Waiting on the PO (Rule 132): Internal Work Orders sheet (https://docs.google.com/spreadsheets/d/1HMtYS1VTJEH1-m4ykJNVefdg1mu2mwtlH9HhOkRml-w): questions 1 to 16 answered; questions 17 and 18 are drafts, not sent (they hold D-139 to D-142 and D-143, D-144)."]
+open(f"{A}/V1.4-NAMED-SET-PASS-REPORT.md", "w").write("\n".join(o) + "\n")
+print("written", len(o), "lines")

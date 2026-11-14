@@ -201,7 +201,9 @@ for k in TOUCHED + DRAFTS:
     c = BY[k]; c["prd"] = "1.4"; c["design"] = "v14"
     if c["marker"] == MARKER: c["marker"] = MARKER14
     for f in ("pre", "steps"):
+        was = list(c[f])
         c[f] = [x if not any(o in x for o in DR.V14_PIC) else re.sub("|".join(map(re.escape, DR.V14_PIC)), lambda m: DR.V14_PIC[m.group(0)], x) for x in c[f]]
+        if c[f] != was: _log(k, "the precondition naming the attached pictures names the -v14 pictures")
     if k in REQUOTE: _log(k, "quotes re-taken from PRD v1.4 (" + ", ".join(sorted({x for x in c["q"] if x in ("S12-E8", "S2-R22")})) + "); steps and results unchanged")
     if k in DESIGNREF: _log(k, "References from Design: design 1794565397-7f4c, the -v14 pictures of the changed boards and the board words \"No Charge\"; quotes re-read from PRD v1.4 (unchanged words)")
     if k in DRAFTS and k not in ("D-113", "D-143"): _log(k, "built on PRD v1.4 and design 1794565397-7f4c (From line, design line, marker); no other change")
