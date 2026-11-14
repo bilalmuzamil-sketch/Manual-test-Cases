@@ -1,16 +1,19 @@
 """Batch A verdicts (stories 5, 6, 7, 8, 9, 12, 14, 15, 16, 19) and checklist registries, merged by verdicts.py."""
 FORCED = ("a manual tester cannot make a load or save fail on purpose; listed for the developers' own automated checks "
           "(the requirement map's verdict: not manually testable, forced failure)")
-IN_SCOPE_STORIES = {5, 6, 7, 15}
+IN_SCOPE_STORIES = {5, 6, 7, 8, 15}
 
 NOT_TESTABLE = {
  "TP-S5-EH1": "The PRD states it does not apply (\"the simulator calculates on screen and saves nothing\"); there is nothing to look at.",
  "TP-S6-EH1": "A failed Matrices list load: " + FORCED + ".",
  "TP-S7-EH1": "A failed Categories list load or category save: " + FORCED + ".",
+ "TP-S8-EH1": "A failed category save: " + FORCED + ".",
  "TP-S15-EH1": "The PRD states it does not apply (\"the warning is calculated on screen and saves nothing\"); there is nothing to look at.",
 }
 HELD = {}
-PARTIAL = {}
+PARTIAL = {
+ "TP-S8-E1": "Catalog parts, work order and Part Sale lines (invoiced included) and canned line parts are checked; order and delivery items are not opened by these cases, and past-period category reports belong to the reports batch.",
+}
 UNUSED_BOARDS = {
  "6.1": "A \"Today\" board (production before the release); its screenshot is attached as today:6.1 (images/today/), not the empty board render.",
 }
@@ -23,6 +26,7 @@ MOVEMENT = {
  "grid values when the below-cost warning appears (15.1 note, 5.4 vs 15.2)": "D-111",
  "Matrices list Status filter (6.2 vs 6.7)": "D-123",
  "Categories list search (7.3 vs 7.5)": "D-149",
+ "New Category name error pushes the grid down (8.6 vs 8.7)": "D-166",
 }
 NUMBERS = {
  "N simulator sell price and profit per column (S5-R2)": "S5-04",
@@ -35,4 +39,7 @@ NUMBERS = {
  "N General Matrix category count": "S6-08",
  "N Matrices list +N categories": "S6-09",
  "N other categories count above a category's grid": "S7-15",
+ "N category count after Cancel": "S8-03",
+ "N new part repriced by a category change": "S8-05",
+ "N category delete changes no price, next reprice by the General Matrix": "S8-10",
 }

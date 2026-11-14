@@ -302,3 +302,91 @@ C("D-149", K, "Design: a Categories search keeps the columns in place",
    R(S("S7-R4", "Search matches category and matrix names"), "Category A is listed."),
    look("7.5", "S7-R4", "Compared with the first screenshot, the column headings Category, Pricing Matrix, Default and the tiers keep their places, as pictures 7.3 and 7.5 show.", "The rows below them narrow to the matching categories.")],
   pics=["7.3", "7.5"], flags=["movement"])
+
+# ---- page 8: categories over time -------------------------------------------------------------------------------------------
+C("D-160", K, "Design: picking another matrix on a category's page",
+  [ADMIN, category("A", ", on the General Matrix"), matrix("A", ", pricing two new categories made for this test, so it is shared"), W1440],
+  [CATEGORIES, "Click category A's row.", "Pick matrix A in the Pricing Matrix picker."],
+  [look("8.1", "S7-R9", "The Categories list shows."), look("8.1", "S7-R9", "Category A's page shows the Pricing Matrix picker with an info icon beside it."),
+   R(S("S7-R9", "shows that matrix's grid, and confirms with \"<category> now uses <matrix>\" and \"Parts already on work orders keep their prices.\""),
+     "A white message at the bottom right reads category A's name \"now uses\" matrix A's name, with \"Parts already on work orders keep their prices.\" under it.")
+   + look("8.1", "S7-R13", "Matrix A's name labels the grid; Edit is grayed and a blue \"Go to the\" link names matrix A, as in picture 8.1.")],
+  pics=["8.1"])
+
+C("D-161", K, "Design: Uncategorized's row and its system page",
+  [ADMIN, W1440],
+  [CATEGORIES, "Click Uncategorized's row.", "Point at the info icon beside the title."],
+  [look("8.2", "S8-R4", "Uncategorized is the first row, with a blue Default badge and an info icon, on the General Matrix with its Default badge."),
+   look("8.3", "S8-R4", "The page's title is Uncategorized with an info icon, and the General Matrix's grid shows with a grayed Edit and a blue \"Go to the General Matrix\" link, as in picture 8.3."),
+   R(QD("System default: always uses the General Matrix and can’t be renamed or deleted.", "8.3", "S8-R4"),
+     "A dark tooltip reads \"System default: always uses the General Matrix and can't be renamed or deleted.\"")],
+  pics=["8.2", "8.3"])
+
+C("D-162", K, "Design: Uncategorized's page shows grayed matrix and Tax Exempt fields",
+  [ADMIN, W1440],
+  [CATEGORIES, "Click Uncategorized's row."],
+  [look("8.2", "S8-R4", "The Categories list shows."),
+   R(QL("8.3", "S8-R4"), "A grayed Pricing Matrix box reading General Matrix and a grayed Tax Exempt checkbox show under the title.",
+     "The QuickBooks Products And Services picker shows in its usual style, as in picture 8.3.")],
+  pics=["8.2", "8.3"], held_on="Q25", flags=DV)
+
+C("D-163", K, "Design: a taken category name shows red under the title",
+  [ADMIN, category("A", ", named for example Wheel Seals"), category("B"), W1440],
+  [CATEGORIES, "Click category B's row.", "Click the title.", "Type category A's name in small letters.", "Press Enter."],
+  [look("8.4", "S8-N3", "The Categories list shows."), look("8.4", "S8-N3", "Category B's page opens."), look("8.4", "S8-N3", "The title becomes an outlined box."),
+   look("8.4", "S8-N3", "The typed name shows in the box."),
+   R(S("S8-N3", "\"A category called <name> already exists\""), "Red text right under the title box reads \"A category called\", the typed name, \"already exists\".")
+   + look("8.4", "S8-N3", "The box is outlined in red, as in picture 8.4.")],
+  pics=["8.4"])
+
+C("D-164", K, "Design: the New Category page, its error and its created message",
+  [ADMIN, W1440],
+  [CATEGORIES, "Click New Category.", "Click the blue button at the top right.", "Type a name no other category uses.", "Click the blue button at the top right."],
+  [look("8.5", "S8-R10", "The Categories list shows a blue New Category button."),
+   look("8.6", "S8-R10", "The breadcrumb reads Settings › Categories › New Category; a large empty name field with the placeholder \"Category name\" holds the cursor.",
+        "Under it sit the Pricing Matrix picker (reading \"General Matrix (no matrix of its own)\"), an info icon, the QuickBooks Products And Services picker and Tax Exempt.",
+        "Below, \"General Matrix\" with a Default badge labels the read-only grid, as in picture 8.6."),
+   R(S("S19-R1", "\"{Field} is a required field\""), "Red text under the field reads \"Name is a required field\".")
+   + look("8.7", "S8-R10", "The field is outlined in red, as in picture 8.7."),
+   look("8.8", "S8-R10", "The name shows in the large field."),
+   R(QD("Priced by General Matrix for every tier.", "8.9", "S8-R10"), "A white message at the bottom right reads the new name with \"created\" and \"Priced by General Matrix for every tier.\"")
+   + look("8.9", "S8-R10", "The page now shows the name as its title, a three-dot button and New Matrix, as in picture 8.9.")],
+  pics=["8.5", "8.6", "8.7", "8.8", "8.9"])
+
+C("D-165", K, "Design: the New Category page's button reads Create Category",
+  [ADMIN, W1440],
+  [CATEGORIES, "Click New Category."],
+  [look("8.5", "S8-R10", "The Categories list shows."),
+   R(QD("Create Category", "8.6", "S8-R10"), "Cancel and a blue \"Create Category\" button sit at the top right, with no Save button, as in picture 8.6.")],
+  pics=["8.5", "8.6", "8.8"], held_on="Q23", flags=DV)
+
+C("D-166", K, "Design: the New Category name error keeps the columns in place",
+  [ADMIN, W1440],
+  [CATEGORIES, "Click New Category.", "Take a screenshot of the page.", "Click the blue button at the top right.", "Take a second screenshot of the page."],
+  [look("8.6", "S8-R10", "The Categories list shows."), look("8.6", "S8-R10", "The New Category page shows its grid."), look("8.6", "S8-R10", "The screenshot shows the grid headings."),
+   R(S("S19-R1", "\"{Field} is a required field\""), "The red \"Name is a required field\" line shows under the name."),
+   look("8.7", "S8-R10", "Compared with the first screenshot, the grid's headings Cost Range, Default and the tiers keep the same left-right place; the grid only moves down by the height of the red line, as pictures 8.6 and 8.7 show.",
+        "The grid shows the same rows as before.")],
+  pics=["8.6", "8.7"], flags=["movement"])
+
+C("D-167", K, "Design: deleting a category from its page",
+  [ADMIN, category("A"), W1440],
+  [CATEGORIES, "Click category A's row.", "Open the page's three-dot menu.", "Click Delete.", "Click Delete in the dialog."],
+  [look("8.10", "S8-R8", "The Categories list shows."), look("8.10", "S8-R8", "Category A's page opens."),
+   look("8.10", "S8-R8", "A small menu opens below the button with Audit Log, then Delete in red, as in picture 8.10."),
+   R(S("S8-R8", "It asks \"Delete <category>?\""), "A dialog titled \"Delete\", category A's name and \"?\" opens over a dimmed page, with an X at the top right.")
+   + R(S("S8-R8", "and Cancel / Delete (red), with no counts"), "Cancel and a red Delete sit at the bottom right.")
+   + look("8.11", "S8-R8", "The dialog's size and position match picture 8.11."),
+   R(QD("Wipers deleted", "8.12", "S8-R8"), "The Categories list shows one category fewer, and a white message at the bottom right reads category A's name with \"deleted\", as in picture 8.12.")],
+  pics=["8.10", "8.11", "8.12"])
+
+C("D-168", K, "Design: the delete question and taken-name error as the design words them",
+  [ADMIN, category("A", ", named for example Wheel Seals"), category("B"), W1440],
+  [CATEGORIES, "Click category B's row.", "Open the page's three-dot menu.", "Click Delete.", "Click Cancel.", "Click the title.", "Type category A's name.", "Press Enter."],
+  [look("8.11", "S8-R8", "The Categories list shows."), look("8.11", "S8-R8", "Category B's page opens."), look("8.10", "S8-R8", "The menu lists Audit Log and Delete."),
+   R(QD("Its parts and lines, invoiced ones included, move to Uncategorized, and its QuickBooks mapping is removed. This can’t be undone.", "8.11", "S8-R8"),
+     "The dialog reads \"Its parts and lines, invoiced ones included, move to Uncategorized, and its QuickBooks mapping is removed. This can't be undone.\", with no sentence about invoices already sent.")
+   , look("8.11", "S8-R8", "The dialog closes."), look("8.4", "S8-N3", "The title becomes an outlined box."), look("8.4", "S8-N3", "The typed name shows."),
+   R(QD("A category called tires already exists. Click away to keep Brakes.", "8.4", "S8-N3"),
+     "The red error reads \"A category called\", the typed name, \"already exists. Click away to keep\" and category B's name, with a period.")],
+  pics=["8.4", "8.10", "8.11"], held_on="Q24", flags=DV)
