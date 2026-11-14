@@ -1,0 +1,15 @@
+import { start, A } from './libs.mjs';
+import fs from 'fs';
+const OUT = new URL('./s04/', import.meta.url).pathname;
+const { r, page, dump, step, go } = await start(OUT);
+const log = (...a) => console.log(...a); const T = s => (s || '').replace(/\s+/g, ' ').trim();
+const dlg = () => page.locator('.q-dialog:visible').last(); const dl = async () => T((await page.locator('.q-dialog:visible').allInnerTexts()).join('|')).slice(0, 300);
+const mclick = async (loc) => { await loc.scrollIntoViewIfNeeded(); await page.waitForTimeout(300); const bb = await loc.boundingBox(); await page.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2); };
+const fld = (root, re) => root.locator('.q-field').filter({ has: page.locator('.q-field__label', { hasText: re }) }).first();
+const okNotes = async () => { for (let i = 0; i < 2; i++) { const ok = page.locator('.q-dialog:visible button', { hasText: /^Ok$/ }).first(); if (await ok.count()) { await ok.click(); await page.waitForTimeout(1000); } } };
+const WO = fs.readFileSync(new URL('./s02/wo-url.txt', import.meta.url), 'utf8').trim().replace(A, '');
+await step('complete', async () => { await go(WO); await page.waitForTimeout(3500); await okNotes(); await mclick(page.locator('main button:visible', { hasText: /^Complete$/ }).first()); await page.waitForTimeout(3000); log('DLG', await dl()); log('labels', JSON.stringify(await dlg().locator('.q-field__label').allTextContents()));
+  const vin = dlg().locator('input:visible').first(); await vin.fill('ZZAUTOTESTVIN0003'); await page.keyboard.press('Tab'); await page.waitForTimeout(800); await dump('vin-typed');
+  await mclick(dlg().locator('button:visible', { hasText: /Finish Work Order/ }).first()); await page.waitForTimeout(4000); log('DLG after', await dl()); log('badges', JSON.stringify((await page.locator('.q-badge').allInnerTexts()).map(T).slice(0, 3))); });
+await step('finance', async () => { await go(WO.replace('/lines', '/finance')); await page.waitForTimeout(4000); await okNotes(); log('badges', JSON.stringify((await page.locator('.q-badge').allInnerTexts()).map(T).slice(0, 3))); log('FIN BTNS', JSON.stringify([...new Set((await page.locator('main button:visible').allInnerTexts()).map(T))].filter(Boolean))); log('LABELS', JSON.stringify(await page.locator('main .q-field__label').allTextContents())); await dump('finance'); });
+await r.browser?.close?.(); process.exit(0);
