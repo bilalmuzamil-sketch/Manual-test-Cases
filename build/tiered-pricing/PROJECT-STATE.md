@@ -30,3 +30,14 @@ them on staging and if they can also be run on QA environment then we may run th
   the story folders (name to be set when the folders are made, for example "Must not change: today's pricing").
 - Each such case says where to run it: on staging when it can be run there (preferred over production); also on the QA environment when it
   can be run there; on production only when neither staging nor QA can show the behaviour (then with the "Run on Production After Release" pattern).
+
+## 14 Nov 2026 — intake finished; case writing started
+- Sources half done (SOURCES-REPORT.md): PRD 938213378 page v37, reports PRD 968687617 page v21, 54 tickets, both tech plans read in full;
+  382 requirement rows (+42 from tech plans/tickets), 93 invariants -> 79 planned "must not change" cases, 39 numbers with hazards; PO Matt Barge.
+- Design drive done (design-2026-11-14/DESIGN-DRIVE-PROOF.md): version 1794631438-539a, 272/272 boards rendered and swept, text inventory 2,630
+  (0 unclassified), 49 movements, long-name breakages found.
+- QA lead, 14 Nov 2026: the 11 "Today" screenshots (writer-only asset store): "I'll save the page (Recommended)" — he will send a saved copy of the
+  canvas or edit access; attach them to the "must not change" cases when it arrives.
+- QA lead, 14 Nov 2026, Rule 119: "Read them too" — the design tool's guides, index page and viewer runtime are being read in full by a worker
+  (design-2026-11-14/TOOL-FILES-READ-2026-11-14.md).
+- Case writing phase 1 (library + Stories 1-4) running; then two parallel batches for Stories 5-19 and the reports PRD.
