@@ -556,3 +556,8 @@
 - **Location menu while every location is ticked:** clicking a row UNticks just that row. To leave only one location, click each of the others (s16d). Staging has five locations, so a test written for two needs that adaptation, said in the result.
 - **Jira search:** `/rest/api/2/search` now answers 410 — use `/rest/api/3/search/jql?jql=…&fields=…` through `atlassian-login/jira.sh`.
 - #aging #staging #filters #seeding #jira → L0713
+
+## L0715 — 2026-11-14 — TestRail editor writes: restart the browser bridge first; a steps-only save re-encodes the Expected's storage (words unchanged)
+- `ui_write_*.mjs` scripts launch Chromium through the local MITM bridge (`/tmp/atlassian/bridge-port.txt`). After a container restart the port file survives but nothing listens → `net::ERR_PROXY_CONNECTION_FAILED`. Start it again: `NODE_USE_ENV_PROXY=1 setsid nohup node build/atlassian-login/bridge.mjs > /tmp/atlassian/bridge.log 2>&1 < /dev/null &` (playbook line ~116), then rerun.
+- Saving ONLY the steps through TestRail's editor (Expected never sent; `case-edits-1114/ui_write_steps.mjs`) still re-stores the Expected: `&ldquo;`/`&rdquo;`/`&middot;` become the characters themselves and empty `<p></p>` become `<p><br></p>`. The visible text is identical (checked by stripping tags + unescaping). Same as C715534 on 12 Nov. Report it as "words unchanged, storage re-encoded" — never "Expected untouched" on the strength of not sending it.
+- #testrail #editor #bridge #rule114 → L0714

@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "note": "14 Nov 2026, run 557, g21: C1145248 linked to SV-12722 on the QA lead's decision"
+ },
+ "results": {
+  "C1145248": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 2: vendor A's name is cut off at the top of its row and drawn over the row under it.",
+   "bold_steps": [
+    2
+   ],
+   "source": "From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 13 (Change Log: version 12 on 12 Nov 2026 by Milos Vasic, version 13 on 13 Nov 2026 by Chris Ward), read 13 Nov 2026 \u00b7 Epic SV-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location) S5-R13 (version 13): \u201cThe customer chip (A/R) and vendor chip (A/P) and their open menus are the native ones: Customer exactly as Sales By Customer's Customer filter (person icon), Vendor exactly as Inventory Value's Vendor filter (truck icon, \"Search vendors\"; as there, the search box shows only when there are more than 8 vendors). The menu has a search box, an \"All customers\" or \"All vendors\" row, the native line \"All customers are included. Pick one or more to narrow.\" (or vendors) while none is ticked, and the list; several can be ticked. The chip reads \"Customer: All customers\" or \"Vendor: All vendors\" in the resting (grey) style when none is ticked, the name when one is (shortened with \"...\" when long), and \"Customer: N customers\" or \"Vendor: N vendors\" when N are. The ticked customers or vendors narrow every row, group, total, page, sort and export; the Location list does not change (S5-R3).\u201d From: Slack, Chris Ward (product owner), 13 Nov 2026, thread in channel C0C454MLP0T, read 13 Nov 2026 Slack, Chris Ward, Picture #1: \u201cPicture #1 \u2014 the long customer name wrap issue (shows up in the filter)\u201d",
+   "ticket": "Follow the status here https://shopview.atlassian.net/browse/SV-12722 (Ready to Fix, read 14 Nov 2026) - the long-name fault in the filter menus; the QA lead decided on 14 Nov that the Vendor menu belongs to this ticket, which is being updated to name it.",
+   "todo": "What needs to be done: nothing for the tester now; re-run this test on staging when SV-12722 reaches Ready for QA.",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, 1440 px wide, 100% zoom, browser on Pakistan time; A/P Aging Detail, vendor A = the 120-letter no-space vendor.",
+    "Step 2: vendor A's name wraps onto 3 lines in a row only one line high: the first line is cut off at the top (drawn over the 78-letter vendor above it) and the last line is drawn over the next vendor, \"ZZE2E Transport Supply Co\"; that row's tick box stays clear.",
+    "This is the same fault as SV-12722 (https://shopview.atlassian.net/browse/SV-12722, Ready to Fix); on the QA lead's decision (14 Nov) it is tracked there, so nothing new is raised.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C1145248-07-C1145248-2-row-A.png"
+   ]
+  }
+ }
+}
