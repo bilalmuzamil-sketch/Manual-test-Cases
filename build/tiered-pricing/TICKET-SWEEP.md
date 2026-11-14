@@ -111,3 +111,13 @@ Outcome column: **PENDING** until cases exist. *Planned* says what each ticket i
 | SV-12667 | "A reopened paid work order takes the customer's current tier." Not in the PRD (S10-R14 keeps the tier a work order was made with) | Tech-plan addition (D-decision); candidate PO question Q1 in PO-QUESTIONS-DRAFT.md |
 | SV-12671 / SV-12677 | A tier kept only by an invoiced work order can be deleted; reversing that invoice then prices new parts at Default | Tech-plan addition (D33); rows TPX-* in REQUIREMENTS-MAP.md |
 | SV-12675 | Categories picker on the matrix page "saves when it closes" vs PRD S3-R13 "moves it to this matrix when the matrix is saved" | Checked against the tech plan; see REQUIREMENTS-MAP.md and PO-QUESTIONS-DRAFT.md |
+
+## 14 Nov 2026 (consolidation) — every ticket has its verdict
+
+Re-swept the same day (`parent = SV-11692`, one page, 54 tickets, `sources/jira/JIRA-SWEEP-SV-11692-2026-11-14-resweep.json`): no ticket added, removed or
+updated since the morning read. `TICKET-LEDGER.json` now gives every ticket an outcome: **20 NEW-CASES** (the 19 story tickets that carry cases and
+SV-11718), **30 COVERED** (the 27 engineering "Verify" checklists, by the cases of the stories they restate, API halves listed for the
+automation owner; SV-4387, SV-5744, SV-7160 by the fixed-price cases), **4 NO-CASE** (SV-11698 obsolete, SV-9314 out of scope, SV-12682 engineering
+step, SV-12745 speed baseline), 0 ASKED; plus the 11 linked tickets (8 COVERED, 3 NO-CASE). `TICKET-SWEEP.json` `prd_version_handled` = 37.
+`ticket_sweep.py` **exits 0** (0 unhandled tickets, PRD handled). The PRD page version itself was not re-read in this pass (Rule 59: re-read both
+PRDs immediately before any TestRail write).
