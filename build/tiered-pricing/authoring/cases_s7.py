@@ -90,7 +90,7 @@ C("S7-08", K, "Categories list sorts with Uncategorized always first",
    category("B", ", named for example Zulu Parts, on the General Matrix"), DESK],
   [CATEGORIES, "Click the Category column header.", "Click the Pricing Matrix column header."],
   [R(S("S7-R4", "On first load, Uncategorized is first, then categories A to Z by name."), "Uncategorized is first, then the categories A to Z, category A near the top and category B near the end."),
-   R(S("S7-R4", "the list sorts by Category or Pricing Matrix, with Uncategorized always first"), "The categories are sorted Z to A by name, category B above category A.", "Uncategorized is still first."),
+   R(S("S7-R4", "the list sorts by Category or Pricing Matrix, with Uncategorized always first"), "The name order reverses to Z to A, category B above category A.", "Uncategorized is still first."),
    R(S("S7-R4", "the list sorts by Category or Pricing Matrix, with Uncategorized always first"), "The categories are sorted by their matrix name.",
      "Category B (General Matrix) comes before category A (matrix A, Zebra Pricing).", "Uncategorized is still first.")],
   pics=["7.3"])

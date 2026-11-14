@@ -79,7 +79,7 @@ C("S14-07", K, "New parts after the change keep the work order's tier",
   pics=["14.7", "14.8"], flags=["numbers"])
 
 C("S14-08", K, "Without See Financial Data the notice does not show",
-  ["Sign in as a user whose role has 'Work Orders — Order Parts' and 'Work Order Lines — Create & Edit' but not 'See Financial Data'.", tier("A"), MX,
+  ["Sign in as a user whose role has 'Work Orders — Order Parts' and 'Work Order Lines — Create & Edit' but not 'See Financial Data'. An Admin makes the records below before the test.", tier("A"), MX,
    customer("A", ", on tier A for work orders"), customer("B"),
    "Have a new work order for this test, work order 1, for customer A, with a category A part line.", DESK],
   WO_MENU + ["Pick customer B.", "Click Update Customer."],

@@ -196,10 +196,10 @@ C("S19-18", K, "A number column sorts highest first on the first click",
 
 C("S19-19", K, "Searches ignore capitals and outer spaces and keep the sort",
   [ADMIN, "Have a new category for this test, category A, named for example Quokka Parts.", "Have a new category for this test, category B, named for example Quokka Seals.", DESK],
-  [CATEGORIES, "Click the Category column header.", "Type   QUOKKA   with spaces before and after in the search."],
-  [R(S("S19-R18"), "The Categories list shows."), R(S("S7-R4"), "The categories are sorted Z to A, category B above category A."),
+  [CATEGORIES, "Type   QUOKKA   with spaces before and after in the search."],
+  [R(S("S7-R4", "On first load, Uncategorized is first, then categories A to Z by name."), "The Categories list shows A to Z, category A above category B."),
    R(S("S19-R18", "Every search in this PRD matches a case-insensitive substring of each field it names and ignores leading and trailing spaces; results keep the list's sort."),
-     "Categories A and B are listed in spite of the capitals and spaces.", "Category B is still above category A: the sort is kept.")],
+     "Categories A and B are listed in spite of the capitals and spaces.", "Category A is still above category B: the A to Z sort is kept.")],
   pics=["7.5"])
 
 C("S19-20", K, "New titles, tabs and buttons use Title Case, messages sentence case",

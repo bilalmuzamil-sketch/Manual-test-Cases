@@ -111,7 +111,7 @@ C("S9-09", K, "The card's own edit icon opens Edit Customer",
   pics=["9.31"])
 
 C("S9-10", K, "Without View and Manage AP/AR Data the Pricing section is hidden",
-  ["Sign in as a user whose role has 'Customers — View' and 'Customers — Create & Edit' but not 'View and Manage AP/AR Data'.",
+  ["Sign in as a user whose role has 'Customers — View' and 'Customers — Create & Edit' but not 'View and Manage AP/AR Data'. An Admin makes the records below before the test.",
    tier("A", ", so the client has more than one active tier"), onA("A", "tier A"), DESK],
   [OPEN_A, PENCIL, "Open the Work Order Tier picker.", "Pick 1 · Default.", SAVE],
   [R(S("S9-R15", "The whole pricing section, tiers included, shows only to users with 'View and Manage AP/AR Data'."),

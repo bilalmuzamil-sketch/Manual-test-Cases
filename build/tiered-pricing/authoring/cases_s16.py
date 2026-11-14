@@ -9,7 +9,7 @@ K = "S16"
 
 
 def role(has, hasnt=None):
-    return f"Sign in as a user whose role (made for this test) has {has}" + (f" but not {hasnt}." if hasnt else ".")
+    return f"Sign in as a user whose role (made for this test) has {has}" + (f" but not {hasnt}." if hasnt else ".") + " An Admin makes the records below before the test."
 
 
 MX = ("Have a new matrix for this test, matrix A, pricing a new category made for this test, category A, with one range from $0.00: "
