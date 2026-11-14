@@ -1,0 +1,375 @@
+[
+ {
+  "kind": "tooltip",
+  "text": "The tier’s place in the order. New tiers go last; archiving one moves later tiers up.",
+  "boards": [
+   "2 · Story 2: Tiers 03 2.3 Hover the # info icon [T02-OrderInfo.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Audit Log"
+  ],
+  "items": [
+   "Audit Log"
+  ],
+  "text": "Audit Log",
+  "cls": "sv-menu sv-menu--fit tp-menu",
+  "boards": [
+   "2 · Story 2: Tiers 04 2.4 Click the three-dot menu beside New Tier [T03-ListMenu.dc.html]",
+   "2 · Story 2: Tiers 05 2.5 Click Audit Log [T04-AuditTiers__pre.dc.html]",
+   "3 · Story 3: Matrices and rules 07 3.7 Click Audit Log [MP10-AuditMatrix__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Audit Log: Tiers",
+  "aria": "Audit Log: Tiers",
+  "body": "Event User Details Date Time Tier Created Dana Whitfield Tier 5, Name: — → Tier 5 Oct 27, 2026 8:15 AM Tier Archived Dana Whitfield Fleet Old, Status: Active → Archived Oct 15, 2026 4:45 PM Tier Deleted Dana Whitfield Tier: Fleet Test → — Sep 29, 2026 11:35 AM Customer Added Riley Chen Tier 2, Acme Freight: Default → Tier 2 Sep 22, 2026 10:30 AM Customer Added Riley Chen Tier 3, Metro Waste: Default → Tier 3 Sep 22, 2026 10:30 AM Customer Added Riley Chen Tier 4, Bow River Haulers: Default → Tier 4 Sep 22, 2026 10:30 AM Customer Added Riley Chen Internal, Calgary North Yard: Default → Internal Sep 22, 2026 10:30 AM Tier Created Dana Whitfield Tier 4, Name: — → Tier 4 Aug 12, 2026 8:15 AM Tier Created Dana Whitfield Internal, Name: — → Internal Aug 6, 2026 8:15 AM Tier Created Dana Whitfield Tier 2, Name: — → Tier 2 Aug 5, 2026 8:15 AM Tier Created Dana Whitfield Tier 3, Name: — → Tier 3 Aug 5, 2026 8:15 AM Tier Created Dana Whitfield Fleet Old, Name: — → Fleet Old Aug 5, 2026 8:15 AM Tier Created Dana Whitfield Default, Name: — → Default Aug 4, 2026 8:15 AM",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Close"
+  ],
+  "close": true,
+  "width": 860,
+  "boards": [
+   "2 · Story 2: Tiers 06 2.6 Result: \"Audit Log: Tiers\": every tier's changes, newest first [T04-AuditTiers.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Audit Log",
+   "Archive",
+   "Delete"
+  ],
+  "items": [
+   "Audit Log",
+   "Archive",
+   "Delete"
+  ],
+  "text": "Audit Log Archive Delete",
+  "cls": "sv-menu sv-menu--fit tp-menu tp-menu--up",
+  "boards": [
+   "2 · Story 2: Tiers 07 2.7 Click a tier's three-dot menu (never used) [T05-RowMenu.dc.html]",
+   "2 · Story 2: Tiers 21 2.21 Archive a tier with no customers [T21-ArchiveConfirm__pre.dc.html]",
+   "2 · Story 2: Tiers 28 2.28 Delete a tier that priced nothing [T25-DeleteConfirm__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Audit Log",
+   "Archive",
+   "Delete"
+  ],
+  "items": [
+   "Audit Log",
+   "Archive",
+   "Delete (disabled) {tip: Can’t delete Tier 2. 2 open work orders, estimates or Part Sales use it.}"
+  ],
+  "text": "Audit Log Archive Delete",
+  "cls": "sv-menu sv-menu--fit tp-menu",
+  "boards": [
+   "2 · Story 2: Tiers 08 2.8 Hover the greyed Delete [T06-DeleteGreyed.dc.html]",
+   "2 · Story 2: Tiers 18 2.18 Archive a tier that has customers [T20-ArchiveBlocked__pre.dc.html]",
+   "2 · Story 2: Tiers 38 2.38 Click the page's three-dot menu [TP06-TierMenu.dc.html]",
+   "2 · Story 2: Tiers 39 2.39 Click Audit Log [TP07-AuditTier__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "tooltip",
+  "text": "Can’t delete Tier 2. 2 open work orders, estimates or Part Sales use it.",
+  "boards": [
+   "2 · Story 2: Tiers 08 2.8 Hover the greyed Delete [T06-DeleteGreyed.dc.html]"
+  ]
+ },
+ {
+  "kind": "menu",
+  "aria": "",
+  "heading": [
+   "Audit Log",
+   "Reactivate",
+   "Delete"
+  ],
+  "items": [
+   "Audit Log",
+   "Reactivate",
+   "Delete"
+  ],
+  "text": "Audit Log Reactivate Delete",
+  "cls": "sv-menu sv-menu--fit tp-menu tp-menu--up",
+  "boards": [
+   "2 · Story 2: Tiers 09 2.9 The last row's menu opens upward [T07-MenuUp.dc.html]",
+   "2 · Story 2: Tiers 25 2.25 An archived tier's menu [T23-ArchivedMenu.dc.html]",
+   "2 · Story 2: Tiers 26 2.26 Click Reactivate [T24-Reactivated__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "tier 3",
+  "cls": "tp-name-input is-error",
+  "boards": [
+   "2 · Story 2: Tiers 13 2.13 Type a name another tier uses [T12-NewTierTaken.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "Fleet Old",
+  "cls": "tp-name-input is-error",
+  "boards": [
+   "2 · Story 2: Tiers 14 2.14 Type an archived tier's name [T13-NewTierArchivedName.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "Manual",
+  "cls": "tp-name-input is-error",
+  "boards": [
+   "2 · Story 2: Tiers 15 2.15 Type a name the reports use [T14-NewTierReserved.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Fleet Plus created",
+  "support": "It prices the same as the tier before it until you set its rules.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "2 · Story 2: Tiers 17 2.17 Result: The tier is created and its page stays open [T15-TierCreated.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Tier 2 Can’t Be Archived Yet",
+  "aria": "Tier 2 Can’t Be Archived Yet",
+  "body": "4 customers are on Tier 2 Take them off or move them to another tier first, then archive it. Parts already on their work orders keep their prices. Customer On Tier 2 for Acme Freight Work orders and Part Sales Banff Shuttle Co Work orders and Part Sales Big Rig Logistics Work orders and Part Sales Northway Haulers Work orders only",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Remove Customers",
+   "Close"
+  ],
+  "close": true,
+  "width": 560,
+  "boards": [
+   "2 · Story 2: Tiers 19 2.19 Click \"Remove Customers\" in the blocked dialog [G2-RemoveLink__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Manage Customers on Tier 2",
+  "aria": "Manage Customers on Tier 2",
+  "body": "Add Customers Remove Customers 4 Customer Work Order Tier Part Sales Tier Take Off Tier 2 for Acme Freight 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Banff Shuttle Co 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Big Rig Logistics 2 · Tier 2 2 · Tier 2 Work Orders and Part Sales Northway Haulers 2 · Tier 2 1 · Default Work Orders only",
+  "fields": [],
+  "inputs": [
+   {
+    "aria": "Search customers",
+    "value": "",
+    "placeholder": "Search customers",
+    "type": "text"
+   }
+  ],
+  "buttons": [
+   "Cancel",
+   "Remove Customers (disabled)"
+  ],
+  "close": true,
+  "width": 900,
+  "boards": [
+   "2 · Story 2: Tiers 20 2.20 Result: Manage Customers opens on the Remove tab, so the customers can be taken off and the tier archived [G2-RemoveLink.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Archive Tier 5?",
+  "aria": "Archive Tier 5?",
+  "body": "These tiers price the same as Tier 5 and will follow Tier 4 instead: Internal Parts already on work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Archive"
+  ],
+  "close": true,
+  "width": 520,
+  "boards": [
+   "2 · Story 2: Tiers 22 2.22 Result: The dialog lists, one per line, every tier that follows it through Same as previous tier [T21-ArchiveConfirm.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Archive Tier 5?",
+  "aria": "Archive Tier 5?",
+  "body": "Parts already on work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Archive"
+  ],
+  "close": true,
+  "width": 520,
+  "boards": [
+   "2 · Story 2: Tiers 23 2.23 Click Archive [T22-Archived__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Tier 5 archived",
+  "support": "It stays in reports. The tiers after it move up one number.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "2 · Story 2: Tiers 24 2.24 Result: Tier 5 moves to the archived rows; the tiers after it move up one number [T22-Archived.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Tier 5 is reactivated. It’s now the last tier, Tier 6.",
+  "support": "",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "2 · Story 2: Tiers 27 2.27 Result: No confirmation [T24-Reactivated.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Delete Tier 5?",
+  "aria": "Delete Tier 5?",
+  "body": "This can’t be undone. Parts already on work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Delete"
+  ],
+  "close": true,
+  "width": 520,
+  "boards": [
+   "2 · Story 2: Tiers 29 2.29 Click Delete [T26-Deleted__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Tier 5 deleted",
+  "support": "",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "2 · Story 2: Tiers 30 2.30 Result: The tier and its column in every matrix are gone [T26-Deleted.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Tier renamed to Fleet",
+  "support": "",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "2 · Story 2: Tiers 37 2.37 Type \"Fleet\" and press Enter [TP05-Renamed.dc.html]"
+  ]
+ },
+ {
+  "kind": "error",
+  "text": "% off",
+  "cls": "sv-field tp-cellw sv-field--suffix sv-field--error",
+  "boards": [
+   "2 · Story 2: Tiers 51 2.51 Click Set Rule with no value [SR05-BadValue.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Set Tier 2’s Rule?",
+  "aria": "Set Tier 2’s Rule?",
+  "body": "Tier 2 becomes 35% off in all 7 matrices (2 inactive), replacing what it had. Parts already on work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Set Rule"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "2 · Story 2: Tiers 53 2.53 Click Set Rule (every matrix checked) [SR06-ConfirmAll.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Set Tier 2’s Rule?",
+  "aria": "Set Tier 2’s Rule?",
+  "body": "Tier 2 becomes 35% off in 2 matrices, replacing what it had. Parts already on work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Set Rule"
+  ],
+  "close": true,
+  "width": 480,
+  "boards": [
+   "2 · Story 2: Tiers 54 2.54 Click Set Rule (some checked) [SR07-ConfirmSome.dc.html]",
+   "2 · Story 2: Tiers 55 2.55 Click Set Rule in the dialog [SR08-Done__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Tier 2 set to 35% off",
+  "support": "1 matrix changed.",
+  "actions": [
+   "Undo"
+  ],
+  "close": true,
+  "variant": "sv-toast sv-toast--success",
+  "timer": "--toast-ms: 20000ms; --toast-delay: -29ms;",
+  "boards": [
+   "2 · Story 2: Tiers 57 2.57 Click Undo [SR09-Undone__pre.dc.html]"
+  ]
+ },
+ {
+  "kind": "toast",
+  "title": "Undone",
+  "support": "Tier 2’s rules are back.",
+  "actions": [],
+  "close": false,
+  "variant": "sv-toast sv-toast--compact sv-toast--success",
+  "timer": "",
+  "boards": [
+   "2 · Story 2: Tiers 58 2.58 Result: Exactly what the tier had comes back [SR09-Undone.dc.html]"
+  ]
+ },
+ {
+  "kind": "dialog",
+  "title": "Change Default’s Prices?",
+  "aria": "Change Default’s Prices?",
+  "body": "Default’s rules change, and these 3 tiers price from Default in this matrix, so they change too: Tier 3 Tier 4 Tier 5 Parts already on work orders keep their prices.",
+  "fields": [],
+  "inputs": [],
+  "buttons": [
+   "Cancel",
+   "Save"
+  ],
+  "close": true,
+  "width": 560,
+  "boards": [
+   "3 · Story 3: Matrices and rules 07 3.7 Click Audit Log [MP10-AuditMatrix__pre.dc.html]"
+  ]
+ }
+]

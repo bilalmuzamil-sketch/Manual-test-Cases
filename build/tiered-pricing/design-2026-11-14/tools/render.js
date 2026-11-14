@@ -174,8 +174,10 @@ const CANDIDATES = () => {
     page.on('console', m => { if (m.type() !== 'log' && !/Failed to load resource/.test(m.text())) consoleMsgs.push(m.type() + ': ' + m.text().slice(0, 300)); });
     page.on('pageerror', e => consoleMsgs.push('pageerror: ' + e.message.slice(0, 300)));
     page.on('response', r => { if (r.status() >= 400) failed.push(r.status() + ' ' + r.url().replace(BASE, '')); });
+    await ctx.route(u => !u.href.startsWith(BASE), r => r.abort()); // the design's external links (Jira, Confluence, the canvas) are never followed
     const url = BASE + encodeURIComponent(b.file);
-    await page.goto(url, { waitUntil: 'networkidle' }); await settle(page);
+    const go = async (pg) => { try { await pg.goto(url, { waitUntil: 'networkidle' }); } catch (e) { await pg.waitForTimeout(300); await pg.goto(url, { waitUntil: 'networkidle' }); } await settle(pg); };
+    await go(page);
     await page.screenshot({ path: path.join(IMG, img), clip: { x: 0, y: 0, width: b.w, height: b.h } });
     const ex = await page.evaluate(EXTRACT, { W: b.w, H: b.h });
     const look = await page.evaluate(LOOK);
@@ -186,7 +188,7 @@ const CANDIDATES = () => {
     const base = await page.evaluate(SNAP); const baseSet = new Set(base.texts);
     const results = []; let dirty = false;
     for (const c of cands) {
-      if (dirty) { await page.goto(url, { waitUntil: 'networkidle' }); await settle(page); dirty = false; }
+      if (dirty) { await go(page); dirty = false; }
       const loc = page.locator('body *').nth(c.k); const r = { ...c };
       try {
         const before = await page.evaluate(STYLESIG, c.k);
@@ -209,6 +211,7 @@ const CANDIDATES = () => {
         await loc.click({ timeout: 1500, force: true, noWaitAfter: true }); await page.waitForTimeout(90);
         const a = await page.evaluate(SNAP); const add = a.texts.filter(x => !baseSet.has(x)); const gone = base.texts.filter(x => !a.texts.includes(x));
         const changed = add.length || gone.length || a.count !== base.count || a.url !== base.url;
+        if (a.url !== base.url) r.navigated = a.url;
         r.click = changed ? { added: add.slice(0, 60), removed: gone.slice(0, 30), dCount: a.count - base.count, url: a.url !== base.url ? a.url : undefined } : 'no change';
         if (changed) { dirty = true; const f = `${b.file.replace('.dc.html', '')}-click-${c.k}.png`; await page.screenshot({ path: path.join(OUT, 'drive', f) }); r.clickShot = 'render/drive/' + f; }
         else { const fe = await page.evaluate(() => document.activeElement && document.activeElement !== document.body ? document.activeElement.tagName.toLowerCase() : ''); if (fe) r.focus = fe; }
@@ -221,8 +224,8 @@ const CANDIDATES = () => {
     await ctx.close();
     // 1536 px: same board, wider viewport; compare the left 1440 px with the 1440 render
     if (b.w >= 1400) {
-      const c2 = await browser.newContext({ viewport: { width: 1536, height: b.h }, deviceScaleFactor: 1, colorScheme: 'light' }); const p2 = await c2.newPage();
-      await p2.goto(url, { waitUntil: 'networkidle' }); await settle(p2);
+      const c2 = await browser.newContext({ viewport: { width: 1536, height: b.h }, deviceScaleFactor: 1, colorScheme: 'light' }); await c2.route(u => !u.href.startsWith(BASE), r => r.abort()); const p2 = await c2.newPage();
+      await go(p2);
       const f2 = path.join(OUT, 'w1536', img);
       await p2.screenshot({ path: f2, clip: { x: 0, y: 0, width: 1536, height: b.h } });
       const geo = await p2.evaluate(() => { const r = (document.querySelector('.tpc-board,.sv-app') || document.body).getBoundingClientRect(); return { boardW: Math.round(r.width), scrollW: document.documentElement.scrollWidth, ths: [...document.querySelectorAll('thead th')].map(t => Math.round(t.getBoundingClientRect().left)) }; });

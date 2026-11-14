@@ -1,0 +1,2264 @@
+[
+ {
+  "page": "0 · Overview",
+  "row": 1,
+  "name": "0 · Overview",
+  "boards": 1,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "0.0 Overview",
+    "file": "Main.dc.html",
+    "kind": "state",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "1 · Story 1: Release day",
+  "row": 1,
+  "name": "Release day  (1.1–1.4)",
+  "boards": 4,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "1.1 Release day: Settings › Pricing opens on Tiers",
+    "file": "R01-ReleaseTiers.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "1.2 Release day: Matrices tab",
+    "file": "R02-ReleaseMatrices.dc.html",
+    "kind": "state",
+    "highlighted": [
+     "Matrices 6"
+    ]
+   },
+   {
+    "nn": "03",
+    "title": "1.3 Click a matrix",
+    "file": "R03-ReleaseMatrix__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Stop 40 Active Brakes 2 rules · margin Same as work orders All"
+    ]
+   },
+   {
+    "nn": "04",
+    "title": "1.4 Result: Opening a matrix shows today's rules as the Default column",
+    "file": "R03-ReleaseMatrix.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "2 · Story 2: Tiers",
+  "row": 1,
+  "name": "The Tiers list  (2.1–2.9)",
+  "boards": 9,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "2.1 Today: the Pricing page",
+    "file": "X01-TodayPricing.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "2.2 Tiers list",
+    "file": "T01-TiersList.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "2.3 Hover the # info icon",
+    "file": "T02-OrderInfo.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "The tier’s place in the order. New tiers go last; archiving one moves later tiers up."
+    ]
+   },
+   {
+    "nn": "04",
+    "title": "2.4 Click the three-dot menu beside New Tier",
+    "file": "T03-ListMenu.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "More actions"
+    ]
+   },
+   {
+    "nn": "05",
+    "title": "2.5 Click Audit Log",
+    "file": "T04-AuditTiers__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Audit Log"
+    ]
+   },
+   {
+    "nn": "06",
+    "title": "2.6 Result: \"Audit Log: Tiers\": every tier's changes, newest first",
+    "file": "T04-AuditTiers.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "2.7 Click a tier's three-dot menu (never used)",
+    "file": "T05-RowMenu.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "More actions"
+    ]
+   },
+   {
+    "nn": "08",
+    "title": "2.8 Hover the greyed Delete",
+    "file": "T06-DeleteGreyed.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Delete"
+    ]
+   },
+   {
+    "nn": "09",
+    "title": "2.9 The last row's menu opens upward",
+    "file": "T07-MenuUp.dc.html",
+    "kind": "state",
+    "highlighted": [
+     "More actions"
+    ]
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "2 · Story 2: Tiers",
+  "row": 2,
+  "name": "Create a tier  (2.10–2.17)",
+  "boards": 8,
+  "chain": [
+   {
+    "nn": "10",
+    "title": "2.10 Click New Tier",
+    "file": "T10-NewTier__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "New Tier"
+    ]
+   },
+   {
+    "nn": "11",
+    "title": "2.11 Result: The new tier's page opens, no dialog, with the cursor in the name and Cancel / Create Tier",
+    "file": "T10-NewTier.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "2.12 Click Create Tier with no name",
+    "file": "T11-NewTierBlank.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Create Tier"
+    ]
+   },
+   {
+    "nn": "13",
+    "title": "2.13 Type a name another tier uses",
+    "file": "T12-NewTierTaken.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Create Tier"
+    ]
+   },
+   {
+    "nn": "14",
+    "title": "2.14 Type an archived tier's name",
+    "file": "T13-NewTierArchivedName.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Create Tier"
+    ]
+   },
+   {
+    "nn": "15",
+    "title": "2.15 Type a name the reports use",
+    "file": "T14-NewTierReserved.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Create Tier"
+    ]
+   },
+   {
+    "nn": "16",
+    "title": "2.16 Type \"Fleet Plus\" and click Create Tier",
+    "file": "T15-TierCreated__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Create Tier"
+    ]
+   },
+   {
+    "nn": "17",
+    "title": "2.17 Result: The tier is created and its page stays open",
+    "file": "T15-TierCreated.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "2 · Story 2: Tiers",
+  "row": 3,
+  "name": "Archive, reactivate or delete a tier  (2.18–2.30)",
+  "boards": 13,
+  "chain": [
+   {
+    "nn": "18",
+    "title": "2.18 Archive a tier that has customers",
+    "file": "T20-ArchiveBlocked__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Archive"
+    ]
+   },
+   {
+    "nn": "19",
+    "title": "2.19 Click \"Remove Customers\" in the blocked dialog",
+    "file": "G2-RemoveLink__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Remove Customers"
+    ]
+   },
+   {
+    "nn": "20",
+    "title": "2.20 Result: Manage Customers opens on the Remove tab, so the customers can be taken off and the tier archived",
+    "file": "G2-RemoveLink.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "21",
+    "title": "2.21 Archive a tier with no customers",
+    "file": "T21-ArchiveConfirm__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Archive"
+    ]
+   },
+   {
+    "nn": "22",
+    "title": "2.22 Result: The dialog lists, one per line, every tier that follows it through Same as previous tier",
+    "file": "T21-ArchiveConfirm.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "23",
+    "title": "2.23 Click Archive",
+    "file": "T22-Archived__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Archive"
+    ]
+   },
+   {
+    "nn": "24",
+    "title": "2.24 Result: Tier 5 moves to the archived rows; the tiers after it move up one number",
+    "file": "T22-Archived.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "25",
+    "title": "2.25 An archived tier's menu",
+    "file": "T23-ArchivedMenu.dc.html",
+    "kind": "state",
+    "highlighted": [
+     "More actions"
+    ]
+   },
+   {
+    "nn": "26",
+    "title": "2.26 Click Reactivate",
+    "file": "T24-Reactivated__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Reactivate"
+    ]
+   },
+   {
+    "nn": "27",
+    "title": "2.27 Result: No confirmation",
+    "file": "T24-Reactivated.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "28",
+    "title": "2.28 Delete a tier that priced nothing",
+    "file": "T25-DeleteConfirm__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Delete"
+    ]
+   },
+   {
+    "nn": "29",
+    "title": "2.29 Click Delete",
+    "file": "T26-Deleted__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Delete"
+    ]
+   },
+   {
+    "nn": "30",
+    "title": "2.30 Result: The tier and its column in every matrix are gone",
+    "file": "T26-Deleted.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "2 · Story 2: Tiers",
+  "row": 4,
+  "name": "A tier's page  (2.31–2.46)",
+  "boards": 16,
+  "chain": [
+   {
+    "nn": "31",
+    "title": "2.31 Click a tier (Tier 2)",
+    "file": "TP01-TierPage__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "2 Tier 2 4 4/5 Active"
+    ]
+   },
+   {
+    "nn": "32",
+    "title": "2.32 Result: The tier's page opens on Pricing: every matrix and how it prices this tier, in the grid's words",
+    "file": "TP01-TierPage.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "33",
+    "title": "2.33 Point at the name",
+    "file": "TP02-PencilHover.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "2 Tier 2"
+    ]
+   },
+   {
+    "nn": "34",
+    "title": "2.34 Click the pencil",
+    "file": "TP03-Renaming__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Rename"
+    ]
+   },
+   {
+    "nn": "35",
+    "title": "2.35 Result: The name is edited in place",
+    "file": "TP03-Renaming.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "36",
+    "title": "2.36 Type a taken name and press Enter",
+    "file": "TP04-RenameTaken.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "37",
+    "title": "2.37 Type \"Fleet\" and press Enter",
+    "file": "TP05-Renamed.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "38",
+    "title": "2.38 Click the page's three-dot menu",
+    "file": "TP06-TierMenu.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "More actions"
+    ]
+   },
+   {
+    "nn": "39",
+    "title": "2.39 Click Audit Log",
+    "file": "TP07-AuditTier__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Audit Log"
+    ]
+   },
+   {
+    "nn": "40",
+    "title": "2.40 Result: \"Audit Log: Tier 2\": Event, User, Details (old → new), Date, Time",
+    "file": "TP07-AuditTier.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "41",
+    "title": "2.41 Default's page",
+    "file": "TP08-DefaultTier__pre.dc.html",
+    "kind": "state",
+    "highlighted": [
+     "1 Default 14 All Active"
+    ]
+   },
+   {
+    "nn": "42",
+    "title": "2.42 Result: Default is priced by each matrix's Default column, so its page has no checkboxes and no Set Rule",
+    "file": "TP08-DefaultTier.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "43",
+    "title": "2.43 An archived tier's page",
+    "file": "TP09-ArchivedTier__pre.dc.html",
+    "kind": "state",
+    "highlighted": [
+     "— Fleet Old 0 3/5 Archived"
+    ]
+   },
+   {
+    "nn": "44",
+    "title": "2.44 Result: Archived shows as plain text",
+    "file": "TP09-ArchivedTier.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "45",
+    "title": "2.45 Click a matrix on the tier's page",
+    "file": "G2-OpenMatrixFromTier__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Stop 40 Brakes 25% margin Same as work orders"
+    ]
+   },
+   {
+    "nn": "46",
+    "title": "2.46 Result: The matrix opens in edit with Tier 2's column in view; the breadcrumb leads back to the tier",
+    "file": "G2-OpenMatrixFromTier.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "2 · Story 2: Tiers",
+  "row": 5,
+  "name": "Set one rule for a tier  (2.47–2.60)",
+  "boards": 14,
+  "chain": [
+   {
+    "nn": "47",
+    "title": "2.47 Check a matrix",
+    "file": "SR01-CheckOne.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Select Stop 40"
+    ]
+   },
+   {
+    "nn": "48",
+    "title": "2.48 Click select-all",
+    "file": "SR02-CheckAll.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "49",
+    "title": "2.49 Uncheck two",
+    "file": "SR03-Partial.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Select Winter Promo"
+    ]
+   },
+   {
+    "nn": "50",
+    "title": "2.50 Type 35",
+    "file": "SR04-RuleTyped.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Value"
+    ]
+   },
+   {
+    "nn": "51",
+    "title": "2.51 Click Set Rule with no value",
+    "file": "SR05-BadValue.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Set Rule"
+    ]
+   },
+   {
+    "nn": "52",
+    "title": "2.52 Pick Margin %, type 120, click Set Rule",
+    "file": "G2-SetRuleMargin.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "53",
+    "title": "2.53 Click Set Rule (every matrix checked)",
+    "file": "SR06-ConfirmAll.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Set Rule"
+    ]
+   },
+   {
+    "nn": "54",
+    "title": "2.54 Click Set Rule (some checked)",
+    "file": "SR07-ConfirmSome.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Set Rule"
+    ]
+   },
+   {
+    "nn": "55",
+    "title": "2.55 Click Set Rule in the dialog",
+    "file": "SR08-Done__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Set Rule"
+    ]
+   },
+   {
+    "nn": "56",
+    "title": "2.56 Result: The checks clear",
+    "file": "SR08-Done.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "57",
+    "title": "2.57 Click Undo",
+    "file": "SR09-Undone__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Undo"
+    ]
+   },
+   {
+    "nn": "58",
+    "title": "2.58 Result: Exactly what the tier had comes back",
+    "file": "SR09-Undone.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "59",
+    "title": "2.59 Set a rule it already has",
+    "file": "SR10-NothingToChange__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Set Rule"
+    ]
+   },
+   {
+    "nn": "60",
+    "title": "2.60 Result: Nothing is asked; a toast says so",
+    "file": "SR10-NothingToChange.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "3 · Story 3: Matrices and rules",
+  "row": 1,
+  "name": "A matrix  (3.1–3.10)",
+  "boards": 10,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "3.1 Click a matrix (Stop 40)",
+    "file": "MP01-Matrix__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Stop 40 Active Brakes 2 rules · margin Same as work orders 1, 2, 3, 6"
+    ]
+   },
+   {
+    "nn": "02",
+    "title": "3.2 Result: The matrix page: Categories, Work Order / Part Sale tabs, the tier grid (Default and every active tier) and the Price Part Simulator",
+    "file": "MP01-Matrix.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "3.3 Point at the name",
+    "file": "MP07-PencilHover.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Stop 40"
+    ]
+   },
+   {
+    "nn": "04",
+    "title": "3.4 Click the pencil",
+    "file": "MP08-Renaming__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "3.5 Result: Enter or clicking away saves at once; Esc cancels",
+    "file": "MP08-Renaming.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "3.6 Click the page's three-dot menu",
+    "file": "MP09-PageMenu.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "3.7 Click Audit Log",
+    "file": "MP10-AuditMatrix__pre.dc.html",
+    "kind": "click",
+    "highlighted": [
+     "Audit Log"
+    ]
+   },
+   {
+    "nn": "08",
+    "title": "3.8 Result: Newest first: each save, then every rule it changed",
+    "file": "MP10-AuditMatrix.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "3.9 An Inactive matrix",
+    "file": "MP11-Inactive__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "3.10 Result: No badge on the page; the reason shows as plain text",
+    "file": "MP11-Inactive.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "3 · Story 3: Matrices and rules",
+  "row": 2,
+  "name": "Save a matrix  (3.11–3.16)",
+  "boards": 6,
+  "chain": [
+   {
+    "nn": "11",
+    "title": "3.11 Save a matrix that prices one category",
+    "file": "SV01-Saved__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "3.12 Result: Saved without asking; a toast confirms",
+    "file": "SV01-Saved.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "13",
+    "title": "3.13 Save a matrix that prices several categories",
+    "file": "SV02-ChangeAll.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "14",
+    "title": "3.14 Save the General Matrix",
+    "file": "SV03-General.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "15",
+    "title": "3.15 Type 120 in a % Off column and click Save",
+    "file": "G3-PctOffError.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "16",
+    "title": "3.16 Change a value, then click the Part Sale Matrix tab",
+    "file": "G3-TabSwitch.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "3 · Story 3: Matrices and rules",
+  "row": 3,
+  "name": "Part Sale Matrix  (3.17–3.20)",
+  "boards": 4,
+  "chain": [
+   {
+    "nn": "17",
+    "title": "3.17 Click the Part Sale Matrix tab (off)",
+    "file": "PS01-PsOff.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "18",
+    "title": "3.18 Turn on separate Part Sale pricing",
+    "file": "PS02-PsOn.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "19",
+    "title": "3.19 A matrix with its own Part Sale prices",
+    "file": "PS03-PsGrid.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "20",
+    "title": "3.20 Turn it off",
+    "file": "PS04-TurnOff.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "3 · Story 3: Matrices and rules",
+  "row": 4,
+  "name": "New, duplicate or delete a matrix  (3.21–3.29)",
+  "boards": 9,
+  "chain": [
+   {
+    "nn": "21",
+    "title": "3.21 Click New Matrix",
+    "file": "NM01-New__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "22",
+    "title": "3.22 Result: Name, categories and the grid ready to fill; Cancel and Create Matrix in the page head, as on New Tier and New Category",
+    "file": "NM01-New.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "23",
+    "title": "3.23 Open Categories",
+    "file": "NM02-Cats.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "24",
+    "title": "3.24 Click Create Matrix with no name",
+    "file": "NM03-NoName.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "25",
+    "title": "3.25 Type a taken name and click Create Matrix",
+    "file": "G3-NameTaken.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "26",
+    "title": "3.26 Duplicate a matrix",
+    "file": "NM04-Duplicate__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "27",
+    "title": "3.27 Result: A copy of its rules, ready to name",
+    "file": "NM04-Duplicate.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "28",
+    "title": "3.28 Delete a matrix",
+    "file": "NM05-Delete__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "29",
+    "title": "3.29 Result: \"Delete Stop 40?\" names the matrix",
+    "file": "NM05-Delete.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "4 · Story 4: The tier grid: every tier of a matrix, edited in place",
+  "row": 1,
+  "name": "The grid  (4.1–4.4)",
+  "boards": 4,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "4.1 Hover the Cost Range info icon",
+    "file": "MP02-RangeInfo.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "4.2 Hover a \"Uses previous tier\" cell",
+    "file": "MP03-UsesPrevious.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "4.3 A column that mixes rule types",
+    "file": "MP12-Mixed__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "4.4 Result: Tread Plus Default: + $45 up to $300, then 15% margin",
+    "file": "MP12-Mixed.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "4 · Story 4: The tier grid: every tier of a matrix, edited in place",
+  "row": 2,
+  "name": "Edit the grid  (4.5–4.23)",
+  "boards": 19,
+  "chain": [
+   {
+    "nn": "05",
+    "title": "4.5 Click Edit",
+    "file": "ED01-Edit__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "4.6 Result: Every cell is editable",
+    "file": "ED01-Edit.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "4.7 Type in a range",
+    "file": "ED02-TypeTop.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "4.8 Change range 2 to Markup % and type 45",
+    "file": "ED03-FollowLast.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "4.9 A column's rule picker",
+    "file": "ED04-ColumnPicker.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "4.10 Default's rule picker",
+    "file": "G4-DefaultPicker.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "11",
+    "title": "4.11 Pick % Off for Tier 5",
+    "file": "ED05-PctOff.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "4.12 Pick \"Previous tier\" for Tier 2",
+    "file": "G4-PickPrev.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "13",
+    "title": "4.13 A From cost cell's symbol",
+    "file": "ED06-CellPicker.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "14",
+    "title": "4.14 Ranges with different types",
+    "file": "ED07-MixedEdit__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "15",
+    "title": "4.15 Result: The column header reads \"Mixed rules\"; cells spell out % markup / % margin",
+    "file": "ED07-MixedEdit.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "16",
+    "title": "4.16 Same as previous tier, in edit",
+    "file": "ED08-SamePrev__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "17",
+    "title": "4.17 Result: The cells show the previous tier's values, muted, and can be typed over to give the tier its own copy",
+    "file": "ED08-SamePrev.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "18",
+    "title": "4.18 Type a bad value and click Save",
+    "file": "ED09-BadValue.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "19",
+    "title": "4.19 Change a range end",
+    "file": "ED10-RangeEnd.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "20",
+    "title": "4.20 Click Add Range",
+    "file": "ED11-AddRange.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "21",
+    "title": "4.21 Click a range's delete",
+    "file": "ED12-RemoveRange.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "22",
+    "title": "4.22 After a few edits",
+    "file": "ED13-Changed.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "23",
+    "title": "4.23 Click Cancel with changes",
+    "file": "ED14-Discard.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": [
+   "23 4.23 Click Cancel with changes (last board of the row is a click with no result board after it)"
+  ]
+ },
+ {
+  "page": "4 · Story 4: The tier grid: every tier of a matrix, edited in place",
+  "row": 3,
+  "name": "Change Default's rules; the archived view  (4.24–4.27)",
+  "boards": 4,
+  "chain": [
+   {
+    "nn": "24",
+    "title": "4.24 Change Default's rules",
+    "file": "SV04-DefaultFollowers.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "25",
+    "title": "4.25 Edit from an archived tier",
+    "file": "ED15-Archived__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "26",
+    "title": "4.26 Result: The archived view: Default plus archived tiers, with a notice; only the archived columns can change",
+    "file": "ED15-Archived.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "27",
+    "title": "4.27 Hover Default's column in the archived view",
+    "file": "G4-ArchivedDefaultTip.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "5 · Story 5: Price Part Simulator",
+  "row": 1,
+  "name": "Price Part Simulator  (5.1–5.4)",
+  "boards": 4,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "5.1 Type a part cost in the Price Part Simulator",
+    "file": "MP05-Simulator.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "5.2 A cost a tier sells below",
+    "file": "MP06-SimBelow.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "5.3 Type 0 as the part cost",
+    "file": "G5-SimZero.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "5.4 Type a cost while editing the grid",
+    "file": "G5-SimEditing.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "6 · Story 6: Every matrix in one list",
+  "row": 1,
+  "name": "Every matrix in one list  (6.1–6.14)",
+  "boards": 14,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "6.1 Today: the matrices list",
+    "file": "X10-TodayMatrixList.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "6.2 Click the Matrices tab",
+    "file": "MX01-Matrices.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "6.3 Hover the Tiers info icon",
+    "file": "MX02-TiersHover.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "6.4 Hover the tier numbers in the Tiers column",
+    "file": "G6-TiersNumbers.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "6.5 Click the Status filter",
+    "file": "MX04-StatusFilter.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "6.6 Pick Inactive",
+    "file": "MX05-Inactive__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "6.7 Result: The chip turns blue with the selection",
+    "file": "MX05-Inactive.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "6.8 Hover an Inactive status",
+    "file": "G6-InactiveTip.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "6.9 Search \"tread\"",
+    "file": "MX06-Search.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "6.10 A search with no match",
+    "file": "MX07-NoMatch.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "11",
+    "title": "6.11 Click a matrix's three-dot menu",
+    "file": "MX08-RowMenu.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "6.12 The General Matrix's menu",
+    "file": "MX09-GeneralMenu.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "13",
+    "title": "6.13 Audit Log beside New Matrix",
+    "file": "MX10-AuditList__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "14",
+    "title": "6.14 Result: \"Audit Log: Matrices\": every matrix's changes, deleted ones included",
+    "file": "MX10-AuditList.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "7 · Story 7: Categories: every category's pricing at a glance",
+  "row": 1,
+  "name": "Categories at a glance  (7.1–7.15)",
+  "boards": 15,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "7.1 Today: the Categories list",
+    "file": "CT01-TodayCategories.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "7.2 Today: Edit Category",
+    "file": "CE01-TodayEditCategory.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "7.3 Settings › Categories",
+    "file": "CA01-Categories.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "7.4 Hover a \"Uses previous tier\" cell",
+    "file": "G7-UsesPrevTip.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "7.5 Search \"tire\"",
+    "file": "CA02-Search.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "7.6 A search with no match",
+    "file": "G7-NoMatch.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "7.7 Click a category (Brakes)",
+    "file": "CA03-Category__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "7.8 Result: The category page: name, Tax Exempt, QuickBooks mapping, its matrix and that matrix's grid (read only), Edit",
+    "file": "CA03-Category.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "7.9 A category whose matrix prices others",
+    "file": "CA04-Shared.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "7.10 Hover the grayed Edit",
+    "file": "CA05-SharedTip.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "11",
+    "title": "7.11 Click \"Go to the Fluids 30 matrix\"",
+    "file": "CA06-GoMatrix.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "7.12 Click New Matrix on a category's page",
+    "file": "G7-NewMatrixFromCat__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "13",
+    "title": "7.13 Result: The new matrix opens with this category already picked; the breadcrumb leads back to the category",
+    "file": "G7-NewMatrixFromCat.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "14",
+    "title": "7.14 Audit Log beside New Category",
+    "file": "CA11-Audit__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "15",
+    "title": "7.15 Result: \"Audit Log: Categories\"",
+    "file": "CA11-Audit.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "8 · Story 8: Categories over time",
+  "row": 1,
+  "name": "Categories over time  (8.1–8.12)",
+  "boards": 12,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "8.1 Pick another matrix for the category",
+    "file": "CA07-PickMatrix.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "8.2 Uncategorized",
+    "file": "CA08-Uncat__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "8.3 Result: A system category: it can't be renamed, moved or deleted, and always uses the General Matrix",
+    "file": "CA08-Uncat.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "8.4 Rename Brakes to a taken name",
+    "file": "G8-RenameTaken.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "8.5 Click New Category",
+    "file": "CA09-New__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "8.6 Result: Name (cursor in it), matrix, Cancel / Create Category",
+    "file": "CA09-New.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "8.7 Click Create Category with no name",
+    "file": "G8-CreateBlank.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "8.8 Type \"Wheel Seals\" and click Create Category",
+    "file": "G8-Created__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "8.9 Result: Created on the General Matrix; the toast says so",
+    "file": "G8-Created.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "8.10 Click Delete in the three-dot menu",
+    "file": "CA10-Delete__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "11",
+    "title": "8.11 Click Delete in the delete dialog",
+    "file": "G8-Deleted__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "8.12 Result: The category is gone; its parts and past lines are in Uncategorized",
+    "file": "G8-Deleted.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "9 · Story 9: Putting customers on tiers",
+  "row": 1,
+  "name": "A tier's customers and Manage Customers  (9.1–9.24)",
+  "boards": 24,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "9.1 Click the tier's Customers tab",
+    "file": "MC01-CustomersTab.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "9.2 Search a tier's Customers tab with no match",
+    "file": "G9-CustNoMatch.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "9.3 Open the Customers tab's channel filter",
+    "file": "G9-CustFilter.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "9.4 Click Manage Customers",
+    "file": "MC02-ManageAdd.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "9.5 Hover the Add Customers tab",
+    "file": "MC02b-TabTip.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "9.6 Check two customers",
+    "file": "MC03-TickTwo.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "9.7 Uncheck Part Sales on one row",
+    "file": "MC04-OneSide.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "9.8 Uncheck both Work Orders and Part Sales on a row",
+    "file": "G9-NoChannel.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "9.9 Click Select All",
+    "file": "MC05-SelectAll.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "9.10 Uncheck Part Sales in the bar, then Select All",
+    "file": "G9-SelectAllSkips__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "11",
+    "title": "9.11 Result: Customers already on Tier 2 for the picked channel are skipped, and the footer says how many",
+    "file": "G9-SelectAllSkips.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "9.12 Search customers",
+    "file": "MC06-Search.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "13",
+    "title": "9.13 A search with no match",
+    "file": "MC07-SearchNone.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "14",
+    "title": "9.14 Click Add to Tier 2",
+    "file": "MC08-Added__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "15",
+    "title": "9.15 Result: New work orders and Part Sales use Tier 2",
+    "file": "MC08-Added.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "16",
+    "title": "9.16 Click the Remove Customers tab",
+    "file": "MC09-RemoveTab.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "17",
+    "title": "9.17 Check one and click Remove",
+    "file": "MC10-RemoveConfirm__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "18",
+    "title": "9.18 Result: \"Remove 1 Customer?\" They go back to Default for the channels picked",
+    "file": "MC10-RemoveConfirm.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "19",
+    "title": "9.19 Click Remove",
+    "file": "MC11-Removed__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "20",
+    "title": "9.20 Result: They are back on Default",
+    "file": "MC11-Removed.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "21",
+    "title": "9.21 An archived tier's Customers tab",
+    "file": "MC12-ArchivedNoManage.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "22",
+    "title": "9.22 Click Reactivate Tier",
+    "file": "MC13-ArchivedReactivate__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "23",
+    "title": "9.23 Result: No confirmation",
+    "file": "MC13-ArchivedReactivate.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "24",
+    "title": "9.24 Remove tab of a tier with no customers",
+    "file": "G9-RemoveEmpty.dc.html",
+    "kind": "state",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "9 · Story 9: Putting customers on tiers",
+  "row": 2,
+  "name": "One customer's tiers  (9.25–9.37)",
+  "boards": 13,
+  "chain": [
+   {
+    "nn": "25",
+    "title": "9.25 Today: the Customers list",
+    "file": "X20-TodayCustomers.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "26",
+    "title": "9.26 Today: a customer's page",
+    "file": "X21-TodayCustomer.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "27",
+    "title": "9.27 Today: Edit Customer",
+    "file": "X22-TodayEditCustomer.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "28",
+    "title": "9.28 Customers",
+    "file": "CU01-Customers.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "29",
+    "title": "9.29 Open a customer",
+    "file": "CU02-CustomerCard__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "30",
+    "title": "9.30 Result: The customer card's Pricing group: labor rate, shop supplies, tax, Work Order tier, Part Sales tier",
+    "file": "CU02-CustomerCard.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "31",
+    "title": "9.31 Click Edit",
+    "file": "CU03-EditCustomer.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "32",
+    "title": "9.32 Click Work Order Tier and type 3",
+    "file": "CU04-TierPicked.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "33",
+    "title": "9.33 Pick 3 · Tier 3",
+    "file": "CU04b-TierChosen__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "34",
+    "title": "9.34 Click Save",
+    "file": "CU05-Saved__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "35",
+    "title": "9.35 Result: The card shows the new tier",
+    "file": "CU05-Saved.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "36",
+    "title": "9.36 Edit the Counter Sale customer",
+    "file": "G9-CounterSale.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "37",
+    "title": "9.37 Edit Customer with only Default",
+    "file": "G9-ReleaseDayEdit.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "9 · Story 9: Putting customers on tiers",
+  "row": 3,
+  "name": "On a phone  (9.38–9.41)",
+  "boards": 4,
+  "chain": [
+   {
+    "nn": "38",
+    "title": "9.38 Today: Edit Customer on a phone",
+    "file": "PH00-TodayEditCustomer.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "39",
+    "title": "9.39 On a phone: Edit Customer",
+    "file": "PH01-EditCustomer.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "40",
+    "title": "9.40 On a phone: tap Work Order Tier",
+    "file": "PH02-TierSheet.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "41",
+    "title": "9.41 On a phone: pick 3 · Tier 3",
+    "file": "PH03-TierPicked.dc.html",
+    "kind": "state",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "10 · Story 10: How a part is priced",
+  "row": 1,
+  "name": "Pricing parts on a work order  (10.1–10.11)",
+  "boards": 11,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "10.1 Today: a work order",
+    "file": "X30-TodayWorkOrder.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "10.2 Today: Add Part, quick-add row",
+    "file": "X33-TodayQuickAdd.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "10.3 Today: cost fills the sell price",
+    "file": "X34-TodayQuickAddFilled.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "10.4 Open a work order (S1-2671)",
+    "file": "WO01-Lines__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "10.5 Result: Parts are priced by the work order's tier",
+    "file": "WO01-Lines.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "10.6 Quick Add a part with a cost",
+    "file": "WO05-QuickAdd.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "10.7 Save it",
+    "file": "WO06-Added__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "10.8 Result: Priced by the work order's tier",
+    "file": "WO06-Added.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "10.9 Quick Add with a sell price of -5",
+    "file": "G10-NegativeSell.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "10.10 A part with no cost",
+    "file": "WO09-NoCost__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "11",
+    "title": "10.11 Result: No rule prices it: $0.00, logged under the work order's tier",
+    "file": "WO09-NoCost.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "10 · Story 10: How a part is priced",
+  "row": 2,
+  "name": "Fixed Rules  (10.12)",
+  "boards": 1,
+  "chain": [
+   {
+    "nn": "12",
+    "title": "10.12 Click the Fixed Rules tab",
+    "file": "FR01-Fixed.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": [
+   "12 10.12 Click the Fixed Rules tab (last board of the row is a click with no result board after it)"
+  ]
+ },
+ {
+  "page": "11 · Story 11: When a part is priced again",
+  "row": 1,
+  "name": "Editing a priced part  (11.1–11.2)",
+  "boards": 2,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "11.1 Click a part",
+    "file": "WO07-EditPart.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "11.2 Type a sell price",
+    "file": "WO08-TypePrice.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "11 · Story 11: When a part is priced again",
+  "row": 2,
+  "name": "Split and receive  (11.3–11.7)",
+  "boards": 5,
+  "chain": [
+   {
+    "nn": "03",
+    "title": "11.3 Split Work Order (works as today)",
+    "file": "SP01-Split.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "11.4 After the split",
+    "file": "SP02-Split__pre.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "11.5 Result: The new work order, priced by the customer's current tier",
+    "file": "SP02-Split.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "11.6 Receive a part",
+    "file": "RC01-Receive.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "11.7 Receive a tier-priced part at a new cost, then hover its price",
+    "file": "G11-Received.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "12 · Story 12: Seeing what priced a part",
+  "row": 1,
+  "name": "Price details  (12.1–12.9)",
+  "boards": 9,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "12.1 Hover a price",
+    "file": "WO02-Details.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "12.2 Hover a part priced through Same as previous tier",
+    "file": "G12-SamePrev.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "12.3 Hover a typed price",
+    "file": "WO03-Manual.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "12.4 Click the Parts tab",
+    "file": "WO04-PartsTab.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "12.5 A line priced before tiers",
+    "file": "WO10-Before.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "12.6 The customer has moved tier since",
+    "file": "WO11-Moved.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "12.7 A canned line part on a Default work order",
+    "file": "WO12-Canned.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "12.8 A part on a fixed line total",
+    "file": "WO13-FixedTotal.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "12.9 Hover a line priced for the previous customer",
+    "file": "G12-PrevCustomer.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "13 · Story 13: Part Sales",
+  "row": 1,
+  "name": "Part Sales  (13.1–13.4)",
+  "boards": 4,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "13.1 Today: a Part Sale",
+    "file": "X41-TodayPartSale.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "13.2 Open a Part Sale (P1-1131)",
+    "file": "PSL01-PartSale__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "13.3 Result: Priced by the Part Sale's tier, from the Part Sale Matrix side when it is on",
+    "file": "PSL01-PartSale.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "13.4 Hover a price",
+    "file": "PSL02-Details.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "14 · Story 14: Changing the customer on a work order",
+  "row": 1,
+  "name": "Change Customer  (14.1–14.8)",
+  "boards": 8,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "14.1 Today: Change Customer",
+    "file": "X40-TodayChangeCustomer.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "14.2 Click the work order's three-dot menu",
+    "file": "CC01-Menu.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "14.3 Change Customer",
+    "file": "CC02-Change.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "14.4 Pick a customer on another tier",
+    "file": "CC03-Note.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "14.5 Change Customer on a Part Sale",
+    "file": "G13-ChangePS.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "14.6 Pick a customer on the same tier",
+    "file": "G14-SameTier.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "14.7 Click Update Customer",
+    "file": "CC04-Changed__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "14.8 Result: A notice counts the lines priced for the previous customer",
+    "file": "CC04-Changed.dc.html",
+    "kind": "result",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "15 · Story 15: The below-cost warning in the matrix",
+  "row": 1,
+  "name": "The below-cost warning  (15.1–15.2)",
+  "boards": 2,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "15.1 Hover the below-cost warning",
+    "file": "MP04-BelowCost.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "15.2 Type 95 in Tier 5 while editing",
+    "file": "G15-BelowInEdit.dc.html",
+    "kind": "click",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ },
+ {
+  "page": "20 · Sales by Tier and Sales by Category",
+  "row": 1,
+  "name": "Sales by Tier and Sales by Category  (20.1–20.23)",
+  "boards": 23,
+  "chain": [
+   {
+    "nn": "01",
+    "title": "20.1 Today: Sales By Customer, unchanged",
+    "file": "X43-TodaySalesByCustomer.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "02",
+    "title": "20.2 Reports › Sales by Tier",
+    "file": "RP01-ByTier.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "03",
+    "title": "20.3 Open a tier's row",
+    "file": "RP02-RowOpen.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "04",
+    "title": "20.4 Open a customer's row",
+    "file": "GR-Invoices.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "05",
+    "title": "20.5 Open Priced By",
+    "file": "RP03-Filter.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "06",
+    "title": "20.6 Open the Customer filter",
+    "file": "GR-CustFilter.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "07",
+    "title": "20.7 Open the Category filter",
+    "file": "GR-CatFilter.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "08",
+    "title": "20.8 Open the Location filter",
+    "file": "GR-LocFilter.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "09",
+    "title": "20.9 Sales Type: Work Orders only",
+    "file": "RP04-Type.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "10",
+    "title": "20.10 Pick a custom range over one year",
+    "file": "GR-DateTooLong.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "11",
+    "title": "20.11 Pick a range with no sales",
+    "file": "GR-NoDates.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "12",
+    "title": "20.12 Sort by Parts Margin",
+    "file": "RP05-Sorted__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "13",
+    "title": "20.13 Result: First click on a number column puts the biggest on top (Parts Credits: the largest credit first); the second reverses; the third returns to the first-load order",
+    "file": "RP05-Sorted.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "14",
+    "title": "20.14 Click the Columns icon",
+    "file": "GR-Columns.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "15",
+    "title": "20.15 Hide Parts Margin",
+    "file": "GR-ColumnHidden.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "16",
+    "title": "20.16 Sales by Category",
+    "file": "RP06-ByCategory.dc.html",
+    "kind": "state",
+    "highlighted": []
+   },
+   {
+    "nn": "17",
+    "title": "20.17 Open a category's row",
+    "file": "GR-CatRows.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "18",
+    "title": "20.18 Click Download",
+    "file": "RP07-Export.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "19",
+    "title": "20.19 Click Download Summary (CSV)",
+    "file": "GR-Csv__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "20",
+    "title": "20.20 Result: Prototype stand-in (see the info icon): the real menu item downloads the file",
+    "file": "GR-Csv.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "21",
+    "title": "20.21 Download with no rows",
+    "file": "GR-EmptyExport__pre.dc.html",
+    "kind": "click",
+    "highlighted": []
+   },
+   {
+    "nn": "22",
+    "title": "20.22 Result: \"Empty export.\"",
+    "file": "GR-EmptyExport.dc.html",
+    "kind": "result",
+    "highlighted": []
+   },
+   {
+    "nn": "23",
+    "title": "20.23 Filters that match nothing",
+    "file": "RP08-Empty.dc.html",
+    "kind": "state",
+    "highlighted": []
+   }
+  ],
+  "unfinished": []
+ }
+]
