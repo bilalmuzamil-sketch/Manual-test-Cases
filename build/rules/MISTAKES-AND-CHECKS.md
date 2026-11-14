@@ -7,6 +7,8 @@ Newest first. Each entry: what happened · what it cost · why it happened · **
 
 ## 2026-11-12 — A/R and A/P staging run (SV-11315)
 
+**M12. A script guessed a field name and skipped without saying so (14 Nov).** The local v13 update keyed cases on `key`; cases.json uses `id`, so the V1R-07/08 changes silently did not apply and the retired cases were not skipped. The checker caught it before commit and the file was restored from git and redone. *Check:* read one real record's field names before scripting against a file, and make every special case ASSERT it was applied (a count of 1), never silently fall through.
+
 **M11. A "not found" was my lookup, not the data.** Read 4Refuel's unpaid bills and payments at Lethbridge with the
 Heavy Duty vendor account id (hard-coded). The list is per location, so it read 0, and I reported "an unexplained empty
 list on staging" to the QA lead. *Cost:* a false alarm and a needless investigation. *Why:* reused an id read in another

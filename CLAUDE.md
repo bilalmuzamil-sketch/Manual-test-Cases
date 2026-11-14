@@ -150,6 +150,7 @@ These are stated here **in full** because a session that gets only this far must
 Every line below is a mistake that really happened. Apply each one that fits the task. **When a new mistake is found,
 in the same turn: fix it, add it to `build/rules/MISTAKES-AND-CHECKS.md`, add its line here, and tell the QA lead.**
 
+- **Field names:** read one real record's keys before scripting against a file; every special case asserts it was applied, never falls through silently. (M12)
 - **Scoped ids:** an id tied to a location / workplace / account / environment is read in the SAME scope as the call that uses it, never hard-coded. Two readings disagree ⇒ diff my two methods before blaming the system. (M11)
 - **Stops:** "stopped" only when `pgrep` finds nothing; restore files only after that. (M10)
 - **Re-runs:** ask "can this change move any pass/fail?" — if not, don't run; give the last-run date and ask (80). (M9)
