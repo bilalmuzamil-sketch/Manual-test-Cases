@@ -5,7 +5,7 @@ row; d: no design-library rule; e: testable; f: the PO owns it; g: the words dif
 Each holds a "design version" case in Design — how it looks."""
 QUESTIONS = {
  "Q20": "Matrices list, Part Sale Matrix column: the PRD says it shows \"On or Off\" (S6-R1); the design shows \"Same as work orders\" when there is no separate Part Sale side and the Part Sale rules in short (\"2 rules · cost + $, margin\") when there is one (6.2). Which?",
- "Q21": "Search with no match: the PRD's words are 'No matrices match the search \"…\".' (S6-R3) and 'No categories match the search \"…\".' (S7-R4); the design writes \"No matrices match \"zzz\"\" (6.10) and \"No category matches \"zzz\"\" (7.6), with no period. Which words?",
+ "Q21": "Search with no match: the PRD's words are 'No matrices match the search \"…\".' (S6-R3) and 'No categories match the search \"…\".' (S7-R4); the design writes \"No matrices match \"zzz\"\" (6.10) and \"No category matches \"zzz\"\" (7.6), with no period; on a tier's Customers tab the design writes \"No customer matches \"zzz\"\" with no period and a Clear All Filters button (9.2), while the PRD's sentence ends with a period (S9-N6). Which words?",
  "Q22": "Category page, other categories on the same matrix: the PRD puts a line above the grid, \"The <matrix> matrix also prices <n> other categories: <A> · <B>.\" (S7-R15); the design puts that sentence in an info-icon tooltip beside the matrix name, with no line (7.9). Line or tooltip?",
 }
 CANDIDATE = set(QUESTIONS)
@@ -13,5 +13,11 @@ QUESTIONS.update({
  "Q23": "New Category page buttons: the PRD says \"It has Save and Cancel\" (S8-R10) and tech plan 1 Phase 16 agrees; the design shows Cancel and \"Create Category\" (8.6, 8.8), like New Tier's \"Create Tier\". Save or Create Category?",
  "Q24": "Category messages: (a) the Delete question in the PRD includes \"Invoices already sent aren't sent again; one synced again later books these parts to Uncategorized's QuickBooks item.\" (S8-R8); design 8.11 leaves that sentence out. (b) The taken-name error in the PRD is \"A category called <name> already exists\" (S8-N3); design 8.4 adds \"Click away to keep Brakes.\" Which words?",
  "Q25": "Uncategorized's page: the PRD says it is read-only \"with no rename, Delete or matrix picker\" and can't be edited (S8-R4); design 8.3 shows a grayed Pricing Matrix box and a grayed Tax Exempt checkbox, and a QuickBooks Products And Services picker that looks editable. Should the matrix field show (grayed), and can Uncategorized's QuickBooks mapping and Tax Exempt be changed?",
+})
+CANDIDATE = set(QUESTIONS)
+QUESTIONS.update({
+ "Q26": "A tier's Customers tab channel filter: the PRD lists \"Work orders, Part Sales, Both\" (S9-R9) and tech plan 1 Phase 17 agrees; the design names it Sales Type with the rows \"Work Orders and Part Sales\" and \"Work Orders only\" (9.3). Which options, and does \"Work orders\" mean work orders only or every customer with work orders?",
+ "Q27": "Manage Customers: the design's own pictures show the Work Order Tier and Part Sales Tier columns moving left when the search narrows the list (about 11 px on 9.12, 83 px on 9.13 against 9.4). Is that intended, or should the columns stay put (checklist line 10)?",
+ "Q28": "Counter Sale: the PRD says Edit Customer shows a TOOLTIP on this customer's tier fields, \"Every walk-in sale uses this tier.\" (S9-R8); design 9.36 shows it as a light blue info box above the tier fields, always visible. Tooltip or box?",
 })
 CANDIDATE = set(QUESTIONS)

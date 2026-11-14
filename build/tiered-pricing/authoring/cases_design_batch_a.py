@@ -390,3 +390,224 @@ C("D-168", K, "Design: the delete question and taken-name error as the design wo
    R(QD("A category called tires already exists. Click away to keep Brakes.", "8.4", "S8-N3"),
      "The red error reads \"A category called\", the typed name, \"already exists. Click away to keep\" and category B's name, with a period.")],
   pics=["8.4", "8.10", "8.11"], held_on="Q24", flags=DV)
+
+# ---- page 9: customers on tiers --------------------------------------------------------------------------------------------
+CU = ("Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create & Edit' and "
+      "'View and Manage AP/AR Data'.")
+CTAB = "Click the Customers tab."
+MANAGE = "Click Manage Customers."
+
+
+def cu(lab, wo="Default", ps="Default", extra=""):
+    return customer(lab, f", on {wo} for work orders and {ps} for Part Sales{extra}")
+
+
+C("D-170", K, "Design: a tier's Customers tab",
+  [ADMIN_CUST, tier("A"), cu("A", "tier A", "tier A"), cu("B", "tier A"), W1440],
+  [TIERS, open_tier("A"), CTAB],
+  [look("9.1", "S9-R4", "The Tiers list shows tier A."), look("9.1", "S9-R4", "Tier A's page opens on Pricing."),
+   look("9.1", "S9-R4", "The tab reads \"Customers (2)\" and is selected; a label reads \"2 customers on\" and tier A's name.",
+        "At the right sit Search, a filter chip and a blue Manage Customers button.",
+        "The columns read Customer (with a sort arrow) and Sales Type; customer A's row reads \"Work Orders and Part Sales\" and customer B's \"Work Orders\", as in picture 9.1.")
+   + R(S("S9-R4", "A tier's Customers tab lists its customers with their channel(s)."), "Customers A and B are listed with their channels.")],
+  pics=["9.1"])
+
+C("D-171", K, "Design: a Customers tab no-match message offers Clear All Filters",
+  [ADMIN_CUST, tier("A"), W1440],
+  [TIERS, open_tier("A"), CTAB, "Type zzz in the search."],
+  [look("9.2", "S9-N6", "The Tiers list shows tier A."), look("9.2", "S9-N6", "Tier A's page opens."), look("9.2", "S9-N6", "The Customers tab shows."),
+   R(QD("No customer matches \"zzz\"", "9.2", "S9-N6"), "The tab reads \"No customer matches \"zzz\"\" with no period, and a Clear All Filters button, as in picture 9.2.")],
+  pics=["9.2"], held_on="Q21", flags=DV)
+
+C("D-172", K, "Design: the Customers tab's Sales Type filter rows",
+  [ADMIN_CUST, tier("A"), cu("A", "tier A", "tier A"), cu("B", "tier A"), W1440],
+  [TIERS, open_tier("A"), CTAB, "Open the Sales Type filter."],
+  [look("9.3", "S9-R9", "The Tiers list shows tier A."), look("9.3", "S9-R9", "Tier A's page opens."), look("9.3", "S9-R9", "The Customers tab shows."),
+   R(QD("Work Orders only", "9.3", "S9-R9"), "A panel opens with the rows \"Work Orders and Part Sales\" and \"Work Orders only\", each with a count, and \"Clear selection\", as in picture 9.3.")],
+  pics=["9.3"], held_on="Q26", flags=DV)
+
+C("D-173", K, "Design: the Manage Customers dialog and its tab tooltip",
+  [ADMIN_CUST, tier("A"), cu("A", extra=", so the Add tab has a row"), W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Point at the Add Customers tab title."],
+  [look("9.4", "S9-R4", "The Tiers list shows tier A."), look("9.4", "S9-R4", "Tier A's page opens."), look("9.4", "S9-R4", "The Customers tab shows Manage Customers."),
+   R(S("S19-R9", "\"Manage Customers on Fleet Platinum\""), "A dialog titled \"Manage Customers on\" and tier A's name opens over a dimmed page, with an X at the top right.")
+   + look("9.4", "S9-R4", "Tabs read Add Customers (selected) and Remove Customers with its count; a \"Search customers\" box sits under them.",
+          "The columns read a checkbox, Customer, Work Order Tier, Part Sales Tier and \"Use\" tier A's name \"for\".",
+          "The footer reads \"No customers picked yet.\" at the left with Cancel and a grayed Add Customers at the right, as in picture 9.4."),
+   R(QD("Check the customers to put on Tier 2. Each one gets Work Orders and Part Sales unless you uncheck one, in the bar for everyone or on the customer’s own row.", "9.5", "S9-R17"),
+     "A dark tooltip reads \"Check the customers to put on\" tier A's name \". Each one gets Work Orders and Part Sales unless you uncheck one, in the bar for everyone or on the customer's own row.\", as in picture 9.5.")],
+  pics=["9.4", "9.5"])
+
+C("D-174", K, "Design: the dark bar, row channels, footer and button",
+  [ADMIN_CUST, tier("A"), cu("A"), cu("B"), W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Tick customer A.", "Tick customer B.", "Untick Part Sales on customer B's row.", "Click Add 2 Customers."],
+  [look("9.6", "S9-R18", "The Tiers list shows tier A."), look("9.6", "S9-R18", "Tier A's page opens."), look("9.6", "S9-R18", "The Customers tab shows."), look("9.6", "S9-R18", "The dialog opens."),
+   look("9.6", "S9-R18", "A dark bar appears above the search with a count chip and \"selected\"."),
+   look("9.6", "S9-R18", "The bar reads 2 selected, Select All with the list's count, a checked Work Orders box, a checked Part Sales box and an X, in that order.",
+        "Ticked rows have a light blue background and show Work Orders and Part Sales checkboxes; the footer reads \"Adding 2 customers: 2 for both.\" and the blue button \"Add 2 Customers\", as in picture 9.6."),
+   R(S("S9-R19", "and mixed when only some do"), "The bar's Part Sales box shows a dash (mixed).")
+   + R(S("S9-R23", "The footer sums up the change (\"Adding 3 customers: 2 for both, 1 for Work Orders only.\")"), "The footer reads \"Adding 2 customers: 1 for both, 1 for Work Orders only.\"")
+   + look("9.7", "S9-R19", "The layout matches picture 9.7."),
+   R(QD("New work orders and Part Sales use Tier 2. Existing ones keep their prices and tier.", "9.15", "S9-R7"),
+     "The dialog closes; a white message reads \"2 customers added to\" tier A's name, with \"New work orders and Part Sales use\" tier A's name \". Existing ones keep their prices and tier.\", as in picture 9.15.")],
+  pics=["9.6", "9.7", "9.14", "9.15"])
+
+C("D-175", K, "Design: the dark bar pushes the list down without moving its columns",
+  [ADMIN_CUST, tier("A"), cu("A"), W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Take a screenshot of the dialog.", "Tick customer A.", "Take a second screenshot of the dialog."],
+  [look("9.4", "S9-R18", "The Tiers list shows tier A."), look("9.4", "S9-R18", "Tier A's page opens."), look("9.4", "S9-R18", "The Customers tab shows."), look("9.4", "S9-R18", "The dialog opens."),
+   look("9.4", "S9-R18", "The screenshot shows the column headings under the search."), look("9.6", "S9-R18", "The dark bar appears above the search."),
+   look("9.6", "S9-R18", "Compared with the first screenshot, the headings Customer, Work Order Tier, Part Sales Tier and \"Use\" tier A's name \"for\" keep the same left-right place; the list only moves down by the bar's height, as pictures 9.4 and 9.6 show.",
+        "Customer A's row is ticked.")],
+  pics=["9.4", "9.6"], flags=["movement"])
+
+C("D-176", K, "Design: a ticked row with no channel shows a red message",
+  [ADMIN_CUST, tier("A"), cu("A"), W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Tick customer A.", "Untick Work Orders on customer A's row.", "Untick Part Sales on customer A's row."],
+  [look("9.8", "S9-N1", "The Tiers list shows tier A."), look("9.8", "S9-N1", "Tier A's page opens."), look("9.8", "S9-N1", "The Customers tab shows."), look("9.8", "S9-N1", "The dialog opens."),
+   look("9.8", "S9-N1", "Customer A is ticked."), look("9.8", "S9-N1", "Customer A keeps Part Sales."),
+   R(S("S9-N1", "\"Pick Work Orders, Part Sales or both.\""), "Red text under the row's boxes reads \"Pick Work Orders, Part Sales or both.\"")
+   + look("9.8", "S9-N1", "The blue button is grayed, as in picture 9.8.")],
+  pics=["9.8"])
+
+C("D-177", K, "Design: Select All and the skipped line in the footer",
+  [ADMIN_CUST, tier("A"), "Have a new customer for this test, customer A, named for example Quokka One, on tier A for work orders and Default for Part Sales.",
+   "Have a new customer for this test, customer B, named for example Quokka Two, on Default for both channels.", W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Type quokka in the search.", "Untick Part Sales in the bar.", "Click Select All."],
+  [look("9.9", "S9-E5", "The Tiers list shows tier A."), look("9.9", "S9-E5", "Tier A's page opens."), look("9.9", "S9-E5", "The Customers tab shows."), look("9.9", "S9-E5", "The dialog opens."),
+   look("9.12", "S9-R10", "Customers A and B are listed."), look("9.10", "S9-E5", "The bar's Part Sales box is clear."),
+   R([S("S9-E5", "the footer says how many were skipped (\"12 skipped: already on Fleet Platinum for Work Orders.\")"), S("S9-R23", "1 for Work Orders only.")],
+     "Customer B is ticked and customer A is left unticked; the footer reads \"Adding 1 customer: 1 for Work Orders only. 1 skipped: already on\" tier A's name \"for Work Orders.\"")
+   + look("9.11", "S9-E5", "The bar shows the count and the channel boxes without Select All once every customer it can tick is ticked, as in picture 9.11.")],
+  pics=["9.9", "9.10", "9.11", "9.12"])
+
+C("D-178", K, "Design: searching in Manage Customers and its no-match state",
+  [ADMIN_CUST, tier("A"), "Have a new customer for this test, customer A, named for example Quokka One.", W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Type quokka in the search.", "Replace the search with zzz."],
+  [look("9.12", "S9-R10", "The Tiers list shows tier A."), look("9.12", "S9-R10", "Tier A's page opens."), look("9.12", "S9-R10", "The Customers tab shows."), look("9.12", "S9-R10", "The dialog opens."),
+   look("9.12", "S9-R10", "The search box is outlined with a clear (x) button; customer A is listed, as in picture 9.12."),
+   R(S("S9-N6", "'No customer matches \"…\".'"), "The list area shows a search icon and reads \"No customer matches \"zzz\".\" with the period, and a Clear Search button.")
+   + look("9.13", "S9-N6", "The footer still reads \"No customers picked yet.\" with a grayed Add Customers, as in picture 9.13.")],
+  pics=["9.12", "9.13"])
+
+C("D-179", K, "Design: Manage Customers columns move when the search narrows the list",
+  [ADMIN_CUST, tier("A"), "Have a new customer for this test, customer A, named for example Quokka One, so the search finds one row.", W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Take a screenshot of the dialog.", "Type quokka in the search.", "Replace the search with zzz."],
+  [look("9.4", "S9-R10", "The Tiers list shows tier A."), look("9.4", "S9-R10", "Tier A's page opens."), look("9.4", "S9-R10", "The Customers tab shows."), look("9.4", "S9-R10", "The dialog opens."),
+   look("9.4", "S9-R10", "The screenshot shows the column headings."),
+   look("9.12", "S9-R10", "Compared with the screenshot, the Work Order Tier and Part Sales Tier headings sit slightly further left, as pictures 9.4 and 9.12 show."),
+   look("9.13", "S9-R10", "With no match, the Work Order Tier heading sits clearly further left than in the screenshot, as picture 9.13 shows.")],
+  pics=["9.4", "9.12", "9.13"], held_on="Q27", flags=DV + ["movement"])
+
+C("D-180", K, "Design: the Remove tab, its question and the result",
+  [ADMIN_CUST, tier("A"), cu("A", "tier A", "tier A"), cu("B", "tier A"), W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Click the Remove Customers tab.", "Tick customer A.", "Click Remove 1 Customer.", "Click Remove in the question."],
+  [look("9.16", "S9-R4", "The Tiers list shows tier A."), look("9.16", "S9-R4", "Tier A's page opens."), look("9.16", "S9-R4", "The Customers tab shows."), look("9.16", "S9-R4", "The dialog opens."),
+   look("9.16", "S9-R4", "The Remove Customers tab is selected with its count; the last column reads \"Take Off\" tier A's name \"for\", and each row names its channels in gray, as in picture 9.16."),
+   look("9.17", "S9-R23", "The dark bar reads 1 selected; the footer reads \"Removing 1 customer: 1 for both.\" and the button is red, \"Remove 1 Customer\", as in picture 9.17."),
+   R(QD("They go back to Default for the channels you picked. Parts already on their work orders keep their prices.", "9.18", "S9-R22"),
+     "A question titled \"Remove 1 Customer?\" reads \"Removing 1 customer: 1 for both. They go back to Default for the channels you picked. Parts already on their work orders keep their prices.\"")
+   + look("9.18", "S9-R22", "Its buttons are Keep Customers and a red Remove, with an X at the top right, as in picture 9.18."),
+   R(QD("They’re back on Default for the channels you picked. Existing work orders and Part Sales keep their prices and tier.", "9.20", "S9-R22"),
+     "The tab lists customer B; a white message reads \"1 customer taken off\" tier A's name, with \"They're back on Default for the channels you picked. Existing work orders and Part Sales keep their prices and tier.\"")
+   + look("9.20", "S9-R22", "The Customers tab count drops by one, as in pictures 9.19 and 9.20.")],
+  pics=["9.16", "9.17", "9.18", "9.19", "9.20"])
+
+C("D-181", K, "Design: an archived tier's Customers tab and Reactivate Tier",
+  [ADMIN_CUST, tier("A", ", with no customers", True), W1440],
+  [TIERS, "Pick Archived in the Status filter.", open_tier("A"), CTAB, "Click Reactivate Tier."],
+  [look("9.21", "S2-R6", "The Tiers list shows."), look("9.21", "S2-R6", "Tier A is listed."), look("9.21", "S2-R6", "Tier A's page opens with a gray Archived label beside the name."),
+   R(QD("Reactivate it to add customers.", "9.21", "S2-R6"), "The tab shows a people icon, tier A's name with \"is archived\", \"Reactivate it to add customers.\" and a blue Reactivate Tier button, as in picture 9.21."),
+   R(S("S2-R26", "\"<tier> is reactivated. It's now the last tier, Tier <n>.\""), "A message reads tier A's name \"is reactivated. It's now the last tier, Tier\" and a number.")
+   + R(QD("Add customers to price their parts with this tier.", "9.23", "S2-R26"), "The tab now reads \"No customers on\" tier A's name \"yet\", \"Add customers to price their parts with this tier.\" and a blue Manage Customers button; the title shows the new number, as in picture 9.23.")],
+  pics=["9.21", "9.22", "9.23"])
+
+C("D-182", K, "Design: the Remove tab of a tier with no customers",
+  [ADMIN_CUST, tier("A", ", with no customers"), W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Click the Remove Customers tab."],
+  [look("9.24", "S9-N6", "The Tiers list shows tier A."), look("9.24", "S9-N6", "Tier A's page opens."), look("9.24", "S9-N6", "The Customers tab shows."), look("9.24", "S9-N6", "The dialog opens."),
+   R(S("S9-N6", "\"No customer is on Fleet Platinum yet.\""), "The tab reads \"Remove Customers (0)\"; the list shows a people icon and \"No customer is on\" tier A's name \"yet.\"")
+   + look("9.24", "S9-N6", "The red Remove Customers button is grayed, as in picture 9.24.")],
+  pics=["9.24"])
+
+C("D-183", K, "Design: the customer card's Pricing section",
+  [CU, tier("A"), cu("A", "tier A", "Default"), W1440],
+  ["Open Customers.", "Click customer A's name."],
+  [look("9.29", "S9-R11", "The Customers list shows."),
+   R(S("S9-R12", "in a section of its customer card headed \"Pricing\", under IBS"), "Under the IBS row the card shows a small gray uppercase heading, PRICING.")
+   + look("9.30", "S9-R12", "Under it, Labor Rate, Shop Supplies, Tax, Work Order Tier and Part Sales Tier each show a small gray label above a bold value, like the card's other rows, as in picture 9.30.",
+          "The other rows of today's card (Today picture 9.26) are still above it.")],
+  pics=["9.29", "9.30", "today:9.26"])
+
+C("D-184", K, "Design: Edit Customer with the two tier pickers",
+  [CU, tier("A"), cu("A"), W1440],
+  ["Open customer A's page from Customers.", "Click the edit pencil on the customer card.", "Open the Work Order Tier picker.", "Type tier A's number.", "Click tier A.", SAVE],
+  [look("9.30", "S9-R14", "Customer A's page opens."),
+   R(QD("Prices parts on this customer’s new work orders. Existing work orders and Part Sales keep their prices and tier.", "9.31", "S9-R3"),
+     "Under Work Order Tier a gray help line reads \"Prices parts on this customer's new work orders. Existing work orders and Part Sales keep their prices and tier.\"")
+   + R(QD("Prices parts on Part Sales. Set on its own: changing the work order tier never changes it.", "9.31", "S9-R3"),
+       "Under Part Sales Tier it reads \"Prices parts on Part Sales. Set on its own: changing the work order tier never changes it.\"")
+   + look("9.31", "S9-R3", "Both fields are outlined pickers with the tier as number · name, between Default Shop Supplies and Notes, as in picture 9.31."),
+   look("9.33", "S9-R30", "A list opens under the field with a \"Search tiers\" box, then each active tier as number · name, the current one ticked, as in picture 9.33."),
+   look("9.32", "S9-R30", "The search shows the typed number with a clear button, and tier A is listed, as in picture 9.32."),
+   look("9.34", "S9-R1", "Work Order Tier reads tier A's number and name."),
+   R(QD("Existing work orders and Part Sales keep their prices and tier.", "9.35", "S9-R7"), "A white message reads customer A's name with \"saved\" and \"Existing work orders and Part Sales keep their prices and tier.\"")
+   + look("9.35", "S9-R12", "The card's Work Order Tier now reads tier A, as in picture 9.35.")],
+  pics=["9.30", "9.31", "9.32", "9.33", "9.34", "9.35", "today:9.27"])
+
+C("D-185", K, "Design: the Counter Sale note shows as a blue box above the tier fields",
+  [CU, tier("A", ", so the tier fields show"), W1440],
+  ["Open the built-in Counter Sale customer's page.", "Click the edit pencil on the customer card."],
+  [look("9.36", "S9-R8", "The Counter Sale customer's page opens."),
+   R(QD("Every walk-in sale uses this tier.", "9.36", "S9-R8"), "A light blue box with an info icon reads \"Every walk-in sale uses this tier.\" just above Work Order Tier, shown without pointing at anything, as in picture 9.36.")],
+  pics=["9.36"], held_on="Q28", flags=DV)
+
+C("D-186", K, "Design: Edit Customer and the card with only Default",
+  [CU, "Use a client whose Tiers list shows only Default.", "Have a new customer for this test, customer A, in that client.", W1440],
+  ["Open customer A's page from Customers.", "Click the edit pencil on the customer card."],
+  [R(S("S9-R12", "only when the client has more than one active tier (S9-R31)"), "The card's PRICING section shows Labor Rate, Shop Supplies and Tax, with no tier rows."),
+   R(S("S9-R31", "With only Default, they are hidden"), "Edit Customer goes from Default Shop Supplies straight to Notes, with no tier fields.")
+   + look("9.37", "S9-R31", "The dialog matches picture 9.37.")],
+  pics=["9.37"])
+
+C("D-187", K, "Design: Edit Customer on a phone",
+  [CU, tier("A"), cu("A"), "Use a phone, or a browser window 390 pixels wide."],
+  ["Open customer A's page from Customers.", "Tap the edit pencil on the customer card.", "Tap Work Order Tier.", "Tap tier A."],
+  [look("9.39", "S9-R3", "Customer A's page opens."),
+   look("9.39", "S9-R3", "Edit Customer fills the screen with the fields stacked, the tier fields under Default Shop Supplies, by number, as in picture 9.39; the other fields are as on today's phone form (Today picture 9.38)."),
+   look("9.40", "S9-R30", "The same picker as on desktop opens: active tiers by number, a search, the current tier ticked, every row inside the screen, as in picture 9.40."),
+   look("9.41", "S9-R1", "Work Order Tier shows tier A, as in picture 9.41.")],
+  pics=["9.39", "9.40", "9.41", "today:9.38"])
+
+C("D-188", K, "Design: the Customers list looks as today",
+  [CU, W1440],
+  ["Open Customers."],
+  [R(S("S9-R11", "The Customers list is unchanged."), "The list shows the same title, buttons and columns as today's list (Today picture 9.25).")
+   + look("9.28", "S9-R11", "The built-in Counter Sale row carries its \"Built-in\" label, as in picture 9.28.")],
+  pics=["9.28", "today:9.25"])
+
+C("D-189", K, "Design: long and special customer names on the Customers tab and dialog",
+  [ADMIN_CUST, tier("A"), f"Have a new customer for this test, customer A, with {STRESS_SP}, on tier A for work orders and Part Sales.",
+   f"Have a new customer for this test, customer B, with {STRESS_NO}, on tier A for work orders and Part Sales.",
+   f"Have a new customer for this test, customer C, with {STRESS_SPECIAL}, on tier A for work orders and Part Sales.", W1440],
+  [TIERS, open_tier("A"), CTAB, MANAGE, "Click the Remove Customers tab.", "Tick customer B.", "Click Remove 1 Customer."],
+  [R(S("S9-R4"), "The Tiers list shows tier A."), R(S("S9-R4"), "Tier A's page opens."),
+   R(S("S9-R4", "A tier's Customers tab lists its customers with their channel(s)."), "Customer A's, customer B's and customer C's names stay inside the Customer column of their own rows and never cover the channel column.",
+     "Every column stays visible and the page does not scroll sideways.")
+   + R(S("S9-R9"), "Customer C's name shows character for character as typed, & \" ' < > included."),
+   R(S("S9-R4"), "The dialog opens."),
+   R(S("S9-R4", "Remove Customers lists the customers on the tier, with the count."), "Each name stays inside its own row; no name covers the Work Order Tier column.", "The dialog does not grow wider than the window."),
+   R(S("S9-R21"), "Customer B's row shows its Work Orders and Part Sales boxes beside the name, fully visible, inside the dialog.", "The footer and buttons stay visible."),
+   R(QT("Remove n Customers?\" confirm per design 9.17", "TPX-17"), "The question names the removal inside its own box; the text wraps inside the dialog and Keep Customers and Remove stay visible.")],
+  pics=["9.1", "9.4", "9.17", "9.18"], flags=["stress"])
+
+C("D-190", K, "Design: long and special tier names on the customer card and tier picker",
+  [CU, f"Have a new tier for this test, tier A, with {STRESS_SP}.", f"Have a new tier for this test, tier B, with {STRESS_NO}.",
+   f"Have a new tier for this test, tier C, with {STRESS_SPECIAL}.", cu("A", "tier A", "tier B"), W1440],
+  ["Open customer A's page from Customers.", "Click the edit pencil on the customer card.", "Open the Part Sales Tier picker."],
+  [R(S("S9-R12"), "The card's Work Order Tier and Part Sales Tier values show tier A's and tier B's numbers and names inside the card, wrapped if needed, and never cover the next row.",
+     "The card and the page do not scroll sideways."),
+   R(S("S9-R3"), "Edit Customer shows both tier fields with the names inside the field boxes; the dialog stays inside the window.", "The Save button stays visible."),
+   R(S("S9-R30", "The tier pickers list active tiers by number, each shown as its number and name"), "Every row of the list stays inside the picker; no row runs past the list's edge.", "The current tier is still marked.")
+   + R(S("S2-R3"), "Tier C's name shows character for character as typed, & \" ' < > included.")],
+  pics=["9.30", "9.31", "9.33"], flags=["stress"])
