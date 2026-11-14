@@ -1,0 +1,46 @@
+{
+ "pass_meta": {
+  "env": "staging",
+  "build_marker": "v26.45.4-f3d3d2d",
+  "utc_days": [
+   "2026-11-14"
+  ],
+  "built_utc": "2026-11-14T05:47:31Z",
+  "not_emitted": {
+   "needs_review": [],
+   "harness_errors": [],
+   "held_developer_data": [],
+   "skipped_deleted": []
+  }
+ },
+ "results": {
+  "C1078980": {
+   "observed": [
+    "Re-tested because the fix for SV-12545 is now on staging (build v26.45.4-f3d3d2d).",
+    "Step 4: on A/R Aging Summary, 12/31/2026 (the last day of next month) could be picked in the date menu.",
+    "Step 5: the chip reads \"As of: 12/31/2026\".",
+    "Step 6: the report is worked out for that date. Invoice S2-33450 (All American Truck & Trailer Repair, due Nov 21, 2026) is in Current with Past Due -7 as of today, and in \"31-60 days past due\" with Past Due 40 as of 12/31/2026; S2-34514 (Aberdeen Diesel Services LLC, due Nov 20, 2026) moves the same way (Past Due 41).",
+    "This is outcome (3) of the test: it passes, the fix has shipped. PRD v13 (13 Nov 2026) now asks for it in S5-R10b: \"The as-of date can be any day, including a day after today, as today.\""
+   ],
+   "note": "run-staging.json 2026-11-14T05:46:31.209Z..2026-11-14T05:46:42.131Z, build v26.45.4-f3d3d2d",
+   "verdict": "Passed",
+   "pictures": [
+    "../../prd-v13-check-2026-11-14/testrail-results/pics/C1078980-1-step-4-picking-the-last-day-of-next-month.png",
+    "../../prd-v13-check-2026-11-14/testrail-results/pics/C1078980-2-step-5-date-chip.png"
+   ]
+  },
+  "C1078981": {
+   "observed": [
+    "Re-tested because the fix for SV-12545 is now on staging (build v26.45.4-f3d3d2d).",
+    "Step 3-4: opened A/P Aging Summary with ?asOfDate=2026-12-31 added to the page address.",
+    "Step 5: the chip reads \"As of: 12/31/2026\" and the address keeps asOfDate=2026-12-31.",
+    "This is outcome (3) of the test: it passes, the fix has shipped. PRD v13 S5-R10b: \"A link with an as-of date opens on that date.\""
+   ],
+   "note": "run-staging.json 2026-11-14T05:46:42.382Z..2026-11-14T05:46:53.280Z, build v26.45.4-f3d3d2d",
+   "verdict": "Passed",
+   "pictures": [
+    "../../prd-v13-check-2026-11-14/testrail-results/pics/C1078981-1-step-5-date-chip-after-opening-the-link.png"
+   ]
+  }
+ }
+}

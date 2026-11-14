@@ -1,0 +1,46 @@
+{
+ "V1R-07": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 4: 2026-12-31 can be picked",
+    "ok": true,
+    "saw": "picked"
+   },
+   {
+    "what": "Step 5: chip shows that future date",
+    "ok": true,
+    "saw": "As of: 12/31/2026"
+   }
+  ],
+  "observed": "OK Step 4: 2026-12-31 can be picked: picked | OK Step 5: chip shows that future date: As of: 12/31/2026",
+  "expect_fail_outcome": "differs",
+  "evidence": [
+   "V1R-07 - step 4 picking the last day of next month.png",
+   "V1R-07 - step 5 date chip.png"
+  ],
+  "marker": "v26.45.4-f3d3d2d",
+  "env": "staging",
+  "utc_start": "2026-11-14T05:46:31.209Z",
+  "utc_end": "2026-11-14T05:46:42.131Z"
+ },
+ "V1R-08": {
+  "verdict": "PASS",
+  "checks": [
+   {
+    "what": "Step 5: chip shows 12/31/2026",
+    "ok": true,
+    "saw": "As of: 12/31/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary?asOfDate=2026-12-31)"
+   }
+  ],
+  "observed": "OK Step 5: chip shows 12/31/2026: As of: 12/31/2026 (address now https://app.staging.shopview.com/reports/ap-aging-summary?asOfDate=2026-12-31)",
+  "expect_fail_outcome": "differs",
+  "evidence": [
+   "V1R-08 - step 5 date chip after opening the link.png"
+  ],
+  "marker": "v26.45.4-f3d3d2d",
+  "env": "staging",
+  "utc_start": "2026-11-14T05:46:42.382Z",
+  "utc_end": "2026-11-14T05:46:53.280Z"
+ }
+}

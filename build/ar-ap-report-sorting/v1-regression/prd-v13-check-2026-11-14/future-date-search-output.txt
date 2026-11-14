@@ -1,0 +1,22 @@
+489 tests in run 557
+18 cases mention it
+C715396 T4563542 st1 sec90423 | A/P Unpaid Invoices: a Past due value the chip does not offer reads An | ['not offer']
+C715579 T4563708 st1 sec90423 | A/P Detail: a date after today ages a bill to that day | ['day after', 'days after today']
+C715463 T4563609 st1 sec133629 | A/R Summary Totals equal A/R Detail's Open Balance, bucket by bucket | ['opens on today']
+C715464 T4563610 st1 sec133629 | A/P Summary Totals equal A/P Detail's Open Balance, bucket by bucket | ['opens on today']
+C715473 T4563618 st1 sec133629 | A/R PDF prints the as-of date you picked, late in the day too | ['tomorrow']
+C797945 T4563773 st1 sec133629 | A/R Summary and Detail Totals differ by what a Past due filter drops | ['opens on today']
+C797946 T4563774 st1 sec133629 | A/P Summary and Detail Totals differ by what a Past due filter drops | ['opens on today']
+C1062566 T4667033 st1 sec133629 | A/R Detail: a credit memo or deposit dated on the as-of date is in Cur | ['day after']
+C1062567 T4667034 st1 sec133629 | A/P Detail: a vendor credit dated on the as-of date is Current, Past D | ['day after']
+C1062568 T4667035 st1 sec133629 | A/R Collection: a credit dated on the as-of date shows Past Due 0 | ['day after']
+C1062569 T4667036 st1 sec133629 | A/P Detail: a bill not yet due shows a negative Past Due | ['days after today']
+C1062587 T4667053 st1 sec133629 | A/R Summary and Detail count a credit dated on the as-of date in Curre | ['opens on today']
+C1062588 T4667054 st1 sec133629 | A/P Summary and Detail count a vendor credit dated on the as-of date i | ['opens on today']
+C1145296 T4888597 st3 sec133629 | A/R Detail: the PDF and CSV print an as-of date after today | ['day after', 'no day after']
+C1078980 T4687224 st5 sec134654 | SV-12545 - A future as-of date can be picked to see coming aging | ['after today', 'future', 'greyed']
+C1078981 T4687225 st5 sec134654 | SV-12545 - A saved link with a future as-of date opens on that date | ['opens on today']
+C1079008 T4687252 st1 sec134654 | A/R Detail PDF prints only the buckets that hold a document | ['greyed']
+C1095438 T4693158 st1 sec134654 | Planned removal: PDF over 2,000 rows is refused, the CSV has every row | ['capped']
+
+[exited with code 0]

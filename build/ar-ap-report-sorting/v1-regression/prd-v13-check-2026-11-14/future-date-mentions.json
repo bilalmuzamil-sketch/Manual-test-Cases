@@ -1,0 +1,265 @@
+[
+ {
+  "case": 715396,
+  "test": 4563542,
+  "status": 1,
+  "title": "A/P Unpaid Invoices: a Past due value the chip does not offer reads Any",
+  "section": 90423,
+  "created_by": 3,
+  "matches": [
+   "not offer"
+  ],
+  "ctx": [
+   "V-11315, story SV-11535 (Story 5, Filters: customer or vendor, past due and location) S5-N3: \u201cA Past due value in a link that the chip does not offer (for example 5, or \"any\") is read as Any.\u201d S5-R15: \u201cThe Past due chip and its open menu are the sam"
+  ]
+ },
+ {
+  "case": 715579,
+  "test": 4563708,
+  "status": 1,
+  "title": "A/P Detail: a date after today ages a bill to that day",
+  "section": 90423,
+  "created_by": 3,
+  "matches": [
+   "day after",
+   "days after today"
+  ],
+  "ctx": [
+   "r filter, so bill A is the only bill listed. Expand the \"Current\" bucket. Click the date chip (\"As of: \" and today's date). Pick the day 10 days after today in the calendar. Expand the \"1-30 days past due\" bucket. Expected Result Step 1: Bill A is listed i",
+   "pected Result Step 1: Bill A is listed in \"Current\", with Past Due 0: it is due today. Step 2: A calendar opens with today's date selected. Days after today can be picked. Step 3: The chip reads \"As of: \" and the day 10 days after today. The report reloads"
+  ]
+ },
+ {
+  "case": 715463,
+  "test": 4563609,
+  "status": 1,
+  "title": "A/R Summary Totals equal A/R Detail's Open Balance, bucket by bucket",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "opens on today"
+  ],
+  "ctx": [
+   "0.00 (400.00 + 500.00), 61-90 Days $0.00, 91 And Over $250.00 and Total $2,450.00 (1,000.00 + 300.00 + 900.00 + 250.00). Step 2: A/R Detail opens on today's date with no customer ticked and Past due on Any. Step 3: Customer A is ticked. Step 4: Both are "
+  ]
+ },
+ {
+  "case": 715464,
+  "test": 4563610,
+  "status": 1,
+  "title": "A/P Summary Totals equal A/P Detail's Open Balance, bucket by bucket",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "opens on today"
+  ],
+  "ctx": [
+   "0.00 (400.00 + 500.00), 61-90 Days $0.00, 91 And Over $250.00 and Total $2,450.00 (1,000.00 + 300.00 + 900.00 + 250.00). Step 2: A/P Detail opens on today's date with no vendor ticked and Past due on Any. Step 3: Vendor A is ticked. Step 4: Both are tick"
+  ]
+ },
+ {
+  "case": 715473,
+  "test": 4563618,
+  "status": 1,
+  "title": "A/R PDF prints the as-of date you picked, late in the day too",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "tomorrow"
+  ],
+  "ctx": [
+   "pen invoices on today's date, so the PDF has rows. Run this test in the evening at location A's local time, when the date in UTC is already tomorrow. Set this computer's clock to location A's time zone. Use a desktop browser window 1440 px wide. Op",
+   " Step 3: The as-of line reads \"As of \" and that same date: three-letter month, day, four-digit year (for example \"As of Oct 15, 2026\"), not tomorrow's date. On a day before the 10th, judge only which date it is: whether the day carries a leading ze"
+  ]
+ },
+ {
+  "case": 797945,
+  "test": 4563773,
+  "status": 1,
+  "title": "A/R Summary and Detail Totals differ by what a Past due filter drops",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "opens on today"
+  ],
+  "ctx": [
+   " and the credit memo included). Customer B's Total is $750.00 (500.00 + 250.00). The Totals row's Total reads $2,300.00. Step 2: A/R Detail opens on today's date with no customer ticked and Past due on Any. Step 3: Customer A is ticked. Step 4: Both are "
+  ]
+ },
+ {
+  "case": 797946,
+  "test": 4563774,
+  "status": 1,
+  "title": "A/P Summary and Detail Totals differ by what a Past due filter drops",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "opens on today"
+  ],
+  "ctx": [
+   " and the vendor credit included). Vendor B's Total is $750.00 (500.00 + 250.00). The Totals row's Total reads $2,300.00. Step 2: A/P Detail opens on today's date with no vendor ticked and Past due on Any. Step 3: Vendor A is ticked. Step 4: Both are tick"
+  ]
+ },
+ {
+  "case": 1062566,
+  "test": 4667033,
+  "status": 1,
+  "title": "A/R Detail: a credit memo or deposit dated on the as-of date is in Current",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "day after"
+  ],
+  "ctx": [
+   ", 40.00, stays as an unused deposit dated today. Change the as-of date to date A. Expand the \"Current\" bucket. Change the as-of date to the day after date A. Expand the \"1-30 days past due\" bucket. Expected Result Step 1: The report reloads for date",
+   "dit memo A and deposit A are listed in this bucket: a credit dated exactly on the as-of date is Current. Step 3: The report reloads for the day after date A, with every bucket collapsed. Step 4: Credit memo A and deposit A are now listed here, one d"
+  ]
+ },
+ {
+  "case": 1062567,
+  "test": 4667034,
+  "status": 1,
+  "title": "A/P Detail: a vendor credit dated on the as-of date is Current, Past Due 0",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "day after"
+  ],
+  "ctx": [
+   "dit Date, type 0 in Tax, then click Post Credit. Change the as-of date to date A. Expand the \"Current\" bucket. Change the as-of date to the day after date A. Expand the \"1-30 days past due\" bucket. Expected Result Step 1: The report reloads for date",
+   "2: Vendor credit A is listed in this bucket. Its Due Date is date A, its own date. Its Past Due reads 0. Step 3: The report reloads for the day after date A, with every bucket collapsed. Step 4: Vendor credit A is now listed here, with Past Due 1, a"
+  ]
+ },
+ {
+  "case": 1062568,
+  "test": 4667035,
+  "status": 1,
+  "title": "A/R Collection: a credit dated on the as-of date shows Past Due 0",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "day after"
+  ],
+  "ctx": [
+   "e Refund), type a Reason, then click Issue Credit. Change the as-of date to date A. Expand customer A's group. Change the as-of date to the day after date A. Expand customer A's group. Expected Result Step 1: The report reloads for date A. Step 2: C",
+   "ted Result Step 1: The report reloads for date A. Step 2: Credit memo A is listed. Its Past Due reads 0. Step 3: The report reloads for the day after date A, with every group collapsed. Step 4: Credit memo A is listed with Past Due 1. Exact quotes f"
+  ]
+ },
+ {
+  "case": 1062569,
+  "test": 4667036,
+  "status": 1,
+  "title": "A/P Detail: a bill not yet due shows a negative Past Due",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "days after today"
+  ],
+  "ctx": [
+   " Preconditions Sign in as an Admin user (the \"Admin\" role). Have a vendor with two unpaid bills on today's date: bill A due 9 days after today and bill B due today. Use a desktop browser window 1440 px wide. Open A/P Detail (Reports, then \"A/"
+  ]
+ },
+ {
+  "case": 1062587,
+  "test": 4667053,
+  "status": 1,
+  "title": "A/R Summary and Detail count a credit dated on the as-of date in Current",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "opens on today"
+  ],
+  "ctx": [
+   "ank. Total $380.00 (500.00 \u2212 120.00). The Totals row reads the same: Current $-120.00, 1-30 Days $500.00, Total $380.00. Step 2: A/R Detail opens on today's date. Step 3: Customer A is ticked. Step 4: \"Current\" holds credit memo A with an Open Balance of"
+  ]
+ },
+ {
+  "case": 1062588,
+  "test": 4667054,
+  "status": 1,
+  "title": "A/P Summary and Detail count a vendor credit dated on the as-of date in Current",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "opens on today"
+  ],
+  "ctx": [
+   "ank. Total $380.00 (500.00 \u2212 120.00). The Totals row reads the same: Current $-120.00, 1-30 Days $500.00, Total $380.00. Step 2: A/P Detail opens on today's date. Step 3: Vendor A is ticked. Step 4: \"Current\" holds vendor credit A with an Open Balance of"
+  ]
+ },
+ {
+  "case": 1145296,
+  "test": 4888597,
+  "status": 3,
+  "title": "A/R Detail: the PDF and CSV print an as-of date after today",
+  "section": 133629,
+  "created_by": 3,
+  "matches": [
+   "day after",
+   "no day after"
+  ],
+  "ctx": [
+   "and CSV), story SV-11535 (Story 5, Filters: customer or vendor, past due and location) S5-R10b: \u201cThe as-of date can be any day, including a day after today, as today. For a day after today the report counts everything entered so far and counts days ",
+   ", Filters: customer or vendor, past due and location) S5-R10b: \u201cThe as-of date can be any day, including a day after today, as today. For a day after today the report counts everything entered so far and counts days past due to the picked day; the c"
+  ]
+ },
+ {
+  "case": 1078980,
+  "test": 4687224,
+  "status": 5,
+  "title": "SV-12545 - A future as-of date can be picked to see coming aging",
+  "section": 134654,
+  "created_by": 3,
+  "matches": [
+   "after today",
+   "future",
+   "greyed"
+  ],
+  "ctx": [
+   "nd the customer whose invoice is not yet due. Expected Result Step 4: the last day of next month can be picked. Step 5: the chip shows that future date. Step 6: the report is worked out for that date, so an invoice not due today but due before th",
+   "t due before then has moved out of Current into a past-due bucket. EXPECT FAIL. What you should see on the upgraded build today: Every date after today is greyed out in the date menu; the chip stays on today. (1) You see exactly that: mark the test FA"
+  ]
+ },
+ {
+  "case": 1078981,
+  "test": 4687225,
+  "status": 5,
+  "title": "SV-12545 - A saved link with a future as-of date opens on that date",
+  "section": 134654,
+  "created_by": 3,
+  "matches": [
+   "opens on today"
+  ],
+  "ctx": [
+   "last day of next month and the report is worked out for that date. EXPECT FAIL. What you should see on the upgraded build today: The report opens on today's date instead of the date in the link. (1) You see exactly that: mark the test FAILED and raise no"
+  ]
+ },
+ {
+  "case": 1079008,
+  "test": 4687252,
+  "status": 1,
+  "title": "A/R Detail PDF prints only the buckets that hold a document",
+  "section": 134654,
+  "created_by": 3,
+  "matches": [
+   "greyed"
+  ],
+  "ctx": [
+   "mment 80616, 10 Nov 2026), \"Decided by Product (Chris, 2026-11-04 / 2026-11-05)\", quoted: \u201cAn empty Detail bucket is listed as \"(0)\" with a greyed chevron.\u201d Step 8: the same notes, quoted: \u201cThe Detail PDF prints only buckets that hold a document."
+  ]
+ },
+ {
+  "case": 1095438,
+  "test": 4693158,
+  "status": 1,
+  "title": "Planned removal: PDF over 2,000 rows is refused, the CSV has every row",
+  "section": 134654,
+  "created_by": 3,
+  "matches": [
+   "capped"
+  ],
+  "ctx": [
+   "change from the before-the-release side. Why this matters: Large aging must still be obtainable in full, as CSV, even though the PDF is now capped. SOURCE: A/R and A/P Report Sorting, Export and Location Filter PRD (Confluence 947650561) v12, 12 "
+  ]
+ }
+]
