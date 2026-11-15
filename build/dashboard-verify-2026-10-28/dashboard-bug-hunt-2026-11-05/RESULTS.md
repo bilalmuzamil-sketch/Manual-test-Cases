@@ -461,3 +461,10 @@ Check at 1920, 1536×864, 1280, 1024 and 390 px wide, in light and dark.
 - **Still to do:**
   - A true week-boundary check needs Karachi's Monday while UTC is still Sunday, which is a Sunday 19:00–23:59 UTC. Not covered.
   - **Scheduled (QA lead OK, 10 Nov):** Sun 15 Nov 19:05 UTC (trig_01LjRarNdfh9fJz695gYkCGv). A sign-in check runs at 14:00 UTC the same day and asks for fresh cookies if needed (trig_01JHGwLJtkgDJ3yauvBd3yX3).
+
+### Karachi week-boundary check, 15 Nov 2026 19:06 UTC: NOT RUN (blocked)
+- The scheduled run started at 19:06 UTC (00:06 Mon 16 Nov in Karachi). Nothing was created and nothing was tested.
+- **sv11839:** still unreachable (gateway `connect_unreachable`, as since 13 Nov).
+- **Staging:** up, but the stored sign-in from 6 Nov answers 401 `sso_required`.
+- **No answer from the QA lead** to the 14:01 UTC request for staging cookies and an OK to use staging, so the staging fallback was not allowed to run.
+- **Next possible window:** any Sunday 19:00–23:59 UTC. Needs staging cookies plus his OK, or sv11839 back.
