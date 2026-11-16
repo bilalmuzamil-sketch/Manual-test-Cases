@@ -1,0 +1,16 @@
+run has 489 tests, results cover 2 cases, union 489
+2 results: Failed=2
+add_results_for_cases -> 200 | written: 2
+  C715471 result 617276 <- /home/user/Manual-test-Cases/build/ar-ap-report-sorting/existing-data-unchanged-check/staging-recheck-after-SV-12663-2026-11-16/testrail-results/PIC2-qa-ar-collection-CM2-4357-mountain-time.png: 200
+  C715472 result 617277 <- /home/user/Manual-test-Cases/build/ar-ap-report-sorting/existing-data-unchanged-check/staging-recheck-after-SV-12663-2026-11-16/testrail-results/PIC1-qa-ap-detail-X101364617-mountain-time.png: 200
+  C715472 result 617277 <- /home/user/Manual-test-Cases/build/ar-ap-report-sorting/existing-data-unchanged-check/staging-recheck-after-SV-12663-2026-11-16/testrail-results/PIC3-qa-ap-detail-GNV306853-pakistan-time.png: 200
+  C715471: "Follow the status here" comment -> 200
+  C715472: "Follow the status here" comment -> 200
+  C715471: title prefix (Rule 133) -> SV-12853 - After the staging deploy an untouched A/R report shows the same rows and amounts
+  C715472: title prefix (Rule 133) -> SV-12853 - After the staging deploy an untouched A/P report shows the same rows and amounts
+run now: untested 0 | passed 480 | failed 9 | blocked 0 | retest 0
+
+NOW VERIFY THE RENDERING — a 200 says nothing about what the tester sees:
+  https://shopview.testrail.io/index.php?/tests/view/4563616
+  Count <p> and <br> in the container holding the comment.
+  One <p> and no line breaks = the wall-of-text trap; the paragraphs collapsed.

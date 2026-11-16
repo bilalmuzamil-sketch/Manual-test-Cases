@@ -1,0 +1,53 @@
+{
+ "pass_meta": {
+  "run": 557,
+  "date": "16 November 2026",
+  "build": "v26.45.4-f3d3d2d"
+ },
+ "results": {
+  "C715471": {
+   "verdict": "Failed",
+   "defects": "SV-12853",
+   "bold_steps": [
+    2,
+    3
+   ],
+   "failed_steps": "Failed at steps 2 and 3: some documents show a Due Date and a Past Due one day different from before the feature was deployed on staging.",
+   "source": "The case, Step 3: \"The same documents and the same amounts, shown the same way ... Only the order may differ, and these three changes PRD section 2 lists for this release\" \u2014 a Date, Due Date and Past Due one day different is not one of them (PRD v13, 13 Nov 2026, What changes for existing users).",
+   "observed": [
+    "SV-12663 is fixed: Past Due now always matches the Due Date shown (checked on every document, screen on Mountain time and on Pakistan time).",
+    "Step 2: A/R Detail shows the same documents and amounts, but some Due Dates one day earlier, for example CM2-4357 \"Sep 6, 2026\" (it was \"Sep 7, 2026\"). On Pakistan time 16 documents also sit in a different age column.",
+    "Step 3: A/R Collection, untouched, as of 11/12/2026, screen on Mountain time: credit memo CM2-4357 (4 Star Truck Repair) shows Due Date \"Sep 6, 2026\" and Past Due 67. Before the feature it showed Sep 7, 2026 and 66. 74 of 1,457 documents show a different Past Due (150 on Pakistan time).",
+    "Cause: the reports now show dates on the calendar day of the location; before the feature they used the UTC (Greenwich) day. Amounts and totals are unchanged."
+   ],
+   "ticket": "Ticket: SV-12853 https://shopview.atlassian.net/browse/SV-12853 \u2014 Product (Chris Ward) is asked there to confirm whether this change is intended.",
+   "todo": "What needs to be done: nothing for the tester now. When Chris Ward answers on SV-12853: if the change is intended, this test will be updated and passed; if it is fixed, re-run this test on staging, as of 11/12/2026.",
+   "pictures": [
+    "PIC2-qa-ar-collection-CM2-4357-mountain-time.png"
+   ]
+  },
+  "C715472": {
+   "verdict": "Failed",
+   "defects": "SV-12853",
+   "bold_steps": [
+    2,
+    3
+   ],
+   "failed_steps": "Failed at steps 2 and 3: some bills show a Date, Due Date and Past Due one day different from before the feature was deployed on staging.",
+   "source": "The case, Step 2: \"The same documents and the same amounts, shown the same way ... Only the order may differ, and these three changes PRD section 2 lists for this release\" \u2014 a Date, Due Date and Past Due one day different is not one of them (PRD v13, 13 Nov 2026, What changes for existing users).",
+   "observed": [
+    "SV-12663 is fixed: Past Due now always matches the Due Date shown (checked on every bill, screen on Mountain time and on Pakistan time).",
+    "Step 2: A/P Detail, untouched, as of 11/12/2026, screen on Mountain time: bill X101364617:01 (Willoughby Mechanical Services) shows Date \"Aug 16, 2026\", Due Date \"Oct 15, 2026\", Past Due 28. Before the feature: Aug 17, 2026, Oct 16, 2026, 27.",
+    "Step 2: 1,240 of 14,632 bills show a different Past Due on Mountain time, 1,609 on Pakistan time (for example GNV306853: May 5, 2024 and 921, it was May 4, 2024 and 922).",
+    "Step 3: A/P Unpaid Invoices shows the same change: 1,222 of 14,632 bills on Mountain time.",
+    "Cause: the reports now show dates on the calendar day of the location; before the feature they used the UTC (Greenwich) day. Amounts and totals are unchanged."
+   ],
+   "ticket": "Ticket: SV-12853 https://shopview.atlassian.net/browse/SV-12853 \u2014 Product (Chris Ward) is asked there to confirm whether this change is intended.",
+   "todo": "What needs to be done: nothing for the tester now. When Chris Ward answers on SV-12853: if the change is intended, this test will be updated and passed; if it is fixed, re-run this test on staging, as of 11/12/2026.",
+   "pictures": [
+    "PIC1-qa-ap-detail-X101364617-mountain-time.png",
+    "PIC3-qa-ap-detail-GNV306853-pakistan-time.png"
+   ]
+  }
+ }
+}

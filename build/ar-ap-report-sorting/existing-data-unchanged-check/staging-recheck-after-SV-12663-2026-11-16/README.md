@@ -1,7 +1,7 @@
 # C715471 / C715472 re-check after SV-12663 (staging, 16 Nov 2026)
 
 Ordered by the QA lead 16 Nov 2026 ("1. Yes" to re-running C715471 and C715472 on staging).
-**No TestRail result posted** — the verdict needs his decision (see the end).
+**Outcome (QA lead, 16 Nov: "Create it ... tagging chris ward asking him to confirm the expected behavior" / "OK"):** ticket **SV-12853** created and both tests marked Failed against it — see the end.
 
 | What | Value |
 |---|---|
@@ -64,3 +64,17 @@ Karachi case under "Known mismatches (not bugs)". So this is a **Product decisio
 `scripts/pull.py` (the six reports, as the screen asks for them, `timezone=` optional) · `scripts/check.py` · `scripts/screen_check.js` ·
 `data-as-of-2026-11-12-*/*.json.gz` (raw answers, gzipped) · `reference/` (location list with time zones from `GET /api/workplaces`) ·
 `RECHECK-Asia-Karachi.md`, `RECHECK-America-Edmonton.md`, `summary-*.json` · `screen/` (pictures + read values).
+
+## Outcome, 16 Nov 2026
+
+- **SV-12853** ([link](https://shopview.atlassian.net/browse/SV-12853)) — Story Defect under SV-11531, Medium, labels QA_Found + AP-AR-FM,
+  opens by tagging Chris Ward to confirm the expected behaviour; three annotated pictures inline (`screen/ticket/`), linked
+  "relates to" SV-11531 and SV-12663. Description as sent: `screen/ticket/DESCRIPTION-with-pictures.html`.
+  Rule 121 gate: Jira searched (incl. closed) — SV-11922 is a different issue (not-yet-due bills, old rules); the SV-12663
+  "not a bug" list covers far-away zones only. Production session had expired (401); no new production login was made, so
+  the "before" side is the old version's screen on staging (12 Nov), said so in the ticket.
+- **Run 557**: C715471 → Failed (result 617276, picture PIC2) + "Follow the status here" (617278); C715472 → Failed (617277,
+  PIC1 + PIC3) + "Follow the status here" (617279). Titles now "SV-12853 - …". Run: 480 passed, 9 failed.
+  ⚠ 617276/617277 carry the Defects value "S,V,-,1,2,8,5,3" (my mistake M14, cannot be edited by API); 617278/617279 carry SV-12853.
+- Case markers left as `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`
+  (a genuine hold; these cases never carried an EXPECT FAIL block).

@@ -1,0 +1,75 @@
+<p><span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span> Could you confirm the expected behaviour here, please, before the 19 Nov release? On staging, the six A/R and A/P aging reports now show some documents' <strong>Date</strong> and <strong>Due Date</strong> one day different from what production shows today, and their <strong>Past Due</strong> moves by one day with it. Amounts do not change. If this is intended, we will close this ticket as decided and update the tests. If it is not, it needs a fix before the release.</p>
+<h2>Description</h2>
+<p><strong>What the PRD requires:</strong></p>
+<div data-type="panel-info"><p>The PRD <strong>does not ask for this change</strong>. It does not say which calendar day a document's date is shown on, and its list of what changes for existing users has no date change. The developer's note on SV-12663 (13 Nov) says the reports would keep "the time zone the reports used before this release".</p></div>
+<p><strong>What happens instead:</strong></p>
+<p>On staging, the reports now show each document's Date and Due Date on the calendar day of the location the user is at. Production shows them on the UTC (Greenwich) calendar day. So a document saved late in the day, or saved at midnight UTC, shows a different day than on production, and its <strong>Past Due</strong> changes by one. This happens in North American time zones too, not only far-away ones.</p>
+<p>For example, as of 11/12/2026:</p>
+<ul>
+<li><strong>A/P Aging Detail</strong> (screen on Mountain time): bill <strong>X101364617:01</strong> reads <strong>"Aug 16, 2026"</strong>, Due Date <strong>"Oct 15, 2026"</strong>, Past Due <strong>"28"</strong>. Before the release it read "Aug 17, 2026", "Oct 16, 2026", "27".</li>
+<li><strong>A/R Aging Collection</strong> (screen on Mountain time): credit memo <strong>CM2-4357</strong> reads Due Date <strong>"Sep 6, 2026"</strong>, Past Due <strong>"67"</strong>. Before the release: "Sep 7, 2026", 66.</li>
+</ul>
+<h2>Staging vs production</h2>
+<table><thead><tr><th>What you check (As of 11/12/2026)</th><th>Staging (new version, v26.45.4-f3d3d2d)</th><th>Before the release (staging v26.45.3-6197d19 on 12 Nov; production v26.45.4-75f8b2e still has these reports)</th></tr></thead>
+<tbody>
+<tr><td>A/P Aging Detail, bill X101364617:01, screen on Mountain time</td><td>❌ Date Aug 16, 2026 · Due Date Oct 15, 2026 · Past Due 28</td><td>✅ Date Aug 17, 2026 · Due Date Oct 16, 2026 · Past Due 27</td></tr>
+<tr><td>A/R Aging Collection, credit memo CM2-4357, screen on Mountain time</td><td>❌ Due Date Sep 6, 2026 · Past Due 67</td><td>✅ Due Date Sep 7, 2026 · Past Due 66</td></tr>
+<tr><td>A/P Aging Detail, bill GNV306853, screen on Pakistan time</td><td>❌ Date Mar 6, 2024 · Due Date May 5, 2024 · Past Due 921</td><td>✅ Date Mar 5, 2024 · Due Date May 4, 2024 · Past Due 922</td></tr>
+<tr><td>How many documents show a different Past Due, screen on Mountain time</td><td>❌ A/P Aging Detail 1,240 of 14,632 · A/R Aging Collection 74 of 1,457</td><td>✅ none</td></tr>
+<tr><td>The same, screen on Pakistan time</td><td>❌ A/P Aging Detail 1,609 of 14,632 · A/R Aging Collection 150 of 1,447 · A/R Aging Detail 16 documents in a different age column</td><td>✅ none</td></tr>
+</tbody></table>
+<p>What this shows: the amounts are the same, but the day a document is shown on, and so its Past Due, moves by one day for documents saved near midnight UTC.</p>
+<p>Pictures of the version before the release: not attached. The "before" values above are copied word for word from that version's screen, taken on staging on 12 Nov 2026 (06:46 UTC) before the release reached staging, for the same records. Production still runs that version (checked 16 Nov: production does not have the new reports yet).</p>
+<h2>Steps to Reproduce</h2>
+<h3>Example 1 - A/P Aging Detail (Mountain time)</h3>
+<ol start="1">
+<li>Sign in to staging as an Admin at <strong>Staging Lethbridge - 4310</strong> (Mountain time).</li>
+<li>Open <strong>Reports</strong> → <strong>A/P Aging Detail</strong>. As of: <strong>11/12/2026</strong>, Vendor: <strong>Willoughby Mechanical Services</strong>.</li>
+<li>Open <strong>1-30 days past due</strong>.<ul><li>Bill <strong>X101364617:01</strong> shows Date "Aug 16, 2026", Due Date "Oct 15, 2026", Past Due "28".</li></ul></li>
+</ol>
+<!--PIC1--><figcaption>Staging — A/P Aging Detail, screen on Mountain time: X101364617:01 shows Aug 16 / Oct 15, 2026 / Past Due 28 (16 Nov 2026)</figcaption>
+<h3>Example 2 - A/R Aging Collection (Mountain time)</h3>
+<ol start="1">
+<li>Still at <strong>Staging Lethbridge - 4310</strong>, open <strong>Reports</strong> → <strong>A/R Aging Collection</strong>. As of: <strong>11/12/2026</strong>, Customer: <strong>4 Star Truck Repair</strong>.</li>
+<li>Open the customer.<ul><li>Credit memo <strong>CM2-4357</strong> shows Due Date "Sep 6, 2026", Past Due "67".</li></ul></li>
+</ol>
+<!--PIC2--><figcaption>Staging — A/R Aging Collection, screen on Mountain time: CM2-4357 shows Sep 6, 2026 / Past Due 67 (16 Nov 2026)</figcaption>
+<h3>Example 3 - A/P Aging Detail (Pakistan time)</h3>
+<ol start="1">
+<li>Switch the location (top right) to <strong>Staging Heavy Duty - 9919</strong> (Pakistan time).</li>
+<li>Open <strong>Reports</strong> → <strong>A/P Aging Detail</strong>. As of: <strong>11/12/2026</strong>, Vendor: <strong>Covina Truck Repair</strong>. Open <strong>91 or more days past due</strong>.<ul><li>Bill <strong>GNV306853</strong> shows Date "Mar 6, 2024", Due Date "May 5, 2024", Past Due "921".</li></ul></li>
+</ol>
+<!--PIC3--><figcaption>Staging — A/P Aging Detail, screen on Pakistan time: GNV306853 shows Mar 6 / May 5, 2024 / Past Due 921 (16 Nov 2026)</figcaption>
+<p><strong>Actual Result:</strong></p>
+<ul><li>Some documents show a Date and Due Date one day different from production, and a Past Due one day different.</li></ul>
+<p><strong>Expected Result:</strong></p>
+<ul><li>Unless Product confirms the change: it works exactly as on production. X101364617:01 shows Aug 17, 2026 / Oct 16, 2026 / 27; CM2-4357 shows Sep 7, 2026 / 66; GNV306853 shows Mar 5, 2024 / May 4, 2024 / 922.</li></ul>
+<h2>Environment</h2>
+<ul>
+<li>Staging: <a href="https://app.staging.shopview.com">https://app.staging.shopview.com</a> (build <strong>v26.45.4-f3d3d2d</strong>), Admin, screen on America/Edmonton (Staging Lethbridge - 4310) and on Asia/Karachi (Staging Heavy Duty - 9919). Seen on 16 Nov 2026 at 07:29–07:32 UTC (every document of the reports) and again on the screen at 08:24 UTC.</li>
+<li>Before the release: staging build <strong>v26.45.3-6197d19</strong> on 12 Nov 2026 at 06:46 UTC, browser on Pakistan time, the same records. Production (<a href="https://app.shopview.com">https://app.shopview.com</a>, build v26.45.4-75f8b2e) still runs this version of the reports.</li>
+<li>Checked: every document of A/R Aging Detail, A/R Aging Collection, A/P Aging Detail and A/P Unpaid Invoices, as of 11/12/2026, in both time zones. Not checked: the PDF and CSV exports, production pictures.</li>
+</ul>
+<h2>Sources</h2>
+<table><thead><tr><th>Document</th><th>What it says</th><th>Intended by the PRD?</th></tr></thead>
+<tbody>
+<tr><td>PRD "A/R and A/P Report Sorting, Export and Location Filter", <a href="https://shopview.atlassian.net/wiki/spaces/~7120207b6068952672480db1a06bd810e23ba1/pages/947650561">Confluence page 947650561</a>, version 13 (13 Nov 2026, Chris Ward), What changes for existing users</td><td>"Which rows and amounts each user can see is unchanged: an untouched report shows exactly today's organization-wide numbers (apart from the Totals rows noted above), and the reports show money exactly as they do today."</td><td><strong>No</strong> — no date change is listed.</td></tr>
+<tr><td>Same PRD, S1-R5a</td><td>"A document is Current when its due date is on or after the as-of date. Its Past Due, where the report shows one, is the number of days from the due date to the as-of date: negative while the document is not yet due (a bill due 9 days after the as-of date reads -9, as today) and 0 on its due date."</td><td><strong>No</strong> — it counts from "the due date" but does not say which calendar day the due date is shown on.</td></tr>
+<tr><td>SV-12663, developer comment, 13 Nov 2026</td><td>"Chris, we'll keep the time zone the reports used before this release; tell us if you want a different rule."</td><td><strong>No</strong> — production shows and counts dates on the UTC day; staging now uses the location's day.</td></tr>
+<tr><td>SV-12663, QA handoff, Known mismatches (not bugs), 13 Nov 2026</td><td>"At a location set to a zone far from where the documents were created, a document created in a North American afternoon shows the next calendar day."</td><td>Covers far-away time zones only. The Mountain-time examples above are not in it.</td></tr>
+<tr><td>The reports before this release (staging v26.45.3-6197d19 on 12 Nov; production v26.45.4-75f8b2e today)</td><td>Shows Date and Due Date on the UTC calendar day and counts Past Due from it.</td><td>—</td></tr>
+</tbody></table>
+<div data-type="panel-warning"><p><strong>No — the PRD does not ask for this change.</strong> Since what staging does is not intended by the PRD, it should work exactly as it works on production today, unless Product confirms the change.</p><p>Note: raised with Chris Ward at the top of this ticket, 16 Nov 2026.</p></div>
+<h2>Test case</h2>
+<ul>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/715471">C715471 After the staging deploy an untouched A/R report shows the same rows and amounts</a></li>
+<li><a href="https://shopview.testrail.io/index.php?/cases/view/715472">C715472 After the staging deploy an untouched A/P report shows the same rows and amounts</a></li>
+</ul>
+<details><summary>Technical details for developers</summary>
+<ul>
+<li>Stored values: X101364617:01 date 2026-08-17T00:00:00Z, due 2026-10-16T00:00:00Z; CM2-4357 due 2026-09-07T00:00:00Z; GNV306853 due 2024-05-04T19:11:42Z.</li>
+<li>The version before the release counts on the UTC day: its own Past Due matches the UTC day for 1,456 of 1,457 A/R Collection documents and 14,196 of 14,663 A/P Detail documents.</li>
+<li>The new version is consistent with itself: with the screen's timezone sent, Past Due equals the as-of date minus the Due Date shown for every document (0 wrong of 32,814 per zone), so SV-12663 is fixed. This ticket is only about which calendar day is shown.</li>
+<li>Evidence (data, scripts, pictures): build/ar-ap-report-sorting/existing-data-unchanged-check/staging-recheck-after-SV-12663-2026-11-16/ in the Manual-test-Cases repository.</li>
+</ul>
+</details>
