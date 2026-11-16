@@ -71,3 +71,20 @@
    - (c) QUESTION FOR CHRIS: the chain is unclear, or code and document disagree with no decision recorded (Rule 96: a PO decision item). Annotated picture; never ask him to change a document.
    - (d) SETTINGS-DEPENDENT: the behaviour follows a setting. Record the setting and re-test under the other value.
 6. **Every candidate states its evidence chain:** test/ticket → newer ticket(s) → commit(s) and PR → current source quote → build observation (with build, time, location and the four zones).
+
+## QA lead, 16 Nov 2026 (verbatim): exclusions, results workbook, Mudassir
+> "Exclude: Invoice Refresh / Fees & Discounts (WO and part lines) / Founder Mode / Internal Work Order (12 Nov 2026)
+> 1. I dont understand please share the context and tell me what 11839 has to do with regression testing?
+> 2. No
+> 3. Workbook and share the work book with Edit acess with Mudassir, asking him that Bilal Asked to sare this workbook with Mudassir to create the regression tikckets after verifying if they really are the genuine bugs/defects and ask hgim to not create any defect/bug based on this if anything is not verified, and send the similar slack message to him too.
+> 4. As I will be travelling I wont be bale to message mudassir on slack DM"
+
+- **OUT of scope:**
+  - Invoice Refresh (S6559) and Fees & Discounts (S3895, S3897 and the rest of that group). Invoices are still checked for accuracy, but those two features are not regression-tested.
+  - Founder Mode / Internal Work Order (S136701), as answer "2. No" confirms.
+  - Parts lifecycle (stays out).
+- **SV-11839 has nothing to do with this regression.** It is the Dashboard epic. I cited it wrongly as the "related ticket". The regression has no ticket.
+- **Results:**
+  - A Google Sheets workbook, shared with **Mudassir Qamar** (mudassir.qamar@shopview.com) with **edit** access.
+  - The share note and a Slack DM say: Bilal asked for it to be shared so Mudassir can create the regression tickets **after verifying each one is a genuine bug**, and must **not** create any bug or defect from anything not verified.
+  - Messages are sent on Bilal's behalf because he is travelling.
