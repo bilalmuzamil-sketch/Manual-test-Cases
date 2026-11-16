@@ -579,3 +579,24 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **QA lead: "If that has been deleted from testrail then delete from TMS too" / "leave them as they are".** C10000761 (= TestRail
   C1062367) is gone from TestRail (400, no title match), no results → **deleted in TMS (restorable)**. Runs with results (e.g.
   7, 16, 17, 26) are NOT rebuilt — they keep the older case versions by decision.
+
+## 31 · 2026-11-16 — Tiered Pricing + Founder Mode resync; results protected; Vladimir's TMS edits found
+
+- QA lead order (16 Nov): sync Tiered Pricing and Founder Mode > What/Why, Splitting-Sales-Representatives, Part Sales,
+  Credit Terms, Part Lifecycle (+ not runnable), Technician Toggle (+ not runnable), Bill To, Internal Work order; *"no resync
+  should destroy the test results ... not over write the existing results of those results were added by someone else"*;
+  changed cases must also change in the test run — *"ALways do this"*.
+- `tr_results_to_tms.py --protect-others`: writes only to entries with no result or whose current result is our own TestRail copy.
+- **Done:** Tiered Pricing 818 created (818/818 SAME); Internal Work order 54 created; 432 held cases proven only-mine updated;
+  pictures 780 + 58 cases. **TMS run 36 "Bill To - Execution"** (322, Mudassir) and **TMS run 38 "Internal Work Orders -
+  Execution"** (663, Ahtasham) in milestone 10000000, all latest versions; old TMS runs 33, 34, 37 closed (0 results each).
+- **Results:** TMS runs 16 and 17: 772 entries with results before and after, **0 changed** (305 are people's). Nothing new to copy
+  (TestRail runs 555/558/559 have no statuses yet; 556's 43 are left alone because TMS already holds a person's result).
+- **Vladimir Tomovic (TMS user 2) edited Internal Work order cases by hand in TMS from 16 Nov 08:31 UTC:** 270 of the 275
+  CONFLICTs and 65 of the 69 TMS-only cases (those 69 are gone from TestRail). Example: adds "If no such organization is
+  available, mark the test Blocked." and removes an expected line. **Left alone — QA lead to decide.**
+- **Our mistake, fixed:** the only-mine list was built before Vladimir's edit, so at 08:54 it overwrote his expected result and
+  title on **C10001543**. Restored from his version 6 (read back OK); run 37 rebuilt as run 38 so the run shows it. 5 other cases
+  got pictures after his edit — his text kept exactly. **Lesson: re-prove "only mine" immediately before each write.**
+- Still not SAME: Part Sales 39, Part Lifecycle 190, Technician Toggle 98 Automated (held); Part Lifecycle 3 and Technician
+  Toggle 2 CONFLICT; C10001543 sits in a different folder than TestRail (move not made — may be Vladimir's).
