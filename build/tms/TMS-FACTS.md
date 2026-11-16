@@ -614,3 +614,8 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   entries in Vlad's nightly runs (561 with results): **0 changed**. → tell Vlad. Part Lifecycle 189 / Technician Toggle 95
   Automated differ only in automation flags → held.
 - 4 Internal Work order TMS-only cases not edited by Vladimir: C10001248, C10001397, C10001648, C10001652 → asked.
+- **QA lead 16 Nov: "Yes IF the other session deleted it in testrail" / "Delete".** The 25 Tiered "Design:" cases are all named
+  in the Tiered session's commit `393523bc` (deleted in TestRail 13:36 UTC, PO ruled the design's version out) → **25 deleted
+  in TMS** (soft, restorable; no person edits, no results). Tiered Pricing now **802/802 SAME**.
+- Internal Work order: **C10001248, C10001397, C10001648 deleted in TMS** (restorable). They remain listed in Vlad's nightly TMS
+  runs 29 and 31 (no results there). **C10001652 NOT deleted** — Vladimir edited it at 10:28 UTC → kept (`kept-tms-only.csv`).
