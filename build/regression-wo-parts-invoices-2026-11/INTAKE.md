@@ -106,3 +106,8 @@
 ## Plan approved — QA lead, 16 Nov 2026 (verbatim): "1. I will follow your recomentation"
 - Recommendation he accepted: steps 1 (record settings) and 2 (full WO and part-sale flows, every invoice recomputed) first; then the TestRail cases one section at a time, starting with Work Order lines (S6) and Deposits (S3014).
 - Steps 1–2 handed to a background worker: `WORKER-BRIEF-steps-1-2.md`. It works at a location other than the three the report-gaps worker is using, and changes no settings in this pass.
+
+## Steps 1–2 done — 16 Nov 2026 (worker hand-back verified by the coordinator from committed evidence, Rule 86)
+- 8 commits present on origin (ddaa088e6 … fe9b40ed5). Six flows; every `recompute.json` has its expected values derived from the inputs entered (e.g. WO-3: 1.33 h × $135 = 179.55) and 159 of 159 checks `match: true`, 0 false.
+- rows.json → workbook (16 Nov ~09:20 UTC): Passed 26, Questions for Chris 3 (C1–C3, drafts NOT posted), Outdated 2, Not verified 5, Settings used 36; Summary tab updated; row counts read back.
+- Open for the QA lead: C1–C3 to Chris?; NV3 (API-only paid_balance, Rule 51); leftover S2-40396/S2-40397 in Review; next: step 3 (TestRail sections, starting S6 lines + S3014 deposits), settings pass (NV2, NV5), ordered parts (NV4).
