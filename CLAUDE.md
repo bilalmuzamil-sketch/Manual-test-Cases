@@ -5844,6 +5844,13 @@ deliver the 7-tab management report.
     **(c) REPRODUCIBLE ON PRODUCTION ⇒ THE STEPS, THE TEST DATA, THE LINKS AND EVERY SCREENSHOT COME FROM PRODUCTION**, with the QA environment named as also affected (QA evidence stays in the findings doc). **ONLY ON QA ⇒ the steps and pictures come from the QA environment, with its link,** and the ticket says production does not show it.
     **(d) EXISTING FOLLOW-UPS ARE BROUGHT IN LINE WHEN TOUCHED OR ASKED** (first applied: SV-12268 rewritten 10 Nov 2026). This hardens Rule 126 (production check) and Rule 67 (PO-runnable steps on the named environment). Ties to Rules 12, 64, 67, 68, 86, 93, 95, 126.
 
+129. **EVERY SENTENCE IN A TICKET IS A CLAIM THAT NEEDS ITS OWN PROOF — including the "supporting" ones; and a button's name is not what it does (all projects).**
+    Earned 2026-11-16 on SV-12831; QA lead: *"why did you make those mistakes? and what have you learned from them? You made me feel embarrased"*.
+    **(a) A CONTROL'S LABEL IS NOT ITS BEHAVIOUR.** Before writing that something "cannot happen" somewhere, click every control that could produce the same output (Print, Export, Download, Email, Share), capture what it actually makes, and run the failing data through THAT. Seeing the button is not checking it.
+    **(b) COMPARISON / REASSURANCE LINES ARE CLAIMS TOO.** "The other reports already do it right", "production is safe", "this only affects X" are proven the same way as the bug itself — against a known-good version, counted over every page, across every variant (each filter, each location). If it isn't proven, leave it out: an extra sentence that sounds helpful is the one most likely to be repeated by a PO and come back as an embarrassment.
+    **(c) BEFORE POSTING, WALK EVERY SENTENCE AND NAME THE EVIDENCE BEHIND IT.** No evidence, no sentence. Part of the pre-post gate (Rule 72).
+    **RATIONALE:** our SV-12831 description said production was safe (it only "has a Print button") and that the Detail and Collection PDFs "already keep all their columns". The Print button builds the same kind of PDF and loses 91 And Over + Total; our own Detail PDF had no Amount column on any of its 161 pages; the Collection PDF fails with one location chosen. Chris repeated the second line in his ruling and Nemanja corrected both. Ties to Rules 12, 50, 68, 72, 93, 96, 126.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
