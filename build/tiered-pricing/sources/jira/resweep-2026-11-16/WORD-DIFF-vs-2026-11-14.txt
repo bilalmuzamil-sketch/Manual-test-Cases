@@ -1,0 +1,46 @@
+Word-level comparison of the 10 stories edited 16 Nov 2026 12:30Z against our 14 Nov copies (sources/jira/<key>.md). -[old] +[new]
+
+== SV-11694
+  …and will follow <tier before it> instead:"), then -[] +[Archive says]
+  …then "Parts already on work orders keep their -[prices.",] +[prices." and Delete says "This can't be undone." (a tier that can be deleted never priced a part),]
+  …Delete). With no follower, just the question and -[the] +[its]
+  …Pricing tab, never a dialog, with the breadcrumb -[Settings ›] +[]
+  …opens on the Pricing tab with the breadcrumb -[Settings ›] +[]
+== SV-11695
+  …* S3-R26: Breadcrumbs, with no separate Back link: -[Settings ›] +[]
+  …link: Settings › Pricing › Matrices › <matrix>; -[Settings ›] +[]
+  …Categories › <category> › <matrix> from a category; -[Settings ›] +[]
+  …From a link or bookmark, the Matrices breadcrumb. -[] +[They start at the Settings page the user is on, never at Settings: the side menu is always shown, and a Settings crumb would open Organization settings.]
+  …the General Matrix when saved. Uncategorized isn't listed. -[] +[The Categories line can be changed only in Edit (or on a new matrix); picked categories show at once, their parts price by this matrix only after Save (Create Matrix), and Cancel puts them back.]
+  …above the previous end ("$25.01 to \[end\]"). The -[] +[first always starts at $0.00 and the]
+  …\[end\]"). The last has no end ("$10,000.01 and -[up") and can't] +[up"); neither can]
+  …no end ("$10,000.01 and up") and can't be -[removed.] +[removed, so every cost is covered.]
+  …before the last one. * S3-R32: Each range -[except] +[between the first and]
+  …delete button at its left ("Remove this range"); -[] +[a matrix with one or two ranges has none;]
+  …also names the tiers that price from Default. -[Renaming, changing categories] +[Renaming]
+  …the Part Sale switch on save without asking; -[] +[categories save with the grid (S3-R13);]
+== SV-11696
+  …(Default's rules in short) and Part Sale Matrix -[(On or Off).] +[(its rules in short when the matrix has separate Part Sale pricing, otherwise "Same as work orders").]
+== SV-11697
+  …name, a channel filter (Work orders, Part Sales, -[Both),] +[Both: on the tier for work orders only, Part Sales only, or both, so each customer matches one),]
+== SV-11699
+  …by splitting. Changing the customer doesn't change its -[] +[tier. A line added to a work order whose invoice is sent or paid goes on a new work order, as today, so it's priced by the customer's current]
+== SV-11701
+  …tier name; matrix, side and rule (range and -[calculation);] +[calculation; on a Part Sale whose matrix has no separate Part Sale pricing, the side reads "Same as work orders");]
+== SV-11704
+  …is priced for every tier from the start. -[Save] +[Cancel]
+  …for every tier from the start. Save and -[Cancel;] +[Create Category in the page head, like New Tier and New Matrix;]
+  …start. Save and Cancel; nothing is created until -[Save.] +[Create Category.]
+  …always uses the General Matrix. Its page is -[read-only with] +[read-only:]
+  …General Matrix. Its page is read-only with no -[rename, Delete or matrix picker;] +[rename and no Delete, its Pricing Matrix and Tax Exempt grayed; only QuickBooks Products and Services can be changed (when QuickBooks is connected), to book it to a specific P&L account;]
+  …] Given Uncategorized's page, then it has no -[rename, Delete] +[rename]
+  …page, then it has no rename, Delete or -[matrix picker,] +[Delete, its Pricing Matrix and Tax Exempt are grayed, only QuickBooks Products and Services can be changed,]
+== SV-11709
+  …repeating the label). Tier names have no tooltip. -[] +[The one exception is the shared-matrix line above a category's grid (S7-R15).]
+  …list's log with the parts and lines moved. -[] +[A rule-type change and the values entered after it are both recorded ("Tier 5: rule type Margin % → % Off; 3 range values changed"). * S19-R24: Columns and fields keep their place and width when a screen changes state: a row opening or closing, a search narrowing a list, an empty list, a filter chip changing, the Add Part row opening, or a page switching between view and edit. Nothing moves sideways or down.]
+== SV-12456
+  …and cells that follow another column don't count. -[] +[A column whose rule type changes counts as one change, and each box whose value changes as one more: switching a 3-range column to % Off counts 1 (its boxes start empty); typing a value in each box makes 4.]
+  …names up to three changes, then "and <n> -[more".] +[more"; each tier is one change. A tier reads one of three ways: one rule and value in every range ("Tier 5 is 28% margin."); the same rule type with a different value per range ("Tier 5 is" and one bullet per range, "$0.00 to $25.00: 35% margin"); more than one rule type ("Tier 5 is multiple rules" and one bullet per type, "+ $", "Margin %").]
+== SV-12458
+  …opens the category's page (never a dialog), breadcrumb -[Settings ›] +[]
+  …anywhere, then its page opens with the breadcrumb -[Settings ›] +[]
