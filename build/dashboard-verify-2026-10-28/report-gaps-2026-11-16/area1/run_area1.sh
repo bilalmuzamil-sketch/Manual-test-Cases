@@ -44,4 +44,4 @@ laneW4(){ export SV_SESS=/tmp/cln/rg16/w4/sess-w4.txt; cd $W4
   step W4 check_exports_sep python3 $W4/check_exports.py hd_sep 2026-09-01 2026-09-30 Asia/Karachi
   step W4 check_exports_oct python3 $W4/check_exports.py hd_oct 2026-10-01 2026-10-31 Asia/Karachi; }
 laneS & laneW1 & laneW3 & laneW2 & laneW4 & wait
-echo "ALL LANES DONE $(date -u +%FT%TZ) build=$(ver)" >> $L/driver.log
+echo "ALL LANES DONE (pass $(date -u +%H%M)) $(date -u +%FT%TZ) build=$(ver)" >> $L/driver.log

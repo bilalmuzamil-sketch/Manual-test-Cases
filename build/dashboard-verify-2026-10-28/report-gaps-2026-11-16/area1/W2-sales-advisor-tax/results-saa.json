@@ -1,0 +1,2169 @@
+{
+ "full_rows_at": "/tmp/cln/rg16/w2/full/results-saa.json",
+ "rows": 118839,
+ "totals": {
+  "PASS": 118206,
+  "FAIL": 633
+ },
+ "checks": [
+  {
+   "report": "Advisor Analysis",
+   "check": "Every row is dated inside the chosen dates",
+   "source": "SV-2108",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Each work order appears once",
+   "source": "formula ref (no written rule)",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Every row has an advisor",
+   "source": "SV-2108",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Totals row = sum of the rows (Days Open, Lines, Hrs Worked, Hrs Invoiced, Labor Delta, Parts Cost/Invoiced/Profit, Total Profit, Subtotal)",
+   "source": "SV-2108 / SV-2489",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Totals row Billing Efficiency, ELR, Parts Margin, Total Margin recalculated from the totals",
+   "source": "SV-2108 \"TOTAL = SUM(...)/SUM(...)\"",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Lines = number of lines on the work order that were not declined",
+   "source": "formula ref (no written rule)",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Labor Delta = Hrs Invoiced - Hrs Worked",
+   "source": "SV-2108 hour profit; SV-9200",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Hrs Worked = clocked hours on the Stats tab (re-confirm)",
+   "source": "SV-2108",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Hrs Invoiced = billed hours on the Stats tab (re-confirm)",
+   "source": "SV-2108",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Billing Efficiency = Hrs Invoiced / Hrs Worked x 100; N/A when nothing clocked",
+   "source": "SV-2108 Labor Efficiency Row",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Labor billed (behind ELR / Total Profit) = labor sell on the Stats tab",
+   "source": "SV-2108 ELR",
+   "counts": {
+    "PASS": 7279,
+    "FAIL": 616
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40077 1234.56 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40181 100 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40182 500 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40185 100 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40076 50 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40081 250 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40090 21 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40062 10 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40093 86 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40082 40 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40037 65 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40092 48 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40066 5 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40070 45 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40078 110 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40079 120 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40089 22 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40083 41 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40094 100 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40072 55 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-38022 149.95 vs 299.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40046 60 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40088 73 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40060 30 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-36554 449.86 vs 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40091 23 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40087 72 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40052 100 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40084 71 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-34918 449.86 vs 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40075 100 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40055 80 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40056 100 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33460 449.86 vs 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33459 449.86 vs 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33458 449.86 vs 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33364 449.86 vs 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17322 3009.51 vs 3009.48"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17292 1739.44 vs 1739.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17407 3787.76 vs 3787.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16654 3171.13 vs 3171.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9473 2015.7 vs 2015.68"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16903 2903.05 vs 2903.03"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40067 10 vs 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16188 2413 vs 2412.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16067 4335.07 vs 4335.05"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14531 14219.47 vs 14219.44"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14512 4587.01 vs 4586.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16121 3562.54 vs 3562.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15625 1631.54 vs 1631.52"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16050 3077 vs 3076.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16079 1247.6 vs 1247.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15868 7235.11 vs 7235.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16086 614.81 vs 614.79"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15911 2429.2 vs 2429.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16012 1299.76 vs 1299.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15971 3934.39 vs 3934.36"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15810 2758.78 vs 2758.75"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15621 7651.98 vs 7651.96"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15742 1253.65 vs 1253.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15859 577.32 vs 577.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15767 464.86 vs 464.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15299 2946.24 vs 2946.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15543 3150.15 vs 3150.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15487 1799.06 vs 1799.03"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15632 464.86 vs 464.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15193 1739.12 vs 1739.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9313 13818.21 vs 13818.17"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15452 1608.97 vs 1608.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15174 3013.68 vs 3013.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15322 9478.01 vs 9477.94"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15440 3024.19 vs 3024.14"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14899 7179.39 vs 7179.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15192 2063.01 vs 2062.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14363 3574.47 vs 3574.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14994 2163.8 vs 2163.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14658 7653.16 vs 7653.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15360 1364.56 vs 1364.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14729 14212.62 vs 14212.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15260 4873.21 vs 4873.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14861 3748.44 vs 3748.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14931 5862.76 vs 5862.72"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15321 838.24 vs 838.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15181 3683.99 vs 3683.96"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15310 967.86 vs 967.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14867 2931.54 vs 2931.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13263 6701.31 vs 6701.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13770 9366.64 vs 9366.6"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14826 4057.65 vs 4057.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14783 2818.76 vs 2818.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14169 17297.48 vs 17297.46"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15027 737.6 vs 737.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14809 1887.88 vs 1887.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14371 6594.85 vs 6594.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12614 10345.13 vs 10345.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14157 9592.06 vs 9591.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14456 1217.3 vs 1217.28"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14495 1724.12 vs 1724.1"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13880 2015.7 vs 2015.68"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13013 7464.23 vs 7464.21"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14542 1163.17 vs 1163.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13498 9929.73 vs 9929.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14332 4273.61 vs 4273.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14503 854.72 vs 854.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14201 1617.67 vs 1617.64"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14143 4962.59 vs 4962.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12718 19860.68 vs 19860.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13958 7855.15 vs 7855.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14306 1319.57 vs 1319.55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14029 2103.51 vs 2103.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14096 776.76 vs 776.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14016 1830.6 vs 1830.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14005 3141.47 vs 3141.43"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13642 6855.4 vs 6855.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13620 5615.8 vs 5615.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14080 864.91 vs 864.89"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14015 4021.4 vs 4021.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14165 1215.15 vs 1215.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13773 6625.56 vs 6625.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13907 9114.74 vs 9114.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14092 644.8 vs 644.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13010 12758.99 vs 12758.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13548 7628.98 vs 7628.92"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13838 3424.86 vs 3424.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13635 5798.29 vs 5798.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14022 819.92 vs 819.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13457 2803.78 vs 2803.75"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13724 5586.84 vs 5586.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13765 269.92 vs 269.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13599 5996.51 vs 5996.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13623 2613.66 vs 2613.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13144 1964.37 vs 1964.35"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13696 3145.64 vs 3145.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13604 10158.83 vs 10158.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13552 3002.03 vs 3001.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13523 4135.32 vs 4135.29"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13493 3145.27 vs 3145.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13597 2748.6 vs 2748.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13679 269.92 vs 269.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13288 4973.54 vs 4973.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13358 4395.17 vs 4395.15"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13468 464.86 vs 464.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13345 6903.74 vs 6903.72"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13226 6603.52 vs 6603.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13329 1132.14 vs 1132.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13164 1364.19 vs 1364.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13308 2333.24 vs 2333.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13293 4166.82 vs 4166.77"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13325 3189.45 vs 3189.43"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12880 12165.23 vs 12165.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13153 1847.41 vs 1847.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12729 4726.51 vs 4726.48"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12525 2742.29 vs 2742.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13179 3047.02 vs 3046.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12920 10550.21 vs 10550.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13143 1769.43 vs 1769.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13119 3978.2 vs 3978.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13059 2582.16 vs 2582.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12788 3729.89 vs 3729.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11876 11503.42 vs 11503.37"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12821 1934.37 vs 1934.35"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12266 9392.57 vs 9392.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12553 3525.39 vs 3525.35"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12518 1317.76 vs 1317.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12514 4958.89 vs 4958.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10867 11860.54 vs 11860.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12667 2754.29 vs 2754.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12433 12193.65 vs 12193.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12410 4475.74 vs 4475.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12675 419.87 vs 419.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11588 2914.73 vs 2914.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9800 16081.92 vs 16081.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12369 1719.63 vs 1719.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12481 1619.51 vs 1619.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12214 2295.43 vs 2295.4"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12504 2466.01 vs 2465.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12477 651.36 vs 651.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12406 3417.06 vs 3417.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12386 2462.2 vs 2462.17"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12528 479.85 vs 479.83"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12487 3804.26 vs 3804.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11972 2740.79 vs 2740.75"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12142 4883.57 vs 4883.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12414 1341.65 vs 1341.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12188 3985.68 vs 3985.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11986 5967.72 vs 5967.69"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12275 2946.53 vs 2946.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12182 2993.01 vs 2992.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11370 2001.91 vs 2001.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12036 1827.58 vs 1827.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12080 1769.42 vs 1769.4"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12190 1802.4 vs 1802.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12222 1297.07 vs 1297.05"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11954 2712.62 vs 2712.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11002 1415.54 vs 1415.52"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11763 2213.28 vs 2213.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12061 3310.97 vs 3310.94"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12079 1035.9 vs 1035.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11985 2027.33 vs 2027.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7510 10146.84 vs 10146.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11838 3112.97 vs 3112.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11203 1358.56 vs 1358.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11678 3805.44 vs 3805.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11645 965.69 vs 965.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11818 2192.28 vs 2192.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11369 4519.19 vs 4519.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11649 1166.32 vs 1166.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11784 817.24 vs 817.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11746 4772.2 vs 4772.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11611 6390.6 vs 6390.5"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11447 5768.27 vs 5768.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11685 2901.55 vs 2901.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11368 5311.29 vs 5311.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11473 2188.96 vs 2188.94"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11475 1310.58 vs 1310.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11563 742.28 vs 742.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11096 3376.91 vs 3376.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11478 3975.18 vs 3975.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11411 757.27 vs 757.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11410 1121.69 vs 1121.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11471 602.08 vs 602.06"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11380 1942.63 vs 1942.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11166 4092.15 vs 4092.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11302 3029 vs 3028.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11116 1818.59 vs 1818.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11073 2087 vs 2086.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11098 1471.32 vs 1471.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11155 4248.1 vs 4248.07"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10850 2636.13 vs 2636.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10965 1586.49 vs 1586.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11132 4330.29 vs 4330.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10063 7544 vs 7543.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11076 2249.26 vs 2249.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9835 3520.55 vs 3520.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11005 1462.06 vs 1462.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10900 2883.56 vs 2883.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10950 1273.11 vs 1273.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10855 4488.49 vs 4488.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10664 5508.44 vs 5508.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10585 3316.92 vs 3316.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10379 8462.9 vs 8462.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10299 2320.88 vs 2320.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10380 4522.23 vs 4522.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10318 8167.51 vs 8167.46"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10166 2327.23 vs 2327.21"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10367 4246.61 vs 4246.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9833 1539.68 vs 1539.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10627 1444.7 vs 1444.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10465 1265.59 vs 1265.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10031 6092.5 vs 6092.46"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9402 1802.42 vs 1802.37"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10142 1143.81 vs 1143.79"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10060 6834.41 vs 6834.39"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10210 4452.03 vs 4452.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10052 6684.48 vs 6684.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10485 539.84 vs 539.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10173 952.22 vs 952.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9447 9869.4 vs 9869.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10218 382.38 vs 382.36"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10088 548.83 vs 548.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10362 269.92 vs 269.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10011 1107.9 vs 1107.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9936 4308.08 vs 4308.05"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10015 3176.49 vs 3176.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9910 8260.33 vs 8260.29"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10076 743.79 vs 743.77"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9993 1078.69 vs 1078.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9959 2448.22 vs 2448.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9398 2540.16 vs 2540.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9935 433.87 vs 433.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9629 1440.26 vs 1440.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9710 4886.12 vs 4886.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9790 1224.12 vs 1224.1"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9746 6662.88 vs 6662.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8406 25137.37 vs 25137.29"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9660 968.73 vs 968.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9125 6084.84 vs 6084.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8282 2715.62 vs 2715.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9567 1967.88 vs 1967.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9554 908.73 vs 908.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9479 5418.56 vs 5418.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9494 4245.65 vs 4245.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9410 1459.65 vs 1459.63"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8990 6655.07 vs 6655.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9509 1688.73 vs 1688.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8356 21407.59 vs 21407.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9285 3117.92 vs 3117.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8553 4636.25 vs 4636.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7947 3145.42 vs 3145.4"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9026 5982.03 vs 5981.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9200 7174.22 vs 7174.17"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8958 2244.91 vs 2244.89"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8987 4718.24 vs 4718.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9110 1789.69 vs 1789.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8873 6081.81 vs 6081.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9030 6694.59 vs 6694.55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8986 3656.85 vs 3656.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9111 994.69 vs 994.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9113 424.88 vs 382.39"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8790 3726.5 vs 3726.48"
+    }
+   ],
+   "non_pass_total": 616,
+   "non_pass_capped": true
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "ELR = labor sold / hours clocked",
+   "source": "SV-2108 ELR",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Parts Cost = parts cost on the Stats tab",
+   "source": "SV-6344 (same rule as Sales)",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Parts Invoiced = parts sell on the Stats tab",
+   "source": "SV-2108",
+   "counts": {
+    "PASS": 7878,
+    "FAIL": 17
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33459 0 vs 16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33264 3855.64 vs 3655.64"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11368 3991.14 vs 3910.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10936 1262.99 vs 1474.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5618 1133.86 vs 1120.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5501 539.29 vs 546.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5494 438.98 vs 411.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5315 996.3 vs 1023.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4192 6059.53 vs 6075.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4980 424.33 vs 276.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4610 1117.5 vs 1124.32"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-16463 1366.88 vs 1484.4"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-16572 793.38 vs 743.38"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-6828 15.62 vs 3.62"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-6199 312.48 vs 311.32"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-6096 102.17 vs 102.34"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-5327 331.25 vs 394.32"
+    }
+   ],
+   "non_pass_total": 17,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Parts Profit = Parts Invoiced - Parts Cost",
+   "source": "SV-2108",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Parts Margin = Parts Profit / Parts Invoiced x 100",
+   "source": "SV-2108 Parts Margin",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Total Profit = (labor sold - labor cost) + Parts Profit (Stats tab labor cost)",
+   "source": "SV-2108 Total Margin Row",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Total Margin = Total Profit / (labor sold + Parts Invoiced) x 100",
+   "source": "SV-2108 Total Margin Row",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Subtotal = the invoice subtotal on the invoice record",
+   "source": "SV-2108",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Days Open = days from the work order start to the invoice (rounded up)",
+   "source": "formula ref (no written rule)",
+   "counts": {
+    "PASS": 7895
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Work order with no lines on its Stats tab shows 0 in every column",
+   "source": "",
+   "counts": {
+    "PASS": 14
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Advisor filter shows exactly that advisor's rows",
+   "source": "SV-2108 filter by advisor",
+   "counts": {
+    "PASS": 40
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Advisor filter: Totals row = that advisor's rows only",
+   "source": "SV-2489",
+   "counts": {
+    "PASS": 40
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  }
+ ]
+}

@@ -1,0 +1,282 @@
+{
+ "full_rows_at": "/tmp/cln/rg16/w2/full/results-te.json",
+ "rows": 1027556,
+ "totals": {
+  "PASS": 1027555,
+  "FAIL": 1
+ },
+ "checks": [
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Summary technicians = expanded technicians, same figures",
+   "source": "SV-2115",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Technician Clocked Hrs and Tech Hrs = sum of the technician's line rows",
+   "source": "SV-2115",
+   "counts": {
+    "PASS": 359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Technician Hrs Profit = Tech Hrs - Clocked Hrs",
+   "source": "SV-2115",
+   "counts": {
+    "PASS": 359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Technician Efficiency = Tech Hrs / Clocked Hrs x 100 (0 when either is under 0.01)",
+   "source": "SV-2115",
+   "counts": {
+    "PASS": 359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Invoice date inside the chosen dates (location time zone)",
+   "source": "SV-2115",
+   "counts": {
+    "PASS": 84880
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Clocked Hrs on the line = the technician's clock records on that line",
+   "source": "SV-2115",
+   "counts": {
+    "PASS": 84880
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Tech Hrs = the technician's share of the line's tech time (share of clocked time)",
+   "source": "SV-5450 \"allocated proportionally\"",
+   "counts": {
+    "PASS": 84880
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Line Efficiency and Hrs Profit follow from the line's hours",
+   "source": "SV-2115",
+   "counts": {
+    "PASS": 84880
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Line is not a declined line",
+   "source": "SV-2115 / dashboard F2",
+   "counts": {
+    "PASS": 84880
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Summary technicians = expanded technicians, same figures",
+   "source": "SV-5450",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Technician Clocked Hrs and Tech Hrs = sum of the technician's line rows",
+   "source": "SV-5450",
+   "counts": {
+    "PASS": 406
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Technician Hrs Profit = Tech Hrs - Clocked Hrs",
+   "source": "SV-5450",
+   "counts": {
+    "PASS": 406
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Technician Efficiency = Tech Hrs / Clocked Hrs x 100 (0 when either is under 0.01)",
+   "source": "SV-5450",
+   "counts": {
+    "PASS": 406
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Completed date inside the chosen dates (location time zone)",
+   "source": "SV-5450 \"Always use the location timezone\"",
+   "counts": {
+    "PASS": 85799
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Clocked Hrs on the line = the technician's clock records on that line",
+   "source": "SV-5450",
+   "counts": {
+    "PASS": 85799
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Tech Hrs = the technician's share of the line's tech time (share of clocked time)",
+   "source": "SV-5450 \"allocated proportionally\"",
+   "counts": {
+    "PASS": 85799
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Line Efficiency and Hrs Profit follow from the line's hours",
+   "source": "SV-5450",
+   "counts": {
+    "PASS": 85799
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Line is not a declined line",
+   "source": "SV-5450 \"only if Labor line status = Completed\"",
+   "counts": {
+    "PASS": 85799
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Completed tab lists only lines whose status is Complete",
+   "source": "SV-5450 Inclusion Rules",
+   "counts": {
+    "PASS": 85799
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Completed tab: the technician has clocked time on the line",
+   "source": "SV-5450 \"Tech has clocked time on that line\"",
+   "counts": {
+    "PASS": 85799
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Preset by name = the same technicians and hours as the custom window of those dates (location time zone, weeks from Sunday)",
+   "source": "SV-2115 date filter; SV-5450 location time zone",
+   "counts": {
+    "PASS": 36
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Preset by name = the same technicians and hours as the custom window of those dates (location time zone, weeks from Sunday)",
+   "source": "SV-2115 date filter; SV-5450 location time zone",
+   "counts": {
+    "PASS": 36
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Lines listed = every clocked, not-declined line of the work orders invoiced in the dates (declined lines = finding F2, counted apart)",
+   "source": "SV-2115 \"Which staff should populate\"",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed)",
+   "check": "Every Complete line with clock records (work orders invoiced since 2 Jan 2025) is listed in a Completed window",
+   "source": "SV-5450 Inclusion Rules",
+   "counts": {
+    "FAIL": 1,
+    "PASS": 3
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "expected 18186 listed 18185; missing [('7f85bc58-9ff5-4b50-b3f3-d85821069066', 'a2749bb3-966c-4ad1-8b49-3cd27f6fdd00')]"
+    }
+   ],
+   "non_pass_total": 1,
+   "non_pass_capped": false
+  }
+ ]
+}

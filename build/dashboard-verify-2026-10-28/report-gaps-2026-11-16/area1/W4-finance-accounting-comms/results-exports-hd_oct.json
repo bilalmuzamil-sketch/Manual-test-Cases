@@ -1,0 +1,296 @@
+{
+ "tag": "hd_oct",
+ "window": [
+  "2026-10-01",
+  "2026-10-31"
+ ],
+ "tz": "Asia/Karachi",
+ "checks": [
+  {
+   "check": "X-INV1",
+   "export": "Customer Invoice",
+   "desc": "Invoice lines + tax add up to the invoice total",
+   "result": "PASS",
+   "observed": {
+    "invoices": 429,
+    "bad": []
+   },
+   "expected": 0,
+   "ref": "invoice record total_balance"
+  },
+  {
+   "check": "X-INV2",
+   "export": "Customer Invoice",
+   "desc": "ItemQuantity \u00d7 ItemRate = ItemAmount on every line",
+   "result": "PASS",
+   "observed": {
+    "lines": 1019,
+    "bad": 0,
+    "sample": []
+   },
+   "expected": 0,
+   "ref": "internal"
+  },
+  {
+   "check": "X-INV3",
+   "export": "Customer Invoice",
+   "desc": "InvoiceDate inside the chosen window and = the invoice date",
+   "result": "FAIL",
+   "observed": [
+    [
+     "S3-34671",
+     "10-02-2026",
+     "record",
+     "2026-10-01"
+    ],
+    [
+     "S3-34672",
+     "10-02-2026",
+     "record",
+     "2026-10-01"
+    ],
+    [
+     "S3-34675",
+     "10-02-2026",
+     "record",
+     "2026-10-01"
+    ],
+    [
+     "S3-34676",
+     "10-02-2026",
+     "record",
+     "2026-10-01"
+    ],
+    [
+     "S1-35003",
+     "10-13-2026",
+     "record",
+     "2026-10-14"
+    ]
+   ],
+   "expected": 0,
+   "ref": "window + invoice record"
+  },
+  {
+   "check": "X-INV4",
+   "export": "Customer Invoice",
+   "desc": "DueDate = the invoice due date",
+   "result": "FAIL",
+   "observed": [
+    [
+     "S3-34671",
+     "10-02-2026",
+     "2026-10-01"
+    ],
+    [
+     "S3-34672",
+     "10-02-2026",
+     "2026-10-01"
+    ],
+    [
+     "S3-34675",
+     "10-02-2026",
+     "2026-10-01"
+    ],
+    [
+     "S3-34676",
+     "10-02-2026",
+     "2026-10-01"
+    ],
+    [
+     "S1-35003",
+     "11-12-2026",
+     "2026-11-13"
+    ]
+   ],
+   "expected": 0,
+   "ref": "invoice record"
+  },
+  {
+   "check": "X-INV5",
+   "export": "Customer Invoice",
+   "desc": "Terms = the invoice credit terms",
+   "result": "PASS",
+   "observed": [],
+   "expected": 0,
+   "ref": "invoice record"
+  },
+  {
+   "check": "X-INV6",
+   "export": "Customer Invoice",
+   "desc": "Customer = the invoice customer",
+   "result": "PASS",
+   "observed": [],
+   "expected": 0,
+   "ref": "invoice record"
+  },
+  {
+   "check": "X-INV7",
+   "export": "Customer Invoice",
+   "desc": "Every cached invoice dated in the window is in the export",
+   "result": "PASS",
+   "observed": {
+    "cache_in_window": 426,
+    "missing": 0,
+    "sample": [],
+    "not_in_cache": 3
+   },
+   "expected": 0,
+   "ref": "invoice records"
+  },
+  {
+   "check": "X-PAY1",
+   "export": "Customer Payment",
+   "desc": "Each payment row Amount = what that payment put on that invoice (customer Payments list)",
+   "result": "FAIL",
+   "observed": {
+    "rows": 157,
+    "bad": 82,
+    "sample": [
+     [
+      "",
+      "10-29-2026",
+      "0.00",
+      "no payment found"
+     ],
+     [
+      "",
+      "10-29-2026",
+      "0.00",
+      "no payment found"
+     ],
+     [
+      "",
+      "10-29-2026",
+      "0.00",
+      "no payment found"
+     ],
+     [
+      "",
+      "10-29-2026",
+      "0.00",
+      "no payment found"
+     ],
+     [
+      "S1-38210",
+      "10-29-2026",
+      "85.00",
+      [
+       135.0
+      ]
+     ],
+     [
+      "S1-38210",
+      "10-29-2026",
+      "50.00",
+      [
+       135.0
+      ]
+     ]
+    ]
+   },
+   "expected": 0,
+   "ref": "customer-payment/list"
+  },
+  {
+   "check": "X-PAY2",
+   "export": "Customer Payment",
+   "desc": "Payment Date inside the chosen window",
+   "result": "PASS",
+   "observed": [],
+   "expected": 0,
+   "ref": "window"
+  },
+  {
+   "check": "X-JE1",
+   "export": "Journal Entry",
+   "desc": "Every journal entry balances (its amounts add to zero)",
+   "result": "PASS",
+   "observed": {
+    "entries": 182,
+    "unbalanced": 0,
+    "sample": []
+   },
+   "expected": 0,
+   "ref": "double-entry bookkeeping"
+  },
+  {
+   "check": "X-JE2",
+   "export": "Journal Entry",
+   "desc": "Journal Date inside the chosen window",
+   "result": "PASS",
+   "observed": [],
+   "expected": 0,
+   "ref": "window"
+  },
+  {
+   "check": "X-PR1",
+   "export": "Payroll Timesheet",
+   "desc": "Total Hours = WO Hours + Internal Hours on every day",
+   "result": "PASS",
+   "observed": [],
+   "expected": 0,
+   "ref": "internal"
+  },
+  {
+   "check": "X-PR2",
+   "export": "Payroll Timesheet",
+   "desc": "No employee day exceeds 24 hours",
+   "result": "PASS",
+   "observed": {
+    "days_over_24": 0,
+    "sample": []
+   },
+   "expected": 0,
+   "ref": "a day has 24 hours"
+  },
+  {
+   "check": "X-VB1",
+   "export": "Vendor Bill",
+   "desc": "Bill lines + tax = the bill amount A/P Detail shows",
+   "result": "NOT RUN",
+   "observed": "legacy A/P Detail endpoint retired (SV-11315 phase 5); not re-pointed to the new report",
+   "expected": null,
+   "ref": null
+  },
+  {
+   "check": "X-VB2",
+   "export": "Vendor Bill",
+   "desc": "BillDate inside the chosen window",
+   "result": "PASS",
+   "observed": {
+    "outside": 0,
+    "sample": []
+   },
+   "expected": 0,
+   "ref": "window"
+  },
+  {
+   "check": "X-VP1",
+   "export": "Vendor Bill Payment",
+   "desc": "Payment Date inside the chosen window",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "window"
+  },
+  {
+   "check": "X-VP2",
+   "export": "Vendor Bill Payment",
+   "desc": "Negative amounts appear only on vendor-credit lines (Bill No C-...) applied in the payment",
+   "result": "PASS",
+   "observed": [],
+   "expected": 0,
+   "ref": "internal"
+  },
+  {
+   "check": "X-CM1",
+   "export": "Customer Credit Memo",
+   "desc": "Adjustment Note Date inside the chosen window",
+   "result": "PASS",
+   "observed": [],
+   "expected": 0,
+   "ref": "window"
+  }
+ ]
+}

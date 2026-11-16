@@ -130,11 +130,15 @@ def main(tag, w0, w1, tz):
     vb = collections.defaultdict(float)
     for r in rows:
         vb[(r['*BillNo'], r['*Supplier'])] += num(r['*LineAmount']) + num(r['LineTaxAmount'])
-    D = json.load(open('/tmp/cln/rg16/w4/ap/hd_2026-11-16/detail.json'))['data']['buckets']
-    apa = {(t['transactionNumber'], t['vendorName']): t['amount'] for b in D if isinstance(D[b], dict) for t in D[b]['transactions'] if t['type'] == 'invoice'}
+    try:
+        D = json.load(open('/tmp/cln/rg16/w4/ap/hd_2026-11-16/detail.json'))['data']['buckets']
+    except FileNotFoundError:
+        D = None   # 16 Nov: the legacy A/P Detail endpoint was retired (SV-11315 phase 5), so X-VB1 cannot use it
+    apa = {} if D is None else {(t['transactionNumber'], t['vendorName']): t['amount'] for b in D if isinstance(D[b], dict) for t in D[b]['transactions'] if t['type'] == 'invoice'}
     both = [k for k in vb if k in apa]
     vbad = [(k, round(vb[k], 2), apa[k]) for k in both if abs(vb[k] - apa[k]) >= 0.015]
-    chk('X-VB1', 'Vendor Bill', 'Bill lines + tax = the bill amount A/P Detail shows (bills still open)', not vbad, {'bills': len(vb), 'compared': len(both), 'bad': len(vbad), 'sample': vbad[:6]}, 0, 'A/P Detail Amount')
+    if D is None: rows_out.append({'check': 'X-VB1', 'export': 'Vendor Bill', 'desc': 'Bill lines + tax = the bill amount A/P Detail shows', 'result': 'NOT RUN', 'observed': 'legacy A/P Detail endpoint retired (SV-11315 phase 5); not re-pointed to the new report', 'expected': None, 'ref': None})
+    else: chk('X-VB1', 'Vendor Bill', 'Bill lines + tax = the bill amount A/P Detail shows (bills still open)', not vbad, {'bills': len(vb), 'compared': len(both), 'bad': len(vbad), 'sample': vbad[:6]}, 0, 'A/P Detail Amount')
     bd = [r['*BillDate'] for r in rows if not (w0 <= mdY(r['*BillDate']) <= w1)]
     chk('X-VB2', 'Vendor Bill', 'BillDate inside the chosen window', not bd, {'outside': len(bd), 'sample': bd[:5]}, 0, 'window')
     # ---------------- vendor bill payment / credit memos ----------------

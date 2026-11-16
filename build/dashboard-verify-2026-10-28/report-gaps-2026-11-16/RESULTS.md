@@ -6,6 +6,38 @@
 
 ---
 
+## Area 1 — Re-check of every report's figures on the current build
+
+**How:** the 28 Oct W1–W4 tools were copied to `area1/` with their output paths redirected (28 Oct evidence untouched) and DVI Test's zone set to its live value (Pacific/Fiji). Five lanes, each on its own quick-login session, ran `area1/run_area1.sh` (06:41–07:59 UTC, build v26.45.4-f3d3d2d at every step's start; resumable; a second pass re-ran the steps that had failed on a missing output folder). Every location was switched with `change-location` to its own zone, and every window was computed in that zone (process `TZ` Asia/Karachi; Rule 99 (c) is met by the per-location zone code, not by the process zone; recorded). Fixed historical windows (Last Year, 15 Sep–14 Oct, the A/R as-of dates, September exports) are directly comparable with 28 Oct; rolling presets now cover different dates.
+**Caveat:** the 28 Oct raw responses were in `/tmp` and are gone, and four of the 28 Oct W2 result files were never committed, so "figure changed" is judged from the failure lists and the totals in `ShopView-Dashboard-and-Reports-Full-Check-2026-10-28.md`.
+
+| Report (tool) | 28 Oct PASS / FAIL | 16 Nov PASS / FAIL | What changed and why | Evidence |
+|---|---|---|---|---|
+| Work In Progress — internal (A) | 246,643 / 0 | 226,368 / 0 | none | `area1/W1-labor-wip/results-wip-internal.json` |
+| Work In Progress — filters | 500 / 0 | 500 / 0 | none | `results-wip-filters.json` |
+| Work In Progress — independent recompute (C) | 4,296 / 611 | 4,680 / 640 | same kinds as 28 Oct (Fixed-Line-Total split 315→333, unclassified 187→197, 1 new part adjustment); more open work orders | `results-wip-oracle.json`, `compare-28oct-16nov.json` |
+| Technician Utilization | 2,398 / 97 (+ part 2: 341 / 37) | 1,317 / 83 (+ 199 / 4) | **Behaviour change:** never-clocked-out timesheets are now left out (19 rows; SV-11688 is **Ready for Production**), so the 28 Oct finding F1 no longer shows. Remaining: 8 = clocks that round to 0.00 h (held SQ-6); **5 open:** a technician with under 24 h of clocks left out (3 on Today, clocks running) — not yet checked against the SV-11688 ruling text or on screen | `results-tu.json`, `results-tu2.json` |
+| Timesheet Activities | 119,892 / 51 | 118,749 / 54 | same kinds (SV-10698 open clocks / footer) | `results-ta.json` |
+| Shop Efficiency | 119 / 25 | 134 / 10 | fewer rounding/open-clock mismatches; the clocked-hours gap is settled in Area 4 (by design) | `results-se.json` |
+| Sales | 96,171 / 1,079 | 100,773 / 1,156 | same kind as 28 Oct (Stats tab changed after invoicing; the invoice record is the authority) | `area1/W2-sales-advisor-tax/results-sales.json` |
+| Service Advisor Analysis | 112,690 / 601 | 118,206 / 633 | as Sales | `results-saa.json` |
+| Sales By Customer | 129,838 / 14,337 | 135,669 / 14,499 | same kinds (SQ-1/SQ-4/SQ-10 spec-vs-ticket rows) | `results-sbc.json` |
+| Sales By Representative | 146,093 / 1,491 | 152,409 / 1,135 | fewer | `results-sbr.json` |
+| Technician Efficiency | 1,089,118 / 834 | 1,027,555 / **1** | **Behaviour change:** declined lines are no longer listed ("Line is not a declined line" 84,880 / 0; 28 Oct: 101 failures = finding **F2**), and the 727 tiny-clock failures are gone. Which ticket shipped this was not identified; F2 (held for Chris, DQ-1) should be re-checked on the dashboard tile before anything more is said about it | `results-te.json` |
+| Sales Tax Collected | 479,522 / 12,408 (+ status 83,298 / 5,666) | 485,342 / 12,110 (+ 84,516 / 5,392) | same kinds (TAX1/TAX2) | `results-tax.json`, `results-tax-status.json` |
+| Sales — customer filter; SBC/SBR all-locations | 771 / 0; 8 / 0 | 907 / 0; 8 / 0 | none | `results-sales-customer-filter.json`, `results-multi.json` |
+| Parts Velocity — internal | 1,992,025 / 168 | 1,983,128 / 152 | same check (special-order Last Sale, PV-D1 family) | `area1/W3-parts/results-pv-internal.json` |
+| Parts Velocity — recompute | 103,015 / 18,920 | 97,416 / 18,410 | fewer; not re-broken down by category this pass | `results-pv-recompute.json` |
+| Parts Velocity / Inventory Value — filters, sort | 3,350 / 5; 52 / 10 | 3,407 / 7; 52 / 10 | +2 filter reads answered HTTP 400 (not investigated) | `results-filters.json`, `results-sort.json` |
+| Inventory Value | 798,725 / 1 | 767,128 / **231** | **Behaviour change:** negative bins now count (bins 36 and −4 show Qty 32) and parts with negative on-hand are listed (179 rows with qty ≤ 0; 31 presence and 17 Qty mismatches against the 28 Oct rule). **SV-10380** "Inventory Value report ignores negative bins…" is **Ready for Production** (updated 13 Nov). The IV spec (720142338) is still **v10, 13 Aug**, whose S2-R1 says a row shows only when on-hand > 0 — the spec and the shipped ticket now differ; SV-10380's text was not re-read in this pass. Also 1 HTTP failure on one Heavy Duty past day, and 2 All-locations unions off (one caused by that failed read) | `results-iv.json` |
+| A/R Aging ×3, A/P Aging ×3 | 756 / 68 (all W4) | **NOT VERIFIED** | **The six reports were rebuilt after 28 Oct** (SV-11315 Phase 5, merged 5 Nov: legacy endpoints removed, now `reporting/reports/ar-aging-*` / `ap-aging-*`; PRD 947650561, 13 Nov). The 28 Oct tools call the removed endpoints (404 "'resource' was not found."). Unblock: rebuild the A/R/A/P recompute against the new endpoints and the new PRD (screen features are covered in Area 2) | W4 log |
+| IBS Batches | 40 / 4 | 40 / 4 | none | `area1/W4-finance-accounting-comms/results-ibs.json` |
+| Notes / Reminders | 244 / 32 | 234 / 42 | same check (N2 "every note in the range is listed" — the 100-note cap, NOTES1); more notes now hit it | `results-notes-reminders.json` |
+| QB Unexported | 56 / 4 | 54 / 6 | same checks (Q3 blank number, Q4 listed twice), +1 each with new data | `results-qb-unexported.json` |
+| Export Reports (Heavy Duty, September — same window as 28 Oct) | 13 / 5 | 13 / 4 + 1 not run | **X-INV5 (Terms) now PASS** (was RQ-7); X-INV3/X-INV4 still FAIL (RQ-9, time zone); X-PR2 still FAIL for September, PASS for October; X-PAY1 still FAIL in this tool — superseded by Area 3's row-by-row check (125 / 125 match); X-VB1 not run (needed the retired A/P Detail endpoint) | `results-exports-hd_sep.json`, `results-exports-hd_oct.json` |
+
+---
+
 ## Area 4 — Shop Efficiency "Total Clocked Hours" vs clocked time — **SETTLED: BY DESIGN (no ticket)**
 
 **The 28 Oct gap, re-read 16 Nov (paired reads, own session, process TZ = location zone):**

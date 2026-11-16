@@ -1,0 +1,5282 @@
+{
+ "full_rows_at": "/tmp/cln/rg16/w2/full/results-sbc.json",
+ "rows": 150168,
+ "totals": {
+  "PASS": 135669,
+  "FAIL": 14499
+ },
+ "checks": [
+  {
+   "report": "Sales By Customer",
+   "check": "Asset row = sum of its invoice rows (S8-R13) and (n) = invoice count",
+   "source": "S8-R13",
+   "counts": {
+    "PASS": 3801
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customer row = sum of its asset rows (S8-R13) and (n) = its invoices (S7-R3)",
+   "source": "S8-R13,S7-R3",
+   "counts": {
+    "PASS": 1551
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Assets A-Z by label, \"Parts Sales\" bucket last (S8-R6, S8-R6a)",
+   "source": "S8-R6a",
+   "counts": {
+    "PASS": 1551
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Listed invoice is not void / reversed (S7-R7, S7-N2)",
+   "source": "S7-R7",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Invoice date on the row = invoice created date",
+   "source": "S8-R12",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Labor Invoiced = labor on the invoice lines (+ labor-line fees/discounts)",
+   "source": "S4 Terminology",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Parts Invoiced = parts on the invoice lines (+ part-line fees/discounts)",
+   "source": "S4 Terminology",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Shop Supplies = shop supplies charged on the invoice",
+   "source": "S4 Terminology",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Subtotal = invoice pre-tax total (after invoice-level fees/discounts)",
+   "source": "S4 Subtotal",
+   "counts": {
+    "PASS": 8372,
+    "FAIL": 1
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5329 report 119121 vs invoice 120121 (with-tax 1,250.77 tax 49.56)"
+    }
+   ],
+   "non_pass_total": 1,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Adjustments = invoice-level fees minus discounts (S7-R17)",
+   "source": "S7-R17",
+   "counts": {
+    "PASS": 8372,
+    "FAIL": 1
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5329 report 0 vs invoice 1000 (WO adjustments [], old % discount 0)"
+    }
+   ],
+   "non_pass_total": 1,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Row ties out: Labor + Parts + Shop Supplies + Adjustments = Subtotal (S7-R18)",
+   "source": "S7-R18",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Row ties out: Labor Margin + Parts Margin + Adjustments = Margin (S7-R18)",
+   "source": "S7-R18",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Labor Margin = Labor Invoiced - labor cost (WO Stats tab cost)",
+   "source": "S4 Labor Margin",
+   "counts": {
+    "PASS": 8240,
+    "FAIL": 119
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15541 report 895218 vs 1480575-585304=895271"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32959 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32957 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32933 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32931 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32907 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32905 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32881 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32879 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32845 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32843 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32816 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32814 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32789 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32787 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32741 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32739 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32715 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32713 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32661 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32659 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32634 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32632 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32607 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32605 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32578 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32576 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32551 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32549 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32524 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32522 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32497 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32495 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32469 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32467 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32442 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32440 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32415 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32413 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32389 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32387 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32363 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32361 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32300 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32298 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32216 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32214 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32190 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32188 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32164 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32162 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32135 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32133 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32107 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32105 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32078 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-32076 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31794 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31792 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31759 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31757 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31963 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31961 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31934 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31932 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31899 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31897 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31864 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31862 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31829 report 37488 vs 37488-125000=-87512"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-31827 report 44985 vs 44985-150000=-105015"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33096 report 14756 vs 14995-33930=-18935"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-34974 report -5414 vs 0-5626=-5626"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33356 report 36283 vs 37488-7153=30335"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31378 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31376 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31351 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31349 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31324 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31322 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31294 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31292 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32688 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32686 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32333 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32331 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32257 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32255 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31733 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31731 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31706 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31704 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31680 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31678 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31653 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31651 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31623 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31621 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31592 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31590 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31542 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31540 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31514 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31512 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31488 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31486 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31460 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31458 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31432 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31430 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31405 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31403 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32048 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32046 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32020 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-32018 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31992 report 39988 vs 39988-125000=-85012"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-31990 report 47985 vs 47985-150000=-102015"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-33102 report 54821 vs 55000-109200=-54200"
+    }
+   ],
+   "non_pass_total": 119,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Parts Margin = Parts Invoiced - parts cost (WO Stats tab cost)",
+   "source": "S4 Parts Margin",
+   "counts": {
+    "PASS": 8284,
+    "FAIL": 75
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2436 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2328 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2297 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2291 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2287 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2278 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2067 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2062 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2007 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2002 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1996 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1990 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1987 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1984 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1981 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1975 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1972 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1969 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1966 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1963 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1960 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1957 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1954 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1951 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1948 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1945 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1942 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1936 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1928 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1925 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1922 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1919 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1913 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1907 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1895 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1892 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1889 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1886 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1883 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1880 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1877 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33264 report 150364 vs 385564-215200=170364"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33459 report 0 vs 0-400=-400"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2471 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2468 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2465 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2461 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2458 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2455 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2312 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2306 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2294 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1978 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1939 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1933 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1904 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1901 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1898 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1874 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1871 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1868 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1865 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1862 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1859 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1856 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1852 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1848 report 6500 vs 14500-3000=11500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1844 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1840 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1836 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1833 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1830 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1827 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1824 report 6500 vs 14500-5000=9500"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1821 report 6500 vs 14500-5000=9500"
+    }
+   ],
+   "non_pass_total": 75,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Labor Delta = hours invoiced - hours worked (WO Stats tab)",
+   "source": "S4 Labor Delta, S12-R2",
+   "counts": {
+    "PASS": 8357,
+    "FAIL": 2
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-38022 report 1 vs stats 2-0=2"
+    },
+    {
+     "location": "DVI Test",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S1-38195 report 1 vs stats 3-1=2"
+    }
+   ],
+   "non_pass_total": 2,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Margin % = Margin / Subtotal x 100, em dash when Subtotal <= 0 (S7-R11, S7-R12)",
+   "source": "S7-R11",
+   "counts": {
+    "FAIL": 6720,
+    "PASS": 1653
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14158 report 42.92 vs spec 42.3 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14129 report 71.24 vs spec 64.6 (supplies 11117)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16024 report 63 vs spec 59.2 (supplies 34558)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15992 report 75.91 vs spec 69.9 (supplies 14741)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15989 report 64.56 vs spec 61.1 (supplies 14399)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14836 report 74.93 vs spec 67.9 (supplies 4372)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16618 report 52.47 vs spec 52.1 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16434 report 60.1 vs spec 57.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16270 report 64.47 vs spec 63.2 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16906 report 58.42 vs spec 57.0 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16621 report 55.86 vs spec 53.0 (supplies 5907)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16462 report 59.52 vs spec 58.0 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16460 report 74.46 vs spec 67.4 (supplies 2329)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16324 report 49.07 vs spec 48.9 (supplies 15000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16373 report 78.73 vs spec 77.0 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16312 report 64.31 vs spec 63.1 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16371 report 68.2 vs spec 67.0 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16286 report 65.61 vs spec 63.9 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16281 report 81.85 vs spec 78.4 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16284 report 83.93 vs spec 82.5 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16206 report 82.72 vs spec 80.3 (supplies 8429)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16205 report 82.42 vs spec 80.5 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14489 report 79.72 vs spec 72.9 (supplies 18577)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14302 report 72.21 vs spec 65.7 (supplies 12884)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16719 report 65.42 vs spec 59.2 (supplies 3547)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16234 report 64.85 vs spec 62.8 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17117 report 80.75 vs spec 74.7 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16994 report 35.41 vs spec 35.2 (supplies 15000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16727 report 35.22 vs spec 35.0 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16084 report 73.34 vs spec 68.0 (supplies 16742)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15577 report 79.24 vs spec 74.3 (supplies 17067)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15469 report 42.87 vs spec 41.6 (supplies 15831)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14851 report 43.47 vs spec 41.7 (supplies 31521)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15206 report 75.86 vs spec 69.2 (supplies 4818)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14521 report 79.37 vs spec 73.0 (supplies 10815)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14170 report 75.23 vs spec 73.2 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16422 report 64.81 vs spec 63.4 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16058 report 49.69 vs spec 49.3 (supplies 15000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15583 report 77.36 vs spec 70.6 (supplies 6996)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17108 report 82.21 vs spec 74.4 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16977 report 67.03 vs spec 62.3 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16976 report 84.51 vs spec 81.5 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16548 report 58.77 vs spec 53.3 (supplies 3045)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16428 report 67.04 vs spec 61.8 (supplies 4187)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16252 report 67.14 vs spec 60.8 (supplies 3334)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15930 report 66.41 vs spec 60.1 (supplies 6090)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17461 report 75.07 vs spec 68.9 (supplies 6118)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17281 report 52.97 vs spec 52.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17521 report 61.09 vs spec 60.0 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17222 report 65.54 vs spec 62.4 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17158 report 74.52 vs spec 68.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17145 report 80.47 vs spec 77.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17385 report 75.24 vs spec 69.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17193 report 72.75 vs spec 70.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17063 report 69.35 vs spec 61.8 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17055 report 65.38 vs spec 64.2 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16658 report 52.16 vs spec 50.1 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16751 report 70.68 vs spec 68.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16965 report 79.66 vs spec 72.6 (supplies 3806)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16510 report 53.21 vs spec 51.9 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17491 report 68.44 vs spec 65.0 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16978 report 43.25 vs spec 43.1 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16974 report 81.64 vs spec 77.1 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15396 report 48.22 vs spec 47.5 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15349 report 71.58 vs spec 64.8 (supplies 8282)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17387 report 54.32 vs spec 53.8 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16633 report 48.18 vs spec 46.1 (supplies 8329)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16471 report 59.46 vs spec 55.5 (supplies 24908)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16332 report 51.4 vs spec 49.9 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16305 report 71.08 vs spec 65.0 (supplies 853)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16175 report 62.34 vs spec 58.9 (supplies 10860)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16674 report 43.44 vs spec 42.9 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16317 report 26.46 vs spec 26.1 (supplies 7430)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16493 report 80.83 vs spec 79.2 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16423 report 73.66 vs spec 71.5 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16432 report 78.7 vs spec 77.2 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16409 report 52.91 vs spec 51.9 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16492 report 80.38 vs spec 78.2 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15811 report 53.9 vs spec 52.9 (supplies 15000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15733 report 83.59 vs spec 77.5 (supplies 31190)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15598 report 71.26 vs spec 65.9 (supplies 6264)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15581 report 55.59 vs spec 52.8 (supplies 13703)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16673 report 45.52 vs spec 45.4 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16666 report 44.69 vs spec 44.5 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17316 report 46.32 vs spec 45.3 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16745 report 70 vs spec 68.6 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15646 report 58.22 vs spec 55.2 (supplies 21473)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15638 report 44.07 vs spec 42.3 (supplies 5329)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15644 report 54.57 vs spec 52.1 (supplies 25119)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16374 report 75.65 vs spec 73.8 (supplies 7500)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15651 report 83.87 vs spec 75.9 (supplies 1583)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15855 report 47.94 vs spec 46.1 (supplies 17570)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15812 report 58.67 vs spec 56.0 (supplies 12099)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16575 report 58.51 vs spec 55.3 (supplies 17341)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16472 report 43.79 vs spec 42.5 (supplies 13139)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15460 report 41.28 vs spec 39.9 (supplies 14905)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14771 report 79.63 vs spec 72.1 (supplies 2223)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14329 report 64.33 vs spec 60.0 (supplies 5435)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14255 report 61.09 vs spec 57.8 (supplies 3502)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14497 report 56.64 vs spec 53.4 (supplies 10353)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13871 report 55.33 vs spec 52.3 (supplies 5527)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17097 report 55.44 vs spec 52.3 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15589 report 72.24 vs spec 65.4 (supplies 1355)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17156 report 38.28 vs spec 36.6 (supplies 15225)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17139 report 71.85 vs spec 65.7 (supplies 3319)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16136 report 69.06 vs spec 63.8 (supplies 12104)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14292 report 63.49 vs spec 59.4 (supplies 3580)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17296 report 68.57 vs spec 62.0 (supplies 1660)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15493 report 59.59 vs spec 56.3 (supplies 17341)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15458 report 70.83 vs spec 64.9 (supplies 4826)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17307 report 68.45 vs spec 63.2 (supplies 13139)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17198 report 68.26 vs spec 62.7 (supplies 16443)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17074 report 70.7 vs spec 65.5 (supplies 11381)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17312 report 38.56 vs spec 37.3 (supplies 19143)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17278 report 67.85 vs spec 61.4 (supplies 4248)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16352 report 47.53 vs spec 44.4 (supplies 10399)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16291 report 69.76 vs spec 63.9 (supplies 7384)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14763 report 61.71 vs spec 57.7 (supplies 8191)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17123 report 67.08 vs spec 62.0 (supplies 10323)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17154 report 38.45 vs spec 37.3 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17133 report 68.61 vs spec 63.7 (supplies 4811)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16958 report 52.21 vs spec 50.5 (supplies 457)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16895 report 52.33 vs spec 49.0 (supplies 4842)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16827 report 45.96 vs spec 44.0 (supplies 10383)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16500 report 44.22 vs spec 42.6 (supplies 9896)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16414 report 76.18 vs spec 68.9 (supplies 1477)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15400 report 44.74 vs spec 44.0 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14318 report 54.82 vs spec 51.0 (supplies 10658)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16985 report 58.39 vs spec 55.4 (supplies 9607)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15474 report 65.53 vs spec 59.3 (supplies 746)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15086 report 58.83 vs spec 55.9 (supplies 8922)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15828 report 85.53 vs spec 77.4 (supplies 3502)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16198 report 56.38 vs spec 53.4 (supplies 4187)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16031 report 68.16 vs spec 64.0 (supplies 3502)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15111 report 67.86 vs spec 63.2 (supplies 8008)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13808 report 65.64 vs spec 62.1 (supplies 5110)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16608 report 42.84 vs spec 41.1 (supplies 12485)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16574 report 74.61 vs spec 68.3 (supplies 8861)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16314 report 41.01 vs spec 39.9 (supplies 5694)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16051 report 39.06 vs spec 37.7 (supplies 28379)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15875 report 74.7 vs spec 68.3 (supplies 4705)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15857 report 71.73 vs spec 65.8 (supplies 6806)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15656 report 54.2 vs spec 51.5 (supplies 6197)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15610 report 36.65 vs spec 35.4 (supplies 5542)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15334 report 55.17 vs spec 51.9 (supplies 14281)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15265 report 73.11 vs spec 67.1 (supplies 6608)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14975 report 58.13 vs spec 54.7 (supplies 8556)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14891 report 50.76 vs spec 48.2 (supplies 12804)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14463 report 51.3 vs spec 48.8 (supplies 9196)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14395 report 77.82 vs spec 71.4 (supplies 1523)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14275 report 50.41 vs spec 47.8 (supplies 12987)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16054 report 72.78 vs spec 67.1 (supplies 6105)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14341 report 70.06 vs spec 65.3 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14288 report 66.63 vs spec 60.3 (supplies 1218)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16485 report 64.04 vs spec 60.3 (supplies 3502)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16717 report 65.72 vs spec 61.4 (supplies 4826)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15617 report 70.47 vs spec 65.3 (supplies 9714)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17540 report 75.68 vs spec 69.6 (supplies 1903)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15338 report 56.66 vs spec 53.6 (supplies 19351)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15319 report 66.67 vs spec 60.5 (supplies 2710)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15075 report 30.56 vs spec 29.9 (supplies 929)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15041 report 46.2 vs spec 44.1 (supplies 8008)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15009 report 69.73 vs spec 63.7 (supplies 10383)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14706 report 50.75 vs spec 48.2 (supplies 6988)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14949 report 39.45 vs spec 38.6 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15678 report 52.66 vs spec 49.9 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15561 report 82.89 vs spec 75.0 (supplies 2558)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15679 report 54.46 vs spec 52.1 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15560 report 71.4 vs spec 64.6 (supplies 4948)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15684 report 62.48 vs spec 59.5 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15553 report 76.65 vs spec 69.4 (supplies 2832)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15682 report 46.84 vs spec 45.2 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15557 report 73.48 vs spec 67.3 (supplies 8922)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15686 report 43.93 vs spec 42.3 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15550 report 74.32 vs spec 67.3 (supplies 5968)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15558 report 78.38 vs spec 70.9 (supplies 4096)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15685 report 68.34 vs spec 64.1 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15552 report 69.94 vs spec 63.3 (supplies 3700)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15683 report 68.16 vs spec 62.1 (supplies 23710)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15555 report 75.03 vs spec 67.9 (supplies 4400)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15699 report 34.69 vs spec 33.5 (supplies 16900)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15312 report 73.69 vs spec 66.7 (supplies 11236)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15449 report 88.48 vs spec 80.1 (supplies 2847)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14428 report 38.06 vs spec 37.0 (supplies 7095)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13807 report 43.46 vs spec 41.9 (supplies 21787)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15940 report 70.51 vs spec 65.4 (supplies 11967)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15687 report 36.55 vs spec 35.6 (supplies 32541)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15547 report 77.49 vs spec 71.0 (supplies 9622)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16619 report 51.96 vs spec 49.9 (supplies 10292)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15113 report 57.3 vs spec 54.2 (supplies 3410)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14918 report 57.37 vs spec 54.0 (supplies 12941)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14868 report 66.31 vs spec 60.0 (supplies 6851)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14190 report 45.15 vs spec 43.2 (supplies 20219)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14296 report 56.54 vs spec 52.6 (supplies 3273)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14114 report 70.39 vs spec 65.0 (supplies 4202)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17069 report 70.3 vs spec 64.4 (supplies 7978)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16908 report 38.04 vs spec 36.6 (supplies 19107)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16836 report 73.09 vs spec 67.6 (supplies 5222)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16754 report 70.46 vs spec 64.5 (supplies 7460)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15727 report 52.58 vs spec 49.3 (supplies 16504)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15724 report 74.18 vs spec 68.2 (supplies 6745)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15356 report 72.19 vs spec 66.9 (supplies 8374)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14606 report 39.33 vs spec 38.1 (supplies 25213)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15023 report 65.46 vs spec 59.2 (supplies 4598)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14703 report 58.99 vs spec 53.4 (supplies 13094)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14668 report 72.95 vs spec 66.0 (supplies 1675)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14085 report 42.61 vs spec 41.3 (supplies 24223)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17098 report 64.11 vs spec 60.8 (supplies 6029)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16800 report 55.44 vs spec 53.2 (supplies 13116)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15748 report 48.44 vs spec 46.6 (supplies 11710)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13999 report 39.72 vs spec 38.6 (supplies 9257)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14328 report 39.1 vs spec 37.8 (supplies 11586)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16865 report 56.24 vs spec 53.0 (supplies 12667)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16758 report 46.07 vs spec 44.5 (supplies 11373)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15947 report 47.54 vs spec 45.7 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14256 report 70.31 vs spec 65.3 (supplies 8237)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17248 report 42.25 vs spec 41.0 (supplies 6298)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13866 report 56.48 vs spec 53.2 (supplies 12439)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13284 report 67.46 vs spec 61.1 (supplies 1574)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12776 report 57.5 vs spec 53.9 (supplies 15115)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12487 report 55.56 vs spec 52.4 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11751 report 51.52 vs spec 49.3 (supplies 7117)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13437 report 54.57 vs spec 51.7 (supplies 20600)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12863 report 42.51 vs spec 40.7 (supplies 31978)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13173 report 54.71 vs spec 51.3 (supplies 6597)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12433 report 49.84 vs spec 49.1 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12542 report 60.12 vs spec 55.8 (supplies 22389)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12438 report 81.09 vs spec 73.4 (supplies 1574)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12275 report 55.44 vs spec 52.4 (supplies 30939)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12065 report 70.85 vs spec 64.3 (supplies 1260)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14683 report 46.91 vs spec 44.9 (supplies 6466)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13598 report 48.35 vs spec 45.7 (supplies 29917)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13489 report 47.44 vs spec 45.4 (supplies 29651)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13479 report 77.24 vs spec 71.3 (supplies 7067)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12222 report 55.4 vs spec 52.2 (supplies 13619)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12129 report 28.34 vs spec 27.9 (supplies 32765)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13907 report 55.76 vs spec 54.5 (supplies 34994)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13730 report 69.69 vs spec 63.1 (supplies 3810)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14018 report 65.25 vs spec 59.4 (supplies 6093)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13724 report 54.67 vs spec 52.7 (supplies 34997)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13680 report 60.85 vs spec 56.9 (supplies 14202)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13303 report 41.75 vs spec 39.1 (supplies 11571)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13017 report 36.48 vs spec 35.7 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12469 report 63.26 vs spec 58.1 (supplies 7589)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12301 report 37.06 vs spec 36.2 (supplies 8187)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12190 report 53.09 vs spec 50.4 (supplies 18924)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11653 report 32.69 vs spec 32.1 (supplies 7211)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13810 report 65.06 vs spec 59.9 (supplies 16138)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13783 report 72.39 vs spec 65.9 (supplies 3908)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13533 report 77.93 vs spec 70.6 (supplies 3622)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13119 report 52.79 vs spec 50.3 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12748 report 66.84 vs spec 60.5 (supplies 2755)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12294 report 69.42 vs spec 63.3 (supplies 7904)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11880 report 57.32 vs spec 54.1 (supplies 14170)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11843 report 58.03 vs spec 55.0 (supplies 9369)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11237 report 51.56 vs spec 48.7 (supplies 22609)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13289 report 54.17 vs spec 51.8 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12729 report 57.65 vs spec 55.0 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13054 report 83.28 vs spec 75.9 (supplies 3569)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11823 report 57.38 vs spec 53.9 (supplies 17240)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11628 report 36.27 vs spec 35.7 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14078 report 48.75 vs spec 46.5 (supplies 14595)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13497 report 31.29 vs spec 31.0 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13800 report 73.03 vs spec 66.3 (supplies 1428)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13199 report 55.73 vs spec 52.4 (supplies 17429)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13139 report 74.13 vs spec 67.1 (supplies 4645)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12297 report 68.46 vs spec 65.7 (supplies 6219)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12026 report 56.28 vs spec 53.2 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12183 report 71.74 vs spec 65.2 (supplies 5728)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17160 report 50.42 vs spec 48.5 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13345 report 53.02 vs spec 51.6 (supplies 34998)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13782 report 66.04 vs spec 60.3 (supplies 3354)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11580 report 52.05 vs spec 49.8 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13247 report 66.66 vs spec 60.3 (supplies 9793)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13241 report 78.85 vs spec 71.8 (supplies 3569)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12803 report 59.75 vs spec 55.8 (supplies 4157)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13594 report 60.87 vs spec 57.0 (supplies 12941)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13362 report 68.07 vs spec 62.0 (supplies 1260)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12295 report 57.39 vs spec 54.1 (supplies 17461)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12423 report 64.56 vs spec 61.6 (supplies 4881)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14931 report 55.35 vs spec 53.2 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12403 report 71.85 vs spec 65.0 (supplies 3149)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11589 report 50.74 vs spec 47.2 (supplies 11427)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11872 report 41.96 vs spec 40.1 (supplies 9636)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13538 report 66.8 vs spec 60.5 (supplies 4200)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13273 report 56.24 vs spec 52.2 (supplies 10624)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11818 report 55.35 vs spec 52.2 (supplies 23019)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13456 report 64.36 vs spec 59.2 (supplies 24499)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13164 report 57.02 vs spec 52.2 (supplies 14324)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15379 report 75.23 vs spec 70.0 (supplies 6442)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16067 report 46.52 vs spec 44.9 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15593 report 66.68 vs spec 60.3 (supplies 6298)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14584 report 55.36 vs spec 50.1 (supplies 5775)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14658 report 38.03 vs spec 37.5 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12807 report 42.63 vs spec 41.0 (supplies 7983)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14512 report 33.27 vs spec 32.3 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14332 report 66.58 vs spec 62.6 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12474 report 47.52 vs spec 45.3 (supplies 27301)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11553 report 40.59 vs spec 38.9 (supplies 35000)"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11203 report 52.95 vs spec 50.0 (supplies 14265)"
+    }
+   ],
+   "non_pass_total": 6720,
+   "non_pass_capped": true
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Margin % = Margin / (Subtotal - Shop Supplies) x 100 (SBR spec v30 context note: \"Sales By Customer computes Margin % from the same Margin base\")",
+   "source": "SBR \u00a73",
+   "counts": {
+    "PASS": 8372,
+    "FAIL": 1
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6365 report 80.04 vs 80.03"
+    }
+   ],
+   "non_pass_total": 1,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Sales type by invoice number prefix (S/P)",
+   "source": "S4 Service/Parts invoice",
+   "counts": {
+    "PASS": 8373
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Asset label follows SV-9459 (Unit # - Year Make Model, VIN fallback)",
+   "source": "SV-9459",
+   "counts": {
+    "PASS": 7995
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Asset label follows the spec S8-R7..R10 (VIN, then Unit, then plate)",
+   "source": "S8-R7",
+   "counts": {
+    "PASS": 415,
+    "FAIL": 7580
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16024 label \"5507-18\" vs spec \"A4LX0GY0Y4R3VJXDX\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15992 label \"5507-18\" vs spec \"A4LX0GY0Y4R3VJXDX\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15989 label \"5507-18\" vs spec \"A4LX0GY0Y4R3VJXDX\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16618 label \"E07036\" vs spec \"7GG51Y85UKZBTCLWJ\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16434 label \"E08010 - 2008 Freightliner M2\" vs spec \"HX5NHRT3ZL4ZY5UXC\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16270 label \"E08010 - 2008 Freightliner M2\" vs spec \"HX5NHRT3ZL4ZY5UXC\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17168 label \"E08015 - 2008 Freightliner M2\" vs spec \"TB5FMZ42MKHZ4R5T9\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16906 label \"E08015 - 2008 Freightliner M2\" vs spec \"TB5FMZ42MKHZ4R5T9\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16621 label \"E08023 - 2008 Freightliner M2\" vs spec \"79CPRKHJT6C0WFVYE\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16462 label \"E10011 - 2010 Freightliner M2\" vs spec \"0NSUDNRA0F2VS5NCU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16460 label \"E10011 - 2010 Freightliner M2\" vs spec \"0NSUDNRA0F2VS5NCU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16324 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16373 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16312 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16371 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16286 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16281 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16284 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16206 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16205 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14489 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14302 label \"E10024 - 2010 Peterbilt 367\" vs spec \"E7Z7B5RTT14197022\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16719 label \"E12012 - 2012 Freightliner 114sd\" vs spec \"W2HE70ME5NB6KHD9E\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16234 label \"E12012 - 2012 Freightliner 114sd\" vs spec \"W2HE70ME5NB6KHD9E\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17117 label \"E12014 - 2013 Freightliner 114sd\" vs spec \"GERBJ3UC623WXPU31\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16994 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16727 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16084 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15577 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15469 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15112 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14851 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15206 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14235 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14521 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14170 label \"E12019\" vs spec \"F1LRCDNHVVZ9YRLGM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16422 label \"E13015 - 2014 Freightliner 114sd\" vs spec \"NXDSLGHKV3M7M8KSH\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16058 label \"E13015 - 2014 Freightliner 114sd\" vs spec \"NXDSLGHKV3M7M8KSH\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15583 label \"E14009 - 2015 Freightliner 114sd\" vs spec \"04TBZ0WP2GAWBLBH8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17108 label \"E15002 - 2016 Freightliner 114sd\" vs spec \"HYPP31GT3N0MR2MAY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16977 label \"E15002 - 2016 Freightliner 114sd\" vs spec \"HYPP31GT3N0MR2MAY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16976 label \"E15002 - 2016 Freightliner 114sd\" vs spec \"HYPP31GT3N0MR2MAY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16548 label \"E15002 - 2016 Freightliner 114sd\" vs spec \"HYPP31GT3N0MR2MAY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16428 label \"E15002 - 2016 Freightliner 114sd\" vs spec \"HYPP31GT3N0MR2MAY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16252 label \"E15002 - 2016 Freightliner 114sd\" vs spec \"HYPP31GT3N0MR2MAY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15930 label \"E15002 - 2016 Freightliner 114sd\" vs spec \"HYPP31GT3N0MR2MAY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17461 label \"H14004 - 2015 FREIGHTLINER CUSTOM CHASSIS B2\" vs spec \"03L5PTHMZZUECEL36\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17281 label \"H14004 - 2015 FREIGHTLINER CUSTOM CHASSIS B2\" vs spec \"03L5PTHMZZUECEL36\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17521 label \"H16006 - 2017 Freightliner 114sd\" vs spec \"EVH0CHTXF7N3RW2ZZ\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17222 label \"H16006 - 2017 Freightliner 114sd\" vs spec \"EVH0CHTXF7N3RW2ZZ\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17158 label \"H16006 - 2017 Freightliner 114sd\" vs spec \"EVH0CHTXF7N3RW2ZZ\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17145 label \"H16006 - 2017 Freightliner 114sd\" vs spec \"EVH0CHTXF7N3RW2ZZ\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17385 label \"H19026 - 2020 Freightliner 114sd\" vs spec \"D0Z0H7N963ZG1KUMD\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17193 label \"H19026 - 2020 Freightliner 114sd\" vs spec \"D0Z0H7N963ZG1KUMD\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17063 label \"H19026 - 2020 Freightliner 114sd\" vs spec \"D0Z0H7N963ZG1KUMD\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17055 label \"H19026 - 2020 Freightliner 114sd\" vs spec \"D0Z0H7N963ZG1KUMD\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16658 label \"H19028 - 2020 Freightliner B2 Bus Chassis\" vs spec \"P7H0GFDEM56KF0KJV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16751 label \"H20008 - 2020 Freightliner 114sd\" vs spec \"GRL31ME59A6N5P2C8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16965 label \"H20008 - 2020 Freightliner 114sd\" vs spec \"GRL31ME59A6N5P2C8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16510 label \"H20008 - 2020 Freightliner 114sd\" vs spec \"GRL31ME59A6N5P2C8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17491 label \"H23023 - 2024 Freightliner 114sd\" vs spec \"TVPP29VN393KC8HKB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16978 label \"H23023 - 2024 Freightliner 114sd\" vs spec \"TVPP29VN393KC8HKB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16974 label \"H23023 - 2024 Freightliner 114sd\" vs spec \"TVPP29VN393KC8HKB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15396 label \"H23023 - 2024 Freightliner 114sd\" vs spec \"TVPP29VN393KC8HKB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15349 label \"H23023 - 2024 Freightliner 114sd\" vs spec \"TVPP29VN393KC8HKB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17387 label \"INTENSITY UNIT - 2007 Freightliner M2\" vs spec \"AYTNH5W3YKGSJ1Y6K\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16633 label \"INTENSITY UNIT - 2007 Freightliner M2\" vs spec \"AYTNH5W3YKGSJ1Y6K\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16471 label \"INTENSITY UNIT - 2007 Freightliner M2\" vs spec \"AYTNH5W3YKGSJ1Y6K\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16332 label \"INTENSITY UNIT - 2007 Freightliner M2\" vs spec \"AYTNH5W3YKGSJ1Y6K\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16305 label \"INTENSITY UNIT - 2007 Freightliner M2\" vs spec \"AYTNH5W3YKGSJ1Y6K\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16175 label \"INTENSITY UNIT - 2007 Freightliner M2\" vs spec \"AYTNH5W3YKGSJ1Y6K\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16674 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16317 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16493 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16423 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16432 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16409 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16492 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15811 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15733 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15598 label \"JWILK RENTAL - 2006 PETERBILT 357\" vs spec \"P0F32L118T0DM776A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16634 label \"L19092 - 2019 Ford F-250\" vs spec \"6751WPRDRM31ZSM1B\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15633 label \"L23009 - 2023 Ford F-250\" vs spec \"RHDZRJFHZGELD2NFA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15581 label \"L23009 - 2023 Ford F-250\" vs spec \"RHDZRJFHZGELD2NFA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16673 label \"M14010 - 2014 RAM 5500\" vs spec \"MP52P9TR4HBPGY5HX\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16666 label \"M15008 - 2015 RAM 5500\" vs spec \"HHTFFP6XZG3P8A7WA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17316 label \"M15008 - 2015 RAM 5500\" vs spec \"HHTFFP6XZG3P8A7WA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16745 label \"M15008 - 2015 RAM 5500\" vs spec \"HHTFFP6XZG3P8A7WA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15646 label \"M18018 - 2019 Ford F-350\" vs spec \"5LB7ZYTDTR2A5779A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15638 label \"M18018 - 2019 Ford F-350\" vs spec \"5LB7ZYTDTR2A5779A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15644 label \"M18018 - 2019 Ford F-350\" vs spec \"5LB7ZYTDTR2A5779A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15651 label \"10122989 - 2007 Kubota D905\" vs spec \"NMNLFRP6RZ3GCLM10\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15855 label \"10123073\" vs spec \"06P11DDN3FXL7TATM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15812 label \"10123073\" vs spec \"06P11DDN3FXL7TATM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16575 label \"10123086\" vs spec \"J9RBFX9KFHHGE57CE\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16472 label \"10123086\" vs spec \"J9RBFX9KFHHGE57CE\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15460 label \"10123086\" vs spec \"J9RBFX9KFHHGE57CE\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14771 label \"10123148\" vs spec \"E2PRE0A3GVBXULWEL\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14329 label \"10123148\" vs spec \"E2PRE0A3GVBXULWEL\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14255 label \"10123148\" vs spec \"E2PRE0A3GVBXULWEL\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14497 label \"10126730 - 2006 Caterpillar 3406\" vs spec \"NEFPUVXX60CP9XCAG\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13871 label \"10132710 - 2011 Gmc Sierra\" vs spec \"0UV8UA137W6WPWJ8A\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17097 label \"10133763 - 2017 CANADA TRAILERS MANUFACTURING CANADA TRAILERS MANUFACTURING\" vs spec \"BWTVV2DGU4FK7MPJ0\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15589 label \"10135468 - 2018 GMC SIERRA\" vs spec \"94SS9M02PS2UZJ0GT\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17156 label \"10135469 - 2018 GMC SIERRA\" vs spec \"MGZZE8SA7EZRN0NR4\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17139 label \"10135469 - 2018 GMC SIERRA\" vs spec \"MGZZE8SA7EZRN0NR4\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16136 label \"10135469 - 2018 GMC SIERRA\" vs spec \"MGZZE8SA7EZRN0NR4\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14292 label \"10137322 - 2018 Gmc Sierra\" vs spec \"D9C9WC1RVDZCD1EZY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17296 label \"10145308 - 2019 GMC SIERRA\" vs spec \"4421KW0GC32PC4FDB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15493 label \"10145309 - 2019 GMC SIERRA\" vs spec \"S9NE5NGHAAV0EWV15\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15458 label \"10145309 - 2019 GMC SIERRA\" vs spec \"S9NE5NGHAAV0EWV15\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17307 label \"10145312 - 2020 GMC SIERRA\" vs spec \"KYPGCZPHFHBXPMLPV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17198 label \"10145312 - 2020 GMC SIERRA\" vs spec \"KYPGCZPHFHBXPMLPV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17074 label \"10145312 - 2020 GMC SIERRA\" vs spec \"KYPGCZPHFHBXPMLPV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17312 label \"10150490 - 2021 Deere 324G\" vs spec \"YS8TMFUA36N80W4U3\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17278 label \"10150490 - 2021 Deere 324G\" vs spec \"YS8TMFUA36N80W4U3\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16964 label \"10150490 - 2021 Deere 324G\" vs spec \"YS8TMFUA36N80W4U3\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16352 label \"10150490 - 2021 Deere 324G\" vs spec \"YS8TMFUA36N80W4U3\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16291 label \"10150490 - 2021 Deere 324G\" vs spec \"YS8TMFUA36N80W4U3\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14763 label \"10150490 - 2021 Deere 324G\" vs spec \"YS8TMFUA36N80W4U3\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17123 label \"10151174 - 2021 John Deere 324G\" vs spec \"DUK76SRTN74D099TL\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17154 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17215 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17133 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16958 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17173 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16895 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16827 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16500 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16545 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16414 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15400 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14318 label \"10151175 - 2021 JOHN  DEERE 324G\" vs spec \"T5TE41JE9RMVYGY56\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17082 label \"10151626 - 2022 GMC SIERRA\" vs spec \"5BFFU4MPCCJF9AP6P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17225 label \"10151626 - 2022 GMC SIERRA\" vs spec \"5BFFU4MPCCJF9AP6P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16985 label \"10151626 - 2022 GMC SIERRA\" vs spec \"5BFFU4MPCCJF9AP6P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17188 label \"10151626 - 2022 GMC SIERRA\" vs spec \"5BFFU4MPCCJF9AP6P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15496 label \"10151626 - 2022 GMC SIERRA\" vs spec \"5BFFU4MPCCJF9AP6P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15474 label \"10151626 - 2022 GMC SIERRA\" vs spec \"5BFFU4MPCCJF9AP6P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15086 label \"10151626 - 2022 GMC SIERRA\" vs spec \"5BFFU4MPCCJF9AP6P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15828 label \"10154008 - 2023 RAM 1500\" vs spec \"5VVJ05998A91V73MZ\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16198 label \"10154011 - 2023 Ram 1500\" vs spec \"WYMZFWR9ZCUBDX449\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16031 label \"10154011 - 2023 Ram 1500\" vs spec \"WYMZFWR9ZCUBDX449\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15111 label \"10154011 - 2023 Ram 1500\" vs spec \"WYMZFWR9ZCUBDX449\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13808 label \"10154011 - 2023 Ram 1500\" vs spec \"WYMZFWR9ZCUBDX449\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16608 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16574 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16314 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16051 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15875 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15857 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15656 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15610 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15334 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15265 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14975 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14891 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14463 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14395 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14275 label \"10154522 - 2023 John Deere 324G\" vs spec \"GBFG4CTNJ9MV6UE3F\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16054 label \"10154524\" vs spec \"P8TPUN8VJ1DFT12JF\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14341 label \"1015489 - 2021 John Deere 324G Skidsteer\" vs spec \"JCY52H32LHBGTPCS8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14288 label \"1015489 - 2021 John Deere 324G Skidsteer\" vs spec \"JCY52H32LHBGTPCS8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16485 label \"10156489 - 2024 GMC SIERRA\" vs spec \"2HC37MDFD5C73VTG4\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16717 label \"10156494 - 2024 GMC SIERRA\" vs spec \"BC2ALDJ8BG4330FNF\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15617 label \"10156494 - 2024 GMC SIERRA\" vs spec \"BC2ALDJ8BG4330FNF\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17540 label \"10158622 - 2025 GMC SIERRA\" vs spec \"11YGWHTLR8FTZD313\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15338 label \"10159470 - 2025 John Deer Skidsteer 324G\" vs spec \"L396CFYFHDXHF0JWV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15319 label \"10159470 - 2025 John Deer Skidsteer 324G\" vs spec \"L396CFYFHDXHF0JWV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15075 label \"10159470 - 2025 John Deer Skidsteer 324G\" vs spec \"L396CFYFHDXHF0JWV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15041 label \"10159470 - 2025 John Deer Skidsteer 324G\" vs spec \"L396CFYFHDXHF0JWV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15009 label \"10159470 - 2025 John Deer Skidsteer 324G\" vs spec \"L396CFYFHDXHF0JWV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14706 label \"10159470 - 2025 John Deer Skidsteer 324G\" vs spec \"L396CFYFHDXHF0JWV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14949 label \"185-9\" vs spec \"ZF6XVTR8DC2C7RGJN\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15678 label \"2015 ASTEC INDUSTRIES INC. D-PVSS36C2452\" vs spec \"RND1CKJRGZFPJ3HGY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15561 label \"2015 ASTEC INDUSTRIES INC. D-PVSS36C2452\" vs spec \"RND1CKJRGZFPJ3HGY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15679 label \"2015 ASTEC INDUSTRIES INC. D-VESB-5024\" vs spec \"ZFMXYHJ0JLENS7W6Z\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15560 label \"2015 ASTEC INDUSTRIES INC. D-VESB-5024\" vs spec \"ZFMXYHJ0JLENS7W6Z\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15684 label \"2015 ASTEC INDUSTRIES INC. PDB-7233\" vs spec \"HN531S6A2H0FNRM10\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15553 label \"2015 ASTEC INDUSTRIES INC. PDB-7233\" vs spec \"HN531S6A2H0FNRM10\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15682 label \"2015 ASTEC INDUSTRIES INC. PEBH-35\" vs spec \"2G2S5GEZA7R3UBYHE\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15557 label \"2015 ASTEC INDUSTRIES INC. PEBH-35\" vs spec \"2G2S5GEZA7R3UBYHE\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16395 label \"2015 ASTEC INDUSTRIES INC. PH-1020\" vs spec \"VZCRHLX8DBM99B9PB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15686 label \"2015 ASTEC INDUSTRIES INC. PH-1020\" vs spec \"VZCRHLX8DBM99B9PB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15550 label \"2015 ASTEC INDUSTRIES INC. PH-1020\" vs spec \"VZCRHLX8DBM99B9PB\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15558 label \"2015 ASTEC INDUSTRIES INC. PRB-810-2E\" vs spec \"357ACJA4SBZXNGLE1\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15685 label \"2015 ASTEC INDUSTRIES INC. PSS-36-50ER\" vs spec \"KFSM0GK73Y2514NHR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15552 label \"2015 ASTEC INDUSTRIES INC. PSS-36-50ER\" vs spec \"KFSM0GK73Y2514NHR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15683 label \"2015 CEI Enterprises HT-30DP\" vs spec \"34M37FS9XK2F9N6FN\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15555 label \"2015 CEI Enterprises HT-30DP\" vs spec \"34M37FS9XK2F9N6FN\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15699 label \"2021 JCB 512.56\" vs spec \"VLA0TYCZ5YA5BLTAR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15312 label \"2021 JCB 512.56\" vs spec \"VLA0TYCZ5YA5BLTAR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15449 label \"2021 JCB 512.56\" vs spec \"VLA0TYCZ5YA5BLTAR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14428 label \"2021 JCB 512.56\" vs spec \"VLA0TYCZ5YA5BLTAR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13922 label \"2021 JCB 512.56\" vs spec \"VLA0TYCZ5YA5BLTAR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13807 label \"2021 JCB 512.56\" vs spec \"VLA0TYCZ5YA5BLTAR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15940 label \"2207938 - 2014 GMC SIERRA 1500\" vs spec \"GVC1DXGM2PSWYZG8P\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15687 label \"4 BINFEEED - 2015 ASTEC INDUSTRIES INC. D-PVCF-811-4\" vs spec \"DJJGYJL2ZY9KHHYD1\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15547 label \"4 BINFEEED - 2015 ASTEC INDUSTRIES INC. D-PVCF-811-4\" vs spec \"DJJGYJL2ZY9KHHYD1\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16619 label \"49267\" vs spec \"PBGU9EH62BP7J6PGR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15113 label \"49267\" vs spec \"PBGU9EH62BP7J6PGR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14918 label \"49267\" vs spec \"PBGU9EH62BP7J6PGR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14868 label \"49267\" vs spec \"PBGU9EH62BP7J6PGR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14190 label \"49267\" vs spec \"PBGU9EH62BP7J6PGR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14296 label \"49267\" vs spec \"PBGU9EH62BP7J6PGR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14114 label \"49267\" vs spec \"PBGU9EH62BP7J6PGR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17248 label \"22706 - 2011 Western Star 4900\" vs spec \"CTUC20DUK9NK1B1JT\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13866 label \"22706 - 2011 Western Star 4900\" vs spec \"CTUC20DUK9NK1B1JT\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13284 label \"22706 - 2011 Western Star 4900\" vs spec \"CTUC20DUK9NK1B1JT\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12776 label \"22706 - 2011 Western Star 4900\" vs spec \"CTUC20DUK9NK1B1JT\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12487 label \"22706 - 2011 Western Star 4900\" vs spec \"CTUC20DUK9NK1B1JT\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11751 label \"22706 - 2011 Western Star 4900\" vs spec \"CTUC20DUK9NK1B1JT\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13437 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13408 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12863 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13173 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12433 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12542 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12438 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12275 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12065 label \"22707 - 2012 WESTERNSTAR 4900\" vs spec \"4YC62CWZ1XSPNJ8SM\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14683 label \"22738 - 2015 Western Star 4900\" vs spec \"1V8S7TBGKHSL638L8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13598 label \"22738 - 2015 Western Star 4900\" vs spec \"1V8S7TBGKHSL638L8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13489 label \"22738 - 2015 Western Star 4900\" vs spec \"1V8S7TBGKHSL638L8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13479 label \"22738 - 2015 Western Star 4900\" vs spec \"1V8S7TBGKHSL638L8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12222 label \"22738 - 2015 Western Star 4900\" vs spec \"1V8S7TBGKHSL638L8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12129 label \"22738 - 2015 Western Star 4900\" vs spec \"1V8S7TBGKHSL638L8\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13907 label \"22739 - 2015 Western Star 4900\" vs spec \"M5JPSB7EG9CKXVJHP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13730 label \"22786 - 2016 Ford F-550\" vs spec \"DDGAPC9LRDEPR72NX\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14018 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13724 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13680 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13303 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13017 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12469 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12301 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12190 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11653 label \"22791 - 2018 Peterbilt 567\" vs spec \"XA8647T6RRSR86CTY\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13810 label \"22792 - 2018 Peterbilt 567\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13783 label \"22792 - 2018 Peterbilt 567\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13533 label \"22792 - 2018 Peterbilt 567\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13119 label \"22792 - 2018 Peterbilt 567\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12748 label \"22792 - 2018 Peterbilt 567\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12294 label \"22792 - 2018 Peterbilt 567\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11880 label \"22792 - 2018 Peterbilt 567 (#2)\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11843 label \"22792 - 2018 Peterbilt 567 (#2)\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11237 label \"22792 - 2018 Peterbilt 567 (#2)\" vs spec \"P5JRR7PY3USA9YM84\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14335 label \"22797 - 2021 Kenworth T880\" vs spec \"SL4XLGK5VR7LFYEBU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13289 label \"22797 - 2021 Kenworth T880\" vs spec \"SL4XLGK5VR7LFYEBU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12729 label \"22797 - 2021 Kenworth T880\" vs spec \"SL4XLGK5VR7LFYEBU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13054 label \"22797 - 2021 Kenworth T880\" vs spec \"SL4XLGK5VR7LFYEBU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11823 label \"22797 - 2021 Kenworth T880\" vs spec \"SL4XLGK5VR7LFYEBU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11628 label \"22797 - 2021 Kenworth T880\" vs spec \"SL4XLGK5VR7LFYEBU\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14234 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14078 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13497 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13800 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13199 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13139 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12297 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12026 label \"22798 - 2022 Kenworth T880\" vs spec \"06KK8107H92DN983V\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12183 label \"53919 - 2016 Tremcar Dry-bulk\" vs spec \"698EAMYCTNNC9R7N6\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17160 label \"82484 - 2016 Peterbilt 367\" vs spec \"69J6C3PX1DBCF72ZV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13345 label \"82484 - 2016 Peterbilt 367\" vs spec \"69J6C3PX1DBCF72ZV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13782 label \"82498 - 2023 Kenworth T880\" vs spec \"JS9YK6XV75UWWXCUZ\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11580 label \"82507 - 2024 Peterbilt 377\" vs spec \"8H56GLTJUHJ9B2986\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13247 label \"82514 - 2025 Peterbilt 567\" vs spec \"HU637248RAE6HTZLG\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13241 label \"82514 - 2025 Peterbilt 567\" vs spec \"HU637248RAE6HTZLG\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12803 label \"82514 - 2025 Peterbilt 567\" vs spec \"HU637248RAE6HTZLG\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13594 label \"82540 - 2026 Peterbilt 567\" vs spec \"ZYNNS6B1N60LV6R8T\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13362 label \"82540 - 2026 Peterbilt 567\" vs spec \"ZYNNS6B1N60LV6R8T\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12295 label \"82540 - 2026 Peterbilt 567\" vs spec \"ZYNNS6B1N60LV6R8T\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12423 label \"10365847 Equipment Dev. - 2022 Kenworth T3 Series\" vs spec \"0CN9YWSDZ6631RM4Z\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14931 label \"10365847 Equipment Dev. - 2022 Kenworth T3 Series\" vs spec \"0CN9YWSDZ6631RM4Z\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12403 label \"10365847 Equipment Dev. - 2022 Kenworth T3 Series\" vs spec \"0CN9YWSDZ6631RM4Z\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11589 label \"11042024 - 2024 Ford F-550\" vs spec \"1YLTK1KFMS1TU8RD4\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11872 label \"11042024 - 2024 Ford F-550\" vs spec \"1YLTK1KFMS1TU8RD4\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13538 label \"11133145 - 2025 Freightliner 114sd\" vs spec \"PZFNJSMY95K9UMPKC\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13273 label \"11133145 - 2025 Freightliner 114sd\" vs spec \"PZFNJSMY95K9UMPKC\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11818 label \"11152194 - 2014 Ram 5500\" vs spec \"VDCADX8MCD0CHLXVV\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13456 label \"11183441 - 2023 International Cv515\" vs spec \"YXLDUBH3UWLWWT08X\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13164 label \"11183441 - 2023 International Cv515\" vs spec \"YXLDUBH3UWLWWT08X\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15379 label \"11315632 - 2025 LANDOLL CORPORATION 455B\" vs spec \"ATRH9CUKK1VF6HW62\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16067 label \"129 - 2017 Freightliner M2\" vs spec \"722ZA4X4VK3ECKS4S\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14584 label \"2013 MAXEY TRAILERS MFG MAXEY TRAILERS MFG\" vs spec \"PHNZZ856AV1FH1513\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14658 label \"2019 HINO XJC730/XFC730\" vs spec \"AGG8UKKEPNTWMUYBL\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12807 label \"2022 Gmc Sierra Hd\" vs spec \"RHUZNL6CDL1BTESAR\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14512 label \"70010312 - 2015 Ford F750\" vs spec \"4J4FREE0MMKK839WP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14332 label \"70010312 - 2015 Ford F750\" vs spec \"4J4FREE0MMKK839WP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11926 label \"70010312 - 2015 Ford F750\" vs spec \"4J4FREE0MMKK839WP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12474 label \"70010312 - 2015 Ford F750\" vs spec \"4J4FREE0MMKK839WP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11553 label \"70010312 - 2015 Ford F750\" vs spec \"4J4FREE0MMKK839WP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11203 label \"70010312 - 2015 Ford F750\" vs spec \"4J4FREE0MMKK839WP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11677 label \"70010312 - 2015 Ford F750\" vs spec \"4J4FREE0MMKK839WP\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14371 label \"70012550 - 2015 Western Star 4700\" vs spec \"FU4675SGK59VM5CNA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14132 label \"70012550 - 2015 Western Star 4700\" vs spec \"FU4675SGK59VM5CNA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14365 label \"70012550 - 2015 Western Star 4700\" vs spec \"FU4675SGK59VM5CNA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11845 label \"70012550 - 2015 Western Star 4700\" vs spec \"FU4675SGK59VM5CNA\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14173 label \"70016808 - 2016 Kenworth T3 Series\" vs spec \"5VL6RLTEJVVT5WZ6E\""
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14284 label \"70016808 - 2016 Kenworth T3 Series\" vs spec \"5VL6RLTEJVVT5WZ6E\""
+    }
+   ],
+   "non_pass_total": 7580,
+   "non_pass_capped": true
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "No-vehicle work sits in the \"Parts Sales\" bucket (S8-R6, S8-E3)",
+   "source": "S8-R6",
+   "counts": {
+    "PASS": 378
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customers listed = customers with a non-void invoice in the dates (sales type all) (S7-N1, S3-R5/R6)",
+   "source": "S7-N1,S3",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Every customer row (all columns + (n)) = sum of its invoices in the dates (sales type all) (S7-R5, S7-R6)",
+   "source": "S7-R5,S7-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals row = sum of all customer rows (sales type all) (S18-R6)",
+   "source": "S18-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals Margin % recomputed from the summed Margin, not averaged (sales type all)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customer Margin % recomputed from the row sums (sales type all)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customers listed = customers with a non-void invoice in the dates (sales type parts) (S7-N1, S3-R5/R6)",
+   "source": "S7-N1,S3",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Every customer row (all columns + (n)) = sum of its invoices in the dates (sales type parts) (S7-R5, S7-R6)",
+   "source": "S7-R5,S7-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals row = sum of all customer rows (sales type parts) (S18-R6)",
+   "source": "S18-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals Margin % recomputed from the summed Margin, not averaged (sales type parts)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customer Margin % recomputed from the row sums (sales type parts)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customers listed = customers with a non-void invoice in the dates (sales type service) (S7-N1, S3-R5/R6)",
+   "source": "S7-N1,S3",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Every customer row (all columns + (n)) = sum of its invoices in the dates (sales type service) (S7-R5, S7-R6)",
+   "source": "S7-R5,S7-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals row = sum of all customer rows (sales type service) (S18-R6)",
+   "source": "S18-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals Margin % recomputed from the summed Margin, not averaged (sales type service)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customer Margin % recomputed from the row sums (sales type service)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customers listed = customers with a non-void invoice in the dates (sales type none) (S7-N1, S3-R5/R6)",
+   "source": "S7-N1,S3",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Every customer row (all columns + (n)) = sum of its invoices in the dates (sales type none) (S7-R5, S7-R6)",
+   "source": "S7-R5,S7-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals row = sum of all customer rows (sales type none) (S18-R6)",
+   "source": "S18-R6",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Totals Margin % recomputed from the summed Margin, not averaged (sales type none)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "No sales type selected -> no rows (S3-R6a)",
+   "source": "S3-R6a",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Customer Margin % recomputed from the row sums (sales type none)",
+   "source": "S7-R14",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  }
+ ]
+}

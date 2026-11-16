@@ -1,0 +1,4401 @@
+{
+ "full_rows_at": "/tmp/cln/rg16/w2/full/results-sales.json",
+ "rows": 101929,
+ "totals": {
+  "PASS": 100773,
+  "FAIL": 1156
+ },
+ "checks": [
+  {
+   "report": "Sales",
+   "check": "Every row (invoices and credit memos) is dated inside the chosen dates",
+   "source": "SV-2107 / SV-5314",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Totals row: Inv. Hrs, hours worked, Labor Invoiced, Parts Invoiced, Parts Cost, Profit, Subtotal = sum of the rows",
+   "source": "SV-2107",
+   "counts": {
+    "PASS": 64
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Totals row percentages are recalculated from the totals (Billing Efficiency, Labor Margin, Parts Margin, Margin)",
+   "source": "SV-2107 \"NOT an average\"",
+   "counts": {
+    "PASS": 63,
+    "FAIL": 1
+   },
+   "non_pass": [
+    {
+     "location": "DVI Test",
+     "range": "custom_31d",
+     "result": "FAIL",
+     "detail": "{'parts_margin': (-2364.49, 2364.49)}"
+    }
+   ],
+   "non_pass_total": 1,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Inv. Hrs = billed hours on the work order (Stats tab estimated hours)",
+   "source": "SV-2107, SV-2881",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Hours worked behind Billing Efficiency = clocked hours on the work order (Stats tab)",
+   "source": "SV-2463 \"It needs to match the statistics tab\"",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Billing Efficiency = Inv. Hrs / hours clocked x 100; N/A when nothing clocked",
+   "source": "SV-2107 Labor Efficiency Row",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Labor Invoiced = labor sell on the Stats tab",
+   "source": "SV-2107",
+   "counts": {
+    "PASS": 7743,
+    "FAIL": 616
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40077 report 1234.56 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40181 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40182 report 500 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40185 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40076 report 50 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40081 report 250 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40090 report 21 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40062 report 10 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40093 report 86 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40082 report 40 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40037 report 65 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40092 report 48 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40066 report 5 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40070 report 45 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40078 report 110 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40079 report 120 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40089 report 22 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40083 report 41 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40094 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40072 report 55 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-38022 report 149.95 vs stats 299.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40046 report 60 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40088 report 73 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40060 report 30 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-36554 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40091 report 23 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40087 report 72 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40052 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40084 report 71 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-34918 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40075 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40055 report 80 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40056 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33460 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33459 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33458 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33364 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17322 report 3009.51 vs stats 3009.48"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17292 report 1739.44 vs stats 1739.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17407 report 3787.76 vs stats 3787.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16654 report 3171.13 vs stats 3171.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9473 report 2015.7 vs stats 2015.68"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16903 report 2903.05 vs stats 2903.03"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40067 report 10 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16188 report 2413 vs stats 2412.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16067 report 4335.07 vs stats 4335.05"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14531 report 14219.47 vs stats 14219.44"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14512 report 4587.01 vs stats 4586.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16121 report 3562.54 vs stats 3562.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15625 report 1631.54 vs stats 1631.52"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16050 report 3077 vs stats 3076.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16079 report 1247.6 vs stats 1247.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15868 report 7235.11 vs stats 7235.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16086 report 614.81 vs stats 614.79"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15911 report 2429.2 vs stats 2429.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16012 report 1299.76 vs stats 1299.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15971 report 3934.39 vs stats 3934.36"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15810 report 2758.78 vs stats 2758.75"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15621 report 7651.98 vs stats 7651.96"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15742 report 1253.65 vs stats 1253.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15859 report 577.32 vs stats 577.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15767 report 464.86 vs stats 464.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15299 report 2946.24 vs stats 2946.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15543 report 3150.15 vs stats 3150.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15487 report 1799.06 vs stats 1799.03"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15632 report 464.86 vs stats 464.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15193 report 1739.12 vs stats 1739.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9313 report 13818.21 vs stats 13818.17"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15452 report 1608.97 vs stats 1608.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15174 report 3013.68 vs stats 3013.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15322 report 9478.01 vs stats 9477.94"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15440 report 3024.19 vs stats 3024.14"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14899 report 7179.39 vs stats 7179.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15192 report 2063.01 vs stats 2062.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14363 report 3574.47 vs stats 3574.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14994 report 2163.8 vs stats 2163.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14658 report 7653.16 vs stats 7653.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15360 report 1364.56 vs stats 1364.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14729 report 14212.62 vs stats 14212.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15260 report 4873.21 vs stats 4873.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14861 report 3748.44 vs stats 3748.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14931 report 5862.76 vs stats 5862.72"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15321 report 838.24 vs stats 838.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15181 report 3683.99 vs stats 3683.96"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15310 report 967.86 vs stats 967.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14867 report 2931.54 vs stats 2931.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13263 report 6701.31 vs stats 6701.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13770 report 9366.64 vs stats 9366.6"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14826 report 4057.65 vs stats 4057.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14783 report 2818.76 vs stats 2818.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14169 report 17297.48 vs stats 17297.46"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15027 report 737.6 vs stats 737.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14809 report 1887.88 vs stats 1887.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14371 report 6594.85 vs stats 6594.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12614 report 10345.13 vs stats 10345.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14157 report 9592.06 vs stats 9591.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14456 report 1217.3 vs stats 1217.28"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14495 report 1724.12 vs stats 1724.1"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13880 report 2015.7 vs stats 2015.68"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13013 report 7464.23 vs stats 7464.21"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14542 report 1163.17 vs stats 1163.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13498 report 9929.73 vs stats 9929.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14332 report 4273.61 vs stats 4273.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14503 report 854.72 vs stats 854.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14201 report 1617.67 vs stats 1617.64"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14143 report 4962.59 vs stats 4962.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12718 report 19860.68 vs stats 19860.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13958 report 7855.15 vs stats 7855.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14306 report 1319.57 vs stats 1319.55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14029 report 2103.51 vs stats 2103.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14096 report 776.76 vs stats 776.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14016 report 1830.6 vs stats 1830.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14005 report 3141.47 vs stats 3141.43"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13642 report 6855.4 vs stats 6855.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13620 report 5615.8 vs stats 5615.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14080 report 864.91 vs stats 864.89"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14015 report 4021.4 vs stats 4021.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14165 report 1215.15 vs stats 1215.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13773 report 6625.56 vs stats 6625.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13907 report 9114.74 vs stats 9114.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14092 report 644.8 vs stats 644.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13010 report 12758.99 vs stats 12758.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13548 report 7628.98 vs stats 7628.92"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13838 report 3424.86 vs stats 3424.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13635 report 5798.29 vs stats 5798.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14022 report 819.92 vs stats 819.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13457 report 2803.78 vs stats 2803.75"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13724 report 5586.84 vs stats 5586.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13765 report 269.92 vs stats 269.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13599 report 5996.51 vs stats 5996.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13623 report 2613.66 vs stats 2613.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13144 report 1964.37 vs stats 1964.35"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13696 report 3145.64 vs stats 3145.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13604 report 10158.83 vs stats 10158.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13552 report 3002.03 vs stats 3001.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13523 report 4135.32 vs stats 4135.29"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13493 report 3145.27 vs stats 3145.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13597 report 2748.6 vs stats 2748.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13679 report 269.92 vs stats 269.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13288 report 4973.54 vs stats 4973.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13358 report 4395.17 vs stats 4395.15"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13468 report 464.86 vs stats 464.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13345 report 6903.74 vs stats 6903.72"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13226 report 6603.52 vs stats 6603.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13329 report 1132.14 vs stats 1132.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13164 report 1364.19 vs stats 1364.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13308 report 2333.24 vs stats 2333.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13293 report 4166.82 vs stats 4166.77"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13325 report 3189.45 vs stats 3189.43"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12880 report 12165.23 vs stats 12165.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13153 report 1847.41 vs stats 1847.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12729 report 4726.51 vs stats 4726.48"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12525 report 2742.29 vs stats 2742.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13179 report 3047.02 vs stats 3046.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12920 report 10550.21 vs stats 10550.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13143 report 1769.43 vs stats 1769.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13119 report 3978.2 vs stats 3978.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13059 report 2582.16 vs stats 2582.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12788 report 3729.89 vs stats 3729.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11876 report 11503.42 vs stats 11503.37"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12821 report 1934.37 vs stats 1934.35"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12266 report 9392.57 vs stats 9392.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12553 report 3525.39 vs stats 3525.35"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12518 report 1317.76 vs stats 1317.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12514 report 4958.89 vs stats 4958.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10867 report 11860.54 vs stats 11860.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12667 report 2754.29 vs stats 2754.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12433 report 12193.65 vs stats 12193.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12410 report 4475.74 vs stats 4475.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12675 report 419.87 vs stats 419.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11588 report 2914.73 vs stats 2914.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9800 report 16081.92 vs stats 16081.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12369 report 1719.63 vs stats 1719.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12481 report 1619.51 vs stats 1619.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12214 report 2295.43 vs stats 2295.4"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12504 report 2466.01 vs stats 2465.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12477 report 651.36 vs stats 651.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12406 report 3417.06 vs stats 3417.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12386 report 2462.2 vs stats 2462.17"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12528 report 479.85 vs stats 479.83"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12487 report 3804.26 vs stats 3804.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11972 report 2740.79 vs stats 2740.75"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12142 report 4883.57 vs stats 4883.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12414 report 1341.65 vs stats 1341.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12188 report 3985.68 vs stats 3985.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11986 report 5967.72 vs stats 5967.69"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12275 report 2946.53 vs stats 2946.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12182 report 2993.01 vs stats 2992.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11370 report 2001.91 vs stats 2001.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12036 report 1827.58 vs stats 1827.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12080 report 1769.42 vs stats 1769.4"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12190 report 1802.4 vs stats 1802.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12222 report 1297.07 vs stats 1297.05"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11954 report 2712.62 vs stats 2712.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11002 report 1415.54 vs stats 1415.52"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11763 report 2213.28 vs stats 2213.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12061 report 3310.97 vs stats 3310.94"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12079 report 1035.9 vs stats 1035.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11985 report 2027.33 vs stats 2027.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7510 report 10146.84 vs stats 10146.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11838 report 3112.97 vs stats 3112.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11203 report 1358.56 vs stats 1358.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11678 report 3805.44 vs stats 3805.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11645 report 965.69 vs stats 965.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11818 report 2192.28 vs stats 2192.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11369 report 4519.19 vs stats 4519.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11649 report 1166.32 vs stats 1166.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11784 report 817.24 vs stats 817.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11746 report 4772.2 vs stats 4772.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11611 report 6390.6 vs stats 6390.5"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11447 report 5768.27 vs stats 5768.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11685 report 2901.55 vs stats 2901.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11368 report 5311.29 vs stats 5311.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11473 report 2188.96 vs stats 2188.94"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11475 report 1310.58 vs stats 1310.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11563 report 742.28 vs stats 742.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11096 report 3376.91 vs stats 3376.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11478 report 3975.18 vs stats 3975.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11411 report 757.27 vs stats 757.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11410 report 1121.69 vs stats 1121.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11471 report 602.08 vs stats 602.06"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11380 report 1942.63 vs stats 1942.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11166 report 4092.15 vs stats 4092.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11302 report 3029 vs stats 3028.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11116 report 1818.59 vs stats 1818.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11073 report 2087 vs stats 2086.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11098 report 1471.32 vs stats 1471.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11155 report 4248.1 vs stats 4248.07"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10850 report 2636.13 vs stats 2636.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10965 report 1586.49 vs stats 1586.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11132 report 4330.29 vs stats 4330.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10063 report 7544 vs stats 7543.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11076 report 2249.26 vs stats 2249.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9835 report 3520.55 vs stats 3520.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11005 report 1462.06 vs stats 1462.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10900 report 2883.56 vs stats 2883.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10950 report 1273.11 vs stats 1273.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10855 report 4488.49 vs stats 4488.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10664 report 5508.44 vs stats 5508.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10585 report 3316.92 vs stats 3316.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10379 report 8462.9 vs stats 8462.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10299 report 2320.88 vs stats 2320.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10380 report 4522.23 vs stats 4522.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10318 report 8167.51 vs stats 8167.46"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10166 report 2327.23 vs stats 2327.21"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10367 report 4246.61 vs stats 4246.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9833 report 1539.68 vs stats 1539.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10627 report 1444.7 vs stats 1444.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10465 report 1265.59 vs stats 1265.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10031 report 6092.5 vs stats 6092.46"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9402 report 1802.42 vs stats 1802.37"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10142 report 1143.81 vs stats 1143.79"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10060 report 6834.41 vs stats 6834.39"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10210 report 4452.03 vs stats 4452.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10052 report 6684.48 vs stats 6684.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10485 report 539.84 vs stats 539.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10173 report 952.22 vs stats 952.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9447 report 9869.4 vs stats 9869.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10218 report 382.38 vs stats 382.36"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10088 report 548.83 vs stats 548.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10362 report 269.92 vs stats 269.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10011 report 1107.9 vs stats 1107.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9936 report 4308.08 vs stats 4308.05"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10015 report 3176.49 vs stats 3176.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9910 report 8260.33 vs stats 8260.29"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10076 report 743.79 vs stats 743.77"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9993 report 1078.69 vs stats 1078.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9959 report 2448.22 vs stats 2448.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9398 report 2540.16 vs stats 2540.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9935 report 433.87 vs stats 433.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9629 report 1440.26 vs stats 1440.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9710 report 4886.12 vs stats 4886.09"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9790 report 1224.12 vs stats 1224.1"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9746 report 6662.88 vs stats 6662.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8406 report 25137.37 vs stats 25137.29"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9660 report 968.73 vs stats 968.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9125 report 6084.84 vs stats 6084.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8282 report 2715.62 vs stats 2715.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9567 report 1967.88 vs stats 1967.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9554 report 908.73 vs stats 908.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9479 report 5418.56 vs stats 5418.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9494 report 4245.65 vs stats 4245.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9410 report 1459.65 vs stats 1459.63"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8990 report 6655.07 vs stats 6655.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9509 report 1688.73 vs stats 1688.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8356 report 21407.59 vs stats 21407.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9285 report 3117.92 vs stats 3117.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8553 report 4636.25 vs stats 4636.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7947 report 3145.42 vs stats 3145.4"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9026 report 5982.03 vs stats 5981.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9200 report 7174.22 vs stats 7174.17"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8958 report 2244.91 vs stats 2244.89"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8987 report 4718.24 vs stats 4718.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9110 report 1789.69 vs stats 1789.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8873 report 6081.81 vs stats 6081.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9030 report 6694.59 vs stats 6694.55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8986 report 3656.85 vs stats 3656.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9111 report 994.69 vs stats 994.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9113 report 424.88 vs stats 382.39"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8790 report 3726.5 vs stats 3726.48"
+    }
+   ],
+   "non_pass_total": 616,
+   "non_pass_capped": true
+  },
+  {
+   "report": "Sales",
+   "check": "Labor cost behind Labor Margin = labor cost on the Stats tab",
+   "source": "SV-2107 Labor Margin Row",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Labor Margin = (Labor Invoiced - labor cost) / Labor Invoiced x 100",
+   "source": "SV-2107",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Parts Invoiced = parts sell on the Stats tab",
+   "source": "SV-2107",
+   "counts": {
+    "PASS": 8268,
+    "FAIL": 91
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2436 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2328 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2297 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2291 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2287 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2278 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33459 report 0 vs stats 16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33264 report 3855.64 vs stats 3655.64"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2067 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2062 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2007 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2002 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1996 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1990 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1987 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1984 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1981 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1975 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1972 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1969 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1966 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1963 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1960 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1957 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1954 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1951 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1948 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1945 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1942 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1936 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1928 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1925 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1922 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1919 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1913 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1907 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1895 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1892 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1889 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1886 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1883 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1880 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1877 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-92 report 1295.78 vs stats 1059.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11368 report 3991.14 vs stats 3910.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10936 report 1262.99 vs stats 1474.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5618 report 1133.86 vs stats 1120.18"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5501 report 539.29 vs stats 546.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5494 report 438.98 vs stats 411.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5315 report 996.3 vs stats 1023.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4192 report 6059.53 vs stats 6075.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4980 report 424.33 vs stats 276.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4610 report 1117.5 vs stats 1124.32"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2471 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2468 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2465 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2461 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2458 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2455 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2312 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2306 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-2294 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1978 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1939 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1933 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1904 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1901 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1898 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1874 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1871 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1868 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1865 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1862 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1859 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1856 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1852 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1848 report 145 vs stats 55"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1844 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1840 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1836 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1833 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1830 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1827 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1824 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P3-1821 report 145 vs stats 90"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-16463 report 1366.88 vs stats 1484.4"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-16572 report 793.38 vs stats 743.38"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-6828 report 15.62 vs stats 3.62"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-6199 report 312.48 vs stats 311.32"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-6096 report 102.17 vs stats 102.34"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S3-5327 report 331.25 vs stats 394.32"
+    }
+   ],
+   "non_pass_total": 91,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Parts Cost = parts cost on the work order Stats tab",
+   "source": "SV-6344 Expected Result",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Parts Margin = (Parts Invoiced - Parts Cost) / Parts Invoiced x 100",
+   "source": "SV-2107",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Profit = (Labor Invoiced - labor cost) + (Parts Invoiced - Parts Cost)",
+   "source": "SV-2107 Total Margin Row (total sell - total cost)",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Profit = total margin on the work order Stats tab",
+   "source": "SV-6344",
+   "counts": {
+    "PASS": 7911,
+    "FAIL": 448
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40077 report 1234.56 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40181 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40182 report 500 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40185 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40076 report 50 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40081 report 250 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40090 report 21 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40062 report 10 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40093 report 86 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40082 report 40 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40037 report 65 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40092 report 48 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40066 report 5 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40070 report 45 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40078 report 110 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40079 report 120 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40089 report 22 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40083 report 41 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40094 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40072 report 55 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-38022 report 149.95 vs stats 299.9"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2436 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40046 report 60 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40088 report 73 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40060 report 30 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-36554 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2328 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40091 report 23 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40087 report 72 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40052 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40084 report 71 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-34918 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40075 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40055 report 80 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40056 report 100 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2297 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2291 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2287 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2278 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33460 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33459 report 445.86 vs stats 461.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33458 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33364 report 449.86 vs stats 449.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-33264 report 1908.59 vs stats 1708.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2067 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2062 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2007 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-2002 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1996 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1990 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1987 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1984 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1981 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1975 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1972 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1969 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1966 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1963 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1960 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1957 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1954 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1951 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1948 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1945 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1942 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1936 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1928 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1925 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1922 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1919 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1913 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1907 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1895 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1892 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1889 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1886 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1883 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1880 report 95 vs stats 40"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-1877 report 115 vs stats 25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17322 report 2634.35 vs stats 2634.32"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17292 report 1758.67 vs stats 1758.64"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-17407 report 3616.81 vs stats 3616.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-40067 report 10 vs stats 149.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16067 report 4368.67 vs stats 4368.65"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14531 report 9985.7 vs stats 9985.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14512 report 3849.73 vs stats 3849.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-16121 report 3276.05 vs stats 3275.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15868 report 6426.17 vs stats 6426.15"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15971 report 3684.22 vs stats 3684.19"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15810 report 2351.65 vs stats 2351.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15742 report 1645.48 vs stats 1645.44"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15767 report 495.72 vs stats 495.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15299 report 3252.67 vs stats 3252.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15487 report 2351.9 vs stats 2351.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15193 report 1162.02 vs stats 1161.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9313 report 14016.27 vs stats 14016.23"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15322 report 7644.34 vs stats 7644.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15440 report 2751.03 vs stats 2750.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14899 report 5779.35 vs stats 5779.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15192 report 1578.82 vs stats 1578.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "P2-92 report 400.87 vs stats 164.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14994 report 1947.63 vs stats 1947.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14658 report 8640.99 vs stats 8640.96"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14729 report 14608.75 vs stats 14608.69"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15260 report 4002.27 vs stats 4002.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14861 report 3689.98 vs stats 3689.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14931 report 4807.18 vs stats 4807.14"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15321 report 756.08 vs stats 756.06"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15181 report 2713.23 vs stats 2713.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15310 report 559.33 vs stats 559.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14867 report 2662.56 vs stats 2662.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13263 report 6878.9 vs stats 6878.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13770 report 8897.01 vs stats 8896.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14826 report 4402.66 vs stats 4402.63"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-15027 report 675.7 vs stats 675.68"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14371 report 5805.04 vs stats 5805"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12614 report 8592.51 vs stats 8592.39"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14157 report 8691.76 vs stats 8691.69"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13013 report 7536.71 vs stats 7536.69"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14542 report 1120.17 vs stats 1120.13"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13498 report 11257.18 vs stats 11257.11"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14332 report 3624.92 vs stats 3624.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14201 report 1230.49 vs stats 1230.46"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14143 report 4750.55 vs stats 4750.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12718 report 19175.54 vs stats 19175.42"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13958 report 6745.15 vs stats 6745.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14029 report 1555.7 vs stats 1555.66"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14016 report 1635.76 vs stats 1635.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14005 report 3118.96 vs stats 3118.92"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13620 report 5058.48 vs stats 5058.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14080 report 529.44 vs stats 529.42"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-14015 report 3769.12 vs stats 3769.03"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13773 report 6690.34 vs stats 6690.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13907 report 8700.97 vs stats 8700.89"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13010 report 14134.67 vs stats 14134.56"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13548 report 7518.54 vs stats 7518.48"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13635 report 5244.32 vs stats 5244.28"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13457 report 2574.95 vs stats 2574.92"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13724 report 5136.34 vs stats 5136.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13599 report 5522.46 vs stats 5522.44"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13623 report 2104.92 vs stats 2104.87"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13604 report 9590.41 vs stats 9590.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13552 report 2989.19 vs stats 2989.15"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13523 report 4203.4 vs stats 4203.37"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13493 report 2867.74 vs stats 2867.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13288 report 4309.56 vs stats 4309.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13358 report 4398.6 vs stats 4398.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13468 report 510.22 vs stats 510.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13226 report 6017.65 vs stats 6017.6"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13329 report 873 vs stats 872.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13164 report 883.63 vs stats 883.6"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13293 report 3637.69 vs stats 3637.64"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12880 report 10775.61 vs stats 10775.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13153 report 1652.41 vs stats 1652.38"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12729 report 4193.04 vs stats 4193.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12525 report 3524.6 vs stats 3524.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13179 report 2553.57 vs stats 2553.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12920 report 12181.09 vs stats 12181.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13119 report 3752.12 vs stats 3752.08"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-13059 report 2329.89 vs stats 2329.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12788 report 2799.01 vs stats 2798.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11876 report 10368.44 vs stats 10368.39"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12266 report 8728.7 vs stats 8728.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12553 report 3099.65 vs stats 3099.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12518 report 1120.36 vs stats 1120.33"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12514 report 4095.82 vs stats 4095.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10867 report 12278.02 vs stats 12277.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12667 report 2549.6 vs stats 2549.57"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12433 report 12278.18 vs stats 12278.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12410 report 4050.83 vs stats 4050.79"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9800 report 13760.5 vs stats 13760.43"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12369 report 1509.34 vs stats 1509.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12214 report 1997.88 vs stats 1997.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12477 report 390.97 vs stats 390.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12386 report 1823.87 vs stats 1823.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12487 report 3247.11 vs stats 3247.07"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11972 report 2416.16 vs stats 2416.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12142 report 4469.39 vs stats 4469.35"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12414 report 1127.02 vs stats 1126.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11986 report 5357.11 vs stats 5357.08"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12182 report 2342.84 vs stats 2342.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11370 report 1892.1 vs stats 1892.06"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11954 report 2481.07 vs stats 2481.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-12061 report 3216.53 vs stats 3216.5"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7510 report 9950.47 vs stats 9950.44"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11678 report 3165.63 vs stats 3165.6"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11369 report 3651.5 vs stats 3651.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11649 report 773.19 vs stats 773.17"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11611 report 6910.99 vs stats 6910.89"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11368 report 4523.8 vs stats 4443"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11475 report 998.45 vs stats 998.43"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11563 report 697.78 vs stats 697.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11096 report 2757.48 vs stats 2757.42"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11411 report 1007.48 vs stats 1007.44"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11410 report 1137.62 vs stats 1137.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11471 report 373.1 vs stats 373.08"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11166 report 2246.01 vs stats 2245.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11073 report 1550.44 vs stats 1550.41"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-11155 report 5620.77 vs stats 5620.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10850 report 2477.51 vs stats 2477.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9835 report 2773.66 vs stats 2773.62"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10936 report 2539.46 vs stats 2751.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10664 report 4892.31 vs stats 4892.21"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10585 report 3158.9 vs stats 3158.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10379 report 8294.17 vs stats 8294.14"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10380 report 4321.31 vs stats 4321.28"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10318 report 6470.26 vs stats 6470.21"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10367 report 3562.33 vs stats 3562.28"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10627 report 746.19 vs stats 746.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10031 report 5578.01 vs stats 5577.97"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9402 report 1512.5 vs stats 1512.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10052 report 6576.29 vs stats 6576.26"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10485 report 566.77 vs stats 566.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10173 report 1176.88 vs stats 1176.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10088 report 293.98 vs stats 293.95"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9936 report 3930.18 vs stats 3930.15"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-10015 report 2782.73 vs stats 2782.69"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9910 report 7745.68 vs stats 7745.64"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9935 report 386.29 vs stats 386.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9710 report 4222.54 vs stats 4222.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9746 report 6291.72 vs stats 6291.7"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8406 report 20929.75 vs stats 20929.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9660 report 1048.7 vs stats 1048.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9125 report 6001.69 vs stats 6001.63"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8282 report 2228.28 vs stats 2228.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9567 report 1676.53 vs stats 1676.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9479 report 5064.72 vs stats 5064.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9494 report 3628.92 vs stats 3628.88"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9410 report 1178.63 vs stats 1178.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8990 report 5139.77 vs stats 5139.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8356 report 18022.09 vs stats 18022.07"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9026 report 5528.72 vs stats 5528.67"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9200 report 7334.5 vs stats 7334.45"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8958 report 1906.14 vs stats 1906.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8873 report 5778.87 vs stats 5778.84"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9030 report 9005.97 vs stats 9005.93"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8986 report 3438.59 vs stats 3438.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-9113 report 357.22 vs stats 314.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8477 report 5796.27 vs stats 5796.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8948 report 1479.34 vs stats 1479.31"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8805 report 4131.71 vs stats 4131.68"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8819 report 1145.23 vs stats 1145.2"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8627 report 2472.61 vs stats 2472.58"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8758 report 4973.48 vs stats 4973.44"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8405 report 12179.69 vs stats 12179.59"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8677 report 10481.56 vs stats 10481.53"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8284 report 17203.55 vs stats 17203.47"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8590 report 4649.78 vs stats 4649.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8329 report 5123.61 vs stats 5123.55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8339 report 13432.13 vs stats 13432.06"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8468 report 1131.15 vs stats 1131.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8345 report 5448.81 vs stats 5448.78"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7968 report 11997.06 vs stats 11996.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8176 report 10349.55 vs stats 10349.51"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8269 report 6342.23 vs stats 6342.16"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-8164 report 8369.1 vs stats 8369.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6176 report 9891.16 vs stats 9891.12"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7957 report 6428.95 vs stats 6428.91"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7381 report 2474.3 vs stats 2474.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7533 report 7032.08 vs stats 7032.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6545 report 2168.27 vs stats 2168.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7917 report 1162.52 vs stats 1162.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7666 report 4794.05 vs stats 4794.02"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7583 report 5395.35 vs stats 5395.33"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7909 report 465.17 vs stats 465.15"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5153 report 5945.06 vs stats 5945.02"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7539 report 1249.95 vs stats 1249.92"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6861 report 22649.34 vs stats 22649.25"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7343 report 1725.78 vs stats 1725.74"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7422 report 3880.02 vs stats 3879.99"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6635 report 19872.89 vs stats 19872.81"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7066 report 6023.27 vs stats 6023.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4103 report 6239.83 vs stats 6239.8"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7075 report 966.37 vs stats 966.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7112 report 4688.9 vs stats 4688.86"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6918 report 5496.08 vs stats 5496.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6848 report 7046.11 vs stats 7046.04"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-7057 report 2618.34 vs stats 2618.3"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6671 report 7945.89 vs stats 7945.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6037 report 1970.01 vs stats 1969.98"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5976 report 4735.4 vs stats 4735.34"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6193 report 4416.1 vs stats 4416.06"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6282 report 13619.03 vs stats 13618.96"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6188 report 5033.66 vs stats 5033.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6636 report 3343.57 vs stats 3343.54"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5785 report 6686.31 vs stats 6686.27"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4158 report 10708.76 vs stats 10708.71"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6346 report 682.18 vs stats 682.15"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4213 report 3558.88 vs stats 3558.85"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4922 report 1644.56 vs stats 1644.52"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-6235 report 2234.77 vs stats 2234.73"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5953 report 1162.25 vs stats 1162.22"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5810 report 5335.59 vs stats 5335.55"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5959 report 3758.05 vs stats 3758.01"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-4784 report 9817.84 vs stats 9817.82"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5405 report 5215.14 vs stats 5215.1"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5118 report 8410.51 vs stats 8410.49"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5548 report 9856.66 vs stats 9856.61"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5539 report 2542.27 vs stats 2542.24"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "2y",
+     "result": "FAIL",
+     "detail": "S2-5538 report 9923.01 vs stats 9922.99"
+    }
+   ],
+   "non_pass_total": 448,
+   "non_pass_capped": true
+  },
+  {
+   "report": "Sales",
+   "check": "Margin = Profit / (Labor Invoiced + Parts Invoiced) x 100",
+   "source": "SV-2107 Total Margin Row",
+   "counts": {
+    "PASS": 8359
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Work order with no lines on its Stats tab shows 0 in every column",
+   "source": "",
+   "counts": {
+    "PASS": 14
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Credit memo row: Parts Invoiced and Subtotal are negative",
+   "source": "SV-5314 AC2",
+   "counts": {
+    "PASS": 283
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Credit memo row: Profit = Parts Invoiced - Parts Cost (a credit reverses the original profit or loss)",
+   "source": "SV-6101",
+   "counts": {
+    "PASS": 283
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Credit memo row: no hours, no labor",
+   "source": "SV-5314",
+   "counts": {
+    "PASS": 283
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Credit memo row shows the credit number and no work-order link",
+   "source": "SV-5314 AC3/AC4",
+   "counts": {
+    "PASS": 283
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales",
+   "check": "Credit memo row: Parts Margin sign follows the profit (negative when the credit takes profit away)",
+   "source": "SV-5314 AC2 + SV-6101",
+   "counts": {
+    "PASS": 283
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  }
+ ]
+}
