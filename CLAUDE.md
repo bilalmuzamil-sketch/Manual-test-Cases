@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **EVERY SENTENCE IN A TICKET IS A CLAIM — PROVE THE "SUPPORTING" LINES TOO; CLICK A BUTTON BEFORE SAYING WHAT IT CAN'T DO (Standing Rule 129).**
 > - **A FOLLOW-UP TICKET IS TRIED ON THE QA ENV AND ON PRODUCTION; IT SAYS "ONLY ON QA <link>" OR "PRODUCTION TOO", AND WHEN PRODUCTION TOO ALL STEPS + PICTURES COME FROM PRODUCTION (Standing Rule 128).**
 > - **ANYTHING REPORTED FROM A QA BRANCH IS ALSO CHECKED ON PRODUCTION — say whether it is QA-branch-only or on production too, with annotated screenshots of both (Standing Rule 126).**
 > - **NEVER REJECT/BLOCK A TICKET (OR ASK A DEV TO BUILD A STATE) BEFORE THE SELF-UNBLOCK IS EXHAUSTED — WAKE, SEED, UI↔API, AND READ THE FIX'S OWN CODE (migrations, constraints, tests); re-sweep every Rejected/Blocked ticket (Standing Rule 125).**
