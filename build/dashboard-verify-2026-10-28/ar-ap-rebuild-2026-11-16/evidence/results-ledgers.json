@@ -1,0 +1,173 @@
+{
+ "as_of": "2026-11-16",
+ "zone": "Asia/Karachi",
+ "workplaces_read": 8,
+ "held_deposits": {
+  "ar": {
+   "n": 46,
+   "cents": 6097552
+  },
+  "ap": {
+   "n": 0,
+   "cents": 0
+  }
+ },
+ "ar": {
+  "report_documents": 1790,
+  "account_documents": 1836,
+  "account_items_skipped": {},
+  "counts": {
+   "every report document is open on its account:pass": 1,
+   "every open account document is on the report:pass": 1,
+   "account lists hold each document once:pass": 1,
+   "held deposits on an open work order are not on the report (SV-11690: \"a held deposit is not an overdue credit - not subtracted from aged A/R\"):pass": 1,
+   "open balance = account list:pass": 1790,
+   "amount = account list:pass": 1790,
+   "date = account list (to the second):pass": 1790,
+   "due date = account list (to the second):pass": 1562,
+   "location = the document's own location (S5-R7):pass": 1790,
+   "account buckets rebuilt from the account list alone = report (S1-R5a, S5-R18a):pass": 315,
+   "grand bucket totals from the account lists = report Totals:pass": 1
+  },
+  "failures": {}
+ },
+ "ap": {
+  "report_documents": 14732,
+  "account_documents": 14722,
+  "account_items_skipped": {
+   "zero balance on the account list (not open)": 58,
+   "dated after the as-of date (outside an as-of-today report)": 2
+  },
+  "counts": {
+   "every report document is open on its account:fail": 1,
+   "every open account document is on the report:pass": 1,
+   "account lists hold each document once:pass": 1,
+   "held deposits on an open work order are not on the report (SV-11690: \"a held deposit is not an overdue credit - not subtracted from aged A/R\"):pass": 1,
+   "open balance = account list:pass": 14722,
+   "amount = account list:pass": 14722,
+   "date = account list (to the second):pass": 14722,
+   "due date = account list (to the second):pass": 13401,
+   "location = the location whose vendor list holds it (S5-R7):pass": 14722,
+   "account buckets rebuilt from the account list alone = report (S1-R5a, S5-R18a):pass": 496,
+   "account buckets rebuilt from the account list alone = report (S1-R5a, S5-R18a):fail": 2,
+   "grand bucket totals from the account lists = report Totals:fail": 1
+  },
+  "failures": {
+   "every report document is open on its account": [
+    {
+     "n": 10,
+     "first": [
+      [
+       "E2E-INV-1788266168986",
+       "Invoice",
+       5000,
+       "QB Location"
+      ],
+      [
+       "E2E-INV-1788267208964",
+       "Invoice",
+       5000,
+       "QB Location"
+      ],
+      [
+       "E2E-INV-1788267913009",
+       "Invoice",
+       5000,
+       "QB Location"
+      ],
+      [
+       "E2E-INV-1788270077110",
+       "Invoice",
+       5000,
+       "QB Location"
+      ],
+      [
+       "E2E-INV-1788271486203",
+       "Invoice",
+       5000,
+       "QB Location"
+      ],
+      [
+       "INV-RA-001",
+       "Invoice",
+       14690,
+       "QB Location"
+      ],
+      [
+       "INV-RA-002",
+       "Invoice",
+       1130,
+       "QB Location"
+      ],
+      [
+       "MQCT-02",
+       "Invoice",
+       2260,
+       "QB Location"
+      ],
+      [
+       "MQTX-01",
+       "Invoice",
+       1130,
+       "QB Location"
+      ],
+      [
+       "new",
+       "Invoice",
+       1130,
+       "QB Location"
+      ]
+     ]
+    }
+   ],
+   "account buckets rebuilt from the account list alone = report (S1-R5a, S5-R18a)": [
+    [
+     "68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+     {
+      "days_61_to_90": -6048,
+      "days_31_to_60": 131306,
+      "days_1_to_30": 131193,
+      "current": 5000
+     },
+     {
+      "days_1_to_30": 115373,
+      "current": 5000,
+      "days_31_to_60": 131306,
+      "days_61_to_90": -6048
+     }
+    ],
+    [
+     "4acb542f-0f2d-45b8-bbd4-afb70fd22fb8",
+     {
+      "days_31_to_60": 2316817,
+      "days_1_to_30": 1908817,
+      "current": 721593
+     },
+     {
+      "days_31_to_60": 2291817,
+      "days_1_to_30": 1904297,
+      "current": 721593
+     }
+    ]
+   ],
+   "grand bucket totals from the account lists = report Totals": [
+    [
+     {
+      "days_91_plus": 409363114,
+      "days_61_to_90": 33017628,
+      "days_31_to_60": 26513372,
+      "days_1_to_30": 12054061,
+      "current": 3702021
+     },
+     {
+      "days_91_plus": 409363114,
+      "days_61_to_90": 33017628,
+      "days_1_to_30": 12033721,
+      "days_31_to_60": 26488372,
+      "current": 3702021
+     }
+    ]
+   ]
+  }
+ }
+}

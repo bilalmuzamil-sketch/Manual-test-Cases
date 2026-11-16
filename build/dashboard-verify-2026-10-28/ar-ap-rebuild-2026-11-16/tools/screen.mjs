@@ -16,11 +16,12 @@ page.on('response', async r => { const u = r.url(); if (!/\/reporting\/reports\/
 const T = s => (s || '').replace(/\s+/g, ' ').trim();
 const shot = async name => page.screenshot({ path: DL + name + '.png', fullPage: false });
 const SLUGS = ['ar-aging-summary', 'ar-aging-detail', 'ar-aging-collection', 'ap-aging-summary', 'ap-aging-detail', 'ap-unpaid-invoices'];
-const variants = [{ asOf: today, scope: 'all' }, { asOf: '2026-09-30', scope: 'all' }, { asOf: today, scope: 'own' }];
+const variants = process.env.ONLY_OWN ? [{ asOf: today, scope: 'own' }] : [{ asOf: today, scope: 'all' }, { asOf: '2026-09-30', scope: 'all' }, { asOf: today, scope: 'own' }];
+const OUTF = EV + `screen-${KEY}${process.env.ONLY_OWN ? '-own' : ''}.json`;
 for (const v of variants) for (const slug of SLUGS) {
   const R = { slug, ...v }; out.runs.push(R); net = [];
   try {
-    const url = `${APP}/reports/${slug}?asOfDate=${v.asOf}` + (v.scope === 'own' ? `&locations=${loc.id}` : '');
+    const url = `${APP}/reports/${slug}?asOfDate=${v.asOf}` + (v.scope === 'own' ? `&locationIds=${loc.id}` : '')   // address key is locationIds (useAgingReportFilters AGING_LOCATION_KEY);
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForLoadState('networkidle', { timeout: 60000 }).catch(() => {}); await sleep(6000);
     const exp = page.getByRole('button', { name: /expand all/i }).first();
     if (/detail|collection|unpaid/.test(slug) && await exp.count()) { await exp.click().catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 60000 }).catch(() => {}); await sleep(5000); R.expanded = true; }
@@ -42,10 +43,10 @@ for (const v of variants) for (const slug of SLUGS) {
       const first = await Promise.race([dP.then(x => ({ d: x })), toastWait.then(t => ({ t }))]); d = first.d || null;
       const toasts = await page.evaluate(() => [...document.querySelectorAll('.q-notification')].map(n => n.innerText.replace(/\s+/g, ' ').trim()));
       const rec = { item, filename: d ? d.suggestedFilename() : null, seconds: Math.round((Date.now() - t0) / 1000), toasts };
-      if (d) { rec.path = DL + `${slug}__${v.asOf}__${v.scope}__` + rec.filename; await d.saveAs(rec.path); rec.bytes = fs.statSync(rec.path).size; }
+      if (d) { rec.path = DL + `${slug}__${v.asOf}__${v.scope}${process.env.ONLY_OWN ? '2' : ''}__` + rec.filename; await d.saveAs(rec.path); rec.bytes = fs.statSync(rec.path).size; }
       R.downloads.push(rec); await page.keyboard.press('Escape'); await sleep(3000);
     }
   } catch (e) { R.error = String(e).slice(0, 300); }
-  save(EV + `screen-${KEY}.json`, out); console.log(KEY, slug, v.asOf, v.scope, R.error || '', (R.downloads || []).map(d => d.filename || d.toasts?.join('|')).join(' ; '));
+  save(OUTF, out); console.log(KEY, slug, v.asOf, v.scope, R.error || '', (R.downloads || []).map(d => d.filename || d.toasts?.join('|')).join(' ; '));
 }
-out.end = await rule99(page, loc); out.today = today; save(EV + `screen-${KEY}.json`, out); await browser.close();
+out.end = await rule99(page, loc); out.today = today; save(OUTF, out); await browser.close();

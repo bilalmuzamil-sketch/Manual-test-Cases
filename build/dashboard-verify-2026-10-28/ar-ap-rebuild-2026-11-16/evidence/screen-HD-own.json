@@ -1,0 +1,1252 @@
+{
+ "start": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-16T09:43:11.128Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ },
+ "runs": [
+  {
+   "slug": "ar-aging-summary",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ar-aging-summary?asOfDate=2026-11-16&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "person Customer: All customers keyboard_arrow_down",
+    "Customer: All customers",
+    "Customer"
+   ],
+   "head": [
+    "Customer",
+    "Current",
+    "1-30 Days",
+    "31-60 Days",
+    "61-90 Days",
+    "91 And Over",
+    "Total"
+   ],
+   "totals": [
+    [
+     "Totals",
+     "$23,951.01",
+     "$118,198.66",
+     "$196,441.51",
+     "$105,278.54",
+     "$121,403.56",
+     "$565,273.28"
+    ]
+   ],
+   "groups": [],
+   "first_rows": [
+    [
+     "ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
+     "",
+     "",
+     "$1,043.92",
+     "",
+     "",
+     "$1,043.92"
+    ],
+    [
+     "10 Trucking",
+     "$300.00",
+     "",
+     "",
+     "",
+     "",
+     "$300.00"
+    ],
+    [
+     "2 Trucking",
+     "",
+     "$105.00",
+     "",
+     "",
+     "",
+     "$105.00"
+    ],
+    [
+     "4 Star Truck Repair",
+     "$2,547.58",
+     "$308.18",
+     "$11.78",
+     "$-7,551.12",
+     "",
+     "$-4,683.58"
+    ],
+    [
+     "A & J Truck & Trailer Repair",
+     "",
+     "$-67.48",
+     "$-579.04",
+     "",
+     "",
+     "$-646.52"
+    ],
+    [
+     "A-1 Towing",
+     "",
+     "$105.00",
+     "",
+     "",
+     "",
+     "$105.00"
+    ],
+    [
+     "a1 towing",
+     "",
+     "$105.00",
+     "",
+     "",
+     "",
+     "$105.00"
+    ],
+    [
+     "Aberdeen Diesel Services LLC",
+     "$489.35",
+     "",
+     "",
+     "$7.45",
+     "",
+     "$496.80"
+    ]
+   ],
+   "drawn_rows": 33,
+   "requests": [
+    {
+     "u": "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "currentCents": 2395101,
+      "days1To30Cents": 11819866,
+      "days31To60Cents": 19644151,
+      "days61To90Cents": 10527854,
+      "days91PlusCents": 12140356,
+      "totalCents": 56527328
+     },
+     "rowsNumber": 272
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-summary.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ar-aging-summary__2026-11-16__own2__ar-aging-summary.csv",
+     "bytes": 14863
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-summary.pdf",
+     "seconds": 9,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ar-aging-summary__2026-11-16__own2__ar-aging-summary.pdf",
+     "bytes": 103998
+    }
+   ]
+  },
+  {
+   "slug": "ar-aging-detail",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ar-aging-detail?asOfDate=2026-11-16&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "person Customer: All customers keyboard_arrow_down",
+    "Customer: All customers",
+    "Customer"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "ID",
+    "Customer Full Name",
+    "Due Date",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Total for 91 or more days past due",
+     "$121,403.56",
+     "$121,403.56"
+    ],
+    [
+     "Total for Current",
+     "$24,599.51",
+     "$23,951.01"
+    ]
+   ],
+   "groups": [
+    [
+     "keyboard_arrow_down",
+     "91 or more days past due (51)"
+    ],
+    [
+     "Total for 91 or more days past due",
+     "$121,403.56",
+     "$121,403.56"
+    ],
+    [
+     "keyboard_arrow_down",
+     "61-90 days past due (260)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "31-60 days past due (427)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "1-30 days past due (418)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "Current (72)"
+    ],
+    [
+     "Total for Current",
+     "$24,599.51",
+     "$23,951.01"
+    ]
+   ],
+   "first_rows": [
+    [
+     "Jun 5, 2025",
+     "Credit Memo",
+     "CM2-552",
+     "Bancescu & Sons Truck & Trailer Repair",
+     "Jun 5, 2025",
+     "$-1,880.00",
+     "$-1,880.00"
+    ],
+    [
+     "May 12, 2026",
+     "Invoice",
+     "S2-14703",
+     "Desert Edge Truck Service & Repair",
+     "Jun 26, 2026",
+     "$1,455.23",
+     "$1,455.23"
+    ],
+    [
+     "May 6, 2026",
+     "Invoice",
+     "S2-14868",
+     "Desert Edge Truck Service & Repair",
+     "Jun 20, 2026",
+     "$757.07",
+     "$757.07"
+    ],
+    [
+     "May 14, 2026",
+     "Invoice",
+     "S2-14949",
+     "Desert Edge Truck Service & Repair",
+     "Jun 28, 2026",
+     "$16,757.05",
+     "$16,757.05"
+    ],
+    [
+     "May 15, 2026",
+     "Invoice",
+     "S2-15023",
+     "Desert Edge Truck Service & Repair",
+     "Jun 29, 2026",
+     "$508.08",
+     "$508.08"
+    ],
+    [
+     "May 16, 2026",
+     "Invoice",
+     "S2-15086",
+     "Desert Edge Truck Service & Repair",
+     "Jun 30, 2026",
+     "$1,895.79",
+     "$1,895.79"
+    ],
+    [
+     "Jun 19, 2026",
+     "Invoice",
+     "S2-15113",
+     "Desert Edge Truck Service & Repair",
+     "Aug 3, 2026",
+     "$666.50",
+     "$666.50"
+    ],
+    [
+     "Jun 5, 2026",
+     "Invoice",
+     "S2-15312",
+     "Desert Edge Truck Service & Repair",
+     "Jul 20, 2026",
+     "$1,241.58",
+     "$1,241.58"
+    ]
+   ],
+   "drawn_rows": 436,
+   "requests": [
+    {
+     "u": "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "s": 200,
+     "totals": {
+      "amountCents": 59451727,
+      "openBalanceCents": 56527328,
+      "rowsNumber": 1228
+     },
+     "groups": [
+      [
+       "days_91_plus",
+       51,
+       12140356,
+       12140356
+      ],
+      [
+       "days_61_to_90",
+       260,
+       13270888,
+       10527854
+      ],
+      [
+       "days_31_to_60",
+       427,
+       19690348,
+       19644151
+      ],
+      [
+       "days_1_to_30",
+       418,
+       11890184,
+       11819866
+      ],
+      [
+       "current",
+       72,
+       2459951,
+       2395101
+      ]
+     ]
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdescendi",
+     "s": 200,
+     "rowsNumber": 72
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdes",
+     "s": 200,
+     "rowsNumber": 51
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_31_to_60/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bde",
+     "s": 200,
+     "rowsNumber": 427
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_1_to_30/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdes",
+     "s": 200,
+     "rowsNumber": 418
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_61_to_90/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bde",
+     "s": 200,
+     "rowsNumber": 260
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-detail.csv",
+     "seconds": 2,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ar-aging-detail__2026-11-16__own2__ar-aging-detail.csv",
+     "bytes": 121212
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-detail.pdf",
+     "seconds": 41,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ar-aging-detail__2026-11-16__own2__ar-aging-detail.pdf",
+     "bytes": 197975
+    }
+   ]
+  },
+  {
+   "slug": "ar-aging-collection",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ar-aging-collection?asOfDate=2026-11-16&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "person Customer: All customers keyboard_arrow_down",
+    "Customer: All customers",
+    "Customer"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "ID",
+    "Due Date",
+    "Past Due",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Total for ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
+     "$1,043.92",
+     "$1,043.92"
+    ],
+    [
+     "Total for 2 Trucking",
+     "$105.00",
+     "$105.00"
+    ]
+   ],
+   "groups": [
+    [
+     "Total for ZZBREAK <b>bold</b> \"q\" & 'x' Superlongunbrokencustomernamewithoutanyspacesatalltotestoverflowandtruncationbehaviouroncardsandheaders",
+     "$1,043.92",
+     "$1,043.92"
+    ],
+    [
+     "Total for 2 Trucking",
+     "$105.00",
+     "$105.00"
+    ],
+    [
+     "Total for 4 Star Truck Repair",
+     "$-20,105.87",
+     "$-7,231.16"
+    ],
+    [
+     "Total for A & J Truck & Trailer Repair",
+     "$-545.52",
+     "$-646.52"
+    ],
+    [
+     "Total for A-1 Towing",
+     "$105.00",
+     "$105.00"
+    ],
+    [
+     "Total for a1 towing",
+     "$105.00",
+     "$105.00"
+    ],
+    [
+     "Total for Aberdeen Diesel Services LLC",
+     "$17.45",
+     "$7.45"
+    ],
+    [
+     "Total for Afzal's Truck & Trailer Repair",
+     "$1,575.00",
+     "$1,575.00"
+    ],
+    [
+     "Total for Alicia's Truck & Trailer Repair",
+     "$347.96",
+     "$347.96"
+    ],
+    [
+     "Total for Andreasen Truck & Equipment Repair",
+     "$12,935.91",
+     "$153.19"
+    ],
+    [
+     "Total for Andrews' Truck & Trailer Repair LLC",
+     "$8,600.85",
+     "$8,600.85"
+    ],
+    [
+     "Total for Bancescu & Sons Truck & Trailer Repair",
+     "$-1,880.00",
+     "$-1,880.00"
+    ]
+   ],
+   "first_rows": [
+    [
+     "Oct 16, 2026",
+     "Invoice",
+     "S2-36554",
+     "Oct 16, 2026",
+     "31",
+     "$521.96",
+     "$521.96"
+    ],
+    [
+     "Oct 16, 2026",
+     "Invoice",
+     "S2-36627",
+     "Oct 16, 2026",
+     "31",
+     "$260.98",
+     "$260.98"
+    ],
+    [
+     "Oct 16, 2026",
+     "Invoice",
+     "S2-36630",
+     "Oct 16, 2026",
+     "31",
+     "$260.98",
+     "$260.98"
+    ],
+    [
+     "Nov 13, 2026",
+     "Invoice",
+     "S2-40224",
+     "Nov 13, 2026",
+     "3",
+     "$105.00",
+     "$105.00"
+    ],
+    [
+     "Sep 2, 2026",
+     "Credit Memo",
+     "CM2-4324",
+     "Sep 2, 2026",
+     "75",
+     "$-100.00",
+     "$-100.00"
+    ],
+    [
+     "Sep 7, 2026",
+     "Credit Memo",
+     "CM2-4347",
+     "Sep 7, 2026",
+     "70",
+     "$-50.00",
+     "$-50.00"
+    ],
+    [
+     "Sep 7, 2026",
+     "Credit Memo",
+     "CM2-4353",
+     "Sep 7, 2026",
+     "70",
+     "$-200.00",
+     "$-150.00"
+    ],
+    [
+     "Sep 7, 2026",
+     "Credit Memo",
+     "CM2-4354",
+     "Sep 7, 2026",
+     "70",
+     "$-200.00",
+     "$-70.00"
+    ]
+   ],
+   "drawn_rows": 109,
+   "requests": [
+    {
+     "u": "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "amountCents": 56991776,
+      "openBalanceCents": 54132227,
+      "documentCount": 1156
+     },
+     "rowsNumber": 256
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-collection.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ar-aging-collection__2026-11-16__own2__ar-aging-collection.csv",
+     "bytes": 103864
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-collection.pdf",
+     "seconds": 10,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ar-aging-collection__2026-11-16__own2__ar-aging-collection.pdf",
+     "bytes": 244933
+    }
+   ]
+  },
+  {
+   "slug": "ap-aging-summary",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ap-aging-summary?asOfDate=2026-11-16&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "Vendor: All vendors",
+    "Vendor"
+   ],
+   "head": [
+    "Vendor",
+    "Current",
+    "1-30 Days",
+    "31-60 Days",
+    "61-90 Days",
+    "91 And Over",
+    "Total"
+   ],
+   "totals": [
+    [
+     "Totals",
+     "$12,451.95",
+     "$73,373.47",
+     "$180,335.37",
+     "$167,957.50",
+     "$2,756,529.90",
+     "$3,190,648.19"
+    ]
+   ],
+   "groups": [],
+   "first_rows": [
+    [
+     "1-1ABC-New-Vendor",
+     "",
+     "$145.20",
+     "",
+     "",
+     "",
+     "$145.20"
+    ],
+    [
+     "123 Cannabis Forestlawn",
+     "",
+     "$1,136.78",
+     "$1,313.06",
+     "$-60.48",
+     "",
+     "$2,389.36"
+    ],
+    [
+     "4Refuel",
+     "$4,673.67",
+     "$16,085.32",
+     "$14,948.17",
+     "",
+     "",
+     "$35,707.16"
+    ],
+    [
+     "5 Star Truck Repair",
+     "$5.25",
+     "$546.00",
+     "$70.35",
+     "",
+     "",
+     "$621.60"
+    ],
+    [
+     "Abadi's Diesel Repair",
+     "",
+     "$176.40",
+     "$1,344.00",
+     "$112.35",
+     "",
+     "$1,632.75"
+    ],
+    [
+     "AC Truck Repair - Branford",
+     "$356.66",
+     "$25.20",
+     "",
+     "",
+     "",
+     "$381.86"
+    ],
+    [
+     "Adams Diesel Repair",
+     "",
+     "",
+     "$133.35",
+     "$12.60",
+     "$2,100.00",
+     "$2,245.95"
+    ],
+    [
+     "Afhly's Mobile Truck Repair",
+     "",
+     "",
+     "",
+     "$120.75",
+     "",
+     "$120.75"
+    ]
+   ],
+   "drawn_rows": 33,
+   "requests": [
+    {
+     "u": "/reporting/reports/ap-aging/vendors",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-summary/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "currentCents": 1245195,
+      "days1To30Cents": 7337347,
+      "days31To60Cents": 18033537,
+      "days61To90Cents": 16795750,
+      "days91PlusCents": 275652990,
+      "totalCents": 319064819
+     },
+     "rowsNumber": 341
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-aging-summary.csv",
+     "seconds": 0,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ap-aging-summary__2026-11-16__own2__ap-aging-summary.csv",
+     "bytes": 18180
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ap-aging-summary.pdf",
+     "seconds": 5,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ap-aging-summary__2026-11-16__own2__ap-aging-summary.pdf",
+     "bytes": 114002
+    }
+   ]
+  },
+  {
+   "slug": "ap-aging-detail",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ap-aging-detail?asOfDate=2026-11-16&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "Vendor: All vendors",
+    "Vendor"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "No.",
+    "Vendor Name",
+    "Due Date",
+    "Past Due",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Totals",
+     "$3,190,954.01",
+     "$3,190,648.19"
+    ]
+   ],
+   "groups": [
+    [
+     "keyboard_arrow_down",
+     "91 or more days past due (7959)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "61-90 days past due (415)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "31-60 days past due (613)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "1-30 days past due (390)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "Current (104)"
+    ]
+   ],
+   "first_rows": [
+    [
+     "Oct 27, 2025",
+     "Invoice",
+     "98",
+     "Adams Diesel Repair",
+     "Oct 27, 2025",
+     "385",
+     "$262.50",
+     "$262.50"
+    ],
+    [
+     "Nov 17, 2025",
+     "Invoice",
+     "99",
+     "Adams Diesel Repair",
+     "Nov 17, 2025",
+     "364",
+     "$262.50",
+     "$262.50"
+    ],
+    [
+     "Nov 17, 2025",
+     "Invoice",
+     "100",
+     "Adams Diesel Repair",
+     "Nov 17, 2025",
+     "364",
+     "$262.50",
+     "$262.50"
+    ],
+    [
+     "Dec 12, 2025",
+     "Invoice",
+     "106",
+     "Adams Diesel Repair",
+     "Dec 12, 2025",
+     "339",
+     "$262.50",
+     "$262.50"
+    ],
+    [
+     "Dec 12, 2025",
+     "Invoice",
+     "107",
+     "Adams Diesel Repair",
+     "Dec 12, 2025",
+     "339",
+     "$262.50",
+     "$262.50"
+    ],
+    [
+     "Dec 18, 2025",
+     "Invoice",
+     "110",
+     "Adams Diesel Repair",
+     "Dec 18, 2025",
+     "333",
+     "$262.50",
+     "$262.50"
+    ],
+    [
+     "Dec 18, 2025",
+     "Invoice",
+     "111",
+     "Adams Diesel Repair",
+     "Dec 18, 2025",
+     "333",
+     "$262.50",
+     "$262.50"
+    ],
+    [
+     "Jan 10, 2026",
+     "Invoice",
+     "116",
+     "Adams Diesel Repair",
+     "Jan 10, 2026",
+     "310",
+     "$262.50",
+     "$262.50"
+    ]
+   ],
+   "drawn_rows": 513,
+   "requests": [
+    {
+     "u": "/reporting/reports/ap-aging/vendors",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+     "s": 200,
+     "totals": {
+      "amountCents": 319095401,
+      "openBalanceCents": 319064819,
+      "rowsNumber": 9481
+     },
+     "groups": [
+      [
+       "days_91_plus",
+       7959,
+       275652988,
+       275652990
+      ],
+      [
+       "days_61_to_90",
+       415,
+       16795750,
+       16795750
+      ],
+      [
+       "days_31_to_60",
+       613,
+       18033537,
+       18033537
+      ],
+      [
+       "days_1_to_30",
+       390,
+       7367931,
+       7337347
+      ],
+      [
+       "current",
+       104,
+       1245195,
+       1245195
+      ]
+     ]
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_31_to_60/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdesc",
+     "s": 200,
+     "rowsNumber": 613
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/current/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending",
+     "s": 200,
+     "rowsNumber": 104
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_1_to_30/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdesce",
+     "s": 200,
+     "rowsNumber": 390
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_61_to_90/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdesc",
+     "s": 200,
+     "rowsNumber": 415
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdesce",
+     "s": 200,
+     "rowsNumber": 7959
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-aging-detail.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ap-aging-detail__2026-11-16__own2__ap-aging-detail.csv",
+     "bytes": 1099494
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": null,
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close",
+      "warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "ap-unpaid-invoices",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-16&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "Vendor: All vendors",
+    "Vendor"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "No.",
+    "Vendor Name",
+    "Due Date",
+    "Past Due",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Total for 1-1ABC-New-Vendor",
+     "$205.20",
+     "$145.20"
+    ],
+    [
+     "Total for 123 Cannabis Forestlawn",
+     "$2,389.36",
+     "$2,389.36"
+    ]
+   ],
+   "groups": [
+    [
+     "Total for 1-1ABC-New-Vendor",
+     "$205.20",
+     "$145.20"
+    ],
+    [
+     "Total for 123 Cannabis Forestlawn",
+     "$2,389.36",
+     "$2,389.36"
+    ],
+    [
+     "Total for 5 Star Truck Repair",
+     "$621.60",
+     "$621.60"
+    ],
+    [
+     "Total for Abadi's Diesel Repair",
+     "$1,632.75",
+     "$1,632.75"
+    ],
+    [
+     "Total for AC Truck Repair - Branford",
+     "$381.86",
+     "$381.86"
+    ],
+    [
+     "Total for Adams Diesel Repair",
+     "$2,245.95",
+     "$2,245.95"
+    ],
+    [
+     "Total for Afhly's Mobile Truck Repair",
+     "$120.75",
+     "$120.75"
+    ],
+    [
+     "Total for Agolli Truck Center",
+     "$1,069.95",
+     "$1,069.95"
+    ],
+    [
+     "Total for Aibonito Fleet Services",
+     "$75.60",
+     "$75.60"
+    ],
+    [
+     "Total for Akal's Mobile Truck Repair",
+     "$4,798.78",
+     "$4,798.78"
+    ],
+    [
+     "Total for Alameda Mechanical Services",
+     "$25,374.47",
+     "$25,374.47"
+    ],
+    [
+     "Total for Alzuhairi Truck & Machine Service",
+     "$4,553.50",
+     "$4,553.50"
+    ]
+   ],
+   "first_rows": [
+    [
+     "Nov 13, 2026",
+     "Vendor Credit",
+     "C-13924",
+     "1-1ABC-New-Vendor",
+     "—",
+     "—",
+     "$-30.00",
+     "$-20.00"
+    ],
+    [
+     "Nov 13, 2026",
+     "Invoice",
+     "P1-NEW-1",
+     "1-1ABC-New-Vendor",
+     "Nov 13, 2026",
+     "3",
+     "$112.00",
+     "$112.00"
+    ],
+    [
+     "Nov 13, 2026",
+     "Invoice",
+     "SP-NEW-1-ABC-vendorP1",
+     "1-1ABC-New-Vendor",
+     "Nov 13, 2026",
+     "3",
+     "$123.20",
+     "$53.20"
+    ],
+    [
+     "Sep 1, 2026",
+     "Invoice",
+     "dsfs45",
+     "123 Cannabis Forestlawn",
+     "Oct 1, 2026",
+     "46",
+     "$56.50",
+     "$56.50"
+    ],
+    [
+     "Sep 2, 2026",
+     "Vendor Credit",
+     "C-13671",
+     "123 Cannabis Forestlawn",
+     "—",
+     "—",
+     "$-60.48",
+     "$-60.48"
+    ],
+    [
+     "Sep 3, 2026",
+     "Invoice",
+     "S2-31654 - this one",
+     "123 Cannabis Forestlawn",
+     "Oct 3, 2026",
+     "44",
+     "$11.30",
+     "$11.30"
+    ],
+    [
+     "Sep 7, 2026",
+     "Invoice",
+     "bnb jjkhkhk",
+     "123 Cannabis Forestlawn",
+     "Oct 7, 2026",
+     "40",
+     "$3.39",
+     "$3.39"
+    ],
+    [
+     "Sep 10, 2026",
+     "Invoice",
+     "rererer",
+     "123 Cannabis Forestlawn",
+     "Oct 10, 2026",
+     "37",
+     "$1,130.00",
+     "$1,130.00"
+    ]
+   ],
+   "drawn_rows": 410,
+   "requests": [
+    {
+     "u": "/reporting/reports/ap-aging/vendors",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "amountCents": 319095401,
+      "openBalanceCents": 319064819,
+      "documentCount": 9481
+     },
+     "rowsNumber": 341
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-unpaid-invoices.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/HD/ap-unpaid-invoices__2026-11-16__own2__ap-unpaid-invoices.csv",
+     "bytes": 840917
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": null,
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close",
+      "warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close"
+     ]
+    }
+   ]
+  }
+ ],
+ "end": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-16T09:46:25.402Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ },
+ "today": "2026-11-16"
+}

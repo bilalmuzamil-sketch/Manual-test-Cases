@@ -1,0 +1,4835 @@
+{
+ "build": [
+  "v26.45.4-f3d3d2d",
+  "v26.45.4-f3d3d2d"
+ ],
+ "rule99": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-16T09:25:53.097Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ },
+ "counts": {
+  "ar-aging-summary:pass": 63,
+  "ap-aging-summary:pass": 63,
+  "ar-aging-detail:pass": 103,
+  "ar-aging-collection:pass": 63,
+  "ap-aging-detail:pass": 121,
+  "ap-unpaid-invoices:pass": 66
+ },
+ "results": [
+  {
+   "report": "ar-aging-summary",
+   "header": "Customer",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Customer",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Customer",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Customer",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "ZZAUTOTESTAbcdefghijNeighbourRow",
+    "ZZAUTOTESTAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghij",
+    "ZZAUTOTEST XTIPTV Tooltip 52160 I"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Customer",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Customer",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Customer",
+   "click": 2,
+   "check": "S2-R3 second click on the opening column returns to the opening order (answer re-used)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Customer",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Customer",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Customer",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "ZZ ZZSTG-MWAM1ER4 S16f Fleet",
+    "ZZAUTOTEST Dash A1",
+    "ZZAUTOTEST Dash F2"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "ZZAUTOTEST AR V1R-87 Location C",
+    "Apollo Beach Truck & Equipment Repair",
+    "Carrick & Sons Truck & Trailer Repair"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Location",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Current",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "TestVT1",
+    "E2E Term Customer",
+    "4 Star Truck Repair"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Current",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Bravo Mechanical Services",
+    "ZZAUTOTESTAbcdefghijNeighbourRow",
+    "ZZAUTOTEST AR R30 Netting"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Current",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Current",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "1-30 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Monroe Truck Service & Repair",
+    "TestVT1",
+    "E2E Term Customer"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "1-30 Days",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Testing Company Milos",
+    "ZZAUTOTEST AR R90 Many Lines",
+    "A & J Truck & Trailer Repair"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "1-30 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "1-30 Days",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "31-60 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "TestVT1",
+    "Desert Edge Truck Service & Repair",
+    "E2E Term Customer"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "31-60 Days",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "A & J Truck & Trailer Repair",
+    "ZZAUTOTEST SV-9647 Credit Split BEFORE",
+    "TEST Claude SV checks"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "31-60 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "31-60 Days",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "61-90 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Desert Edge Truck Service & Repair",
+    "E2E Credits Customer",
+    "Monroe Truck Service & Repair"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "61-90 Days",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "4 Star Truck Repair",
+    "ZZAUTOTEST AR R23 Memo Aging",
+    "TestVT1"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "61-90 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "61-90 Days",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "91 And Over",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Desert Edge Truck Service & Repair",
+    "Henderson Mobile Truck Repair",
+    "Carrick & Sons Truck & Trailer Repair"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "91 And Over",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "North Kensington Truck and Trailer Repair",
+    "Bancescu & Sons Truck & Trailer Repair",
+    "Union Springs Truck Center"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "91 And Over",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "91 And Over",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Total",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Desert Edge Truck Service & Repair",
+    "TestVT1",
+    "Monroe Truck Service & Repair"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Total",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "4 Star Truck Repair",
+    "North Kensington Truck and Trailer Repair",
+    "Bancescu & Sons Truck & Trailer Repair"
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Total",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-summary",
+   "header": "Total",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Vendor",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Vendor",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Vendor",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Vendor",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "ZZTOGVEN Supply",
+    "ZZSOFTHIY Supply",
+    "ZZSOFTHIT Supply Co"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Vendor",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Vendor",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Vendor",
+   "click": 2,
+   "check": "S2-R3 second click on the opening column returns to the opening order (answer re-used)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Vendor",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Vendor",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Vendor",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "1-1ABC-New-Vendor",
+    "123 Cannabis Forestlawn",
+    "4Refuel"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Andover Fleet Services",
+    "Antioch Diesel & Fleet Repair",
+    "Auburn Truck & Trailer Repair 24/7"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Location",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Current",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "E2E Dashboard Parts Vendor",
+    "4Refuel",
+    "Apex Truck & Trailer Repair"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Current",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Liberal Truck & Trailer Repair",
+    "5 Star Truck Repair",
+    "ZZQA10301-B"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Current",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Current",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "1-30 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Willoughby Mechanical Services",
+    "4Refuel",
+    "E2E PS Core Vendor"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "1-30 Days",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "ZZAUTOTEST Blank Cell Vendor B",
+    "ZZAUTOTESTAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefghijAbcdefgh",
+    "ZZAUTOTEST AP P58 Credit Line"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "1-30 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "1-30 Days",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "31-60 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Willoughby Mechanical Services",
+    "4Refuel",
+    "Mobile Truck & Trailer Repair Temple Terrace"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "31-60 Days",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "C26595 Vendor",
+    "C22327 PS Vendor",
+    "C22329 PS Vendor"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "31-60 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "31-60 Days",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "61-90 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Loganville Truck Repair",
+    "Willoughby Mechanical Services",
+    "Mobile Truck & Trailer Repair Temple Terrace"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "61-90 Days",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Amani & Sons Truck & Trailer Repair",
+    "Kalkaska Fleet Maintenance Inc",
+    "123 Cannabis Forestlawn"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "61-90 Days",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "61-90 Days",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "91 And Over",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Willoughby Mechanical Services",
+    "Grand Haven Diesel Services LLC",
+    "Fate Roadside Truck Repair"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "91 And Over",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Kernville Truck & Trailer Repair",
+    "Clarksburg Truck Repair",
+    "Paolucci's Truck Repair"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "91 And Over",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "91 And Over",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Total",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 1,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 1,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Willoughby Mechanical Services",
+    "Grand Haven Diesel Services LLC",
+    "Fate Roadside Truck Repair"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Total",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 2,
+   "check": "answer = PRD order of the full data (S1-R2..R4, S2-R2, S2-R6 blanks last)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 2,
+   "check": "screen draws the answer in the same order",
+   "ok": true,
+   "detail": [
+    "Kernville Truck & Trailer Repair",
+    "ZZAUTOTEST Blank Cell Vendor B",
+    "ZZAUTOTEST AP P58 Credit Line"
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Total",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-summary",
+   "header": "Total",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Location",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "ID",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "ID",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "ID",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "ID",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Customer Full Name",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Customer Full Name",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Customer Full Name",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Customer Full Name",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Due Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Amount",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-detail",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Date",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Date",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Date",
+   "click": 2,
+   "check": "S2-R3 second click on the opening column returns to the opening order (answer re-used)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Location",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "ID",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "ID",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "ID",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "ID",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Due Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Past Due",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Amount",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ar-aging-collection",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Location",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "No.",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "No.",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "No.",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "No.",
+   "click": 3,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Vendor Name",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Vendor Name",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Vendor Name",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Vendor Name",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Due Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Past Due",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 2,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Amount",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket current: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_1_to_30: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "bucket days_61_to_90: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "bucket days_31_to_60: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "bucket days_91_plus: answer = PRD order of the whole bucket (S2-R2, S2-R4 ties, S2-R6)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-aging-detail",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Date",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Date",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Date",
+   "click": 2,
+   "check": "S2-R3 second click on the opening column returns to the opening order (answer re-used)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Location",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Location",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Transaction Type",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Transaction Type",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "No.",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "No.",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "No.",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "No.",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Vendor Name",
+   "click": 1,
+   "check": "S2-N1 Vendor Name not clickable: no sort request, no sort mark",
+   "ok": true,
+   "detail": [
+    0,
+    [
+     {
+      "label": "No.",
+      "aria": "ascending"
+     }
+    ],
+    "auto"
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Vendor Name",
+   "click": 2,
+   "check": "S2-N1 Vendor Name not clickable: no sort request, no sort mark",
+   "ok": true,
+   "detail": [
+    0,
+    [
+     {
+      "label": "No.",
+      "aria": "ascending"
+     }
+    ],
+    "auto"
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Vendor Name",
+   "click": 3,
+   "check": "S2-N1 Vendor Name not clickable: no sort request, no sort mark",
+   "ok": true,
+   "detail": [
+    0,
+    [
+     {
+      "label": "No.",
+      "aria": "ascending"
+     }
+    ],
+    "auto"
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Due Date",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Due Date",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Past Due",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Past Due",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Amount",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Amount",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 1,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "ascending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "S2-R5 groups never move (same group order as opening)",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 2,
+   "check": "rows inside each of the first 30 groups in PRD order (S2-R2, S2-R4, S2-R6)",
+   "ok": true,
+   "detail": {
+    "groups_wrong": 0,
+    "first": []
+   }
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "only the clicked header carries the sort mark, in the click's direction",
+   "ok": true,
+   "detail": [
+    {
+     "label": "Open Balance",
+     "aria": "descending"
+    }
+   ]
+  },
+  {
+   "report": "ap-unpaid-invoices",
+   "header": "Open Balance",
+   "click": 3,
+   "check": "S2-R2 third click repeats the first: same rows drawn as after click 1 (answer re-used, no new request)",
+   "ok": true,
+   "detail": null
+  }
+ ]
+}

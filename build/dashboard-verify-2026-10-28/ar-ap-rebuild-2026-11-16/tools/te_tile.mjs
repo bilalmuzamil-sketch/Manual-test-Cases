@@ -18,13 +18,13 @@ const R = { last_12_months: [D(tm <= 11 ? ty - 1 : ty, (tm - 12 + 12) % 12, 1), 
   this_month: [first, T], last_month: [D(lmEnd.getUTCFullYear(), lmEnd.getUTCMonth(), 1), lmEnd], this_week: [wk0, T], last_week: [add(wk0, -7), add(wk0, -1)], f2_window_25_28_oct: [D(2026, 9, 25), D(2026, 9, 28)] };
 // instants of the location's local midnight / 23:59:59.999 (machine rules, = the server's)
 const inst = (d, end) => { const s = `${ymd(d)}T${end ? '23:59:59.999' : '00:00:00.000'}`; const guess = new Date(s + 'Z'); const off = (new Date(guess.toLocaleString('en-US', { timeZone: loc.tz })) - new Date(guess.toLocaleString('en-US', { timeZone: 'UTC' }))) / 60000; return new Date(guess.getTime() - off * 60000).toISOString(); };
-for (const [label, [f, t]] of Object.entries(R)) {
+for (const [label, [f, t]] of Object.entries(process.env.SCREEN_ONLY ? { last_12_months: R.last_12_months } : R)) {
   const dash = await get(`/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=techPerformance&from=${ymd(f)}&to=${ymd(t)}`);
   const W = `range=custom&start_date=${encodeURIComponent(inst(f, false))}&end_date=${encodeURIComponent(inst(t, true))}`;
   const te = await get(`/reporting/technician-efficiency/custom?${W}`);
   const ids = (te.j?.data?.collection || []).map(r => r.technicianId);
   const ex = ids.length ? await get(`/reporting/technician-efficiency/expanded/custom?${W}&${ids.map(i => 'staff_ids[]=' + i).join('&')}`) : { s: 200, j: { data: { collection: [] } } };
-  fs.writeFileSync(`${RAW}${label}.json`, JSON.stringify({ from: ymd(f), to: ymd(t), W, dash, te, ex }));
+  fs.writeFileSync(`${RAW}${process.env.SCREEN_ONLY ? 'screen-' : ''}${label}.json`, JSON.stringify({ from: ymd(f), to: ymd(t), W, dash, te, ex }));
   out.ranges[label] = { from: ymd(f), to: ymd(t), dash_s: dash.s, te_s: te.s, ex_s: ex.s }; console.log(KEY, label, ymd(f), ymd(t), dash.s, te.s, ex.s);
 }
 // screen: Dashboard tile at Last 12 Months + View details; then the report at Last 12 Months
@@ -35,7 +35,7 @@ try {
   out.screen.tile_range_before = await trig.innerText().catch(() => null);
   await trig.click(); await sleep(1500);
   const pres = page.locator('[data-test-id^="date-range-selector_hero_range_techEfficiencyKpi_preset_"]'); out.screen.presets = await pres.evaluateAll(es => es.map(e => e.getAttribute('data-test-id').split('_preset_')[1]));
-  await page.locator('[data-test-id="date-range-selector_hero_range_techEfficiencyKpi_preset_last_12_months"]').click().catch(e => out.screen.preset_err = String(e).slice(0, 100)); await sleep(800);
+  await page.locator('[data-test-id="date-range-selector_hero_range_techEfficiencyKpi_preset_last-12-months"]').click().catch(e => out.screen.preset_err = String(e).slice(0, 100)); await sleep(800);
   const ap = page.locator('.q-menu').last().getByText(/^Apply$/); if (await ap.count()) await ap.first().click(); await sleep(6000);
   out.screen.tile_range_after = await trig.innerText().catch(() => null);
   out.screen.tile_text = await page.locator('[data-test-id="hero_value_techEfficiencyKpi"]').locator('xpath=ancestor::*[contains(@class,"q-card")][1]').innerText().catch(async () => await page.locator('[data-test-id="hero_value_techEfficiencyKpi"]').innerText().catch(() => null));
@@ -51,7 +51,7 @@ try {
   await page.goto(APP + '/reports/technician-efficiency', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForLoadState('networkidle', { timeout: 60000 }).catch(() => {}); await sleep(6000);
   const rt = page.locator('[data-test-id*="date-range-selector"][data-test-id$="_trigger"]').first(); out.screen.report_range_before = await rt.innerText().catch(() => null);
   await rt.click().catch(() => {}); await sleep(1200);
-  const rp = page.locator('[data-test-id*="date-range-selector"][data-test-id$="_preset_last_12_months"]').first(); await rp.click().catch(e => out.screen.report_preset_err = String(e).slice(0, 100)); await sleep(800);
+  const rp = page.locator('[data-test-id*="date-range-selector"][data-test-id$="_preset_last-12-months"]').first(); await rp.click().catch(e => out.screen.report_preset_err = String(e).slice(0, 100)); await sleep(800);
   const ap2 = page.locator('.q-menu').last().getByText(/^Apply$/); if (await ap2.count()) await ap2.first().click(); await page.waitForLoadState('networkidle', { timeout: 60000 }).catch(() => {}); await sleep(6000);
   out.screen.report_range_after = await rt.innerText().catch(() => null);
   out.screen.report_rows = await page.locator('tbody tr').evaluateAll(trs => trs.map(tr => [...tr.querySelectorAll('td')].map(td => td.innerText.trim())).filter(r => r.length > 2)).catch(() => []);
@@ -59,4 +59,4 @@ try {
   await page.screenshot({ path: `${RAW}report-te-last12.png`, fullPage: true });
   out.screen.report_requests = teResp.map(x => x.u.slice(0, 240)); fs.writeFileSync(`${RAW}report-responses.json`, JSON.stringify(teResp));
 } catch (e) { out.screen.error = String(e).slice(0, 300); }
-out.end = await rule99(page, loc); out.today = todayS; save(EV + `te-${KEY}.json`, out); await browser.close();
+out.end = await rule99(page, loc); out.today = todayS; save(EV + `te-${KEY}${process.env.SCREEN_ONLY ? '-screen' : ''}.json`, out); await browser.close();
