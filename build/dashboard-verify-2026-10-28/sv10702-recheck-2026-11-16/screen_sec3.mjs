@@ -141,6 +141,6 @@ try {
   meta.loc_end = await assertLoc(p, LNAME, WP).catch(e => String(e));
 } catch (e) { meta.error = String(e).slice(0, 600); await p.screenshot({ path: `${OUT}/error.png` }).catch(() => {}); }
 meta.finished_utc = new Date().toISOString();
-fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta, null, 1)); fs.writeFileSync(`/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/rerun-2026-11-04/results/sec3/screen-${mode}.json`, JSON.stringify(meta, null, 1));
+fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta, null, 1)); fs.writeFileSync(`/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/sv10702-recheck-2026-11-16/screen-${mode}.json`, JSON.stringify(meta, null, 1));
 console.log(JSON.stringify(meta, null, 1).slice(0, 4500));
 await browser.close().catch(() => {});
