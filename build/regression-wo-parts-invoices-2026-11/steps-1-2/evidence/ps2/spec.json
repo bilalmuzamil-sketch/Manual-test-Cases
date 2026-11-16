@@ -1,0 +1,6 @@
+{"flow": "ps2", "tax_rate": 5,
+ "lines": [{"name": "Default", "hours": 1, "rate": 0, "parts": [{"pn": "ZZRGWO-BP2", "qty": 2, "price": 89.99}, {"pn": "ZZRGWO-OF1", "qty": 1, "price": 14.37}]}],
+ "invoice_view": "evidence/ps2/invoice-data.json", "snapshot": "evidence/ps2/04-balance-paid.json",
+ "expect_invoice": {"status": "paid", "payment_status": "paid", "total_balance": "204.07"},
+ "expect_card": {"Payments": "$204.07", "Balance": "$0.00"},
+ "expect_how": {"Payments": "check 50.01 + Amex 154.06 = 204.07", "Balance": "204.07 - 204.07"}}

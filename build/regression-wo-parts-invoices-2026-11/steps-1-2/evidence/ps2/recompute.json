@@ -1,0 +1,216 @@
+{
+ "flow": "ps2",
+ "inputs": [
+  {
+   "line": "Default",
+   "labour": "1 h x $0 = 0.00",
+   "parts": [
+    "ZZRGWO-BP2 2 x $89.99 = 179.98",
+    "ZZRGWO-OF1 1 x $14.37 = 14.37"
+   ]
+  }
+ ],
+ "expected": {
+  "labour": "0.00",
+  "parts": "194.35",
+  "subtotal": "194.35",
+  "tax_per_item": "9.72",
+  "tax_per_wo_line": "9.72",
+  "tax_on_subtotal": "9.72",
+  "total": "204.07"
+ },
+ "checks": [
+  {
+   "what": "Every WO line is on the invoice, once",
+   "expected": "['Default']",
+   "how": "list of lines entered on the WO",
+   "seen": "['Default']",
+   "where": "invoice data: work_order.lines",
+   "match": true
+  },
+  {
+   "what": "Every part (number, qty) is on the invoice, once",
+   "expected": "[('Default', 'ZZRGWO-BP2', '2'), ('Default', 'ZZRGWO-OF1', '1')]",
+   "how": "parts entered on the WO lines",
+   "seen": "[('Default', 'ZZRGWO-BP2', '2'), ('Default', 'ZZRGWO-OF1', '1')]",
+   "where": "invoice data: work_order.lines[].parts",
+   "match": true
+  },
+  {
+   "what": "Default: labour",
+   "expected": "0.00",
+   "how": "1 h x $0",
+   "seen": "0",
+   "where": "invoice data: line labour_cost",
+   "match": true
+  },
+  {
+   "what": "Default: hours",
+   "expected": "1",
+   "how": "hours entered",
+   "seen": "1",
+   "where": "invoice data: line time_estimate",
+   "match": true
+  },
+  {
+   "what": "Default: ZZRGWO-BP2 line total",
+   "expected": "179.98",
+   "how": "2 x $89.99",
+   "seen": "179.98",
+   "where": "invoice data: part total_cost",
+   "match": true
+  },
+  {
+   "what": "Default: ZZRGWO-OF1 line total",
+   "expected": "14.37",
+   "how": "1 x $14.37",
+   "seen": "14.37",
+   "where": "invoice data: part total_cost",
+   "match": true
+  },
+  {
+   "what": "Labour total",
+   "expected": "0.00",
+   "how": "sum of labour lines",
+   "seen": "0",
+   "where": "invoice data: total_labor_price",
+   "match": true
+  },
+  {
+   "what": "Parts total",
+   "expected": "194.35",
+   "how": "sum of part lines",
+   "seen": "194.35",
+   "where": "invoice data: total_parts_price",
+   "match": true
+  },
+  {
+   "what": "Subtotal",
+   "expected": "194.35",
+   "how": "labour + parts",
+   "seen": "194.35",
+   "where": "invoice data: sub_total_display",
+   "match": true
+  },
+  {
+   "what": "Tax (GST 5 %)",
+   "expected": "9.72",
+   "how": "rounded per labour/part item 9.72; per WO line 9.72; once on subtotal 9.72",
+   "seen": "9.72",
+   "where": "invoice data: tax.amountTotal",
+   "match": true
+  },
+  {
+   "what": "Total",
+   "expected": "204.07",
+   "how": "subtotal + tax",
+   "seen": "204.07",
+   "where": "invoice data: sub_total_with_tax",
+   "match": true
+  },
+  {
+   "what": "Invoice status",
+   "expected": "paid",
+   "how": "from the payments entered",
+   "seen": "paid",
+   "where": "invoice data: status",
+   "match": true
+  },
+  {
+   "what": "Invoice payment_status",
+   "expected": "paid",
+   "how": "from the payments entered",
+   "seen": "paid",
+   "where": "invoice data: payment_status",
+   "match": true
+  },
+  {
+   "what": "Invoice total_balance",
+   "expected": "204.07",
+   "how": "from the payments entered",
+   "seen": "204.07",
+   "where": "invoice data: total_balance",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Parts",
+   "expected": "$194.35",
+   "how": "recomputed above",
+   "seen": "$194.35",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Subtotal",
+   "expected": "$194.35",
+   "how": "recomputed above",
+   "seen": "$194.35",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: GST",
+   "expected": "$9.72",
+   "how": "recomputed above",
+   "seen": "$9.72",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Total",
+   "expected": "$204.07",
+   "how": "recomputed above",
+   "seen": "$204.07",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Payments",
+   "expected": "$204.07",
+   "how": "check 50.01 + Amex 154.06 = 204.07",
+   "seen": "$204.07",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Balance",
+   "expected": "$0.00",
+   "how": "204.07 - 204.07",
+   "seen": "$0.00",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: Parts",
+   "expected": "Parts $194.35",
+   "how": "recomputed above",
+   "seen": "Parts $194.35",
+   "where": "Finance tab invoice",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: Subtotal",
+   "expected": "Subtotal $194.35",
+   "how": "recomputed above",
+   "seen": "Subtotal $194.35",
+   "where": "Finance tab invoice",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: GST (5%)",
+   "expected": "GST (5%) $9.72",
+   "how": "recomputed above",
+   "seen": "GST (5%) $9.72",
+   "where": "Finance tab invoice",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: Total",
+   "expected": "Total $204.07",
+   "how": "recomputed above",
+   "seen": "Total $204.07",
+   "where": "Finance tab invoice",
+   "match": true
+  }
+ ]
+}
