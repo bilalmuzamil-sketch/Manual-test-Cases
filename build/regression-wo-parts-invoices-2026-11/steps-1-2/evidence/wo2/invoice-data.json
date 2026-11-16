@@ -1,0 +1,143 @@
+{
+ "data": {
+  "collection": {
+   "work_order": {
+    "id": "5ac3d23a-9983-4006-a472-c5d55193f28a",
+    "number": "S-40392",
+    "display_number": "S2-40392",
+    "customer_id": "6f6a48f1-1180-4b6f-a6f6-c24bd43ad3e4",
+    "company_id": "ab32fdf2-4227-4a00-ab46-6a64c162959f",
+    "purchase_order": null,
+    "workplace_id": "2644c166-362b-48ec-9cf2-2ac974418039",
+    "status": "complete",
+    "lines": [
+     {
+      "id": "beb0e5b5-e00b-4d8d-9d5f-8f0bdcc99767",
+      "name": "ZZ WO2 Labour - service",
+      "description": "",
+      "tech_story": "",
+      "total_cost": 436.08,
+      "parts": [
+       {
+        "id": "b7178103-884f-459d-a74b-ef63dcb0a2c6",
+        "description": "ZZAUTOTEST RGWO Wiper Blade",
+        "quantity": "4",
+        "cost": 7.77,
+        "part_number": "ZZRGWO-WB3",
+        "total_cost": 31.08,
+        "total_cost_raw": 31.08,
+        "line_type": null,
+        "fixed_line_total": null,
+        "requested_at": "2026-11-16 08:15:43"
+       }
+      ],
+      "parts_cost": 31.08,
+      "labour_cost": 405,
+      "labour_cost_raw": 405,
+      "time_estimate": 3,
+      "labour_rate": 135,
+      "line_type": null,
+      "fixed_line_total": null,
+      "fixed_price": 0
+     }
+    ],
+    "declined_lines": [],
+    "ibs_approval": [],
+    "total_labor_price": 405,
+    "total_parts_price": 31.08
+   },
+   "customer": {
+    "id": "6f6a48f1-1180-4b6f-a6f6-c24bd43ad3e4",
+    "first_name": "ZZAUTOTEST",
+    "last_name": "RGWO",
+    "telephone": "",
+    "mobile": "",
+    "email": "",
+    "company_name": "ZZAUTOTEST RGWO Customer A",
+    "company_state_or_province": null,
+    "company_address1": null,
+    "company_address2": null,
+    "company_city": "Calgary",
+    "credit_term": "COD",
+    "ibs": null,
+    "company_postal_code": null
+   },
+   "vehicle_details": {
+    "vin": "1ZZRGWO0000000002",
+    "licence_plate": null,
+    "unit": "ZZRGWO-WO2",
+    "type": "",
+    "make": "Freightliner",
+    "model": "",
+    "year": null,
+    "mileage": 0,
+    "engine_hours": 0,
+    "trim": null,
+    "engine": null,
+    "drivetrain": null
+   },
+   "work_order_part_cost": "31.08",
+   "work_order_labour_cost": "405.00",
+   "id": "c12b7026-3754-4915-b8a3-4bba9f41069c",
+   "number": "S-40392",
+   "display_number": "S2-40392",
+   "created_on": "2026-11-16T08:21:13+00:00",
+   "due_date": "2026-11-16T08:21:13+00:00",
+   "sub_total_display": "436.08",
+   "discount": 0,
+   "tax": {
+    "id": "819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b",
+    "name": "GST",
+    "isEnabledLabor": true,
+    "isEnabledParts": true,
+    "isEnabledShopSupplies": true,
+    "isDefault": false,
+    "isDeletable": false,
+    "rates": [
+     {
+      "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+      "name": "GST",
+      "percentage": 5,
+      "amount": 21.8
+     }
+    ],
+    "rateTotal": 5,
+    "amountTotal": 21.8
+   },
+   "sub_total_with_discount": "457.88",
+   "sub_total_with_tax": "457.88",
+   "total_balance": "457.88",
+   "status": "paid",
+   "payment_status": "paid",
+   "payment_status_label": "Paid",
+   "include_declined": false,
+   "customer_transaction": {
+    "customer_transaction_id": "893e1e8c-61ba-4497-8516-3c530f4648aa",
+    "customer_account_id": "9bb363eb-ad93-4b66-b44f-ec12afc23b10",
+    "amount": 457.88,
+    "paid_amount": 0,
+    "ibs_batch_id": null,
+    "is_paid_externally": false,
+    "has_portal_payment": false
+   },
+   "shop_supplies_cost": "0.00",
+   "shop_supplies": false,
+   "paid_balance": 0,
+   "customer_po": null,
+   "credit_terms": "COD",
+   "invoice_remit_to": null,
+   "invoice_workplace": {
+    "workplaceName": "ZZAUTOTEST R365 Location C with a name longer than the chip",
+    "workplaceAddress": "365 ZZAUTOTEST Way",
+    "workplacePostalCode": "T2C 4M5",
+    "workplaceCity": "Calgary",
+    "workplaceState": "Alberta",
+    "workplacePhone": "(403) 555 - 0365",
+    "workplaceShopId": "2",
+    "workplaceAddress2": null
+   },
+   "shop_supplies_percentage": null,
+   "see_pricing": true
+  }
+ }
+}

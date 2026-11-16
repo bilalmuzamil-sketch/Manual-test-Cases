@@ -43,6 +43,8 @@ for (const a of actions) {
       fs.writeFileSync(`${dir}/${name}.json`, JSON.stringify({ label: name, url: page.url(), zones: z, ui: { ...ui, nav_menu_items: menu } }, null, 1));
       console.log('SNAP', name, ui.wo_number, ui.wo_status, JSON.stringify(ui.financial_card), 'lines:', ui.line_statuses.join(','), 'menu:', JSON.stringify(menu));
     }
+    if (a.watch) { await page.evaluate(() => { window.__notes = []; new MutationObserver(() => document.querySelectorAll('.q-notification, .q-dialog').forEach(n => { const t = n.innerText.replace(/\s+/g, ' ').trim(); if (t && !window.__notes.includes(t)) window.__notes.push(t); })).observe(document.body, { childList: true, subtree: true }); }); }
+    if (a.notes) console.log('NOTES', JSON.stringify(await page.evaluate(() => window.__notes || [])));
     if (a.api) { const r = await call(page, 'GET', a.api); console.log('API', a.api, r.s, JSON.stringify(r.j).slice(0, a.n || 1500)); }
   } catch (e) { console.log('FAIL', JSON.stringify(a), e.message.slice(0, 150)); }
   await sleep(a.wait || 1500);
