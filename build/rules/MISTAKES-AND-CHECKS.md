@@ -7,6 +7,8 @@ Newest first. Each entry: what happened · what it cost · why it happened · **
 
 ## 2026-11-12 — A/R and A/P staging run (SV-11315)
 
+**M13. Called the API differently from the screen and nearly read it as what the user sees (16 Nov).** Re-checking C715471/72, I pulled the aging reports without the `timezone=` the fixed screen sends, so the server used the session's zone, and my first check reported "Heavy Duty documents a day off", which looked like SV-12663 still broken. The ticket's own handoff said the screen sends its zone. Caught before reporting: re-pulled as the screen does, 0 wrong. *Check:* before judging an API answer as "what the user sees", read the ticket's handoff and the screen's request (front-end API module or network tab) and send the same parameters; open the screen once to confirm.
+
 **M12. A script guessed a field name and skipped without saying so (14 Nov).** The local v13 update keyed cases on `key`; cases.json uses `id`, so the V1R-07/08 changes silently did not apply and the retired cases were not skipped. The checker caught it before commit and the file was restored from git and redone. *Check:* read one real record's field names before scripting against a file, and make every special case ASSERT it was applied (a count of 1), never silently fall through.
 
 **M11. A "not found" was my lookup, not the data.** Read 4Refuel's unpaid bills and payments at Lethbridge with the

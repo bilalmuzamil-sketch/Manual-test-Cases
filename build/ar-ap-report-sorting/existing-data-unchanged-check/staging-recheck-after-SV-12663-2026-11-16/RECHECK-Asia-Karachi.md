@@ -1,0 +1,180 @@
+# C715471 / C715472 re-check after SV-12663 - staging, as of 12 Nov 2026, screen zone Asia/Karachi
+
+Data pulled 2026-11-16T07:29:33Z on build v26.45.4-f3d3d2d (same at the end).
+
+## 1. PRD S1-R5a: Past Due = as-of date minus the due date shown, bucket agrees
+### TODAY, timezone=Asia/Karachi sent, dates read in Asia/Karachi
+- A/R Detail: 1760 documents, **0 wrong**
+- A/P Detail: 14721 documents, **0 wrong**
+- A/R Collection: 1599 documents, **0 wrong**
+- A/P Unpaid: 14721 documents, **0 wrong**
+  - no due date shown (Past Due None, Vendor Credit) - not a rule failure, counted only: 1320
+### CONTROL: data-as-of-2026-11-12-NO-timezone-sent (no zone sent, server used the session zone), dates read in Asia/Karachi
+- A/R Detail: 1763 documents, **265 wrong**
+  - Staging Heavy Duty - 9919: Past Due +1: 162 (e.g. S2-8650 (Invoice) due shown 2025-08-18, Past Due 452, should be 451, bucket days_91_plus; S2-8092 (Invoice) due shown 2025-07-24, Past Due 477, should be 476, bucket days_91_plus; S2-8771 (Invoice) due shown 2025-07-24, Past Due 477, should be 476, bucket days_91_plus)
+  - Staging Lethbridge - 4310: Past Due +1: 69 (e.g. S3-8848 (Invoice) due shown 2025-07-24, Past Due 477, should be 476, bucket days_91_plus; S3-14900 (Invoice) due shown 2026-06-05, Past Due 161, should be 160, bucket days_91_plus; S3-15401 (Invoice) due shown 2026-06-27, Past Due 139, should be 138, bucket days_91_plus)
+  - Staging Lethbridge - 4310: Past Due +1, bucket wrong: 16 (e.g. S3-17147 (Invoice) due shown 2026-09-13, Past Due 61, should be 60, bucket days_61_to_90; S3-17148 (Invoice) due shown 2026-09-13, Past Due 61, should be 60, bucket days_61_to_90; S3-17149 (Invoice) due shown 2026-09-13, Past Due 61, should be 60, bucket days_61_to_90)
+  - DVI Test: Past Due +1: 16 (e.g. DEP1-4814 (Deposit) due shown 2026-10-29, Past Due 15, should be 14, bucket days_1_to_30; S1-38198 (Invoice) due shown 2026-10-29, Past Due 15, should be 14, bucket days_1_to_30; S1-38199 (Invoice) due shown 2026-10-29, Past Due 15, should be 14, bucket days_1_to_30)
+  - Staging Heavy Duty - 9919: Past Due +1, bucket wrong: 2 (e.g. S2-16836 (Invoice) due shown 2026-09-13, Past Due 61, should be 60, bucket days_61_to_90; S2-17154 (Invoice) due shown 2026-10-13, Past Due 31, should be 30, bucket days_31_to_60)
+- A/P Detail: 14724 documents, **2228 wrong**
+  - Staging Heavy Duty - 9919: Past Due +1: 1372 (e.g. X1012699976:01 (Invoice) due shown 2025-03-01, Past Due 622, should be 621, bucket days_91_plus; ROKIN685404 (Invoice) due shown 2025-03-04, Past Due 619, should be 618, bucket days_91_plus; X101270253:01 (Invoice) due shown 2025-03-04, Past Due 619, should be 618, bucket days_91_plus)
+  - Staging Lethbridge - 4310: Past Due +1: 702 (e.g. GNV306853 (Invoice) due shown 2024-05-05, Past Due 922, should be 921, bucket days_91_plus; X103067988:01 (Invoice) due shown 2025-03-08, Past Due 615, should be 614, bucket days_91_plus; C-834 (Vendor Credit) due shown 2025-01-08, Past Due 674, should be 673, bucket days_91_plus)
+  - E2E Dashboard Dash Shop: Past Due +1: 146 (e.g. E2E-INV-1792195688581 (Invoice) due shown 2026-11-16, Past Due -3, should be -4, bucket current; E2E-INV-1792195697657 (Invoice) due shown 2026-11-16, Past Due -3, should be -4, bucket current; E2E-INV-1792196095314 (Invoice) due shown 2026-11-16, Past Due -3, should be -4, bucket current)
+  - E2E Dashboard Big Shop: Past Due +1: 4 (e.g. E2E-INV-1794106546082 (Invoice) due shown 2026-12-08, Past Due -25, should be -26, bucket current; E2E-INV-1794107382692 (Invoice) due shown 2026-12-08, Past Due -25, should be -26, bucket current; E2E-INV-1794116149383 (Invoice) due shown 2026-12-08, Past Due -25, should be -26, bucket current)
+  - DVI Test: Past Due +1: 3 (e.g. 123123123124 (Invoice) due shown 2026-10-22, Past Due 22, should be 21, bucket days_1_to_30; 123123 (Invoice) due shown 2026-11-14, Past Due -1, should be -2, bucket current; ZZPV10282011 (Invoice) due shown 2026-11-28, Past Due -15, should be -16, bucket current)
+  - ZZAUTOTEST F2 Empty Shop: Past Due +1: 1 (e.g. 65+56 (Invoice) due shown 2026-11-16, Past Due -3, should be -4, bucket current)
+- A/R Collection: 1609 documents, **236 wrong**
+  - Staging Heavy Duty - 9919: Past Due +1: 149 (e.g. CM2-4347 (Credit Memo) due shown 2026-09-07, Past Due 67, should be 66; CM2-4357 (Credit Memo) due shown 2026-09-07, Past Due 67, should be 66; CM2-4358 (Credit Memo) due shown 2026-09-07, Past Due 67, should be 66)
+  - Staging Lethbridge - 4310: Past Due +1: 71 (e.g. S3-16679 (Invoice) due shown 2026-08-15, Past Due 90, should be 89; S3-17496 (Invoice) due shown 2026-09-27, Past Due 47, should be 46; S3-17497 (Invoice) due shown 2026-09-27, Past Due 47, should be 46)
+  - DVI Test: Past Due +1: 16 (e.g. DEP1-4814 (Deposit) due shown 2026-10-29, Past Due 15, should be 14; S1-38207 (Invoice) due shown 2026-10-29, Past Due 15, should be 14; S1-38212 (Invoice) due shown 2026-10-29, Past Due 15, should be 14)
+- A/P Unpaid: 14724 documents, **1718 wrong**
+  - Staging Heavy Duty - 9919: Past Due +1: 1026 (e.g. P1-NEW-1 (Invoice) due shown 2026-11-13, Past Due 0, should be -1; SP-NEW-1-ABC-vendorP1 (Invoice) due shown 2026-11-13, Past Due 0, should be -1; ZZ9807-1 (Invoice) due shown 2026-10-10, Past Due 34, should be 33)
+  - Staging Lethbridge - 4310: Past Due +1: 538 (e.g. E2E-INV-1788375809629 (Invoice) due shown 2026-10-03, Past Due 41, should be 40; E2E-INV-1788375810906 (Invoice) due shown 2026-10-03, Past Due 41, should be 40; E2E-INV-1788375819559 (Invoice) due shown 2026-10-03, Past Due 41, should be 40)
+  - E2E Dashboard Dash Shop: Past Due +1: 146 (e.g. E2E-INV-1792195688581 (Invoice) due shown 2026-11-16, Past Due -3, should be -4; E2E-INV-1792195697657 (Invoice) due shown 2026-11-16, Past Due -3, should be -4; E2E-INV-1792196095314 (Invoice) due shown 2026-11-16, Past Due -3, should be -4)
+  - E2E Dashboard Big Shop: Past Due +1: 4 (e.g. E2E-INV-1794106546082 (Invoice) due shown 2026-12-08, Past Due -25, should be -26; E2E-INV-1794107382692 (Invoice) due shown 2026-12-08, Past Due -25, should be -26; E2E-INV-1794116149383 (Invoice) due shown 2026-12-08, Past Due -25, should be -26)
+  - DVI Test: Past Due +1: 3 (e.g. ZZPV10282011 (Invoice) due shown 2026-11-28, Past Due -15, should be -16; 123123 (Invoice) due shown 2026-11-14, Past Due -1, should be -2; 123123123124 (Invoice) due shown 2026-10-22, Past Due 22, should be 21)
+  - ZZAUTOTEST F2 Empty Shop: Past Due +1: 1 (e.g. 65+56 (Invoice) due shown 2026-11-16, Past Due -3, should be -4)
+  - no due date shown (Past Due None, Vendor Credit) - not a rule failure, counted only: 1320
+
+## 2. Before the feature (12 Nov 06:46Z, old version) vs today, document by document
+### A/R Detail: before 1564, today 1760
+- matched: 1564
+- new today (not in the before snapshot): 196
+  - ('SMQ123-40382', 'ZZAUTOTEST One Location Customer') QB Location dated 2024-12-02 open 3300
+  - ('S2-40067', 'ZZAUTOTEST AR R22 Bucket Edges') Staging Heavy Duty - 9919 dated 2026-08-02 open 1000
+  - ('S2-40379', 'ZZAUTOTEST PDF Buckets Customer') Staging Heavy Duty - 9919 dated 2026-08-31 open 21000
+  - ('CM2-4546', 'ZZAUTOTEST AR R23 Memo Aging') Staging Heavy Duty - 9919 dated 2026-09-16 open -1500
+  - ('S2-40056', 'ZZAUTOTEST AR R15 Payment Reversed') Staging Heavy Duty - 9919 dated 2026-10-02 open 10000
+  - ('S2-40052', 'ZZAUTOTEST AR R13 Payment After') Staging Heavy Duty - 9919 dated 2026-10-11 open 6000
+- bucket moved - NOT intended: 16
+  - ('P3-2458', 'E2E Credits Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T19:01:37Z
+  - ('P3-2459', 'E2E Credits Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T19:01:48Z
+  - ('P3-2460', 'E2E COD Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T19:01:58Z
+  - ('S3-39986', 'E2E Credits Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T19:02:49Z
+  - ('S3-39987', 'E2E Credits Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T19:02:55Z
+  - ('P3-2461', 'E2E Credits Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T19:59:56Z
+- amount or open balance differs: 6
+  - ('CM2-4524', 'TestVT1') amount -5657->-17398, open -5657->-5657
+  - ('CM2-4526', 'TestVT1') amount -2500->-19898, open -2500->-2500
+  - ('CM2-4404', 'ZZAUTOTEST SV-9647 Credit Split BEFORE') amount -15496->-30000, open -15496->-15496
+  - ('CM2-4353', '4 Star Truck Repair') amount -15000->-20000, open -15000->-15000
+  - ('CM2-4354', '4 Star Truck Repair') amount -7000->-20000, open -7000->-7000
+  - ('DEP2-4713', '4 Star Truck Repair') amount -705112->-1975083, open -705112->-705112
+- bucket moved - INTENDED (credit dated on the as-of date -> Current, PRD section 2): 3
+  - ('CM3-4538', 'E2E Credits Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T19:02:41Z
+  - ('CM3-4539', 'E2E Credits Customer') days1to30->current Staging Lethbridge - 4310 due 2026-11-11T20:00:57Z
+  - ('CM2-4541', 'ZZAUTOTEST SV11315 Staging CM') days1to30->current Staging Heavy Duty - 9919 due 2026-11-12T06:38:47Z
+### A/P Detail: before 14663, today 14721
+- matched: 14632
+- Past Due differs (-1) - NOT intended: 1502
+  - ('1133534', 'Willoughby Mechanical Services') 0->-1 Staging Heavy Duty - 9919
+  - ('9654', 'Parts Authority') -2->-3 Staging Heavy Duty - 9919
+  - ('fghfghfght', 'AC Truck Repair - Branford') -2->-3 Staging Heavy Duty - 9919
+  - ('A-9658', 'Apex Truck & Trailer Repair') -3->-4 Staging Heavy Duty - 9919
+  - ('12442555', 'AC Truck Repair - Branford') -14->-15 Staging Heavy Duty - 9919
+  - ('ZZQA10301-2', 'ZZQA10301-B') -14->-15 Staging Heavy Duty - 9919
+- Past Due differs (-2) - NOT intended: 107
+  - ('ZZAUTOTEST-INV111', '5 Star Truck Repair') -13->-15 Staging Heavy Duty - 9919
+  - ('ZZINV1725', 'ZZTOGVEN Supply') 0->-2 Staging Heavy Duty - 9919
+  - ('ZZINV63657', 'ZZTOGVEN Supply') 0->-2 Staging Heavy Duty - 9919
+  - ('ZZINV79596', 'ZZTOGVEN Supply') 0->-2 Staging Heavy Duty - 9919
+  - ('243221233444', '4Refuel') -1->-3 Staging Heavy Duty - 9919
+  - ('343453', '4Refuel') -2->-4 Staging Heavy Duty - 9919
+- new today (not in the before snapshot): 61
+  - ('C-13913', 'ZZAUTOTEST AP P24 Credit Aging') Staging Heavy Duty - 9919 dated 2026-09-03 open -1200
+  - ('ZZS35447846', 'ZZAUTOTEST PDF Buckets Vendor') Staging Heavy Duty - 9919 dated 2026-08-31 open 21000
+  - ('ZZT-P52-BILL_LATE', 'ZZAUTOTEST AP P52 Netting') Staging Heavy Duty - 9919 dated 2026-09-03 open 30000
+  - ('C-13914', 'ZZAUTOTEST AP P52 Netting') Staging Heavy Duty - 9919 dated 2026-10-08 open -2000
+  - ('ZZS35440266', 'ZZAUTOTEST Special & "Quoted" \'Single\' <Less> Greater> Vendor Two PDF Blocks') Staging Heavy Duty - 9919 dated 2026-09-25 open 9000
+  - ('ZZS35443542', 'ZZAUTOTEST Unpaid PDF Vendor B') Staging Heavy Duty - 9919 dated 2026-09-30 open 5500
+- missing today: 3
+  - ('E2E-P8197vr', '4Refuel') current 100
+  - ('E2E-INV-1794217548388', '4Refuel') current 100
+  - ('E2E-Pitcq2q', '4Refuel') days31to60 100
+- amount or open balance differs: 2
+  - ('055-541861', 'Stillwater Diesel Repair') amount 64336->64336, open 64338->64336
+  - ('069-855902', 'Stillwater Diesel Repair') amount 429->429, open 431->429
+- bucket moved - INTENDED (credit dated on the as-of date -> Current, PRD section 2): 1
+  - ('C-13911', 'ZZAUTOTEST SV11315 Staging VC') days1to30->current Staging Heavy Duty - 9919 due 2026-11-12T06:29:54Z
+- Past Due differs - INTENDED (credit dated on the as-of date -> 0): 1
+  - ('C-13911', 'ZZAUTOTEST SV11315 Staging VC') 1->0 Staging Heavy Duty - 9919
+### A/R Collection: before 1457, today 1599
+- matched: 1447
+- new today (not in the before snapshot): 152
+  - ('CM3-4545',) Staging Lethbridge - 4310 dated 2026-11-12 open -19500
+  - ('CM3-4657',) Staging Lethbridge - 4310 dated 2026-11-12 open -19500
+  - ('CM3-4658',) Staging Lethbridge - 4310 dated 2026-11-12 open -19500
+  - ('S3-40035',) Staging Lethbridge - 4310 dated 2026-11-07 open 3300
+  - ('S2-40046',) Staging Heavy Duty - 9919 dated 2026-10-21 open 6000
+  - ('CM2-4542',) Staging Heavy Duty - 9919 dated 2026-10-22 open -1500
+- Past Due differs (-1) - NOT intended: 150
+  - ('S2-8771',) 477->476 Staging Heavy Duty - 9919
+  - ('S2-8092',) 477->476 Staging Heavy Duty - 9919
+  - ('S2-8650',) 452->451 Staging Heavy Duty - 9919
+  - ('S2-17132',) 50->49 Staging Heavy Duty - 9919
+  - ('S3-16706',) 50->49 Staging Lethbridge - 4310
+  - ('S3-16213',) 47->46 Staging Lethbridge - 4310
+- missing today: 10
+  - ('P3-2458',) E2E Credits Customer 152.25
+  - ('P3-2459',) E2E Credits Customer 204.75
+  - ('S3-39986',) E2E Credits Customer 185.58
+  - ('S3-39987',) E2E Credits Customer 185.58
+  - ('P3-2461',) E2E Credits Customer 152.25
+  - ('P3-2462',) E2E Credits Customer 204.75
+- amount or open balance differs: 6
+  - ('CM2-4404',) amount -15496->-30000, open -15496->-15496
+  - ('CM2-4524',) amount -5657->-17398, open -5657->-5657
+  - ('CM2-4526',) amount -2500->-19898, open -2500->-2500
+  - ('CM2-4353',) amount -15000->-20000, open -15000->-15000
+  - ('CM2-4354',) amount -7000->-20000, open -7000->-7000
+  - ('DEP2-4713',) amount -705112->-1975083, open -705112->-705112
+- Past Due differs - INTENDED (credit dated on the as-of date -> 0): 3
+  - ('CM3-4538',) 1->0 Staging Lethbridge - 4310
+  - ('CM3-4539',) 1->0 Staging Lethbridge - 4310
+  - ('CM2-4541',) 1->0 Staging Heavy Duty - 9919
+### A/P Unpaid: before 14663, today 14721
+- matched: 14632
+- Past Due differs (-1) - NOT intended: 1011
+  - ('E2E-INV-1788375809629', '4Refuel') 41->40 Staging Lethbridge - 4310
+  - ('E2E-INV-1788375810906', '4Refuel') 41->40 Staging Lethbridge - 4310
+  - ('E2E-INV-1788375819559', '4Refuel') 41->40 Staging Lethbridge - 4310
+  - ('E2E-INV-1788375820585', '4Refuel') 41->40 Staging Lethbridge - 4310
+  - ('E2E-INV-1788375829199', '4Refuel') 41->40 Staging Lethbridge - 4310
+  - ('E2E-INV-1788375830254', '4Refuel') 41->40 Staging Lethbridge - 4310
+- Past Due differs (-2) - NOT intended: 107
+  - ('ZZPV10282011', '123 Cannabis Forestlawn') -14->-16 DVI Test
+  - ('243221233444', '4Refuel') -1->-3 Staging Heavy Duty - 9919
+  - ('65+56', '4Refuel') -2->-4 ZZAUTOTEST F2 Empty Shop
+  - ('343453', '4Refuel') -2->-4 Staging Heavy Duty - 9919
+  - ('SV7661-T1018', '4Refuel') -4->-6 Staging Heavy Duty - 9919
+  - ('TEST-INV-11070-1018a', '4Refuel') -4->-6 Staging Heavy Duty - 9919
+- new today (not in the before snapshot): 61
+  - ('E2E-INV-1794467800262', '4Refuel') Staging Lethbridge - 4310 dated 2026-11-12 open 5000
+  - ('E2E-INV-1794467801436', '4Refuel') Staging Lethbridge - 4310 dated 2026-11-12 open 3000
+  - ('E2E-INV-1794467811218', '4Refuel') Staging Lethbridge - 4310 dated 2026-11-12 open 10000
+  - ('E2E-INV-1794467812219', '4Refuel') Staging Lethbridge - 4310 dated 2026-11-12 open 3000
+  - ('E2E-INV-1794467821560', '4Refuel') Staging Lethbridge - 4310 dated 2026-11-12 open 10000
+  - ('E2E-INV-1794467823217', '4Refuel') Staging Lethbridge - 4310 dated 2026-11-12 open 3000
+- missing today: 3
+  - ('E2E-Pitcq2q', '4Refuel') 4Refuel 100
+  - ('E2E-P8197vr', '4Refuel') 4Refuel 100
+  - ('E2E-INV-1794217548388', '4Refuel') 4Refuel 100
+- amount or open balance differs: 2
+  - ('069-855902', 'Stillwater Diesel Repair') amount 429->429, open 431->429
+  - ('055-541861', 'Stillwater Diesel Repair') amount 64336->64336, open 64338->64336
+
+## 3. Before vs today, Summary reports per customer / vendor
+- A/R Summary: before 269 parties, today 306; only before 0, only today 37; same name, any column differs: 7
+  - Desert Edge Truck Service & Repair: days1to30 0->1228048, days31to60 6603193->5448020, days61to90 7763107->7690232
+  - E2E Term Customer: current 367588->534613, total 4195183->4362208
+  - E2E Credits Customer: current 0->266580, days1to30 243344->136712, total 3660080->3820028
+  - Tucson Truck Center: days31to60 1119696->1318046, days61to90 1189585->991235
+  - E2E COD Customer: current 0->102375, days1to30 122850->81900, total 1474200->1535625
+  - TestVT1: current 3020001->3576750, total 16169828->16726577
+  - ZZAUTOTEST SV11315 Staging CM: current 0->-300, days1to30 -300->0
+- A/P Summary: before 474 parties, today 495; only before 0, only today 21; same name, any column differs: 5
+  - 4Refuel: current 720975->832975, days31to60 2159577->2149577, total 4845227->4947227
+  - Butautas' Truck & Trailer Repair LLC: current 0->1050, total 3030287->3031337
+  - Stillwater Diesel Repair: days61to90 779039->779037, days91Plus 8818685->8818683, total 10360018->10360014
+  - ZZAUTOTEST Staged Parts Vendor: current 96000->120000, total 144000->168000
+  - ZZAUTOTEST SV11315 Staging VC: current 0->-700, days1to30 -700->0

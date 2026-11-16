@@ -150,6 +150,7 @@ These are stated here **in full** because a session that gets only this far must
 Every line below is a mistake that really happened. Apply each one that fits the task. **When a new mistake is found,
 in the same turn: fix it, add it to `build/rules/MISTAKES-AND-CHECKS.md`, add its line here, and tell the QA lead.**
 
+- **Call it like the screen:** send the same parameters the screen sends (read the handoff and the front-end request) before treating an API answer as what the user sees; open the screen once to confirm. (M13)
 - **Field names:** read one real record's keys before scripting against a file; every special case asserts it was applied, never falls through silently. (M12)
 - **Scoped ids:** an id tied to a location / workplace / account / environment is read in the SAME scope as the call that uses it, never hard-coded. Two readings disagree ⇒ diff my two methods before blaming the system. (M11)
 - **Stops:** "stopped" only when `pgrep` finds nothing; restore files only after that. (M10)
