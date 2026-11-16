@@ -619,3 +619,7 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   in TMS** (soft, restorable; no person edits, no results). Tiered Pricing now **802/802 SAME**.
 - Internal Work order: **C10001248, C10001397, C10001648 deleted in TMS** (restorable). They remain listed in Vlad's nightly TMS
   runs 29 and 31 (no results there). **C10001652 NOT deleted** — Vladimir edited it at 10:28 UTC → kept (`kept-tms-only.csv`).
+- **15:1x UTC — TMS run 39 "Tiered Pricing - Execution" created** = TestRail run 560 (787 cases, all latest versions, run and
+  every case assigned to Mudassir, no milestone as in TestRail, external_key testrail-run-560). TestRail Tiered cases had no
+  edits for 96 min (last 13:34 UTC); final dry run 802/802 SAME, pictures complete (764). TestRail run 560 has no statuses
+  yet (25 assignment-only entries) → nothing to copy. Not added to any nightly run.
