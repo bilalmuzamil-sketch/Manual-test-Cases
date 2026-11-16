@@ -1,0 +1,29 @@
+=== 1-2 case syncs
+===  138770 Tiered Pricing (11/14/2026)
+ created: 818 | problems: none
+ final: ["plan: {'SAME': 818, 'FOLDER_TR_ONLY': 0, 'FOLDER_TMS_ONLY': 0} | report: /tmp/tms/sync-138770/report.md"]
+===  20435 Part Sales
+ created: 0 | problems: none
+ final: ["plan: {'HOLD_AUTO': 39, 'SAME': 68, 'FOLDER_TR_ONLY': 0, 'FOLDER_TMS_ONLY': 0} | report: /tmp/tms/sync-20435/report.md"]
+===  136701 Internal Work order (11/12/2026)
+ created: 54 | problems: none
+ final: ["plan: {'CONFLICT': 276, 'SAME': 421, 'TMS_EXTRA': 69, 'FOLDER_TR_ONLY': 0, 'FOLDER_TMS_ONLY': 0} | report: /tmp/tms/sync-136701/report.md"]
+=== 3 held-but-only-mine
+held-but-only-mine cases updated from TestRail: 432 | problems none
+=== pictures
+cases done 780/780 | problems: none
+cases done 58/58 | problems: none
+=== 4 rebuild runs 33/34
+TestRail run 558 -> NEW TMS run 36 'Bill To - Execution' | 322 cases (TestRail 322, not in TMS 0) | latest {True: 322} | owner 6 cases {6: 322}
+   sample run view: doubled 'Expected Result' heading: False | doubled 'Preconditions' heading: False | quotes section: False
+   old TMS run 34: taken out of the milestone and closed (204)
+TestRail run 559 -> NEW TMS run 37 'Internal Work Orders - Execution (old run - closed)' | 663 cases (TestRail 663, not in TMS 0) | latest {True: 663} | owner 7 cases {7: 663}
+   sample run view: doubled 'Expected Result' heading: False | doubled 'Preconditions' heading: False | quotes section: False
+   old TMS run 33: taken out of the milestone and closed (409)
+milestone 10000000 runs: [(37, 'Internal Work Orders - Execution (old run - closed)', 7), (36, 'Bill To - Execution', 6), (33, 'Internal Work Orders - Execution (old run - closed)', 7)]
+=== 5 results (protect others)
+TestRail run 555: 5 results | to copy 0 (for 0 cases) | skipped {'no status / untested': 5}
+TestRail run 556: 538 results | to copy 0 (for 0 cases) | skipped {'already copied': 491, 'no status / untested': 4, 'TMS already has a result for this case (left alone)': 43}
+TestRail run 558: 36 results | to copy 0 (for 0 cases) | skipped {'no status / untested': 36}
+TestRail run 559: 48 results | to copy 0 (for 0 cases) | skipped {'no status / untested': 48}
+FINISHED
