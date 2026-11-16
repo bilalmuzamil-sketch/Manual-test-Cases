@@ -26,3 +26,10 @@
 ## TestRail
 - No TestRail credentials are in this container (/tmp/testrail missing).
 - Existing WO / parts / invoice cases cannot be read until the QA lead supplies them, or says to work without TestRail.
+
+## Scope change, QA lead 16 Nov 2026 (verbatim): "Please do not do anytning for parts lifecycle."
+- **OUT of scope:** the parts lifecycle. That means the Part Lifecycle feature (SV-10647, Confluence 829227015) and any parts-lifecycle testing.
+  - Nothing is to be read, tested, drafted or filed for it.
+- **IN scope:** the work order lifecycle, and the accuracy of the invoices it creates.
+- **Asked of the QA lead (open):** are part-sale invoices (over-the-counter part sales) also out?
+  - Recommended: treat them as out until he says otherwise.
