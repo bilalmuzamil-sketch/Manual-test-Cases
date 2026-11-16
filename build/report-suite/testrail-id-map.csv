@@ -443,7 +443,7 @@ IV-NAV-02,C30535,One row per in-stock part at the selected locations valued at t
 IV-NAV-03,C30536,First visit defaults to today and the active location,IV — Access & Display,SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R3; Story 7 S7-R2)
 IV-NAV-05,C30538,The report is server-paginated: one page of rows at a time,IV — Access & Display,SV-8668 (IV spec v10 2026-08-17 Story 1 S1-R8; §2 Scale and data model)
 IV-NAV-06,C30539,"No qualifying parts, day or location: the no-data message shows and no totals",IV — Access & Display,SV-8668 (IV spec v10 2026-08-17 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)
-IV-SCOPE-01,C30540,A part appears only if not a core charge and on-hand quantity is above zero,IV — Row Scope,SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))
+IV-SCOPE-01,C30540,A part appears unless it is a core charge or its on-hand quantity is zero,IV — Row Scope,SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))
 IV-SCOPE-02,C30541,A part stocked at two selected locations shows as two rows; never merged,IV — Row Scope,SV-8669 (IV spec v10 2026-08-17 Story 2 S2-R3; §2 Known Limitations (v1))
 IV-CALC-01,C30545,Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Columns,SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))
 IV-CALC-02,C30546,With no fixed sell price Unit Sell is the category's pricing-matrix markup,IV — Valuation & Columns,SV-8670 (IV spec v10 2026-08-17 Story 3 S3-R5 (matrix branch); §5 Assumptions)
