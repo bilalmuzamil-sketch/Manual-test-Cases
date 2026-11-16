@@ -10,7 +10,8 @@ const { browser, ctx, page } = await boot(loc, { viewport: { width: 1536, height
 const net = []; page.on('request', r => { const u = r.url(); if (u.includes('api.staging') && /reporting|report|timesheet|punch|aging|account-|export|pdf/.test(u)) net.push({ t: Date.now(), m: r.method(), u: u.replace('https://api.staging.shopview.com', '') }); });
 const T = s => (s || '').replace(/\s+/g, ' ').trim();
 async function facts() { return page.evaluate(() => { const T = s => (s || '').replace(/\s+/g, ' ').trim(); const vis = e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
-  const heads = [...document.querySelectorAll('thead th')].filter(vis).map(th => ({ t: T(th.innerText), sortable: th.classList.contains('sortable'), cls: [...th.classList].filter(c => /sort|asc|desc/.test(c)).join(' '), aria_sort: th.getAttribute('aria-sort') }));
+  const IC = /\b(arrow_drop_up|arrow_drop_down|arrow_upward|arrow_downward|info|info_outline|help_outline|unfold_more|expand_more|chevron_right)\b/g;
+  const heads = [...document.querySelectorAll('thead th')].filter(vis).map((th, i) => ({ i, t: T(th.innerText.replace(IC, ' ')), sortable: th.classList.contains('sortable'), cls: [...th.classList].filter(c => /sort|asc|desc/.test(c)).join(' '), aria_sort: th.getAttribute('aria-sort') }));
   const totals = [...document.querySelectorAll('tr')].map(r => T(r.innerText)).filter(t => /^(Totals?|Summary)\b/i.test(t)).slice(0, 3);
   const firstRows = [...document.querySelectorAll('tbody tr')].filter(vis).map(r => T(r.innerText)).filter(t => t && !/^(Totals?|Summary)\b/i.test(t)).slice(0, 4);
   const named = e => T(e.getAttribute('aria-label')) || T(e.getAttribute('aria-labelledby') && document.getElementById(e.getAttribute('aria-labelledby'))?.innerText) || T(e.innerText) || T(e.getAttribute('title')) || (e.id && T(document.querySelector(`label[for="${e.id}"]`)?.innerText));
@@ -23,7 +24,9 @@ async function facts() { return page.evaluate(() => { const T = s => (s || '').r
     export_btn: exp ? { aria: exp.getAttribute('aria-label'), text: T(exp.innerText), tooltip: exp.getAttribute('title') } : null,
     column_btn: col ? { aria: col.getAttribute('aria-label'), text: T(col.innerText) } : null, controls: ctrls.length, unnamed_controls: unnamed.slice(0, 12), unnamed_count: unnamed.length, sideways: document.documentElement.scrollWidth > innerWidth }; }); }
 async function menuItems() { return page.evaluate(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().height > 0).at(-1); if (!m) return null;
-  return [...m.querySelectorAll('.q-item, [role="menuitem"], .q-checkbox, label, button')].map(e => ({ t: (e.innerText || '').replace(/\s+/g, ' ').trim(), checked: e.querySelector('[aria-checked]')?.getAttribute('aria-checked') ?? e.getAttribute('aria-checked'), disabled: e.getAttribute('aria-disabled') || (e.classList.contains('disabled') ? 'true' : null) })).filter(x => x.t); }); }
+  const cbs = [...m.querySelectorAll('.q-checkbox, [role="checkbox"]')].filter(e => !e.parentElement.closest('.q-checkbox, [role="checkbox"]'));
+  if (cbs.length) return cbs.map((e, i) => { e.setAttribute('data-a2cb', String(i)); return { t: (e.innerText || '').replace(/\b(check|check_box|check_box_outline_blank)\b/g, '').replace(/\s+/g, ' ').trim(), checked: e.getAttribute('aria-checked'), disabled: e.getAttribute('aria-disabled'), idx: i }; });
+  return [...m.querySelectorAll('.q-item, [role="menuitem"]')].map(e => ({ t: (e.innerText || '').replace(/\s+/g, ' ').trim(), checked: e.querySelector('[aria-checked]')?.getAttribute('aria-checked') ?? e.getAttribute('aria-checked'), disabled: e.getAttribute('aria-disabled') || (e.classList.contains('disabled') ? 'true' : null) })).filter(x => x.t); }); }
 async function toasts() { return page.evaluate(() => [...document.querySelectorAll('.q-notification')].map(n => (n.innerText || '').replace(/\s+/g, ' ').trim())); }
 async function load(rep) { const url = APP + (rep.startsWith('/') ? rep : '/reports/' + rep); await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForLoadState('networkidle', { timeout: 40000 }).catch(() => {}); await sleep(7000); }
 const out = { start, reports: {} };
@@ -57,13 +60,13 @@ for (const rep of REPS) {
     // ---- column chooser: toggle one column off, reload (memory), toggle back
     if (R.first.column_btn) {
       await page.locator('[data-a2="columns"]').click(); await sleep(1000); R.column_menu = await menuItems();
-      const opt = (R.column_menu || []).find(x => x.checked === 'true' && x.disabled !== 'true' && x.t);
+      const opt = [...(R.column_menu || [])].reverse().find(x => x.checked === 'true' && x.disabled !== 'true' && x.t && x.idx !== undefined);
       if (opt) {
-        await page.locator('.q-menu').last().getByText(opt.t, { exact: true }).first().click(); await sleep(1500); await page.keyboard.press('Escape'); await sleep(1000);
+        await page.locator(`[data-a2cb="${opt.idx}"]`).click(); await sleep(1500); await page.keyboard.press('Escape'); await sleep(1000);
         R.columns = { toggled_off: opt.t, heads_after_toggle: (await facts()).heads.map(h => h.t) };
         await load(rep); const f2 = await facts(); R.columns.heads_after_reload = f2.heads.map(h => h.t);
         R.columns.remembered = !R.columns.heads_after_reload.includes(opt.t) && R.columns.heads_after_toggle.length === R.columns.heads_after_reload.length;
-        await page.locator('[data-a2="columns"]').click(); await sleep(1000); await page.locator('.q-menu').last().getByText(opt.t, { exact: true }).first().click(); await sleep(1500); await page.keyboard.press('Escape'); await sleep(800);
+        await page.locator('[data-a2="columns"]').click(); await sleep(1000); R.columns.menu_after_reload = await menuItems(); await page.locator(`[data-a2cb="${opt.idx}"]`).click(); await sleep(1500); await page.keyboard.press('Escape'); await sleep(800);
         R.columns.heads_after_restore = (await facts()).heads.map(h => h.t);
       } else { await page.keyboard.press('Escape'); }
     }
@@ -71,8 +74,8 @@ for (const rep of REPS) {
     R.sorting = []; const sortable = R.first.heads.filter(h => h.sortable).slice(0, 6);
     for (const h of sortable) {
       const row = { header: h.t, clicks: [] };
-      for (let k = 0; k < 2; k++) { net.length = 0; await page.locator('thead th.sortable', { hasText: h.t }).first().click().catch(() => {}); await sleep(3500); const f = await facts();
-        row.clicks.push({ head: f.heads.find(x => x.t === h.t), firstRows: f.firstRows.slice(0, 3), requests: net.filter(x => /sort/i.test(x.u)).map(x => x.u.slice(0, 220)).slice(0, 2) }); }
+      for (let k = 0; k < 2; k++) { net.length = 0; await page.locator('thead th').nth(h.i).click().catch(() => {}); await sleep(3500); const f = await facts();
+        row.clicks.push({ head: f.heads.find(x => x.i === h.i), firstRows: f.firstRows.slice(0, 3), requests: net.filter(x => /sort/i.test(x.u)).map(x => x.u.slice(0, 220)).slice(0, 2) }); }
       R.sorting.push(row);
     }
   } catch (e) { R.error = String(e).slice(0, 300); }

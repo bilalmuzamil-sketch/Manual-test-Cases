@@ -1,0 +1,6386 @@
+[
+{
+"check": "F0-advisor-options=advisors-present",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"options": 31,
+"present": 31,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R1"
+},
+{
+"check": "F0-customer-options=customers-present",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"options": 1832,
+"present": 1832,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R2"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"server": 149,
+"subset": 149
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 157842,
+"subset": 157842
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 4231070,
+"subset": 4231070
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 673713,
+"subset": 673713
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 753192,
+"subset": 753192
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 831555,
+"subset": 831555
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 4984262,
+"subset": 4984262
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": -1839,
+"subset": -1839
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 5813978,
+"subset": 5813978
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"server": 1471,
+"subset": 1471
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 17815670,
+"subset": 17815670
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 719848,
+"subset": 719848
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 18535518,
+"subset": 18535518
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 4818,
+"subset": 4818
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 18540336,
+"subset": 18540336
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"server": 82,
+"subset": 82
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 2484382,
+"subset": 2484382
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 167724,
+"subset": 167724
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "earned",
+"server": 2652106,
+"subset": 2652106
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "adjustments",
+"server": -1514,
+"subset": -1514
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "total",
+"server": 2650592,
+"subset": 2650592
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"server": 138,
+"subset": 138
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 1208193,
+"subset": 1208193
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 120568,
+"subset": 120568
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "remaining",
+"server": 1328761,
+"subset": 1328761
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "total",
+"server": 1328761,
+"subset": 1328761
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "not_started",
+"server": 18535518,
+"subset": 18535518
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_earned",
+"server": 831555,
+"subset": 831555
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_remaining",
+"server": 4984262,
+"subset": 4984262
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "ready_to_invoice",
+"server": 2652106,
+"subset": 2652106
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "estimates",
+"server": 1328761,
+"subset": 1328761
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 110,
+"subset": 110
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 1097984,
+"subset": 1097984
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 3295349,
+"subset": 3295349
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 727722,
+"subset": 727722
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 1262679,
+"subset": 1262679
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 1825706,
+"subset": 1825706
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 4558028,
+"subset": 4558028
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 1526,
+"subset": 1526
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 6385260,
+"subset": 6385260
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"server": 340,
+"subset": 340
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 13791608,
+"subset": 13791608
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 4081704,
+"subset": 4081704
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 17873312,
+"subset": 17873312
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 17873312,
+"subset": 17873312
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"server": 92,
+"subset": 92
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 3257995,
+"subset": 3257995
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 395183,
+"subset": 395183
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "earned",
+"server": 3653178,
+"subset": 3653178
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 133,
+"subset": 133
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "total",
+"server": 3653311,
+"subset": 3653311
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"server": 583,
+"subset": 583
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 11231609,
+"subset": 11231609
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 12789539,
+"subset": 12789539
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 24021148,
+"subset": 24021148
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "total",
+"server": 24021148,
+"subset": 24021148
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "not_started",
+"server": 17873312,
+"subset": 17873312
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_earned",
+"server": 1825706,
+"subset": 1825706
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_remaining",
+"server": 4558028,
+"subset": 4558028
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "ready_to_invoice",
+"server": 3653178,
+"subset": 3653178
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "estimates",
+"server": 24021148,
+"subset": 24021148
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "not_started",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "ready_to_invoice",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F0-advisor-options=advisors-present",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"options": 13,
+"present": 13,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R1"
+},
+{
+"check": "F0-customer-options=customers-present",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"options": 116,
+"present": 116,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R2"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"server": 56,
+"subset": 56
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 1137079,
+"subset": 1137079
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 879366,
+"subset": 879366
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 960240,
+"subset": 960240
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 304208,
+"subset": 304208
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 2097319,
+"subset": 2097319
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 1183574,
+"subset": 1183574
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 3280893,
+"subset": 3280893
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"server": 106,
+"subset": 106
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 3923780,
+"subset": 3923780
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 408689,
+"subset": 408689
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 4332469,
+"subset": 4332469
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 4332469,
+"subset": 4332469
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"server": 30,
+"subset": 30
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 2284133,
+"subset": 2284133
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 2623189,
+"subset": 2623189
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "earned",
+"server": 4907322,
+"subset": 4907322
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "total",
+"server": 4907322,
+"subset": 4907322
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"server": 502,
+"subset": 502
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 12041998,
+"subset": 12041998
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 15302148,
+"subset": 15302148
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "remaining",
+"server": 27344146,
+"subset": 27344146
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "total",
+"server": 27344146,
+"subset": 27344146
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "not_started",
+"server": 4332469,
+"subset": 4332469
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_earned",
+"server": 2097319,
+"subset": 2097319
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_remaining",
+"server": 1183574,
+"subset": 1183574
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "ready_to_invoice",
+"server": 4907322,
+"subset": 4907322
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "estimates",
+"server": 27344146,
+"subset": 27344146
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 20,
+"subset": 20
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 239925,
+"subset": 239925
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 207935,
+"subset": 207935
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 137500,
+"subset": 137500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 8000,
+"subset": 8000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 377425,
+"subset": 377425
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 215935,
+"subset": 215935
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 593360,
+"subset": 593360
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"server": 105,
+"subset": 105
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 3870790,
+"subset": 3870790
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 3870790,
+"subset": 3870790
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 3870790,
+"subset": 3870790
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"server": 6,
+"subset": 6
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 119575,
+"subset": 119575
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 10500,
+"subset": 10500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "earned",
+"server": 130075,
+"subset": 130075
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "total",
+"server": 130075,
+"subset": 130075
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"server": 498,
+"subset": 498
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 10137335,
+"subset": 10137335
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 10804874,
+"subset": 10804874
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 20942209,
+"subset": 20942209
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "total",
+"server": 20942209,
+"subset": 20942209
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "not_started",
+"server": 3870790,
+"subset": 3870790
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_earned",
+"server": 377425,
+"subset": 377425
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_remaining",
+"server": 215935,
+"subset": 215935
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "ready_to_invoice",
+"server": 130075,
+"subset": 130075
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "estimates",
+"server": 20942209,
+"subset": 20942209
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 18,
+"subset": 18
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 239925,
+"subset": 239925
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 175945,
+"subset": 175945
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 112500,
+"subset": 112500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 8000,
+"subset": 8000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 352425,
+"subset": 352425
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 183945,
+"subset": 183945
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 536370,
+"subset": 536370
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"server": 98,
+"subset": 98
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 3646860,
+"subset": 3646860
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 3646860,
+"subset": 3646860
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 3646860,
+"subset": 3646860
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"server": 5,
+"subset": 5
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 79975,
+"subset": 79975
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 10500,
+"subset": 10500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "earned",
+"server": 90475,
+"subset": 90475
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "total",
+"server": 90475,
+"subset": 90475
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"server": 438,
+"subset": 438
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 9049675,
+"subset": 9049675
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 9943518,
+"subset": 9943518
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 18993193,
+"subset": 18993193
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "total",
+"server": 18993193,
+"subset": 18993193
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "not_started",
+"server": 3646860,
+"subset": 3646860
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_earned",
+"server": 352425,
+"subset": 352425
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_remaining",
+"server": 183945,
+"subset": 183945
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "ready_to_invoice",
+"server": 90475,
+"subset": 90475
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "estimates",
+"server": 18993193,
+"subset": 18993193
+},
+"spec": "S5-R11"
+},
+{
+"check": "F0-advisor-options=advisors-present",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"options": 3,
+"present": 3,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R1"
+},
+{
+"check": "F0-customer-options=customers-present",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"options": 16,
+"present": 16,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R2"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"server": 2,
+"subset": 2
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 40500,
+"subset": 40500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 4000,
+"subset": 4000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 4000,
+"subset": 4000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 40500,
+"subset": 40500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 44500,
+"subset": 44500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"server": 19,
+"subset": 19
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 422550,
+"subset": 422550
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 104366,
+"subset": 104366
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 526916,
+"subset": 526916
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": -7168,
+"subset": -7168
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 519748,
+"subset": 519748
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"server": 5,
+"subset": 5
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 43800,
+"subset": 43800
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 14000,
+"subset": 14000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "earned",
+"server": 57800,
+"subset": 57800
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "total",
+"server": 57800,
+"subset": 57800
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "not_started",
+"server": 526916,
+"subset": 526916
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_earned",
+"server": 4000,
+"subset": 4000
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_remaining",
+"server": 40500,
+"subset": 40500
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "ready_to_invoice",
+"server": 57800,
+"subset": 57800
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 1,
+"subset": 1
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"server": 9,
+"subset": 9
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 244350,
+"subset": 244350
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 15000,
+"subset": 15000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 259350,
+"subset": 259350
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 259350,
+"subset": 259350
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"server": 2,
+"subset": 2
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 27000,
+"subset": 27000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "earned",
+"server": 27000,
+"subset": 27000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "total",
+"server": 27000,
+"subset": 27000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "not_started",
+"server": 259350,
+"subset": 259350
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "ready_to_invoice",
+"server": 27000,
+"subset": 27000
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"server": 7,
+"subset": 7
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 217350,
+"subset": 217350
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 217350,
+"subset": 217350
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 217350,
+"subset": 217350
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "not_started",
+"server": 217350,
+"subset": 217350
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "ready_to_invoice",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "estimates",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F0-advisor-options=advisors-present",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"options": 3,
+"present": 3,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R1"
+},
+{
+"check": "F0-customer-options=customers-present",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"options": 26,
+"present": 26,
+"missing": [],
+"extra": []
+},
+"spec": "S7-R2"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"server": 2,
+"subset": 2
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 12500,
+"subset": 12500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 26000,
+"subset": 26000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 39500,
+"subset": 39500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"server": 22,
+"subset": 22
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 514620,
+"subset": 514620
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 50000,
+"subset": 50000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 564620,
+"subset": 564620
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 3000,
+"subset": 3000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 567620,
+"subset": 567620
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"server": 4,
+"subset": 4
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 79700,
+"subset": 79700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "earned",
+"server": 79700,
+"subset": 79700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Completed",
+"col": "total",
+"server": 79700,
+"subset": 79700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"server": 48,
+"subset": 48
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 3400650,
+"subset": 3400650
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 303178,
+"subset": 303178
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "remaining",
+"server": 3703828,
+"subset": 3703828
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"tab": "Estimates",
+"col": "total",
+"server": 3703828,
+"subset": 3703828
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "not_started",
+"server": 564620,
+"subset": 564620
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_earned",
+"server": 26000,
+"subset": 26000
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "started_remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "ready_to_invoice",
+"server": 79700,
+"subset": 79700
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors",
+"fig": "estimates",
+"server": 3703828,
+"subset": 3703828
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 1,
+"subset": 1
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 12500,
+"subset": 12500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 12500,
+"subset": 12500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 26000,
+"subset": 26000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"server": 20,
+"subset": 20
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 414450,
+"subset": 414450
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 50000,
+"subset": 50000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 464450,
+"subset": 464450
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 464450,
+"subset": 464450
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"server": 1,
+"subset": 1
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "earned",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Completed",
+"col": "total",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"server": 37,
+"subset": 37
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 2407050,
+"subset": 2407050
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 295678,
+"subset": 295678
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 2702728,
+"subset": 2702728
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"tab": "Estimates",
+"col": "total",
+"server": 2702728,
+"subset": 2702728
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "not_started",
+"server": 464450,
+"subset": 464450
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_earned",
+"server": 12500,
+"subset": 12500
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "started_remaining",
+"server": 13500,
+"subset": 13500
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "ready_to_invoice",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "customers",
+"fig": "estimates",
+"server": 2702728,
+"subset": 2702728
+},
+"spec": "S5-R11"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"server": 0,
+"subset": 0
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedPartiallyCompleted",
+"col": "total",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"server": 7,
+"subset": 7
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "labor_remaining",
+"server": 101250,
+"subset": 101250
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "parts_remaining",
+"server": 50000,
+"subset": 50000
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "remaining",
+"server": 151250,
+"subset": 151250
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "ApprovedNotStarted",
+"col": "total",
+"server": 151250,
+"subset": 151250
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"server": 1,
+"subset": 1
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_earned",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "labor_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "earned",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Completed",
+"col": "total",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S6-R6"
+},
+{
+"check": "F1-filtered-rows=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"server": 15,
+"subset": 15
+},
+"spec": "S7-R1/R2/R12"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "labor_remaining",
+"server": 1938600,
+"subset": 1938600
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "parts_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "remaining",
+"server": 1938600,
+"subset": 1938600
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "adjustments",
+"server": 0,
+"subset": 0
+},
+"spec": "S6-R6"
+},
+{
+"check": "F2-filtered-totals=subset-sum",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"tab": "Estimates",
+"col": "total",
+"server": 1938600,
+"subset": 1938600
+},
+"spec": "S6-R6"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "not_started",
+"server": 151250,
+"subset": 151250
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_earned",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "started_remaining",
+"server": 0,
+"subset": 0
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "ready_to_invoice",
+"server": 2700,
+"subset": 2700
+},
+"spec": "S5-R11"
+},
+{
+"check": "F3-filtered-strip=subset",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"result": "PASS",
+"detail": {
+"kind": "advisors+customers",
+"fig": "estimates",
+"server": 1938600,
+"subset": 1938600
+},
+"spec": "S5-R11"
+}
+]

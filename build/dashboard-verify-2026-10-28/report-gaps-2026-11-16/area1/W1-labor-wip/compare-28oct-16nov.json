@@ -1,0 +1,251 @@
+{
+ "results-se.json": {
+  "28oct": {
+   "PASS": 119,
+   "FAIL": 25
+  },
+  "16nov": {
+   "PASS": 134,
+   "FAIL": 10
+  },
+  "changed_checks": [
+   {
+    "check": "S2-invoiced=Sales-total-invoiced-hours",
+    "28oct": {
+     "PASS": 29,
+     "FAIL": 7
+    },
+    "16nov": {
+     "PASS": 32,
+     "FAIL": 4
+    }
+   },
+   {
+    "check": "S3-clocked=TU-total(billable)",
+    "28oct": {
+     "FAIL": 18,
+     "PASS": 18
+    },
+    "16nov": {
+     "PASS": 30,
+     "FAIL": 6
+    }
+   }
+  ]
+ },
+ "results-ta.json": {
+  "28oct": {
+   "PASS": 119892,
+   "FAIL": 51
+  },
+  "16nov": {
+   "PASS": 118749,
+   "FAIL": 54
+  },
+  "changed_checks": [
+   {
+    "check": "TA1-footer=sum-of-rows(open clock present)-Internal",
+    "28oct": {
+     "FAIL": 4,
+     "PASS": 4
+    },
+    "16nov": {
+     "FAIL": 5,
+     "PASS": 3
+    }
+   },
+   {
+    "check": "TA1-footer=sum-of-rows(open clock present)-WO",
+    "28oct": {
+     "FAIL": 6,
+     "PASS": 2
+    },
+    "16nov": {
+     "FAIL": 8
+    }
+   }
+  ]
+ },
+ "results-tu.json": {
+  "28oct": {
+   "PASS": 2398,
+   "FAIL": 97
+  },
+  "16nov": {
+   "PASS": 1317,
+   "FAIL": 83
+  },
+  "changed_checks": [
+   {
+    "check": "T2b-row-has-time",
+    "28oct": {
+     "FAIL": 11,
+     "PASS": 305
+    },
+    "16nov": {
+     "PASS": 185
+    }
+   },
+   {
+    "check": "T3-daily-lost-labor-sum",
+    "28oct": {
+     "FAIL": 6,
+     "PASS": 208
+    },
+    "16nov": {
+     "PASS": 84,
+     "FAIL": 4
+    }
+   },
+   {
+    "check": "T3-daily-no-empty-day",
+    "28oct": {
+     "FAIL": 15,
+     "PASS": 199
+    },
+    "16nov": {
+     "PASS": 88
+    }
+   },
+   {
+    "check": "T3-daily-sum-internal_seconds",
+    "28oct": {
+     "FAIL": 6,
+     "PASS": 208
+    },
+    "16nov": {
+     "PASS": 84,
+     "FAIL": 4
+    }
+   },
+   {
+    "check": "T3-daily-sum-total_seconds",
+    "28oct": {
+     "FAIL": 21,
+     "PASS": 193
+    },
+    "16nov": {
+     "PASS": 72,
+     "FAIL": 16
+    }
+   },
+   {
+    "check": "T3-daily-sum-wo_seconds",
+    "28oct": {
+     "FAIL": 19,
+     "PASS": 195
+    },
+    "16nov": {
+     "PASS": 72,
+     "FAIL": 16
+    }
+   },
+   {
+    "check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+    "28oct": {
+     "FAIL": 19,
+     "PASS": 131
+    },
+    "16nov": {
+     "PASS": 79,
+     "FAIL": 43
+    }
+   }
+  ]
+ },
+ "results-tu2.json": {
+  "28oct": {
+   "PASS": 341,
+   "FAIL": 37
+  },
+  "16nov": {
+   "PASS": 199,
+   "FAIL": 4
+  },
+  "changed_checks": [
+   {
+    "check": "P1-all-locations=sum-of-locations",
+    "28oct": {
+     "PASS": 138,
+     "FAIL": 9
+    },
+    "16nov": {
+     "PASS": 82,
+     "FAIL": 4
+    }
+   },
+   {
+    "check": "P2-location-label",
+    "28oct": {
+     "PASS": 140,
+     "FAIL": 7
+    },
+    "16nov": {
+     "PASS": 86
+    }
+   },
+   {
+    "check": "R1-TU-total=TA-total(closed)",
+    "28oct": {
+     "PASS": 63,
+     "FAIL": 17
+    },
+    "16nov": {
+     "PASS": 31
+    }
+   },
+   {
+    "check": "R2-TU-total=TA-total(has-open-clock)",
+    "28oct": {
+     "FAIL": 4
+    },
+    "16nov": {}
+   }
+  ]
+ },
+ "results-wip-filters.json": {
+  "28oct": {
+   "PASS": 500,
+   "FAIL": 0
+  },
+  "16nov": {
+   "PASS": 500,
+   "FAIL": 0
+  },
+  "changed_checks": []
+ },
+ "results-wip-internal.json": {
+  "28oct": {
+   "PASS": 246643,
+   "FAIL": 0
+  },
+  "16nov": {
+   "PASS": 226368,
+   "FAIL": 0
+  },
+  "changed_checks": []
+ },
+ "results-wip-oracle.json": {
+  "28oct": {
+   "PASS": 4296,
+   "FAIL": 611
+  },
+  "16nov": {
+   "PASS": 4680,
+   "FAIL": 640
+  },
+  "changed_checks": [
+   {
+    "check": "?",
+    "28oct": {
+     "PASS": 4296,
+     "FAIL": 611
+    },
+    "16nov": {
+     "PASS": 4680,
+     "FAIL": 640
+    }
+   }
+  ]
+ }
+}

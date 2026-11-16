@@ -1,0 +1,734 @@
+[
+ {
+  "report": "work-in-progress",
+  "req": "S9-R1",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "The toolbar has a menu, opened from a three-dot button, holding the download options \"Download (PDF)\" and \"Download (CSV)\".",
+  "observed": [
+   "Download (PDF)",
+   "Download (CSV)"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "work-in-progress",
+  "req": "S9-R9",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\".",
+  "observed": [
+   "wip-2-report.pdf",
+   "wip-2-report.csv"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "work-in-progress",
+  "req": "S9-R11",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "On a successful download the user sees a success notification with the caption \"Data exported successfully.\"",
+  "observed": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "work-in-progress",
+  "req": "S9-R10a",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"As of: 2026-11-16\"",
+   "\"Tab: Approved - partially completed\"",
+   "\"Locations: Staging Heavy Duty - 9919\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "work-in-progress",
+  "req": "S9-R2",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.",
+  "observed": {
+   "csv": [
+    "WO #",
+    "Status",
+    "Customer",
+    "Unit",
+    "Advisor",
+    "Days Open",
+    "Earned",
+    "Remaining",
+    "Adjustments",
+    "Total"
+   ],
+   "screen": [
+    "WO #",
+    "Status",
+    "Customer",
+    "Asset",
+    "Advisor",
+    "Days Open",
+    "Earned",
+    "Remaining",
+    "Adjustments",
+    "Total"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "work-in-progress",
+  "req": "S9-R4",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "Both downloads include a Totals row matching the on-screen Totals row for the tab.",
+  "observed": {
+   "csv": [
+    "219351.82",
+    "211910.15",
+    "-3.13",
+    "431258.84"
+   ],
+   "screen": [
+    "219351.82",
+    "211910.15",
+    "-3.13",
+    "431258.84"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "work-in-progress",
+  "req": "S8-R7",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "The report remembers, in the user's browser, \u2026 column selection \u2026 and restores them on the user's next visit.",
+  "observed": null,
+  "verdict": "NOT VERIFIED",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "work-in-progress",
+  "req": "facts",
+  "source": "WIP spec, Confluence 703660034 v28 (24 Aug 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "files": [
+    "wip-2-report.pdf",
+    "wip-2-report.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "column_control": true,
+   "column_remembered": null,
+   "sortable_headers": 10,
+   "headers": 10,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": true,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "wip-2-report.csv": {
+     "header": [
+      "WO #",
+      "Status",
+      "Customer",
+      "Unit",
+      "Advisor",
+      "Days Open",
+      "Earned",
+      "Remaining",
+      "Adjustments",
+      "Total"
+     ],
+     "data_rows": 346,
+     "totals_row_numbers": [
+      "219351.82",
+      "211910.15",
+      "-3.13",
+      "431258.84"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"As of",
+      "\"Tab",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {
+    "wip-2-report.pdf": {
+     "pages": 24,
+     "has_Locations": true,
+     "has_total_word": true,
+     "first_line": "Work In Progress (Approved - partially completed)"
+    }
+   },
+   "screen_totals_numbers": [
+    "219351.82",
+    "211910.15",
+    "-3.13",
+    "431258.84"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "S7-R2..R4a",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "The menu has an option labeled \"Download Summary (PDF)\" / \"Download Expanded View (PDF)\" / \"Download Summary (CSV)\" / \"Download Expanded View (CSV)\".",
+  "observed": [
+   "Download Summary (PDF)",
+   "Download Summary (CSV)",
+   "Download Expanded View (PDF)",
+   "Download Expanded View (CSV)"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "S7-R12",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "The downloaded files are named \"Technician-Utilization-Summary.pdf\", \"Technician-Utilization-Expanded.pdf\", and \"technician-utilization.csv\".",
+  "observed": [
+   "Technician-Utilization-Summary.pdf",
+   "Technician-Utilization-Summary.csv",
+   "Technician-Utilization-Expanded.pdf",
+   "Technician-Utilization-Expanded.csv"
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "S8-R16",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "The icon-only Column Selection control carries an accessible name exposed to assistive technology.",
+  "observed": {
+   "aria": "Column Selection",
+   "text": "width_normal"
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "S8-R10",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "The active sort column header exposes its sort state to assistive technology (aria-sort = ascending/descending on the active header, none on the others).",
+  "observed": [
+   [
+    "keyboard_double_arrow_down Technician",
+    "ascending"
+   ],
+   [
+    "Total Hours",
+    null
+   ],
+   [
+    "WO Hours",
+    null
+   ],
+   [
+    "Internal Hours",
+    null
+   ],
+   [
+    "Utilization %",
+    null
+   ],
+   [
+    "Est. Lost Labor",
+    null
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "S2-R13",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "All six columns (Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor) are sortable by clicking the column header.",
+  "observed": {
+   "sortable": 0,
+   "headers": [
+    "keyboard_double_arrow_down Technician",
+    "Total Hours",
+    "WO Hours",
+    "Internal Hours",
+    "Utilization %",
+    "Est. Lost Labor"
+   ],
+   "note": "sortable = Quasar th.sortable class; a custom header may sort without it \u2014 see sorting clicks"
+  },
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "S7-R13a",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to",
+  "observed": "technician-utilization.csv not downloaded",
+  "verdict": "NOT VERIFIED",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "S10-R6",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "The report remembers the user's column selection in the browser \u2026 and restores it on the next visit",
+  "observed": null,
+  "verdict": "NOT VERIFIED",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-utilization",
+  "req": "facts",
+  "source": "TU spec, Confluence 641400833 v9 (13 Aug 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download Summary (PDF)",
+    "Download Summary (CSV)",
+    "Download Expanded View (PDF)",
+    "Download Expanded View (CSV)"
+   ],
+   "files": [
+    "Technician-Utilization-Summary.pdf",
+    "Technician-Utilization-Summary.csv",
+    "Technician-Utilization-Expanded.pdf",
+    "Technician-Utilization-Expanded.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close",
+    "check_circle Success Data exported successfully. Close 2"
+   ],
+   "column_control": true,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 6,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": true,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "Technician-Utilization-Summary.csv": {
+     "header": [
+      "Technician",
+      "Total Hours",
+      "WO Hours",
+      "Internal Hours",
+      "Utilization %",
+      "Est. Lost Labor"
+     ],
+     "data_rows": 1,
+     "totals_row_numbers": null,
+     "bom": false,
+     "preamble_keys": [
+      "\"Date Range",
+      "\"Locations"
+     ]
+    },
+    "Technician-Utilization-Expanded.csv": {
+     "header": [
+      "Technician",
+      "Total Hours",
+      "WO Hours",
+      "Internal Hours",
+      "Utilization %",
+      "Est. Lost Labor"
+     ],
+     "data_rows": 6,
+     "totals_row_numbers": null,
+     "bom": false,
+     "preamble_keys": [
+      "\"Date Range",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {
+    "Technician-Utilization-Summary.pdf": {
+     "pages": 1,
+     "has_Locations": true,
+     "has_total_word": true,
+     "first_line": "Technician Utilization"
+    },
+    "Technician-Utilization-Expanded.pdf": {
+     "pages": 1,
+     "has_Locations": true,
+     "has_total_word": true,
+     "first_line": "Technician Utilization"
+    }
+   },
+   "screen_totals_numbers": [
+    "0.40",
+    "0.40",
+    "0.00",
+    "100.00",
+    "0.00"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "shop-billing-efficiency",
+  "req": "\u2014",
+  "source": "NO SOURCE",
+  "quote": "No written spec found for this report's downloads, column chooser, sorting or accessibility (28 Oct searches; Jira-only sources describe calculations).",
+  "observed": {
+   "export_menu": [],
+   "files": [],
+   "toasts": [],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 4,
+   "headers": 4,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": false,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": null,
+   "error": null,
+   "csv": {},
+   "pdf": {},
+   "screen_totals_numbers": [
+    "0.40",
+    "358.60",
+    "358.20",
+    "89650.00"
+   ]
+  },
+  "verdict": "NO SOURCE (facts recorded)",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "punch-clock-activities",
+  "req": "\u2014",
+  "source": "NO SOURCE",
+  "quote": "No written spec found for this report's downloads, column chooser, sorting or accessibility (28 Oct searches; Jira-only sources describe calculations).",
+  "observed": {
+   "export_menu": [],
+   "files": [],
+   "toasts": [],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 5,
+   "headers": 13,
+   "unnamed_controls": 17,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": false,
+   "error": null,
+   "csv": {},
+   "pdf": {},
+   "screen_totals_numbers": [
+    "0.62",
+    "0.62"
+   ]
+  },
+  "verdict": "NO SOURCE (facts recorded)",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "/timesheets",
+  "req": "\u2014",
+  "source": "NO SOURCE",
+  "quote": "No written spec found for this report's downloads, column chooser, sorting or accessibility (28 Oct searches; Jira-only sources describe calculations).",
+  "observed": {
+   "export_menu": [],
+   "files": [],
+   "toasts": [],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 12,
+   "headers": 13,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": false,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": null,
+   "error": null,
+   "csv": {},
+   "pdf": {},
+   "screen_totals_numbers": []
+  },
+  "verdict": "NO SOURCE (facts recorded)",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-customer",
+  "req": "S14-R2/S15-R2",
+  "source": "SBC spec, Confluence 577634305 v22 (20 Oct 2026)",
+  "quote": "The two menu items read exactly \"Download Summary (CSV)\" and \"Download Expanded View (CSV).\" / \"Download Summary (PDF)\" and \"Download Expanded View (PDF).\"",
+  "observed": [
+   "Download Summary (PDF)",
+   "Download Expanded View (PDF)",
+   "Download Summary (CSV)",
+   "Download Expanded View (CSV)"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-customer",
+  "req": "S14-R14/S15-R6",
+  "source": "SBC spec, Confluence 577634305 v22 (20 Oct 2026)",
+  "quote": "the Summary CSV is sales-by-customer-summary-{range}.csv and the Expanded CSV is sales-by-customer-expanded-{range}.csv \u2026 This Month \u2192 this_month",
+  "observed": [
+   "sales-by-customer-summary.pdf",
+   "sales-by-customer-summary.csv",
+   "sales-by-customer-expanded.csv"
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-customer",
+  "req": "S13-R6",
+  "source": "SBC spec, Confluence 577634305 v22 (20 Oct 2026)",
+  "quote": "The Customer and Subtotal columns, and the chevron control column, are always present and do not appear in the toggle list.",
+  "observed": [
+   "Date",
+   "Labor Delta",
+   "Labor Invoiced",
+   "Labor Margin",
+   "Parts Invoiced",
+   "Parts Margin",
+   "Shop Supplies",
+   "Adjustments",
+   "Margin",
+   "Margin %"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-customer",
+  "req": "S13-R8",
+  "source": "SBC spec, Confluence 577634305 v22 (20 Oct 2026)",
+  "quote": "The user's column selection is remembered between visits \u2014 see Story 6.",
+  "observed": null,
+  "verdict": "NOT VERIFIED",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-customer",
+  "req": "S10-R1",
+  "source": "SBC spec, Confluence 577634305 v22 (20 Oct 2026)",
+  "quote": "Every column is sortable except the chevron column.",
+  "observed": [
+   [
+    "keyboard_double_arrow_down",
+    false
+   ],
+   [
+    "Customer",
+    false
+   ],
+   [
+    "Date",
+    false
+   ],
+   [
+    "Labor Delta",
+    false
+   ],
+   [
+    "Labor Invoiced",
+    false
+   ],
+   [
+    "Labor Margin",
+    false
+   ],
+   [
+    "Parts Invoiced",
+    false
+   ],
+   [
+    "Parts Margin",
+    false
+   ],
+   [
+    "Shop Supplies",
+    false
+   ],
+   [
+    "Adjustments",
+    false
+   ],
+   [
+    "Margin",
+    false
+   ],
+   [
+    "Margin %",
+    false
+   ],
+   [
+    "Subtotal",
+    false
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-customer",
+  "req": "S14-R13",
+  "source": "SBC spec, Confluence 577634305 v22 (20 Oct 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"Date Range: Nov 1, 2026 - Nov 16, 2026\"",
+   "\"Product Type: Parts & Service\"",
+   "\"Locations: Staging Heavy Duty - 9919\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-customer",
+  "req": "facts",
+  "source": "SBC spec, Confluence 577634305 v22 (20 Oct 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download Summary (PDF)",
+    "Download Expanded View (PDF)",
+    "Download Summary (CSV)",
+    "Download Expanded View (CSV)"
+   ],
+   "files": [
+    "sales-by-customer-summary.pdf",
+    "no file and no new tab within 45 s",
+    "sales-by-customer-summary.csv",
+    "sales-by-customer-expanded.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close",
+    "check_circle Success Data exported successfully. Close 2"
+   ],
+   "column_control": true,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 13,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": true,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "sales-by-customer-summary.csv": {
+     "header": [
+      "Customer",
+      "Labor Delta",
+      "Labor Invoiced",
+      "Labor Margin",
+      "Parts Invoiced",
+      "Parts Margin",
+      "Shop Supplies",
+      "Adjustments",
+      "Margin",
+      "Margin %",
+      "Subtotal"
+     ],
+     "data_rows": 132,
+     "totals_row_numbers": [
+      "358.33",
+      "54857.82",
+      "54830.54",
+      "1684.90",
+      "1440.23",
+      "5474.08",
+      "12.43",
+      "56283.20",
+      "99.52",
+      "62029.23"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"Date Range",
+      "\"Product Type",
+      "\"Locations"
+     ]
+    },
+    "sales-by-customer-expanded.csv": {
+     "header": [
+      "Customer",
+      "Asset",
+      "Invoice #",
+      "Date",
+      "Labor Delta",
+      "Labor Invoiced",
+      "Labor Margin",
+      "Parts Invoiced",
+      "Parts Margin",
+      "Shop Supplies",
+      "Adjustments",
+      "Margin",
+      "Margin %",
+      "Subtotal"
+     ],
+     "data_rows": 533,
+     "totals_row_numbers": [
+      "358.33",
+      "54857.82",
+      "54830.54",
+      "1684.90",
+      "1440.23",
+      "5474.08",
+      "12.43",
+      "56283.20",
+      "99.52",
+      "62029.23"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"Date Range",
+      "\"Product Type",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {
+    "sales-by-customer-summary.pdf": {
+     "pages": 6,
+     "has_Locations": true,
+     "has_total_word": false,
+     "first_line": "Sales By Customer Report"
+    }
+   },
+   "screen_totals_numbers": [
+    "358.33",
+    "54857.82",
+    "54830.54",
+    "1684.90",
+    "1440.23",
+    "5474.08",
+    "12.43",
+    "56283.20",
+    "99.52",
+    "62029.23"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ }
+]
