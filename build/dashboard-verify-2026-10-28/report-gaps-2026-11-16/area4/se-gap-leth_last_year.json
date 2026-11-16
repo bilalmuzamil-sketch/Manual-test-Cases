@@ -1,0 +1,230 @@
+{
+ "tag": "leth_last_year",
+ "location_id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+ "zone": "America/Edmonton",
+ "process_TZ": "America/Edmonton",
+ "window_local": [
+  "2025-01-01",
+  "2025-12-31"
+ ],
+ "window_utc": [
+  "2025-01-01T07:00:00.000Z",
+  "2026-01-01T06:59:59.999Z"
+ ],
+ "read_at_utc": "2026-11-16T06:48:54+00:00",
+ "http": {
+  "se": 200,
+  "ta": 200,
+  "tu": 200,
+  "clocks": 200,
+  "se_again": 200
+ },
+ "shop_efficiency": {
+  "collection": [],
+  "totals": {
+   "total_clocked_hours": 10762.85,
+   "total_invoiced_hours": 10568.85,
+   "difference": -194,
+   "efficiency": 98.2
+  }
+ },
+ "shop_efficiency_again": {
+  "collection": [],
+  "totals": {
+   "total_clocked_hours": 10762.85,
+   "total_invoiced_hours": 10568.85,
+   "difference": -194,
+   "efficiency": 98.2
+  }
+ },
+ "ta_footer": {
+  "totals": {
+   "workOrderHours": 9721.44,
+   "internalHours": 2274.43
+  }
+ },
+ "ta_rows": 13317,
+ "ta_row_keys": [
+  "clock_activity",
+  "clock_in",
+  "clock_out",
+  "comment",
+  "company_id",
+  "company_name",
+  "date",
+  "department_id",
+  "employee",
+  "employee_role_code",
+  "end_out_of_range",
+  "forgotten_clock_out",
+  "formatted_end_date_time",
+  "formatted_start_date_time",
+  "hours",
+  "id",
+  "internal_hours",
+  "is_active",
+  "line_id",
+  "modified_by",
+  "modified_date_time",
+  "staff_id",
+  "start_out_of_range",
+  "wo_hours",
+  "work_order",
+  "work_order_id"
+ ],
+ "tu_summary": {
+  "total_seconds": 31352508,
+  "wo_seconds": 27059004,
+  "internal_seconds": 4293504,
+  "est_lost_labor_cents": 19076277
+ },
+ "work_order_clocks": {
+  "wo_billable": 9391.5,
+  "wo_nonbillable": 323.35
+ },
+ "counts": {
+  "open": 1,
+  "wo_billable": 11298,
+  "wo_nonbillable": 361
+ },
+ "nonbillable_wo_clock_hours_by_staff_count": 2,
+ "decomposition": {
+  "reconciliation": {
+   "TU_total_h": 8709.03,
+   "TU_wo_h": 7516.39,
+   "TU_internal_h": 1192.64,
+   "SE_minus_TU_h": 2053.82,
+   "A_wo_clocks_flag1_by_staff_NOT_billable_now_h (in SE, not in TU)": 1881.48,
+   "B_wo_clocks_flag0_by_staff_billable_now_h (in TU, not in SE)": 0.0,
+   "C_dept_h_staff_billable_now (TU internal) minus server dept flag1 (SE - wo_flag1)": -178.72,
+   "check: A - B - C": 2060.2
+  },
+  "observed": {
+   "shop_efficiency_clocked": 10762.85,
+   "wo_clocks_flag1_h": 9391.5,
+   "wo_clocks_flag0_h": 323.35,
+   "wo_clocks_flag0_count": 361,
+   "wo_flag0_staff": 2,
+   "wo_flag0_staff_billable_now": 0,
+   "dept_closed_h_all_staff": 2274.4,
+   "dept_closed_h_staff_billable_now": 1192.63,
+   "server_dept_flag1_h = SE - wo_flag1": 1371.35,
+   "staff_listed": 1142,
+   "ta_rows_matched_clock_in_format": "10:30 PM"
+  },
+  "inferred_flag_history": {
+   "dept_flag1_h": 1365.88,
+   "dept_flag0_h": 889.37,
+   "dept_unknown_h": 19.15,
+   "dept_open_rows_h": 0,
+   "predicted_SE = wo_flag1 + dept_flag1": 10757.38
+  },
+  "wo_flag0_rows_sample": [
+   {
+    "wo": "S3-9145",
+    "start": "2025-08-07 14:31:09",
+    "end": "2025-08-07 19:19:38",
+    "hours": 4.81,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-6963",
+    "start": "2025-05-07 18:42:58",
+    "end": "2025-05-07 23:10:07",
+    "hours": 4.45,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4503",
+    "start": "2025-04-08 18:47:18",
+    "end": "2025-04-08 23:02:28",
+    "hours": 4.25,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4503",
+    "start": "2025-04-01 13:59:52",
+    "end": "2025-04-01 18:04:33",
+    "hours": 4.08,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4943",
+    "start": "2025-02-10 19:56:01",
+    "end": "2025-02-10 23:59:03",
+    "hours": 4.05,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-5480",
+    "start": "2025-04-22 18:47:31",
+    "end": "2025-04-22 22:48:59",
+    "hours": 4.02,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4503",
+    "start": "2025-04-09 13:58:32",
+    "end": "2025-04-09 17:57:43",
+    "hours": 3.99,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4503",
+    "start": "2025-02-25 19:58:10",
+    "end": "2025-02-25 23:57:05",
+    "hours": 3.98,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-5372",
+    "start": "2025-03-07 20:01:03",
+    "end": "2025-03-07 23:51:08",
+    "hours": 3.83,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-5192",
+    "start": "2025-02-24 15:16:46",
+    "end": "2025-02-24 18:56:43",
+    "hours": 3.67,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-5487",
+    "start": "2025-03-05 15:35:00",
+    "end": "2025-03-05 19:00:00",
+    "hours": 3.42,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4973",
+    "start": "2025-02-12 15:34:29",
+    "end": "2025-02-12 18:58:48",
+    "hours": 3.41,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4503",
+    "start": "2025-04-01 18:33:27",
+    "end": "2025-04-01 21:55:30",
+    "hours": 3.37,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4503",
+    "start": "2025-03-31 14:42:19",
+    "end": "2025-03-31 17:59:02",
+    "hours": 3.28,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S3-4503",
+    "start": "2025-03-31 19:03:10",
+    "end": "2025-03-31 22:09:42",
+    "hours": 3.11,
+    "staff_billable_now": 0
+   }
+  ]
+ }
+}

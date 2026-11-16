@@ -1,0 +1,230 @@
+{
+ "tag": "hd_this_year",
+ "location_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+ "zone": "Asia/Karachi",
+ "process_TZ": "Asia/Karachi",
+ "window_local": [
+  "2026-01-01",
+  "2026-11-16"
+ ],
+ "window_utc": [
+  "2025-12-31T19:00:00.000Z",
+  "2026-11-16T18:59:59.999Z"
+ ],
+ "read_at_utc": "2026-11-16T06:43:27+00:00",
+ "http": {
+  "se": 200,
+  "ta": 200,
+  "tu": 200,
+  "clocks": 200,
+  "se_again": 200
+ },
+ "shop_efficiency": {
+  "collection": [],
+  "totals": {
+   "total_clocked_hours": 14994.43,
+   "total_invoiced_hours": 15056.35,
+   "difference": 61.92,
+   "efficiency": 100.41
+  }
+ },
+ "shop_efficiency_again": {
+  "collection": [],
+  "totals": {
+   "total_clocked_hours": 14994.43,
+   "total_invoiced_hours": 15056.35,
+   "difference": 61.92,
+   "efficiency": 100.41
+  }
+ },
+ "ta_footer": {
+  "totals": {
+   "workOrderHours": 14149.66,
+   "internalHours": 2935.03
+  }
+ },
+ "ta_rows": 14693,
+ "ta_row_keys": [
+  "clock_activity",
+  "clock_in",
+  "clock_out",
+  "comment",
+  "company_id",
+  "company_name",
+  "date",
+  "department_id",
+  "employee",
+  "employee_role_code",
+  "end_out_of_range",
+  "forgotten_clock_out",
+  "formatted_end_date_time",
+  "formatted_start_date_time",
+  "hours",
+  "id",
+  "internal_hours",
+  "is_active",
+  "line_id",
+  "modified_by",
+  "modified_date_time",
+  "staff_id",
+  "start_out_of_range",
+  "wo_hours",
+  "work_order",
+  "work_order_id"
+ ],
+ "tu_summary": {
+  "total_seconds": 56754864,
+  "wo_seconds": 48413988,
+  "internal_seconds": 8340876,
+  "est_lost_labor_cents": 34742069
+ },
+ "work_order_clocks": {
+  "wo_billable": 13552.46,
+  "wo_nonbillable": 570.14
+ },
+ "counts": {
+  "open": 2,
+  "wo_billable": 12138,
+  "wo_nonbillable": 377
+ },
+ "nonbillable_wo_clock_hours_by_staff_count": 25,
+ "decomposition": {
+  "reconciliation": {
+   "TU_total_h": 15765.24,
+   "TU_wo_h": 13448.33,
+   "TU_internal_h": 2316.91,
+   "SE_minus_TU_h": -770.81,
+   "A_wo_clocks_flag1_by_staff_NOT_billable_now_h (in SE, not in TU)": 138.33,
+   "B_wo_clocks_flag0_by_staff_billable_now_h (in TU, not in SE)": 7.2,
+   "C_dept_h_staff_billable_now (TU internal) minus server dept flag1 (SE - wo_flag1)": 874.95,
+   "check: A - B - C": -743.82
+  },
+  "observed": {
+   "shop_efficiency_clocked": 14994.43,
+   "wo_clocks_flag1_h": 13552.46,
+   "wo_clocks_flag0_h": 570.14,
+   "wo_clocks_flag0_count": 377,
+   "wo_flag0_staff": 25,
+   "wo_flag0_staff_billable_now": 1,
+   "dept_closed_h_all_staff": 2935.03,
+   "dept_closed_h_staff_billable_now": 2316.92,
+   "server_dept_flag1_h = SE - wo_flag1": 1441.97,
+   "staff_listed": 1142,
+   "ta_rows_matched_clock_in_format": "11:27 PM"
+  },
+  "inferred_flag_history": {
+   "dept_flag1_h": 1413.98,
+   "dept_flag0_h": 909.44,
+   "dept_unknown_h": 611.61,
+   "dept_open_rows_h": 3672.89,
+   "predicted_SE = wo_flag1 + dept_flag1": 14966.44
+  },
+  "wo_flag0_rows_sample": [
+   {
+    "wo": "S2-31932",
+    "start": "2026-08-20 14:00:00",
+    "end": "2026-08-20 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-31757",
+    "start": "2026-08-20 14:00:00",
+    "end": "2026-08-20 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-31827",
+    "start": "2026-08-20 14:00:00",
+    "end": "2026-08-20 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-31897",
+    "start": "2026-08-20 14:00:00",
+    "end": "2026-08-20 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-31792",
+    "start": "2026-08-20 14:00:00",
+    "end": "2026-08-20 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-31862",
+    "start": "2026-08-20 14:00:00",
+    "end": "2026-08-20 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-31961",
+    "start": "2026-08-20 14:00:00",
+    "end": "2026-08-20 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32105",
+    "start": "2026-08-23 14:00:00",
+    "end": "2026-08-23 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32076",
+    "start": "2026-08-23 14:00:00",
+    "end": "2026-08-23 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32162",
+    "start": "2026-08-23 14:00:00",
+    "end": "2026-08-23 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32133",
+    "start": "2026-08-23 14:00:00",
+    "end": "2026-08-23 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32214",
+    "start": "2026-08-23 14:00:00",
+    "end": "2026-08-23 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32188",
+    "start": "2026-08-23 14:00:00",
+    "end": "2026-08-23 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32298",
+    "start": "2026-08-24 14:00:00",
+    "end": "2026-08-24 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   },
+   {
+    "wo": "S2-32659",
+    "start": "2026-08-25 14:00:00",
+    "end": "2026-08-25 17:00:00",
+    "hours": 3.0,
+    "staff_billable_now": 0
+   }
+  ]
+ }
+}
