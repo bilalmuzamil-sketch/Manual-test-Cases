@@ -1,0 +1,12 @@
+<!-- DRAFT — posted only after the ticket is filed (Rule 103). Real mention:
+<span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span>. Embed D1-annotated.png in this comment too. -->
+<p><span data-type="mention" data-user-id="712020:aa00b8d6-a71f-4259-8919-82a304227c20">@Chris Ward</span> thank you for the quick ruling on the Summary PDFs in SV-12831. The same thing happens on the other four aging PDFs, which that ticket does not cover.</p>
+
+<p><strong>What happens today:</strong> when a report contains a customer or vendor whose name is one very long word, the downloaded PDF of A/R Aging Detail leaves out Due Date, Amount and Open Balance; A/P Aging Detail and A/P Unpaid Invoices leave out Amount and Open Balance; A/R Aging Collection does the same when one location is chosen. For example, A/R Aging Detail as of 11/16/2026 shows Totals $773,664.78 / $743,791.80 on screen, but the 162-page PDF prints no amount at all. The screen and the CSV are correct.</p>
+
+<p><strong>What we understand should happen:</strong> every column prints and the long name wraps in its own column. The PRD (947650561 v13, S3-R7b) says each "Total for &lt;name&gt;" row in these four PDFs carries "its Amount and Open Balance", and your comment on SV-12831 says "every column should always print on the page".</p>
+
+<p><strong>Picture:</strong> (1) the PDF headings stop at Customer Full Name; (2) no Due Date, Amount or Open Balance; (3) the same report on screen.</p>
+<p><img src="D1-annotated.png" alt="A/R Aging Detail PDF without its money columns, next to the screen" width="900"></p>
+
+<p>Could you confirm: <strong>fix it, or leave it as it is?</strong></p>

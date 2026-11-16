@@ -9,7 +9,7 @@
    "browser_offset_min": 300,
    "app_timezone_key": "\"Asia/Karachi\"",
    "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
-   "at_utc": "2026-11-16T09:38:28.051Z",
+   "at_utc": "2026-11-16T09:43:25.401Z",
    "machine_offset_min": 300,
    "offsets_agree": true,
    "all_zones_match": true,
@@ -24,51 +24,24 @@
    "browser_offset_min": 300,
    "app_timezone_key": "\"Asia/Karachi\"",
    "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
-   "at_utc": "2026-11-16T09:42:54.190Z",
+   "at_utc": "2026-11-16T09:46:38.658Z",
    "machine_offset_min": 300,
    "offsets_agree": true,
    "all_zones_match": true,
    "app_version": "v26.45.4-f3d3d2d"
   },
   "counts": {
-   "tile Invoiced Tech Hrs = report total:pass": 10,
-   "tile Clocked = report total:pass": 10,
+   "tile Invoiced Tech Hrs = report total:pass": 11,
+   "tile Clocked = report total:pass": 11,
    "nothing clocked: tile % blank:pass": 2,
-   "same technicians on tile table and report:pass": 10,
-   "tile % = Invoiced / Clocked x 100 (S3-R2):pass": 8,
-   "technician row: tile = report:pass": 94,
-   "report row = sum of its lines:pass": 94,
-   "SCREEN tile shows the Last 12 Months figures:fail": 1,
-   "SCREEN report rows drawn at Last 12 Months:pass": 1
+   "same technicians on tile table and report:pass": 11,
+   "tile % = Invoiced / Clocked x 100 (S3-R2):pass": 9,
+   "technician row: tile = report:pass": 115,
+   "report row = sum of its lines:pass": 115,
+   "SCREEN tile at Last 12 Months shows the headline % it was sent:pass": 1,
+   "SCREEN tile table: every row drawn = the figures it was sent (rows below the panel fold not read):pass": 1
   },
-  "failures": [
-   [
-    "SCREEN tile shows the Last 12 Months figures",
-    [
-     "event\nThis Month\nexpand_more",
-     "4000.00%",
-     {
-      "value": 96.37,
-      "hoursBilled": 14493.16,
-      "hoursLogged": 15039.65,
-      "sparkline": [
-       94.15,
-       89.1,
-       95.8,
-       96.64,
-       99.93,
-       98.41,
-       101.15,
-       92.61,
-       97.19,
-       96.94,
-       107.8,
-       4000
-      ]
-     }
-    ]
-   ]
-  ],
+  "failures": [],
   "ranges": {
    "f2_window_25_28_oct": {
     "from": "2026-10-25",
@@ -1018,6 +991,285 @@
      ]
     ]
    },
+   "screen-last_12_months": {
+    "from": "2025-12-01",
+    "to": "2026-11-16",
+    "tile": {
+     "value": 96.37,
+     "hoursBilled": 14493.16,
+     "hoursLogged": 15039.65,
+     "sparkline": [
+      94.15,
+      89.1,
+      95.8,
+      96.64,
+      99.93,
+      98.41,
+      101.15,
+      92.61,
+      97.19,
+      96.94,
+      107.8,
+      4000
+     ]
+    },
+    "tile_table": [
+     [
+      "Admin Shopview",
+      14.05,
+      5.03,
+      279.32
+     ],
+     [
+      "Allison Hughes",
+      161.64,
+      188.55,
+      85.73
+     ],
+     [
+      "Brandi Smith",
+      95.24,
+      74.31,
+      128.17
+     ],
+     [
+      "Cameron Johnston",
+      930.19,
+      1054.45,
+      88.22
+     ],
+     [
+      "Carol Ramos",
+      380.9,
+      470.55,
+      80.95
+     ],
+     [
+      "Daniel Montoya",
+      1495.63,
+      1506.54,
+      99.28
+     ],
+     [
+      "Darrell Martinez",
+      1390.42,
+      1361,
+      102.16
+     ],
+     [
+      "David Combs",
+      1924.53,
+      1938.42,
+      99.28
+     ],
+     [
+      "Haley Brown",
+      164.43,
+      165.5,
+      99.35
+     ],
+     [
+      "Jacqueline Calderon",
+      501.83,
+      666.38,
+      75.31
+     ],
+     [
+      "Katherine Collins",
+      193.07,
+      193.5,
+      99.78
+     ],
+     [
+      "Kenneth Oconnor",
+      952.71,
+      1081.7,
+      88.08
+     ],
+     [
+      "Mary Parker",
+      75.06,
+      77.56,
+      96.78
+     ],
+     [
+      "Melanie Garner",
+      1760.47,
+      1637.17,
+      107.53
+     ],
+     [
+      "Michael Newman",
+      259.52,
+      266.17,
+      97.5
+     ],
+     [
+      "Monica Brady",
+      1256.66,
+      1344.33,
+      93.48
+     ],
+     [
+      "Monique Turner",
+      1497.22,
+      1442.08,
+      103.82
+     ],
+     [
+      "Nebojsa Custom Tech",
+      120,
+      120,
+      100
+     ],
+     [
+      "Nebojsa Glavinic",
+      4.8,
+      0,
+      null
+     ],
+     [
+      "Stacey Pratt",
+      1310.29,
+      1441.91,
+      90.87
+     ],
+     [
+      "Wes Hover",
+      4.5,
+      4.5,
+      100
+     ]
+    ],
+    "report": [
+     [
+      "Admin Shopview",
+      14.05,
+      5.03,
+      279.32
+     ],
+     [
+      "Nebojsa Glavinic",
+      4.8,
+      0,
+      0
+     ],
+     [
+      "Haley Brown",
+      164.43,
+      165.5,
+      99.35
+     ],
+     [
+      "Wes Hover",
+      4.5,
+      4.5,
+      100
+     ],
+     [
+      "Nebojsa Custom Tech",
+      120,
+      120,
+      100
+     ],
+     [
+      "Katherine Collins",
+      193.07,
+      193.5,
+      99.78
+     ],
+     [
+      "Daniel Montoya",
+      1495.63,
+      1506.54,
+      99.28
+     ],
+     [
+      "Kenneth Oconnor",
+      952.71,
+      1081.7,
+      88.08
+     ],
+     [
+      "Carol Ramos",
+      380.9,
+      470.55,
+      80.95
+     ],
+     [
+      "Brandi Smith",
+      95.24,
+      74.31,
+      128.17
+     ],
+     [
+      "Melanie Garner",
+      1760.47,
+      1637.17,
+      107.53
+     ],
+     [
+      "Monica Brady",
+      1256.66,
+      1344.33,
+      93.48
+     ],
+     [
+      "Cameron Johnston",
+      930.19,
+      1054.45,
+      88.22
+     ],
+     [
+      "Jacqueline Calderon",
+      501.83,
+      666.38,
+      75.31
+     ],
+     [
+      "Stacey Pratt",
+      1310.29,
+      1441.91,
+      90.87
+     ],
+     [
+      "Monique Turner",
+      1497.22,
+      1442.08,
+      103.82
+     ],
+     [
+      "David Combs",
+      1924.53,
+      1938.42,
+      99.28
+     ],
+     [
+      "Darrell Martinez",
+      1390.42,
+      1361,
+      102.16
+     ],
+     [
+      "Michael Newman",
+      259.52,
+      266.17,
+      97.5
+     ],
+     [
+      "Allison Hughes",
+      161.64,
+      188.55,
+      85.73
+     ],
+     [
+      "Mary Parker",
+      75.06,
+      77.56,
+      96.78
+     ]
+    ]
+   },
    "this_month": {
     "from": "2026-11-01",
     "to": "2026-11-16",
@@ -1475,9 +1727,8 @@
     "this-week",
     "last-week"
    ],
-   "preset_err": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-",
-   "tile_range_after": "event\nThis Month\nexpand_more",
-   "tile_text": "4000.00%",
+   "tile_range_after": "event\nLast 12 Months\nexpand_more",
+   "tile_text": "96.37%",
    "detail_heads": [
     "Tech\narrow_drop_up",
     "arrow_drop_up\nClocked Hrs",
@@ -1490,15 +1741,63 @@
     ],
     [
      "Admin Shopview",
-     "0.27",
-     "6.00",
-     "2222.22%"
+     "5.03",
+     "14.05",
+     "279.32%"
     ],
     [
-     "Nebojsa Glavinic",
-     "0.00",
-     "4.80",
-     "n/a"
+     "Brandi Smith",
+     "74.31",
+     "95.24",
+     "128.17%"
+    ],
+    [
+     "Melanie Garner",
+     "1637.17",
+     "1760.47",
+     "107.53%"
+    ],
+    [
+     "Monique Turner",
+     "1442.08",
+     "1497.22",
+     "103.82%"
+    ],
+    [
+     "Darrell Martinez",
+     "1361.00",
+     "1390.42",
+     "102.16%"
+    ],
+    [
+     "Nebojsa Custom Tech",
+     "120.00",
+     "120.00",
+     "100.00%"
+    ],
+    [
+     "Wes Hover",
+     "4.50",
+     "4.50",
+     "100.00%"
+    ],
+    [
+     "Katherine Collins",
+     "193.50",
+     "193.07",
+     "99.78%"
+    ],
+    [
+     "Haley Brown",
+     "165.50",
+     "164.43",
+     "99.35%"
+    ],
+    [
+     "Daniel Montoya",
+     "1506.54",
+     "1495.63",
+     "99.28%"
     ],
     [
      ""
@@ -1533,58 +1832,50 @@
      "n_perf": 0
     },
     {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-11-01&to=2026-11-16&group=day",
+     "u": "/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=topCustomers&from=2025-12-01&to=2026-11-16&group=month",
      "kpi": {
-      "value": 4000,
-      "hoursBilled": 10.8,
-      "hoursLogged": 0.27,
+      "value": 96.37,
+      "hoursBilled": 14493.16,
+      "hoursLogged": 15039.65,
       "sparkline": [
-       null,
-       null,
-       null,
-       400,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       10000,
-       null,
-       null
+       94.15,
+       89.1,
+       95.8,
+       96.64,
+       99.93,
+       98.41,
+       101.15,
+       92.61,
+       97.19,
+       96.94,
+       107.8,
+       4000
       ]
      },
      "n_perf": 0
     },
     {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=invoicesKpi&reports[]=tec",
+     "u": "/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=topCustomers&reports[]=techEfficiencyByTechSeries&from=2025-12-01&to=2026-11-16&group=month",
      "kpi": {
-      "value": 4000,
-      "hoursBilled": 10.8,
-      "hoursLogged": 0.27,
+      "value": 96.37,
+      "hoursBilled": 14493.16,
+      "hoursLogged": 15039.65,
       "sparkline": [
-       null,
-       null,
-       null,
-       400,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       10000,
-       null,
-       null
+       94.15,
+       89.1,
+       95.8,
+       96.64,
+       99.93,
+       98.41,
+       101.15,
+       92.61,
+       97.19,
+       96.94,
+       107.8,
+       4000
       ]
      },
-     "n_perf": 2
+     "n_perf": 21
     }
    ],
    "report_range_before": null,
@@ -1638,36 +1929,8 @@
   }
  },
  "LE": {
-  "rule99_start": {
-   "location": "Staging Lethbridge - 4310",
-   "location_zone": "America/Edmonton",
-   "session_change_location_zone": "America/Edmonton",
-   "process_TZ": "America/Edmonton",
-   "browser_zone": "America/Edmonton",
-   "browser_offset_min": -420,
-   "app_timezone_key": "\"America/Edmonton\"",
-   "app_location_key": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
-   "at_utc": "2026-11-16T09:38:20.641Z",
-   "machine_offset_min": -360,
-   "offsets_agree": false,
-   "all_zones_match": true,
-   "app_version": "v26.45.4-f3d3d2d"
-  },
-  "rule99_end": {
-   "location": "Staging Lethbridge - 4310",
-   "location_zone": "America/Edmonton",
-   "session_change_location_zone": "America/Edmonton",
-   "process_TZ": "America/Edmonton",
-   "browser_zone": "America/Edmonton",
-   "browser_offset_min": -420,
-   "app_timezone_key": "\"America/Edmonton\"",
-   "app_location_key": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
-   "at_utc": "2026-11-16T09:42:41.666Z",
-   "machine_offset_min": -360,
-   "offsets_agree": false,
-   "all_zones_match": true,
-   "app_version": "v26.45.4-f3d3d2d"
-  },
+  "rule99_start": null,
+  "rule99_end": null,
   "counts": {
    "tile Invoiced Tech Hrs = report total:pass": 10,
    "tile Clocked = report total:pass": 10,
@@ -1675,38 +1938,9 @@
    "same technicians on tile table and report:pass": 10,
    "tile % = Invoiced / Clocked x 100 (S3-R2):pass": 8,
    "technician row: tile = report:pass": 75,
-   "report row = sum of its lines:pass": 75,
-   "SCREEN tile shows the Last 12 Months figures:fail": 1,
-   "SCREEN report rows drawn at Last 12 Months:pass": 1
+   "report row = sum of its lines:pass": 75
   },
-  "failures": [
-   [
-    "SCREEN tile shows the Last 12 Months figures",
-    [
-     "event\nThis Month\nexpand_more",
-     "100.00%",
-     {
-      "value": 111.14,
-      "hoursBilled": 7418.05,
-      "hoursLogged": 6674.45,
-      "sparkline": [
-       109.56,
-       120.29,
-       122.69,
-       108.24,
-       112.19,
-       110.98,
-       108.41,
-       108.63,
-       111.6,
-       97.17,
-       100,
-       100
-      ]
-     }
-    ]
-   ]
-  ],
+  "failures": [],
   "ranges": {
    "f2_window_25_28_oct": {
     "from": "2026-10-25",
@@ -2872,248 +3106,18 @@
    }
   },
   "s1_38198_lines": [],
-  "screen": {
-   "tile_range_before": "event\nThis Month\nexpand_more",
-   "presets": [
-    "last-12-months",
-    "this-year",
-    "last-year",
-    "this-quarter",
-    "last-quarter",
-    "this-month",
-    "last-month",
-    "this-week",
-    "last-week"
-   ],
-   "preset_err": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-",
-   "tile_range_after": "event\nThis Month\nexpand_more",
-   "tile_text": "100.00%",
-   "detail_heads": [
-    "Tech\narrow_drop_up",
-    "arrow_drop_up\nClocked Hrs",
-    "arrow_drop_up\nInvoiced Tech Hrs",
-    "arrow_drop_up\nEfficiency"
-   ],
-   "detail_rows": [
-    [
-     ""
-    ],
-    [
-     "Haley Brown",
-     "33.00",
-     "33.00",
-     "100.00%"
-    ],
-    [
-     "Wes Hover",
-     "27.00",
-     "27.00",
-     "100.00%"
-    ],
-    [
-     ""
-    ]
-   ],
-   "dash_requests": [
-    {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-11-01&to=2026-11-16&group=day",
-     "kpi": {
-      "value": 100,
-      "hoursBilled": 60,
-      "hoursLogged": 60,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       100,
-       null,
-       100,
-       100,
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     "n_perf": 0
-    },
-    {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-11-01&to=2026-11-16&group=day",
-     "kpi": {
-      "value": 100,
-      "hoursBilled": 60,
-      "hoursLogged": 60,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       100,
-       null,
-       100,
-       100,
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     "n_perf": 0
-    },
-    {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=invoicesKpi&reports[]=tec",
-     "kpi": {
-      "value": 100,
-      "hoursBilled": 60,
-      "hoursLogged": 60,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       100,
-       null,
-       100,
-       100,
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     "n_perf": 2
-    }
-   ],
-   "report_range_before": null,
-   "report_preset_err": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-",
-   "report_range_after": null,
-   "report_rows": [
-    [
-     "expand_more\nHaley Brown",
-     "",
-     "",
-     "",
-     "33",
-     "33",
-     "0",
-     "100%"
-    ],
-    [
-     "expand_more\nWes Hover",
-     "",
-     "",
-     "",
-     "27",
-     "27",
-     "0",
-     "100%"
-    ],
-    [
-     "Totals",
-     "",
-     "",
-     "",
-     "60",
-     "60",
-     "0",
-     "100%"
-    ]
-   ],
-   "report_heads": [
-    "expand_more\nDate",
-    "Invoice",
-    "Customer",
-    "WO Line",
-    "arrow_drop_up\nClocked Hrs",
-    "arrow_drop_up\nInvoiced Tech Hrs",
-    "arrow_drop_up\nHrs Profit",
-    "arrow_drop_up\nEfficiency"
-   ],
-   "report_requests": [
-    "/reporting/technician-efficiency/this_month?range=this_month"
-   ]
-  }
+  "screen": null
  },
  "QB": {
-  "rule99_start": {
-   "location": "QB Location",
-   "location_zone": "America/Vancouver",
-   "session_change_location_zone": "America/Vancouver",
-   "process_TZ": "America/Vancouver",
-   "browser_zone": "America/Vancouver",
-   "browser_offset_min": -480,
-   "app_timezone_key": "\"America/Vancouver\"",
-   "app_location_key": "\"25a0d576-b371-4b82-bef4-41ba977f31c2\"",
-   "at_utc": "2026-11-16T09:35:21.807Z",
-   "machine_offset_min": -420,
-   "offsets_agree": false,
-   "all_zones_match": true,
-   "app_version": "v26.45.4-f3d3d2d"
-  },
-  "rule99_end": {
-   "location": "QB Location",
-   "location_zone": "America/Vancouver",
-   "session_change_location_zone": "America/Vancouver",
-   "process_TZ": "America/Vancouver",
-   "browser_zone": "America/Vancouver",
-   "browser_offset_min": -480,
-   "app_timezone_key": "\"America/Vancouver\"",
-   "app_location_key": "\"25a0d576-b371-4b82-bef4-41ba977f31c2\"",
-   "at_utc": "2026-11-16T09:39:22.738Z",
-   "machine_offset_min": -420,
-   "offsets_agree": false,
-   "all_zones_match": true,
-   "app_version": "v26.45.4-f3d3d2d"
-  },
+  "rule99_start": null,
+  "rule99_end": null,
   "counts": {
    "tile Invoiced Tech Hrs = report total:pass": 10,
    "tile Clocked = report total:pass": 10,
    "nothing clocked: tile % blank:pass": 10,
-   "same technicians on tile table and report:pass": 10,
-   "SCREEN tile shows the Last 12 Months figures:fail": 1,
-   "SCREEN report rows drawn at Last 12 Months:pass": 1
+   "same technicians on tile table and report:pass": 10
   },
-  "failures": [
-   [
-    "SCREEN tile shows the Last 12 Months figures",
-    [
-     "event\nThis Month\nexpand_more",
-     "-",
-     {
-      "value": null,
-      "hoursBilled": 0,
-      "hoursLogged": 0,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null
-      ]
-     }
-    ]
-   ]
-  ],
+  "failures": [],
   "ranges": {
    "f2_window_25_28_oct": {
     "from": "2026-10-25",
@@ -3363,137 +3367,7 @@
    }
   },
   "s1_38198_lines": [],
-  "screen": {
-   "tile_range_before": "event\nThis Month\nexpand_more",
-   "presets": [
-    "last-12-months",
-    "this-year",
-    "last-year",
-    "this-quarter",
-    "last-quarter",
-    "this-month",
-    "last-month",
-    "this-week",
-    "last-week"
-   ],
-   "preset_err": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-",
-   "tile_range_after": "event\nThis Month\nexpand_more",
-   "tile_text": "-",
-   "detail_heads": [
-    "Tech\narrow_drop_up",
-    "arrow_drop_up\nClocked Hrs",
-    "arrow_drop_up\nInvoiced Tech Hrs",
-    "arrow_drop_up\nEfficiency"
-   ],
-   "detail_rows": [
-    [
-     ""
-    ],
-    [
-     ""
-    ]
-   ],
-   "dash_requests": [
-    {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-11-01&to=2026-11-16&group=day",
-     "kpi": {
-      "value": null,
-      "hoursBilled": 0,
-      "hoursLogged": 0,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     "n_perf": 0
-    },
-    {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-11-01&to=2026-11-16&group=day",
-     "kpi": {
-      "value": null,
-      "hoursBilled": 0,
-      "hoursLogged": 0,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     "n_perf": 0
-    },
-    {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=invoicesKpi&reports[]=tec",
-     "kpi": {
-      "value": null,
-      "hoursBilled": 0,
-      "hoursLogged": 0,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null
-      ]
-     },
-     "n_perf": 0
-    }
-   ],
-   "report_range_before": null,
-   "report_preset_err": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-",
-   "report_range_after": null,
-   "report_rows": [],
-   "report_heads": [
-    "Date",
-    "Invoice",
-    "Customer",
-    "WO Line",
-    "arrow_drop_up\nClocked Hrs",
-    "arrow_drop_up\nInvoiced Tech Hrs",
-    "arrow_drop_up\nHrs Profit",
-    "arrow_drop_up\nEfficiency"
-   ],
-   "report_requests": [
-    "/reporting/technician-efficiency/this_month?range=this_month"
-   ]
-  }
+  "screen": null
  },
  "DVI": {
   "rule99_start": {
@@ -3505,7 +3379,7 @@
    "browser_offset_min": 720,
    "app_timezone_key": "\"Pacific/Fiji\"",
    "app_location_key": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
-   "at_utc": "2026-11-16T09:35:22.004Z",
+   "at_utc": "2026-11-16T09:43:34.373Z",
    "machine_offset_min": 720,
    "offsets_agree": true,
    "all_zones_match": true,
@@ -3520,60 +3394,29 @@
    "browser_offset_min": 720,
    "app_timezone_key": "\"Pacific/Fiji\"",
    "app_location_key": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
-   "at_utc": "2026-11-16T09:39:29.996Z",
+   "at_utc": "2026-11-16T09:46:45.294Z",
    "machine_offset_min": 720,
    "offsets_agree": true,
    "all_zones_match": true,
    "app_version": "v26.45.4-f3d3d2d"
   },
   "counts": {
-   "tile Invoiced Tech Hrs = report total:pass": 10,
-   "tile Clocked = report total:pass": 10,
+   "tile Invoiced Tech Hrs = report total:pass": 11,
+   "tile Clocked = report total:pass": 11,
    "nothing clocked: tile % blank:pass": 6,
-   "same technicians on tile table and report:pass": 10,
-   "tile % = Invoiced / Clocked x 100 (S3-R2):pass": 4,
-   "technician row: tile = report:pass": 12,
-   "report row = sum of its lines:pass": 12,
+   "same technicians on tile table and report:pass": 11,
+   "tile % = Invoiced / Clocked x 100 (S3-R2):pass": 5,
+   "technician row: tile = report:pass": 15,
+   "report row = sum of its lines:pass": 15,
    "SV-11931 example: S1-38198 contributes only its billed line 1 (line 2 was declined):pass": 1,
    "SV-11931 Expected: Fabian Bonjean 1.00 / 1.00 / 100 % on the tile (Last 12 Months):pass": 1,
-   "SCREEN tile shows the Last 12 Months figures:fail": 1,
-   "SCREEN report rows drawn at Last 12 Months:fail": 1
+   "SCREEN tile at Last 12 Months shows the headline % it was sent:pass": 1,
+   "SCREEN tile table: every row drawn = the figures it was sent (rows below the panel fold not read):pass": 1,
+   "SCREEN SV-11931 example: Fabian Bonjean 1.00 / 1.00 / 100.00% on the tile:pass": 1,
+   "SCREEN report at Last 12 months: Totals = tile headline (Clocked, Invoiced Tech Hrs, %):pass": 1,
+   "SCREEN SV-11931 example: Fabian Bonjean 1 / 1 / 100% in the report:pass": 1
   },
-  "failures": [
-   [
-    "SCREEN tile shows the Last 12 Months figures",
-    [
-     "event\nThis Month\nexpand_more",
-     "-",
-     {
-      "value": 123.76,
-      "hoursBilled": 5,
-      "hoursLogged": 4.04,
-      "sparkline": [
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       null,
-       123.76,
-       null
-      ]
-     }
-    ]
-   ],
-   [
-    "SCREEN report rows drawn at Last 12 Months",
-    [
-     null,
-     []
-    ]
-   ]
-  ],
+  "failures": [],
   "ranges": {
    "f2_window_25_28_oct": {
     "from": "2026-10-25",
@@ -3809,6 +3652,69 @@
     "tile_table": [],
     "report": []
    },
+   "screen-last_12_months": {
+    "from": "2025-12-01",
+    "to": "2026-11-16",
+    "tile": {
+     "value": 123.76,
+     "hoursBilled": 5,
+     "hoursLogged": 4.04,
+     "sparkline": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      123.76,
+      null
+     ]
+    },
+    "tile_table": [
+     [
+      "Admin Shopview",
+      1,
+      0.04,
+      2500
+     ],
+     [
+      "Esther Howard",
+      3,
+      3,
+      100
+     ],
+     [
+      "Fabian Bonjean",
+      1,
+      1,
+      100
+     ]
+    ],
+    "report": [
+     [
+      "Esther Howard",
+      3,
+      3,
+      100
+     ],
+     [
+      "Admin Shopview",
+      1,
+      0.04,
+      2500
+     ],
+     [
+      "Fabian Bonjean",
+      1,
+      1,
+      100
+     ]
+    ]
+   },
    "this_month": {
     "from": "2026-11-01",
     "to": "2026-11-16",
@@ -3992,6 +3898,14 @@
     1
    ],
    [
+    "screen-last_12_months",
+    "Fabian Bonjean",
+    "Test DVI Line",
+    1,
+    1,
+    1
+   ],
+   [
     "this_quarter",
     "Fabian Bonjean",
     "Test DVI Line",
@@ -4021,9 +3935,8 @@
     "this-week",
     "last-week"
    ],
-   "preset_err": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-",
-   "tile_range_after": "event\nThis Month\nexpand_more",
-   "tile_text": "-",
+   "tile_range_after": "event\nLast 12 Months\nexpand_more",
+   "tile_text": "123.76%",
    "detail_heads": [
     "Tech\narrow_drop_up",
     "arrow_drop_up\nClocked Hrs",
@@ -4033,6 +3946,24 @@
    "detail_rows": [
     [
      ""
+    ],
+    [
+     "Admin Shopview",
+     "0.04",
+     "1.00",
+     "2500.00%"
+    ],
+    [
+     "Esther Howard",
+     "3.00",
+     "3.00",
+     "100.00%"
+    ],
+    [
+     "Fabian Bonjean",
+     "1.00",
+     "1.00",
+     "100.00%"
     ],
     [
      ""
@@ -4067,11 +3998,11 @@
      "n_perf": 0
     },
     {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=invoicesKpi&from=2026-11-01&to=2026-11-16&group=day",
+     "u": "/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=topCustomers&from=2025-12-01&to=2026-11-16&group=month",
      "kpi": {
-      "value": null,
-      "hoursBilled": 0,
-      "hoursLogged": 0,
+      "value": 123.76,
+      "hoursBilled": 5,
+      "hoursLogged": 4.04,
       "sparkline": [
        null,
        null,
@@ -4083,22 +4014,18 @@
        null,
        null,
        null,
-       null,
-       null,
-       null,
-       null,
-       null,
+       123.76,
        null
       ]
      },
      "n_perf": 0
     },
     {
-     "u": "/dashboard/reports?reports[]=revenueKpi&reports[]=billingEfficiencyKpi&reports[]=techEfficiencyKpi&reports[]=techUtilizationKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=invoicesKpi&reports[]=tec",
+     "u": "/dashboard/reports?reports[]=techEfficiencyKpi&reports[]=techEfficiencySeries&reports[]=techPerformance&reports[]=topCustomers&reports[]=techEfficiencyByTechSeries&from=2025-12-01&to=2026-11-16&group=month",
      "kpi": {
-      "value": null,
-      "hoursBilled": 0,
-      "hoursLogged": 0,
+      "value": 123.76,
+      "hoursBilled": 5,
+      "hoursLogged": 4.04,
       "sparkline": [
        null,
        null,
@@ -4110,15 +4037,11 @@
        null,
        null,
        null,
-       null,
-       null,
-       null,
-       null,
-       null,
+       123.76,
        null
       ]
      },
-     "n_perf": 0
+     "n_perf": 3
     }
    ],
    "report_range_before": null,

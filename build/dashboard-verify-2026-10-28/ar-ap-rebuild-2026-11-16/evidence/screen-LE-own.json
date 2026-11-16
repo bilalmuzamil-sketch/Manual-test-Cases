@@ -1,0 +1,1267 @@
+{
+ "start": {
+  "location": "Staging Lethbridge - 4310",
+  "location_zone": "America/Edmonton",
+  "session_change_location_zone": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "browser_zone": "America/Edmonton",
+  "browser_offset_min": -420,
+  "app_timezone_key": "\"America/Edmonton\"",
+  "app_location_key": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
+  "at_utc": "2026-11-16T09:56:39.911Z",
+  "machine_offset_min": -360,
+  "offsets_agree": false,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ },
+ "runs": [
+  {
+   "slug": "ar-aging-summary",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ar-aging-summary?asOfDate=2026-11-16&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "person Customer: All customers keyboard_arrow_down",
+    "Customer: All customers",
+    "Customer"
+   ],
+   "head": [
+    "Customer",
+    "Current",
+    "1-30 Days",
+    "31-60 Days",
+    "61-90 Days",
+    "91 And Over",
+    "Total"
+   ],
+   "totals": [
+    [
+     "Totals",
+     "$14,505.48",
+     "$18,399.25",
+     "$97,037.15",
+     "$31,581.30",
+     "$12,593.27",
+     "$174,116.45"
+    ]
+   ],
+   "groups": [],
+   "first_rows": [
+    [
+     "Apollo Beach Truck & Equipment Repair",
+     "",
+     "",
+     "",
+     "",
+     "$1,491.58",
+     "$1,491.58"
+    ],
+    [
+     "Carrick & Sons Truck & Trailer Repair",
+     "",
+     "",
+     "",
+     "",
+     "$8,953.54",
+     "$8,953.54"
+    ],
+    [
+     "CMLZ Truck Repair - Talladega",
+     "",
+     "",
+     "$6,300.00",
+     "",
+     "",
+     "$6,300.00"
+    ],
+    [
+     "Cope Truck Center - Desloge",
+     "",
+     "",
+     "$2,529.62",
+     "",
+     "",
+     "$2,529.62"
+    ],
+    [
+     "Doi Truck Center",
+     "",
+     "",
+     "",
+     "$528.95",
+     "$-75.20",
+     "$453.75"
+    ],
+    [
+     "Dunn Truck and Trailer Repair",
+     "",
+     "",
+     "",
+     "",
+     "$7.35",
+     "$7.35"
+    ],
+    [
+     "E2E COD Customer",
+     "",
+     "$1,228.50",
+     "$614.25",
+     "$4,709.25",
+     "",
+     "$6,552.00"
+    ],
+    [
+     "E2E Credits Customer",
+     "",
+     "$2,827.80",
+     "$1,599.48",
+     "$12,262.68",
+     "",
+     "$16,689.96"
+    ]
+   ],
+   "drawn_rows": 33,
+   "requests": [
+    {
+     "u": "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-11-16&timezone=America%2FEdmonton",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "currentCents": 1450548,
+      "days1To30Cents": 1839925,
+      "days31To60Cents": 9703715,
+      "days61To90Cents": 3158130,
+      "days91PlusCents": 1259327,
+      "totalCents": 17411645
+     },
+     "rowsNumber": 40
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-summary.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ar-aging-summary__2026-11-16__own2__ar-aging-summary.csv",
+     "bytes": 2250
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-summary.pdf",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close 2"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ar-aging-summary__2026-11-16__own2__ar-aging-summary.pdf",
+     "bytes": 84794
+    }
+   ]
+  },
+  {
+   "slug": "ar-aging-detail",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ar-aging-detail?asOfDate=2026-11-16&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "person Customer: All customers keyboard_arrow_down",
+    "Customer: All customers",
+    "Customer"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "ID",
+    "Customer Full Name",
+    "Due Date",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Total for 91 or more days past due",
+     "$13,082.26",
+     "$12,593.27"
+    ],
+    [
+     "Total for 1-30 days past due",
+     "$18,399.25",
+     "$18,399.25"
+    ]
+   ],
+   "groups": [
+    [
+     "keyboard_arrow_down",
+     "91 or more days past due (9)"
+    ],
+    [
+     "Total for 91 or more days past due",
+     "$13,082.26",
+     "$12,593.27"
+    ],
+    [
+     "keyboard_arrow_down",
+     "61-90 days past due (163)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "31-60 days past due (228)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "1-30 days past due (84)"
+    ],
+    [
+     "Total for 1-30 days past due",
+     "$18,399.25",
+     "$18,399.25"
+    ],
+    [
+     "keyboard_arrow_down",
+     "Current (43)"
+    ],
+    [
+     "Total for Current",
+     "$14,525.48",
+     "$14,505.48"
+    ]
+   ],
+   "first_rows": [
+    [
+     "Apr 6, 2026",
+     "Invoice",
+     "S3-14144",
+     "Apollo Beach Truck & Equipment Repair",
+     "May 6, 2026",
+     "$1,491.58",
+     "$1,491.58"
+    ],
+    [
+     "Jul 30, 2026",
+     "Invoice",
+     "S3-16679",
+     "Carrick & Sons Truck & Trailer Repair",
+     "Aug 14, 2026",
+     "$8,953.54",
+     "$8,953.54"
+    ],
+    [
+     "Jul 23, 2026",
+     "Credit Memo",
+     "CM3-3841",
+     "Doi Truck Center",
+     "Jul 23, 2026",
+     "$-75.20",
+     "$-75.20"
+    ],
+    [
+     "Jul 8, 2026",
+     "Invoice",
+     "S3-16408",
+     "Dunn Truck and Trailer Repair",
+     "Jul 8, 2026",
+     "$496.34",
+     "$7.35"
+    ],
+    [
+     "Jul 23, 2025",
+     "Invoice",
+     "S3-8848",
+     "Oakland City Truck & Trailer Repair",
+     "Jul 23, 2025",
+     "$98.26",
+     "$98.26"
+    ],
+    [
+     "May 5, 2026",
+     "Invoice",
+     "S3-14900",
+     "Tucson Truck Center",
+     "Jun 4, 2026",
+     "$69.62",
+     "$69.62"
+    ],
+    [
+     "May 27, 2026",
+     "Invoice",
+     "S3-15401",
+     "Tucson Truck Center",
+     "Jun 26, 2026",
+     "$782.70",
+     "$782.70"
+    ],
+    [
+     "Jun 4, 2026",
+     "Invoice",
+     "S3-15628",
+     "Tucson Truck Center",
+     "Jul 4, 2026",
+     "$69.62",
+     "$69.62"
+    ]
+   ],
+   "drawn_rows": 349,
+   "requests": [
+    {
+     "u": "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-16&timezone=America%2FEdmonton",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2",
+     "s": 200,
+     "totals": {
+      "amountCents": 17462544,
+      "openBalanceCents": 17411645,
+      "rowsNumber": 527
+     },
+     "groups": [
+      [
+       "days_91_plus",
+       9,
+       1308226,
+       1259327
+      ],
+      [
+       "days_61_to_90",
+       163,
+       3158130,
+       3158130
+      ],
+      [
+       "days_31_to_60",
+       228,
+       9703715,
+       9703715
+      ],
+      [
+       "days_1_to_30",
+       84,
+       1839925,
+       1839925
+      ],
+      [
+       "current",
+       43,
+       1452548,
+       1450548
+      ]
+     ]
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/current/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5Bdesc",
+     "s": 200,
+     "rowsNumber": 43
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_1_to_30/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5",
+     "s": 200,
+     "rowsNumber": 84
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_31_to_60/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%",
+     "s": 200,
+     "rowsNumber": 228
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_61_to_90/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%",
+     "s": 200,
+     "rowsNumber": 163
+    },
+    {
+     "u": "/reporting/reports/ar-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=customer_name&pagination%5",
+     "s": 200,
+     "rowsNumber": 9
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-detail.csv",
+     "seconds": 0,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ar-aging-detail__2026-11-16__own2__ar-aging-detail.csv",
+     "bytes": 49060
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-detail.pdf",
+     "seconds": 4,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ar-aging-detail__2026-11-16__own2__ar-aging-detail.pdf",
+     "bytes": 130239
+    }
+   ]
+  },
+  {
+   "slug": "ar-aging-collection",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ar-aging-collection?asOfDate=2026-11-16&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "person Customer: All customers keyboard_arrow_down",
+    "Customer: All customers",
+    "Customer"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "ID",
+    "Due Date",
+    "Past Due",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Total for Apollo Beach Truck & Equipment Repair",
+     "$1,491.58",
+     "$1,491.58"
+    ],
+    [
+     "Total for Carrick & Sons Truck & Trailer Repair",
+     "$8,953.54",
+     "$8,953.54"
+    ]
+   ],
+   "groups": [
+    [
+     "Total for Apollo Beach Truck & Equipment Repair",
+     "$1,491.58",
+     "$1,491.58"
+    ],
+    [
+     "Total for Carrick & Sons Truck & Trailer Repair",
+     "$8,953.54",
+     "$8,953.54"
+    ],
+    [
+     "Total for CMLZ Truck Repair - Talladega",
+     "$6,300.00",
+     "$6,300.00"
+    ],
+    [
+     "Total for Cope Truck Center - Desloge",
+     "$2,529.62",
+     "$2,529.62"
+    ],
+    [
+     "Total for Doi Truck Center",
+     "$453.75",
+     "$453.75"
+    ],
+    [
+     "Total for Dunn Truck and Trailer Repair",
+     "$496.34",
+     "$7.35"
+    ],
+    [
+     "Total for E2E COD Customer",
+     "$6,552.00",
+     "$6,552.00"
+    ],
+    [
+     "Total for E2E Term Customer",
+     "$14,475.50",
+     "$14,475.50"
+    ],
+    [
+     "Total for Halfmoon Truck Repair",
+     "$11,806.51",
+     "$11,806.51"
+    ],
+    [
+     "Total for La Mesa Diesel Repair",
+     "$1,016.24",
+     "$1,016.24"
+    ],
+    [
+     "Total for Mobile Truck & Trailer Repair Blackfoot",
+     "$3,316.84",
+     "$3,316.84"
+    ],
+    [
+     "Total for Monroe Truck Service & Repair",
+     "$1,040.11",
+     "$1,040.11"
+    ]
+   ],
+   "first_rows": [
+    [
+     "Apr 6, 2026",
+     "Invoice",
+     "S3-14144",
+     "May 6, 2026",
+     "194",
+     "$1,491.58",
+     "$1,491.58"
+    ],
+    [
+     "Jul 30, 2026",
+     "Invoice",
+     "S3-16679",
+     "Aug 14, 2026",
+     "94",
+     "$8,953.54",
+     "$8,953.54"
+    ],
+    [
+     "Aug 27, 2026",
+     "Invoice",
+     "S3-14690",
+     "Sep 26, 2026",
+     "51",
+     "$1,260.00",
+     "$1,260.00"
+    ],
+    [
+     "Aug 27, 2026",
+     "Invoice",
+     "S3-14691",
+     "Sep 26, 2026",
+     "51",
+     "$1,260.00",
+     "$1,260.00"
+    ],
+    [
+     "Aug 27, 2026",
+     "Invoice",
+     "S3-14692",
+     "Sep 26, 2026",
+     "51",
+     "$1,260.00",
+     "$1,260.00"
+    ],
+    [
+     "Aug 27, 2026",
+     "Invoice",
+     "S3-14693",
+     "Sep 26, 2026",
+     "51",
+     "$1,260.00",
+     "$1,260.00"
+    ],
+    [
+     "Aug 27, 2026",
+     "Invoice",
+     "S3-15660",
+     "Sep 26, 2026",
+     "51",
+     "$1,260.00",
+     "$1,260.00"
+    ],
+    [
+     "Aug 27, 2026",
+     "Invoice",
+     "S3-17496",
+     "Sep 26, 2026",
+     "51",
+     "$1,298.23",
+     "$1,298.23"
+    ]
+   ],
+   "drawn_rows": 292,
+   "requests": [
+    {
+     "u": "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-16&timezone=America%2FEdmonton",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "amountCents": 16009996,
+      "openBalanceCents": 15961097,
+      "documentCount": 484
+     },
+     "rowsNumber": 40
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-collection.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ar-aging-collection__2026-11-16__own2__ar-aging-collection.csv",
+     "bytes": 41312
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-collection.pdf",
+     "seconds": 8,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ar-aging-collection__2026-11-16__own2__ar-aging-collection.pdf",
+     "bytes": 135050
+    }
+   ]
+  },
+  {
+   "slug": "ap-aging-summary",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ap-aging-summary?asOfDate=2026-11-16&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "Vendor: All vendors",
+    "Vendor"
+   ],
+   "head": [
+    "Vendor",
+    "Current",
+    "1-30 Days",
+    "31-60 Days",
+    "61-90 Days",
+    "91 And Over",
+    "Total"
+   ],
+   "totals": [
+    [
+     "Totals",
+     "$3,336.00",
+     "$38,725.14",
+     "$84,518.35",
+     "$163,268.78",
+     "$1,336,051.24",
+     "$1,625,899.51"
+    ]
+   ],
+   "groups": [],
+   "first_rows": [
+    [
+     "1-1ABC-New-Vendor",
+     "",
+     "$51.60",
+     "",
+     "",
+     "",
+     "$51.60"
+    ],
+    [
+     "123 Cannabis Forestlawn",
+     "",
+     "$16.95",
+     "",
+     "",
+     "",
+     "$16.95"
+    ],
+    [
+     "4Refuel",
+     "$2,540.00",
+     "$2,901.15",
+     "$7,970.00",
+     "",
+     "",
+     "$13,411.15"
+    ],
+    [
+     "Abadi's Diesel Repair",
+     "",
+     "",
+     "",
+     "",
+     "$215.25",
+     "$215.25"
+    ],
+    [
+     "Alameda Mechanical Services",
+     "",
+     "",
+     "",
+     "",
+     "$768.56",
+     "$768.56"
+    ],
+    [
+     "Amani & Sons Truck & Trailer Repair",
+     "",
+     "",
+     "$3,872.52",
+     "",
+     "$6,178.38",
+     "$10,050.90"
+    ],
+    [
+     "Amimi Diesel Services Inc",
+     "",
+     "",
+     "",
+     "",
+     "$626.92",
+     "$626.92"
+    ],
+    [
+     "Andover Fleet Services",
+     "",
+     "",
+     "$67.20",
+     "",
+     "$189.00",
+     "$256.20"
+    ]
+   ],
+   "drawn_rows": 33,
+   "requests": [
+    {
+     "u": "/reporting/reports/ap-aging/vendors",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-summary/locations?asOfDate=2026-11-16&timezone=America%2FEdmonton",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "currentCents": 333600,
+      "days1To30Cents": 3872514,
+      "days31To60Cents": 8451835,
+      "days61To90Cents": 16326878,
+      "days91PlusCents": 133605124,
+      "totalCents": 162589951
+     },
+     "rowsNumber": 252
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-aging-summary.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ap-aging-summary__2026-11-16__own2__ap-aging-summary.csv",
+     "bytes": 13812
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": "ap-aging-summary.pdf",
+     "seconds": 4,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ap-aging-summary__2026-11-16__own2__ap-aging-summary.pdf",
+     "bytes": 105801
+    }
+   ]
+  },
+  {
+   "slug": "ap-aging-detail",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ap-aging-detail?asOfDate=2026-11-16&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "Vendor: All vendors",
+    "Vendor"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "No.",
+    "Vendor Name",
+    "Due Date",
+    "Past Due",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Total for Current",
+     "$3,336.00",
+     "$3,336.00"
+    ],
+    [
+     "Totals",
+     "$1,625,909.49",
+     "$1,625,899.51"
+    ]
+   ],
+   "groups": [
+    [
+     "keyboard_arrow_down",
+     "91 or more days past due (4124)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "61-90 days past due (272)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "31-60 days past due (361)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "1-30 days past due (131)"
+    ],
+    [
+     "keyboard_arrow_down",
+     "Current (59)"
+    ],
+    [
+     "Total for Current",
+     "$3,336.00",
+     "$3,336.00"
+    ]
+   ],
+   "first_rows": [
+    [
+     "May 5, 2026",
+     "Invoice",
+     "5956",
+     "Abadi's Diesel Repair",
+     "May 5, 2026",
+     "195",
+     "$215.25",
+     "$215.25"
+    ],
+    [
+     "Dec 23, 2025",
+     "Invoice",
+     "AR25007887",
+     "Alameda Mechanical Services",
+     "Feb 21, 2026",
+     "268",
+     "$768.56",
+     "$768.56"
+    ],
+    [
+     "Feb 5, 2025",
+     "Invoice",
+     "4148853-00",
+     "Amani & Sons Truck & Trailer Repair",
+     "Apr 6, 2025",
+     "589",
+     "$21.63",
+     "$21.63"
+    ],
+    [
+     "Mar 7, 2025",
+     "Invoice",
+     "4154893-00",
+     "Amani & Sons Truck & Trailer Repair",
+     "May 6, 2025",
+     "559",
+     "$69.80",
+     "$69.80"
+    ],
+    [
+     "Apr 9, 2025",
+     "Invoice",
+     "4160551-00",
+     "Amani & Sons Truck & Trailer Repair",
+     "Jun 8, 2025",
+     "526",
+     "$16.98",
+     "$16.98"
+    ],
+    [
+     "May 2, 2025",
+     "Invoice",
+     "4164347-00",
+     "Amani & Sons Truck & Trailer Repair",
+     "Jul 1, 2025",
+     "503",
+     "$105.05",
+     "$105.05"
+    ],
+    [
+     "May 15, 2025",
+     "Invoice",
+     "4165325-00",
+     "Amani & Sons Truck & Trailer Repair",
+     "Jul 14, 2025",
+     "490",
+     "$545.34",
+     "$545.34"
+    ],
+    [
+     "May 29, 2025",
+     "Invoice",
+     "4168365-00",
+     "Amani & Sons Truck & Trailer Repair",
+     "Jul 28, 2025",
+     "476",
+     "$916.24",
+     "$916.24"
+    ]
+   ],
+   "drawn_rows": 472,
+   "requests": [
+    {
+     "u": "/reporting/reports/ap-aging/vendors",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-16&timezone=America%2FEdmonton",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2",
+     "s": 200,
+     "totals": {
+      "amountCents": 162590949,
+      "openBalanceCents": 162589951,
+      "rowsNumber": 4947
+     },
+     "groups": [
+      [
+       "days_91_plus",
+       4124,
+       133605124,
+       133605124
+      ],
+      [
+       "days_61_to_90",
+       272,
+       16326876,
+       16326878
+      ],
+      [
+       "days_31_to_60",
+       361,
+       8451835,
+       8451835
+      ],
+      [
+       "days_1_to_30",
+       131,
+       3873514,
+       3872514
+      ],
+      [
+       "current",
+       59,
+       333600,
+       333600
+      ]
+     ]
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/current/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescen",
+     "s": 200,
+     "rowsNumber": 59
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_61_to_90/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5B",
+     "s": 200,
+     "rowsNumber": 272
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_1_to_30/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bd",
+     "s": 200,
+     "rowsNumber": 131
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_31_to_60/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5B",
+     "s": 200,
+     "rowsNumber": 361
+    },
+    {
+     "u": "/reporting/reports/ap-aging-detail/buckets/days_91_plus/rows?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=100&pagination%5BsortBy%5D=vendor_name&pagination%5Bd",
+     "s": 200,
+     "rowsNumber": 4124
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-aging-detail.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ap-aging-detail__2026-11-16__own2__ap-aging-detail.csv",
+     "bytes": 575397
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": null,
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close",
+      "warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "ap-unpaid-invoices",
+   "asOf": "2026-11-16",
+   "scope": "own",
+   "expanded": true,
+   "app_version": "v26.45.4-f3d3d2d",
+   "url_now": "https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-11-16&locationIds=f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "chips": [
+    "calendar_today As of: 11/16/2026 keyboard_arrow_down",
+    "As of: 11/16/2026",
+    "As of",
+    "local_shipping Vendor: All vendors keyboard_arrow_down",
+    "Vendor: All vendors",
+    "Vendor"
+   ],
+   "head": [
+    "Date",
+    "Transaction Type",
+    "No.",
+    "Vendor Name",
+    "Due Date",
+    "Past Due",
+    "Amount",
+    "Open Balance"
+   ],
+   "totals": [
+    [
+     "Total for 1-1ABC-New-Vendor",
+     "$61.60",
+     "$51.60"
+    ],
+    [
+     "Total for 123 Cannabis Forestlawn",
+     "$16.95",
+     "$16.95"
+    ]
+   ],
+   "groups": [
+    [
+     "Total for 1-1ABC-New-Vendor",
+     "$61.60",
+     "$51.60"
+    ],
+    [
+     "Total for 123 Cannabis Forestlawn",
+     "$16.95",
+     "$16.95"
+    ],
+    [
+     "Total for Abadi's Diesel Repair",
+     "$215.25",
+     "$215.25"
+    ],
+    [
+     "Total for Alameda Mechanical Services",
+     "$768.56",
+     "$768.56"
+    ],
+    [
+     "Total for Amani & Sons Truck & Trailer Repair",
+     "$10,050.90",
+     "$10,050.90"
+    ],
+    [
+     "Total for Amimi Diesel Services Inc",
+     "$626.92",
+     "$626.92"
+    ],
+    [
+     "Total for Andover Fleet Services",
+     "$256.20",
+     "$256.20"
+    ],
+    [
+     "Total for Antioch Diesel & Fleet Repair",
+     "$272.17",
+     "$272.17"
+    ],
+    [
+     "Total for Auburn Truck & Trailer Repair 24/7",
+     "$346.50",
+     "$346.50"
+    ],
+    [
+     "Total for Axle Diesel & Fleet Repair",
+     "$17.82",
+     "$17.82"
+    ],
+    [
+     "Total for Azossi's Truck Repair",
+     "$4,203.20",
+     "$4,203.20"
+    ],
+    [
+     "Total for Baldwin Park Truck & Trailer Repair",
+     "$418.73",
+     "$418.73"
+    ]
+   ],
+   "first_rows": [
+    [
+     "Nov 12, 2026",
+     "Invoice",
+     "LEth-1P1",
+     "1-1ABC-New-Vendor",
+     "Nov 12, 2026",
+     "3",
+     "$61.60",
+     "$51.60"
+    ],
+    [
+     "Sep 30, 2026",
+     "Invoice",
+     "SV10190-ST1",
+     "123 Cannabis Forestlawn",
+     "Oct 30, 2026",
+     "17",
+     "$5.65",
+     "$5.65"
+    ],
+    [
+     "Sep 30, 2026",
+     "Invoice",
+     "SV10190-ST2",
+     "123 Cannabis Forestlawn",
+     "Oct 30, 2026",
+     "17",
+     "$5.65",
+     "$5.65"
+    ],
+    [
+     "Sep 30, 2026",
+     "Invoice",
+     "SV10190-ST3",
+     "123 Cannabis Forestlawn",
+     "Oct 30, 2026",
+     "17",
+     "$5.65",
+     "$5.65"
+    ],
+    [
+     "Sep 1, 2026",
+     "Invoice",
+     "E2E-INV-1788254768600",
+     "4Refuel",
+     "Oct 1, 2026",
+     "46",
+     "$50.00",
+     "$50.00"
+    ],
+    [
+     "Sep 1, 2026",
+     "Invoice",
+     "E2E-INV-1788254769970",
+     "4Refuel",
+     "Oct 1, 2026",
+     "46",
+     "$30.00",
+     "$30.00"
+    ],
+    [
+     "Sep 1, 2026",
+     "Invoice",
+     "E2E-INV-1788254794414",
+     "4Refuel",
+     "Oct 1, 2026",
+     "46",
+     "$100.00",
+     "$100.00"
+    ],
+    [
+     "Sep 1, 2026",
+     "Invoice",
+     "E2E-INV-1788254799279",
+     "4Refuel",
+     "Oct 1, 2026",
+     "46",
+     "$30.00",
+     "$30.00"
+    ]
+   ],
+   "drawn_rows": 485,
+   "requests": [
+    {
+     "u": "/reporting/reports/ap-aging/vendors",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-16&timezone=America%2FEdmonton",
+     "s": 200
+    },
+    {
+     "u": "/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=America%2FEdmonton&locations=f8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false",
+     "s": 200,
+     "totals": {
+      "amountCents": 162590949,
+      "openBalanceCents": 162589951,
+      "documentCount": 4947
+     },
+     "rowsNumber": 252
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-unpaid-invoices.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "path": "/tmp/cln/arap/dl/LE/ap-unpaid-invoices__2026-11-16__own2__ap-unpaid-invoices.csv",
+     "bytes": 441837
+    },
+    {
+     "item": "Download (PDF)",
+     "filename": null,
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close",
+      "warning This report is too large for PDF. Export it as CSV, or narrow the filters, then try again. Close"
+     ]
+    }
+   ]
+  }
+ ],
+ "end": {
+  "location": "Staging Lethbridge - 4310",
+  "location_zone": "America/Edmonton",
+  "session_change_location_zone": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "browser_zone": "America/Edmonton",
+  "browser_offset_min": -420,
+  "app_timezone_key": "\"America/Edmonton\"",
+  "app_location_key": "\"f8a8b802-7780-4b16-bf10-343caeb616b2\"",
+  "at_utc": "2026-11-16T09:58:59.257Z",
+  "machine_offset_min": -360,
+  "offsets_agree": false,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ },
+ "today": "2026-11-16"
+}

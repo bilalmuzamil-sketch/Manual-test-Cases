@@ -4,14 +4,17 @@
 // 2) Cause: the same PDF narrowed to one customer with an ordinary name, and to the customer with the 120-letter unbroken name.
 // 3) A/P Aging Detail / A/P Unpaid Invoices PDFs (refused at All locations, >2,000 rows) narrowed to one vendor: ordinary name
 //    and the 120-letter vendor. Address keys: asOfDate, customerIds, vendorIds (useAgingReportFilters).
+// REPRO2=1 LOCKEY=LE TZ=America/Edmonton: second reproduction at another location (A1).
 // Usage: TZ=Asia/Karachi node pdf_extra.mjs <customerOrdinary> <customerLong> <vendorOrdinary> <vendorLong>
 import fs from 'fs';
 import { boot, LOC, APP, sleep, rule99, save } from '../../report-gaps-2026-11-16/tools/sboot.mjs';
-const [cOrd, cLong, vOrd, vLong] = process.argv.slice(2); const loc = LOC.HD; const EV = new URL('../evidence/', import.meta.url).pathname;
-const DL = '/tmp/cln/arap/dl/extra/'; fs.mkdirSync(DL, { recursive: true });
+const [cOrd, cLong, vOrd, vLong] = process.argv.slice(2); const loc = LOC[process.env.LOCKEY || 'HD']; const EV = new URL('../evidence/', import.meta.url).pathname;
+const DL = process.env.REPRO2 ? '/tmp/cln/arap/dl/repro2/' : '/tmp/cln/arap/dl/extra/'; fs.mkdirSync(DL, { recursive: true });
 const { browser, page } = await boot(loc, { viewport: { width: 1920, height: 1080 } }); const out = { start: await rule99(page, loc), runs: [] };
 const today = new Intl.DateTimeFormat('en-CA', { timeZone: loc.tz }).format(new Date());
-const RUNS = [['ar-aging-detail', `asOfDate=2026-09-30`, 'all-0930'], ['ar-aging-detail', `asOfDate=${today}`, 'all-today'],
+const RUNS = process.env.REPRO2 ? [['ap-aging-detail', `asOfDate=${today}&vendorIds=${vLong}`, 'R2-one-long-name-vendor'], ['ap-unpaid-invoices', `asOfDate=${today}&vendorIds=${vLong}`, 'R2-one-long-name-vendor'],
+  ['ar-aging-collection', `asOfDate=${today}&locationIds=${LOC.HD.id}`, 'R2-heavy-duty-only'], ['ar-aging-collection', `asOfDate=${today}&customerIds=${cLong}`, 'R2-one-long-name-customer'],
+  ['ar-aging-detail', `asOfDate=${today}&customerIds=${cLong}`, 'R2-one-long-name-customer']] : [['ar-aging-detail', `asOfDate=2026-09-30`, 'all-0930'], ['ar-aging-detail', `asOfDate=${today}`, 'all-today'],
   ['ar-aging-detail', `asOfDate=${today}&customerIds=${cOrd}`, 'one-ordinary-customer'], ['ar-aging-detail', `asOfDate=${today}&customerIds=${cLong}`, 'one-long-name-customer'],
   ['ap-aging-detail', `asOfDate=${today}&vendorIds=${vOrd}`, 'one-ordinary-vendor'], ['ap-aging-detail', `asOfDate=${today}&vendorIds=${vLong}`, 'one-long-name-vendor'],
   ['ap-unpaid-invoices', `asOfDate=${today}&vendorIds=${vOrd}`, 'one-ordinary-vendor'], ['ap-unpaid-invoices', `asOfDate=${today}&vendorIds=${vLong}`, 'one-long-name-vendor']];
@@ -29,10 +32,9 @@ for (const [slug, qs, tag] of RUNS) {
     if (d) { R.path = `${DL}${slug}__${tag}.pdf`; await d.saveAs(R.path); R.bytes = fs.statSync(R.path).size; }
     await page.screenshot({ path: `${DL}${slug}__${tag}__screen.png` });
   } catch (e) { R.error = String(e).slice(0, 200); }
-  console.log(slug, tag, R.seconds, R.path || R.toasts?.join('|') || R.error); save(EV + 'pdf-extra.json', out); await page.keyboard.press('Escape'); await sleep(2000);
+  console.log(slug, tag, R.seconds, R.path || R.toasts?.join('|') || R.error); save(EV + (process.env.REPRO2 ? `pdf-repro2-${process.env.LOCKEY || 'HD'}.json` : 'pdf-extra.json'), out); await page.keyboard.press('Escape'); await sleep(2000);
 }
-out.end = await rule99(page, loc); save(EV + 'pdf-extra.json', out); await browser.close();
-// 4) Vendor Bill export, bills dated 1 Oct 2025 .. 30 Sep 2026 (Karachi day bounds): were any of the 15 bills paid after 30 Sep,
-//    and absent from the 30 Sep A/P report, dated on or before 30 Sep? (check_history.py)
-{ const { browser: b2, page: p2 } = await boot(loc); const r = await p2.evaluate(async () => { const u = 'https://api.staging.shopview.com/api/reporting/export/vendor_bill?report=vendor_bill&start_date=2025-09-30T19:00:00.000Z&end_date=2026-09-30T18:59:59.999Z&range=custom'; const x = await fetch(u, { credentials: 'include' }); return { s: x.status, j: await x.json().catch(() => null) }; });
-  fs.writeFileSync('/tmp/cln/arap/ledgers/export_vendor_bill_to_0930.json', JSON.stringify(r.j)); console.log('vendor_bill export', r.s, typeof r.j?.data?.[0] === 'string' ? r.j.data[0].split('\n').length : null); await b2.close(); }
+out.end = await rule99(page, loc); save(EV + (process.env.REPRO2 ? `pdf-repro2-${process.env.LOCKEY || 'HD'}.json` : 'pdf-extra.json'), out); await browser.close();
+// 4) Vendor Bill export (first run only): see check_history.py
+if (!process.env.REPRO2) { const { browser: b2, page: p2 } = await boot(loc); const r = await p2.evaluate(async () => { const u = 'https://api.staging.shopview.com/api/reporting/export/vendor_bill?report=vendor_bill&start_date=2025-09-30T19:00:00.000Z&end_date=2026-09-30T18:59:59.999Z&range=custom'; const x = await fetch(u, { credentials: 'include' }); return { s: x.status, j: await x.json().catch(() => null) }; });
+  fs.writeFileSync('/tmp/cln/arap/ledgers/export_vendor_bill_to_0930.json', JSON.stringify(r.j)); console.log('vendor_bill export', r.s); await b2.close(); }

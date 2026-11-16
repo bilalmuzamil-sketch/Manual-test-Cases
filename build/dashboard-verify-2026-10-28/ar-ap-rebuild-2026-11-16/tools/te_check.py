@@ -53,14 +53,26 @@ for key in ('HD', 'LE', 'QB', 'DVI'):
         fab = [t for t in l12.get('tile_table', []) if t[0] == 'Fabian Bonjean']
         ok('SV-11931 Expected: Fabian Bonjean 1.00 / 1.00 / 100 % on the tile (Last 12 Months)', fab == [('Fabian Bonjean', 1, 1, 100)], fab)
     scr = {}
-    p = os.path.join(EV, f'te-{key}.json')
+    p = os.path.join(EV, f'te-{key}-screen.json')          # screen observations (the first run's screen step used a wrong preset id)
     if os.path.exists(p):
         scr = json.load(open(p)); s = scr.get('screen', {})
-        txt = s.get('tile_text') or ''
-        l12 = rows_out.get('last_12_months', {}).get('tile', {})
-        ok('SCREEN tile shows the Last 12 Months figures', l12 and f"{l12.get('value')}" .rstrip('0').rstrip('.') in txt.replace(',', ''), (s.get('tile_range_after'), txt[:200], l12))
-        rr = [r for r in s.get('report_rows', []) if r and r[0] and not r[0].startswith('Total')]
-        ok('SCREEN report rows drawn at Last 12 Months', bool(rr) or not rows_out.get('last_12_months', {}).get('report'), (s.get('report_range_after'), rr[:3]))
+        txt = (s.get('tile_text') or '').replace(',', '')
+        k12 = (s.get('dash_requests') or [{}])[-1].get('kpi') or {}
+        ok('SCREEN tile at Last 12 Months shows the headline % it was sent', 'Last 12 Months' in (s.get('tile_range_after') or '') and k12 and f"{k12['value']:.2f}%" in txt, (s.get('tile_range_after'), txt[:80], k12))
+        tab = {r[0]: r[1:] for r in s.get('detail_rows', []) if len(r) == 4}
+        perf = {p_[0]: p_ for p_ in rows_out.get('last_12_months', {}).get('tile_table', [])}
+        ok('SCREEN tile table: every row drawn = the figures it was sent (rows below the panel fold not read)', bool(tab) and all(n in perf and abs(float(t[0]) - perf[n][2]) < 0.006 and abs(float(t[1]) - perf[n][1]) < 0.006 for n, t in tab.items()), (len(tab), len(perf)))
+        scr['screen_rows_read'] = [len(tab), len(perf)]
+        if key == 'DVI':
+            ok('SCREEN SV-11931 example: Fabian Bonjean 1.00 / 1.00 / 100.00% on the tile', tab.get('Fabian Bonjean') == ['1.00', '1.00', '100.00%'], tab.get('Fabian Bonjean'))
+    pr = os.path.join(EV, f'te-report-screen-{key}.json')
+    if os.path.exists(pr):
+        R_ = json.load(open(pr)); rows = {r[0].replace('expand_more ', ''): r for r in R_.get('rows', [])}
+        l12 = rows_out.get('last_12_months', {})
+        ok('SCREEN report at Last 12 months: Totals = tile headline (Clocked, Invoiced Tech Hrs, %)', 'Last 12 months' in (R_.get('chip_after') or '') and 'Totals' in rows and float(rows['Totals'][4]) == l12['tile']['hoursLogged'] and float(rows['Totals'][5]) == l12['tile']['hoursBilled'] and rows['Totals'][7] == f"{l12['tile']['value']:g}%", (rows.get('Totals'), l12.get('tile')))
+        if key == 'DVI':
+            ok('SCREEN SV-11931 example: Fabian Bonjean 1 / 1 / 100% in the report', rows.get('Fabian Bonjean', [None] * 8)[4:6] == ['1', '1'] and rows['Fabian Bonjean'][7] == '100%', rows.get('Fabian Bonjean'))
+        scr['report_screen'] = R_
     out[key] = {'rule99_start': scr.get('start'), 'rule99_end': scr.get('end'), 'counts': dict(c), 'failures': fails[:40], 'ranges': rows_out, 's1_38198_lines': sorted(set(s38198)), 'screen': scr.get('screen')}
     print(key, {k: v for k, v in c.items() if k.endswith(':fail')}, sum(v for k, v in c.items() if k.endswith(':pass')))
 json.dump(out, open(os.path.join(EV, 'results-te-tile.json'), 'w'), indent=1, default=str)

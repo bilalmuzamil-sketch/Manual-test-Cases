@@ -1,0 +1,37 @@
+<!-- DRAFT — NOT FILED. File only with the QA lead's go-ahead for THIS ticket (Rule 62/73). Epic at creation: SV-11936 (Reports).
+Type Story Defect · Priority Medium · links: relates to SV-11533 (Story 3 - Export to PDF and CSV) and SV-12831 (same symptom on the Summary PDFs).
+Re-checked 16 Nov 2026 09:24–10:00 UTC on staging build v26.45.4-f3d3d2d (marker read at the start and end of every run). -->
+<h2>Aging report PDFs leave out Amount and Open Balance when a customer or vendor name is very long</h2>
+
+<p><strong>What is wrong.</strong> The downloaded PDF of <strong>A/R Aging Detail</strong> has no <strong>Due Date</strong>, <strong>Amount</strong> or <strong>Open Balance</strong> column. The money is simply not in the file: no row, no "Total for …" line and no Totals line shows an amount. The same happens on the <strong>A/P Aging Detail</strong> and <strong>A/P Unpaid Invoices</strong> PDFs (Amount and Open Balance missing), and on the <strong>A/R Aging Collection</strong> PDF when one location is chosen. The screen and the CSV are fine.</p>
+
+<p><strong>Example.</strong> Staging Heavy Duty - 9919, A/R Aging Detail, As of 11/16/2026, all locations. On screen the Totals row reads <strong>$773,664.78</strong> (Amount) and <strong>$743,791.80</strong> (Open Balance), and invoice S3-14144 shows Due Date May 6, 2026, Amount $1,491.58, Open Balance $1,491.58. In the downloaded PDF (162 pages) the columns stop at Customer Full Name: S3-14144 has no due date and no amounts, and the whole file contains no dollar amount at all (0 of the $773,664.78 / $743,791.80 is printed).</p>
+
+<p><strong>Where to look.</strong> Only the PDF from the "⋯" Export report menu. It happens when the report contains a customer or vendor whose name is one very long word with no spaces (staging has several, for example "ZZAUTOTESTAbcdefghij…", 120 letters). With an ordinary name the same PDF prints every column. The A/R and A/P Aging Summary PDFs have the same problem and are already reported in SV-12831.</p>
+
+<h3>Steps</h3>
+<ol>
+<li>Log in to staging as Admin, location <strong>Staging Heavy Duty - 9919</strong>.</li>
+<li>Open <strong>Reports</strong> → <strong>A/R Aging Detail</strong>. Leave As of on today and Location on All locations.</li>
+<li>Click <strong>⋯</strong> (Export report) → <strong>Download (PDF)</strong>.</li>
+<li>Open the PDF and look at the column headings on page 1.</li>
+<li>Optional, the A/P side: open <strong>A/P Aging Detail</strong>, Vendor: <strong>ZZAUTOTESTAbcdefghij…</strong> (the long one), then <strong>⋯</strong> → <strong>Download (PDF)</strong>. Do the same on <strong>A/P Unpaid Invoices</strong>.</li>
+</ol>
+<p><strong>Actual:</strong> the PDF headings end at Customer Full Name (A/P: at Past Due). Due Date, Amount and Open Balance (A/P: Amount and Open Balance) are not printed anywhere.</p>
+<p><strong>Expected:</strong> every column prints on the page, as on screen, and the long name wraps inside its own column.</p>
+
+<h3>Source</h3>
+<p>PRD "A/R and A/P Report Sorting, Export and Location Filter" (Confluence 947650561, version 13, 13 Nov 2026), S3-R7b:</p>
+<blockquote>"In the A/R Detail, A/R Collection, A/P Detail and A/P Unpaid Invoices PDFs, each bucket, customer or vendor ends with a row that reads "Total for &lt;name&gt;", the same words as the screen, for example "Total for 31-60 days past due" or "Total for Acme Towing", with its Amount and Open Balance. A long name wraps inside that row."</blockquote>
+<p>Same PRD, S3-R3: <em>"The PDF and the CSV contain exactly the rows on screen for the chosen as-of date, customer or vendor and locations, in the on-screen sort"</em>.</p>
+<p>Chris Ward on the Summary PDFs, SV-12831, comment 81407 (14 Nov 2026): <em>"A long customer or vendor name should wrap inside its own column, and every column should always print on the page. Even if names this long are rare, dropping 61-90 Days, 91 And Over and Total off a money report without any warning isn't okay."</em></p>
+
+<p><strong>Picture:</strong> (1) the PDF's column headings stop at Customer Full Name; (2) where Due Date, Amount and Open Balance should be, nothing is printed; (3) the same report on screen with those three columns.</p>
+<p><img src="D1-annotated.png" alt="A/R Aging Detail PDF without Due Date, Amount and Open Balance, next to the same report on screen" width="900"></p>
+
+<h3>Where it was seen</h3>
+<ul>
+<li>Staging (https://app.staging.shopview.com), build v26.45.4-f3d3d2d, Admin, 16 Nov 2026, 09:24–10:00 UTC.</li>
+<li>Staging Heavy Duty - 9919: browser, test computer and the app's own time-zone setting all on the location's time zone (Asia/Karachi). Staging Lethbridge - 4310: all on America/Edmonton. Time of day does not matter for this problem.</li>
+<li>A/R Aging Detail PDF: as of Nov 16 and Sep 30, at both locations, all locations and Heavy Duty only (8 downloads, all missing the three columns). A/P Aging Detail and A/P Unpaid Invoices PDF with the long-name vendor: twice each, at both locations. A/R Aging Collection PDF, Heavy Duty only: twice. With an ordinary name (10 Trucking, 5 Star Truck Repair) every column prints.</li>
+</ul>

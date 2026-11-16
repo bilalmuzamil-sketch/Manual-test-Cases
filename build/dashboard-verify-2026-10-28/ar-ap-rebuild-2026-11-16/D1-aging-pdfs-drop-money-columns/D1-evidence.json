@@ -1,0 +1,337 @@
+{
+ "what": "D1 - aging PDFs leave out money columns. Headings and the count of \"$\" read from every Detail/Collection/Unpaid PDF downloaded on 16 Nov with Export report > Download (PDF). Files themselves stay in /tmp (customer and vendor names).",
+ "build": {
+  "screen-HD": [
+   "v26.45.4-f3d3d2d",
+   null
+  ],
+  "screen-HD-own": [
+   "v26.45.4-f3d3d2d",
+   "v26.45.4-f3d3d2d"
+  ],
+  "screen-LE": [
+   "v26.45.4-f3d3d2d",
+   "v26.45.4-f3d3d2d"
+  ],
+  "extra": [
+   "v26.45.4-f3d3d2d",
+   "v26.45.4-f3d3d2d"
+  ],
+  "repro2-LE": [
+   "v26.45.4-f3d3d2d",
+   "v26.45.4-f3d3d2d"
+  ]
+ },
+ "rule99": {
+  "screen-HD": {
+   "location": "Staging Heavy Duty - 9919",
+   "location_zone": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "browser_zone": "Asia/Karachi",
+   "app_timezone_key": "\"Asia/Karachi\"",
+   "browser_offset_min": 300,
+   "machine_offset_min": 300,
+   "offsets_agree": true,
+   "at_utc": "2026-11-16T09:22:54.451Z"
+  },
+  "screen-HD-own": {
+   "location": "Staging Heavy Duty - 9919",
+   "location_zone": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "browser_zone": "Asia/Karachi",
+   "app_timezone_key": "\"Asia/Karachi\"",
+   "browser_offset_min": 300,
+   "machine_offset_min": 300,
+   "offsets_agree": true,
+   "at_utc": "2026-11-16T09:43:11.128Z"
+  },
+  "screen-LE": {
+   "location": "Staging Lethbridge - 4310",
+   "location_zone": "America/Edmonton",
+   "process_TZ": "America/Edmonton",
+   "browser_zone": "America/Edmonton",
+   "app_timezone_key": "\"America/Edmonton\"",
+   "browser_offset_min": -420,
+   "machine_offset_min": -360,
+   "offsets_agree": false,
+   "at_utc": "2026-11-16T09:27:28.721Z"
+  },
+  "extra": {
+   "location": "Staging Heavy Duty - 9919",
+   "location_zone": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "browser_zone": "Asia/Karachi",
+   "app_timezone_key": "\"Asia/Karachi\"",
+   "browser_offset_min": 300,
+   "machine_offset_min": 300,
+   "offsets_agree": true,
+   "at_utc": "2026-11-16T09:51:54.034Z"
+  },
+  "repro2-LE": {
+   "location": "Staging Lethbridge - 4310",
+   "location_zone": "America/Edmonton",
+   "process_TZ": "America/Edmonton",
+   "browser_zone": "America/Edmonton",
+   "app_timezone_key": "\"America/Edmonton\"",
+   "browser_offset_min": -420,
+   "machine_offset_min": -360,
+   "offsets_agree": false,
+   "at_utc": "2026-11-16T09:55:19.897Z"
+  }
+ },
+ "pdfs": [
+  {
+   "source": "screen-HD",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-11-16 scope=all",
+   "file": "ar-aging-detail__2026-11-16__all__ar-aging-detail.pdf",
+   "seconds": 64,
+   "headings": "Date Location Transaction Type ID Customer Full Name",
+   "pages": 162,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "screen-HD",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-11-16 scope=all",
+   "file": "ar-aging-collection__2026-11-16__all__ar-aging-collection.pdf",
+   "seconds": 68,
+   "headings": "Date Location Transaction Type ID Due Date Past Due Amount Open Balance",
+   "pages": 98,
+   "dollar_signs_in_whole_pdf": 3946,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "screen-HD",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-09-30 scope=all",
+   "file": "ar-aging-collection__2026-09-30__all__ar-aging-collection.pdf",
+   "seconds": 37,
+   "headings": "Date Location Transaction Type ID Due Date Past Due Amount Open Balance",
+   "pages": 29,
+   "dollar_signs_in_whole_pdf": 1234,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "screen-HD-own",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-11-16 scope=own",
+   "file": "ar-aging-detail__2026-11-16__own2__ar-aging-detail.pdf",
+   "seconds": 41,
+   "headings": "Date Transaction Type ID Customer Full Name",
+   "pages": 35,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "screen-HD-own",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-11-16 scope=own",
+   "file": "ar-aging-collection__2026-11-16__own2__ar-aging-collection.pdf",
+   "seconds": 10,
+   "headings": "Date Transaction Type ID Due Date Past Due",
+   "pages": 49,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "screen-LE",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-11-16 scope=all",
+   "file": "ar-aging-collection__2026-11-16__all__ar-aging-collection.pdf",
+   "seconds": 136,
+   "headings": "Date Location Transaction Type ID Due Date Past Due Amount Open Balance",
+   "pages": 98,
+   "dollar_signs_in_whole_pdf": 3946,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "screen-LE",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-09-30 scope=all",
+   "file": "ar-aging-detail__2026-09-30__all__ar-aging-detail.pdf",
+   "seconds": 141,
+   "headings": "Date Location Transaction Type ID Customer Full Name",
+   "pages": 119,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "screen-LE",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-09-30 scope=all",
+   "file": "ar-aging-collection__2026-09-30__all__ar-aging-collection.pdf",
+   "seconds": 40,
+   "headings": "Date Location Transaction Type ID Due Date Past Due Amount Open Balance",
+   "pages": 29,
+   "dollar_signs_in_whole_pdf": 1234,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "screen-LE",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-11-16 scope=own (NOT narrowed: wrong address key locations= was used; this is All locations)",
+   "file": "ar-aging-detail__2026-11-16__own__ar-aging-detail.pdf",
+   "seconds": 52,
+   "headings": "Date Location Transaction Type ID Customer Full Name",
+   "pages": 162,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "screen-LE",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-11-16 scope=own (NOT narrowed: wrong address key locations= was used; this is All locations)",
+   "file": "ar-aging-collection__2026-11-16__own__ar-aging-collection.pdf",
+   "seconds": 31,
+   "headings": "Date Location Transaction Type ID Due Date Past Due Amount Open Balance",
+   "pages": 98,
+   "dollar_signs_in_whole_pdf": 3946,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "extra",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-09-30",
+   "file": "ar-aging-detail__all-0930.pdf",
+   "seconds": 22,
+   "headings": "Date Location Transaction Type ID Customer Full Name",
+   "pages": 120,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "extra",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-11-16",
+   "file": "ar-aging-detail__all-today.pdf",
+   "seconds": 34,
+   "headings": "Date Location Transaction Type ID Customer Full Name",
+   "pages": 162,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "extra",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-11-16&customerIds=72ccef1e-6cf2-4910-a5c6-3e20cbac7e73",
+   "file": "ar-aging-detail__one-ordinary-customer.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type ID Customer Full Name Due Date Amount Open Balance",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 10,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "extra",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-11-16&customerIds=5b5c3981-61e4-41d8-b248-2b2608419af4",
+   "file": "ar-aging-detail__one-long-name-customer.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type ID Customer Full Name",
+   "pages": 2,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "extra",
+   "report": "ap-aging-detail",
+   "filter": "asOfDate=2026-11-16&vendorIds=30078d30-2033-42cb-871d-48b97635a519",
+   "file": "ap-aging-detail__one-ordinary-vendor.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type No. Vendor Name Due Date Past Due Amount Open Balance",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 22,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "extra",
+   "report": "ap-aging-detail",
+   "filter": "asOfDate=2026-11-16&vendorIds=3ebda93e-0c68-4597-887d-26f3cc0c3412",
+   "file": "ap-aging-detail__one-long-name-vendor.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type No. Vendor Name Due Date Past Due",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "extra",
+   "report": "ap-unpaid-invoices",
+   "filter": "asOfDate=2026-11-16&vendorIds=30078d30-2033-42cb-871d-48b97635a519",
+   "file": "ap-unpaid-invoices__one-ordinary-vendor.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type No. Vendor Name Due Date Past Due Amount Open Balance",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 18,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "extra",
+   "report": "ap-unpaid-invoices",
+   "filter": "asOfDate=2026-11-16&vendorIds=3ebda93e-0c68-4597-887d-26f3cc0c3412",
+   "file": "ap-unpaid-invoices__one-long-name-vendor.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type No. Vendor Name Due Date Past Due",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "repro2-LE",
+   "report": "ap-aging-detail",
+   "filter": "asOfDate=2026-11-16&vendorIds=3ebda93e-0c68-4597-887d-26f3cc0c3412",
+   "file": "ap-aging-detail__R2-one-long-name-vendor.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type No. Vendor Name Due Date Past Due",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "repro2-LE",
+   "report": "ap-unpaid-invoices",
+   "filter": "asOfDate=2026-11-16&vendorIds=3ebda93e-0c68-4597-887d-26f3cc0c3412",
+   "file": "ap-unpaid-invoices__R2-one-long-name-vendor.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type No. Vendor Name Due Date Past Due",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "repro2-LE",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-11-16&locationIds=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "file": "ar-aging-collection__R2-heavy-duty-only.pdf",
+   "seconds": 9,
+   "headings": "Date Transaction Type ID Due Date Past Due",
+   "pages": 49,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  },
+  {
+   "source": "repro2-LE",
+   "report": "ar-aging-collection",
+   "filter": "asOfDate=2026-11-16&customerIds=5b5c3981-61e4-41d8-b248-2b2608419af4",
+   "file": "ar-aging-collection__R2-one-long-name-customer.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type ID Due Date Past Due Amount Open Balance",
+   "pages": 1,
+   "dollar_signs_in_whole_pdf": 16,
+   "has_Amount_and_Open_Balance": true
+  },
+  {
+   "source": "repro2-LE",
+   "report": "ar-aging-detail",
+   "filter": "asOfDate=2026-11-16&customerIds=5b5c3981-61e4-41d8-b248-2b2608419af4",
+   "file": "ar-aging-detail__R2-one-long-name-customer.pdf",
+   "seconds": 1,
+   "headings": "Date Location Transaction Type ID Customer Full Name",
+   "pages": 2,
+   "dollar_signs_in_whole_pdf": 0,
+   "has_Amount_and_Open_Balance": false
+  }
+ ]
+}
