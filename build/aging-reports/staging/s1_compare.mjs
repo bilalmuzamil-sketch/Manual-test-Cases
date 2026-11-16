@@ -13,8 +13,9 @@ const tsv = (n) => { const [h, ...rows] = fs.readFileSync(decodeURIComponent(new
 const cents = (v) => (v === '' || v == null ? 0 : Math.round(Number(v) * 100));
 async function all(path, per = 100) { const out = []; for (let pg = 1; pg < 400; pg++) { const r = await s.api(`${path}${path.includes('?') ? '&' : '?'}pagination[page]=${pg}&pagination[rowsPerPage]=${per}`); if (r.st !== 200) throw new Error(path + ' ' + r.st); const c = r.j.data.collection || []; out.push(...c); const n = r.j.data.pagination?.rowsNumber ?? 0; if (!c.length || out.length >= n) return { rows: out, data: r.j.data }; } return { rows: out }; }
 const B = ['current', 'days_1_to_30', 'days_31_to_60', 'days_61_to_90', 'days_91_plus']; const BB = { current: 'current', days1to30: 'days_1_to_30', days31to60: 'days_31_to_60', days61to90: 'days_61_to_90', days91Plus: 'days_91_plus' };
-const o = { asOf: d, at: new Date().toISOString() };
-async function detail(slug) { const docs = []; for (const b of B) { const { rows } = await all(`/api/reporting/reports/${slug}/buckets/${b}/rows?asOfDate=${d}`); for (const r of rows) docs.push({ ...r, bucket: b }); } return docs; }
+const TZQ = process.env.TZQ ? '&timezone=' + process.env.TZQ : ''; /* 16 Nov: the report page sends &timezone=<saved zone> (UTC in this session); without it the server picks the session zone and the read is not what the screen shows */
+const o = { asOf: d, at: new Date().toISOString(), tz: process.env.TZQ || null };
+async function detail(slug) { const docs = []; for (const b of B) { const { rows } = await all(`/api/reporting/reports/${slug}/buckets/${b}/rows?asOfDate=${d}${TZQ}`); for (const r of rows) docs.push({ ...r, bucket: b }); } return docs; }
 const isCredit = (t) => /credit|deposit/i.test(t || '');
 function compareDocs(name, before, after, keyB, keyA, balB) {
   const mb = new Map(before.map((r) => [keyB(r), r])), ma = new Map(after.map((r) => [keyA(r), r])); const res = { before: before.length, after: after.length, intended: [], new: [], gone: [], balance: [], bucket: [], dupKeysBefore: before.length - mb.size, dupKeysAfter: after.length - ma.size };
@@ -28,11 +29,11 @@ const ard = await detail('ar-aging-detail'); fs.writeFileSync(OUT + 'after-ard.j
 compareDocs('ard', tsv('AR Aging Detail - all documents.tsv'), ard, (r) => r.transactionNumber + '|' + r.customerName, (r) => r.documentNumber + '|' + r.customerName, (r) => r.balance);
 compareDocs('apd', tsv('AP Aging Detail - all documents.tsv'), apd, (r) => r.id, (r) => r.documentId, (r) => r.openBalance);
 // Summaries
-const ars = await all(`/api/reporting/reports/ar-aging-summary?asOfDate=${d}`); const aps = await all(`/api/reporting/reports/ap-aging-summary?asOfDate=${d}`);
+const ars = await all(`/api/reporting/reports/ar-aging-summary?asOfDate=${d}${TZQ}`); const aps = await all(`/api/reporting/reports/ap-aging-summary?asOfDate=${d}${TZQ}`);
 fs.writeFileSync(OUT + 'after-ars.json', JSON.stringify(ars)); fs.writeFileSync(OUT + 'after-aps.json', JSON.stringify(aps));
 o.arsRow0 = ars.rows[0]; o.apsRow0 = aps.rows[0]; o.arsTotals = ars.data?.totals; o.apsTotals = aps.data?.totals;
 // Collection / Unpaid group totals
-const arc = await all(`/api/reporting/reports/ar-aging-collection?asOfDate=${d}`, 30); const apu = await all(`/api/reporting/reports/ap-unpaid-invoices?asOfDate=${d}`, 30);
+const arc = await all(`/api/reporting/reports/ar-aging-collection?asOfDate=${d}${TZQ}`, 30); const apu = await all(`/api/reporting/reports/ap-unpaid-invoices?asOfDate=${d}${TZQ}`, 30);
 fs.writeFileSync(OUT + 'after-arc.json', JSON.stringify(arc.rows.map(({ rows, ...g }) => ({ ...g, rowsShown: (rows || []).length })))); fs.writeFileSync(OUT + 'after-apu.json', JSON.stringify(apu.rows.map(({ rows, ...g }) => ({ ...g, rowsShown: (rows || []).length }))));
 o.arcTotals = arc.data?.totals; o.apuTotals = apu.data?.totals; o.arcGroups = arc.rows.length; o.apuGroups = apu.rows.length;
 fs.writeFileSync(OUT + 'compare.json', JSON.stringify(o, null, 1));

@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "note": "16 Nov 2026, run 557, g22: C715471 re-run after SV-12663"
+ },
+ "results": {
+  "C715471": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, browser on Pakistan time; the three A/R reports opened with no filter touched except the as-of date, set to 11/12/2026 - the day the before-release copy was saved - and compared document by document with that copy.",
+    "Re-run after SV-12663 (https://shopview.atlassian.net/browse/SV-12663, Ready for Production) was fixed and passed by QA on 13 Nov.",
+    "Step 1: A/R Summary - every customer in the copy shows the same amounts in the same columns (264 customers with nothing new since the copy: all identical); Location chip \"Location: All locations\".",
+    "Step 2: A/R Detail - every one of the 1564 documents in the copy is still there with the same amount and open balance and in the same aging column; the only move is the one PRD section 2 lists: credit memo CM2-4541, dated on the as-of day, now in Current. The 196 other documents were all made after the copy (new customers or dated 12 Nov).",
+    "The document from SV-12663, S3-17147 (Tucson Truck Center, Due Date Sep 12, 2026), is back in \"61-90 days past due\" with Past Due 61 (on 12 Nov it was wrongly in 31-60 with 60).",
+    "Step 3: A/R Collection - same customers and amounts; Location chip \"Location: All locations\".",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-1116-01-ar-aging-summary.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-1116-02-ar-aging-detail.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-1116-03-ar-aging-collection.png"
+   ]
+  }
+ }
+}

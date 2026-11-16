@@ -566,3 +566,9 @@
 - Our standing line is "comment only on tickets we created" (L0706). On 16 Nov he overrode it for one ticket in so many words: "Rather you paste that comment and tag Slavcho to let him know the expanded scope of the ticket and tag Chris ward as FYI" → posted on SV-12722 (comment 81455). Treat it as per-ticket permission, never a general one.
 - Mentions in a v2 (wiki) comment: `[~accountid:<id>]`. Slavcho Mitrov = 712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb; Chris Ward = 712020:aa00b8d6-a71f-4259-8919-82a304227c20 (`/rest/api/2/user/search?query=<name>`). Picture in a comment: POST multipart to `/rest/api/2/issue/<KEY>/attachments` with the jira.sh headers (X-Atlassian-Token, Origin, Referer), then `!<file>|width=900!` in the body.
 - #jira #ruling #aging → L0715
+
+## L0717 — 2026-11-16 — Aging report data must be read with the zone the PAGE sends (`&timezone=UTC`), and the old report truncated not-yet-due days
+- The report page calls `/api/reporting/reports/<slug>?asOfDate=…&timezone=UTC` (the app's saved zone; the browser was Asia/Karachi). Called without `timezone`, the server falls back to the session's zone and Past Due no longer matches the Due Date the screen shows (S2-40202: -7 without, matches with). Always pass the page's zone (`TZQ=UTC` in s1_compare.mjs) — capture it from the page's own request first (s24_tzparam.mjs).
+- The pre-release A/P report counted a not-yet-due bill's Past Due by truncating time of day (due Nov 27 21:13 UTC, as of Nov 12 → -14); the new report counts calendar days (-15), as PRD S1-R5a's example says. 464 bills differ that way; a question, not a defect.
+- Staging sign-in: a set of values can be dead on arrival (401 on api.staging for every combination) — test with curl against `/api/iam/view-profile/` (status only, never print values) and ask again; the second set worked.
+- #aging #staging #timezone #sv-12663 → L0716

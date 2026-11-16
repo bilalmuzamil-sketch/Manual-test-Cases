@@ -1,0 +1,9 @@
+// s25_arshots.mjs — 16 Nov 2026, C715471 re-run after SV-12663: A/R Summary, Detail (Expand all) and Collection as of 11/12/2026 (the day of the before copy), all filters untouched; one known moved-back document (S3-17147, Tucson Truck Center) located on Detail. Pictures + heading/Location chip text. Read-only.
+import { stgStart } from './stglib.mjs'; import { M } from './m16.mjs'; import fs from 'fs';
+const OUT = new URL('./s25/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await stgStart(OUT); const p = s.page; const m = M(p); const o = {};
+const chips = () => p.evaluate(() => [...document.querySelectorAll('main button')].map((b) => b.innerText.replace(/\s+/g, ' ').trim()).filter((t) => /(As of|Customer|Location):/.test(t)));
+for (const r of ['ar-aging-summary', 'ar-aging-detail', 'ar-aging-collection']) { await s.go('/reports/' + r + '?asOfDate=2026-11-12'); await p.waitForTimeout(6000); o[r] = { chips: await chips(), pic: await s.shot(r) }; }
+await s.go('/reports/ar-aging-detail?asOfDate=2026-11-12'); await p.waitForTimeout(5000); await p.locator('main tbody tr', { hasText: /61-90 days past due/ }).first().click(); await p.waitForTimeout(6000);
+for (let i = 0; i < 30; i++) { const hit = await p.locator('main tbody tr', { hasText: 'S3-17147' }).count(); if (hit) break; await p.mouse.wheel(0, 3000); await p.waitForTimeout(1500); }
+const row = p.locator('main tbody tr', { hasText: 'S3-17147' }).first(); if (await row.count()) { await row.scrollIntoViewIfNeeded(); await p.waitForTimeout(800); o.row = (await row.innerText()).replace(/\s+/g, ' '); o.box = await row.boundingBox(); } o.picRow = await s.shot('S3-17147-in-61-90');
+fs.writeFileSync(OUT + 'out.json', JSON.stringify(o, null, 1)); console.log(JSON.stringify(o).slice(0, 1500)); await s.close(); process.exit(0);
