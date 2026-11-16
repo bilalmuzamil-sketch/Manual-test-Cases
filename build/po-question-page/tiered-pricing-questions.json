@@ -1,0 +1,1247 @@
+[
+ {
+  "key": "q01",
+  "n": 1,
+  "area": "Tiered Pricing",
+  "story": "Story 2",
+  "title": "The page trail (breadcrumbs) at the top of a tier's page and a matrix's page",
+  "stem": "Where should the page trail start?",
+  "options": [
+   {
+    "k": "a",
+    "t": "At Settings, as the PRD writes it: Settings › Pricing › Tiers › [tier name], and Settings › Pricing › Matrices › [matrix name]",
+    "rec": true,
+    "why": "it is the PRD's text and shows the way back to Settings"
+   },
+   {
+    "k": "b",
+    "t": "At Pricing, as the design draws it: Pricing › Tiers › [tier name]",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD writes the trail from Settings. Every design picture of these pages starts it at \"Pricing ›\". Everything else on these pages is tested now; only the first part of the trail waits.",
+  "where": "PRD Story 2 (a tier's page) and Story 3 (a matrix's page); Tiered Pricing design canvas, pictures 2.11, 2.32, 2.46, 3.2, 4.26",
+  "pictures": [
+   {
+    "src": "img/page-02-board-11-2-11-result-the-new-tiers-page-opens-no-dialog-with-the-curs.png",
+    "board": "2.11"
+   },
+   {
+    "src": "img/page-02-board-32-2-32-result-the-tiers-page-opens-on-pricing-every-matrix-and.png",
+    "board": "2.32"
+   },
+   {
+    "src": "img/page-02-board-46-2-46-result-the-matrix-opens-in-edit-with-tier-2s-column-in-.png",
+    "board": "2.46"
+   },
+   {
+    "src": "img/page-03-board-02-3-2-result-the-matrix-page-categories-work-order-part-sale-t.png",
+    "board": "3.2"
+   },
+   {
+    "src": "img/page-04-board-26-4-26-result-the-archived-view-default-plus-archived-tiers-wi.png",
+    "board": "4.26"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q02",
+  "n": 2,
+  "area": "Tiered Pricing",
+  "story": "Story 2",
+  "title": "The Delete [tier]? window",
+  "stem": "Should the window add the line \"This can't be undone.\"?",
+  "options": [
+   {
+    "k": "a",
+    "t": "No: it asks \"Delete [tier]?\" with only \"Parts already on work orders keep their prices.\", as the PRD writes",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Yes: add \"This can't be undone.\", as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says the question is just \"Delete [tier]?\" with the line \"Parts already on work orders keep their prices.\" The design's window adds \"This can't be undone.\" The rest of deleting a tier is tested now.",
+  "where": "PRD Story 2 (deleting a tier); Tiered Pricing design canvas, picture 2.29",
+  "pictures": [
+   {
+    "src": "img/page-02-board-29-2-29-click-delete.png",
+    "board": "2.29"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q03",
+  "n": 3,
+  "area": "Tiered Pricing",
+  "story": "Story 2",
+  "title": "The question shown before Set Rule changes every matrix",
+  "stem": "When every matrix is ticked, should the Set Rule question say \"all\" and count the inactive ones?",
+  "options": [
+   {
+    "k": "a",
+    "t": "No: \"[tier] becomes [rule] in [n] matrices\", as the PRD writes",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Yes: \"in all 7 matrices (2 inactive)\", as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD gives the sentence \"[tier] becomes [rule] in [n] matrices\". The design writes \"in all 7 matrices (2 inactive)\" when every matrix is ticked. Set Rule itself is tested now.",
+  "where": "PRD Story 2 (Set Rule on a tier's page); Tiered Pricing design canvas, picture 2.53",
+  "pictures": [
+   {
+    "src": "img/page-02-board-53-2-53-click-set-rule-every-matrix-checked.png",
+    "board": "2.53"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q04",
+  "n": 4,
+  "area": "Tiered Pricing",
+  "story": "Story 2",
+  "title": "The words for a matrix where a tier has no rules of its own, on the tier's Pricing tab",
+  "stem": "Which words should a tier's Pricing tab (and the New Tier page) show?",
+  "options": [
+   {
+    "k": "a",
+    "t": "\"Uses previous tier\", the same words as the grid, as the PRD says",
+    "rec": true,
+    "why": "one phrase everywhere"
+   },
+   {
+    "k": "b",
+    "t": "\"Same as previous tier\", as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says the tab uses the grid's words, \"Uses previous tier\", and defines that phrase in its Terminology section. The design's tier pages show \"Same as previous tier\". The price details have a similar question of their own (question 26).",
+  "where": "PRD Story 2 (a tier's Pricing tab) and Terminology; Tiered Pricing design canvas, pictures 2.11 to 2.17, 2.32, 2.44",
+  "pictures": [
+   {
+    "src": "img/page-02-board-11-2-11-result-the-new-tiers-page-opens-no-dialog-with-the-curs.png",
+    "board": "2.11"
+   },
+   {
+    "src": "img/page-02-board-17-2-17-result-the-tier-is-created-and-its-page-stays-open.png",
+    "board": "2.17"
+   },
+   {
+    "src": "img/page-02-board-32-2-32-result-the-tiers-page-opens-on-pricing-every-matrix-and.png",
+    "board": "2.32"
+   },
+   {
+    "src": "img/page-02-board-44-2-44-result-archived-shows-as-plain-text.png",
+    "board": "2.44"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q05",
+  "n": 5,
+  "area": "Tiered Pricing",
+  "story": "Story 2",
+  "title": "Default's own page",
+  "stem": "What should Default's page list?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Every matrix, with a Work Order Matrix column and a Part Sale Matrix column showing the grid's short words (for example \"% markup\"), as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "One Work Order Matrix column with summaries such as \"3 rules · markup\", as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD lists every matrix with both columns and the grid's short words. The design shows one column with a rule summary.",
+  "where": "PRD Story 2 (Default's page) and Story 4 (the grid's short words); Tiered Pricing design canvas, picture 2.42",
+  "pictures": [
+   {
+    "src": "img/page-02-board-42-2-42-result-default-is-priced-by-each-matrixs-default-column.png",
+    "board": "2.42"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q06",
+  "n": 6,
+  "area": "Tiered Pricing",
+  "story": "Story 3",
+  "title": "Moving a category to a matrix from the matrix's page",
+  "stem": "On an existing matrix's page, when does a category picked on the Categories line move to that matrix (so its parts start pricing by it)?",
+  "options": [
+   {
+    "k": "a",
+    "t": "As soon as the picker closes, as the developers built it",
+    "rec": true,
+    "why": "the PRD also says category changes save without asking, apart from the grid"
+   },
+   {
+    "k": "b",
+    "t": "Only when the user clicks Save on the matrix",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says a category picked there \"moves it to this matrix when the matrix is saved\", and also that renaming and changing its categories save without asking. The developers' plan moves it when the picker closes (on a new matrix, with Create Matrix). The design has no picture of this on an existing matrix. Moving a category changes the price of every part in it, so the tester must know when to expect it.",
+  "where": "PRD Story 3 (the matrix page's Categories line); developers' plan for Tiered Pricing (11 Nov 2026), the Categories picker decision",
+  "pictures": [],
+  "waiting": 2
+ },
+ {
+  "key": "q07",
+  "n": 7,
+  "area": "Tiered Pricing",
+  "story": "Story 3",
+  "title": "Duplicate on a matrix",
+  "stem": "When a matrix is duplicated, is the copy created at once or only when the user confirms?",
+  "options": [
+   {
+    "k": "a",
+    "t": "At once: \"[name] (copy)\" is added to the matrix list and opens, as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Only after Create Matrix: an unsaved \"Stop 40 (copy)\" opens with Cancel and Create Matrix, as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD makes the copy in the library and opens it. The design opens an unsaved copy that is only created when Create Matrix is clicked.",
+  "where": "PRD Story 3 (Duplicate); Tiered Pricing design canvas, picture 3.27",
+  "pictures": [
+   {
+    "src": "img/page-03-board-27-3-27-result-a-copy-of-its-rules-ready-to-name.png",
+    "board": "3.27"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q08",
+  "n": 8,
+  "area": "Tiered Pricing",
+  "story": "Story 3",
+  "title": "Where Add Range puts a new cost range",
+  "stem": "Where does Add Range put the new cost range in the grid?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Just before the last (\"and up\") range, as the PRD says",
+    "rec": true,
+    "why": "the open-ended range stays last"
+   },
+   {
+    "k": "b",
+    "t": "As the new last range, as the design's note says",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says \"Add Range adds a range before the last one.\" The design's note on picture 4.20 says \"A new last range\".",
+  "where": "PRD Story 3 (cost ranges); Tiered Pricing design canvas, picture 4.20",
+  "pictures": [
+   {
+    "src": "img/page-04-board-20-4-20-click-add-range.png",
+    "board": "4.20"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q09",
+  "n": 9,
+  "area": "Tiered Pricing",
+  "story": "Story 3",
+  "title": "How the last cost range reads when the grid is not being edited",
+  "stem": "How should the last cost range read in view?",
+  "options": [
+   {
+    "k": "a",
+    "t": "\"$10,000.01 and up\", as the PRD writes",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "\"$10,000.01 +\", as the design's view pictures draw it (with \"and up\" only while editing)",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD writes \"$10,000.01 and up\". The design writes \"$10,000.01 +\" in view and \"and up\" only in edit.",
+  "where": "PRD Story 3 (cost ranges); Tiered Pricing design canvas, pictures 1.4, 3.2, 4.1",
+  "pictures": [
+   {
+    "src": "img/page-01-board-04-1-4-result-opening-a-matrix-shows-todays-rules-as-the-defaul.png",
+    "board": "1.4"
+   },
+   {
+    "src": "img/page-03-board-02-3-2-result-the-matrix-page-categories-work-order-part-sale-t.png",
+    "board": "3.2"
+   },
+   {
+    "src": "img/page-04-board-01-4-1-hover-the-cost-range-info-icon.png",
+    "board": "4.1"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q10",
+  "n": 10,
+  "area": "Tiered Pricing",
+  "story": "Story 3",
+  "title": "Which cost ranges have a delete button",
+  "stem": "Which ranges should show a delete (trash) button while editing?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Every range except the last, as the PRD says (\"The last range ... can't be removed\")",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Every range except the first, the last one included, as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD gives every range except the last a delete button. The design draws a trash icon on every range except the first, the last \"and up\" range included.",
+  "where": "PRD Story 3 (removing a range); Tiered Pricing design canvas, pictures 3.11, 4.6, 4.21",
+  "pictures": [
+   {
+    "src": "img/page-03-board-11-3-11-save-a-matrix-that-prices-one-category.png",
+    "board": "3.11"
+   },
+   {
+    "src": "img/page-04-board-06-4-6-result-every-cell-is-editable.png",
+    "board": "4.6"
+   },
+   {
+    "src": "img/page-04-board-21-4-21-click-a-ranges-delete.png",
+    "board": "4.21"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q11",
+  "n": 11,
+  "area": "Tiered Pricing",
+  "story": "Story 3",
+  "title": "Messages when a matrix grid cannot be saved",
+  "stem": "How should the grid show a value it cannot save?",
+  "options": [
+   {
+    "k": "a",
+    "t": "With the messages next to the box, \"Enter a % from 0 to 99.99\" and \"Enter a margin from 0 to 99.99\", as the PRD writes",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Also with a \"Save is blocked\" banner at the top, with lines such as \"Tier 5: enter a % from 0 to 99.99 in every range.\" and \"Work Order Matrix: Rule 1: Enter a margin from 0 to 99.99\", as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD gives the two messages and no banner. The design adds a \"Save is blocked\" banner with its own wording.",
+  "where": "PRD Story 3 (grid errors); Tiered Pricing design canvas, pictures 3.15, 4.18",
+  "pictures": [
+   {
+    "src": "img/page-03-board-15-3-15-type-120-in-a-off-column-and-click-save.png",
+    "board": "3.15"
+   },
+   {
+    "src": "img/page-04-board-18-4-18-type-a-bad-value-and-click-save.png",
+    "board": "4.18"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q12",
+  "n": 12,
+  "area": "Tiered Pricing",
+  "story": "Story 3",
+  "title": "A matrix name that is already taken",
+  "stem": "Where should New Matrix say that a name is taken?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Under the name box, as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "In the \"Save is blocked\" banner (\"A matrix called Stop 40 already exists.\"), as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD shows an error under the name. The design puts the sentence in the banner, not under the name.",
+  "where": "PRD Story 3 (matrix names); Tiered Pricing design canvas, picture 3.25",
+  "pictures": [
+   {
+    "src": "img/page-03-board-25-3-25-type-a-taken-name-and-click-create-matrix.png",
+    "board": "3.25"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q13",
+  "n": 13,
+  "area": "Tiered Pricing",
+  "story": "Story 4",
+  "title": "A grid column switched to % Off or $ Off",
+  "stem": "When a column's rule type is changed to % Off or $ Off, what should its boxes show?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Empty in every range, as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "0 in every range, as the design draws (\"% Off starts at 0% in every range\")",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says the column starts empty in every range. The design shows 0 in every range.",
+  "where": "PRD Story 4 (changing a rule type); Tiered Pricing design canvas, picture 4.11",
+  "pictures": [
+   {
+    "src": "img/page-04-board-11-4-11-pick-off-for-tier-5.png",
+    "board": "4.11"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q14",
+  "n": 14,
+  "area": "Tiered Pricing",
+  "story": "Story 4",
+  "title": "The change count in the grid's edit bar",
+  "stem": "After a column's rule type is changed on a 3-range matrix (and nothing else), how many changes should the edit bar count?",
+  "options": [
+   {
+    "k": "a",
+    "t": "1: the column whose rule type differs counts as one change",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "3: one per changed box, as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD counts \"each column whose rule type differs\" as one change, but also counts each changed box. The design shows \"3 changes\" for one type change on a 3-range column.",
+  "where": "PRD Story 4 (the edit bar); Tiered Pricing design canvas, picture 4.11",
+  "pictures": [
+   {
+    "src": "img/page-04-board-11-4-11-pick-off-for-tier-5.png",
+    "board": "4.11"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q15",
+  "n": 15,
+  "area": "Tiered Pricing",
+  "story": "Story 4",
+  "title": "The message after saving a matrix grid",
+  "stem": "Which form should the save message take?",
+  "options": [
+   {
+    "k": "a",
+    "t": "The PRD's form, for example \"1 change: Tier 5 is 28% margin.\"",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "The design's form with the range, for example \"1 change: Tier 2 $0.00–$100.00: 22% margin.\"",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD's example names the tier and the new rule. The design's message also names the cost range.",
+  "where": "PRD Story 4 (saving the grid); Tiered Pricing design canvas, picture 3.12",
+  "pictures": [
+   {
+    "src": "img/page-03-board-12-3-12-result-saved-without-asking-a-toast-confirms.png",
+    "board": "3.12"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q16",
+  "n": 16,
+  "area": "Tiered Pricing",
+  "story": "Story 6",
+  "title": "The Part Sale Matrix column of the Matrices list",
+  "stem": "What should this column show?",
+  "options": [
+   {
+    "k": "a",
+    "t": "On or Off, as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "\"Same as work orders\" when a matrix has no separate Part Sale pricing, and a short summary of the Part Sale rules (for example \"2 rules · cost + $, margin\") when it has, as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says the column shows On or Off. The design shows a phrase or a rule summary instead.",
+  "where": "PRD Story 6 (the Matrices list); Tiered Pricing design canvas, picture 6.2",
+  "pictures": [
+   {
+    "src": "img/page-06-board-02-6-2-click-the-matrices-tab.png",
+    "board": "6.2"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q17",
+  "n": 17,
+  "area": "Tiered Pricing",
+  "story": "Story 6",
+  "title": "The message when a search finds nothing (Matrices list, Categories list, a tier's Customers tab)",
+  "stem": "Which wording should these messages use?",
+  "options": [
+   {
+    "k": "a",
+    "t": "The PRD's sentences, ending with a period, for example 'No matrices match the search \"…\".' and 'No categories match the search \"…\".'",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "The design's shorter forms without a period: 'No matrices match \"zzz\"', 'No category matches \"zzz\"' and 'No customer matches \"zzz\"' (the last with a Clear All Filters button)",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD gives full sentences with a period on all three screens. The design writes shorter forms without one.",
+  "where": "PRD Story 6 (Matrices list), Story 7 (Categories list), Story 9 (a tier's Customers tab); Tiered Pricing design canvas, pictures 6.10, 7.6, 9.2",
+  "pictures": [
+   {
+    "src": "img/page-06-board-10-6-10-a-search-with-no-match.png",
+    "board": "6.10"
+   },
+   {
+    "src": "img/page-07-board-06-7-6-a-search-with-no-match.png",
+    "board": "7.6"
+   },
+   {
+    "src": "img/page-09-board-02-9-2-search-a-tiers-customers-tab-with-no-match.png",
+    "board": "9.2"
+   }
+  ],
+  "waiting": 2
+ },
+ {
+  "key": "q18",
+  "n": 18,
+  "area": "Tiered Pricing",
+  "story": "Story 7",
+  "title": "The note about other categories on a category's page",
+  "stem": "Where should \"The [matrix] matrix also prices [n] other categories: [A] · [B].\" appear?",
+  "options": [
+   {
+    "k": "a",
+    "t": "As a line above the grid, as the category page requirement says",
+    "rec": true,
+    "why": "it is the requirement written for this page"
+   },
+   {
+    "k": "b",
+    "t": "In an info-icon tooltip beside the matrix name, with no line, as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The category page requirement puts the sentence on a line above the grid. Elsewhere the PRD says new pages show no explanatory text and put explanations in info-icon tooltips, which is what the design does here.",
+  "where": "PRD Story 7 (a category's page) and Story 19 (explanations in tooltips); Tiered Pricing design canvas, picture 7.9",
+  "pictures": [
+   {
+    "src": "img/page-07-board-09-7-9-a-category-whose-matrix-prices-others.png",
+    "board": "7.9"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q19",
+  "n": 19,
+  "area": "Tiered Pricing",
+  "story": "Story 8",
+  "title": "The buttons of New Category",
+  "stem": "Which buttons should New Category have?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Save and Cancel, as the PRD and the developers' plan say",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Cancel and Create Category, as the design draws (like Create Tier and Create Matrix)",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says New Category \"has Save and Cancel\". Version 0.17 renamed New Tier's and New Matrix's buttons to Create Tier and Create Matrix, and the design gives New Category \"Create Category\" in the same way.",
+  "where": "PRD Story 8 (New Category); developers' plan for Tiered Pricing, Phase 16; Tiered Pricing design canvas, pictures 8.6, 8.8",
+  "pictures": [
+   {
+    "src": "img/page-08-board-06-8-6-result-name-cursor-in-it-matrix-cancel-create-category.png",
+    "board": "8.6"
+   },
+   {
+    "src": "img/page-08-board-08-8-8-type-wheel-seals-and-click-create-category.png",
+    "board": "8.8"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q20",
+  "n": 20,
+  "area": "Tiered Pricing",
+  "story": "Story 8",
+  "title": "Two category messages (Delete and a taken name)",
+  "stem": "(1) Should the Delete [category]? question keep the sentence \"Invoices already sent aren't sent again; one synced again later books these parts to Uncategorized's QuickBooks item.\"? (2) Should the taken-name error add \"Click away to keep [old name].\"?",
+  "options": [
+   {
+    "k": "a",
+    "t": "The PRD's wording for both: the QuickBooks sentence stays, and the error is just \"A category called [name] already exists\"",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "The design's wording for both: no QuickBooks sentence, and the error adds \"Click away to keep Brakes.\"",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Mixed or something else (please say which).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD's Delete question includes the QuickBooks sentence; the design's leaves it out. The PRD's taken-name error is one sentence; the design adds a second.",
+  "where": "PRD Story 8 (deleting a category; category names); Tiered Pricing design canvas, pictures 8.11, 8.4",
+  "pictures": [
+   {
+    "src": "img/page-08-board-11-8-11-click-delete-in-the-delete-dialog.png",
+    "board": "8.11"
+   },
+   {
+    "src": "img/page-08-board-04-8-4-rename-brakes-to-a-taken-name.png",
+    "board": "8.4"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q21",
+  "n": 21,
+  "area": "Tiered Pricing",
+  "story": "Story 8",
+  "title": "Uncategorized's page",
+  "stem": "What should Uncategorized's page show and allow?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Read only, with no rename, no Delete and no matrix picker, as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "As the design draws: a grayed Pricing Matrix box, a grayed Tax Exempt box and a QuickBooks Products And Services picker that can be changed",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say whether its QuickBooks mapping and Tax Exempt can be changed).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says Uncategorized's page is read only \"with no rename, Delete or matrix picker\". The design shows the matrix field grayed and a QuickBooks picker that looks editable.",
+  "where": "PRD Story 8 (Uncategorized); Tiered Pricing design canvas, picture 8.3",
+  "pictures": [
+   {
+    "src": "img/page-08-board-03-8-3-result-a-system-category-it-cant-be-renamed-moved-or-del.png",
+    "board": "8.3"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q22",
+  "n": 22,
+  "area": "Tiered Pricing",
+  "story": "Story 9",
+  "title": "The filter on a tier's Customers tab",
+  "stem": "Which options should this filter offer?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Work orders, Part Sales and Both, as the PRD and the developers' plan say. Please also say whether \"Work orders\" means customers on the tier for work orders only, or every customer on the tier for work orders.",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "A \"Sales Type\" filter with \"Work Orders and Part Sales\" and \"Work Orders only\", as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD lists \"Work orders, Part Sales, Both\". The design names the filter Sales Type with different options.",
+  "where": "PRD Story 9 (a tier's Customers tab); developers' plan for Tiered Pricing, Phase 17; Tiered Pricing design canvas, picture 9.3",
+  "pictures": [
+   {
+    "src": "img/page-09-board-03-9-3-open-the-customers-tabs-channel-filter.png",
+    "board": "9.3"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q23",
+  "n": 23,
+  "area": "Tiered Pricing",
+  "story": "Story 9",
+  "title": "The Counter Sale customer's tier fields in Edit Customer",
+  "stem": "How should \"Every walk-in sale uses this tier.\" show?",
+  "options": [
+   {
+    "k": "a",
+    "t": "As a tooltip on the tier fields, as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "As a light blue info box above the tier fields, always visible, as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says Edit Customer shows a tooltip on the Counter Sale customer's tier fields. The design shows the same sentence in a box that is always visible.",
+  "where": "PRD Story 9 (the Counter Sale customer); Tiered Pricing design canvas, picture 9.36",
+  "pictures": [
+   {
+    "src": "img/page-09-board-36-9-36-edit-the-counter-sale-customer.png",
+    "board": "9.36"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q24",
+  "n": 24,
+  "area": "Tiered Pricing",
+  "story": "Story 10",
+  "title": "Parts added to a paid work order that is reopened",
+  "stem": "When a paid work order is reopened by adding a line, which tier prices the parts added to it?",
+  "options": [
+   {
+    "k": "a",
+    "t": "The customer's tier as it is now, as the developers built it",
+    "rec": true,
+    "why": "the new parts are new work done after payment, the same way a split work order takes the customer's current tier"
+   },
+   {
+    "k": "b",
+    "t": "The tier the work order was made with, as the PRD's general rule would say",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says a work order keeps the tier its customer had when it was made; moving a customer to another tier affects only work orders made afterwards or by splitting. No sentence covers reopening. The developers built the reopened work order to take the customer's current tier and told Product as an FYI. It decides the price on a real invoice for any customer whose tier changed since the job was opened.",
+  "where": "PRD Story 10 (which tier a work order keeps); developers' plan for Tiered Pricing (11 Nov 2026), clarifications and Phase 4; ticket SV-12667 item 1",
+  "pictures": [],
+  "waiting": 1
+ },
+ {
+  "key": "q25",
+  "n": 25,
+  "area": "Tiered Pricing",
+  "story": "Story 11",
+  "title": "The message after receiving a part at a new cost",
+  "stem": "After a part is received at a new cost, what does the user see?",
+  "options": [
+   {
+    "k": "a",
+    "t": "The PRD's 6-second notice \"Updating the cost also updates the sell price.\", with nothing about tiers",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "The design's message \"Part received\" / \"$80.00 each, Tier 2.\", naming the tier, and no sell-price notice",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD says the receive window says nothing about tiers and its notice reads \"Updating the cost also updates the sell price.\" The design shows a different message after Receive that names the tier.",
+  "where": "PRD Story 11 (receiving a part); Tiered Pricing design canvas, picture 11.7",
+  "pictures": [
+   {
+    "src": "img/page-11-board-07-11-7-receive-a-tier-priced-part-at-a-new-cost-then-hover-its.png",
+    "board": "11.7"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q26",
+  "n": 26,
+  "area": "Tiered Pricing",
+  "story": "Story 12",
+  "title": "The price details of a part",
+  "stem": "(1) Should the price details name the matrix's side (Work Order Matrix or Part Sale Matrix)? (2) How should they word a price that comes from the previous tier?",
+  "options": [
+   {
+    "k": "a",
+    "t": "As the PRD says: the matrix, its side and the rule; and for a previous tier a sentence such as \"Fleet is the same as the previous tier, Wholesale, in Brakes.\"",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "As the design draws: \"Tread Plus · Tier 2\" with no side, and a row \"Same as previous tier: Default\"",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Mixed or something else (please say which).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD lists the matrix, its side and the rule, and gives the previous-tier sentence. The design's popover leaves out the side and shows a short row instead of the sentence.",
+  "where": "PRD Story 12 (price details); Tiered Pricing design canvas, pictures 12.1, 12.2",
+  "pictures": [
+   {
+    "src": "img/page-12-board-01-12-1-hover-a-price.png",
+    "board": "12.1"
+   },
+   {
+    "src": "img/page-12-board-02-12-2-hover-a-part-priced-through-same-as-previous-tier.png",
+    "board": "12.2"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q27",
+  "n": 27,
+  "area": "Tiered Pricing",
+  "story": "Story 14",
+  "title": "The notice after changing the customer on a work order",
+  "stem": "Which lines should the notice count?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Only lines priced by a tier or Default: Manual, Fixed price, Fixed line total and Before tiers lines don't count, and no tier name shows when several tiers priced them, as the PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Every line, naming the kinds, for example \"4 lines priced at Tier 2, Fixed price and Manual for the previous customer\", as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The PRD counts only tier and Default lines. The design's notice also counts Fixed price and Manual lines.",
+  "where": "PRD Story 14 (Change Customer); Tiered Pricing design canvas, picture 14.8",
+  "pictures": [
+   {
+    "src": "img/page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou.png",
+    "board": "14.8"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q28",
+  "n": 28,
+  "area": "Sales by Tier and Sales by Category reports",
+  "story": "Reports",
+  "title": "How tiers and filters are labelled",
+  "stem": "How should a tier be named in the rows, the Priced By filter and the downloads, and how should the Sales Type chip read?",
+  "options": [
+   {
+    "k": "a",
+    "t": "As the reports PRD writes: an active tier as its number and name (\"2 · Fleet\"), an archived tier as its name with \"(archived)\", the same in the downloads, and the chip \"Sales Type: All\"",
+    "rec": true,
+    "why": "the reports PRD says its labels and messages ship as written"
+   },
+   {
+    "k": "b",
+    "t": "As the design draws: the tier's name only (\"Tier 2\"), no \"(archived)\", and a plain \"Sales Type\" chip",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The reports PRD gives numbers, \"(archived)\" and \"Sales Type: All\". The design's pictures and its CSV picture show names only and a plain chip.",
+  "where": "Sales by Tier and Sales by Category PRD, Stories 1, 3 and 4; Tiered Pricing design canvas, pictures 20.2 to 20.5, 20.9, 20.12, 20.13, 20.18, 20.20",
+  "pictures": [
+   {
+    "src": "img/page-20-board-02-20-2-reports-sales-by-tier.png",
+    "board": "20.2"
+   },
+   {
+    "src": "img/page-20-board-05-20-5-open-priced-by.png",
+    "board": "20.5"
+   },
+   {
+    "src": "img/page-20-board-09-20-9-sales-type-work-orders-only.png",
+    "board": "20.9"
+   },
+   {
+    "src": "img/page-20-board-12-20-12-sort-by-parts-margin.png",
+    "board": "20.12"
+   },
+   {
+    "src": "img/page-20-board-13-20-13-result-first-click-on-a-number-column-puts-the-biggest.png",
+    "board": "20.13"
+   },
+   {
+    "src": "img/page-20-board-18-20-18-click-download.png",
+    "board": "20.18"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q29",
+  "n": 29,
+  "area": "Sales by Tier and Sales by Category reports",
+  "story": "Reports Story 3",
+  "title": "The order of the Category filter",
+  "stem": "In what order should the Category filter list the categories?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Uncategorized first, then A to Z, as the reports PRD says",
+    "rec": true,
+    "why": ""
+   },
+   {
+    "k": "b",
+    "t": "Uncategorized among the others in A-to-Z order, as the design draws",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The reports PRD says \"Uncategorized first, then A to Z\". The design lists Uncategorized between \"Tires, Retread\" and \"Wipers\".",
+  "where": "Sales by Tier and Sales by Category PRD, Story 3 (filters); Tiered Pricing design canvas, picture 20.7",
+  "pictures": [
+   {
+    "src": "img/page-20-board-07-20-7-open-the-category-filter.png",
+    "board": "20.7"
+   }
+  ],
+  "waiting": 1
+ },
+ {
+  "key": "q30",
+  "n": 30,
+  "area": "Sales by Tier and Sales by Category reports",
+  "story": "Reports Story 4",
+  "title": "The order of the filter lines at the top of a download",
+  "stem": "In what order should the filter lines at the top of a PDF or CSV be?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Sales Type, Category, Priced By, Customer, as the reports PRD writes and the developers build",
+    "rec": true,
+    "why": "the design's \"All …\" wording is kept"
+   },
+   {
+    "k": "b",
+    "t": "Sales Type, Priced By, Category, Customer, as the design's CSV picture shows",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Something else (please say).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "The reports PRD lists the lines as Sales Type, Category, Priced By and Customer. The design's CSV picture puts Priced By before Category. The developers follow the PRD's order and take the \"All …\" wording from the design.",
+  "where": "Sales by Tier and Sales by Category PRD, Story 4 (downloads); Tiered Pricing design canvas, picture 20.20; developers' plan for the reports (11 Nov 2026)",
+  "pictures": [
+   {
+    "src": "img/page-20-board-20-20-20-result-prototype-stand-in-see-the-info-icon-the-real-m.png",
+    "board": "20.20"
+   }
+  ],
+  "waiting": 2
+ },
+ {
+  "key": "q31",
+  "n": 31,
+  "area": "Tiered Pricing and the two new reports",
+  "story": "Every page (layout)",
+  "title": "Columns that move between the design's own pictures",
+  "stem": "Should columns and boxes keep their place when a screen changes state, or are the moves the design's pictures show intended?",
+  "options": [
+   {
+    "k": "a",
+    "t": "Keep their place: nothing moves sideways or down when a row opens or closes, a search narrows a list, a list is empty, a filter chip changes, the Add Part row opens or a page switches between view and edit",
+    "rec": true,
+    "why": "columns that jump make a screen hard to read and compare"
+   },
+   {
+    "k": "b",
+    "t": "The moves drawn are intended",
+    "rec": false,
+    "why": ""
+   },
+   {
+    "k": "c",
+    "t": "Some are intended (please say which).",
+    "rec": false,
+    "why": ""
+   }
+  ],
+  "context": "Comparing the design's pictures of the same screen: the Price Part Simulator's columns move between view and edit (Part Cost about 70 pixels wider in edit); on New Matrix, opening the categories list pushes the tabs and grid down about 221 pixels; on Manage Customers the tier columns move left 11 to 83 pixels when a search narrows the list; on Sales by Tier the number columns move 58 to 94 pixels when a row or a customer is opened and 20 to 36 pixels on the empty states; on Sales by Category they move 5 to 10 pixels when a category is opened; the report filter chips shift as a picked chip widens; on a work order the lines table's columns move 19 to 71 pixels while the Add Part row is open and 1 to 9 pixels after a part is added or received. The PRD says layout follows the design, but nothing says whether these moves are meant or just drawn that way.",
+  "where": "Tiered Pricing design canvas, pictures 3.5 and 3.25, 3.10 and 4.7, 3.22 and 3.23 (simulator, New Matrix); 9.4, 9.12, 9.13 (Manage Customers); 20.2 to 20.4, 20.9, 20.11, 20.16 and 20.17, 20.21 to 20.23 (reports); 10.5 to 10.9, 11.7 (work order); PRD section 7 (layout follows the design)",
+  "pictures": [
+   {
+    "src": "img/page-03-board-05-3-5-result-enter-or-clicking-away-saves-at-once-esc-cancels.png",
+    "board": "3.5"
+   },
+   {
+    "src": "img/page-03-board-25-3-25-type-a-taken-name-and-click-create-matrix.png",
+    "board": "3.25"
+   },
+   {
+    "src": "img/page-03-board-10-3-10-result-no-badge-on-the-page-the-reason-shows-as-plain-t.png",
+    "board": "3.10"
+   },
+   {
+    "src": "img/page-04-board-07-4-7-type-in-a-range.png",
+    "board": "4.7"
+   },
+   {
+    "src": "img/page-03-board-22-3-22-result-name-categories-and-the-grid-ready-to-fill-cance.png",
+    "board": "3.22"
+   },
+   {
+    "src": "img/page-03-board-23-3-23-open-categories.png",
+    "board": "3.23"
+   }
+  ],
+  "waiting": 8
+ }
+]

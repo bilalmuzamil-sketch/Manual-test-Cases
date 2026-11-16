@@ -1,0 +1,319 @@
+<title>Product Owner Questions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: one reading column of question cards under a sticky toolbar; the answer sits beside the options, history folds below. */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --surface-2:#eef2f7; --line:#d9e0ea; --fg:#18202b; --muted:#5a6676;
+  --accent:#1f6fe5; --accent-soft:#e3eefd; --ok:#16794a; --ok-soft:#e2f4ea; --warn:#9a5b00; --warn-soft:#fdf1dc;
+  --shadow:0 1px 2px rgba(20,32,52,.06),0 2px 8px rgba(20,32,52,.05);
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-head:"Space Grotesk","Inter",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10151c; --surface:#171e27; --surface-2:#1f2833; --line:#2c3846; --fg:#e6ebf2; --muted:#9aa7b7;
+  --accent:#6aa5ff; --accent-soft:#1c2c45; --ok:#5fd09a; --ok-soft:#173326; --warn:#f0b65a; --warn-soft:#3a2c14;
+  --shadow:none; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151c; --surface:#171e27; --surface-2:#1f2833; --line:#2c3846; --fg:#e6ebf2; --muted:#9aa7b7;
+  --accent:#6aa5ff; --accent-soft:#1c2c45; --ok:#5fd09a; --ok-soft:#173326; --warn:#f0b65a; --warn-soft:#3a2c14;
+  --shadow:none; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:920px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--font-head);text-wrap:balance;margin:0}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+header.top{display:grid;gap:8px;margin-bottom:18px}
+header.top h1{font-size:30px;line-height:1.15}
+.sub{color:var(--muted)}
+.intro{max-width:68ch}
+.banner{border:1px solid var(--warn);background:var(--warn-soft);color:var(--fg);border-radius:8px;padding:10px 14px;font-size:14px}
+.progress{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px}
+.bar{flex:1 1 220px;height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;min-width:0}
+.bar span{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.count{font-variant-numeric:tabular-nums;font-weight:600}
+.toolbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);margin-bottom:16px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:7px 12px;font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+select,input[type=search]{font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);min-width:0}
+input[type=search]{flex:1 1 180px}
+.btn{font:inherit;font-size:14px;font-weight:600;border-radius:8px;padding:8px 14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn:focus-visible,.seg button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.thumb:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.list{display:grid;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:18px;display:grid;gap:12px;min-width:0}
+.card.answered{border-left:4px solid var(--ok)}
+.card.open{border-left:4px solid var(--warn)}
+.chead{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.num{font-family:var(--font-head);font-weight:600;font-size:18px;font-variant-numeric:tabular-nums}
+.chip{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--surface-2);color:var(--muted);font-weight:500}
+.pill{font-size:12px;padding:2px 9px;border-radius:99px;font-weight:600}
+.pill.open{background:var(--warn-soft);color:var(--warn)}
+.pill.ans{background:var(--ok-soft);color:var(--ok)}
+.waiting{margin-left:auto;font-size:12px;color:var(--muted)}
+.card h2{font-size:19px;line-height:1.3}
+.stem{font-weight:500;max-width:72ch}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:8px}
+legend{position:absolute;left:-9999px}
+.opt{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;background:var(--surface)}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-top:3px;accent-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt .k{font-weight:600}
+.rec{display:inline-block;margin-left:6px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 6px;vertical-align:1px}
+.why{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+textarea{font:inherit;font-size:14px;width:100%;box-sizing:border-box;min-height:64px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--surface);color:var(--fg);resize:vertical}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.status{font-size:13px;color:var(--muted)}
+.status.err{color:var(--warn)}
+.current{background:var(--ok-soft);border-radius:10px;padding:10px 12px;font-size:14px}
+.current b{font-weight:600}
+details{font-size:14px}
+summary{cursor:pointer;color:var(--accent);font-weight:500}
+.hist{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}
+.hist li{border-left:2px solid var(--line);padding-left:10px;color:var(--muted)}
+.know{background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:14px}
+.know .lbl,.where .lbl{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px}
+.where{font-size:13px;color:var(--muted)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.thumb{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface-2);padding:0;cursor:zoom-in;text-align:left;font:inherit;color:var(--muted)}
+.thumb img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left}
+.thumb span{display:block;font-size:12px;padding:4px 8px}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:28px;text-align:center;color:var(--muted)}
+.lightbox{position:fixed;inset:0;z-index:20;background:rgba(10,14,20,.82);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox img{max-width:100%;max-height:82vh;border-radius:6px;background:#fff}
+.lightbox .lbbar{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff;width:min(1200px,100%);margin-bottom:8px}
+.lightbox .btn{background:#fff;color:#18202b;border-color:#fff}
+@media (max-width:520px){header.top h1{font-size:24px}.card{padding:14px}.waiting{margin-left:0;width:100%}}
+@media (prefers-reduced-motion:reduce){.bar span{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Questions for the product owner</span>
+    <h1 id="title">Loading the questions…</h1>
+    <div class="sub" id="sub"></div>
+    <p class="intro" id="intro"></p>
+    <div class="banner" id="banner" hidden></div>
+    <div class="progress" id="progressRow" hidden>
+      <span class="count" id="count"></span>
+      <div class="bar" aria-hidden="true"><span id="barFill"></span></div>
+      <span class="sub" id="waitingTotal"></span>
+    </div>
+  </header>
+
+  <div class="toolbar" id="toolbar" hidden>
+    <div class="seg" role="group" aria-label="Show">
+      <button type="button" id="f-all" aria-pressed="true">All</button>
+      <button type="button" id="f-open" aria-pressed="false">Open</button>
+      <button type="button" id="f-ans" aria-pressed="false">Answered</button>
+    </div>
+    <select id="f-area" aria-label="Part of the feature"><option value="">Every part</option></select>
+    <input type="search" id="f-q" placeholder="Search the questions" aria-label="Search the questions">
+    <button type="button" class="btn" id="csvBtn">Download CSV</button>
+  </div>
+
+  <main class="list" id="list">
+    <div class="empty" id="emptyState">The questions appear here once they load. Sign in to claude.ai with your ShopView account to see and answer them.</div>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Design picture">
+  <div style="display:grid;justify-items:center;width:100%">
+    <div class="lbbar"><span id="lbCap"></span><button type="button" class="btn" id="lbClose">Close</button></div>
+    <img id="lbImg" alt="">
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const state = { meta:null, questions:[], answers:{}, names:{}, filter:'all', area:'', q:'', drafts:{}, myId:null, canWrite:null, saving:{} };
+  let db=null, user=null, comments=null, downloads=null;
+
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleString(undefined,{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}); }catch(e){ return iso; } }
+  function el(tag, attrs, kids){ const n=document.createElement(tag); if(attrs) for(const [k,v] of Object.entries(attrs)){ if(v==null||v===false) continue; if(k==='text') n.textContent=v; else if(k==='class') n.className=v; else if(k.startsWith('on')) n.addEventListener(k.slice(2),v); else n.setAttribute(k,v===true?'':v); } (kids||[]).forEach(c=>c&&n.appendChild(typeof c==='string'?document.createTextNode(c):c)); return n; }
+  function name(id){ return (id && state.names[id]) || (id ? 'Someone' : 'Unknown'); }
+
+  // all answers, newest last, per question
+  function historyFor(key){ return (state.answers[key]||[]).slice().sort((a,b)=>String(a.at).localeCompare(String(b.at))); }
+  function latest(key){ const h=historyFor(key); return h.length ? h[h.length-1] : null; }
+
+  async function resolveNames(){
+    if(!user) return;
+    const ids=[...new Set(Object.values(state.answers).flat().map(a=>a.by).filter(Boolean))].filter(id=>!(id in state.names));
+    if(!ids.length) return;
+    try{ const ps=await user.profiles(ids); ids.forEach(id=>{ state.names[id]=(ps&&ps[id]&&ps[id].name)||'Someone'; }); render(); }catch(e){}
+  }
+
+  function renderHeader(){
+    const m=state.meta||{};
+    $('title').textContent = m.title || 'Questions';
+    document.title = m.title ? m.title + ' questions' : 'Product Owner Questions';
+    $('sub').textContent = [m.forWhom ? 'For ' + m.forWhom : '', m.sent ? 'Sent ' + m.sent : '', state.questions.length ? state.questions.length + ' questions' : ''].filter(Boolean).join(' · ');
+    $('intro').textContent = m.intro || '';
+    const b=$('banner');
+    const msgs=[];
+    if(m.preview) msgs.push(m.preview);
+    if(state.canWrite===false) msgs.push('You can read every question and answer here. Only the people asked can save an answer.');
+    b.hidden=!msgs.length; b.textContent=msgs.join(' ');
+    const total=state.questions.length, done=state.questions.filter(q=>latest(q.key)).length;
+    const waiting=state.questions.filter(q=>!latest(q.key)).reduce((s,q)=>s+(q.waiting||0),0);
+    $('progressRow').hidden=!total; $('toolbar').hidden=!total;
+    $('count').textContent = done + ' of ' + total + ' answered';
+    $('barFill').style.width = total ? (100*done/total)+'%' : '0';
+    $('waitingTotal').textContent = waiting ? waiting + (waiting===1?' test waits':' tests wait') + ' on the open questions' : 'No test is waiting';
+    const sel=$('f-area'); const areas=[...new Set(state.questions.map(q=>q.story).filter(Boolean))];
+    if(sel.options.length-1!==areas.length){ sel.innerHTML=''; sel.appendChild(el('option',{value:'',text:'Every part'})); areas.forEach(a=>sel.appendChild(el('option',{value:a,text:a}))); sel.value=state.area; }
+  }
+
+  function matches(q){
+    const ans=!!latest(q.key);
+    if(state.filter==='open'&&ans) return false;
+    if(state.filter==='ans'&&!ans) return false;
+    if(state.area&&q.story!==state.area) return false;
+    if(state.q){ const t=(q.title+' '+q.stem+' '+q.context+' '+q.options.map(o=>o.t).join(' ')).toLowerCase(); if(!t.includes(state.q.toLowerCase())) return false; }
+    return true;
+  }
+
+  function card(q){
+    const cur=latest(q.key), hist=historyFor(q.key);
+    const draft=state.drafts[q.key] || {choice: cur?cur.choice:'', note:''};
+    const c=el('article',{class:'card '+(cur?'answered':'open'),id:'card-'+q.key,'aria-labelledby':'h-'+q.key});
+    c.appendChild(el('div',{class:'chead'},[
+      el('span',{class:'num',text:'#'+q.n}),
+      el('span',{class:'chip',text:q.story||''}),
+      el('span',{class:'pill '+(cur?'ans':'open'),text:cur?'Answered':'Open'}),
+      q.waiting ? el('span',{class:'waiting',text:q.waiting+(q.waiting===1?' test waits on this answer':' tests wait on this answer')}) : null
+    ]));
+    c.appendChild(el('h2',{id:'h-'+q.key,text:(q.area?q.area+': ':'')+q.title}));
+    c.appendChild(el('p',{class:'stem',text:q.stem}));
+    if(cur){
+      const o=q.options.find(x=>x.k===cur.choice);
+      c.appendChild(el('div',{class:'current'},[
+        el('b',{text:'Answer: ('+cur.choice+') '}), (o?o.t:''),
+        cur.note ? el('div',{text:'Note: '+cur.note}) : null,
+        el('div',{class:'status',text:'Saved by '+name(cur.by)+' · '+fmtDate(cur.at)})
+      ]));
+    }
+    const fs=el('fieldset',{},[el('legend',{text:'Options for question '+q.n})]);
+    q.options.forEach(o=>{
+      const id='r-'+q.key+'-'+o.k;
+      const inp=el('input',{type:'radio',name:'r-'+q.key,id,value:o.k,checked:draft.choice===o.k,disabled:state.canWrite===false,onchange:()=>{ state.drafts[q.key]={...(state.drafts[q.key]||draft),choice:o.k}; render(); }});
+      const lab=el('label',{class:'opt'+(draft.choice===o.k?' sel':''),for:id},[inp, el('span',{},[el('span',{class:'k',text:'('+o.k+') '}), o.t, o.rec?el('span',{class:'rec',text:'Suggested'}):null, o.rec&&o.why?el('span',{class:'why',text:'Why: '+o.why}):null])]);
+      fs.appendChild(lab);
+    });
+    c.appendChild(fs);
+    if(state.canWrite!==false){
+      const ta=el('textarea',{id:'n-'+q.key,placeholder:'Add a note (optional), for example the exact wording you want',value:null});
+      ta.value=draft.note||''; ta.addEventListener('input',()=>{ state.drafts[q.key]={...(state.drafts[q.key]||draft),note:ta.value}; });
+      c.appendChild(ta);
+      const st=el('span',{class:'status',id:'s-'+q.key,role:'status'});
+      const btn=el('button',{type:'button',class:'btn primary',text:cur?'Save a new answer':'Save answer',disabled:!draft.choice||state.saving[q.key],onclick:()=>save(q)});
+      const acts=el('div',{class:'actions'},[btn, comments?el('button',{type:'button',class:'btn',text:'Discuss',onclick:()=>discuss(c)}):null, st]);
+      c.appendChild(acts);
+    } else if(comments){ c.appendChild(el('div',{class:'actions'},[el('button',{type:'button',class:'btn',text:'Discuss',onclick:()=>discuss(c)})])); }
+    if(hist.length>1){
+      const ul=el('ul',{class:'hist'}); hist.slice(0,-1).reverse().forEach(a=>{ const o=q.options.find(x=>x.k===a.choice); ul.appendChild(el('li',{text:'('+a.choice+') '+(o?o.t:'')+(a.note?' — note: '+a.note:'')+' · '+name(a.by)+' · '+fmtDate(a.at)})); });
+      c.appendChild(el('details',{},[el('summary',{text:'Earlier answers ('+(hist.length-1)+')'}),ul]));
+    }
+    c.appendChild(el('div',{class:'know'},[el('span',{class:'lbl',text:'What we know today'}),q.context]));
+    if(q.pictures&&q.pictures.length){
+      const g=el('div',{class:'thumbs'});
+      q.pictures.forEach(p=>{ const b=el('button',{type:'button',class:'thumb','aria-label':'Open design picture '+p.board,onclick:()=>openLb(p)},[el('img',{src:p.src,alt:'Design picture '+p.board,loading:'lazy'}),el('span',{text:'Design picture '+p.board})]); g.appendChild(b); });
+      c.appendChild(g);
+    }
+    c.appendChild(el('div',{class:'where'},[el('span',{class:'lbl',text:'Where we found it'}),q.where]));
+    return c;
+  }
+
+  function render(){
+    renderHeader();
+    const list=$('list');
+    const focusId=document.activeElement&&document.activeElement.id;
+    const shown=state.questions.filter(matches);
+    list.innerHTML='';
+    if(!state.questions.length){ list.appendChild($('emptyState')||el('div',{class:'empty',id:'emptyState',text:'No questions yet.'})); return; }
+    if(!shown.length){ list.appendChild(el('div',{class:'empty',text:'No question matches these filters.'})); return; }
+    shown.forEach(q=>list.appendChild(card(q)));
+    if(focusId&&$(focusId)) $(focusId).focus({preventScroll:true});
+  }
+
+  async function save(q){
+    const d=state.drafts[q.key]; if(!d||!d.choice||!db) return;
+    if(!state.myId){ try{ state.myId=await user.id(); }catch(e){} }
+    if(!state.myId){ const s=$('s-'+q.key); if(s){ s.textContent='Sign in to claude.ai to save an answer.'; s.className='status err'; } return; }
+    state.saving[q.key]=true; render();
+    const at=new Date().toISOString();
+    try{
+      // each person writes only under answers/<their id>; nothing already saved is ever changed
+      await db.doc('answers/'+state.myId).set({ lastAt: at });
+      await db.collection('answers/'+state.myId+'/log').add({ q:q.key, n:q.n, choice:d.choice, note:(d.note||'').trim(), by:state.myId, at });
+      delete state.drafts[q.key]; state.saving[q.key]=false; render();
+      const s=$('s-'+q.key); if(s){ s.textContent='Saved'; }
+    }catch(e){
+      state.saving[q.key]=false; render();
+      const s=$('s-'+q.key); if(s){ s.className='status err'; s.textContent = (e&&e.code==='invalid_argument') ? 'You can read this page, but your access does not allow saving answers. Ask the page owner for Contributor access.' : 'The answer was not saved. Check your connection and press Save again.'; }
+      if(e&&e.code==='invalid_argument'){ state.canWrite=false; render(); }
+    }
+  }
+
+  async function discuss(cardEl){ try{ await comments.openComposer({element:cardEl}); }catch(e){} }
+
+  function openLb(p){ $('lbImg').src=p.src; $('lbImg').alt='Design picture '+p.board; $('lbCap').textContent='Design picture '+p.board; $('lightbox').hidden=false; $('lbClose').focus(); }
+  function closeLb(){ $('lightbox').hidden=true; $('lbImg').removeAttribute('src'); }
+  $('lbClose').addEventListener('click',closeLb);
+  $('lightbox').addEventListener('click',(e)=>{ if(e.target===$('lightbox')) closeLb(); });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'&&!$('lightbox').hidden) closeLb(); });
+
+  function setFilter(f){ state.filter=f; ['all','open','ans'].forEach(x=>$('f-'+x).setAttribute('aria-pressed',String(x===f))); render(); }
+  $('f-all').addEventListener('click',()=>setFilter('all'));
+  $('f-open').addEventListener('click',()=>setFilter('open'));
+  $('f-ans').addEventListener('click',()=>setFilter('ans'));
+  $('f-area').addEventListener('change',(e)=>{ state.area=e.target.value; render(); });
+  $('f-q').addEventListener('input',(e)=>{ state.q=e.target.value.trim(); render(); });
+
+  function csvCell(v){ v=v==null?'':String(v); return /[",\n]/.test(v) ? '"'+v.replace(/"/g,'""')+'"' : v; }
+  $('csvBtn').addEventListener('click', async ()=>{
+    const rows=[['#','Part','Topic','Question','Options','Suggested','Answer','Note','Answered by','Answered at','Earlier answers','What we know today','Where we found it']];
+    state.questions.forEach(q=>{
+      const cur=latest(q.key), hist=historyFor(q.key);
+      rows.push([q.n,q.story,(q.area?q.area+': ':'')+q.title,q.stem,q.options.map(o=>'('+o.k+') '+o.t).join('\n'),(q.options.find(o=>o.rec)||{}).k||'',
+        cur?cur.choice:'',cur?cur.note:'',cur?name(cur.by):'',cur?cur.at:'',
+        hist.slice(0,-1).map(a=>'('+a.choice+') '+name(a.by)+' '+a.at+(a.note?' note: '+a.note:'')).join('\n'),q.context,q.where]);
+    });
+    const csv='﻿'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');
+    const fname=((state.meta&&state.meta.title)||'questions').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')+'-questions.csv';
+    if(!downloads){ $('csvBtn').textContent='Download not available here'; return; }
+    try{ await downloads.save({filename:fname,data:csv}); }catch(e){}
+  });
+
+  async function start(){
+    try{ db=await window.claude.use('db'); }catch(e){ db=null; }
+    try{ user=await window.claude.use('user'); }catch(e){ user=null; }
+    try{ comments=await window.claude.use('comments'); }catch(e){ comments=null; }
+    try{ downloads=await window.claude.use('downloads'); }catch(e){ downloads=null; }
+    if(!db){ $('title').textContent='Questions'; const e=$('emptyState'); if(e) e.textContent='Sign in to claude.ai with your ShopView account to see and answer these questions.'; return; }
+    try{ state.myId=user?await user.id():null; }catch(e){}
+    try{ const c=user?await user.can('data.write'):null; state.canWrite = c===false ? false : null; }catch(e){}
+    const timer=setTimeout(()=>{ if(!state.questions.length){ const e=$('emptyState'); if(e) e.textContent='The questions are taking longer than usual to load. Keep this page open; they appear as soon as they arrive.'; } },10000);
+    db.doc('meta/page').onSnapshot(s=>{ state.meta=s.exists?s.data():{}; render(); },()=>{});
+    db.collection('questions').onSnapshot(s=>{ clearTimeout(timer); state.questions=s.docs.map(d=>({key:d.id,...d.data()})).sort((a,b)=>a.n-b.n); render(); },()=>{ clearTimeout(timer); });
+    const logs={};
+    db.collection('answers').onSnapshot(s=>{
+      s.docs.forEach(d=>{
+        if(logs[d.id]) return;
+        logs[d.id]=db.collection('answers/'+d.id+'/log').onSnapshot(ls=>{
+          Object.keys(state.answers).forEach(k=>{ state.answers[k]=state.answers[k].filter(a=>a.owner!==d.id); });
+          ls.docs.forEach(x=>{ const a={...x.data(),owner:d.id}; (state.answers[a.q]=state.answers[a.q]||[]).push(a); });
+          render(); resolveNames();
+        },()=>{});
+      });
+    },()=>{});
+  }
+  if(window.claude&&window.claude.use) start(); else { const e=$('emptyState'); if(e) e.textContent='Open this page on claude.ai, signed in with your ShopView account, to see and answer the questions.'; }
+})();
+</script>
