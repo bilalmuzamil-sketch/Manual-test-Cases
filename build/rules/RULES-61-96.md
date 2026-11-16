@@ -3509,6 +3509,22 @@ numbers (after 10 comes 12), so held cases and markers still point at the right 
 still holds for every question that is not withdrawn, and for every answer. Worked example: Bill To question 11 (lock tooltip
 position), row 16 of 1o55Q5O5…, deleted 13 Nov 2026; copy in `build/founder-mode/bill-to/questions-2026-11-10/Q11-row-deleted-2026-11-13.json`.
 
+### 131 — AMENDMENT, PERMANENT (QA lead, 16 Nov 2026): ASK THE QUESTION FORMAT PER SUITE — GOOGLE SHEET OR QUESTION PAGE
+
+Verbatim: *"Keep both, so when its time to create questions, just ask me which format I want and let me select per testing suite."*
+
+1. The first time a testing suite needs PO / dev questions, ask the QA lead which format that suite uses, with my recommendation (Rule 139):
+   **(a) Google Sheet** — the colour-coded sheet first made for Milos Vasic (skill 07); I share it myself as he asks.
+   **(b) Question page** — the claude.ai page in `build/po-question-page/` (one card per question, suggested option marked with its reason,
+   design pictures inline, answers saved with name and time and never overwritten, history, filters, CSV download, Discuss comments; I
+   read answers with ArtifactData). Its limits, said when asking: only people signed in to claude.ai at ShopView can answer; no automatic
+   email when an answer is saved; who can answer is set by the QA lead in the page's Share menu (PO and QA people Contributor, ShopView
+   Viewer).
+2. The choice holds for that suite: new questions go into the same sheet (Rule 131) or the same page (new question documents, numbered on;
+   a withdrawn question's document is deleted after a copy is kept, the others keep their numbers).
+3. Every report's "Waiting on the PO" (Rule 132) reads the answers from whichever format the suite uses.
+4. Sheets already sent stay sheets until answered (QA lead, 16 Nov 2026: "Leave them as they are").
+
 ## 132 · EVERY UNANSWERED PO QUESTION IS IN EVERY REPORT UNTIL IT IS ANSWERED — NEVER MISSED (all projects, permanent)
 
 **Ordered by the QA lead, 20 Oct 2026, verbatim:** *"This is the best thing please make it a permanent rule for yourself that when you

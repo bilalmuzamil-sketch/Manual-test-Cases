@@ -34,6 +34,14 @@ or a database field name. Feed it a small JSON spec; a worked example is
 **Unchanged:** Rule 55 (the project and feature are named, and a non-technical person can answer every
 row) and Rule 66 (the sheet is the LAST thing sent, once everything answerable without him is done).
 
+## 🔴 §0-FORMAT — ASK THE FORMAT PER SUITE: GOOGLE SHEET OR QUESTION PAGE (Rule 131 amendment, QA lead, 16 Nov 2026, permanent)
+
+Before the first question set of a suite, ask the QA lead: Google Sheet (this skill's colour-coded sheet) or the claude.ai question page
+(`build/po-question-page/README.md`: generic `index.html`, questions and meta seeded with ArtifactData, answers append-only under
+answers/<person id>/log). State the page's limits when asking (claude.ai ShopView sign-in to answer; no automatic email; access set by
+the QA lead in the Share menu). The suite keeps the chosen format; everything else in this skill (the checks in §6.0, plain words, one
+question per row or card, lettered options with the suggested one first, the "Waiting on the PO" reminder) applies to both.
+
 ## 🔴 §0a — ONE SHEET PER TESTING SUITE: NEW QUESTIONS AT THE BOTTOM, IN A NEW COLOUR (Rule 131, QA lead, 20 Oct 2026)
 
 If the suite already has a question sheet, never make a new file: add the new questions to that sheet in new rows below the last

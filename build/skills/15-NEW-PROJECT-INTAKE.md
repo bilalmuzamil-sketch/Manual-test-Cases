@@ -92,6 +92,12 @@ YES: the full layout below the Expected Result. NO: the Expected Result ends wit
 pictures are attached to the cases and the References field holds the ticket and PRD story/requirement numbers. Record the answer in
 PROJECT-STATE.md before any case is written.
 
+
+## 1c · QUESTION FORMAT — asked when the suite's first questions are ready (Rule 131 amendment, 16 Nov 2026, permanent)
+
+Ask: "Google Sheet or question page for this suite's PO questions?" with my recommendation and the page's limits (skill 07 §0-FORMAT).
+Record the answer in the suite's PROJECT-STATE.md and keep it for every later question.
+
 ## 2 · THE INTAKE CHECKLIST — filled in, committed, and honest
 
 Write `build/<project-slug>/INTAKE-<date>.md` and **commit it**. One row per input, and the verdict is
