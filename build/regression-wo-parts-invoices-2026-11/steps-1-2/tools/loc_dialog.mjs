@@ -1,0 +1,20 @@
+// Read-only: open the Edit Location dialog for the test location, record its fields, close WITHOUT saving. SECRET-FREE.
+import fs from 'fs';
+import { start, APP, OUT, LOC } from './common.mjs';
+const { browser, page } = await start({ workplaceId: LOC.id, timezone: LOC.tz });
+const posts = []; page.on('request', r => { if (r.method() !== 'GET' && /api\.staging/.test(r.url())) posts.push(r.method() + ' ' + r.url()); });
+await page.goto(APP + '/administration/locations', { waitUntil: 'domcontentloaded', timeout: 60000 }); await page.waitForTimeout(6000);
+const row = page.locator('tr', { hasText: 'R365 Location C' }).first();
+await row.locator('button, i', { hasText: 'edit_note' }).first().click({ force: true });
+await page.waitForTimeout(3000);
+const fields = await page.evaluate(() => [...document.querySelectorAll('.q-dialog .q-field, .q-dialog .q-toggle, .q-dialog .q-checkbox')].map(el => ({ testid: el.querySelector('[data-test-id]')?.getAttribute('data-test-id') || el.getAttribute('data-test-id'), label: el.querySelector('.q-field__label')?.innerText || el.innerText.replace(/\s+/g, ' ').trim().slice(0, 80), value: el.getAttribute('aria-checked') ?? (el.querySelector('input')?.value || el.querySelector('.q-field__native')?.innerText || '') })));
+await page.screenshot({ path: OUT + '/evidence/settings/02b-location-edit-dialog.png', fullPage: false });
+const dtext = await page.locator('.q-dialog').first().innerText();
+fs.writeFileSync('/tmp/cln/rgwo/settings-raw/02b-location-dialog.json', JSON.stringify({ at_utc: new Date().toISOString(), fields, dtext }, null, 1));
+const close = page.locator('.q-dialog button', { hasText: /^\s*(close|Cancel)\s*$/i }).first();
+if (await close.count()) await close.click({ force: true }); else await page.locator('.q-dialog i', { hasText: 'close' }).first().click({ force: true });
+await page.waitForTimeout(1500);
+console.log('non-GET requests sent:', JSON.stringify(posts));
+for (const f of fields) console.log(f.testid, '|', f.label, '|', f.value);
+console.log(dtext.replace(/\n+/g, ' | ').slice(0, 1200));
+await browser.close();

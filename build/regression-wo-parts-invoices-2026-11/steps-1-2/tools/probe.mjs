@@ -1,0 +1,13 @@
+import fs from 'fs';
+import { start, call, zones, APP } from './common.mjs';
+const { browser, page } = await start({});
+await page.goto(APP + '/workorders', { waitUntil: 'domcontentloaded', timeout: 60000 });
+await page.waitForTimeout(4000);
+const z = await zones(page, null);
+const wp = await call(page, 'GET', '/api/staff/my-workplaces');
+const wps = await call(page, 'GET', '/api/workplaces');
+fs.writeFileSync('/tmp/cln/rgwo/workplaces.json', JSON.stringify({ z, wp: wp.j, wps: wps.j }, null, 1));
+console.log(JSON.stringify(z));
+const list = (wp.j?.data || wp.j)?.workplaces || wp.j?.data || [];
+console.log('my-workplaces status', wp.s, 'workplaces', wps.s);
+await browser.close();
