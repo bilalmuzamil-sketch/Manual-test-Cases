@@ -74,3 +74,5 @@ the QA people it should have the access to edit and for the rest of @shopview pe
 - QA lead, 16 Nov 2026: "matthew@shopview.com -> Nebojsa" (Matt's address; QA editor taken to be Nebojsa Glavinic, the QA on our earlier
   suites — to confirm); Rule 128 footers on the 54 tickets: "Skip again"; engineering asks (QA site, release on staging): "OK" (he asks).
 - Share plan after his look: matthew@shopview.com writer (notified), nebojsa.glavinic@shopview.com writer, shopview.com domain reader.
+- 16 Nov 2026 SHARED (QA lead: "Share, Glavinic (Recommended)"); permissions read back: matthew@shopview.com writer,
+  nebojsa.glavinic@shopview.com writer, domain shopview.com reader, owner bilal.muzamil. Waiting on Matt: questions 1-31 (41 cases held).
