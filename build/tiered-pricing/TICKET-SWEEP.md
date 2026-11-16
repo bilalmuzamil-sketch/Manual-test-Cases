@@ -121,3 +121,13 @@ automation owner; SV-4387, SV-5744, SV-7160 by the fixed-price cases), **4 NO-CA
 step, SV-12745 speed baseline), 0 ASKED; plus the 11 linked tickets (8 COVERED, 3 NO-CASE). `TICKET-SWEEP.json` `prd_version_handled` = 37.
 `ticket_sweep.py` **exits 0** (0 unhandled tickets, PRD handled). The PRD page version itself was not re-read in this pass (Rule 59: re-read both
 PRDs immediately before any TestRail write).
+
+## Re-check 16 Nov 2026 (Rule 59, before the TestRail write)
+- PRD 938213378 and reports PRD 968687617: last modified 13 Nov 2026 (unchanged since our read). Design: version 1794638838-cd70, canvas.json
+  sha256 b08c9d8c… identical. Epic children: none updated since 14 Nov; the epic itself gained five "relates to" links on 14 Nov 15:35 UTC.
+- SV-7857, SV-9492, SV-4411: already read (sources/jira/linked/). New to us, read 16 Nov 2026:
+  - SV-10594 "Preserve Manually Entered Sell Price When Cost Is Added Later" (Story, Open; PO comment 14 Nov: partly delivered, keeping the
+    typed price is still open). Verdict: COVERED / out of scope by the PRD itself: "Keeping a sell price typed before the part has a cost
+    (SV-10594). The calculated price replaces it, as today (S11-R16)." Cases S11-04, S11-05, INV-18 test S11-R16.
+  - SV-4410 "Remove "Add Fixed rule" button from the Pricing page/Fixed rules" (Task, Board Backlog, description is one image). Verdict: NO
+    CASE: a separate backlog task; the PRD keeps the Fixed Rules tab "as today" (S1-R6, S6-R11) and does not take this change in.

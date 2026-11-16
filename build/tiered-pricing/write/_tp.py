@@ -9,7 +9,7 @@ sys.path.insert(0, f"{P}/../dashboards/currency-2026-10-14/apply"); sys.path.ins
 APPLY = "--apply" in sys.argv
 SUITE, TOP, ASSIGN = 1, 138770, 6
 RUN_NAME = "Tiered Pricing - Execution"
-NOTE = ("Test cases are current as of 11/14/2026. Before you start testing, check whether the PRD, design or any other source has changed since "
+NOTE = ("Test cases are current as of 11/16/2026. Before you start testing, check whether the PRD, design or any other source has changed since "
         "then; if it has, update the test cases first.")
 SECJ = f"{AU}/sections.json"; MAPF = f"{P}/testrail-id-map.csv"; RUNJ = f"{W}/run.json"
 FIELDS = ["title", "template_id", "type_id", "priority_id", "custom_automation_type", "custom_atmstatus", "custom_preconds", "custom_steps", "custom_expected"]
