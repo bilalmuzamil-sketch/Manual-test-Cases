@@ -102,3 +102,7 @@
 - Summary tab status: "Not started (plan awaiting Bilal's approval, 16 Nov 2026)".
 - Correction recorded: earlier I cited **SV-11839** as the related ticket for this regression. That was wrong — SV-11839 is the
   Dashboard epic and has nothing to do with this regression. The regression has **no ticket**.
+
+## Plan approved — QA lead, 16 Nov 2026 (verbatim): "1. I will follow your recomentation"
+- Recommendation he accepted: steps 1 (record settings) and 2 (full WO and part-sale flows, every invoice recomputed) first; then the TestRail cases one section at a time, starting with Work Order lines (S6) and Deposits (S3014).
+- Steps 1–2 handed to a background worker: `WORKER-BRIEF-steps-1-2.md`. It works at a location other than the three the report-gaps worker is using, and changes no settings in this pass.
