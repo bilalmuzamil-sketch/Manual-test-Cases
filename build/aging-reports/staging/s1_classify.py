@@ -4,10 +4,11 @@ Checks: (1) new documents - is each one provably made after the copy (customer/v
 every number of its series before)? (2) Summary rows of customers/vendors with no new, gone or moved documents must be identical, bucket by
 bucket. (3) Past Due before vs after on A/P Detail, and every changed Past Due explained by counting the day in Asia/Karachi (the signed-in
 location's zone) instead of Greenwich time. Output s1/classify.json."""
-import json, csv, re, collections
+import json, csv, re, collections, os
+D = os.environ.get('S1DIR', 's1') + '/'   # 16 Nov 2026: re-run after SV-12663 writes to its own folder (s1r1116), 12 Nov evidence kept in s1/
 from datetime import datetime, date, timezone
 from zoneinfo import ZoneInfo
-o = json.load(open('s1/compare.json')); T = lambda n: list(csv.DictReader(open('before/' + n), delimiter='\t'))
+o = json.load(open(D + 'compare.json')); T = lambda n: list(csv.DictReader(open('before/' + n), delimiter='\t'))
 K = ZoneInfo('Asia/Karachi'); AS = date(2026, 11, 12); out = {}
 def series(n): m = re.match(r'^(.*?)(\d+)$', n or ''); return (m.group(1), int(m.group(2))) if m else (n, None)
 def explain_new(rows_before, new, namekey):
@@ -38,9 +39,9 @@ def summ(before_name, after_file, namekey, touched):
     gone = [n for n in b if n not in {r.get(namekey) for r in a} and n not in touched]
     return {'untouched_same': same, 'untouched_diff': diff, 'examples': ex[:5], 'in_copy_not_now_untouched': gone[:10]}
 tA = {x[2] for k in ('new', 'gone', 'bucket', 'intended') for x in o['ard'][k]}; tP = {x[2] for k in ('new', 'gone', 'bucket', 'intended') for x in o['apd'][k]}
-out['ars'] = summ('AR Aging Summary - all rows.tsv', 's1/after-ars.json', 'customerName', tA); out['aps'] = summ('AP Aging Summary - all rows.tsv', 's1/after-aps.json', 'vendorName', tP)
+out['ars'] = summ('AR Aging Summary - all rows.tsv', D + 'after-ars.json', 'customerName', tA); out['aps'] = summ('AP Aging Summary - all rows.tsv', D + 'after-aps.json', 'vendorName', tP)
 # (3) A/P Past Due before vs after
-apd_a = {r['documentId']: r for r in json.load(open('s1/after-apd.json'))}; ch = 0; expl = 0; unexpl = []
+apd_a = {r['documentId']: r for r in json.load(open(D + 'after-apd.json'))}; ch = 0; expl = 0; unexpl = []
 for r in apd_b:
     a = apd_a.get(r['id'])
     if not a or r['daysPastDue'] == '': continue
@@ -50,10 +51,10 @@ for r in apd_b:
         else: unexpl.append([r['transactionNumber'], r['vendorName'], r['dueDate'], r['daysPastDue'], a['daysPastDue'], a['transactionType']])
 out['apd_pastdue'] = {'changed': ch, 'explained_by_karachi_day': expl, 'unexplained': unexpl[:15], 'unexplained_count': len(unexpl)}
 # A/R moves explained the same way
-ard_a = {r['documentNumber'] + '|' + r['customerName']: r for r in json.load(open('s1/after-ard.json'))}; mv = []
+ard_a = {r['documentNumber'] + '|' + r['customerName']: r for r in json.load(open(D + 'after-ard.json'))}; mv = []
 for x in o['ard']['bucket'] + o['ard']['intended']:
     a = ard_a[x[0]]; d = datetime.fromisoformat(a['dueDate'].replace('Z', '+00:00'))
     mv.append([x[1], x[2], a['locationName'], a['dueDate'], d.date().isoformat(), d.astimezone(K).date().isoformat(), (AS - d.date()).days, a['daysPastDue'], x[5], x[6]])
 out['ard_moves'] = mv
-json.dump(out, open('s1/classify.json', 'w'), indent=1)
+json.dump(out, open(D + 'classify.json', 'w'), indent=1)
 print(json.dumps({k: (v if k != 'ard_moves' else len(v)) for k, v in out.items()}, default=str)[:3000])

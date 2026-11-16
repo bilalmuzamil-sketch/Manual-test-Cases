@@ -8,7 +8,7 @@
 //   bucket    — same document, different bucket, not the intended move (a fault unless explained).
 // Output s1/compare.json + s1/after-*.json. Read-only: GET calls only, with the QA lead's session.
 import { stgStart } from './stglib.mjs'; import fs from 'fs';
-const OUT = new URL('./s1/', import.meta.url).pathname; const s = await stgStart(OUT); const d = '2026-11-12';
+const OUT = new URL('./' + (process.env.S1DIR || 's1') + '/', import.meta.url).pathname; fs.mkdirSync(OUT, { recursive: true }); const s = await stgStart(OUT); const d = '2026-11-12';
 const tsv = (n) => { const [h, ...rows] = fs.readFileSync(decodeURIComponent(new URL('./before/' + n, import.meta.url).pathname), 'utf8').trim().split('\n'); const hs = h.split('\t'); return rows.map((r) => Object.fromEntries(r.split('\t').map((v, i) => [hs[i], v]))); };
 const cents = (v) => (v === '' || v == null ? 0 : Math.round(Number(v) * 100));
 async function all(path, per = 100) { const out = []; for (let pg = 1; pg < 400; pg++) { const r = await s.api(`${path}${path.includes('?') ? '&' : '?'}pagination[page]=${pg}&pagination[rowsPerPage]=${per}`); if (r.st !== 200) throw new Error(path + ' ' + r.st); const c = r.j.data.collection || []; out.push(...c); const n = r.j.data.pagination?.rowsNumber ?? 0; if (!c.length || out.length >= n) return { rows: out, data: r.j.data }; } return { rows: out }; }
