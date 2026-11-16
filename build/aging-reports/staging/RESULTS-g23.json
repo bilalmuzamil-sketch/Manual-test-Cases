@@ -1,0 +1,22 @@
+{
+ "pass_meta": {
+  "note": "16 Nov 2026, run 557, g23: C715472 passed on the QA lead's decision A"
+ },
+ "results": {
+  "C715472": {
+   "verdict": "Passed",
+   "observed": [
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, browser on Pakistan time; the three A/P reports opened with no filter touched except the as-of date, set to 11/12/2026 (the day the before-release copy was saved), and compared document by document with that copy.",
+    "Re-run after SV-12663 (https://shopview.atlassian.net/browse/SV-12663, Ready for Production) was fixed and passed by QA on 13 Nov: every one of the 14724 bills now shows a Past Due that matches the Due Date on screen.",
+    "Steps 1-3: the same vendors and documents with the same amounts and in the same aging columns; the only column move is the one PRD section 2 lists (vendor credit C-13911, dated on the as-of day, now in Current with Past Due 0). Location chip \"Location: All locations\".",
+    "Past Due: 464 bills that are not yet due read one day further away than in the old copy (for example, due Nov 27, as of Nov 12: -15, the old report said -14). The new number is the calendar-day count PRD v13 rule S1-R5a sets (\"a bill due 9 days after the as-of date reads -9\"); the QA lead accepted this on 16 Nov.",
+    "Two Stillwater Diesel Repair bills (055-541861, 069-855902) show an open balance 2 cents lower as of 11/12 than in the old copy; as of today they show exactly what the old report showed ($643.38 and $4.31), so no money changed - a 2-cent item now counts from a later day, the same day-counting correction as SV-12663.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715472-1116-01-stillwater-2026-11-12.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715472-1116-02-stillwater-today.png"
+   ]
+  }
+ }
+}
