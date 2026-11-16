@@ -81,3 +81,9 @@ No question candidates: the one open ambiguity (which calendar day) is already w
 
 ## Tools and evidence
 `tools/`: probe, collect, ledgers, ledgers_vendors2, screen, sort, pdf_extra, te_tile, te_report_screen (.mjs); check_reports, check_ledgers, check_history, check_screen, sort_check, te_check (.py). `evidence/`: one JSON per run (Rule 99 `start`/`end` in each) and one results JSON per checker; `tz_rules_check.txt`; `dup-searches.txt`. Raw data, downloads and screenshots stay in `/tmp/cln/arap/` (customer and vendor names).
+
+---
+## Coordinator verification (Rule 86), 16 Nov 2026 ~10:05 UTC
+- Commits fa75d09ff, 8c95a656c, 0d13e82ae present on origin; tree clean.
+- D1 evidence JSON: build v26.45.4-f3d3d2d at every run; Rule 99 block per location (Karachi offsets agree; Edmonton offsets disagree as declared — D1 is a missing-column fault, not a date fault, so the gap hour does not bear on it). D1-annotated.png opened and checked: PDF headings stop at "Customer Full Name"; the screen shows Due Date / Amount / Open Balance for the same row (S3-14144).
+- Live JQL 10:04 UTC: SV-12831 Open (parent SV-11533, TESTING STAGE); SV-11922 Open (SV-11936); SV-11931 Ready for Production (SV-11839); SV-12136 TESTING STAGE; SV-12853 Open (parent SV-11531), no comments; SV-11315 epic Ready for Development.
