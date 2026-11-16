@@ -321,3 +321,7 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 - One-JQL read-back 08:29 UTC: both Open, type Bug, parent SV-11936, Medium, QA_found, Product Area set, 2 links each, 1 comment each with the mention and the picture.
 - SV-8956 and SV-8950 left in OBSOLETE, unchanged.
 - 16 Nov 08:32 UTC (QA lead: "the ticket description should always have inline screenshots"): SV-12854 and SV-12855 descriptions re-sent in html with a "Picture:" line and the annotated screenshot inline (media b004faa0… and d93ea850…). Read back from the edit response: picture present at the end of each description; text unchanged otherwise.
+
+## 16 Nov 2026 (afternoon)
+- **SV-12858** filed (QA lead "1. Yes"): Bug, parent SV-11936, Medium, QA_found, Product Area Reports & Dashboards; relates to SV-12831 and SV-11533; description with inline picture (media 921e0a0c…); Chris comment 81482 with picture (5069b385…).
+- **SV-11922** retest (QA lead "2. OK"): QA passed, comment 81486, labels QAcomplete, QA Assignee Bilal, Close (8) → OBSOLETE; one-JQL read-back 1 hit. Evidence `sv11922-retest-2026-11-16/`.

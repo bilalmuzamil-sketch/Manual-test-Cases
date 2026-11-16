@@ -1,0 +1,6 @@
+# SV-11922 retest — QA passed, closed (16 Nov 2026)
+QA lead 16 Nov: "2. OK but do we need to test this on staging ?" — yes: the ticket was found and filed on staging (29 Oct, v26.43.3), the A/R–A/P rebuild that fixed it is on staging, and no QA branch exists for it (sv11839 gone).
+- Build v26.45.4-85ebbb3 (staging moved from f3d3d2d during the day), 12:41–12:47 UTC. Rule 99 per location recorded in retest-LE.json / retest-HD.json / unpaid-LE-scroll.json. tz_rules_check 29 Oct–4 Nov: Karachi MATCH; Edmonton MISMATCH 1–4 Nov only — the Lethbridge example (due Oct 31) is before the change, so it is unaffected. NOTE: on screen, Edmonton due dates after 1 Nov display one day early in Chromium 153 (e.g. Nov 4 shows "Nov 3"); the server's Past Due is right — not a product fault, kept out of the picture.
+- On screen: LE As of 10/29 bill 976974 due Oct 31 → -2 on A/P Aging Detail AND A/P Unpaid Invoices; HD As of 11/3 bill due Nov 4 → -1 on both.
+- App data (location calendar day): LE current bucket 60/60, HD 178/178; Unpaid LE 632/632, HD 612/612.
+- Jira: comment 81486 ("QA passed." + picture media c4d2954c…), labels [QAcomplete], QA Assignee Bilal, transition Close (8) → OBSOLETE (the only closing transition from Open; QA Complete is not offered there). One-JQL read-back 12:48 UTC: 1 hit (labels + cf[10385]), status OBSOLETE.
