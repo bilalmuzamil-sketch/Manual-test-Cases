@@ -73,3 +73,33 @@ Nothing created. Location switched to Lethbridge for check 15 and switched back 
 - Pictures: exhibits/PIC1-ar-summary-pdf-columns-off-page.png, exhibits/PIC2-ap-summary-pdf-columns-off-page.png (uploaded as Jira attachments 64495/64496; read back in order).
 - SV-12545 status: moved to Done by the QA lead.
 - Learning check: nothing new (the ticket followed the standard; picture-render fixes in side_ex.py already noted above).
+
+## Check of Nemanja's comment 81487 on SV-12831 (16 Nov 2026, QA lead asked)
+Staging build v26.45.4-85ebbb3 (moved since 14 Nov); production build v26.45.4-75f8b2e. Fresh staging cookies supplied 16 Nov.
+
+**Claim 1 - "cannot happen on production today" is wrong for A/R: CONFIRMED (Nemanja right, our ticket wrong).**
+- Production Reports > A/R Aging Summary / Detail / Collection each have a Print button (`ar_report_print`). Clicking it calls
+  `GET api.shopview.com/api/reporting/account-receivable/pdf?report=summary|detail|collections&asOfDate=...` and opens the PDF in a new tab
+  (window.print is never called). So production Print = a server-built PDF.
+- Baseline (ordinary names): all three production PDFs print every column (landscape).
+- Our own test customer ZZAUTOTEST SV12299 Charge Account (164013e0-...) renamed on screen (Edit Customer pencil > name > Save) to
+  "ZZAUTOTEST SV12831 Superlongunbrokencustomername...headers": A/R Aging Summary Print PDF loses **91 And Over and Total** (page ends after
+  61-90 Days; Nemanja said only "Total" - it is two columns with this name); A/R Aging Detail Print PDF loses Amount and Open Balance (0 dollar
+  amounts in 26 pages; Due Date cut). Collection PDF not affected here only because this customer has nothing past due (not listed) - Nemanja's
+  Collection-on-production point NOT re-observed by us.
+- Name put back on screen (read back "ZZAUTOTEST SV12299 Charge Account"). API `POST /api/customers/change` with a partial body returned 500
+  (no change) - the screen dialog works.
+- Our ticket's line "A/R Aging Summary only has a Print button there" is literally true; the conclusion "so it cannot happen on production" is false.
+
+**Claim 2 - Detail and Collection PDFs do NOT already keep all columns: CONFIRMED (Nemanja right, our ticket wrong).**
+- Staging A/R Aging Detail PDF: no Due Date / Amount / Open Balance heading and 0 dollar amounts - all locations (162 pages), Heavy Duty only
+  (35), Lethbridge only (16). Same for one ordinary customer (10 Trucking) = all columns print, $300.00 totals -> the long name is the cause.
+- Staging A/R Aging Collection PDF: all locations = landscape, all columns (fine). One location (Heavy Duty or Lethbridge) = portrait, Amount and
+  Open Balance missing, 0 dollar amounts.
+- Our 14 Nov Detail PDF (ev/side-ar-aging-detail-all.pdf) already showed it: 0 "Amount"/"Open Balance" headings in 161 pages. Our miss.
+
+**Chris's ruling (81407):** the decision (every column prints, long name wraps) is unaffected. Only its reason "in line with ... how the Detail and
+Collection PDFs already work" repeats our wrong description - he took it from our ticket.
+
+Evidence: ev/n/*.pdf, exhibits/N1-prod-ar-summary-print-long-name.png, exhibits/N2-staging-ar-detail-pdf-long-name.png.
+Nothing posted to Jira. Learning check: lesson added to LESSONS-INDEX (Print button = document; sibling-report claims need the full count).
