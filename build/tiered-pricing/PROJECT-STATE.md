@@ -56,3 +56,14 @@ the QA people it should have the access to edit and for the rest of @shopview pe
   Edit Customer tier and Change Customer (`authoring/expand.py`); full-height pictures; PERM refs; QI invariant helper (INV-78 written; INV-76 not).
 - Register: 133 rows, all in scope, closed or held. Questions: one merged list of 31 for Matt Barge (`questions-2026-11-14/`), sheet not created.
 - Write scripts and dry runs: `write/` (apply order in `WRITE-READY-REPORT.md`). Report for the QA lead: `WRITE-READY-REPORT.md`.
+
+## 16 Nov 2026 — WRITTEN to TestRail (QA lead: "Write it all (Recommended)"; pre-release cases "Write held, ask later"; AccountingHub
+"Hold, prod fallback"; 25 whole steps "Keep whole")
+- Rule 59 re-check 16 Nov: both PRDs last modified 13 Nov (unchanged), design 1794638838-cd70 canvas identical, epic children unchanged; two
+  newly linked tickets read (SV-10594 covered by S11-R16 cases; SV-4410 no case) — TICKET-SWEEP.md.
+- 23 folders under 138770 (the empty "Run on Production After Release" not created); 818 cases created, read back field by field, 0 problems
+  (map: testrail-id-map.csv); 1,575 pictures on 780 cases, read back by name (38 cases have no matching picture, reason recorded).
+- Run 560 "Tiered Pricing - Execution": 763 released cases, all assigned to Mudassir (user 6). 55 held cases out of the run: 11 staging data
+  from before the release, 2 AccountingHub, 1 engineering timing target, 41 on Matt Barge's questions.
+- Folder 138770 note "Test cases are current as of 11/16/2026 …" on top; the earlier text written outside our files is kept below it.
+- Next: the question sheet for Matt (31 questions; share: Matt editor, QA people editor, rest of shopview.com read only — addresses needed).
