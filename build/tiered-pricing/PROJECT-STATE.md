@@ -67,3 +67,10 @@ the QA people it should have the access to edit and for the rest of @shopview pe
   from before the release, 2 AccountingHub, 1 engineering timing target, 41 on Matt Barge's questions.
 - Folder 138770 note "Test cases are current as of 11/16/2026 …" on top; the earlier text written outside our files is kept below it.
 - Next: the question sheet for Matt (31 questions; share: Matt editor, QA people editor, rest of shopview.com read only — addresses needed).
+
+## 16 Nov 2026 — question sheet for Matt Barge CREATED (not shared yet)
+- https://docs.google.com/spreadsheets/d/1qVTIPIWUarmDGg6AjD1q8BbitlynKdjy9VYBCpGuMeY — 31 questions (rows 6-36), colour-coded as Milos's sheet;
+  values from questions-2026-11-14/sheet-values-16nov.json.
+- QA lead, 16 Nov 2026: "matthew@shopview.com -> Nebojsa" (Matt's address; QA editor taken to be Nebojsa Glavinic, the QA on our earlier
+  suites — to confirm); Rule 128 footers on the 54 tickets: "Skip again"; engineering asks (QA site, release on staging): "OK" (he asks).
+- Share plan after his look: matthew@shopview.com writer (notified), nebojsa.glavinic@shopview.com writer, shopview.com domain reader.
