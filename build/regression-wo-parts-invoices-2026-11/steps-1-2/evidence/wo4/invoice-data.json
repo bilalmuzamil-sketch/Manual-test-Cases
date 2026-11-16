@@ -1,0 +1,159 @@
+{
+ "data": {
+  "collection": {
+   "work_order": {
+    "id": "6f632da2-746a-40e6-bb87-1289199e37aa",
+    "number": "S-40394",
+    "display_number": "S2-40394",
+    "customer_id": "6f6a48f1-1180-4b6f-a6f6-c24bd43ad3e4",
+    "company_id": "ab32fdf2-4227-4a00-ab46-6a64c162959f",
+    "purchase_order": null,
+    "workplace_id": "2644c166-362b-48ec-9cf2-2ac974418039",
+    "status": "complete",
+    "lines": [
+     {
+      "id": "d95b0fa2-1e3e-4dd2-8399-2ce528905af3",
+      "name": "ZZ WO4 Labour A",
+      "description": "",
+      "tech_story": "",
+      "total_cost": 224.99,
+      "parts": [
+       {
+        "id": "ca522e9b-c81a-499d-892f-0d492ff38782",
+        "description": "ZZAUTOTEST RGWO Brake Pad Set",
+        "quantity": "1",
+        "cost": 89.99,
+        "part_number": "ZZRGWO-BP2",
+        "total_cost": 89.99,
+        "total_cost_raw": 89.99,
+        "line_type": null,
+        "fixed_line_total": null,
+        "requested_at": "2026-11-16 08:37:30"
+       }
+      ],
+      "parts_cost": 89.99,
+      "labour_cost": 135,
+      "labour_cost_raw": 135,
+      "time_estimate": 1,
+      "labour_rate": 135,
+      "line_type": null,
+      "fixed_line_total": null,
+      "fixed_price": 0
+     },
+     {
+      "id": "096a020d-68d3-4991-9362-d0a63583a7a4",
+      "name": "ZZ WO4 Labour B added after reverse",
+      "description": "",
+      "tech_story": "",
+      "total_cost": 67.5,
+      "parts": [],
+      "parts_cost": 0,
+      "labour_cost": 67.5,
+      "labour_cost_raw": 67.5,
+      "time_estimate": 0.5,
+      "labour_rate": 135,
+      "line_type": null,
+      "fixed_line_total": null,
+      "fixed_price": 0
+     }
+    ],
+    "declined_lines": [],
+    "ibs_approval": [],
+    "total_labor_price": 202.5,
+    "total_parts_price": 89.99
+   },
+   "customer": {
+    "id": "6f6a48f1-1180-4b6f-a6f6-c24bd43ad3e4",
+    "first_name": "ZZAUTOTEST",
+    "last_name": "RGWO",
+    "telephone": "",
+    "mobile": "",
+    "email": "",
+    "company_name": "ZZAUTOTEST RGWO Customer A",
+    "company_state_or_province": null,
+    "company_address1": null,
+    "company_address2": null,
+    "company_city": "Calgary",
+    "credit_term": "COD",
+    "ibs": null,
+    "company_postal_code": null
+   },
+   "vehicle_details": {
+    "vin": "1ZZRGWO0000000004",
+    "licence_plate": null,
+    "unit": "ZZRGWO-WO4",
+    "type": "",
+    "make": "Freightliner",
+    "model": "",
+    "year": null,
+    "mileage": 0,
+    "engine_hours": 0,
+    "trim": null,
+    "engine": null,
+    "drivetrain": null
+   },
+   "work_order_part_cost": "89.99",
+   "work_order_labour_cost": "202.50",
+   "id": "e9887df2-aad7-420c-9893-d7485c41768a",
+   "number": "S-40394",
+   "display_number": "S2-40394",
+   "created_on": "2026-11-16T08:42:16+00:00",
+   "due_date": "2026-11-16T08:42:16+00:00",
+   "sub_total_display": "292.49",
+   "discount": 0,
+   "tax": {
+    "id": "819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b",
+    "name": "GST",
+    "isEnabledLabor": true,
+    "isEnabledParts": true,
+    "isEnabledShopSupplies": true,
+    "isDefault": false,
+    "isDeletable": false,
+    "rates": [
+     {
+      "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+      "name": "GST",
+      "percentage": 5,
+      "amount": 14.63
+     }
+    ],
+    "rateTotal": 5,
+    "amountTotal": 14.63
+   },
+   "sub_total_with_discount": "307.12",
+   "sub_total_with_tax": "307.12",
+   "total_balance": "307.12",
+   "status": "paid",
+   "payment_status": "paid",
+   "payment_status_label": "Paid",
+   "include_declined": false,
+   "customer_transaction": {
+    "customer_transaction_id": "ad03b809-e813-4a62-9f1f-3521dbf0145c",
+    "customer_account_id": "9bb363eb-ad93-4b66-b44f-ec12afc23b10",
+    "amount": 307.12,
+    "paid_amount": 0,
+    "ibs_batch_id": null,
+    "is_paid_externally": false,
+    "has_portal_payment": false
+   },
+   "shop_supplies_cost": "0.00",
+   "shop_supplies": false,
+   "paid_balance": 0,
+   "customer_po": null,
+   "credit_terms": "COD",
+   "invoice_remit_to": null,
+   "invoice_workplace": {
+    "workplaceName": "ZZAUTOTEST R365 Location C with a name longer than the chip",
+    "workplaceAddress": "365 ZZAUTOTEST Way",
+    "workplacePostalCode": "T2C 4M5",
+    "workplaceCity": "Calgary",
+    "workplaceState": "Alberta",
+    "workplacePhone": "(403) 555 - 0365",
+    "workplaceShopId": "2",
+    "workplaceAddress2": null
+   },
+   "shop_supplies_percentage": null,
+   "see_pricing": true
+  }
+ }
+}

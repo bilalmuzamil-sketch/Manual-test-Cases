@@ -1,0 +1,244 @@
+{
+ "flow": "wo4",
+ "inputs": [
+  {
+   "line": "ZZ WO4 Labour A",
+   "labour": "1 h x $135 = 135.00",
+   "parts": [
+    "ZZRGWO-BP2 1 x $89.99 = 89.99"
+   ]
+  },
+  {
+   "line": "ZZ WO4 Labour B added after reverse",
+   "labour": "0.5 h x $135 = 67.50",
+   "parts": []
+  }
+ ],
+ "expected": {
+  "labour": "202.50",
+  "parts": "89.99",
+  "subtotal": "292.49",
+  "tax_per_item": "14.63",
+  "tax_per_wo_line": "14.63",
+  "tax_on_subtotal": "14.62",
+  "total": "307.12"
+ },
+ "checks": [
+  {
+   "what": "Every WO line is on the invoice, once",
+   "expected": "['ZZ WO4 Labour A', 'ZZ WO4 Labour B added after reverse']",
+   "how": "list of lines entered on the WO",
+   "seen": "['ZZ WO4 Labour A', 'ZZ WO4 Labour B added after reverse']",
+   "where": "invoice data: work_order.lines",
+   "match": true
+  },
+  {
+   "what": "Every part (number, qty) is on the invoice, once",
+   "expected": "[('ZZ WO4 Labour A', 'ZZRGWO-BP2', '1')]",
+   "how": "parts entered on the WO lines",
+   "seen": "[('ZZ WO4 Labour A', 'ZZRGWO-BP2', '1')]",
+   "where": "invoice data: work_order.lines[].parts",
+   "match": true
+  },
+  {
+   "what": "ZZ WO4 Labour A: labour",
+   "expected": "135.00",
+   "how": "1 h x $135",
+   "seen": "135",
+   "where": "invoice data: line labour_cost",
+   "match": true
+  },
+  {
+   "what": "ZZ WO4 Labour A: hours",
+   "expected": "1",
+   "how": "hours entered",
+   "seen": "1",
+   "where": "invoice data: line time_estimate",
+   "match": true
+  },
+  {
+   "what": "ZZ WO4 Labour A: ZZRGWO-BP2 line total",
+   "expected": "89.99",
+   "how": "1 x $89.99",
+   "seen": "89.99",
+   "where": "invoice data: part total_cost",
+   "match": true
+  },
+  {
+   "what": "ZZ WO4 Labour B added after reverse: labour",
+   "expected": "67.50",
+   "how": "0.5 h x $135",
+   "seen": "67.5",
+   "where": "invoice data: line labour_cost",
+   "match": true
+  },
+  {
+   "what": "ZZ WO4 Labour B added after reverse: hours",
+   "expected": "0.5",
+   "how": "hours entered",
+   "seen": "0.5",
+   "where": "invoice data: line time_estimate",
+   "match": true
+  },
+  {
+   "what": "Labour total",
+   "expected": "202.50",
+   "how": "sum of labour lines",
+   "seen": "202.5",
+   "where": "invoice data: total_labor_price",
+   "match": true
+  },
+  {
+   "what": "Parts total",
+   "expected": "89.99",
+   "how": "sum of part lines",
+   "seen": "89.99",
+   "where": "invoice data: total_parts_price",
+   "match": true
+  },
+  {
+   "what": "Subtotal",
+   "expected": "292.49",
+   "how": "labour + parts",
+   "seen": "292.49",
+   "where": "invoice data: sub_total_display",
+   "match": true
+  },
+  {
+   "what": "Tax (GST 5 %)",
+   "expected": "14.63",
+   "how": "rounded per labour/part item 14.63; per WO line 14.63; once on subtotal 14.62",
+   "seen": "14.63",
+   "where": "invoice data: tax.amountTotal",
+   "match": true
+  },
+  {
+   "what": "Total",
+   "expected": "307.12",
+   "how": "subtotal + tax",
+   "seen": "307.12",
+   "where": "invoice data: sub_total_with_tax",
+   "match": true
+  },
+  {
+   "what": "Invoice status",
+   "expected": "paid",
+   "how": "from the payments entered",
+   "seen": "paid",
+   "where": "invoice data: status",
+   "match": true
+  },
+  {
+   "what": "Invoice payment_status",
+   "expected": "paid",
+   "how": "from the payments entered",
+   "seen": "paid",
+   "where": "invoice data: payment_status",
+   "match": true
+  },
+  {
+   "what": "Invoice total_balance",
+   "expected": "307.12",
+   "how": "from the payments entered",
+   "seen": "307.12",
+   "where": "invoice data: total_balance",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Labor",
+   "expected": "$202.50",
+   "how": "recomputed above",
+   "seen": "$202.50",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Parts",
+   "expected": "$89.99",
+   "how": "recomputed above",
+   "seen": "$89.99",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Subtotal",
+   "expected": "$292.49",
+   "how": "recomputed above",
+   "seen": "$292.49",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: GST",
+   "expected": "$14.63",
+   "how": "recomputed above",
+   "seen": "$14.63",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Total",
+   "expected": "$307.12",
+   "how": "recomputed above",
+   "seen": "$307.12",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Payments",
+   "expected": "$307.12",
+   "how": "one Mastercard payment of 307.12",
+   "seen": "$307.12",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen Financial Info: Balance",
+   "expected": "$0.00",
+   "how": "307.12 - 307.12",
+   "seen": "$0.00",
+   "where": "WO left panel Financial Info card",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: Labor",
+   "expected": "Labor $202.50",
+   "how": "recomputed above",
+   "seen": "Labor $202.50",
+   "where": "Finance tab invoice",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: Parts",
+   "expected": "Parts $89.99",
+   "how": "recomputed above",
+   "seen": "Parts $89.99",
+   "where": "Finance tab invoice",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: Subtotal",
+   "expected": "Subtotal $292.49",
+   "how": "recomputed above",
+   "seen": "Subtotal $292.49",
+   "where": "Finance tab invoice",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: GST (5%)",
+   "expected": "GST (5%) $14.63",
+   "how": "recomputed above",
+   "seen": "GST (5%) $14.63",
+   "where": "Finance tab invoice",
+   "match": true
+  },
+  {
+   "what": "Screen invoice document: Total",
+   "expected": "Total $307.12",
+   "how": "recomputed above",
+   "seen": "Total $307.12",
+   "where": "Finance tab invoice",
+   "match": true
+  }
+ ]
+}
