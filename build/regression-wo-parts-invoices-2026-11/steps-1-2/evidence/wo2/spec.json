@@ -1,0 +1,6 @@
+{"flow": "wo2", "tax_rate": 5,
+ "lines": [{"name": "ZZ WO2 Labour - service", "hours": 3, "rate": 135, "parts": [{"pn": "ZZRGWO-WB3", "qty": 4, "price": 7.77}]}],
+ "invoice_view": "evidence/wo2/invoice-data.json", "snapshot": "evidence/wo2/10-balance-paid.json",
+ "expect_invoice": {"status": "paid", "payment_status": "paid", "total_balance": "457.88"},
+ "expect_card": {"Payments": "$457.88", "Balance": "$0.00"},
+ "expect_how": {"Payments": "deposit 200.00 + EFT 100.00 + Visa 157.88 = 457.88", "Balance": "457.88 - 457.88"}}
