@@ -1,0 +1,67 @@
+{
+ "case": {
+  "id": 1211101,
+  "title": "Design: Duplicate opens an unsaved copy to name and create",
+  "section_id": 142883,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-11695 (Story 3 S3-R8)",
+  "created_by": 3,
+  "created_on": 1794811084,
+  "updated_by": 3,
+  "updated_on": 1794811084,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 169,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts' and 'See Financial Data'.</li><li>Have a new matrix for this test, matrix A.</li><li>Note how many matrices the Matrices tab label shows (for example 7).</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
+  "custom_steps": "<ol><li>Click the Matrices tab on Settings › Pricing.</li><li>Open matrix A's three-dot menu.</li><li>Click Duplicate.</li><li>Click Cancel.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Matrices list shows.</li></ul><p>Step 2:</p><ul><li>The menu lists Duplicate and Delete.</li></ul><p>Step 3:</p><ul><li>A page opens in edit with the name field holding matrix A's name and \" (copy)\", Cancel and Create Matrix at the top right, as in picture 3.27.</li></ul><p>Step 4:</p><ul><li>The Matrices list shows again with 7 matrices: no copy was made.</li></ul><p></p><p>AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 7)</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 1
+ },
+ "attachments": [
+  {
+   "id": 1000042369,
+   "name": "page-03-board-26-3-26-duplicate-a-matrix.png",
+   "filename": "page-03-board-26-3-26-duplicate-a-matrix.png",
+   "size": 137576,
+   "created_on": 1794812710
+  },
+  {
+   "id": 1000042369,
+   "name": "page-03-board-26-3-26-duplicate-a-matrix.png",
+   "filename": "page-03-board-26-3-26-duplicate-a-matrix.png",
+   "size": 137576,
+   "created_on": 1794812710
+  },
+  {
+   "id": 1000042370,
+   "name": "page-03-board-27-3-27-result-a-copy-of-its-rules-ready-to-name.png",
+   "filename": "page-03-board-27-3-27-result-a-copy-of-its-rules-ready-to-name.png",
+   "size": 146169,
+   "created_on": 1794812711
+  },
+  {
+   "id": 1000042370,
+   "name": "page-03-board-27-3-27-result-a-copy-of-its-rules-ready-to-name.png",
+   "filename": "page-03-board-27-3-27-result-a-copy-of-its-rules-ready-to-name.png",
+   "size": 146169,
+   "created_on": 1794812711
+  }
+ ]
+}

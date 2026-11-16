@@ -1,0 +1,67 @@
+{
+ "case": {
+  "id": 1210964,
+  "title": "Design: the notice names Fixed price and Manual lines too",
+  "section_id": 142883,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-11703 (Story 14 S14-R2)",
+  "created_by": 3,
+  "created_on": 1794810920,
+  "updated_by": 3,
+  "updated_on": 1794810920,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 71,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin whose role has 'Settings — Parts', 'See Financial Data', 'Customers — View', 'Customers — Create &amp; Edit', 'Work Orders — Order Parts' and 'Work Order Lines — Create &amp; Edit'.</li><li>Have a new tier for this test, tier A, with a name no other tier uses.</li><li>Have a new customer for this test, customer A, on tier A for work orders.</li><li>Have a new customer for this test, customer B.</li><li>Have a new inventory part for this test, part F, with a fixed sell price.</li><li>Have a new work order for this test, work order 1, for customer A, with a part priced by tier A, a part with a typed price and part F.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom, so the screen matches the design pictures' size.</li></ul>",
+  "custom_steps": "<ol><li>Open work order 1.</li><li>Open work order 1's three-dot menu.</li><li>Click Change Customer.</li><li>Pick customer B.</li><li>Click Update Customer.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1 opens.</li></ul><p>Step 2:</p><ul><li>The menu lists Change Customer.</li></ul><p>Step 3:</p><ul><li>The dialog opens.</li></ul><p>Step 4:</p><ul><li>Customer B is picked.</li></ul><p>Step 5:</p><ul><li>The notice reads \"3 lines priced at\" tier A's name \", Fixed price and Manual for the previous customer\", counting the typed and fixed-price lines too (1 + 1 + 1 = 3), as in picture 14.8.</li></ul><p></p><p>AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 27)</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 1
+ },
+ "attachments": [
+  {
+   "id": 1000041991,
+   "name": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou.png",
+   "filename": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou.png",
+   "size": 161848,
+   "created_on": 1794812076
+  },
+  {
+   "id": 1000041991,
+   "name": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou.png",
+   "filename": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou.png",
+   "size": 161848,
+   "created_on": 1794812076
+  },
+  {
+   "id": 1000041992,
+   "name": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou-full-height.png",
+   "filename": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou-full-height.png",
+   "size": 162743,
+   "created_on": 1794812077
+  },
+  {
+   "id": 1000041992,
+   "name": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou-full-height.png",
+   "filename": "page-14-board-08-14-8-result-a-notice-counts-the-lines-priced-for-the-previou-full-height.png",
+   "size": 162743,
+   "created_on": 1794812077
+  }
+ ]
+}
