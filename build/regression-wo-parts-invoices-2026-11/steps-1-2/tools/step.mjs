@@ -29,6 +29,7 @@ for (const a of actions) {
         const t = s => document.querySelector(s)?.innerText?.trim() || null;
         const fin = {}; document.querySelectorAll('[data-test-id^="item_label_"]').forEach(l => { const k = l.getAttribute('data-test-id').slice(11); fin[k] = document.querySelector(`[data-test-id="item_value_${k}"]`)?.innerText?.trim(); });
         return { wo_number: t('[data-test-id="text_wo_number"]'), wo_status: t('[data-test-id="badge_wo_status"]'), financial_card: fin,
+          invoice_doc: Object.fromEntries([...document.querySelectorAll('[data-test-id^="invoice-"]')].map(e => [e.getAttribute('data-test-id'), e.innerText.replace(/\s+/g, ' ').trim()])),
           line_statuses: [...document.querySelectorAll('[data-test-id^="badge_line_status_"]')].map(e => e.innerText.trim()),
           buttons: [...document.querySelectorAll('main button')].filter(b => b.getBoundingClientRect().width > 0).map(b => b.innerText.replace(/\s+/g, ' ').trim()).filter(x => x && x.length < 40),
           main_text: (document.querySelector('main')?.innerText || '').replace(/\n+/g, ' | ').slice(0, 6000) };

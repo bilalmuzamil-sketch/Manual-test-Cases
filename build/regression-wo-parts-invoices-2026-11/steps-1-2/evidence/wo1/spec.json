@@ -1,0 +1,7 @@
+{"flow": "wo1", "tax_rate": 5,
+ "lines": [{"name": "ZZ WO1 Labour A - inspection", "hours": 1.5, "rate": 135, "parts": [{"pn": "ZZRGWO-OF1", "qty": 2, "price": 14.37}]},
+           {"name": "ZZ WO1 Labour B - brakes", "hours": 2, "rate": 135, "parts": [{"pn": "ZZRGWO-BP2", "qty": 1, "price": 89.99}]}],
+ "invoice_view": "evidence/wo1/invoice-data.json", "snapshot": "evidence/wo1/13-final-finance-tab.json",
+ "expect_invoice": {"status": "paid", "payment_status": "paid", "total_balance": "620.80"},
+ "expect_card": {"Payments": "$620.80", "Balance": "$0.00"},
+ "expect_how": {"status": "767066118: payForInvoice sets paid when the balance after payment is zero", "payment_status": "767066118: paid = settled exactly", "Balance": "620.80 total - 620.80 cash", "Payments": "one cash payment of 620.80"}}
