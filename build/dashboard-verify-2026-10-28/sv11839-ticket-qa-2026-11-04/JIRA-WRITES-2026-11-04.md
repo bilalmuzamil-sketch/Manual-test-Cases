@@ -310,3 +310,6 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 - Comment tags Chris Ward and embeds an annotated picture; read back OK.
 - No status change (SV-10702 is Blocked; not our ticket).
 - Same session: the 16 Nov reminder about SV-11688's epic was cancelled. The QA lead said it is QA verified; Jira shows "Ready for Production" (checked 06:28 UTC).
+
+## 16 Nov 2026: SV-8951 question to Chris (QA lead, 16 Nov: "3. I will follow your recomendation so when you type the message for Chris ask him to bring it back from Obsolete status if it is in obsolete status.")
+- Comment **81456** on SV-8951 (status OBSOLETE, left unchanged): @Chris Ward; what happens today; the TU spec v9 parts that disagree (S7-R4a vs S7-R12/S7-R7); fix or leave; please bring it back from Obsolete if he wants it fixed. Annotated picture inline (media 71373ab5-249f-4ace-9cb2-2e2a12c9c86e). Read back 08:26 UTC: mention, text and picture present.
