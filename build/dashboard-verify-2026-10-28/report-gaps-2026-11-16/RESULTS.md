@@ -4,6 +4,27 @@
 **Locations and zones, read live from `GET /api/staff/my-workplaces` at 06:36 UTC:** Staging Heavy Duty - 9919 = Asia/Karachi · Staging Lethbridge - 4310 = America/Edmonton · QB Location = America/Vancouver · **DVI Test = Pacific/Fiji** (it was America/Toronto on 28 Oct; every re-run uses Fiji).
 **Rule 99:** API-only checks switch the session with `change-location` to the location's zone before each location and compute every window with that location's zone; the process `TZ` is recorded per run. Screen checks record all four settings (session, browser `timezoneId`, process `TZ`, `localStorage['timezone']`) plus the offsets from `tz_rules_check.py`.
 
+
+## Summary (16 Nov 2026, 06:28–08:20 UTC, build v26.45.4-f3d3d2d unchanged throughout)
+
+| Area | PASS | Differs / FAIL | NOT VERIFIED | Other |
+|---|---|---|---|---|
+| 1 · Figures re-run (22 report checks) | 15 hold with no new kind of failure | 0 new defects; 3 **behaviour changes since 28 Oct**, each explained (TU open clocks → SV-11688 Ready for Production; Technician Efficiency no longer lists declined lines (F2); Inventory Value counts negative bins → SV-10380 Ready for Production) | A/R ×3 + A/P ×3 (rebuilt under SV-11315, old tools obsolete); 5 TU rows still open | Export Reports: X-INV5 now PASS |
+| 2 · Downloads, columns, sorting, accessibility (16 reports) | 45 checks | 3 differences, **all already reported and closed OBSOLETE 9 Aug** (SV-8956, SV-8950, SV-8951) | 6 (A/R/A/P headers other than the name column) | 6 reports: NO SOURCE (facts recorded) |
+| 3 · Edge cases (8) | 4 (TU S2-R8a; X-PAY1 125/125; deposits 20/20 + refund rows 33/36; part-sale population 413/413) | 0 | 1 (core charge: part seeding recipe broken on this build) | 2 NO SOURCE (not producible either); 1 environment-blocked (S2-E3: default rate cannot be deleted) |
+| 4 · Shop Efficiency vs clocked time | settled | — | — | **BY DESIGN** (SV-2116 c14920 vs SV-9447 c75562) |
+| 5 · Dashboard S12-R7–R10 | R7 40, R8 20, R9 20, R10 24 | 0 | R8 on TE/TU (20): too few rows to scroll | 16 not applicable |
+
+**Candidate defects / questions drafted: none.** Every difference found is either already in Jira (closed Obsolete — a QA lead decision, Rule 94 A4), a behaviour change that matches a shipped ticket, or has no written source. One apparent defect (A/P PDFs "no file, no message") was disproved on screen before drafting (S3-N1 message shown). So there are no `D<n>`/`Q<n>` folders.
+
+**For the QA lead (each names its ticket and a recommendation, Rule 102):**
+1. [SV-8956](https://shopview.atlassian.net/browse/SV-8956) (closed Obsolete 9 Aug, no comment) — Sales By Customer file names still leave out the range; SBC spec v22 (20 Oct) S14-R14 still requires it. *My recommendation: reopen with the 16 Nov repro and ask Chris "fix it, or leave it as it is?"*
+2. [SV-8950](https://shopview.atlassian.net/browse/SV-8950) (closed Obsolete 9 Aug) — Technician Utilization CSV still has no Summary row; TU spec v9 S7-R7 requires it. *My recommendation: reopen, same way.*
+3. [SV-8951](https://shopview.atlassian.net/browse/SV-8951) (closed Obsolete 9 Aug) — TU CSV names and per-day Expanded CSV: TU v9 S7-R12/S7-R7 say one summary-level CSV, but S7-R4a adds an Expanded CSV option. *My recommendation: a question to Chris (the spec contradicts itself), not a reopen.*
+4. [SV-10380](https://shopview.atlassian.net/browse/SV-10380) (Ready for Production) — Inventory Value now lists negative on-hand parts; IV spec v10 S2-R1 says on-hand > 0. *My recommendation: read SV-10380's text, then ask Chris which governs if it does not say.*
+5. No ticket yet (related [SV-11315](https://shopview.atlassian.net/browse/SV-11315)) — the A/R and A/P figure checks need rebuilding on the new endpoints and PRD 947650561. *My recommendation: approve as the next worker task.*
+6. No ticket yet (related: 28 Oct finding F2, held with DQ-1) — Technician Efficiency no longer lists declined lines. *My recommendation: re-check the dashboard Technician Efficiency tile for F2 before F2/DQ-1 is mentioned again.*
+
 ---
 
 ## Area 1 — Re-check of every report's figures on the current build
