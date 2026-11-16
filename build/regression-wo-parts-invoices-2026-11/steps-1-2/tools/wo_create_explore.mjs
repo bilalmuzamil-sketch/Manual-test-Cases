@@ -1,0 +1,13 @@
+import { start, APP, LOC } from './common.mjs';
+const { browser, page } = await start({ workplaceId: LOC.id, timezone: LOC.tz });
+await page.goto(APP + '/workorders', { waitUntil: 'domcontentloaded', timeout: 60000 }); await page.waitForTimeout(5000);
+await page.locator('[data-test-id="button_new_work_order"]').click({ force: true }); await page.waitForTimeout(2500);
+const cs = page.locator('[data-test-id="select_customer_select"]').first(); await cs.click({ force: true }); await page.waitForTimeout(500);
+await page.keyboard.type('ZZAUTOTEST RGWO', { delay: 40 }); await page.waitForTimeout(2500);
+console.log('MENU', (await page.locator('.q-menu .q-item').allInnerTexts()).slice(0, 5));
+await page.locator('.q-menu .q-item', { hasText: 'ZZAUTOTEST RGWO Customer A' }).first().click({ force: true }); await page.waitForTimeout(2000);
+await page.locator('[data-test-id="button_add_vehicle"]').click({ force: true }); await page.waitForTimeout(2500);
+const ids = await page.evaluate(() => [...document.querySelectorAll('.q-dialog [data-test-id]')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.getAttribute('data-test-id') + (e.querySelector('.q-field__label') ? '«' + e.querySelector('.q-field__label').innerText + '»' : '')));
+console.log([...new Set(ids)].join(' | '));
+await page.screenshot({ path: '/tmp/cln/rgwo/addveh.png' });
+await browser.close();

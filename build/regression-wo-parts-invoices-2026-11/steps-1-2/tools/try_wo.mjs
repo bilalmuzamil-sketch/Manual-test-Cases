@@ -1,0 +1,10 @@
+import { start, LOC, netlog } from './common.mjs';
+import { createWO, ids } from './wo.mjs';
+const { browser, page } = await start({ workplaceId: LOC.id, timezone: LOC.tz });
+const net = []; netlog(page, net);
+const id = await createWO(page, { unit: process.argv[2], vin: process.argv[3] });
+console.log('WO', id, page.url());
+console.log(net.map(n => n.m + ' ' + n.u + ' ' + n.s + ' ' + n.resp.slice(0, 150)).join('\n'));
+await page.screenshot({ path: '/tmp/cln/rgwo/wo-new.png' });
+console.log((await ids(page)).join(' | ').slice(0, 3000));
+await browser.close();

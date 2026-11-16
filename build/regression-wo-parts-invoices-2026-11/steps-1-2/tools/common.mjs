@@ -38,3 +38,18 @@ export async function zones(page, locationZone) {
 export const LOC = { id: '2644c166-362b-48ec-9cf2-2ac974418039', tz: 'America/Edmonton', name: 'ZZAUTOTEST R365 Location C with a name longer than the chip' };
 export async function headerLocation(page) { return page.evaluate(() => (document.querySelector('header .short-text-content')?.innerText || '').trim()); }
 export const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Fill a Quasar field inside the open dialog by its on-screen label (exact text of .q-field__label).
+export async function fillByLabel(page, label, value, scope = '.q-dialog') {
+  const f = page.locator(`${scope} .q-field`).filter({ has: page.locator('.q-field__label', { hasText: new RegExp('^\\s*' + label.replace(/[$()*+.?[\\\]^{|}]/g, '\\$&') + '\\s*\\*?\\s*$') }) }).first();
+  await f.scrollIntoViewIfNeeded(); const inp = f.locator('input, textarea').first();
+  await inp.click({ force: true }); await inp.fill(''); await inp.type(String(value), { delay: 20 }); await inp.press('Tab').catch(() => {});
+}
+// Pick an option in a Quasar select (by label) — type to filter, then click the matching menu item.
+export async function selectByLabel(page, label, optionText, scope = '.q-dialog', type = true) {
+  const f = page.locator(`${scope} .q-field`).filter({ has: page.locator('.q-field__label', { hasText: new RegExp('^\\s*' + label.replace(/[$()*+.?[\\\]^{|}]/g, '\\$&') + '\\s*\\*?\\s*$') }) }).first();
+  await f.scrollIntoViewIfNeeded(); await f.click({ force: true }); await page.waitForTimeout(600);
+  if (type) { const inp = f.locator('input').first(); if (await inp.count()) await inp.type(optionText.slice(0, 18), { delay: 30 }).catch(() => {}); await page.waitForTimeout(1500); }
+  const it = page.locator('.q-menu .q-item').filter({ hasText: optionText }).first();
+  await it.click({ force: true, timeout: 8000 }); await page.waitForTimeout(600);
+}
+export function netlog(page, arr) { page.on('response', async r => { const q = r.request(); if (/api\.staging/.test(r.url()) && q.method() !== 'GET') { let b = ''; try { b = (await r.text()).slice(0, 400); } catch {} arr.push({ at: new Date().toISOString(), m: q.method(), u: r.url().replace(API, ''), body: (q.postData() || '').slice(0, 600), s: r.status(), resp: b }); fs.appendFileSync(SEEDLOG, JSON.stringify({ at: new Date().toISOString(), via: 'screen', method: q.method(), path: r.url().replace(API, ''), body: (q.postData() || '').slice(0, 600), status: r.status(), resp: b.slice(0, 300) }) + '\n'); } }); }
