@@ -1,0 +1,1718 @@
+{
+ "prd": "Confluence 947650561 v13 (13 Nov 2026)",
+ "runs": {
+  "HD/2026-09-30/all": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 1126,
+     "D-type-name (S2-R1b):pass": 1126,
+     "D-dated-on-or-before-as-of:pass": 1126,
+     "D-invoice-open-between-0-and-amount:pass": 1040,
+     "D-past-due = as-of minus due (S1-R5a):pass": 1126,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 1126,
+     "D-credit-due-date = own date (S1-R5a):pass": 86,
+     "D-credit-open-balance-negative:pass": 86,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 350,
+     "S-row-total = its buckets:pass": 70,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 70,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 56,
+     "G-group-amount = rows:pass": 56,
+     "G-group-open = rows:pass": 56,
+     "G-row-in-its-group:pass": 560,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 560,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {},
+    "documents": 1126,
+    "accounts": 70,
+    "not_yet_due_invoices": 548,
+    "not_yet_due_examples": [
+     [
+      "S2-33682",
+      "2026-10-01T02:38:22Z",
+      -1
+     ],
+     [
+      "S2-33686",
+      "2026-10-01T02:34:41Z",
+      -1
+     ],
+     [
+      "S2-33687",
+      "2026-10-01T02:40:36Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [
+     "CM2-4462",
+     "CM2-4463"
+    ],
+    "detail_totals": {
+     "amountCents": 67368056,
+     "openBalanceCents": 63846236,
+     "rowsNumber": 1126
+    },
+    "summary_totals": {
+     "currentCents": 29167973,
+     "days1To30Cents": 18397591,
+     "days31To60Cents": 9968900,
+     "days61To90Cents": 2756883,
+     "days91PlusCents": 3554889,
+     "totalCents": 63846236
+    },
+    "group_totals": {
+     "amountCents": 38028008,
+     "openBalanceCents": 34639263,
+     "documentCount": 560
+    },
+    "buckets": {
+     "days_91_plus": [
+      22,
+      3554889
+     ],
+     "days_61_to_90": [
+      26,
+      2756883
+     ],
+     "days_31_to_60": [
+      28,
+      9968900
+     ],
+     "days_1_to_30": [
+      482,
+      18397591
+     ],
+     "current": [
+      568,
+      29167973
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 14102,
+     "D-type-name (S2-R1b):pass": 14102,
+     "D-dated-on-or-before-as-of:pass": 14102,
+     "D-invoice-open-between-0-and-amount:pass": 12800,
+     "D-past-due = as-of minus due (S1-R5a):pass": 14102,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 14102,
+     "D-credit-due-date = own date (S1-R5a):pass": 1302,
+     "D-credit-open-balance-negative:pass": 1302,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 2285,
+     "S-row-total = its buckets:pass": 457,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 457,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 457,
+     "G-group-amount = rows:pass": 457,
+     "G-group-open = rows:pass": 457,
+     "G-row-in-its-group:pass": 14102,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 14102,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 1302,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {},
+    "documents": 14102,
+    "accounts": 457,
+    "not_yet_due_invoices": 991,
+    "not_yet_due_examples": [
+     [
+      "dsfs45",
+      "2026-10-01T06:00:00Z",
+      -1
+     ],
+     [
+      "55555",
+      "2026-10-01T06:00:00Z",
+      -1
+     ],
+     [
+      "E2E-INV-1788254768600",
+      "2026-10-01T09:26:08Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 478492274,
+     "openBalanceCents": 478480690,
+     "rowsNumber": 14102
+    },
+    "summary_totals": {
+     "currentCents": 21578945,
+     "days1To30Cents": 30705721,
+     "days31To60Cents": 34015743,
+     "days61To90Cents": 21253995,
+     "days91PlusCents": 370926286,
+     "totalCents": 478480690
+    },
+    "group_totals": {
+     "amountCents": 478492274,
+     "openBalanceCents": 478480690,
+     "documentCount": 14102
+    },
+    "buckets": {
+     "days_91_plus": [
+      10907,
+      370926286
+     ],
+     "days_61_to_90": [
+      703,
+      21253995
+     ],
+     "days_31_to_60": [
+      786,
+      34015743
+     ],
+     "days_1_to_30": [
+      713,
+      30705721
+     ],
+     "current": [
+      993,
+      21578945
+     ]
+    }
+   }
+  },
+  "HD/2026-09-30/own": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 750,
+     "D-type-name (S2-R1b):pass": 750,
+     "D-dated-on-or-before-as-of:pass": 750,
+     "D-credit-due-date = own date (S1-R5a):pass": 60,
+     "D-credit-open-balance-negative:pass": 60,
+     "D-past-due = as-of minus due (S1-R5a):pass": 750,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 750,
+     "L-row-at-chosen-location (S5-R7):pass": 750,
+     "D-invoice-open-between-0-and-amount:pass": 690,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 265,
+     "S-row-total = its buckets:pass": 53,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 39,
+     "G-group-amount = rows:pass": 39,
+     "G-group-open = rows:pass": 39,
+     "G-row-in-its-group:pass": 356,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 356
+    },
+    "failures": {},
+    "documents": 750,
+    "accounts": 53,
+    "not_yet_due_invoices": 382,
+    "not_yet_due_examples": [
+     [
+      "S2-33682",
+      "2026-10-01T02:38:22Z",
+      -1
+     ],
+     [
+      "S2-33686",
+      "2026-10-01T02:34:41Z",
+      -1
+     ],
+     [
+      "S2-33687",
+      "2026-10-01T02:40:36Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [
+     "CM2-4462",
+     "CM2-4463"
+    ],
+    "detail_totals": {
+     "amountCents": 53636835,
+     "openBalanceCents": 50163914,
+     "rowsNumber": 750
+    },
+    "summary_totals": {
+     "currentCents": 23254949,
+     "days1To30Cents": 11943815,
+     "days31To60Cents": 8901071,
+     "days61To90Cents": 2756706,
+     "days91PlusCents": 3307373,
+     "totalCents": 50163914
+    },
+    "group_totals": {
+     "amountCents": 30209811,
+     "openBalanceCents": 26869965,
+     "documentCount": 356
+    },
+    "buckets": {
+     "days_91_plus": [
+      17,
+      3307373
+     ],
+     "days_61_to_90": [
+      23,
+      2756706
+     ],
+     "days_31_to_60": [
+      25,
+      8901071
+     ],
+     "days_1_to_30": [
+      289,
+      11943815
+     ],
+     "current": [
+      396,
+      23254949
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 9249,
+     "D-type-name (S2-R1b):pass": 9249,
+     "D-dated-on-or-before-as-of:pass": 9249,
+     "D-invoice-open-between-0-and-amount:pass": 8336,
+     "D-past-due = as-of minus due (S1-R5a):pass": 9249,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 9249,
+     "L-row-at-chosen-location (S5-R7):pass": 9249,
+     "D-credit-due-date = own date (S1-R5a):pass": 913,
+     "D-credit-open-balance-negative:pass": 913,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 1520,
+     "S-row-total = its buckets:pass": 304,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 304,
+     "G-group-amount = rows:pass": 304,
+     "G-group-open = rows:pass": 304,
+     "G-row-in-its-group:pass": 9249,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 9249,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 913
+    },
+    "failures": {},
+    "documents": 9249,
+    "accounts": 304,
+    "not_yet_due_invoices": 661,
+    "not_yet_due_examples": [
+     [
+      "dsfs45",
+      "2026-10-01T06:00:00Z",
+      -1
+     ],
+     [
+      "55555",
+      "2026-10-01T06:00:00Z",
+      -1
+     ],
+     [
+      "ad11",
+      "2026-10-02T06:00:00Z",
+      -2
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 316493295,
+     "openBalanceCents": 316481711,
+     "rowsNumber": 9249
+    },
+    "summary_totals": {
+     "currentCents": 13993985,
+     "days1To30Cents": 17605084,
+     "days31To60Cents": 21576460,
+     "days61To90Cents": 14662933,
+     "days91PlusCents": 248643249,
+     "totalCents": 316481711
+    },
+    "group_totals": {
+     "amountCents": 316493295,
+     "openBalanceCents": 316481711,
+     "documentCount": 9249
+    },
+    "buckets": {
+     "days_91_plus": [
+      7227,
+      248643249
+     ],
+     "days_61_to_90": [
+      419,
+      14662933
+     ],
+     "days_31_to_60": [
+      529,
+      21576460
+     ],
+     "days_1_to_30": [
+      411,
+      17605084
+     ],
+     "current": [
+      663,
+      13993985
+     ]
+    }
+   }
+  },
+  "HD/2026-11-16/all": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 1790,
+     "D-type-name (S2-R1b):pass": 1790,
+     "D-dated-on-or-before-as-of:pass": 1790,
+     "D-invoice-open-between-0-and-amount:pass": 1562,
+     "D-past-due = as-of minus due (S1-R5a):pass": 1790,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 1790,
+     "D-credit-due-date = own date (S1-R5a):pass": 228,
+     "D-credit-open-balance-negative:pass": 228,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 1575,
+     "S-row-total = its buckets:pass": 315,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 315,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 298,
+     "G-group-amount = rows:pass": 298,
+     "G-group-open = rows:pass": 298,
+     "G-row-in-its-group:pass": 1674,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 1674,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {},
+    "documents": 1790,
+    "accounts": 315,
+    "not_yet_due_invoices": 116,
+    "not_yet_due_examples": [
+     [
+      "S2-37300",
+      "2026-11-17T22:59:10Z",
+      -2
+     ],
+     [
+      "S2-37301",
+      "2026-11-17T23:28:29Z",
+      -2
+     ],
+     [
+      "S2-40088",
+      "2026-11-19T07:00:00Z",
+      -3
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 77343272,
+     "openBalanceCents": 74355974,
+     "rowsNumber": 1790
+    },
+    "summary_totals": {
+     "currentCents": 3856949,
+     "days1To30Cents": 13974052,
+     "days31To60Cents": 29436006,
+     "days61To90Cents": 13685984,
+     "days91PlusCents": 13402983,
+     "totalCents": 74355974
+    },
+    "group_totals": {
+     "amountCents": 73419473,
+     "openBalanceCents": 70499025,
+     "documentCount": 1674
+    },
+    "buckets": {
+     "days_91_plus": [
+      61,
+      13402983
+     ],
+     "days_61_to_90": [
+      423,
+      13685984
+     ],
+     "days_31_to_60": [
+      663,
+      29436006
+     ],
+     "days_1_to_30": [
+      527,
+      13974052
+     ],
+     "current": [
+      116,
+      3856949
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 14732,
+     "D-type-name (S2-R1b):pass": 14732,
+     "D-dated-on-or-before-as-of:pass": 14732,
+     "D-invoice-open-between-0-and-amount:pass": 13409,
+     "D-past-due = as-of minus due (S1-R5a):pass": 14732,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 14732,
+     "D-credit-due-date = own date (S1-R5a):pass": 1321,
+     "D-credit-open-balance-negative:pass": 1321,
+     "D-invoice-open-between-0-and-amount:fail": 2,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 2490,
+     "S-row-total = its buckets:pass": 498,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 498,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 498,
+     "G-group-amount = rows:pass": 498,
+     "G-group-open = rows:pass": 498,
+     "G-row-in-its-group:pass": 14732,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 14732,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 1321,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {
+     "D-invoice-open-between-0-and-amount": [
+      [
+       "069-855902",
+       429,
+       431
+      ],
+      [
+       "055-541861",
+       64336,
+       64338
+      ]
+     ]
+    },
+    "documents": 14732,
+    "accounts": 498,
+    "not_yet_due_invoices": 372,
+    "not_yet_due_examples": [
+     [
+      "E2E-INV-1792282690137",
+      "2026-11-17T00:18:10Z",
+      -1
+     ],
+     [
+      "E2E-INV-1792282696355",
+      "2026-11-17T00:18:16Z",
+      -1
+     ],
+     [
+      "E2E-INV-1792282745724",
+      "2026-11-17T00:19:05Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 484681776,
+     "openBalanceCents": 484650196,
+     "rowsNumber": 14732
+    },
+    "summary_totals": {
+     "currentCents": 3702021,
+     "days1To30Cents": 12054061,
+     "days31To60Cents": 26513372,
+     "days61To90Cents": 33017628,
+     "days91PlusCents": 409363114,
+     "totalCents": 484650196
+    },
+    "group_totals": {
+     "amountCents": 484681776,
+     "openBalanceCents": 484650196,
+     "documentCount": 14732
+    },
+    "buckets": {
+     "days_91_plus": [
+      12082,
+      409363114
+     ],
+     "days_61_to_90": [
+      688,
+      33017628
+     ],
+     "days_31_to_60": [
+      980,
+      26513372
+     ],
+     "days_1_to_30": [
+      576,
+      12054061
+     ],
+     "current": [
+      406,
+      3702021
+     ]
+    }
+   }
+  },
+  "HD/2026-11-16/own": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 1228,
+     "D-type-name (S2-R1b):pass": 1228,
+     "D-dated-on-or-before-as-of:pass": 1228,
+     "D-credit-due-date = own date (S1-R5a):pass": 187,
+     "D-credit-open-balance-negative:pass": 187,
+     "D-past-due = as-of minus due (S1-R5a):pass": 1228,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 1228,
+     "L-row-at-chosen-location (S5-R7):pass": 1228,
+     "D-invoice-open-between-0-and-amount:pass": 1041,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 1360,
+     "S-row-total = its buckets:pass": 272,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 256,
+     "G-group-amount = rows:pass": 256,
+     "G-group-open = rows:pass": 256,
+     "G-row-in-its-group:pass": 1156,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 1156
+    },
+    "failures": {},
+    "documents": 1228,
+    "accounts": 272,
+    "not_yet_due_invoices": 72,
+    "not_yet_due_examples": [
+     [
+      "S2-37300",
+      "2026-11-17T22:59:10Z",
+      -2
+     ],
+     [
+      "S2-37301",
+      "2026-11-17T23:28:29Z",
+      -2
+     ],
+     [
+      "S2-40088",
+      "2026-11-19T07:00:00Z",
+      -3
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 59451727,
+     "openBalanceCents": 56527328,
+     "rowsNumber": 1228
+    },
+    "summary_totals": {
+     "currentCents": 2395101,
+     "days1To30Cents": 11819866,
+     "days31To60Cents": 19644151,
+     "days61To90Cents": 10527854,
+     "days91PlusCents": 12140356,
+     "totalCents": 56527328
+    },
+    "group_totals": {
+     "amountCents": 56991776,
+     "openBalanceCents": 54132227,
+     "documentCount": 1156
+    },
+    "buckets": {
+     "days_91_plus": [
+      51,
+      12140356
+     ],
+     "days_61_to_90": [
+      260,
+      10527854
+     ],
+     "days_31_to_60": [
+      427,
+      19644151
+     ],
+     "days_1_to_30": [
+      418,
+      11819866
+     ],
+     "current": [
+      72,
+      2395101
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 9481,
+     "D-type-name (S2-R1b):pass": 9481,
+     "D-dated-on-or-before-as-of:pass": 9481,
+     "D-invoice-open-between-0-and-amount:pass": 8549,
+     "D-past-due = as-of minus due (S1-R5a):pass": 9481,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 9481,
+     "L-row-at-chosen-location (S5-R7):pass": 9481,
+     "D-credit-due-date = own date (S1-R5a):pass": 931,
+     "D-credit-open-balance-negative:pass": 931,
+     "D-invoice-open-between-0-and-amount:fail": 1,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 1705,
+     "S-row-total = its buckets:pass": 341,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 341,
+     "G-group-amount = rows:pass": 341,
+     "G-group-open = rows:pass": 341,
+     "G-row-in-its-group:pass": 9481,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 9481,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 931
+    },
+    "failures": {
+     "D-invoice-open-between-0-and-amount": [
+      [
+       "069-855902",
+       429,
+       431
+      ]
+     ]
+    },
+    "documents": 9481,
+    "accounts": 341,
+    "not_yet_due_invoices": 101,
+    "not_yet_due_examples": [
+     [
+      "SV7661-T1018",
+      "2026-11-17T19:00:00Z",
+      -2
+     ],
+     [
+      "TEST-INV-11070-1018a",
+      "2026-11-17T19:00:00Z",
+      -2
+     ],
+     [
+      "54326432",
+      "2026-11-18T19:00:00Z",
+      -3
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 319095401,
+     "openBalanceCents": 319064819,
+     "rowsNumber": 9481
+    },
+    "summary_totals": {
+     "currentCents": 1245195,
+     "days1To30Cents": 7337347,
+     "days31To60Cents": 18033537,
+     "days61To90Cents": 16795750,
+     "days91PlusCents": 275652990,
+     "totalCents": 319064819
+    },
+    "group_totals": {
+     "amountCents": 319095401,
+     "openBalanceCents": 319064819,
+     "documentCount": 9481
+    },
+    "buckets": {
+     "days_91_plus": [
+      7959,
+      275652990
+     ],
+     "days_61_to_90": [
+      415,
+      16795750
+     ],
+     "days_31_to_60": [
+      613,
+      18033537
+     ],
+     "days_1_to_30": [
+      390,
+      7337347
+     ],
+     "current": [
+      104,
+      1245195
+     ]
+    }
+   }
+  },
+  "LE/2026-09-30/all": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 1126,
+     "D-type-name (S2-R1b):pass": 1126,
+     "D-dated-on-or-before-as-of:pass": 1126,
+     "D-invoice-open-between-0-and-amount:pass": 1040,
+     "D-past-due = as-of minus due (S1-R5a):pass": 1126,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 1126,
+     "D-credit-due-date = own date (S1-R5a):pass": 86,
+     "D-credit-open-balance-negative:pass": 86,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 350,
+     "S-row-total = its buckets:pass": 70,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 70,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 56,
+     "G-group-amount = rows:pass": 56,
+     "G-group-open = rows:pass": 56,
+     "G-row-in-its-group:pass": 560,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 560,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {},
+    "documents": 1126,
+    "accounts": 70,
+    "not_yet_due_invoices": 544,
+    "not_yet_due_examples": [
+     [
+      "S2-33710",
+      "2026-10-01T08:13:00Z",
+      -1
+     ],
+     [
+      "S2-33712",
+      "2026-10-01T08:30:05Z",
+      -1
+     ],
+     [
+      "S2-33714",
+      "2026-10-01T08:32:23Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [
+     "CM2-4462",
+     "CM2-4463"
+    ],
+    "detail_totals": {
+     "amountCents": 67368056,
+     "openBalanceCents": 63846236,
+     "rowsNumber": 1126
+    },
+    "summary_totals": {
+     "currentCents": 29167973,
+     "days1To30Cents": 17900202,
+     "days31To60Cents": 10466289,
+     "days61To90Cents": 2756883,
+     "days91PlusCents": 3554889,
+     "totalCents": 63846236
+    },
+    "group_totals": {
+     "amountCents": 38028008,
+     "openBalanceCents": 34639263,
+     "documentCount": 560
+    },
+    "buckets": {
+     "days_91_plus": [
+      22,
+      3554889
+     ],
+     "days_61_to_90": [
+      26,
+      2756883
+     ],
+     "days_31_to_60": [
+      29,
+      10466289
+     ],
+     "days_1_to_30": [
+      481,
+      17900202
+     ],
+     "current": [
+      568,
+      29167973
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 14101,
+     "D-type-name (S2-R1b):pass": 14101,
+     "D-dated-on-or-before-as-of:pass": 14101,
+     "D-invoice-open-between-0-and-amount:pass": 12799,
+     "D-past-due = as-of minus due (S1-R5a):pass": 14101,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 14101,
+     "D-credit-due-date = own date (S1-R5a):pass": 1302,
+     "D-credit-open-balance-negative:pass": 1302,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 2285,
+     "S-row-total = its buckets:pass": 457,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 457,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 457,
+     "G-group-amount = rows:pass": 457,
+     "G-group-open = rows:pass": 457,
+     "G-row-in-its-group:pass": 14101,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 14101,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 1302,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {},
+    "documents": 14101,
+    "accounts": 457,
+    "not_yet_due_invoices": 990,
+    "not_yet_due_examples": [
+     [
+      "dsfs45",
+      "2026-10-01T06:00:00Z",
+      -1
+     ],
+     [
+      "55555",
+      "2026-10-01T06:00:00Z",
+      -1
+     ],
+     [
+      "E2E-INV-1788254768600",
+      "2026-10-01T09:26:08Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 478487274,
+     "openBalanceCents": 478475690,
+     "rowsNumber": 14101
+    },
+    "summary_totals": {
+     "currentCents": 21573945,
+     "days1To30Cents": 30705721,
+     "days31To60Cents": 34046803,
+     "days61To90Cents": 21222935,
+     "days91PlusCents": 370926286,
+     "totalCents": 478475690
+    },
+    "group_totals": {
+     "amountCents": 478487274,
+     "openBalanceCents": 478475690,
+     "documentCount": 14101
+    },
+    "buckets": {
+     "days_91_plus": [
+      10907,
+      370926286
+     ],
+     "days_61_to_90": [
+      704,
+      21222935
+     ],
+     "days_31_to_60": [
+      785,
+      34046803
+     ],
+     "days_1_to_30": [
+      713,
+      30705721
+     ],
+     "current": [
+      992,
+      21573945
+     ]
+    }
+   }
+  },
+  "LE/2026-09-30/own": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 367,
+     "D-type-name (S2-R1b):pass": 367,
+     "D-dated-on-or-before-as-of:pass": 367,
+     "D-invoice-open-between-0-and-amount:pass": 341,
+     "D-past-due = as-of minus due (S1-R5a):pass": 367,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 367,
+     "L-row-at-chosen-location (S5-R7):pass": 367,
+     "D-credit-due-date = own date (S1-R5a):pass": 26,
+     "D-credit-open-balance-negative:pass": 26,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 115,
+     "S-row-total = its buckets:pass": 23,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 20,
+     "G-group-amount = rows:pass": 20,
+     "G-group-open = rows:pass": 20,
+     "G-row-in-its-group:pass": 203,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 203
+    },
+    "failures": {},
+    "documents": 367,
+    "accounts": 23,
+    "not_yet_due_invoices": 158,
+    "not_yet_due_examples": [
+     [
+      "S3-31278",
+      "2026-10-01T09:25:39Z",
+      -1
+     ],
+     [
+      "S3-31285",
+      "2026-10-01T09:27:18Z",
+      -1
+     ],
+     [
+      "S3-31308",
+      "2026-10-01T10:29:26Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 13639781,
+     "openBalanceCents": 13590882,
+     "rowsNumber": 367
+    },
+    "summary_totals": {
+     "currentCents": 5824884,
+     "days1To30Cents": 6453776,
+     "days31To60Cents": 1067829,
+     "days61To90Cents": 177,
+     "days91PlusCents": 244216,
+     "totalCents": 13590882
+    },
+    "group_totals": {
+     "amountCents": 7814897,
+     "openBalanceCents": 7765998,
+     "documentCount": 203
+    },
+    "buckets": {
+     "days_91_plus": [
+      4,
+      244216
+     ],
+     "days_61_to_90": [
+      3,
+      177
+     ],
+     "days_31_to_60": [
+      3,
+      1067829
+     ],
+     "days_1_to_30": [
+      193,
+      6453776
+     ],
+     "current": [
+      164,
+      5824884
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 4842,
+     "D-type-name (S2-R1b):pass": 4842,
+     "D-dated-on-or-before-as-of:pass": 4842,
+     "D-invoice-open-between-0-and-amount:pass": 4453,
+     "D-past-due = as-of minus due (S1-R5a):pass": 4842,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 4842,
+     "L-row-at-chosen-location (S5-R7):pass": 4842,
+     "D-credit-due-date = own date (S1-R5a):pass": 389,
+     "D-credit-open-balance-negative:pass": 389,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 1220,
+     "S-row-total = its buckets:pass": 244,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 244,
+     "G-group-amount = rows:pass": 244,
+     "G-group-open = rows:pass": 244,
+     "G-row-in-its-group:pass": 4842,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 4842,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 389
+    },
+    "failures": {},
+    "documents": 4842,
+    "accounts": 244,
+    "not_yet_due_invoices": 319,
+    "not_yet_due_examples": [
+     [
+      "E2E-INV-1788254768600",
+      "2026-10-01T09:26:08Z",
+      -1
+     ],
+     [
+      "E2E-INV-1788254769970",
+      "2026-10-01T09:26:09Z",
+      -1
+     ],
+     [
+      "E2E-INV-1788254794414",
+      "2026-10-01T09:26:34Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 161948639,
+     "openBalanceCents": 161948639,
+     "rowsNumber": 4842
+    },
+    "summary_totals": {
+     "currentCents": 7534620,
+     "days1To30Cents": 13100637,
+     "days31To60Cents": 12470343,
+     "days61To90Cents": 6560002,
+     "days91PlusCents": 122283037,
+     "totalCents": 161948639
+    },
+    "group_totals": {
+     "amountCents": 161948639,
+     "openBalanceCents": 161948639,
+     "documentCount": 4842
+    },
+    "buckets": {
+     "days_91_plus": [
+      3680,
+      122283037
+     ],
+     "days_61_to_90": [
+      285,
+      6560002
+     ],
+     "days_31_to_60": [
+      256,
+      12470343
+     ],
+     "days_1_to_30": [
+      302,
+      13100637
+     ],
+     "current": [
+      319,
+      7534620
+     ]
+    }
+   }
+  },
+  "LE/2026-11-16/all": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 1790,
+     "D-type-name (S2-R1b):pass": 1790,
+     "D-dated-on-or-before-as-of:pass": 1790,
+     "D-invoice-open-between-0-and-amount:pass": 1562,
+     "D-past-due = as-of minus due (S1-R5a):pass": 1790,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 1790,
+     "D-credit-due-date = own date (S1-R5a):pass": 228,
+     "D-credit-open-balance-negative:pass": 228,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 1575,
+     "S-row-total = its buckets:pass": 315,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 315,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 298,
+     "G-group-amount = rows:pass": 298,
+     "G-group-open = rows:pass": 298,
+     "G-row-in-its-group:pass": 1674,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 1674,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {},
+    "documents": 1790,
+    "accounts": 315,
+    "not_yet_due_invoices": 116,
+    "not_yet_due_examples": [
+     [
+      "S2-37300",
+      "2026-11-17T22:59:10Z",
+      -1
+     ],
+     [
+      "S2-37301",
+      "2026-11-17T23:28:29Z",
+      -1
+     ],
+     [
+      "S2-40202",
+      "2026-11-20T03:43:29Z",
+      -3
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 77343272,
+     "openBalanceCents": 74355974,
+     "rowsNumber": 1790
+    },
+    "summary_totals": {
+     "currentCents": 3856949,
+     "days1To30Cents": 13800060,
+     "days31To60Cents": 29609998,
+     "days61To90Cents": 13685984,
+     "days91PlusCents": 13402983,
+     "totalCents": 74355974
+    },
+    "group_totals": {
+     "amountCents": 73419473,
+     "openBalanceCents": 70499025,
+     "documentCount": 1674
+    },
+    "buckets": {
+     "days_91_plus": [
+      61,
+      13402983
+     ],
+     "days_61_to_90": [
+      423,
+      13685984
+     ],
+     "days_31_to_60": [
+      687,
+      29609998
+     ],
+     "days_1_to_30": [
+      503,
+      13800060
+     ],
+     "current": [
+      116,
+      3856949
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 14732,
+     "D-type-name (S2-R1b):pass": 14732,
+     "D-dated-on-or-before-as-of:pass": 14732,
+     "D-invoice-open-between-0-and-amount:pass": 13409,
+     "D-past-due = as-of minus due (S1-R5a):pass": 14732,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 14732,
+     "D-credit-due-date = own date (S1-R5a):pass": 1321,
+     "D-credit-open-balance-negative:pass": 1321,
+     "D-invoice-open-between-0-and-amount:fail": 2,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 2490,
+     "S-row-total = its buckets:pass": 498,
+     "S-location = one name or \"Multiple\" (S6-R4):pass": 498,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 498,
+     "G-group-amount = rows:pass": 498,
+     "G-group-open = rows:pass": 498,
+     "G-row-in-its-group:pass": 14732,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 14732,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 1321,
+     "L-location-list = locations with open documents (S5-R3):pass": 1
+    },
+    "failures": {
+     "D-invoice-open-between-0-and-amount": [
+      [
+       "069-855902",
+       429,
+       431
+      ],
+      [
+       "055-541861",
+       64336,
+       64338
+      ]
+     ]
+    },
+    "documents": 14732,
+    "accounts": 498,
+    "not_yet_due_invoices": 360,
+    "not_yet_due_examples": [
+     [
+      "SV7661-T1018",
+      "2026-11-17T19:00:00Z",
+      -1
+     ],
+     [
+      "TEST-INV-11070-1018a",
+      "2026-11-17T19:00:00Z",
+      -1
+     ],
+     [
+      "E2E-INV-1792356887702",
+      "2026-11-17T20:54:47Z",
+      -1
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 484681776,
+     "openBalanceCents": 484650196,
+     "rowsNumber": 14732
+    },
+    "summary_totals": {
+     "currentCents": 3543132,
+     "days1To30Cents": 12086570,
+     "days31To60Cents": 26639752,
+     "days61To90Cents": 33097426,
+     "days91PlusCents": 409283316,
+     "totalCents": 484650196
+    },
+    "group_totals": {
+     "amountCents": 484681776,
+     "openBalanceCents": 484650196,
+     "documentCount": 14732
+    },
+    "buckets": {
+     "days_91_plus": [
+      12084,
+      409283316
+     ],
+     "days_61_to_90": [
+      686,
+      33097426
+     ],
+     "days_31_to_60": [
+      993,
+      26639752
+     ],
+     "days_1_to_30": [
+      596,
+      12086570
+     ],
+     "current": [
+      373,
+      3543132
+     ]
+    }
+   }
+  },
+  "LE/2026-11-16/own": {
+   "ar": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 527,
+     "D-type-name (S2-R1b):pass": 527,
+     "D-dated-on-or-before-as-of:pass": 527,
+     "D-invoice-open-between-0-and-amount:pass": 488,
+     "D-past-due = as-of minus due (S1-R5a):pass": 527,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 527,
+     "L-row-at-chosen-location (S5-R7):pass": 527,
+     "D-credit-due-date = own date (S1-R5a):pass": 39,
+     "D-credit-open-balance-negative:pass": 39,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 200,
+     "S-row-total = its buckets:pass": 40,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 40,
+     "G-group-amount = rows:pass": 40,
+     "G-group-open = rows:pass": 40,
+     "G-row-in-its-group:pass": 484,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-same-day credit listed with Past Due 0 (S1-R5a):pass": 1,
+     "G-holds-exactly-the-past-due-documents + same-day credits (82083852 v25 sec.6; SV-11441 c79846):pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 484
+    },
+    "failures": {},
+    "documents": 527,
+    "accounts": 40,
+    "not_yet_due_invoices": 43,
+    "not_yet_due_examples": [
+     [
+      "S3-37733",
+      "2026-11-20T13:08:08Z",
+      -4
+     ],
+     [
+      "S3-37741",
+      "2026-11-20T13:08:32Z",
+      -4
+     ],
+     [
+      "S3-39119",
+      "2026-12-09T09:47:13Z",
+      -23
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 17462544,
+     "openBalanceCents": 17411645,
+     "rowsNumber": 527
+    },
+    "summary_totals": {
+     "currentCents": 1450548,
+     "days1To30Cents": 1839925,
+     "days31To60Cents": 9703715,
+     "days61To90Cents": 3158130,
+     "days91PlusCents": 1259327,
+     "totalCents": 17411645
+    },
+    "group_totals": {
+     "amountCents": 16009996,
+     "openBalanceCents": 15961097,
+     "documentCount": 484
+    },
+    "buckets": {
+     "days_91_plus": [
+      9,
+      1259327
+     ],
+     "days_61_to_90": [
+      163,
+      3158130
+     ],
+     "days_31_to_60": [
+      228,
+      9703715
+     ],
+     "days_1_to_30": [
+      84,
+      1839925
+     ],
+     "current": [
+      43,
+      1450548
+     ]
+    }
+   },
+   "ap": {
+    "counts": {
+     "D-group-rows-complete:pass": 5,
+     "D-group-amount = rows:pass": 5,
+     "D-group-open = rows:pass": 5,
+     "D-no-duplicate-document:pass": 4947,
+     "D-type-name (S2-R1b):pass": 4947,
+     "D-dated-on-or-before-as-of:pass": 4947,
+     "D-invoice-open-between-0-and-amount:pass": 4556,
+     "D-past-due = as-of minus due (S1-R5a):pass": 4947,
+     "D-in-its-bucket (S1-R5a/S5-R15):pass": 4947,
+     "L-row-at-chosen-location (S5-R7):pass": 4947,
+     "D-credit-due-date = own date (S1-R5a):pass": 390,
+     "D-credit-open-balance-negative:pass": 390,
+     "D-invoice-open-between-0-and-amount:fail": 1,
+     "D-totals = groups (S5-R18):pass": 1,
+     "S-rows-complete:pass": 1,
+     "S-no-account-twice:pass": 1,
+     "S-bucket = recomputed from documents (S5-R18a):pass": 1260,
+     "S-row-total = its buckets:pass": 252,
+     "S-every-account-with-open-documents-listed (S1-E1):pass": 1,
+     "S-Totals = rows (S5-R18):pass": 5,
+     "S-Totals = Detail open balance by bucket (S5-R18a):pass": 5,
+     "S-Totals total = rows:pass": 1,
+     "G-groups-complete:pass": 1,
+     "G-group-documents-all-delivered:pass": 252,
+     "G-group-amount = rows:pass": 252,
+     "G-group-open = rows:pass": 252,
+     "G-row-in-its-group:pass": 4947,
+     "G-Totals = groups (S5-R18):pass": 1,
+     "G-holds-exactly-the-Detail-documents:pass": 1,
+     "G-row = Detail row (date, due, past due, amounts, location):pass": 4947,
+     "G-vendor-credit has no Due Date and no Past Due (S2-R6):pass": 390
+    },
+    "failures": {
+     "D-invoice-open-between-0-and-amount": [
+      [
+       "055-541861",
+       64336,
+       64338
+      ]
+     ]
+    },
+    "documents": 4947,
+    "accounts": 252,
+    "not_yet_due_invoices": 59,
+    "not_yet_due_examples": [
+     [
+      "E2E-INV-1792588117753",
+      "2026-11-20T13:08:37Z",
+      -4
+     ],
+     [
+      "E2E-INV-1792588118708",
+      "2026-11-20T13:08:38Z",
+      -4
+     ],
+     [
+      "E2E-INV-1792594999770",
+      "2026-11-20T15:03:19Z",
+      -4
+     ]
+    ],
+    "credits_dated_on_as_of": [],
+    "detail_totals": {
+     "amountCents": 162590949,
+     "openBalanceCents": 162589951,
+     "rowsNumber": 4947
+    },
+    "summary_totals": {
+     "currentCents": 333600,
+     "days1To30Cents": 3872514,
+     "days31To60Cents": 8451835,
+     "days61To90Cents": 16326878,
+     "days91PlusCents": 133605124,
+     "totalCents": 162589951
+    },
+    "group_totals": {
+     "amountCents": 162590949,
+     "openBalanceCents": 162589951,
+     "documentCount": 4947
+    },
+    "buckets": {
+     "days_91_plus": [
+      4124,
+      133605124
+     ],
+     "days_61_to_90": [
+      272,
+      16326878
+     ],
+     "days_31_to_60": [
+      361,
+      8451835
+     ],
+     "days_1_to_30": [
+      131,
+      3872514
+     ],
+     "current": [
+      59,
+      333600
+     ]
+    }
+   }
+  }
+ },
+ "own_vs_all": {
+  "HD/2026-09-30": {
+   "ar": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 750,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 53
+    },
+    "failures": {},
+    "own_documents": 750,
+    "own_summary_rows": 53
+   },
+   "ap": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 9249,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 304
+    },
+    "failures": {},
+    "own_documents": 9249,
+    "own_summary_rows": 304
+   }
+  },
+  "HD/2026-11-16": {
+   "ar": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 1228,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 272
+    },
+    "failures": {},
+    "own_documents": 1228,
+    "own_summary_rows": 272
+   },
+   "ap": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 9481,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 341
+    },
+    "failures": {},
+    "own_documents": 9481,
+    "own_summary_rows": 341
+   }
+  },
+  "LE/2026-09-30": {
+   "ar": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 367,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 23
+    },
+    "failures": {},
+    "own_documents": 367,
+    "own_summary_rows": 23
+   },
+   "ap": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 4842,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 244
+    },
+    "failures": {},
+    "own_documents": 4842,
+    "own_summary_rows": 244
+   }
+  },
+  "LE/2026-11-16": {
+   "ar": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 527,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 40
+    },
+    "failures": {},
+    "own_documents": 527,
+    "own_summary_rows": 40
+   },
+   "ap": {
+    "counts": {
+     "L-narrowed = All-locations rows at that location (S5-R7):pass": 1,
+     "L-narrowed row identical:pass": 4947,
+     "L-Summary lists exactly the accounts with documents there (S5-R8):pass": 1,
+     "L-Summary row total = its documents there (S5-R8):pass": 252
+    },
+    "failures": {},
+    "own_documents": 4947,
+    "own_summary_rows": 252
+   }
+  }
+ }
+}

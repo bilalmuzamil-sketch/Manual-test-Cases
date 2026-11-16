@@ -1,0 +1,385 @@
+{
+ "start": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-16T09:18:44.445Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ },
+ "screen_requests": {
+  "ar-aging-summary": {
+   "url": "https://app.staging.shopview.com/reports/ar-aging-summary",
+   "requests": [
+    "/reporting/reports/ar-aging-summary/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+    "/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescending%5D=false"
+   ],
+   "headers": [
+    "Customer\narrow_drop_up",
+    "Location\narrow_drop_up",
+    "Current\narrow_drop_up",
+    "1-30 Days\narrow_drop_up",
+    "31-60 Days\narrow_drop_up",
+    "61-90 Days\narrow_drop_up",
+    "91 And Over\narrow_drop_up",
+    "Total\narrow_drop_up"
+   ]
+  },
+  "ar-aging-detail": {
+   "url": "https://app.staging.shopview.com/reports/ar-aging-detail",
+   "requests": [
+    "/reporting/reports/ar-aging-detail/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+    "/reporting/reports/ar-aging-detail?asOfDate=2026-11-16&timezone=Asia%2FKarachi"
+   ],
+   "headers": [
+    "keyboard_arrow_right\nDate\narrow_drop_up",
+    "Location\narrow_drop_up",
+    "Transaction Type\narrow_drop_up",
+    "ID\narrow_drop_up",
+    "Customer Full Name\narrow_drop_up",
+    "Due Date\narrow_drop_up",
+    "Amount\narrow_drop_up",
+    "Open Balance\narrow_drop_up"
+   ]
+  },
+  "ar-aging-collection": {
+   "url": "https://app.staging.shopview.com/reports/ar-aging-collection",
+   "requests": [
+    "/reporting/reports/ar-aging-collection/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+    "/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+   ],
+   "headers": [
+    "keyboard_arrow_right\nDate\narrow_drop_up",
+    "Location\narrow_drop_up",
+    "Transaction Type\narrow_drop_up",
+    "ID\narrow_drop_up",
+    "Due Date\narrow_drop_up",
+    "Past Due\narrow_drop_up",
+    "Amount\narrow_drop_up",
+    "Open Balance\narrow_drop_up"
+   ]
+  },
+  "ap-aging-summary": {
+   "url": "https://app.staging.shopview.com/reports/ap-aging-summary",
+   "requests": [
+    "/reporting/reports/ap-aging-summary/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+    "/reporting/reports/ap-aging/vendors",
+    "/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescending%5D=false"
+   ],
+   "headers": [
+    "Vendor\narrow_drop_up",
+    "Location\narrow_drop_up",
+    "Current\narrow_drop_up",
+    "1-30 Days\narrow_drop_up",
+    "31-60 Days\narrow_drop_up",
+    "61-90 Days\narrow_drop_up",
+    "91 And Over\narrow_drop_up",
+    "Total\narrow_drop_up"
+   ]
+  },
+  "ap-aging-detail": {
+   "url": "https://app.staging.shopview.com/reports/ap-aging-detail",
+   "requests": [
+    "/reporting/reports/ap-aging-detail/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+    "/reporting/reports/ap-aging/vendors",
+    "/reporting/reports/ap-aging-detail?asOfDate=2026-11-16&timezone=Asia%2FKarachi"
+   ],
+   "headers": [
+    "keyboard_arrow_right\nDate\narrow_drop_up",
+    "Location\narrow_drop_up",
+    "Transaction Type\narrow_drop_up",
+    "No.\narrow_drop_up",
+    "Vendor Name\narrow_drop_up",
+    "Due Date\narrow_drop_up",
+    "Past Due\narrow_drop_up",
+    "Amount\narrow_drop_up",
+    "Open Balance\narrow_drop_up"
+   ]
+  },
+  "ap-unpaid-invoices": {
+   "url": "https://app.staging.shopview.com/reports/ap-unpaid-invoices",
+   "requests": [
+    "/reporting/reports/ap-unpaid-invoices/locations?asOfDate=2026-11-16&timezone=Asia%2FKarachi",
+    "/reporting/reports/ap-aging/vendors",
+    "/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=false"
+   ],
+   "headers": [
+    "keyboard_arrow_right\nDate\narrow_drop_up",
+    "Location\narrow_drop_up",
+    "Transaction Type\narrow_drop_up",
+    "No.\narrow_drop_up",
+    "Vendor Name",
+    "Due Date\narrow_drop_up",
+    "Past Due\narrow_drop_up",
+    "Amount\narrow_drop_up",
+    "Open Balance\narrow_drop_up"
+   ]
+  }
+ },
+ "probes": {
+  "sum": {
+   "s": 200,
+   "keys": [
+    "collection",
+    "totals",
+    "pagination"
+   ],
+   "n": 315,
+   "pagination": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 1000,
+    "rowsNumber": 315
+   }
+  },
+  "apsum": {
+   "s": 200,
+   "keys": [
+    "collection",
+    "totals",
+    "pagination"
+   ],
+   "n": 498,
+   "pagination": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 1000,
+    "rowsNumber": 498
+   }
+  },
+  "ardet": {
+   "s": 200,
+   "keys": [
+    "groups",
+    "totals"
+   ],
+   "n": null
+  },
+  "ardetrows": {
+   "s": 200,
+   "keys": [
+    "collection",
+    "pagination"
+   ],
+   "n": 100,
+   "pagination": {
+    "sortBy": "customer_name",
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 100,
+    "rowsNumber": 116
+   }
+  },
+  "coll": {
+   "s": 200,
+   "keys": [
+    "collection",
+    "totals",
+    "pagination"
+   ],
+   "n": 30,
+   "pagination": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 30,
+    "rowsNumber": 298
+   }
+  },
+  "unp": {
+   "s": 200,
+   "keys": [
+    "collection",
+    "totals",
+    "pagination"
+   ],
+   "n": 30,
+   "pagination": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 30,
+    "rowsNumber": 498
+   }
+  },
+  "locs": {
+   "s": 200,
+   "keys": [
+    "collection"
+   ],
+   "n": 5
+  },
+  "customer_view": {
+   "s": 200,
+   "has_account": true
+  },
+  "unpaid_open": {
+   "s": 200,
+   "n": 3,
+   "keys0": [
+    "id",
+    "customer_account_id",
+    "date",
+    "due_date",
+    "description",
+    "amount",
+    "balance",
+    "type",
+    "type_label",
+    "status",
+    "status_label",
+    "invoice_number",
+    "ledger_mismatch",
+    "invoice_display_number",
+    "credit_display_number",
+    "reference_id",
+    "payment_method",
+    "payment_method_label",
+    "work_order_id",
+    "ibs_batch_id",
+    "memo",
+    "customer_name",
+    "work_place_id",
+    "invoice_shop_id",
+    "raw_number",
+    "work_order_type",
+    "origin_payment_id",
+    "origin_invoices",
+    "workplace_name",
+    "amount_paid",
+    "credit_term",
+    "customer_po",
+    "formatted_invoice_number"
+   ]
+  },
+  "unpaid_all": {
+   "s": 200,
+   "n": 3,
+   "keys0": [
+    "id",
+    "customer_account_id",
+    "date",
+    "due_date",
+    "description",
+    "amount",
+    "balance",
+    "type",
+    "type_label",
+    "status",
+    "status_label",
+    "invoice_number",
+    "ledger_mismatch",
+    "invoice_display_number",
+    "credit_display_number",
+    "reference_id",
+    "payment_method",
+    "payment_method_label",
+    "work_order_id",
+    "ibs_batch_id",
+    "memo",
+    "customer_name",
+    "work_place_id",
+    "invoice_shop_id",
+    "raw_number",
+    "work_order_type",
+    "origin_payment_id",
+    "origin_invoices",
+    "workplace_name",
+    "amount_paid",
+    "credit_term",
+    "customer_po",
+    "formatted_invoice_number"
+   ]
+  },
+  "payments": {
+   "s": 200,
+   "n": 0,
+   "keys0": []
+  },
+  "deposits": {
+   "s": 200
+  },
+  "vendor_view": {
+   "s": 200,
+   "has_account": true
+  },
+  "vendor_unpaid": {
+   "s": 200,
+   "n": 3,
+   "keys0": [
+    "id",
+    "vendor_account_id",
+    "amount",
+    "balance",
+    "reference_id",
+    "vendor_transaction_type",
+    "vendor_transaction_status",
+    "invoice_number",
+    "description",
+    "date",
+    "payment_method",
+    "due_date",
+    "type",
+    "type_label",
+    "status",
+    "status_label"
+   ]
+  }
+ },
+ "workplaces": [
+  {
+   "id": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+   "name": "QB Location",
+   "tz": "America/Vancouver"
+  },
+  {
+   "id": "2644c166-362b-48ec-9cf2-2ac974418039",
+   "name": "ZZAUTOTEST R365 Location C with a name longer than the chip",
+   "tz": "America/Edmonton"
+  },
+  {
+   "id": "613d5730-af58-47c5-ad64-52bb5a8cf58d",
+   "name": "ZZAUTOTEST V1R-87 Location C",
+   "tz": "America/Edmonton"
+  },
+  {
+   "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "name": "Staging Heavy Duty - 9919",
+   "tz": "Asia/Karachi"
+  },
+  {
+   "id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "name": "Staging Lethbridge - 4310",
+   "tz": "America/Edmonton"
+  },
+  {
+   "id": "39522bc6-abca-4f67-bd12-2840043c2d68",
+   "name": "DVI Test",
+   "tz": "Pacific/Fiji"
+  }
+ ],
+ "end": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-16T09:19:33.466Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ }
+}
