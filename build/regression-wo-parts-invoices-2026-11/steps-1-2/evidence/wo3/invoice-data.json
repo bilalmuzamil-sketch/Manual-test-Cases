@@ -1,0 +1,184 @@
+{
+ "data": {
+  "collection": {
+   "work_order": {
+    "id": "d8e280d0-1bd5-4f71-ac70-6c4e83f9fbd8",
+    "number": "S-40393",
+    "display_number": "S2-40393",
+    "customer_id": "6f6a48f1-1180-4b6f-a6f6-c24bd43ad3e4",
+    "company_id": "ab32fdf2-4227-4a00-ab46-6a64c162959f",
+    "purchase_order": null,
+    "workplace_id": "2644c166-362b-48ec-9cf2-2ac974418039",
+    "status": "complete",
+    "lines": [
+     {
+      "id": "49ada456-79e2-46d9-994e-5abdba146339",
+      "name": "ZZ WO3 Labour 1.33h",
+      "description": "",
+      "tech_story": "",
+      "total_cost": 230.57,
+      "parts": [
+       {
+        "id": "a780ed53-ed5a-45a7-902c-f33fff02388a",
+        "description": "ZZAUTOTEST RGWO Oil Filter",
+        "quantity": "3",
+        "cost": 14.37,
+        "part_number": "ZZRGWO-OF1",
+        "total_cost": 43.11,
+        "total_cost_raw": 43.11,
+        "line_type": null,
+        "fixed_line_total": null,
+        "requested_at": "2026-11-16 08:31:36"
+       },
+       {
+        "id": "07250abb-f518-41e4-bccd-d8c17ab9dd7a",
+        "description": "ZZAUTOTEST RGWO Hose Clamp",
+        "quantity": "7",
+        "cost": 1.13,
+        "part_number": "ZZRGWO-HC4",
+        "total_cost": 7.91,
+        "total_cost_raw": 7.91,
+        "line_type": null,
+        "fixed_line_total": null,
+        "requested_at": "2026-11-16 08:31:22"
+       }
+      ],
+      "parts_cost": 51.019999999999996,
+      "labour_cost": 179.55,
+      "labour_cost_raw": 179.55,
+      "time_estimate": 1.33,
+      "labour_rate": 135,
+      "line_type": null,
+      "fixed_line_total": null,
+      "fixed_price": 0
+     },
+     {
+      "id": "1f35075e-a217-43c3-9f2e-494d4023c971",
+      "name": "ZZ WO3 Labour 0.75h",
+      "description": "",
+      "tech_story": "",
+      "total_cost": 124.56,
+      "parts": [
+       {
+        "id": "22e64858-2f21-41be-9c9b-94aafe24d507",
+        "description": "ZZAUTOTEST RGWO Wiper Blade",
+        "quantity": "3",
+        "cost": 7.77,
+        "part_number": "ZZRGWO-WB3",
+        "total_cost": 23.31,
+        "total_cost_raw": 23.31,
+        "line_type": null,
+        "fixed_line_total": null,
+        "requested_at": "2026-11-16 08:32:27"
+       }
+      ],
+      "parts_cost": 23.31,
+      "labour_cost": 101.25,
+      "labour_cost_raw": 101.25,
+      "time_estimate": 0.75,
+      "labour_rate": 135,
+      "line_type": null,
+      "fixed_line_total": null,
+      "fixed_price": 0
+     }
+    ],
+    "declined_lines": [],
+    "ibs_approval": [],
+    "total_labor_price": 280.8,
+    "total_parts_price": 74.33
+   },
+   "customer": {
+    "id": "6f6a48f1-1180-4b6f-a6f6-c24bd43ad3e4",
+    "first_name": "ZZAUTOTEST",
+    "last_name": "RGWO",
+    "telephone": "",
+    "mobile": "",
+    "email": "",
+    "company_name": "ZZAUTOTEST RGWO Customer A",
+    "company_state_or_province": null,
+    "company_address1": null,
+    "company_address2": null,
+    "company_city": "Calgary",
+    "credit_term": "COD",
+    "ibs": null,
+    "company_postal_code": null
+   },
+   "vehicle_details": {
+    "vin": "1ZZRGWO0000000003",
+    "licence_plate": null,
+    "unit": "ZZRGWO-WO3",
+    "type": "",
+    "make": "Freightliner",
+    "model": "",
+    "year": null,
+    "mileage": 0,
+    "engine_hours": 0,
+    "trim": null,
+    "engine": null,
+    "drivetrain": null
+   },
+   "work_order_part_cost": "74.33",
+   "work_order_labour_cost": "280.80",
+   "id": "9d3a8f13-72f2-4f1b-b829-d1bd38dc6f14",
+   "number": "S-40393",
+   "display_number": "S2-40393",
+   "created_on": "2026-11-16T08:34:00+00:00",
+   "due_date": "2026-11-16T08:34:00+00:00",
+   "sub_total_display": "355.13",
+   "discount": 0,
+   "tax": {
+    "id": "819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b",
+    "name": "GST",
+    "isEnabledLabor": true,
+    "isEnabledParts": true,
+    "isEnabledShopSupplies": true,
+    "isDefault": false,
+    "isDeletable": false,
+    "rates": [
+     {
+      "id": "f98f5826-14d7-475e-8d1b-3fc10bf400bc",
+      "name": "GST",
+      "percentage": 5,
+      "amount": 17.77
+     }
+    ],
+    "rateTotal": 5,
+    "amountTotal": 17.77
+   },
+   "sub_total_with_discount": "372.90",
+   "sub_total_with_tax": "372.90",
+   "total_balance": "372.90",
+   "status": "paid",
+   "payment_status": "paid",
+   "payment_status_label": "Paid",
+   "include_declined": false,
+   "customer_transaction": {
+    "customer_transaction_id": "fee73e3a-2e54-4ea4-a06c-d292658b4a83",
+    "customer_account_id": "9bb363eb-ad93-4b66-b44f-ec12afc23b10",
+    "amount": 372.9,
+    "paid_amount": 0,
+    "ibs_batch_id": null,
+    "is_paid_externally": false,
+    "has_portal_payment": false
+   },
+   "shop_supplies_cost": "0.00",
+   "shop_supplies": false,
+   "paid_balance": 0,
+   "customer_po": null,
+   "credit_terms": "COD",
+   "invoice_remit_to": null,
+   "invoice_workplace": {
+    "workplaceName": "ZZAUTOTEST R365 Location C with a name longer than the chip",
+    "workplaceAddress": "365 ZZAUTOTEST Way",
+    "workplacePostalCode": "T2C 4M5",
+    "workplaceCity": "Calgary",
+    "workplaceState": "Alberta",
+    "workplacePhone": "(403) 555 - 0365",
+    "workplaceShopId": "2",
+    "workplaceAddress2": null
+   },
+   "shop_supplies_percentage": null,
+   "see_pricing": true
+  }
+ }
+}
