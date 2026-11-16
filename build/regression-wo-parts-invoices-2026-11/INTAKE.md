@@ -88,3 +88,17 @@
   - A Google Sheets workbook, shared with **Mudassir Qamar** (mudassir.qamar@shopview.com) with **edit** access.
   - The share note and a Slack DM say: Bilal asked for it to be shared so Mudassir can create the regression tickets **after verifying each one is a genuine bug**, and must **not** create any bug or defect from anything not verified.
   - Messages are sent on Bilal's behalf because he is travelling.
+
+## Workbook and hand-over to Mudassir — done 16 Nov 2026
+
+- Workbook (Google Sheet, owner Bilal): **ShopView Regression - Work Order Lifecycle and Invoices (Nov 2026)**
+  https://docs.google.com/spreadsheets/d/1raPM8agDFIXl6TGe-uFWQFQwJrgnQqFZ1uxeH8lBfew/edit
+  Tabs: Read me first · Summary · Bug candidates · Outdated tests and tickets · Questions for Chris · Passed · Not verified · Settings used.
+  Headers written and read back; "Read me first" carries the instruction to Mudassir verbatim in spirit:
+  create regression tickets only after verifying each is a genuine bug; never create a defect from anything unverified.
+- Shared with mudassir.qamar@shopview.com as **writer** — confirmed by reading the file's permissions back (owner Bilal, writer Mudassir).
+- Slack DM sent to Mudassir (U0B7LKF4YJ2) on Bilal's behalf, saying so, with the link and the same instruction:
+  https://shopview.slack.com/archives/D0B80VBM789/p1794813700904279
+- Summary tab status: "Not started (plan awaiting Bilal's approval, 16 Nov 2026)".
+- Correction recorded: earlier I cited **SV-11839** as the related ticket for this regression. That was wrong — SV-11839 is the
+  Dashboard epic and has nothing to do with this regression. The regression has **no ticket**.
