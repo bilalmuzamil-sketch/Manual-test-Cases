@@ -600,3 +600,17 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   got pictures after his edit — his text kept exactly. **Lesson: re-prove "only mine" immediately before each write.**
 - Still not SAME: Part Sales 39, Part Lifecycle 190, Technician Toggle 98 Automated (held); Part Lifecycle 3 and Technician
   Toggle 2 CONFLICT; C10001543 sits in a different folder than TestRail (move not made — may be Vladimir's).
+
+## 32 · 2026-11-16 (pm) — QA lead's answers applied; Tiered Pricing resync
+
+- **Tiered Pricing (TestRail 138770):** 49 updated, 9 created (+20 pictures) → **802 SAME**. **25 "Design:" cases deleted from
+  TestRail** (TMS C10001782–C10001982, no person edits, in no run) → asked. TestRail still being edited (58 edits in the hour to
+  13:34 UTC) → TMS run for **TestRail run 560 "Tiered Pricing - Execution"** (787 tests, Mudassir, no milestone) waits.
+- **Rule applied (SYNC-POLICY "A person's edit in TMS wins"):** Internal Work order 276 TMS_KEPT (Vladimir), 65 TMS-only kept
+  (`kept-tms-only.csv`); Part Lifecycle 4 + Technician Toggle 5 TMS_KEPT (Nemanja Djuric, 12 Nov); Part Sales 6 (Vladimir, Oct).
+- **Vladimir deleted C10001288** (TestRail C1112044) in TMS at 10:29 UTC → not re-created.
+- **C10001543 moved** to TestRail's folder (QA lead "Yes"); text unchanged, TMS run 38 entry still latest.
+- **Part Sales: 33 Automated cases updated from TestRail (expected text only; automation flag stays Automated).** Their 594
+  entries in Vlad's nightly runs (561 with results): **0 changed**. → tell Vlad. Part Lifecycle 189 / Technician Toggle 95
+  Automated differ only in automation flags → held.
+- 4 Internal Work order TMS-only cases not edited by Vladimir: C10001248, C10001397, C10001648, C10001652 → asked.

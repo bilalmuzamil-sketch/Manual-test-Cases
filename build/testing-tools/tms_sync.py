@@ -21,6 +21,7 @@ Outputs go to --out (default /tmp/tms/sync-<section>/): plan.json, report.md, op
 """
 import argparse
 import collections
+import csv
 import datetime
 import html
 import json
@@ -66,6 +67,29 @@ def accepted():
         return {(int(r["case_id"].lstrip("C")), r["field"]) for r in csv.DictReader(open(ACCEPTED_CSV))}
     except OSError:
         return set()
+
+
+KEPT_TMS_ONLY_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tms", "kept-tms-only.csv")
+
+
+def kept_tms_only():
+    """TMS case numbers that exist only in TMS and that the QA lead said to KEEP (never re-asked, never deleted)."""
+    try:
+        return {int(r["tms_case"].lstrip("C")) for r in csv.DictReader(open(KEPT_TMS_ONLY_CSV))}
+    except OSError:
+        return set()
+
+
+# QA lead 2026-11-16: "If anything is edited in TMS that becomes the source of truth to keep the TMS version."
+# An imported case arrives as ONE version (v1, TestRail's author and time); a TMS-created case's v1 is ours. So any
+# version >= 2 written by someone other than the sync's own account is a PERSON'S TMS edit -> the case is TMS_KEPT.
+def person_edits(tms, case_id, us):
+    """[(version_no, user, at)] of versions >= 2 written by anyone other than `us`."""
+    return [(int(v["version_no"]), int(v["created_by"]), v["created_at"]) for v in tms.versions(case_id)
+            if int(v["version_no"]) >= 2 and int(v["created_by"]) != us]
+
+
+AUTO_FIELDS = ("automation_status", "automation_type")
 
 
 def id_map():
@@ -254,23 +278,35 @@ def plan(section):
         d = tms.case(c["id"])
         tmc[back.get(c["id"], c["id"])] = d.get("data", d)  # keyed by TestRail number
     ok_diffs = accepted()
+    keep = kept_tms_only()
+    me = tms.me()
+    us = int(me.get("data", me)["id"])
     rows = []
     for cid in sorted(set(trc) | set(tmc)):
         tr, tm = trc.get(cid), tmc.get(cid)
         tms_id = tm["id"] if tm else cid
         row = {"id": cid, "tms_id": tms_id, "title": (tr or tm)["title"], "tms_link": TMS_LINK % tms_id}
         if tr is None:
-            row.update(action="TMS_EXTRA", section=tm["section_id"])
+            row.update(action="TMS_ONLY_KEPT" if tms_id in keep else "TMS_EXTRA", section=tm["section_id"])
         elif tm is None:
             row.update(action="TR_ONLY", section=tsec(tr["section_id"]), tr_link=TR_LINK % cid)
         else:
             diff = [f for f in differences(tr, tm) if (cid, f) not in ok_diffs]
             moved = tsec(tr["section_id"]) != tm["section_id"]
             row.update(section=tsec(tr["section_id"]), diff=diff, tms_section=tm["section_id"])
-            if 3 in (tr.get("custom_atmstatus"), tm.get("automation_status")) and (diff or moved):
-                row["action"] = "HOLD_AUTO"
-            elif diff and tms_time(tm["updated_at"]) > tr["updated_on"]:
-                row["action"] = "CONFLICT"
+            auto = 3 in (tr.get("custom_atmstatus"), tm.get("automation_status"))
+            edits = person_edits(tms, tms_id, us) if (diff or moved) else []
+            if edits:  # a person edited it in TMS: TMS is the source of truth (QA lead 2026-11-16)
+                row.update(action="TMS_KEPT", edits=edits)
+            elif auto and diff and set(diff) <= set(AUTO_FIELDS):
+                row["action"] = "HOLD_AUTO"  # only the automation flags differ: Vlad's flags, never set by us
+            elif auto and diff:
+                # QA lead 2026-11-16: Automated cases are updated from TestRail when the TMS version is outdated
+                # (no person edited it in TMS). The automation flags stay as TMS has them; Vlad is told.
+                body = desired(tr)
+                for f in AUTO_FIELDS:
+                    body.pop(f, None)
+                row.update(action="UPDATE_AUTO", body=body)
             elif diff:
                 row["action"] = "UPDATE"
                 row["body"] = desired(tr)
@@ -278,7 +314,7 @@ def plan(section):
                 row["action"] = "MOVE"
             else:
                 row["action"] = "ACCEPTED" if any(k[0] == cid for k in ok_diffs) else "SAME"
-            if row["action"] in ("UPDATE",) and moved:
+            if row["action"] in ("UPDATE", "UPDATE_AUTO") and moved:
                 row["also_move"] = True
         rows.append(row)
     return rows, names, tms, folders
@@ -291,8 +327,9 @@ def report(rows, names, section, out, folders):
              "", "Generated %s UTC. " % datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M")
              + " · ".join("%s %d" % kv for kv in sorted(cnt.items())), ""]
     for act, head in (("TMS_EXTRA", "In TMS but NOT in TestRail — your decision needed (keep / edit / delete)"),
-                      ("CONFLICT", "Edited in TMS after TestRail — your decision needed"),
-                      ("HOLD_AUTO", "Automated — held"), ("TR_ONLY", "In TestRail but not in TMS — how to create?")):
+                      ("TMS_KEPT", "Edited in TMS by a person — TMS version kept (QA lead 2026-11-16)"),
+                      ("UPDATE_AUTO", "Automated — updated from TestRail (tell Vlad)"),
+                      ("HOLD_AUTO", "Automated — only the automation flags differ, held"), ("TR_ONLY", "In TestRail but not in TMS — how to create?")):
         sel = [r for r in rows if r["action"] == act]
         if sel:
             lines += ["## %s (%d)" % (head, len(sel)), "", "| Case | Folder | Title | Link |", "|---|---|---|---|"]
@@ -311,11 +348,18 @@ def report(rows, names, section, out, folders):
 
 def apply(rows, tms, limit):
     done = 0
+    me = tms.me()
+    us = int(me.get("data", me)["id"])
     for r in rows:
-        if r["action"] not in ("UPDATE", "MOVE") or (limit and done >= limit):
+        if r["action"] not in ("UPDATE", "UPDATE_AUTO", "MOVE") or (limit and done >= limit):
             continue
         cid = r["tms_id"]
-        if r["action"] == "UPDATE":
+        late = person_edits(tms, cid, us)  # re-prove right before the write: a person may have edited since the plan
+        if late:
+            tms.log("skip_person_edit", cid, 0, "edited in TMS by %s" % late)
+            print("C%d skipped: edited in TMS by a person since the plan %s" % (cid, late))
+            continue
+        if r["action"] in ("UPDATE", "UPDATE_AUTO"):
             cur = tms.case(cid)
             block = split_pictures(cur.get("data", cur).get("preconditions"))[1]
             if block:  # keep the TMS-only picture links
@@ -337,6 +381,9 @@ def apply(rows, tms, limit):
             fake_tr["custom_preconds"] = split_pictures(fake_tr.get("custom_preconds"))[0]  # the TMS-only links are not TestRail's
             fake_tr["refs"] = r["body"]["refs"]
             fake_tr["custom_steps_separated"] = r["body"]["steps_separated"]
+            for f1, f2 in SCALAR:
+                if f2 not in r["body"]:  # automation flags not sent (UPDATE_AUTO): compare with what TMS holds
+                    fake_tr[f1] = got.get(f2)
             bad = differences(fake_tr, got)
         if got["section_id"] != r["section"]:
             bad.append("section_id")

@@ -52,3 +52,16 @@ name both."* Rule 115 point 7. E.g. *TestRail run 552 Maintenance reminder (Chun
 **QA lead, verbatim:** *"the test cases for Bill to should not be the part of the nightly run, and never add the cases which I
 sync to TMS to the nightly runs unless I ask you to do that."* Rule 115 point 8. Nightly runs are Vlad's (created ~22:10 UTC,
 "include all cases"); a new one will pick up synced cases on its own — report it, never edit his runs without a go-ahead.
+
+## A person's edit in TMS wins (2026-11-16)
+
+**QA lead, verbatim:** *"If anything is edited in TMS that becomes the source of truth to keep the TMS version."*
+- `tms_sync.py` marks a case **TMS_KEPT** when any version ≥ 2 was written by someone other than our account (an imported
+  case arrives as one version; a TMS-created case's v1 is ours). TMS_KEPT is never overwritten or moved by a sync, and the
+  check is **re-run right before every write**. A case a person **deleted** in TMS is not re-created.
+- **TMS-only cases he says to keep** are listed in `build/tms/kept-tms-only.csv` (reported as TMS_ONLY_KEPT, never re-asked).
+  2026-11-16: *"Keep them if he is working on them"* — 65 Internal Work order cases Vladimir Tomovic edited.
+- **Automated cases:** *"Update from testrail if the TMS VERSION IS OUTDATED."* → **UPDATE_AUTO**: text from TestRail, the
+  automation flags left as TMS has them, Vlad told. If only the automation flags differ, still **HOLD_AUTO**.
+- **Runs that already hold results** keep their older case versions: *"OK leave it then"*.
+- **New TMS run for a TestRail run** only after the TestRail cases have stopped changing (Tiered Pricing, 2026-11-16).
