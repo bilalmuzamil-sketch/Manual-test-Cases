@@ -23,7 +23,7 @@ from collections import Counter
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import tp_lib as L
 import design_refs as DR
-from po_questions import QUESTIONS, ANSWERED, CANDIDATE
+from po_questions import QUESTIONS, ANSWERED, CANDIDATE, NO_CASE_YET
 from verdicts import NOT_TESTABLE, HELD, IN_SCOPE_STORIES, UNUSED_BOARDS, STRESS, MOVEMENT, NUMBERS, PARTIAL
 
 MODS = sorted(os.path.basename(f)[:-3] for f in glob.glob(f"{D}/cases_*.py"))
@@ -209,7 +209,8 @@ for c in L.CASES:
 held_q = Counter(c["held_on"] for c in L.CASES if c["held_on"])
 for q in QUESTIONS:
     if q in ANSWERED: continue
-    if q in CANDIDATE and not held_q.get(q): P(f"question {q} holds no case (a question must decide a verdict)")
+    if q in CANDIDATE and not held_q.get(q) and q not in NO_CASE_YET: P(f"question {q} holds no case (a question must decide a verdict)")
+    if q in NO_CASE_YET and held_q.get(q): P(f"question {q} is listed in NO_CASE_YET but holds {held_q[q]} case(s)")
 for q in HELD.values():
     if q not in QUESTIONS: P(f"verdicts.HELD names {q}, not in po_questions.py")
 
@@ -312,7 +313,8 @@ print("in-scope stories", sorted(IN_SCOPE_STORIES), "| rows", len(scope_rows), "
       "| not testable", sum(r in NOT_TESTABLE for r in scope_rows), "| held", sum(r in HELD for r in scope_rows),
       "| partial", sum(r in PARTIAL for r in scope_rows))
 print("pending rows (stories outside phase scope, for the next batches):", len(pending))
-print("questions", len(QUESTIONS), "| holding cases", dict(held_q))
+print("questions", len(QUESTIONS), "| answered", len(ANSWERED), "| open", sorted(set(QUESTIONS) - set(ANSWERED)), "| holding cases", dict(held_q),
+      "| open with no case yet", {q: w[:60] for q, w in NO_CASE_YET.items()})
 print("register rows", len(reg), "| in scope", sum(1 for r in reg if r.get("in_scope")), "| for later batches", sum(1 for r in reg if not r.get("in_scope")))
 print("Admin sign-in lines narrowed or widened to the permissions the case uses:", sum(1 for c in L.CASES if c.get("orig_admin") and c["orig_admin"] not in c["pre"]),
       "of", sum(1 for c in L.CASES if c.get("orig_admin")))

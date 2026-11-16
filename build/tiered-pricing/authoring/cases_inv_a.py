@@ -48,7 +48,7 @@ C("INV-46", K, "A matrix name still needs 3 to 127 characters and must be unique
 
 C("INV-47", K, "A category name still needs 3 characters and must be unique",
   [ADMIN, WHERE, category("A", ", named for example Wheel Seals"), DESK],
-  [CATEGORIES, "Click New Category.", "Type category A's name in capitals.", SAVE, "Replace the name with ab.", SAVE],
+  [CATEGORIES, "Click New Category.", "Type category A's name in capitals.", "Click Create Category.", "Replace the name with ab.", "Click Create Category."],
   [R(S("S8-N3"), "The Categories page lists category A."), R(S("S8-R10"), "The New Category page opens."), R(S("S8-N3"), "The name shows in capitals."),
    R(S("S8-N3", "Category names are unique, ignoring capitals: \"A category called <name> already exists\"."), "An error reads \"A category called\", the typed name, \"already exists\".", "No category is created."),
    R(S("S8-N3"), "The name reads ab."),

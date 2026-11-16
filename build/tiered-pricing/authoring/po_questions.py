@@ -36,7 +36,52 @@ QUESTIONS = {
  'Q30': 'Download header lines: Category before Priced By (reports PRD S4-R7) or Priced By before Category (design 20.20)? [reports, batch]',
  'Q31': "Layout moves the design shows with no source settling them (checklist line 10): the Price Part Simulator's columns move between view and edit (Part Cost 70 px wider in edit, 3.5→3.25, 3.10→4.7), and opening the Categories picker on New Matrix pushes the tabs and grid down 221 px (3.22→3.23). Intended? ALSO (merged Q42, batch B): Layout moves the design shows with no source settling them (checklist line 10): on Sales by Tier the number columns move right by 58-94 px when a row or a customer is opened (20.2 → 20.3, 20.4) and left by 20-36 px on the empty states (20.11, 20.21-20.23); on Sales by Category they move 5-10 px when a category is opened (20.16 → 20.17); the filter chips shift left as a picked chip widens (20.2 → 20.9); the work order lines table's columns move 19-71 px while the Quick Add row is open (10.5 → 10.6, 10.7, 10.9) and 1-9 px after a part is added or received (10.8, 11.7). Are these moves intended, or should the columns keep their place? ALSO (merged Q27, batch A): Manage Customers: the design's own pictures show the Work Order Tier and Part Sales Tier columns moving left when the search narrows the list (about 11 px on 9.12, 83 px on 9.13 against 9.4). Is that intended, or should the columns stay put (checklist line 10)?",
 }
-ANSWERED = {}
+ANSWERED = {
+ 'Q1': '(b) (b) Start at Pricing, as the design draws it: Pricing › Tiers › [tier name] and Pricing › Matrices › [matrix name]. A Settings crumb would need a …',
+ 'Q2': '(c) (c) Delete [tier]? drops "Parts already on work orders keep their prices." and says "This can\'t be undone." instead. A tier can only be deleted when …',
+ 'Q3': '(a) (a) As the PRD writes (S2-R23): "[tier] becomes [rule] in [n] matrices (<m> inactive)", with "(<m> inactive)" only when some checked matrices are …',
+ 'Q4': '(a) (a) "Uses previous tier" everywhere, the grid\'s words, as the PRD says. PRD stays; the tier pages and New Tier on the canvas and in the build change …',
+ 'Q5': "(a) (a) Every matrix, with Work Order Matrix and Part Sale Matrix columns in the grid's short words, as the PRD says. PRD stays; canvas 2.42 and the …",
+ 'Q6': "(b) (b) The category is saved in the picker when picked, like our normal dropdown pickers, but its parts don't start pricing by this matrix until the …",
+ 'Q7': '(a) (a) The copy is created at once: "[name] (copy)" is added to the matrix list and opens, as the PRD says. PRD stays; canvas 3.27 and the build follow …',
+ 'Q8': '(a) (a) Add Range adds a range just before the last ("and up") range, as the PRD says; the open-ended range stays last. PRD stays; canvas 4.20\'s note and …',
+ 'Q9': '(a) (a) "$10,000.01 and up" in view and edit, as the PRD writes. PRD stays; the canvas view pictures (1.4, 3.2, 4.1) and the build change from "+" to …',
+ 'Q10': '(c) (c) Neither the first nor the last range has a delete button; every range between them does. The first range\'s $0.00 start and the last range\'s "and …',
+ 'Q11': '(a) (a) Messages next to the box only ("Enter a % from 0 to 99.99", "Enter a margin from 0 to 99.99" and the other S3-R6 messages), no "Save is blocked" …',
+ 'Q12': '(a) (a) The taken-name error shows under the name box, as the PRD says. PRD stays; canvas 3.25 and the build move it out of the …',
+ 'Q13': '(a) (a) The column starts empty in every range, as the PRD says. PRD stays; canvas 4.11 and the build change from 0 to …',
+ 'Q14': '(c) (c) The rule-type change counts as 1, and each box whose value changes counts as 1 more. A 3-range column switched to % Off shows "1 change" (boxes …',
+ 'Q15': '(c) (c) It depends on what changed, per tier: • One rule and value across every range of the tier: the PRD\'s form, "1 change: Tier 5 is 28% margin." • …',
+ 'Q16': '(b) (b) As the design draws: the Matrices list\'s Part Sale Matrix column shows "Same as work orders" when a matrix has no separate Part Sale pricing, and …',
+ 'Q17': '(a) (a) The PRD\'s full sentences with a period on all three screens, for example \'No matrices match the search "…".\' and \'No categories match the search …',
+ 'Q18': '(a) (a) A line above the grid on the category\'s page: "The [matrix] matrix also prices [n] other categories: [A] · [B]." PRD stays (Story 7); canvas 7.9 …',
+ 'Q19': '(b) (b) Cancel and Create Category, as the design draws, matching Create Tier and Create Matrix. PRD fix needed: Story 8 (New Category) and the …',
+ 'Q20': '(a) (a) The PRD\'s wording for both: Delete [category]? keeps the QuickBooks sentence, and the taken-name error is just "A category called [name] already …',
+ 'Q21': "(b) (b) Follow the design. Uncategorized's page is read only: no rename, no Delete; the Pricing Matrix box and the Tax Exempt checkbox are shown grayed …",
+ 'Q22': '(a) (a) Work orders, Part Sales and Both, as the PRD and the developers\' plan say. "Work orders" means customers on the tier for work orders only. By the …',
+ 'Q23': '(a) (a) A tooltip on the Counter Sale customer\'s tier fields: "Every walk-in sale uses this tier." PRD stays; canvas 9.36 and the build drop the …',
+ 'Q24': "(a) (a) The customer's tier as it is now, as the developers built it. Code check (Nov 16): adding a line to a work order whose invoice is Sent or Paid …",
+ 'Q25': '(a) (a) The PRD\'s 6-second notice "Updating the cost also updates the sell price.", with nothing about tiers. PRD stays; canvas 11.7 and the build drop …',
+ 'Q26': '(a) (a) As the PRD says: the matrix, its side and the rule; for a previous tier, a sentence such as "Fleet is the same as the previous tier, Wholesale, …',
+ 'Q27': "(a) (a) Only lines priced by a tier or Default count; Manual, Fixed price, Fixed line total and Before tiers lines don't, and no tier name shows when …",
+ 'Q28': '(a) (a) As the reports PRD writes: an active tier as its number and name ("2 · Fleet"), an archived tier as its name with "(archived)", the same in the …',
+ 'Q29': '(a) (a) Uncategorized first, then A to Z, as the reports PRD says. Reports PRD stays; canvas 20.7 and the build follow …',
+ 'Q30': '(a) (a) Sales Type, Category, Priced By, Customer, as the reports PRD writes and the developers build, keeping the design\'s "All …" wording. Reports PRD …',
+ 'Q31': '(a) (a) Columns and boxes keep their place: nothing moves sideways or down when a row opens or closes, a search narrows a list, a list is empty, a filter …',
+}
+# 16 Nov 2026: Matt Barge answered all 31 (sheet column E, read 12:51 UTC; word for word in questions-2026-11-14/ANSWERS-2026-11-16.json).
+# Two follow-ups (QA lead 16 Nov 2026: "Add both to the sheet (Recommended)"): questions 32 and 33, to be added at the bottom of the same sheet
+# (Rule 131) by the coordinator; rows drafted in questions-2026-11-16/F1-F2-rows.json.
+QUESTIONS['Q32'] = ("F1 (answer 6, PRD v38 S3-R13): between picking a category on a matrix in Edit and clicking Save, what does that category's own page "
+                    "(and the Categories list) name as its matrix: the old matrix until Save, or the new one at once? Matt wrote the category is "
+                    "\"saved in the picker when picked\"; v38 says picked categories show on the line at once and their parts are priced by the matrix "
+                    "only after Save, and Cancel puts them back.")
+QUESTIONS['Q33'] = ("F2 (answer 6, PRD v38 S3-R12): on a matrix used by more than one category, does a Save that only adds a category (no grid value "
+                    "changed) ask Change All? v37 said category changes save without asking; v38 says \"categories save with the grid\" and "
+                    "\"saving the grid of a matrix used by more than one category asks it\". Holds S3-40.")
+# A candidate question that holds no case yet, with the reason (build.py accepts it only when listed here).
+NO_CASE_YET = {"Q32": ("S3-17 and S3-18 were rewritten to check the part's price before and after Save, which v38 and the answer both settle; "
+                       "the category-page check between the pick and Save is added (to S3-17 or a new case) when question 32 is answered.")}
 WITHDRAWN = {}
-CANDIDATE = set(QUESTIONS)
+CANDIDATE = set(QUESTIONS) - set(ANSWERED)
 OLD_TO_NEW = {'Q5': 'Q1', 'Q6': 'Q2', 'Q7': 'Q3', 'Q8': 'Q4', 'Q9': 'Q5', 'Q2': 'Q6', 'Q10': 'Q7', 'Q13': 'Q8', 'Q16': 'Q9', 'Q19': 'Q10', 'Q15': 'Q11', 'Q17': 'Q12', 'Q11': 'Q13', 'Q12': 'Q14', 'Q14': 'Q15', 'Q20': 'Q16', 'Q21': 'Q17', 'Q22': 'Q18', 'Q23': 'Q19', 'Q24': 'Q20', 'Q25': 'Q21', 'Q26': 'Q22', 'Q28': 'Q23', 'Q1': 'Q24', 'Q44': 'Q25', 'Q29': 'Q26', 'Q30': 'Q27', 'Q40': 'Q28', 'Q41': 'Q29', 'Q4': 'Q30', 'Q18': 'Q31', 'Q42': 'Q31', 'Q27': 'Q31'}

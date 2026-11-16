@@ -37,7 +37,10 @@ def _plain(md):
 
 SRC = f"{P}/sources"
 DOCS = {
-    "PRD": ("Tiered Pricing PRD, Confluence 938213378 page v37", f"{SRC}/CONFLUENCE-938213378-v37-read-2026-11-14.md"),
+    # 16 Nov 2026 (named set, QA lead "Named set, write it (Recommended)"): the whole library moved to page v38. Every quote of a case outside
+    # the named set is word for word in v38 (proved by build.py's source check and po-answers-2026-11-16/v38/prove_unchanged.py); quotes are
+    # not printed in this suite's case text, so no case outside the named set changes in TestRail.
+    "PRD": ("Tiered Pricing PRD, Confluence 938213378 page v38", f"{SRC}/CONFLUENCE-938213378-v38-read-2026-11-16.md"),
     "RPT": ("Sales by Tier and Sales by Category PRD, Confluence 968687617 page v21", f"{SRC}/CONFLUENCE-968687617-v21-read-2026-11-14.md"),
     "TP1": ("Tiered Pricing tech plan (2026-11-11, rev 9)", f"{SRC}/TECH-PLAN-Tiered-Pricing-upload-2026-11-14.md"),
     "TP2": ("Sales by Tier and Sales by Category tech plan (2026-11-11, rev 8)", f"{SRC}/TECH-PLAN-Sales-by-Tier-and-Sales-by-Category-upload-2026-11-14.md"),
@@ -108,6 +111,15 @@ def QI(text, inv, doc="TP1"):
     return Src("inv", inv, text, doc)
 
 
+ANS_FILE = f"{P}/questions-2026-11-14/ANSWERS-2026-11-16.json"
+
+
+def QA(text, qnum, row):
+    """Matt Barge's written answer (16 Nov 2026, question qnum), a newer written statement used only where PRD v38 does not word the point
+    itself; tied to the PRD row it serves and checked word for word in that answer (questions-2026-11-14/ANSWERS-2026-11-16.json)."""
+    return Src("answer", row_id(row), text, int(qnum))
+
+
 def QJ(text, ticket, row):
     """Verbatim text of a saved Jira copy (sources/jira/...), tied to a PRD row."""
     return Src("jira", row_id(row), text, ticket)
@@ -173,7 +185,7 @@ def rows_of(c):
     out = []
     for b in bullets(c):
         for s in b.src:
-            if s.kind in ("row", "prd", "design", "jira", "look") and s.row not in out: out.append(s.row)
+            if s.kind in ("row", "prd", "design", "jira", "look", "answer") and s.row not in out: out.append(s.row)
     return out
 
 
@@ -240,6 +252,10 @@ def check_src(s):
         return None if ws(s.text) in doc_text(s.where) else f"not word for word in {s.where}: {s.text[:70]!r}"
     if s.kind == "jira":
         return None if ws(s.text) in doc_text("JIRA") else f"not word for word in the saved Jira copies: {s.text[:70]!r}"
+    if s.kind == "answer":
+        a = next((x for x in json.load(open(ANS_FILE))["answers"] if int(x["number"]) == s.where), None)
+        if not a: return f"no answer {s.where} in {ANS_FILE}"
+        return None if ws(s.text) in ws(a["answer_verbatim"]) else f"not word for word in answer {s.where}: {s.text[:70]!r}"
     if s.kind == "design":
         from design_refs import board_text
         try: hay = board_text(s.where)

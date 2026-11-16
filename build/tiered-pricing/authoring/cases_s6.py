@@ -23,18 +23,22 @@ C("S6-02", K, "Matrices list shows each matrix's status, categories, tiers and b
   [MATRICES, "Point at matrix B's Inactive status."],
   [LIST("The list has the columns Matrix, Status, Categories, Tiers, Work Order Matrix and Part Sale Matrix.",
         "Matrix A's Status reads Active and its Categories cell names category A.",
-        "Matrix A's Work Order Matrix shows Default's rules in short words.",
-        "Matrix A's Part Sale Matrix reads Off (it has no separate Part Sale side).")
+        "Matrix A's Work Order Matrix shows Default's rules in short words.")
+   + R(S("S6-R1", "Part Sale Matrix (its rules in short when the matrix has separate Part Sale pricing, otherwise \"Same as work orders\")"), "Matrix A's Part Sale Matrix reads \"Same as work orders\" (it has no separate Part Sale pricing).")
    + R(S("S6-R1", "Status is Active or Inactive (S3-R28)"), "Matrix B's Status reads Inactive."),
    R(S("S6-R1", "with \"No categories use this matrix\" on hover for Inactive"), "A tooltip reads \"No categories use this matrix\".")],
   pics=["6.2", "6.8"])
 
-C("S6-03", K, "Part Sale Matrix column reads On once a matrix has its own Part Sale side",
-  [ADMIN, matrix("A", ", pricing a new category made for this test, category A, with Separate Part Sale pricing off"), DESK],
+C("S6-03", K, "Part Sale Matrix column shows the Part Sale rules once the side is separate",
+  [ADMIN, matrix("A", ", pricing a new category made for this test, category A, with one cost range whose Default rule is Markup % 40, and Separate Part Sale pricing off"), DESK],
   [MATRICES, open_matrix("A"), "Click the Part Sale Matrix tab.", "Turn on Separate Part Sale pricing.", MATRICES],
-  [LIST("Matrix A's Part Sale Matrix reads Off."), R(S("S3-R21"), "Matrix A's page opens."),
-   R(S("S3-R21"), "The tab shows the Separate Part Sale pricing switch, off."), R(S("S3-R21"), "The switch is on and the Part Sale grid shows."),
-   R(S("S6-R1", "Part Sale Matrix (On or Off)"), "Matrix A's Part Sale Matrix now reads On.", "Its Work Order Matrix still shows Default's rules in short.")],
+  [R(S("S6-R1", "Part Sale Matrix (its rules in short when the matrix has separate Part Sale pricing, otherwise \"Same as work orders\")"), "Matrix A's Part Sale Matrix reads \"Same as work orders\".")
+   + R(S("S6-R1", "Work Order Matrix (Default's rules in short)"), "Matrix A's Work Order Matrix reads 40% markup."),
+   R(S("S3-R21"), "Matrix A's page opens."),
+   R(S("S3-R21"), "The tab shows the Separate Part Sale pricing switch, off."),
+   R(S("S3-R31", "Switching it on saves at once: the Part Sale side starts as a copy of the Work Order Matrix's current rules"), "The switch is on and the Part Sale grid shows, Default reading 40% markup."),
+   R(S("S6-R1", "Part Sale Matrix (its rules in short when the matrix has separate Part Sale pricing, otherwise \"Same as work orders\")"), "Matrix A's Part Sale Matrix no longer reads \"Same as work orders\".",
+     "It shows its Part Sale rules in short, 40% markup, the same words its Work Order Matrix shows.")],
   pics=["6.2", "3.17", "3.18"])
 
 C("S6-04", K, "Tiers column lists the tiers with their own rules, names on hover",
@@ -69,17 +73,19 @@ C("S6-07", K, "A separate Part Sale side does not change the Tiers column",
   [MATRICES],
   [R(S("S6-R10", "The column reads the Work Order Matrix side only; a separate Part Sale side doesn't change it."),
      "Matrix A's Tiers value does not list tier A's number, although tier A has a rule on the Part Sale side.",
-     "Matrix A's Tiers value lists 1 (Default) and its Part Sale Matrix reads On.")],
+     "Matrix A's Tiers value lists 1 (Default).")
+   + R(S("S6-R1", "Part Sale Matrix (its rules in short when the matrix has separate Part Sale pricing, otherwise \"Same as work orders\")"), "Matrix A's Part Sale Matrix shows its Part Sale rules in short, not \"Same as work orders\".")],
   pics=["6.2"])
 
 C("S6-08", K, "General Matrix is first with its badge and its category count",
   [ADMIN, "Note the count in the General Matrix's Categories cell on the Matrices list (for example 9).", matrix("A", ", which prices no category"), DESK],
-  [MATRICES, CATEGORIES, "Click New Category.", "Type a name no other category uses.", SAVE, "Open Settings › Pricing.", MATRICES,
+  [MATRICES, CATEGORIES, "Click New Category.", "Type a name no other category uses.", "Click Create Category.", "Open Settings › Pricing.", MATRICES,
    CATEGORIES, "Click the new category's row.", "Pick matrix A in the Pricing Matrix picker.", "Open Settings › Pricing.", MATRICES],
   [R(S("S6-R8", "The General Matrix is listed first with the Default badge; its Categories cell reads \"All categories without a matrix (n)\""),
      "The General Matrix is the first row, with a Default badge.", "Its Categories cell reads \"All categories without a matrix\" with the noted count in brackets."),
    R(S("S8-R10"), "The Categories list shows."), R(S("S8-R10"), "The New Category page opens."), R(S("S8-R10"), "The name shows in the field."),
-   R(S("S8-R10", "a Pricing Matrix (the General Matrix unless another is picked)"), "The category is created on the General Matrix."),
+   R([S("S8-R10", "a Pricing Matrix (the General Matrix unless another is picked)"), S("S8-R10", "nothing is created until Create Category (S19-R14)")],
+     "The category is created on the General Matrix."),
    R(S("S6-R11"), "Settings › Pricing opens."),
    R(S("S6-R8", "where n counts those categories now, Uncategorized included"), "The General Matrix's count is one higher (for example 9 + 1 = 10)."),
    R(S("S7-R1"), "The Categories list shows the new category."), R(S("S7-R6"), "The new category's page opens."),

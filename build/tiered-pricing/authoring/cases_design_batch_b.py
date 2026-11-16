@@ -7,7 +7,7 @@ held on their question candidate (po_questions_batch_b.py, Q30). §6d line 9: st
 line 10: before-and-after checks of every state change the design's own pictures show (proof §6b), held on Q31 where something moves unsettled.
 
 Key ranges: D-400…D-699 (batch B)."""
-from tp_lib import C, R, B, S, QP, QD, QT, QL, HOLD
+from tp_lib import C, R, B, S, QP, QD, QT, QL, QA, HOLD
 from common import *
 from cases_s10 import WOA, PSA, RPA, MX, TR, CU, WO, PS, OPENWO, ADDP, PARTS, HOVER
 
@@ -283,81 +283,55 @@ C("D-427", K, "Design: the no-match empty state",
   pics=["20.23", "20.21"])
 
 # ---- held design versions (Rule 130) -------------------------------------------------------------------------------------------
-C("D-440", K, "Design: report rows and Priced By list show tier names without numbers",
-  REP + [TR("B", "A", "% Off 20", ", archived")],
-  [SBT, "Open the Priced By filter.", "Click Download Summary (CSV) in the ⋯ menu."],
-  [R(QD("Tier 2", "20.2", "RPT-S1-R11"), "Tier A's row reads its name with no number (as \"Tier 2\" in picture 20.2).")
-   + R(QL("20.2", "RPT-S3-R12"), "The plain chips read Sales Type, Priced By, Category and Customer with no \": All\"."),
-   R(QD("Fleet Old", "20.5", "RPT-S3-R3"), "Archived tier B is listed by its name with no \"(archived)\" (as \"Fleet Old\" in picture 20.5)."),
-   R(QD("Tier 2,5933.40", "20.20", "RPT-S4-R3"), "The CSV writes tier A's name with no number (as \"Tier 2,5933.40\" in picture 20.20).")],
-  pics=["20.2", "20.5", "20.20"], held_on="Q28", flags=["design-version"])
-
-C("D-441", K, "Design: the Category list places Uncategorized in A to Z order",
-  REP0,
-  [SBT, "Open the Category filter."],
-  [R(QL("20.7", "RPT-S3-R9"), "Sales by Tier opens."),
-   R(QL("20.7", "RPT-S3-R9"), "Uncategorized is listed in A-to-Z order among the categories (between \"Tires, Retread\" and \"Wipers\" in picture 20.7), not first.")],
-  pics=["20.7"], held_on="Q29", flags=["design-version"])
-
-C("D-442", K, "Design: receiving shows a toast with the price and the tier",
-  [WOA, MX(), TR("A", "A", "+ $ 40.00"), CU(), WO("1", "A", " and a special-order part not yet received on line 1, category A, cost $0.01"), W1440],
-  [OPENWO(), "Open the part's Receive Part window.", "Type 40.00 in Received Cost.", "Click Receive."],
-  [R(S("S11-R9"), "Work order 1 opens."), R(QL("11.6", "S11-R15"), "Receive Part opens as in picture 11.6."), R(QL("11.6", "S11-R15"), "Received Cost reads 40.00."),
-   R(QD("Part received", "11.7", "S11-R15"), "A toast reads \"Part received\".")
-   + R(QD("$80.00 each, Tier 2.", "11.7", "S11-R15"), "Its second line reads \"$80.00 each,\" and tier A's name, ending with a period ($40.00 + $40.00 = $80.00).")],
-  pics=["11.6", "11.7"], held_on="Q25", flags=["design-version", "numbers"])
-
-C("D-443", K, "Design: the CSV's filter lines put Priced By before Category",
-  [RPA, W1440],
-  [SBT, "Click Download Summary (CSV) in the ⋯ menu."],
-  [R(QD("Prototype stand-in", "20.20", "RPT-S4-R7"), "Sales by Tier opens; the download is the real file the stand-in of picture 20.20 shows."),
-   R(QD("Priced By: All", "20.20", "RPT-S4-R7"), "After \"Sales Type: All\" the file reads \"Priced By: All\", then \"Category: All categories\", then \"Customer: All customers\", as in picture 20.20.")],
-  pics=["20.20"], held_on="Q30", flags=["design-version"])
-
 # ---- §6d line 10: before and after -----------------------------------------------------------------------------------------------
 MOVE_PRE = REP + [CU("B", "A"), "Have a new work order for this test, work order 2, for customer B, with a part in category A priced by tier A, invoiced today."]
 
-C("D-450", K, "Design: Sales by Tier columns move when a row is opened",
+C("D-450", K, "Design: Sales by Tier columns keep their place when a row opens",
   MOVE_PRE,
   [SBT, "Pick customers A and B in the Customer filter.", "Take a screenshot of the headings.", "Open tier A's row.", "Open customer A's row.", "Take a screenshot of the headings."],
   [R(S("RPT-S2-R1"), "Sales by Tier opens."), R(S("RPT-S3-R4"), "Tier A's row shows."), R(QL("20.2", "RPT-S1-R6"), "The first screenshot matches the headings of picture 20.2."),
    R(QL("20.3", "RPT-S2-R2"), "Customers A and B show under tier A."), R(QL("20.4", "RPT-S2-R3"), "Customer A's invoices show."),
-   R(QL("20.4", "RPT-S2-R2"), "Compared with the first screenshot, Priced By widens and the number columns move right by about 60-95 pixels, as pictures 20.3 and 20.4 show against 20.2.")],
-  pics=["20.2", "20.3", "20.4"], held_on="Q31", flags=["design-version", "movement"])
+   R([S("S19-R24", "Columns and fields keep their place and width when a screen changes state"), S("S19-R24", "a row opening or closing"), S("S19-R24", "Nothing moves sideways or down."), QA("Columns and boxes keep their place: nothing moves sideways or down", 31, "S19-R24")], "Compared with the first screenshot, Priced By and the number columns keep their place and width: nothing moves sideways or down.")
+   + R(S("RPT-S2-R2"), "Customer A's invoices show under customer A's row.")],
+  pics=["20.2", "20.3", "20.4"], flags=["movement"])
 
-C("D-451", K, "Design: Sales by Tier headings move on the empty states",
+C("D-451", K, "Design: Sales by Tier headings keep their place on the empty states",
   [RPA, W1440],
   [SBT, "Take a screenshot of the headings.", "Untick both options in the Sales Type filter.", "Take a screenshot of the headings."],
   [R(QL("20.2", "RPT-S1-R6"), "Sales by Tier opens."), R(QL("20.2", "RPT-S1-R6"), "The first screenshot matches picture 20.2's headings."),
    R(S("RPT-S3-N1"), "The no-match message shows."),
-   R(QL("20.23", "RPT-S3-N1"), "Compared with the first screenshot, the headings sit about 20-36 pixels further left, as picture 20.23 shows against 20.2.")],
-  pics=["20.2", "20.23", "20.11"], held_on="Q31", flags=["design-version", "movement"])
+   R([S("S19-R24", "Columns and fields keep their place and width when a screen changes state"), S("S19-R24", "an empty list"), S("S19-R24", "Nothing moves sideways or down."), QA("Columns and boxes keep their place: nothing moves sideways or down", 31, "S19-R24")], "Compared with the first screenshot, the headings keep their place and width: nothing moves sideways or down.")
+   + R(S("RPT-S3-N1", "show \"No record matches these filters\""), "The no-match message \"No record matches these filters\" shows under the headings.")],
+  pics=["20.2", "20.23", "20.11"], flags=["movement"])
 
-C("D-452", K, "Design: Sales by Category columns move when a category opens",
+C("D-452", K, "Design: Sales by Category columns keep their place when a category opens",
   REP,
   [ "Open Reports › Sales by Category.", "Take a screenshot of the headings.", "Open category A's row.", "Take a screenshot of the headings."],
   [R(QL("20.16", "RPT-S5-R1"), "Sales by Category opens."), R(QL("20.16", "RPT-S5-R1"), "The first screenshot matches picture 20.16's headings."),
    R(QL("20.17", "RPT-S5-R2"), "Category A opens to its Priced By rows."),
-   R(QL("20.17", "RPT-S5-R2"), "Compared with the first screenshot, Category widens and the number columns move right by about 5-10 pixels, as picture 20.17 shows against 20.16.")],
-  pics=["20.16", "20.17"], held_on="Q31", flags=["design-version", "movement"])
+   R([S("S19-R24", "Columns and fields keep their place and width when a screen changes state"), S("S19-R24", "a row opening or closing"), S("S19-R24", "Nothing moves sideways or down."), QA("Columns and boxes keep their place: nothing moves sideways or down", 31, "S19-R24")], "Compared with the first screenshot, Category and the number columns keep their place and width: nothing moves sideways or down.")
+   + R(S("RPT-S5-R2", "A category opens to its Priced By rows"), "Category A's Priced By rows show under it.")],
+  pics=["20.16", "20.17"], flags=["movement"])
 
-C("D-453", K, "Design: the lines table's columns move while Quick Add is open",
+C("D-453", K, "Design: the lines table's columns keep their place while Add Part is open",
   [WOA, MX(), TR(), CU(), WO("1", "A", ", with a part on line 1"), W1440],
   [OPENWO(), "Take a screenshot of the lines table headings.", "Click Add Part under line 1.", "Take a screenshot of the headings.", "Click Cancel.", "Take a screenshot of the headings."],
   [R(QL("10.5", "S10-R1"), "Work order 1 opens."), R(QL("10.5", "S10-R1"), "The first screenshot matches picture 10.5's headings."),
-   R(QL("10.6", "S10-R1"), "The Quick Add row opens."),
-   R(QL("10.6", "S10-R1"), "Compared with the first screenshot, Name/Description narrows and Actual/Estimate, Progress, Status, Action and Rate move left by about 20-70 pixels, as pictures 10.6, 10.7 and 10.9 show against 10.5."),
-   R(QL("10.5", "S10-R1"), "The Quick Add row closes."),
-   R(QL("10.5", "S10-R1"), "The headings are back in the same place as the first screenshot.")],
-  pics=["10.5", "10.6", "10.7", "10.9"], held_on="Q31", flags=["design-version", "movement"])
+   R(QL("10.6", "S10-R1"), "The Add Part row opens under line 1."),
+   R([S("S19-R24", "Columns and fields keep their place and width when a screen changes state"), S("S19-R24", "the Add Part row opening"), S("S19-R24", "Nothing moves sideways or down."), QA("Columns and boxes keep their place: nothing moves sideways or down", 31, "S19-R24")], "Compared with the first screenshot, Name/Description, Actual/Estimate, Progress, Status, Action and Rate keep their place and width: nothing moves sideways or down.")
+   + R(QL("10.6", "S10-R1"), "The Add Part row shows its boxes under line 1."),
+   R(QL("10.5", "S10-R1"), "The Add Part row closes."),
+   R([S("S19-R24", "Columns and fields keep their place and width when a screen changes state"), S("S19-R24", "a row opening or closing"), S("S19-R24", "Nothing moves sideways or down."), QA("Columns and boxes keep their place: nothing moves sideways or down", 31, "S19-R24")], "The headings are in the same place as the first screenshot.")],
+  pics=["10.5", "10.6", "10.7", "10.9"], flags=["movement"])
 
-C("D-454", K, "Design: the filter chips shift left as a picked chip widens",
+C("D-454", K, "Design: the filter chips keep their place as a picked chip changes",
   [RPA, W1440],
   [SBT, "Take a screenshot of the chips.", "Untick Part Sales in the Sales Type filter.", "Take a screenshot of the chips."],
   [R(QL("20.2", "RPT-S3-R12"), "Sales by Tier opens."), R(QL("20.2", "RPT-S3-R12"), "The first screenshot matches the chips of picture 20.2."),
    R(QL("20.9", "RPT-S3-R12"), "The chip reads Sales Type: Work Orders."),
-   R(QL("20.9", "RPT-S3-R12"), "Compared with the first screenshot, the Date and Sales Type chips sit further left (Date by about 90 pixels), as picture 20.9 shows against 20.2.")],
-  pics=["20.2", "20.9"], held_on="Q31", flags=["design-version", "movement"])
+   R([S("S19-R24", "Columns and fields keep their place and width when a screen changes state"), S("S19-R24", "a filter chip changing"), S("S19-R24", "Nothing moves sideways or down."), QA("Columns and boxes keep their place: nothing moves sideways or down", 31, "S19-R24")], "Compared with the first screenshot, the Date and Sales Type chips keep their place: nothing moves sideways or down.")
+   + R(QL("20.9", "RPT-S3-R12"), "The Sales Type chip still reads Sales Type: Work Orders.")],
+  pics=["20.2", "20.9"], flags=["movement"])
 
 C("D-455", K, "Design: sorting keeps the Sales by Tier columns in place",
   REP0,

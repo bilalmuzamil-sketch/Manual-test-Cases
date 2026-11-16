@@ -1,6 +1,7 @@
 """Story 8 — Categories over time (SV-12460), PRD v37 lines 565-595, design page 8 (8.1-8.12). Batch A, 14 Nov 2026.
-New Category's buttons follow the PRD ("Save and Cancel"; the design writes "Create Category", held on Q19). The delete question follows the
-PRD's full wording (the design drops one sentence, held on Q20). Category reports for past periods (S8-E1) are the reports batch's cases."""
+New Category's buttons are Cancel and Create Category (PRD v38 S8-R10, Matt Barge's answer 19, 16 Nov 2026). Uncategorized's page: Pricing Matrix
+and Tax Exempt grayed, only QuickBooks Products and Services can be changed (v38 S8-R4, answer 21). The delete question follows the PRD's full
+wording (answer 20: the PRD stays). Category reports for past periods (S8-E1) are the reports batch's cases."""
 from tp_lib import C, R, B, S, QP, QD, QL
 from common import *
 
@@ -29,23 +30,23 @@ C("S8-02", K, "New Category opens a page with the General Matrix and its grid",
    R(S("S8-R10", "New Category on the Categories page opens a New Category page: a name, a Pricing Matrix (the General Matrix unless another is picked), QuickBooks Products and Services (only when QuickBooks is connected, as today) and Tax Exempt, with the matrix's grid, read-only."),
      "A New Category page opens, not a dialog.", "It shows a name field, a Pricing Matrix picker reading the General Matrix, QuickBooks Products and Services and Tax Exempt.",
      "Below them the General Matrix's grid shows read-only, with no Edit.")
-   + R(S("S8-R10", "It has Save and Cancel"), "Save and Cancel show at the top right.")],
+   + R(S("S8-R10", "It has Cancel and Create Category in the page head, like New Tier and New Matrix"), "Cancel and Create Category show in the page head, at the top right.")],
   pics=["8.5", "8.6"])
 
-C("S8-03", K, "New Category creates nothing until Save, and Cancel creates nothing",
+C("S8-03", K, "New Category creates nothing until Create Category, and Cancel nothing",
   [ADMIN, "Note the number of categories the Categories page shows (for example 17).", DESK],
   [CATEGORIES, "Click New Category.", "Type a name no other category uses.", "Click Cancel.", "Click Discard Changes."],
   [R(S("S8-R10"), "The Categories list shows the noted count."), R(S("S8-R10"), "The New Category page opens."), R(S("S8-R10"), "The name shows in the field."),
    R(S("S19-R3", "Leaving a matrix page, the New Category page or a grid in edit with unsaved changes asks \"Discard these changes?\" (Keep Editing / Discard Changes)."),
      "A question asks whether to discard the changes, with Keep Editing and Discard Changes."),
-   R(S("S8-R10", "nothing is created until Save (S19-R14)"), "The Categories list shows again.", "The count is still the noted number (17 = 17) and the typed name is not listed.")],
+   R(S("S8-R10", "nothing is created until Create Category (S19-R14)"), "The Categories list shows again.", "The count is still the noted number (17 = 17) and the typed name is not listed.")],
   pics=["8.6"], flags=["numbers"])
 
 C("S8-04", K, "A new category is priced for every tier from the start",
   [ADMIN, tier("A"), DESK],
-  [CATEGORIES, "Click New Category.", "Type a name no other category uses.", SAVE, CATEGORIES],
+  [CATEGORIES, "Click New Category.", "Type a name no other category uses.", "Click Create Category.", CATEGORIES],
   [R(S("S8-R10"), "The Categories list shows."), R(S("S8-R10"), "The New Category page opens."), R(S("S8-R10"), "The name shows in the field."),
-   R(S("S8-R10", "It has Save and Cancel"), "The category is created and its page shows the General Matrix's grid."),
+   R([S("S8-R10", "It has Cancel and Create Category in the page head, like New Tier and New Matrix"), S("S8-R10", "nothing is created until Create Category (S19-R14)")], "The category is created and its page shows the General Matrix's grid."),
    R(S("S8-R10", "A new category is priced for every tier from the start."), "The new category's row shows General Matrix in Pricing Matrix.",
      "Its Default cell and every tier cell, tier A's included, show a rule or \"Uses previous tier\"; no cell is empty.")],
   pics=["8.8", "8.9"])
@@ -61,13 +62,32 @@ C("S8-05", K, "A new part starts in Uncategorized and a category change reprices
 
 C("S8-06", K, "Uncategorized's page is read-only with a link to the General Matrix",
   [ADMIN, DESK],
-  [CATEGORIES, "Click Uncategorized's row.", "Point at the grayed Edit."],
+  [CATEGORIES, "Click Uncategorized's row.", "Click the Pricing Matrix box.", "Click the Tax Exempt checkbox.", "Point at the grayed Edit."],
   [R(S("S8-R4"), "Uncategorized is the first row, on the General Matrix."),
-   R(S("S8-R4", "Its page is read-only, with no rename, Delete or matrix picker."), "Uncategorized's page opens with the General Matrix's grid.",
-     "Its title cannot be clicked to rename it.", "The page offers no Delete and no Pricing Matrix picker.")
+   R(S("S8-R4", "Its page is read-only: no rename and no Delete"), "Uncategorized's page opens with the General Matrix's grid.",
+     "Its title cannot be clicked to rename it.", "The page offers no Delete.")
+   + R(S("S8-R4", "its Pricing Matrix and Tax Exempt show grayed and can't be changed"), "The Pricing Matrix box shows, grayed, reading General Matrix.",
+       "The Tax Exempt checkbox shows, grayed.")
    + R(S("S8-R4", "Its Edit is grayed with a link to the General Matrix, like any category on a shared matrix (S7-R13)."), "Edit is grayed, with a \"Go to the General Matrix\" link beside it."),
+   R(S("S8-R4", "its Pricing Matrix and Tax Exempt show grayed and can't be changed"), "No matrix list opens; the box still reads General Matrix, grayed."),
+   R(S("S8-R4", "its Pricing Matrix and Tax Exempt show grayed and can't be changed"), "The checkbox keeps the state it showed before the click, grayed."),
    R(S("S7-R13", "\"The General Matrix prices <n> categories, …\""), "A tooltip starts \"Can't edit here. The General Matrix prices\".")],
   pics=["8.2", "8.3"])
+
+C("S8-13", K, "Uncategorized's QuickBooks Products and Services can be changed",
+  [ADMIN, "Use a client connected to QuickBooks, so the QuickBooks Products and Services field shows.",
+   "Note Uncategorized's QuickBooks Products and Services item (item P), and choose another item of the client's QuickBooks to use in the test (item Q).", DESK],
+  [CATEGORIES, "Click Uncategorized's row.", "Pick item Q in QuickBooks Products and Services.", RELOAD, "Pick item P in QuickBooks Products and Services."],
+  [R(S("S8-R4"), "Uncategorized is the first row."),
+   R(S("S8-R4", "its Pricing Matrix and Tax Exempt show grayed and can't be changed"), "Uncategorized's page opens; Pricing Matrix and Tax Exempt show grayed.")
+   + R(S("S8-R4", "Only QuickBooks Products and Services can be changed (when QuickBooks is connected, as today)"),
+       "QuickBooks Products and Services shows item P and can be clicked (it is not grayed)."),
+   R(S("S7-R12", "The name, the QuickBooks Products and Services mapping, Tax Exempt and the Pricing Matrix pick each save as soon as they are changed (S7-R9)."),
+     "QuickBooks Products and Services shows item Q, with no Save button needed."),
+   R(S("S8-R4", "Only QuickBooks Products and Services can be changed (when QuickBooks is connected, as today), so a client can book Uncategorized to a specific P&L account."),
+     "After the reload, QuickBooks Products and Services still shows item Q.", "Pricing Matrix still reads General Matrix, grayed."),
+   R(S("S7-R12"), "QuickBooks Products and Services shows item P again, as it was before the test.")],
+  pics=["8.3"])
 
 C("S8-07", K, "Uncategorized cannot be moved to another matrix",
   [ADMIN, matrix("A"), DESK],
@@ -130,7 +150,7 @@ C("S8-11", K, "Deleting a category moves Part Sale lines and canned line parts",
 C("S8-12", K, "Category names are unique ignoring capitals and need 3 characters",
   [ADMIN, category("A", ", named for example Wheel Seals"), category("B", ", named for example Brake Pads"), DESK],
   [CATEGORIES, "Click category B's row.", "Click the category name at the top of the page.", "Type category A's name in capitals (for example WHEEL SEALS).", "Press Enter.",
-   CATEGORIES, "Click New Category.", "Type ab.", SAVE],
+   CATEGORIES, "Click New Category.", "Type ab.", "Click Create Category."],
   [R(S("S8-N3"), "Category B is listed."), R(S("S7-R6"), "Category B's page opens."), R(S("S7-R6"), "The name becomes editable."), R(S("S8-N3"), "The typed name shows."),
    R(S("S8-N3", "Category names are unique, ignoring capitals: \"A category called <name> already exists\""),
      "An error reads \"A category called\", the typed name, \"already exists\".", "Category B keeps its own name."),

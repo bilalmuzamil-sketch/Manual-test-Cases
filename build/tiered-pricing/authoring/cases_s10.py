@@ -1,10 +1,11 @@
-"""Story 10 — How a part is priced (SV-11699), PRD v37 S10 rows, design page 10 (10.1-10.12), tech-plan rows TPX-01 (held on Q24), TPX-06,
-TPX-08. Batch B, phase 2, 14 Nov 2026.
+"""Story 10 — How a part is priced (SV-11699), PRD S10 rows (v38 since 16 Nov 2026), design page 10 (10.1-10.12), tech-plan rows TPX-01, TPX-06,
+TPX-08. Batch B, phase 2, 14 Nov 2026. 16 Nov 2026: Matt Barge's answer 24 and PRD v38 S10-R14 (a line added to a work order whose invoice is
+sent or paid goes on a new work order, priced by the customer's current tier): S10-39 rewritten and released.
 
 Every case makes its own category, matrix, tier, customer and work order ("for this test"), so other tests never move its numbers. Prices are
 computed here from the seeded rule and cost (Rule 116) and shown with their arithmetic. Expected results rest on the PRD's own sentences
 (checked word for word by build.py); the build is never a source. This file also holds the small helpers the other batch B files import."""
-from tp_lib import C, R, B, S, QP, QD, QT, QL, QJ, HOLD
+from tp_lib import C, R, B, S, QP, QD, QT, QL, QJ, QA, HOLD
 from common import *
 
 K = "S10"
@@ -436,12 +437,18 @@ C("S10-38", K, "Changing the customer on a work order keeps the work order's tie
      "The new part fills in at $121.50, tier A's price ($135.00 × 0.90 = $121.50), not customer B's tier B price ($108.00).")],
   pics=["14.4", "10.8"], flags=["numbers"])
 
-C("S10-39", K, "A reopened paid work order prices new parts by its kept tier",
+C("S10-39", K, "A part added to a paid work order goes on a new one at the current tier",
   [WOA, MX(), TR(), TR("B", "A", "% Off 20"), CU(), WO("1", "A", ", invoiced and paid in full"), DESK],
-  [ "Put customer A on tier B for work orders in Edit Customer.", OPENWO(), ADDP()],
-  [R(S("S9-R7"), "Customer A is saved on tier B."), R(S("S10-R14"), "Work order 1 opens again for the new part."),
-   R(S("S10-R14", "A work order or Part Sale keeps the tier its customer had for that channel when it was made"),
-     "The new part fills in at $121.50, the tier A price the work order kept ($135.00 × 0.90 = $121.50).")
-   + R(QT("reopened paid work order takes the current tier", "TPX-01"),
-       "Not tier B's $108.00, the price engineering's plan gives (the question to the PO decides which is right).")],
-  pics=WO_PICS, held_on="Q24", flags=["numbers"])
+  [ "Put customer A on tier B for work orders in Edit Customer.", OPENWO(), ADDP(), "Open customer A's newest work order from the Work Orders list.", OPENWO()],
+  [R(S("S9-R7"), "Customer A is saved on tier B."), R(S("S10-R14"), "Work order 1 opens, its invoice paid."),
+   R(S("S10-R14", "Adding a line to a work order whose invoice is sent or paid puts it on a new work order, as today."),
+     "The part is saved, and a new work order with its own number is made for customer A for it, as happens today when a line is added to a paid work order."),
+   R([S("S10-R14", "Adding a line to a work order whose invoice is sent or paid puts it on a new work order, as today."),
+      QA("it creates a new linked work order (new number, Approved) and the paid one and its invoice are untouched", 24, "S10-R14")],
+     "The new work order opens with a number other than work order 1's, status Approved, and the new part on it.")
+   + R([S("S10-R14", "That work order is new, so its parts are priced by the customer's current tier."), QT("reopened paid work order takes the current tier", "TPX-01")],
+       "The new part's sell price is $108.00, tier B's price, customer A's current tier ($135.00 × 0.80 = $108.00).",
+       "It is not $121.50, the tier A price work order 1 kept ($135.00 × 0.90 = $121.50)."),
+   R(QA("the paid one and its invoice are untouched", 24, "S10-R14"),
+     "Work order 1 opens with its own lines and paid invoice as before, without the new part.")],
+  pics=WO_PICS, flags=["numbers"])

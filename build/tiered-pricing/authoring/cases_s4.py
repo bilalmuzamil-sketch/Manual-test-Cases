@@ -406,3 +406,45 @@ C4("S4-41", K, "A tier made while a grid is in edit appears after Save as previo
    R(S("S4-E3", "A tier created while a grid is open in edit appears after the grid is saved or cancelled, as Same as previous tier."),
      "After the save the grid shows a column for the new tier, last, reading Uses previous tier.")],
   pics=["4.6", "2.17"])
+
+# ---- 16 Nov 2026: PRD v38 and Matt Barge's answers 14 and 15 (named set, new cases) -----------------------------------------------
+C("S4-42", K, "Switching a 3-range column to % Off counts 1 change, then 4",
+  [ADMIN, tier("A"), matrix("A", ", three ranges, tier A on Markup % with 5, 6 and 7"), DESK],
+  [MATRICES, open_matrix("A"), EDIT, "Pick % Off in tier A's rule picker.", "Type 10 in tier A's first range.", "Type 12 in tier A's second range.",
+   "Type 15 in tier A's last range."],
+  [R(S("S4-R4"), "Matrix A is listed."), R(S("S4-R4"), "Matrix A's page opens in view, tier A showing Markup % with 5, 6 and 7."),
+   R(S("S4-R4", "An edit bar shows \"No changes yet\""), "The edit bar reads \"No changes yet\", with Cancel and Save."),
+   R(S("S4-R7", "% Off and $ Off start empty in every range"), "All three of tier A's ranges switch to % Off and are empty.")
+   + R(S("S4-R4", "For example, switching a 3-range column to % Off counts 1 change (its boxes start empty, S4-R7)"), "The edit bar reads \"1 change\"."),
+   R(S("S4-R4"), "Tier A's first range reads 10."), R(S("S4-R4"), "Tier A's second range reads 12."),
+   R(S("S4-R4", "typing a value in each of its boxes makes 4"),
+     "Tier A's last range reads 15.", "The edit bar reads \"4 changes\": 1 for the rule type and 1 for each of the 3 ranges (1 + 3 = 4).")],
+  pics=["4.11", "4.6"], flags=["numbers"])
+
+C("S4-43", K, "A tier with a different value per range is saved as one bullet per range",
+  [ADMIN, tier("A"), matrix("A", ", two ranges ($0.00 to $25.00 and $25.01 and up), pricing one new category made for this test, tier A on Margin % 30 in both ranges"), DESK],
+  [MATRICES, open_matrix("A"), EDIT, "Type 35 in tier A's first range.", "Type 28 in tier A's last range.", SAVE],
+  [R(S("S4-R12"), "Matrix A is listed."), R(S("S4-R12"), "Matrix A's page opens in view."), R(S("S4-R4"), "The grid is in edit, with Cancel and Save."),
+   R(S("S4-R4"), "Tier A's first range reads 35."), R(S("S4-R4"), "Tier A's last range reads 28."),
+   R(S("S4-R12", "The success toast reads \"<matrix> saved\" with what changed and \"Parts already on work orders keep their prices.\""),
+     "A message reads matrix A's name followed by \"saved\", with \"Parts already on work orders keep their prices.\"")
+   + R(S("S4-R12", "The same rule type with a different value per range: \"Tier 5 is\" and one bullet per range (\"$0.00 to $25.00: 35% margin\")."),
+       "In it, tier A's change reads tier A's name followed by \"is\", then one bullet per range.",
+       "The first bullet reads \"$0.00 to $25.00: 35% margin\" and the second names the last range with 28% margin.")
+   + R(S("S4-R12", "The grid returns to view."), "The grid returns to view.")],
+  pics=["4.6", "3.12"])
+
+C("S4-44", K, "A tier with two rule types is saved as multiple rules",
+  [ADMIN, tier("A"), matrix("A", ", two ranges, pricing one new category made for this test, tier A on Margin % 30 in both ranges"), DESK],
+  [MATRICES, open_matrix("A"), EDIT, "Click the % symbol picker in tier A's last range.", "Pick + $ in that symbol picker.", "Type 20 in tier A's last range.", SAVE],
+  [R(S("S4-R12"), "Matrix A is listed."), R(S("S4-R12"), "Matrix A's page opens in view."), R(S("S4-R4"), "The grid is in edit, with Cancel and Save."),
+   R(S("S4-R28", "In edit, a From cost cell's symbol ($ before the value for + $, % after it for Markup % and Margin %) is a small picker with + $, Markup % and Margin %."),
+     "A small picker opens on the cell with + $, Markup % and Margin %."),
+   R(S("S4-R28", "Picking one changes that range only and clears its value."), "Only tier A's last range changes to + $, with an empty value; the first range keeps Margin % 30."),
+   R(S("S4-R4"), "Tier A's last range reads 20 with a $ before it."),
+   R(S("S4-R12", "The success toast reads \"<matrix> saved\" with what changed and \"Parts already on work orders keep their prices.\""),
+     "A message reads matrix A's name followed by \"saved\", with \"Parts already on work orders keep their prices.\"")
+   + R(S("S4-R12", "More than one rule type: \"Tier 5 is multiple rules\" and one bullet per type (\"+ $\", \"Margin %\")."),
+       "In it, tier A's change reads tier A's name followed by \"is multiple rules\".", "Under it, one bullet per rule type: \"+ $\" and \"Margin %\".")
+   + R(S("S4-R12", "The grid returns to view."), "The grid returns to view.")],
+  pics=["4.13", "4.14", "3.12"])

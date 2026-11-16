@@ -110,8 +110,8 @@ C("S7-10", K, "Clicking a category row opens its page with every field",
    "Use a client connected to QuickBooks, so the QuickBooks Products and Services field shows.", DESK],
   [CATEGORIES, "Click category A's Pricing Matrix cell.", "Open the page's three-dot menu."],
   [R(S("S7-R1"), "Category A is listed."),
-   R(S("S7-R6", "Clicking anywhere on a category's row opens its page, never a dialog, with the breadcrumb Settings › Categories › <category>."),
-     "Category A's page opens as a page, not a dialog.", "The breadcrumb reads Settings › Categories › and category A's name.")
+   R(S("S7-R6", "Clicking anywhere on a category's row opens its page, never a dialog, with the breadcrumb Categories › <category>."),
+     "Category A's page opens as a page, not a dialog.", "The breadcrumb reads Categories › and category A's name, starting at Categories with no Settings crumb before it.")
    + R(S("S7-R6", "The page has its name, renamed in place; its Pricing Matrix picker; QuickBooks Products and Services (only when QuickBooks is connected, as today); Tax Exempt; New Matrix"),
        "The page shows the name as its title, a Pricing Matrix picker reading matrix A, QuickBooks Products and Services, Tax Exempt and New Matrix.")
    + R(S("S7-R6", "then the matrix's tier grid, read-only, with no simulator"), "Below them, matrix A's tier grid shows read-only, with Edit.", "No Price Part Simulator shows."),

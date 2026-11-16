@@ -129,12 +129,14 @@ C("S12-11", K, "Parts tab has a Priced by column after Sell Price",
   pics=["12.4"])
 
 C("S12-12", K, "The Part Sale parts table has a Priced by column too",
-  ["Sign in as an Admin whose role has 'See Financial Data' and 'Part Sales — Create & Edit'.", tier("A"), MX, PART, customer("A", ", on tier A for Part Sales"),
-   "Have a new Part Sale for this test, Part Sale 1, for customer A, with part A added.", DESK],
+  ["Sign in as an Admin whose role has 'See Financial Data' and 'Part Sales — Create & Edit'.", tier("A"), MX[:-1] + ", and Separate Part Sale pricing off.", PART,
+   customer("A", ", on tier A for Part Sales"), "Have a new Part Sale for this test, Part Sale 1, for customer A, with part A added.", DESK],
   ["Open Part Sale 1.", "Point at part A's Priced by."],
   [R(S("S12-R3", "The work order Parts tab and the Part Sale parts table get a Priced by column after Sell Price."), "The parts table shows Priced by right after Sell Price.",
      "Part A's Priced by reads tier A's name."),
-   R(S("S12-R3", "hovering or focusing it opens the price details too"), "Part A's price details open, naming tier A and matrix A's Work Order Matrix side.")],
+   R(S("S12-R3", "hovering or focusing it opens the price details too"), "Part A's price details open, naming tier A and matrix A.")
+   + R(S("S12-R2", "on a Part Sale whose matrix has no separate Part Sale pricing, the side reads \"Same as work orders\""),
+       "The matrix's side reads \"Same as work orders\", as matrix A has no separate Part Sale pricing.")],
   pics=["12.4"])
 
 C("S12-13", K, "After a tier is renamed the details show the old and current name",

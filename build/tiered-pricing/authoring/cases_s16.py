@@ -71,7 +71,7 @@ C("S16-05", K, "A permission removed while a page is open makes the save refused
 
 C("S16-06", K, "Settings — Parts without See Financial Data shows Fixed Rules and categories",
   [role("'Settings — Parts'", "'See Financial Data'"), DESK],
-  ["Open Settings › Pricing.", CATEGORIES, "Click New Category.", "Type a name no other category uses.", SAVE],
+  ["Open Settings › Pricing.", CATEGORIES, "Click New Category.", "Type a name no other category uses.", "Click Create Category."],
   [R(S("S16-R11", "A user with 'Settings — Parts' but not 'See Financial Data' sees no tiers, matrices or simulator: Settings › Pricing shows only the Fixed Rules tab."),
      "Settings › Pricing shows the Fixed Rules tab.", "It has no Tiers or Matrices tab.")
    + R(S("TP-PERM-3", "Settings › Pricing: the Fixed Rules tab — 'Settings — Parts', as today"), "The Fixed Rules tab lists the fixed rules as today."),
@@ -168,7 +168,7 @@ C("S16-14", K, "Settings — Parts and See Financial Data open every pricing pag
 
 C("S16-15", K, "Settings — Parts alone can create, rename and delete a category",
   [role("'Settings — Parts'", "'See Financial Data'"), category("A"), DESK],
-  [CATEGORIES, "Click New Category.", "Type a name no other category uses.", SAVE, CATEGORIES, "Click category A's row.", "Click the category name at the top of the page.",
+  [CATEGORIES, "Click New Category.", "Type a name no other category uses.", "Click Create Category.", CATEGORIES, "Click category A's row.", "Click the category name at the top of the page.",
    "Type a new name no other category uses.", "Press Enter.", "Open the page's three-dot menu.", "Click Delete.", "Click Delete in the dialog."],
   [R(S("TP-PERM-4"), "The Categories page shows."), R(S("TP-PERM-4"), "The New Category page opens."), R(S("TP-PERM-4"), "The name shows."),
    R(S("TP-PERM-4", "Settings › Categories: the page, and creating, renaming and deleting a category — 'Settings — Parts', as today"), "The category is created."),

@@ -1,5 +1,7 @@
 """Story 3 — Matrices and rules (SV-11695; covers SV-7857 and SV-9492), PRD v37 lines 351-410, design page 3 (3.1-3.29), tech plan rows
-TPX-12 and TPX-14. The grid itself is Story 4. The timing half of S3-R13 (when a category picked on an existing matrix moves) is held on Q6."""
+TPX-12 and TPX-14. The grid itself is Story 4. 16 Nov 2026 (PRD v38, Matt Barge's answers): Q6 answered (S3-R13: the Categories line changes
+only in Edit; picked categories price by the matrix only after Save; Cancel puts them back): S3-17/S3-18 rewritten and released, S3-46/S3-47 new;
+S3-40 held on question 33 (F2: does a Save that only adds a category to a shared matrix ask Change All)."""
 from tp_lib import C, R, B, S, QP, QD, QT, QL, HOLD
 from common import *
 
@@ -18,7 +20,8 @@ C("S3-01", K, "A matrix opens as a page from the Matrices list, in view",
    + R(S("S3-R18", "Under the title, a Categories line shows the categories it prices"), "Under the title a Categories line names category A.")
    + R(S("S3-R18", "The page has two tabs, Work Order Matrix and Part Sale Matrix, each holding the tier grid (Story 4) and, under it, the Price Part Simulator (Story 5)."),
        "The page has two tabs, Work Order Matrix and Part Sale Matrix.", "Under the grid shows the Price Part Simulator.")
-   + R(S("S3-R26", "Settings › Pricing › Matrices › <matrix>"), "The breadcrumb reads Settings › Pricing › Matrices › matrix A's name, with no separate Back link.")],
+   + R(S("S3-R26", "Pricing › Matrices › <matrix>"), "The breadcrumb reads Pricing › Matrices › matrix A's name, with no separate Back link.")
+   + R(S("S3-R26", "Breadcrumbs start at the Settings page the user is on, never at Settings"), "The breadcrumb starts at Pricing, with no Settings crumb before it.")],
   pics=["3.1", "3.2"])
 
 C("S3-02", K, "A matrix opened from a category shows the category in the breadcrumb",
@@ -26,15 +29,16 @@ C("S3-02", K, "A matrix opened from a category shows the category in the breadcr
   [CATEGORIES, "Click category A.", "Click matrix A's name on category A's page."],
   [R(S("S3-R18"), "Category A is listed."), R(S("S3-R18"), "Category A's page opens."),
    R(S("S3-R18", "A matrix opens as a page, never a dialog, from every entry point: the Matrices list, a tier's page and a category's page."), "Matrix A's page opens, not a dialog.")
-   + R(S("S3-R26", "Settings › Categories › <category> › <matrix> from a category (Uncategorized included)"), "The breadcrumb reads Settings › Categories › category A's name › matrix A's name.")],
+   + R(S("S3-R26", "Categories › <category> › <matrix> from a category (Uncategorized included)"), "The breadcrumb reads Categories › category A's name › matrix A's name.")
+   + R(S("S3-R26", "Breadcrumbs start at the Settings page the user is on, never at Settings"), "The breadcrumb starts at Categories, with no Settings crumb before it.")],
   pics=["7.8"])
 
 C("S3-03", K, "The General Matrix opened from Uncategorized shows that breadcrumb",
   [ADMIN, DESK],
   [CATEGORIES, "Click Uncategorized.", "Click General Matrix on Uncategorized's page."],
   [R(S("S3-R26"), "Uncategorized is listed."), R(S("S3-R26"), "Uncategorized's page opens."),
-   R(S("S3-R26", "Settings › Categories › <category> › <matrix> from a category (Uncategorized included)"), "The General Matrix page opens.",
-     "The breadcrumb reads Settings › Categories › Uncategorized › General Matrix.")],
+   R(S("S3-R26", "Categories › <category> › <matrix> from a category (Uncategorized included)"), "The General Matrix page opens.",
+     "The breadcrumb reads Categories › Uncategorized › General Matrix, starting at Categories.")],
   pics=["8.2", "8.3"])
 
 C("S3-04", K, "Edit on the Matrices list opens the matrix already in edit",
@@ -48,8 +52,8 @@ C("S3-04", K, "Edit on the Matrices list opens the matrix already in edit",
 C("S3-05", K, "A matrix opened from a bookmark shows the Matrices breadcrumb",
   [ADMIN, tier("A"), matrix("A"), "Have matrix A's page opened from tier A's page and its address bookmarked.", DESK],
   ["Open the bookmark in a new browser tab."],
-  [R(S("S3-R26", "Opened from a link or bookmark, the breadcrumb is Settings › Pricing › Matrices › <matrix>."), "Matrix A's page opens.",
-     "The breadcrumb reads Settings › Pricing › Matrices › matrix A's name, not the tier path.")],
+  [R(S("S3-R26", "Opened from a link or bookmark, the breadcrumb is Pricing › Matrices › <matrix>."), "Matrix A's page opens.",
+     "The breadcrumb reads Pricing › Matrices › matrix A's name, not the tier path.")],
   pics=["3.2", "2.46"])
 
 C("S3-06", K, "A matrix is renamed in place and saves when the field loses focus",
@@ -58,7 +62,7 @@ C("S3-06", K, "A matrix is renamed in place and saves when the field loses focus
   [R(S("S3-R18"), "Matrix A is listed."), R(S("S3-R18"), "Matrix A's page opens in view."),
    R(S("S3-R18", "Its title is the matrix name, renamed in place"), "The title turns into a name field."), R(S("S3-R18"), "The field shows the new name."),
    R(S("S3-R18", "the name saves as soon as the field loses focus, apart from the grid"), "The title shows the new name; the grid stayed in view."),
-   R(S("S3-R12", "Renaming, changing its categories and turning the Part Sale switch on save without asking"), "After the reload the title is the new name, and no question was asked.")],
+   R(S("S3-R12", "Renaming and turning the Part Sale switch on save without asking"), "After the reload the title is the new name, and no question was asked.")],
   pics=["3.3", "3.4", "3.5"])
 
 C("S3-07", K, "A blank, short, long or taken matrix name keeps the old name",
@@ -162,25 +166,74 @@ C("S3-16", K, "A category picked on New Matrix moves when the matrix is created"
    R(S("S3-R13"), "Category A's matrix now reads the new matrix, not matrix B.")],
   pics=["3.22", "3.23"])
 
-C("S3-17", K, "A category picked on an existing matrix moves when the matrix is saved",
-  [ADMIN, matrix("A"), category("A", ", priced by a new matrix made for this test, matrix B"), "Open Settings › Categories in a second browser tab.", DESK],
-  [MATRICES, open_matrix("A"), EDIT, "Pick category A in the Categories picker.", "Close the picker.", "Reload category A's page in the second tab.", SAVE, "Reload category A's page in the second tab again."],
-  [R(S("S3-R13"), "Matrix A is listed."), R(S("S3-R13"), "Matrix A's page opens."), R(S("S3-R13"), "The picker shows."), R(S("S3-R13"), "Category A is ticked."),
-   R(S("S3-R13"), "The Categories line names category A."),
-   R(S("S3-R13", "picking it moves it to this matrix when the matrix is saved"), "Category A's page still names matrix B (the move waits for Save)."),
-   R(S("S3-R13"), "Matrix A saves."),
-   R(S("S3-R13", "picking it moves it to this matrix when the matrix is saved"), "Category A's page now names matrix A.")],
-  pics=["3.11", "3.23"], held_on="Q6")
+C("S3-17", K, "A category picked on an existing matrix prices by it only after Save",
+  [WO, matrix("A", ", with one cost range ($0.00 and up) whose Default rule is Markup % 50"),
+   category("A", ", priced by a new matrix made for this test, matrix B, with one cost range ($0.00 and up) whose Default rule is Markup % 20"),
+   customer("A", ", left on Default for work orders"), "Have a new work order for this test, work order 1, for customer A, with one labor line (line 1).", DESK],
+  [MATRICES, open_matrix("A"), EDIT, "Pick category A in the Categories picker.", "Close the picker.", "Open work order 1 in a second browser tab.",
+   "Add a part to line 1 with category A and cost 100.00.", "Go back to the first browser tab.", SAVE, "Go back to the second browser tab.",
+   "Add a part to line 1 with category A and cost 100.00."],
+  [R(S("S3-R13"), "Matrix A is listed."), R(S("S3-R13"), "Matrix A's page opens in view."), R(S("S4-R4"), "The grid is in edit, with Cancel and Save."),
+   R(S("S3-R13", "A category on another matrix shows \"Now: <matrix>\" beside it"), "Category A was listed with \"Now:\" and matrix B's name, and is now ticked."),
+   R(S("S3-R13", "Picked categories show on the line at once"), "The Categories line names category A at once, while the grid is still in edit."),
+   R(S("S10-R1"), "Work order 1 opens on its Lines tab."),
+   R(S("S3-R13", "their parts are priced by this matrix only after Save"),
+     "The part's sell price fills in as $120.00, matrix B's price ($100.00 × 1.20 = $120.00), not matrix A's $150.00."),
+   R(S("S3-R13"), "Matrix A's page still shows the grid in edit, with category A on the Categories line."),
+   R(S("S3-R13", "picking it moves it to this matrix when the matrix is saved"), "Matrix A saves and the grid returns to view.", "The Categories line still names category A."),
+   R(S("S10-R1"), "Work order 1 shows, with the first part at $120.00."),
+   R(S("S3-R13", "their parts are priced by this matrix only after Save"), "The new part's sell price fills in as $150.00, matrix A's price ($100.00 × 1.50 = $150.00).")
+   + R(S("S11-R6", "Parts already on a work order or Part Sale keep their prices."), "The first part still reads $120.00.")],
+  pics=["3.11", "3.23"], flags=["numbers"])
 
-C("S3-18", K, "A category removed from the line goes to the General Matrix on save",
-  [ADMIN, matrix("A", ", pricing a new category made for this test, category A"), "Open Settings › Categories in a second browser tab.", DESK],
-  [MATRICES, open_matrix("A"), EDIT, "Untick category A in the Categories picker.", "Close the picker.", "Reload category A's page in the second tab.", SAVE, "Reload category A's page in the second tab again."],
-  [R(S("S3-R13"), "Matrix A is listed."), R(S("S3-R13"), "Matrix A's page opens."), R(S("S3-R13"), "The picker shows."), R(S("S3-R13"), "Category A is unticked."),
-   R(S("S3-R13"), "The picker shows category A unticked.", "Category A is gone from the Categories line."),
-   R(S("S3-R13", "A category removed from the line moves to the General Matrix when the matrix is saved."), "Category A's page still names matrix A."),
-   R(S("S3-R13"), "Matrix A saves."),
-   R(S("S3-R13", "A category removed from the line moves to the General Matrix when the matrix is saved."), "Category A's page now names the General Matrix.")],
-  pics=["3.11"], held_on="Q6")
+C("S3-18", K, "A category removed from a matrix moves to the General Matrix on Save",
+  [WO, matrix("A", ", with one cost range ($0.00 and up) whose Default rule is Markup % 37, pricing a new category made for this test, category A"),
+   "Note the General Matrix's price for a part costing $100.00 (type 100 in the Price Part Simulator's Part Cost on the General Matrix's page, Default column): price G.",
+   customer("A", ", left on Default for work orders"), "Have a new work order for this test, work order 1, for customer A, with one labor line (line 1).", DESK],
+  [MATRICES, open_matrix("A"), EDIT, "Untick category A in the Categories picker.", "Close the picker.", "Open work order 1 in a second browser tab.",
+   "Add a part to line 1 with category A and cost 100.00.", "Go back to the first browser tab.", SAVE, "Go back to the second browser tab.",
+   "Add a part to line 1 with category A and cost 100.00."],
+  [R(S("S3-R13"), "Matrix A is listed."), R(S("S3-R13"), "Matrix A's page opens in view."), R(S("S4-R4"), "The grid is in edit, with Cancel and Save."),
+   R(S("S3-R13"), "Category A is unticked."),
+   R(S("S3-R13", "Picked categories show on the line at once"), "Category A is gone from the Categories line at once.", "The grid is still in edit, with Cancel and Save."),
+   R(S("S10-R1"), "Work order 1 opens on its Lines tab."),
+   R(S("S3-R13", "their parts are priced by this matrix only after Save"), "The part's sell price fills in as $137.00, still matrix A's price ($100.00 × 1.37 = $137.00), not price G."),
+   R(S("S3-R13"), "Matrix A's page still shows the grid in edit."),
+   R(S("S3-R13", "A category removed from the line moves to the General Matrix when the matrix is saved."), "Matrix A saves and the grid returns to view.", "The Categories line does not name category A."),
+   R(S("S10-R1"), "Work order 1 shows, with the first part at $137.00."),
+   R(S("S3-R13", "A category removed from the line moves to the General Matrix when the matrix is saved."), "The new part's sell price fills in as price G, the General Matrix's price.")
+   + R(S("S11-R6", "Parts already on a work order or Part Sale keep their prices."), "The first part still reads $137.00.")],
+  pics=["3.11"], flags=["numbers"])
+
+C("S3-46", K, "The Categories line can be changed only in Edit",
+  [ADMIN, matrix("A", ", pricing a new category made for this test, category A"), DESK],
+  [MATRICES, open_matrix("A"), "Click the Categories line.", EDIT, "Click the Categories line."],
+  [R(S("S3-R18"), "Matrix A is listed."),
+   R(S("S3-R25", "Clicking a matrix's name on the Matrices list opens its page in view."), "Matrix A's page opens in view, with Edit, and the Categories line names category A."),
+   R(S("S3-R13", "The Categories line can be changed only while the matrix is in Edit, or on a new matrix."), "The page stays in view with Edit showing.",
+     "No category picker opens and the Categories line still names only category A."),
+   R(S("S4-R4", "An edit bar shows \"No changes yet\""), "The grid is in edit and the edit bar reads \"No changes yet\", with Cancel and Save."),
+   R(S("S3-R13", "with a multi-select category picker with search and Select all"), "The category picker opens with a search box and Select all.",
+     "Category A is ticked.")],
+  pics=["3.2", "3.23"])
+
+C("S3-47", K, "Cancel after picking a category puts the Categories line back",
+  [WO, matrix("A", ", with one cost range ($0.00 and up) whose Default rule is Markup % 50, pricing a new category made for this test, category A"),
+   category("B", ", priced by a new matrix made for this test, matrix B, with one cost range ($0.00 and up) whose Default rule is Markup % 20"),
+   customer("A", ", left on Default for work orders"), "Have a new work order for this test, work order 1, for customer A, with one labor line (line 1).", DESK],
+  [MATRICES, open_matrix("A"), EDIT, "Pick category B in the Categories picker.", "Close the picker.", "Click Cancel.", "Click Discard Changes.",
+   "Open work order 1.", "Add a part to line 1 with category B and cost 100.00."],
+  [R(S("S3-R13"), "Matrix A is listed."), R(S("S3-R13"), "Matrix A's page opens in view, its Categories line naming category A."), R(S("S4-R4"), "The grid is in edit, with Cancel and Save."),
+   R(S("S3-R13", "A category on another matrix shows \"Now: <matrix>\" beside it"), "Category B was listed with \"Now:\" and matrix B's name, and is now ticked."),
+   R(S("S3-R13", "Picked categories show on the line at once"), "The Categories line names category A and category B."),
+   R([S("S3-R25", "Cancel discards every change and returns it to view, asking first only when something changed (S19-R3)."),
+      S("S19-R3", "asks \"Discard these changes?\" (Keep Editing / Discard Changes)")],
+     "A question \"Discard these changes?\" opens with Keep Editing and Discard Changes."),
+   R(S("S3-R13", "and Cancel puts them back"), "The grid returns to view.", "The Categories line names category A, as before, without category B."),
+   R(S("S10-R1"), "Work order 1 opens on its Lines tab."),
+   R(S("S3-R13", "their parts are priced by this matrix only after Save"),
+     "The part's sell price fills in as $120.00, matrix B's price ($100.00 × 1.20 = $120.00), not matrix A's $150.00.")],
+  pics=["3.11", "3.23"], flags=["numbers"])
 
 C("S3-19", K, "The General Matrix's categories cannot be picked",
   [ADMIN, DESK],
@@ -272,16 +325,19 @@ C("S3-27", K, "Ranges are entered by their end and the last range has no end",
    R(S("S3-R16", "Add Range adds a range before the last one."), "A new range is added before the last one; there are now two ranges."),
    R(S("S3-R16", "each later range starts $0.01 above the end of the range before it (\"$25.01 to [end]\"), so ranges never overlap or leave a gap"),
      "The first range reads $0.00 to 25.", "The next range starts at $25.01 ($25.00 + $0.01).")
-   + R(S("S3-R16", "The last range has no end (\"$10,000.01 and up\") and can't be removed."), "The last range has no end box, reads \"and up\" and has no delete button.")],
+   + R(S("S3-R16", "the last has no end (\"$10,000.01 and up\"). Neither can be removed, so every cost is covered."), "The last range has no end box, reads \"and up\" and has no delete button.")],
   pics=["4.19", "4.20"], flags=["numbers"])
 
 C("S3-28", K, "Removing a range merges it into the range above",
   [ADMIN, matrix("A", ", three ranges: $0.00 to $100.00, $100.01 to $10,000.00, $10,000.01 and up"), DESK],
   [MATRICES, open_matrix("A"), EDIT, "Point at the second range's delete button.", "Click the second range's delete button."],
   [R(S("S3-R32"), "Matrix A is listed."), R(S("S3-R32"), "The grid shows three ranges."),
-   R(S("S3-R32", "Each range except the last has a delete button at its left"), "Delete buttons show at the left of the first and second rows, lined up down the grid.", "The last range ($10,000.01 and up) has no delete button."),
+   R(S("S3-R32", "Each range between the first and the last has a delete button at its left"), "A delete button shows at the left of the second (middle) range.")
+   + R(S("S3-R16", "The first range always starts at $0.00 and the last has no end (\"$10,000.01 and up\"). Neither can be removed"),
+       "The first range ($0.00 to $100.00) and the last range ($10,000.01 and up) have no delete button."),
    R(S("S3-R32", "(tooltip \"Remove this range\")"), "A tooltip reads \"Remove this range\"."),
-   R(S("S3-R32", "Removing a range merges it into the range above, which takes its end."), "Two ranges remain: the first now reads $0.00 to 10000 and the last starts at $10,000.01.")],
+   R(S("S3-R32", "Removing a range merges it into the range above, which takes its end."), "Two ranges remain: the first now reads $0.00 to 10000 and the last starts at $10,000.01.")
+   + R(S("S3-R32", "A matrix with one or two ranges has none."), "Neither of the two remaining ranges has a delete button.")],
   pics=["4.21"])
 
 C("S3-29", K, "The last range follows the range above until edited",
@@ -404,13 +460,14 @@ C("S3-40", K, "Only a grid save asks Change All",
   [MATRICES, open_matrix("A"), "Click matrix A's name.", "Type a new name no other matrix uses.", "Click outside the name field.", EDIT, "Pick category C in the Categories picker.", SAVE,
    "Click the Part Sale Matrix tab.", "Switch Separate Part Sale pricing on."],
   [R(S("S3-R12"), "Matrix A is listed."), R(S("S3-R12"), "Matrix A's page opens."), R(S("S3-R18"), "The name can be edited."), R(S("S3-R18"), "The field shows the new name."),
-   R(S("S3-R12", "Renaming, changing its categories and turning the Part Sale switch on save without asking"), "The new name is saved with no question."),
+   R(S("S3-R12", "Renaming and turning the Part Sale switch on save without asking"), "The new name is saved with no question."),
    R(S("S4-R4"), "The grid is in edit."), R(S("S3-R13"), "Category C is ticked."),
-   R(S("S3-R12", "Only a grid Save asks Change All"), "Matrix A saves its categories with no Change Prices question (no grid value changed).",
+   R([S("S3-R12", "Only a grid Save asks Change All"), S("S3-R12", "categories save with the grid (S3-R13)")],
+     "Matrix A saves its categories with no Change Prices question (no grid value changed).",
      "The Categories line names category A, category B and category C."),
    R(S("S3-R21"), "The switch shows, off."),
    R(S("S3-R12", "turning the Part Sale switch on save without asking"), "The Part Sale grid shows at once, with no question.")],
-  pics=["3.13", "3.18"])
+  pics=["3.13", "3.18"], held_on="Q33")
 
 C("S3-41", K, "A matrix used by one category saves without asking",
   [ADMIN, matrix("A", ", pricing one new category made for this test"), DESK],

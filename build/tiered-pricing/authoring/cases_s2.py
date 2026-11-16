@@ -306,7 +306,8 @@ C("S2-31", K, "Archiving a tier nothing follows asks one plain question",
   [ADMIN, tier("A", " with no customers; no tier uses Same as previous tier after it (make tier A the last tier)"), DESK],
   [TIERS, "Open tier A's three-dot menu on the Tiers list.", "Click Archive.", "Click Cancel.", "Open tier A's three-dot menu again.", "Click Archive.", "Click Archive in the dialog."],
   [R(S("S2-R14"), "Tier A is the last active tier."), R(S("S2-R26"), "The menu offers Archive."),
-   R(S("S2-R30", "If no tier follows it, the question is just \"Archive <tier>?\" (or \"Delete <tier>?\") with the same last line."),
+   R([S("S2-R30", "If no tier follows it, the question is just \"Archive <tier>?\" or \"Delete <tier>?\" with its own last line."),
+      S("S2-R30", "Archive says \"Parts already on work orders keep their prices.\"")],
      "A dialog titled \"Archive\" followed by tier A's name and \"?\" opens.", "Its only text reads \"Parts already on work orders keep their prices.\"", "Its buttons are Cancel and Archive."),
    R(S("S2-R30", "Buttons: Cancel and Archive (or Delete)."), "The dialog closes and tier A is still active with its number."),
    R(S("S2-R26"), "The menu offers Archive."), R(S("S2-R30"), "The same question opens."),
@@ -324,7 +325,7 @@ C("S2-32", K, "Archiving a tier lists every tier that follows it",
      "The text reads \"These tiers price the same as\" tier A, \"and will follow\" tier P, \"instead:\".", "Tier B and tier C are listed one per line.")
    + R(S("S2-R30", "The list names tiers only, never matrices: every tier that follows this one in any matrix or side, directly or through another tier that follows it."),
        "Tier C is listed although it follows tier A only through tier B.", "No matrix name is listed, only tiers.")
-   + R(S("S2-R30", "After the list: \"Parts already on work orders keep their prices.\""), "After the list the dialog reads \"Parts already on work orders keep their prices.\"")],
+   + R(S("S2-R30", "After the list, Archive says \"Parts already on work orders keep their prices.\""), "After the list the dialog reads \"Parts already on work orders keep their prices.\"")],
   pics=["2.22"])
 
 C("S2-33", K, "After archiving, a following tier follows the tier before it",
@@ -346,10 +347,15 @@ C("S2-34", K, "Default cannot be archived or deleted",
   pics=["2.41", "2.4"])
 
 C("S2-35", K, "Deleting a tier that priced nothing removes it and its columns",
-  [ADMIN, tier("A", " with no customers that has priced no line"), matrix("A"), DESK],
+  [ADMIN, tier("A", ", with no customers and no line priced by it; no tier uses Same as previous tier after it (make tier A the last tier)"), matrix("A"), DESK],
   [TIERS, "Open tier A's three-dot menu on the Tiers list.", "Click Delete.", "Click Delete in the dialog.", MATRICES, open_matrix("A")],
-  [R(S("S2-R14"), "Tier A is listed."), R(S("S2-R26"), "Delete can be clicked (not grayed)."),
-   R(S("S2-R30", "Archive and Delete ask first."), "A dialog titled \"Delete\" followed by tier A's name and \"?\" opens.", "It reads \"Parts already on work orders keep their prices.\"", "Its buttons are Cancel and Delete."),
+  [R(S("S2-R14"), "Tier A is the last active tier."), R(S("S2-R26"), "Delete can be clicked (not grayed)."),
+   R([S("S2-R30", "If no tier follows it, the question is just \"Archive <tier>?\" or \"Delete <tier>?\" with its own last line."),
+      S("S2-R30", "Delete says \"This can't be undone.\"")],
+     "A dialog titled \"Delete\" followed by tier A's name and \"?\" opens.", "Its only text reads \"This can't be undone.\"")
+   + R(S("S2-R30", "After the list, Archive says \"Parts already on work orders keep their prices.\" and Delete says \"This can't be undone.\""),
+       "The line \"Parts already on work orders keep their prices.\" is not in this dialog.")
+   + R(S("S2-R30", "Buttons: Cancel and Archive (or Delete)."), "Its buttons are Cancel and Delete."),
    R(S("S2-R8", "A tier can be deleted only when no customers are on it"), "Tier A is no longer listed, active or archived.")
    + R(QD("Tier 5 deleted", "2.30", "S2-R8"), "A message reads tier A's name followed by \"deleted\"."),
    R(S("S3-R18"), "Matrix A is listed."), R(S("S2-R8", "Deleting a tier removes its column from every matrix."), "Matrix A's grid has no column for tier A; the other tier columns show.")],
@@ -523,8 +529,8 @@ C("S2-53", K, "A tier's row opens its page on the Pricing tab with a breadcrumb"
   [ADMIN, tier("A"), DESK],
   [TIERS, open_tier("A")],
   [R(S("S2-R14"), "Tier A is listed."),
-   R(S("S2-R28", "Clicking an active or archived tier's row on the Tiers list opens its page on the Pricing tab, never a dialog, with the breadcrumb Settings › Pricing › Tiers › <tier>"),
-     "A page opens, not a dialog, on the Pricing tab.", "The breadcrumb reads Settings › Pricing › Tiers › and tier A's name.")
+   R(S("S2-R28", "Clicking an active or archived tier's row on the Tiers list opens its page on the Pricing tab, never a dialog, with the breadcrumb Pricing › Tiers › <tier>"),
+     "A page opens, not a dialog, on the Pricing tab.", "The breadcrumb reads Pricing › Tiers › and tier A's name, starting at Pricing with no Settings crumb before it.")
    + R(S("S2-R20", "A tier's page has Pricing and Customers tabs."), "The page has a Pricing tab and a Customers tab.")
    + R(S("S2-R15", "The number shows as plain text beside the tier's name"), "Tier A's number shows as plain text beside its name.")],
   pics=["2.31", "2.32"])
@@ -532,8 +538,8 @@ C("S2-53", K, "A tier's row opens its page on the Pricing tab with a breadcrumb"
 C("S2-54", K, "A tier's page opened from a bookmark shows the same breadcrumb",
   [ADMIN, tier("A"), "Have tier A's page address bookmarked (or copied).", DESK],
   ["Open the bookmark in a new browser tab."],
-  [R(S("S2-R28", "with the breadcrumb Settings › Pricing › Tiers › <tier>, also when opened from a link or bookmark"),
-     "Tier A's page opens on the Pricing tab.", "The breadcrumb reads Settings › Pricing › Tiers › and tier A's name.")],
+  [R(S("S2-R28", "with the breadcrumb Pricing › Tiers › <tier>, also when opened from a link or bookmark"),
+     "Tier A's page opens on the Pricing tab.", "The breadcrumb reads Pricing › Tiers › and tier A's name, starting at Pricing with no Settings crumb before it.")],
   pics=["2.32"])
 
 C("S2-55", K, "Coming back from a tier's page keeps the list's filter and page",
@@ -573,7 +579,7 @@ C("S2-58", K, "Edit on a tier's matrix row opens the grid in edit at that tier",
   [R(S("S2-R14"), "Tier A is listed."), R(S("S2-R28"), "Tier A's page opens."),
    R(S("S2-R20", "Edit on a matrix's row opens that matrix's page already in edit, with the tier's column in view (S3-R26)."),
      "Matrix A's page opens with its grid already in edit (Cancel and Save show).", "Tier A's column is in view.")
-   + R(S("S3-R26", "Settings › Pricing › Tiers › <tier> › <matrix> from a tier"), "The breadcrumb reads Settings › Pricing › Tiers › tier A's name › matrix A's name.")],
+   + R(S("S3-R26", "Pricing › Tiers › <tier> › <matrix> from a tier"), "The breadcrumb reads Pricing › Tiers › tier A's name › matrix A's name, starting at Pricing.")],
   pics=["2.45", "2.46"])
 
 C("S2-59", K, "A tier's matrix list loads more matrices while scrolling",
@@ -769,3 +775,17 @@ C("S2-78", K, "Cancel in the Set Rule question changes nothing",
   [R(S("S2-R14"), "Tier A is listed."), R(S("S2-R28"), "Tier A's page opens."), R(S("S2-R22"), "The count is 1."), R(S("S2-R22"), "The value reads 35."), R(S("S2-R23"), "The question opens."),
    R(S("S2-N7", "Cancel in the confirmation, or clearing the checks, changes nothing."), "The dialog closes.", "Matrix A still reads Uses previous tier for tier A.")],
   pics=["2.53"])
+
+# ---- 16 Nov 2026: PRD v38 S2-R30 and the messages table (Matt Barge's answer 2), new case ---------------------------------------------
+C("S2-79", K, "Deleting a tier that another tier follows lists it, then This can't be undone",
+  [ADMIN, tier("A", ", with no customers and no line priced by it"), tier("B", ", the next tier after tier A, on Same as previous tier in matrix A"),
+   matrix("A", ", in which tier A has its own rule 10% off"), "Note the name of the tier just before tier A (tier P).", DESK],
+  [TIERS, "Open tier A's three-dot menu on the Tiers list.", "Click Delete."],
+  [R(S("S2-R14"), "Tier A and tier B are listed in that order."), R(S("S2-R26"), "Delete can be clicked (not grayed)."),
+   R(S("S2-R30", "Archive and Delete ask first."), "A dialog titled \"Delete\" followed by tier A's name and \"?\" opens.")
+   + R(S("S2-R30", "names, one per line, each tier whose prices change because it follows this one through Same as previous tier: \"These tiers price the same as <tier> and will follow <tier before it> instead:\""),
+       "The text reads \"These tiers price the same as\" tier A, \"and will follow\" tier P, \"instead:\".", "Tier B is listed on its own line.")
+   + R(S("S2-R30", "After the list, Archive says \"Parts already on work orders keep their prices.\" and Delete says \"This can't be undone.\""),
+       "After the list the dialog reads \"This can't be undone.\"", "The line \"Parts already on work orders keep their prices.\" is not in this dialog.")
+   + R(S("S2-R30", "Buttons: Cancel and Archive (or Delete)."), "Its buttons are Cancel and Delete.")],
+  pics=["2.22", "2.29"])

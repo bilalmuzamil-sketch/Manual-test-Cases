@@ -147,10 +147,13 @@ C("D-13", K, "Design: archived and reactivated tiers and their messages",
   pics=["2.21", "2.23", "2.24", "2.25", "2.26", "2.27"])
 
 C("D-14", K, "Design: the Delete question and the deleted message",
-  [ADMIN, tier("A", " with no customers that priced nothing"), W1440],
+  [ADMIN, tier("A", ", with no customers and no line priced by it; no tier uses Same as previous tier after it (make tier A the last tier)"), W1440],
   [TIERS, "Open tier A's three-dot menu.", "Click Delete.", "Click Delete in the dialog."],
   [look("2.28", "S2-R30", "The Tiers list shows."), look("2.28", "S2-R30", "The menu lists Audit Log, Archive and a red Delete."),
-   look("2.29", "S2-R30", "A dialog titled \"Delete\" tier A's name \"?\" reads \"Parts already on work orders keep their prices.\" with Cancel (white) and Delete (red).") ,
+   R([QL("2.29", "S2-R30"), S("S2-R30", "Delete says \"This can't be undone.\"")],
+     "A dialog titled \"Delete\" tier A's name \"?\" reads \"This can't be undone.\" with Cancel (white) and Delete (red), laid out as in picture 2.29.")
+   + R(S("S2-R30", "After the list, Archive says \"Parts already on work orders keep their prices.\" and Delete says \"This can't be undone.\""),
+       "The line \"Parts already on work orders keep their prices.\" is not in this dialog."),
    R(QD("Tier 5 deleted", "2.30", "S2-R8"), "A message at the bottom right reads tier A's name \"deleted\", as in picture 2.30.", "Tier A is gone from the list.")],
   pics=["2.28", "2.29", "2.30"])
 

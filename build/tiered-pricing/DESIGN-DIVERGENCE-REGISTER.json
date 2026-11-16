@@ -3,9 +3,9 @@
  "made": "2026-11-14",
  "phase": "1 (stories 1-4 closed; the rest listed for the next batches)",
  "design": "Tiered Pricing Design 1794631438-539a (files identical in 1794638838-cd70)",
- "prd": "Confluence 938213378 page v37",
+ "prd": "Confluence 938213378 page v38 (16 Nov 2026; was v37)",
  "precedence": "PRD > PO answers > design (look, where the PRD is silent) > tech plan (informs). PRD v37 §7: \"Layout, styling, sort indicators, scrolling and pinned columns follow the design canvas; this section states only what QA tests.\"",
- "sent": "nothing sent: no PO sheet exists yet for Tiered Pricing (Rules 66, 131); unsent PO candidates are counted in PHASE-1-REPORT.md",
+ "sent": "Questions 1-31 sent in the sheet https://docs.google.com/spreadsheets/d/1qVTIPIWUarmDGg6AjD1q8BbitlynKdjy9VYBCpGuMeY and all answered by Matt Barge on 16 Nov 2026; rows that waited on them are CLOSED by the ruling (16 Nov 2026).",
  "differences": [
   {
    "id": "TPD-A01",
@@ -286,14 +286,18 @@
    "where": "S4-R12",
    "prd": "\"1 change: Tier 5 is 28% margin.\" / \"3 changes: ...\"",
    "design": "The design writes \"1 change: Tier 2 $0.00–$100.00: 22% margin.\" (3.12).",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S4-27",
     "S4-28"
    ],
-   "question": "Q15",
-   "held_case": "D-59",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 15 (chosen (c)): Save message in three forms per tier (one rule / per-range bullets / multiple rules). PRD: IN v38: S4-R12 + messages table. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(c) It depends on what changed, per tier: • One rule and value across every range of the tier: the PRD's form, \"1 change: Tier 5 is 28% margin.\" • The same rule type with a different value in each range: \"Tier 5 is\" followed by a bullet list of each range's rule, for example \"• $0.00 to $25.00: 35% margin • $25.01 to $100.00: 28% margin\". • More than one rule type in the tier: \"Tier 5 is multiple rules\" followed by a bullet list of the types, for example \"• + $ • Margin %\". The toast's \"up to three changes, then and <n> more\" rule (S4-R12) still applies; each tier is one item. PRD fix needed: S4-R12 and the messages table get these three forms. Canvas 3.12 and the build follow.",
+   "deleted_cases": [
+    "D-59 C1211105"
+   ],
+   "answered_question": "Q15"
   },
   {
    "id": "TPD-A22",
@@ -343,7 +347,7 @@
    "where": "2.11, 2.17, 2.32, 2.46, 3.2, 4.26",
    "prd": "S2-R28, S3-R26: breadcrumbs Settings › Pricing › …",
    "design": "Breadcrumbs start \"Pricing ›\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S2-53",
     "S2-54",
@@ -351,9 +355,11 @@
     "S3-01",
     "S3-05"
    ],
-   "question": "Q1",
-   "held_case": "D-50",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 1 (chosen (b)): Breadcrumbs start at Pricing (or Categories), never at Settings. PRD: IN v38: S2-R28, S3-R26, S7-R6. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(b) Start at Pricing, as the design draws it: Pricing › Tiers › [tier name] and Pricing › Matrices › [matrix name]. A Settings crumb would need a page to return to. The Settings side panel is always visible, so no one needs to go back to a Settings page to start over. Clicking a Settings crumb would open the Settings section of Settings, which defaults to the Organization settings page, and we don't want that. PRD fix needed: remove \"Settings ›\" from S2-R28, S3-R26 and S7-R6.",
+   "released_case": "D-50",
+   "answered_question": "Q1"
   },
   {
    "id": "TPD-B02",
@@ -361,13 +367,17 @@
    "where": "2.29",
    "prd": "S2-R30: \"the question is just \"Delete <tier>?\" with the same last line\"",
    "design": "Adds \"This can't be undone.\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S2-35"
    ],
-   "question": "Q2",
-   "held_case": "D-51",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 2 (chosen (c)): Delete [tier]? says \"This can't be undone.\" instead of the parts line; Archive keeps the parts line; follower list on both. PRD: IN v38: S2-R30 + messages table (Archive and Delete rows split). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(c) Delete [tier]? drops \"Parts already on work orders keep their prices.\" and says \"This can't be undone.\" instead. A tier can only be deleted when it never priced a saved line and no open work order, estimate or Part Sale keeps it (S2-R8, S2-R13), so the parts line doesn't apply to Delete. Archive keeps the parts line. Any \"These tiers price the same as…\" list stays on both. PRD fix needed: S2-R30 and the messages table (Delete wording separate from Archive).",
+   "deleted_cases": [
+    "D-51 C1211097"
+   ],
+   "answered_question": "Q2"
   },
   {
    "id": "TPD-B03",
@@ -375,13 +385,17 @@
    "where": "2.53",
    "prd": "S2-R23: \"<tier> becomes <rule> in <n> matrices\"",
    "design": "\"in all 7 matrices (2 inactive)\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S2-64"
    ],
-   "question": "Q3",
-   "held_case": "D-52",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 3 (chosen (a)): Set Rule question as the PRD writes, no \"all\". PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) As the PRD writes (S2-R23): \"[tier] becomes [rule] in [n] matrices (<m> inactive)\", with \"(<m> inactive)\" only when some checked matrices are inactive, and no \"all\". PRD stays; canvas 2.53 and the build drop \"all\".",
+   "deleted_cases": [
+    "D-52 C1211098"
+   ],
+   "answered_question": "Q3"
   },
   {
    "id": "TPD-B04",
@@ -389,13 +403,17 @@
    "where": "2.11-2.17, 2.32, 2.44",
    "prd": "S2-R20 / Terminology: the tier's Pricing tab uses the grid's words, \"Uses previous tier\"",
    "design": "\"Same as previous tier\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S2-56"
    ],
-   "question": "Q4",
-   "held_case": "D-53",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 4 (chosen (a)): \"Uses previous tier\" everywhere. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) \"Uses previous tier\" everywhere, the grid's words, as the PRD says. PRD stays; the tier pages and New Tier on the canvas and in the build change to \"Uses previous tier\".",
+   "deleted_cases": [
+    "D-53 C1211099"
+   ],
+   "answered_question": "Q4"
   },
   {
    "id": "TPD-B05",
@@ -403,13 +421,17 @@
    "where": "2.42",
    "prd": "S2-R20: Default's tab lists Work Order Matrix and Part Sale Matrix; S4-R31 labels",
    "design": "One column; \"3 rules · markup\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S2-57"
    ],
-   "question": "Q5",
-   "held_case": "D-54",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 5 (chosen (a)): Default's page: both columns in the grid's short words. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Every matrix, with Work Order Matrix and Part Sale Matrix columns in the grid's short words, as the PRD says. PRD stays; canvas 2.42 and the build follow it.",
+   "deleted_cases": [
+    "D-54 C1211100"
+   ],
+   "answered_question": "Q5"
   },
   {
    "id": "TPD-B06",
@@ -417,13 +439,17 @@
    "where": "3.27",
    "prd": "S3-R8: Duplicate makes the copy \"in the library\" and opens it",
    "design": "An unsaved copy with Cancel / Create Matrix",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S3-37"
    ],
-   "question": "Q7",
-   "held_case": "D-55",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 7 (chosen (a)): Duplicate creates the copy at once. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) The copy is created at once: \"[name] (copy)\" is added to the matrix list and opens, as the PRD says. PRD stays; canvas 3.27 and the build follow it.",
+   "deleted_cases": [
+    "D-55 C1211101"
+   ],
+   "answered_question": "Q7"
   },
   {
    "id": "TPD-B07",
@@ -431,13 +457,17 @@
    "where": "4.11",
    "prd": "S4-R7: \"% Off and $ Off start empty in every range\"",
    "design": "0 in every range (\"% Off starts at 0% in every range\")",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S4-14"
    ],
-   "question": "Q13",
-   "held_case": "D-56",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 13 (chosen (a)): % Off / $ Off column starts empty. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) The column starts empty in every range, as the PRD says. PRD stays; canvas 4.11 and the build change from 0 to empty.",
+   "deleted_cases": [
+    "D-56 C1211102"
+   ],
+   "answered_question": "Q13"
   },
   {
    "id": "TPD-B08",
@@ -445,14 +475,18 @@
    "where": "4.11",
    "prd": "S4-R4: \"each column whose rule type differs counts as one change\"",
    "design": "\"3 changes\" after one type change",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S4-11",
     "S4-12"
    ],
-   "question": "Q14",
-   "held_case": "D-57",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 14 (chosen (c)): Rule-type change counts 1, each changed box 1 more (3-range switch = 1, then 4); Audit Log records both. PRD: IN v38: S4-R4 example + S19-R23 example (Matt named S19-R19; the sentence went into S19-R23). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(c) The rule-type change counts as 1, and each box whose value changes counts as 1 more. A 3-range column switched to % Off shows \"1 change\" (boxes start empty, question 13); after a value is typed in each box it shows \"4 changes\". After Save, the Audit Log records both: 1 rule type changed and 3 range values changed. Reason (Matt): every action must be recorded for audit, so a column quietly changed from 15% margin to a large % off is fully traceable. PRD fix needed: S4-R4 counting and the Audit Log wording (Story 4 / S19-R19) to state this example.",
+   "deleted_cases": [
+    "D-57 C1211103"
+   ],
+   "answered_question": "Q14"
   },
   {
    "id": "TPD-B09",
@@ -460,13 +494,17 @@
    "where": "4.20",
    "prd": "S3-R16: \"Add Range adds a range before the last one.\"",
    "design": "\"A new last range\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S3-27"
    ],
-   "question": "Q8",
-   "held_case": "D-58",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 8 (chosen (a)): Add Range adds before the last range. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Add Range adds a range just before the last (\"and up\") range, as the PRD says; the open-ended range stays last. PRD stays; canvas 4.20's note and the build follow it.",
+   "deleted_cases": [
+    "D-58 C1211104"
+   ],
+   "answered_question": "Q8"
   },
   {
    "id": "TPD-B10",
@@ -474,15 +512,19 @@
    "where": "3.15, 4.18",
    "prd": "S3-R6 messages (\"Enter a % from 0 to 99.99\")",
    "design": "\"Save is blocked\" banner; \"Tier 5: enter a % from 0 to 99.99 in every range.\"; \"Work Order Matrix: Rule 1: …\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S3-22",
     "S3-23",
     "S3-24"
    ],
-   "question": "Q11",
-   "held_case": "D-60",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 11 (chosen (a)): Grid errors next to the box only, no banner. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Messages next to the box only (\"Enter a % from 0 to 99.99\", \"Enter a margin from 0 to 99.99\" and the other S3-R6 messages), no \"Save is blocked\" banner, as the PRD writes. PRD stays; canvas 3.15 and 4.18 and the build drop the banner.",
+   "deleted_cases": [
+    "D-60 C1211106"
+   ],
+   "answered_question": "Q11"
   },
   {
    "id": "TPD-B11",
@@ -490,13 +532,17 @@
    "where": "1.4, 3.2, 4.1 (view)",
    "prd": "S3-R16: \"$10,000.01 and up\"",
    "design": "\"$10,000.01 +\" in view",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S3-27"
    ],
-   "question": "Q9",
-   "held_case": "D-61",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 9 (chosen (a)): Last range reads \"and up\" in view and edit. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) \"$10,000.01 and up\" in view and edit, as the PRD writes. PRD stays; the canvas view pictures (1.4, 3.2, 4.1) and the build change from \"+\" to \"and up\".",
+   "deleted_cases": [
+    "D-61 C1211107"
+   ],
+   "answered_question": "Q9"
   },
   {
    "id": "TPD-B12",
@@ -504,13 +550,17 @@
    "where": "3.25",
    "prd": "S3-R6: taken new matrix name shows an inline error under the name",
    "design": "\"A matrix called Stop 40 already exists.\" in the banner",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S3-25"
    ],
-   "question": "Q12",
-   "held_case": "D-62",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 12 (chosen (a)): Taken matrix name under the name box. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) The taken-name error shows under the name box, as the PRD says. PRD stays; canvas 3.25 and the build move it out of the banner.",
+   "deleted_cases": [
+    "D-62 C1211108"
+   ],
+   "answered_question": "Q12"
   },
   {
    "id": "TPD-B13",
@@ -518,13 +568,15 @@
    "where": "3.5→3.25, 3.10→4.7, 3.22→3.23",
    "prd": "§6d line 10: no source settles whether these screens may move",
    "design": "Simulator columns 70 px wider in edit; the category list pushes the grid 221 px down",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "D-64"
    ],
-   "question": "Q31",
-   "held_case": "D-63",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 31 (chosen (a)): Columns and fields keep their place across state changes; the canvas moves are not intended. PRD: IN v38: new S19-R24. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Columns and boxes keep their place: nothing moves sideways or down when a row opens or closes, a search narrows a list, a list is empty, a filter chip changes, the Add Part row opens or a page switches between view and edit. The moves in the canvas pictures are not intended. PRD fix needed: add this as a Story 19 rule (stable column widths across states).",
+   "released_case": "D-63",
+   "answered_question": "Q31"
   },
   {
    "id": "TPD-B14",
@@ -532,13 +584,17 @@
    "where": "4.6, 4.21, 3.11",
    "prd": "S3-R32: a delete button on every range except the last",
    "design": "Trash on every range except the first, the last included",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S3-28"
    ],
-   "question": "Q10",
-   "held_case": "D-65",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 10 (chosen (c)): Neither the first nor the last range has a delete button; a 1- or 2-range matrix has none. PRD: IN v38: S3-R16, S3-R32. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(c) Neither the first nor the last range has a delete button; every range between them does. The first range's $0.00 start and the last range's \"and up\" are fixed values the matrix needs so it covers every part cost. A matrix with only one or two ranges shows no delete button. PRD fix needed: the remove-a-range requirement (Story 3) adds the first range. Canvas (3.11, 4.6, 4.21) and the build drop the trash icon on the last range.",
+   "deleted_cases": [
+    "D-65 C1211111"
+   ],
+   "answered_question": "Q10"
   },
   {
    "id": "TPD-C01",
@@ -992,15 +1048,18 @@
    "where": "proof §7b #5",
    "prd": "S9-R9 \"a channel filter (Work orders, Part Sales, Both)\"; tech plan 1 Phase 17 agrees",
    "design": "\"Sales Type\" on 9.3 with rows \"Work Orders and Part Sales\" / \"Work Orders only\"; on reports (20.9) \"Part Sales\" / \"Work Orders\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
-    "S9-26",
-    "D-172"
+    "S9-26"
    ],
-   "question": "Q22",
-   "held_case": "D-172",
    "in_scope": true,
-   "replaces": "TPD-I05"
+   "replaces": "TPD-I05",
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 22 (chosen (a)): Customers tab filter: Work orders / Part Sales / Both, each customer matches exactly one. PRD: IN v38: S9-R9. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Work orders, Part Sales and Both, as the PRD and the developers' plan say. \"Work orders\" means customers on the tier for work orders only. By the same reading, \"Part Sales\" is Part Sales only and \"Both\" is on the tier for both, so each customer matches exactly one option. PRD fix needed: Story 9 states what each option means.",
+   "deleted_cases": [
+    "D-172 C1210933"
+   ],
+   "answered_question": "Q22"
   },
   {
    "id": "TPD-A103",
@@ -1008,18 +1067,21 @@
    "where": "proof §7b #6",
    "prd": "S9-N6 'No customer matches \"…\".'; S6-R3 'No matrices match the search \"…\".' with Clear Search; S7-R4 'No categories match the search \"…\".'",
    "design": "9.2 no period with Clear All Filters; 9.13 matches S9-N6; 6.10 \"No matrices match \"zzz\"\"; 7.6 \"No category matches \"zzz\"\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S6-15",
     "S7-07",
-    "S9-34",
-    "D-130",
-    "D-171"
+    "S9-34"
    ],
-   "question": "Q17",
-   "held_case": "D-130",
    "in_scope": true,
-   "replaces": "TPD-I06"
+   "replaces": "TPD-I06",
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 17 (chosen (a)): No-match messages: the PRD's full sentences with a period. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) The PRD's full sentences with a period on all three screens, for example 'No matrices match the search \"…\".' and 'No categories match the search \"…\".' PRD stays; canvas 6.10, 7.6, 9.2 and the build follow it.",
+   "deleted_cases": [
+    "D-130 C1210911",
+    "D-171 C1210932"
+   ],
+   "answered_question": "Q17"
   },
   {
    "id": "TPD-A104",
@@ -1262,15 +1324,18 @@
    "where": "7.9 info icon",
    "prd": "S7-R15 \"Above the grid, a line names the other categories\"",
    "design": "\"The Fluids 30 matrix also prices 1 other category: Oil.\" in an info-icon tooltip by the matrix name, no line",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
-    "S7-15",
-    "D-147"
+    "S7-15"
    ],
-   "question": "Q18",
-   "held_case": "D-147",
    "in_scope": true,
-   "replaces": "TPD-L02"
+   "replaces": "TPD-L02",
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 18 (chosen (a)): Shared-matrix line above the grid (exception to the tooltip rule). PRD: IN v38: S19-R15 exception added; S7-R15 unchanged. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) A line above the grid on the category's page: \"The [matrix] matrix also prices [n] other categories: [A] · [B].\" PRD stays (Story 7); canvas 7.9 and the build change from the tooltip to the line. PRD fix needed: note this line as an exception to the Story 19 tooltip rule.",
+   "deleted_cases": [
+    "D-147 C1210919"
+   ],
+   "answered_question": "Q18"
   },
   {
    "id": "TPD-A121",
@@ -1278,7 +1343,7 @@
    "where": "proof §6b movements, pages 5-15 (batch A)",
    "prd": "§6d line 10",
    "design": "New Category +26 px (8.7); Manage Customers bar +92 px (9.6), columns 11/83 px on search (9.12, 9.13); notice +79 px (12.9, 14.8); simulator columns between view and edit (5.1 vs 5.4)",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "D-111",
     "D-123",
@@ -1288,10 +1353,12 @@
     "D-179",
     "D-225"
    ],
-   "question": "Q31",
-   "held_case": "D-179",
    "in_scope": true,
-   "replaces": "TPD-L03"
+   "replaces": "TPD-L03",
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 31 (chosen (a)): Columns and fields keep their place across state changes; the canvas moves are not intended. PRD: IN v38: new S19-R24. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Columns and boxes keep their place: nothing moves sideways or down when a row opens or closes, a search narrows a list, a list is empty, a filter chip changes, the Add Part row opens or a page switches between view and edit. The moves in the canvas pictures are not intended. PRD fix needed: add this as a Story 19 rule (stable column widths across states).",
+   "released_case": "D-179",
+   "answered_question": "Q31"
   },
   {
    "id": "TPD-A123",
@@ -1318,15 +1385,17 @@
    "where": "6.2",
    "prd": "S6-R1 \"Part Sale Matrix (On or Off)\"",
    "design": "\"Same as work orders\" or the Part Sale rules in short",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S6-02",
     "S6-03",
     "D-129"
    ],
-   "question": "Q16",
-   "held_case": "D-129",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 16 (chosen (b)): Matrices list Part Sale Matrix column: \"Same as work orders\" or a rule summary. PRD: IN v38: S6-R1. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(b) As the design draws: the Matrices list's Part Sale Matrix column shows \"Same as work orders\" when a matrix has no separate Part Sale pricing, and a short summary of the Part Sale rules (like the Work Order Matrix column) when it has. The matrix page's Part Sale Matrix tab stays as the PRD says (S3-R21). PRD fix: S6-R1 (\"On or Off\" becomes this), done in v38.",
+   "released_case": "D-129",
+   "answered_question": "Q16"
   },
   {
    "id": "TPD-A126",
@@ -1362,15 +1431,17 @@
    "where": "8.6, 8.8",
    "prd": "S8-R10 \"It has Save and Cancel\" (tech plan 1 Phase 16 agrees)",
    "design": "Cancel / \"Create Category\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S8-02",
     "S8-04",
     "D-165"
    ],
-   "question": "Q19",
-   "held_case": "D-165",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 19 (chosen (b)): New Category has Cancel and Create Category. PRD: IN v38: S8-R10 (the developers' plan Phase 16 still says Save and Cancel; the plan informs, never overrules). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(b) Cancel and Create Category, as the design draws, matching Create Tier and Create Matrix. PRD fix needed: Story 8 (New Category) and the developers' plan Phase 16 change from Save and Cancel.",
+   "released_case": "D-165",
+   "answered_question": "Q19"
   },
   {
    "id": "TPD-A129",
@@ -1378,15 +1449,18 @@
    "where": "8.11, 8.4",
    "prd": "S8-R8 delete question (includes \"Invoices already sent aren't sent again; …\"); S8-N3 \"A category called <name> already exists\"",
    "design": "8.11 leaves out the invoices sentence; 8.4 adds \"Click away to keep Brakes.\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S8-08",
-    "S8-12",
-    "D-168"
+    "S8-12"
    ],
-   "question": "Q20",
-   "held_case": "D-168",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 20 (chosen (a)): Category Delete question and taken-name error as the PRD words them. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) The PRD's wording for both: Delete [category]? keeps the QuickBooks sentence, and the taken-name error is just \"A category called [name] already exists\". PRD stays; canvas 8.11, 8.4 and the build follow it.",
+   "deleted_cases": [
+    "D-168 C1210930"
+   ],
+   "answered_question": "Q20"
   },
   {
    "id": "TPD-A130",
@@ -1394,14 +1468,16 @@
    "where": "8.3",
    "prd": "S8-R4 read-only \"with no rename, Delete or matrix picker\"",
    "design": "A grayed Pricing Matrix box, a grayed Tax Exempt, an editable-looking QuickBooks picker",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S8-06",
     "D-162"
    ],
-   "question": "Q21",
-   "held_case": "D-162",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 21 (chosen (b)): Uncategorized: read only, Pricing Matrix and Tax Exempt grayed, only QuickBooks Products and Services can be changed. PRD: IN v38: S8-R4. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(b) Follow the design. Uncategorized's page is read only: no rename, no Delete; the Pricing Matrix box and the Tax Exempt checkbox are shown grayed and can't be clicked. The only editable field is QuickBooks Products and Services, so a client can map Uncategorized to a specific P&L account (shown only when QuickBooks is connected, as today). PRD fix needed: Story 8 (Uncategorized) and S7-R6.",
+   "released_case": "D-162",
+   "answered_question": "Q21"
   },
   {
    "id": "TPD-A131",
@@ -1479,14 +1555,17 @@
    "where": "9.36",
    "prd": "S9-R8 \"Edit Customer shows a tooltip on this customer's tier fields\"",
    "design": "A light blue info box above the tier fields",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
-    "S9-25",
-    "D-185"
+    "S9-25"
    ],
-   "question": "Q23",
-   "held_case": "D-185",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 23 (chosen (a)): Counter Sale note as a tooltip. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) A tooltip on the Counter Sale customer's tier fields: \"Every walk-in sale uses this tier.\" PRD stays; canvas 9.36 and the build drop the always-visible info box.",
+   "deleted_cases": [
+    "D-185 C1210946"
+   ],
+   "answered_question": "Q23"
   },
   {
    "id": "TPD-A137",
@@ -1494,13 +1573,15 @@
    "where": "9.12, 9.13",
    "prd": "§6d line 10 (no source settles it)",
    "design": "Manage Customers columns move 11 px on a search and 83 px on no match",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "D-179"
    ],
-   "question": "Q31",
-   "held_case": "D-179",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 31 (chosen (a)): Columns and fields keep their place across state changes; the canvas moves are not intended. PRD: IN v38: new S19-R24. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Columns and boxes keep their place: nothing moves sideways or down when a row opens or closes, a search narrows a list, a list is empty, a filter chip changes, the Add Part row opens or a page switches between view and edit. The moves in the canvas pictures are not intended. PRD fix needed: add this as a Story 19 rule (stable column widths across states).",
+   "released_case": "D-179",
+   "answered_question": "Q31"
   },
   {
    "id": "TPD-A138",
@@ -1508,15 +1589,18 @@
    "where": "12.1, 12.2",
    "prd": "S12-R2 \"the matrix, its side (Work Order Matrix or Part Sale Matrix) and the rule\"; S12-R18 \"Fleet is the same as the previous tier, Wholesale, in Brakes.\"",
    "design": "Matrix \"Tread Plus · Tier 2\" with no side; row \"Same as previous tier: Default\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
     "S12-01",
-    "S12-05",
-    "D-211"
+    "S12-05"
    ],
-   "question": "Q26",
-   "held_case": "D-211",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 26 (chosen (a)): Price details as the PRD says; on a Part Sale with no separate Part Sale pricing the side reads \"Same as work orders\". PRD: IN v38: S12-R2. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) As the PRD says: the matrix, its side and the rule; for a previous tier, a sentence such as \"Fleet is the same as the previous tier, Wholesale, in Brakes.\" Caveat: only a part on a Part Sale whose matrix has no separate Part Sale Matrix shows the side as \"Same as work orders\" (it was priced by the Work Order Matrix). Parts on work orders always show Work Order Matrix. PRD fix needed: Story 12 price details add the Part Sale \"Same as work orders\" case. Canvas 12.1, 12.2 and the build follow.",
+   "deleted_cases": [
+    "D-211 C1210953"
+   ],
+   "answered_question": "Q26"
   },
   {
    "id": "TPD-A139",
@@ -1538,14 +1622,17 @@
    "where": "14.8",
    "prd": "S14-R2 \"Manual, Fixed price, Fixed line total and Before tiers lines don't count\"",
    "design": "\"4 lines priced at Tier 2, Fixed price and Manual for the previous customer\"",
-   "outcome": "PO-CANDIDATE",
+   "outcome": "CLOSED",
    "cases": [
-    "S14-06",
-    "D-224"
+    "S14-06"
    ],
-   "question": "Q27",
-   "held_case": "D-224",
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 27 (chosen (a)): Change Customer notice counts only tier/Default lines. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Only lines priced by a tier or Default count; Manual, Fixed price, Fixed line total and Before tiers lines don't, and no tier name shows when several tiers priced them, as the PRD says. PRD stays; canvas 14.8 and the build follow it.",
+   "deleted_cases": [
+    "D-224 C1210964"
+   ],
+   "answered_question": "Q27"
   },
   {
    "id": "TPD-A141",
@@ -1703,16 +1790,19 @@
    "where": "20.20",
    "prd": "RPT-S4-R7: title; \"Date Range\"; \"Locations\"; then one line each for Sales Type, Category, Priced By and Customer",
    "design": "The CSV starts with title, date range and every filter (Priced By before Category)",
-   "outcome": "PO-CANDIDATE",
-   "question": "Q30",
-   "held_case": "D-443",
+   "outcome": "CLOSED",
    "cases": [
     "RPT-62",
     "RPT-63",
-    "D-425",
-    "D-443"
+    "D-425"
    ],
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 30 (chosen (a)): Download filter lines: Sales Type, Category, Priced By, Customer. PRD: Reports PRD unchanged (v21, no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Sales Type, Category, Priced By, Customer, as the reports PRD writes and the developers build, keeping the design's \"All …\" wording. Reports PRD stays; canvas 20.20 follows it.",
+   "deleted_cases": [
+    "D-443 C1211036"
+   ],
+   "answered_question": "Q30"
   },
   {
    "id": "TPD-B410",
@@ -1731,17 +1821,20 @@
    "where": "20.2-20.4, 20.5, 20.9, 20.12, 20.13, 20.18, 20.20",
    "prd": "RPT-S1-R11 \"2 · Fleet\", \"(archived)\"; RPT-S3-R3 archived marked \"(archived)\"; RPT-S4-R3 tier numbers in downloads; RPT-S3-R5 \"Sales Type: All\"",
    "design": "Rows and CSV \"Tier 2\" with no number; Priced By list \"Fleet Old\" with no \"(archived)\"; plain chips with no \": All\"",
-   "outcome": "PO-CANDIDATE",
-   "question": "Q28",
-   "held_case": "D-440",
+   "outcome": "CLOSED",
    "cases": [
     "RPT-12",
     "RPT-39",
     "RPT-42",
-    "RPT-59",
-    "D-440"
+    "RPT-59"
    ],
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 28 (chosen (a)): Reports: \"2 · Fleet\", \"(archived)\", \"Sales Type: All\". PRD: Reports PRD unchanged (v21, no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) As the reports PRD writes: an active tier as its number and name (\"2 · Fleet\"), an archived tier as its name with \"(archived)\", the same in the downloads, and the chip \"Sales Type: All\". Reports PRD stays; the canvas report pictures and the build follow it.",
+   "deleted_cases": [
+    "D-440 C1211033"
+   ],
+   "answered_question": "Q28"
   },
   {
    "id": "TPD-B412",
@@ -1749,14 +1842,17 @@
    "where": "20.7",
    "prd": "RPT-S3-R9: \"Category: lists every category with Uncategorized first, then A to Z.\"",
    "design": "Uncategorized in A-to-Z order (between Tires, Retread and Wipers)",
-   "outcome": "PO-CANDIDATE",
-   "question": "Q29",
-   "held_case": "D-441",
+   "outcome": "CLOSED",
    "cases": [
-    "RPT-40",
-    "D-441"
+    "RPT-40"
    ],
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 29 (chosen (a)): Reports Category filter: Uncategorized first, then A to Z. PRD: Reports PRD unchanged (v21, no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Uncategorized first, then A to Z, as the reports PRD says. Reports PRD stays; canvas 20.7 and the build follow it.",
+   "deleted_cases": [
+    "D-441 C1211034"
+   ],
+   "answered_question": "Q29"
   },
   {
    "id": "TPD-B413",
@@ -1764,14 +1860,17 @@
    "where": "11.7",
    "prd": "TP S11-R15: \"The receive window says nothing about tiers. Its 6-second notice reads \\\"Updating the cost also updates the sell price.\\\"\"",
    "design": "Toast \"Part received\" / \"$80.00 each, Tier 2.\" and no \"Updating the cost also updates the sell price.\" notice",
-   "outcome": "PO-CANDIDATE",
-   "question": "Q25",
-   "held_case": "D-442",
+   "outcome": "CLOSED",
    "cases": [
-    "S11-31",
-    "D-442"
+    "S11-31"
    ],
-   "in_scope": true
+   "in_scope": true,
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 25 (chosen (a)): Receive shows the PRD's 6-second notice, nothing about tiers. PRD: PRD unchanged (no fix needed). Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) The PRD's 6-second notice \"Updating the cost also updates the sell price.\", with nothing about tiers. PRD stays; canvas 11.7 and the build drop the \"Part received / $80.00 each, Tier 2.\" message.",
+   "deleted_cases": [
+    "D-442 C1211035"
+   ],
+   "answered_question": "Q25"
   },
   {
    "id": "TPD-B414",
@@ -1779,9 +1878,7 @@
    "where": "proof §6b, pages 10, 11, 20 (the pages 10/11/13/20 part of TPD-L03, carried by batch A as TPD-A122)",
    "prd": "§6d line 10: no source settles these moves",
    "design": "Sales by Tier 58-94 px on open rows and 20-36 px on empty states; Sales by Category 5-10 px; chips shift; work-order lines 19-71 px during Quick Add, 1-9 px after add/receive",
-   "outcome": "PO-CANDIDATE",
-   "question": "Q31",
-   "held_case": "D-450",
+   "outcome": "CLOSED",
    "cases": [
     "D-450",
     "D-451",
@@ -1792,7 +1889,11 @@
     "D-456"
    ],
    "in_scope": true,
-   "replaces": "TPD-A122"
+   "replaces": "TPD-A122",
+   "closed_by": "PO ruling, Matt Barge 16 Nov 2026, question 31 (chosen (a)): Columns and fields keep their place across state changes; the canvas moves are not intended. PRD: IN v38: new S19-R24. Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).",
+   "ruling_verbatim": "(a) Columns and boxes keep their place: nothing moves sideways or down when a row opens or closes, a search narrows a list, a list is empty, a filter chip changes, the Add Part row opens or a page switches between view and edit. The moves in the canvas pictures are not intended. PRD fix needed: add this as a Story 19 rule (stable column widths across states).",
+   "released_case": "D-450",
+   "answered_question": "Q31"
   },
   {
    "id": "TPD-B415",

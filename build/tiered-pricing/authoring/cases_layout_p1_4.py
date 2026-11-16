@@ -119,7 +119,8 @@ C("D-78", K, "Design: Edit then Cancel returns the grid to the same view",
   [ADMIN, tier("A", ", so the grid has a tier column"), matrix("A", ", three ranges"), W1440],
   [MATRICES, "Click matrix A's name.", "Take a screenshot of the grid.", EDIT, "Click Cancel."],
   [R(S("S3-R25"), "The Matrices list shows."), R(S("S3-R25"), "Matrix A's page opens in view."), R(S("S3-R25"), "The screenshot is saved."), R(S("S4-R4"), "The grid is in edit."),
-   R(S("S3-R25", "Cancel discards every change and returns it to view"), "The grid is back in view and matches the screenshot: every column keeps its same place and width, every value the same.")],
+   R([S("S3-R25", "Cancel discards every change and returns it to view"), S("S19-R24", "Columns and fields keep their place and width when a screen changes state"), S("S19-R24", "a page switching between view and edit")],
+     "The grid is back in view and matches the screenshot: every column keeps its same place and width, every value the same.")],
   pics=["3.2", "4.6"], flags=["movement"])
 
 C("D-79", K, "Design: archiving a tier keeps the Tiers list columns in place",

@@ -240,3 +240,18 @@ C("S19-23", K, "Saving one matrix tab never makes the other tab's save stale",
    R([S("S19-E2", "If someone else saved first, the second save is refused and nothing is saved."), QT("One side per request, so each tab saves on its own", "TPX-15")],
      "The Part Sale grid saves with 40.", "No \"was changed by someone else\" message shows.")],
   pics=["3.19"])
+
+# ---- 16 Nov 2026: PRD v38 S19-R23 example (Matt Barge's answer 14), new case ------------------------------------------------------
+C("S19-24", K, "The Audit Log records a rule type change and the values typed after it",
+  [ADMIN, tier("A"), matrix("A", ", three ranges, pricing one new category made for this test, tier A on Margin % 15 in every range"), DESK],
+  [MATRICES, open_matrix("A"), EDIT, "Pick % Off in tier A's rule picker.", "Type 10 in tier A's first range.", "Type 12 in tier A's second range.",
+   "Type 15 in tier A's last range.", SAVE, "Open the page's three-dot menu.", "Click Audit Log."],
+  [R(S("S19-R8"), "Matrix A is listed."), R(S("S19-R8"), "Matrix A's page opens."), R(S("S4-R4"), "The grid is in edit."),
+   R(S("S4-R7", "% Off and $ Off start empty in every range"), "Tier A's three ranges are % Off and empty."),
+   R(S("S4-R4"), "Tier A's first range reads 10."), R(S("S4-R4"), "Tier A's second range reads 12."), R(S("S4-R4"), "Tier A's last range reads 15."),
+   R(S("S4-R12", "The grid returns to view."), "The grid saves and returns to view."), R(S("S19-R19"), "The menu lists Audit Log."),
+   R(S("S19-R19", "titled \"Audit Log: <matrix>\""), "A dialog titled \"Audit Log:\" and matrix A's name opens.")
+   + R(S("S19-R23", "Each save makes one Audit Log entry on the log of what was saved, summing up everything that save changed"), "The newest entry is one entry for this save.")
+   + R(S("S19-R23", "A rule-type change and the values entered after it are both recorded, for example \"Tier 5: rule type Margin % → % Off; 3 range values changed\"."),
+       "It reads tier A's name followed by \": rule type Margin % → % Off; 3 range values changed\".")],
+  pics=["6.14", "2.6"])

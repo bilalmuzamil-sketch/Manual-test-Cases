@@ -32,11 +32,10 @@ NOT_TESTABLE = {
 }
 
 HELD = {
- "TPX-01": "Q24",
-}
+}   # 16 Nov 2026: TPX-01 released (Matt Barge's answer 24 agrees with the plan; PRD v38 S10-R14; cited by S10-39)
 
 PARTIAL = {
- "TP-S10-R14": "Everything but a reopened paid work order is checked (S10-34 to S10-38); which tier prices parts added after reopening is held on Q24 (S10-39).",
+ "TP-S10-R14": "Every part of S10-R14 is checked (S10-34 to S10-38); a line added to a paid work order goes on a new work order priced by the customer's current tier (PRD v38, answer 24): S10-39.",
  "TP-S11-R7": ("Quick Add, the inline row, catalog search, the part request modal, Tech View, the phone part request, canned lines (tier and Default "
                "work orders, no-cost parts, labor) and inspections are checked; ShopCoach and canned lines added by Maintenance Reminders are not "
                "checked by hand: neither the PRD, the design nor the tech plan says how a tester makes them add a part; listed for the developers. "
@@ -71,11 +70,11 @@ STRESS = {
  "tier names in the work order toasts (Part added)": "D-465",
 }
 MOVEMENT = {
- "Sales by Tier columns when a row and a customer open (20.2 vs 20.3, 20.4; held on Q31)": "D-450",
- "Sales by Tier headings on the empty states (20.2 vs 20.11, 20.21-20.23; held on Q31)": "D-451",
- "Sales by Category columns when a category opens (20.16 vs 20.17; held on Q31)": "D-452",
- "work order lines table while Quick Add is open (10.5 vs 10.6, 10.7, 10.9; held on Q31)": "D-453",
- "report filter chips when a chip widens (20.2 vs 20.9; held on Q31)": "D-454",
+ "Sales by Tier columns when a row and a customer open (20.2 vs 20.3, 20.4; S19-R24 v38)": "D-450",
+ "Sales by Tier headings on the empty states (20.2 vs 20.11, 20.21-20.23; S19-R24 v38)": "D-451",
+ "Sales by Category columns when a category opens (20.16 vs 20.17; S19-R24 v38)": "D-452",
+ "work order lines table while Quick Add is open (10.5 vs 10.6, 10.7, 10.9; S19-R24 v38)": "D-453",
+ "report filter chips when a chip widens (20.2 vs 20.9; S19-R24 v38)": "D-454",
  "Sales by Tier sort keeps columns (20.12 vs 20.13)": "D-455",
  "Totals row and columns as more rows load (S1-R7, S1-R12)": "D-456",
 }

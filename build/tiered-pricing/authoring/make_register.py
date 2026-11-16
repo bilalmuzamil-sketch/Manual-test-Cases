@@ -158,3 +158,37 @@ out = {"project": "Tiered Pricing", "made": "2026-11-14", "phase": "1 (stories 1
 json.dump(out, open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json", "w"), indent=1, ensure_ascii=False)
 from collections import Counter
 print(len(rows), dict(Counter(r["outcome"] for r in rows)), "in scope", sum(r["in_scope"] for r in rows))
+
+# ---- 16 Nov 2026: Matt Barge answered questions 1-31 (PRD v38). Every PO-CANDIDATE row whose question is answered is CLOSED by the ruling
+# (Rule 130: "if the design wins, release it ...; if the PRD wins, delete the held case with the QA lead's go-ahead and record the ruling").
+# QA lead, 16 Nov 2026: "Named set, write it (Recommended)". Deleted held cases leave `cases`/`held_case` (build.py checks those exist) and are
+# recorded in `deleted_cases` with their C-ids; released/rewritten held cases are recorded in `released_case`.
+import re as _re, csv as _csv
+_ANS = {f"Q{a['number']}": a for a in json.load(open(f"{P}/questions-2026-11-14/ANSWERS-2026-11-16.json"))["answers"]}
+_IMP = {c["key"]: c for c in json.load(open(f"{P}/po-answers-2026-11-16/IMPACT-CASES.json"))["cases"]}
+_IDM = {r["key"]: r["case_id"] for r in _csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
+_DEC = {}
+for _l in open(f"{P}/po-answers-2026-11-16/IMPACT.md"):
+    _m = _re.match(r"^\| (\d+) \| [^|]+ \| \(([abc])\) \| (.+?) Held: .*\| (.+) \|$", _l)
+    if _m: _DEC[f"Q{_m.group(1)}"] = (_m.group(3).strip(), _m.group(4).strip())
+_DELETED = {k for k, c in _IMP.items() if c["verdict"] == "DELETE"}
+for r in rows:
+    q = r.get("question")
+    if r["outcome"] != "PO-CANDIDATE" or q not in _ANS: continue
+    a = _ANS[q]; dec, prd = _DEC.get(q, ("", ""))
+    r["outcome"] = "CLOSED"
+    r["closed_by"] = (f"PO ruling, Matt Barge 16 Nov 2026, question {q[1:]} (chosen ({a['chosen']})): {dec} PRD: {prd}. "
+                      "Cases rewritten or released 16 Nov 2026 (po-answers-2026-11-16/PASS-REPORT.md).")
+    r["ruling_verbatim"] = a["answer_verbatim"]
+    hc = r.pop("held_case", None)
+    gone = [k for k in r.get("cases", []) if k in _DELETED] + ([hc] if hc in _DELETED else [])
+    if gone: r["deleted_cases"] = sorted({f"{k} C{_IDM.get(k, '?')}" for k in gone})
+    if hc and hc not in _DELETED: r["released_case"] = hc
+    r["cases"] = [k for k in r.get("cases", []) if k not in _DELETED]
+    if not r["cases"]: r.pop("cases")
+    r.pop("question", None); r["answered_question"] = q
+out["prd"] = "Confluence 938213378 page v38 (16 Nov 2026; was v37)"
+out["sent"] = ("Questions 1-31 sent in the sheet https://docs.google.com/spreadsheets/d/1qVTIPIWUarmDGg6AjD1q8BbitlynKdjy9VYBCpGuMeY and all answered by "
+               "Matt Barge on 16 Nov 2026; rows that waited on them are CLOSED by the ruling (16 Nov 2026).")
+json.dump(out, open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json", "w"), indent=1, ensure_ascii=False)
+print("after the 16 Nov 2026 rulings:", dict(Counter(r["outcome"] for r in rows)), "| rows with deleted cases", sum(1 for r in rows if r.get("deleted_cases")))
