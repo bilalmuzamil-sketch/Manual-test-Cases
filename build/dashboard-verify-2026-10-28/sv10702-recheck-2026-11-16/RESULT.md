@@ -1,0 +1,21 @@
+# SV-10702: Chris answer 39(b) re-check and comment, 16 Nov 2026
+
+- **QA lead, 13 Nov 2026:** "do it now and tag chris ward and explain him nicely with screenshots annotated."
+- **Staging** build **v26.45.4-f3d3d2d**, 16 Nov 06:29–06:31 UTC, Admin, Staging Heavy Duty - 9919.
+- **Rule 99:**
+  - The server zone, read live from GET /api/staff/my-workplaces at 06:31 UTC, is Asia/Karachi.
+  - Session change-location, browser timezoneId, process TZ and localStorage 'timezone' are all Asia/Karachi (out-*/meta.json).
+  - `tz_rules_check.py` Asia/Karachi 16 Sep–16 Nov: MATCH (tz-check.txt).
+- **Timesheet Activities** (Custom 09/18/2026–09/19/2026, set through the date chip):
+  - S2-15119, Sep 18, 11:40 PM–11:59 PM, 0.33;
+  - S2-15119, Sep 19, 12:00 AM–11:59 PM, 24.00;
+  - S2-33043, Sep 18, 12:00 AM–11:40 PM, 23.67.
+- **Payroll Timesheet export** (Custom 01/01/2026–11/16/2026), Admin Shopview:
+  - 16 Sep 0.01, 17 Sep 12.11, **18 Sep 23.67, 19 Sep 24.33**, 20 Sep 24.00 (out-payHD/rows-payHD.csv).
+- **Verdict:** REPRODUCED, the same as on 4 Nov (v26.45.0-440aa25).
+- **Expected:** Chris Ward, answer 39 (corrected)(b): *"Yes. Time counts on the day it was worked, in the location's time zone. A timesheet that runs past midnight is split at midnight."*
+- **Jira:** comment **81454** on SV-10702, tagging Chris Ward, with the annotated picture embedded.
+  - Picture: media afcd066e-b3e1-4866-8400-7331afae9274, attachment 64530, 399,173 bytes, which equals the local file.
+  - Read back: renderedBody has the mention link and the `<img>`.
+  - Re-checked just before posting: only comment 81185 (Ammar Mughamis, 13 Nov) existed.
+- The full downloaded payroll CSV was not committed (staff names); only the extracted rows were.

@@ -304,3 +304,9 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 - No question was asked, so no picture was needed.
 - Not changed: "late in the evening" (true under both rules); step 2 (already corrected by 80351); Expected (Chris's 5 Nov answer; Nov 4 either way).
 - Also scheduled for the QA lead: a reminder on 16 Nov 10:00 UTC to decide SV-11688's epic (trig_01XN1oUzaRotu4x6ucjr68co).
+
+## 16 Nov 2026 (~06:32 UTC): SV-10702 comment 81454 (Chris answer 39(b)), QA lead's go-ahead of 13 Nov
+- Re-checked on staging v26.45.4-f3d3d2d (reproduced); evidence `sv10702-recheck-2026-11-16/`.
+- Comment tags Chris Ward and embeds an annotated picture; read back OK.
+- No status change (SV-10702 is Blocked; not our ticket).
+- Same session: the 16 Nov reminder about SV-11688's epic was cancelled. The QA lead said it is QA verified; Jira shows "Ready for Production" (checked 06:28 UTC).
