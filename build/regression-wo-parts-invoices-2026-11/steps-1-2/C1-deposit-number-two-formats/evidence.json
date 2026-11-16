@@ -1,0 +1,31 @@
+{
+ "classification": "(c) question for Chris",
+ "question": "Which number should the deposit show - DEP-4841 or DEP2-4841 - and should both tabs show the same one?",
+ "recommendation": "Fix it - show DEP2-4841 on both tabs, the same way work order and invoice numbers carry the location part.",
+ "evidence_chain": [
+  {
+   "step": "old ticket",
+   "detail": "SV-5675 in Confluence 263094273 (16 Apr 2026): CP- numbers with the shop part, e.g. CP3-1234"
+  },
+  {
+   "step": "newer ticket",
+   "detail": "SV-10762 (Done, comment 77950, 6 Oct 2026): memo uses the on-screen WO number; \"make every deposit surface consistent\" - about the memo, not the deposit number"
+  },
+  {
+   "step": "code",
+   "detail": "ShopView/shopview develop: 54d4dd0465 \"Numbering: make CreditMemo + Deposit per-organization\"; 82cbf1ae27 (SV-10219, 19 Sep 2026) \"every consumer that forgot to call it printed a number the customer could not match against their paperwork\" - no commit found that decides the deposit number format per screen"
+  },
+  {
+   "step": "build",
+   "detail": "Deposits tab DEP-4841 vs Payments tab DEP2-4841, 16 Nov 2026 08:25-08:27 UTC, evidence/wo2/cust-deposits-all.png and cust-payments-expanded.png"
+  }
+ ],
+ "evidence_files": [
+  "evidence/wo2/cust-deposits-all.png",
+  "evidence/wo2/cust-payments-expanded.png",
+  "evidence/wo2/deposits-data.json",
+  "evidence/customer-payments-all.json"
+ ],
+ "environment": "Staging (app.staging.shopview.com), build v26.45.4-f3d3d2d, 16 Nov 2026, location \"ZZAUTOTEST R365 Location C with a name longer than the chip\", signed in as Admin. Browser and test machine set to the location's time zone (America/Edmonton).",
+ "duplicate_search": "Jira JQL (read-only, 16 Nov 2026 ~09:00 UTC): tax rounding / line-by-line; create invoice + approve/estimate/nothing; deposit + DEP/number - no open or closed ticket found for this exact behaviour (closest: SV-10762 deposit memo, SV-9867 deposit audit log, SV-11970 deposit date)"
+}

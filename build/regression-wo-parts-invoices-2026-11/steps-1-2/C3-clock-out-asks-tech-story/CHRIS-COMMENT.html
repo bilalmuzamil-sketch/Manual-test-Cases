@@ -1,0 +1,9 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Question for Chris</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:24px auto;line-height:1.45;color:#222}h1{font-size:20px}h2{font-size:16px;margin-top:20px}img{max-width:100%;border:1px solid #ccc}.q{background:#f6f6f6;padding:8px 12px;border-left:4px solid #999}</style></head><body>
+<p><b>DRAFT comment - not posted.</b> For the ticket this becomes, @mention Chris Ward.</p>
+<p>@Chris Ward - found during the work order and invoice regression on staging (16 Nov 2026).</p>
+<p><b>What happens today:</b> On S2-40396 Clock Out with Line Completed? on and an empty story shows &quot;Tech story is a required field&quot; and will not clock out; Require Tech Story is Off.</p>
+<p><b>What the sources say:</b> Simple Flow V2 says the tech story is required &quot;only when its setting is on&quot; and lists clock out, but the same page also says the current clock-out window stays as it is, so it does not settle it.</p>
+<p class="q">Confluence 771391574 &quot;Simple Flow V2&quot; (11 Sep 2026), Story 5 (SV-9251): &quot;The other line-level requirements stay: tech story, mileage, engine hours, each only when its setting is on&quot; (entry points listed in the same story: &quot;the line itself, the bulk action bar, the completion wizard and clock out&quot;). Same page: &quot;At clock out we will open current prod modal, when technician needs to toggle the Line completed&quot; and &quot;If a tech story is required and empty, it is required at clock out.&quot;</p>
+<p><img src="annotated.png" alt="annotated screenshot"></p>
+<p><b>Question:</b> When Require Tech Story is Off, should Clock Out with &quot;Line Completed?&quot; switched on still demand a tech story?</p>
+<p>Fix it, or leave it as it is?</p></body></html>

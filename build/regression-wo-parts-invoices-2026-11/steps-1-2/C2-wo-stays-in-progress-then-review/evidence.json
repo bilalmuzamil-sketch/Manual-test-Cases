@@ -1,0 +1,31 @@
+{
+ "classification": "(c) question for Chris",
+ "question": "If someone is still clocked in when the last line is completed with the Complete button, should the work order become Complete straight away (Require Review is Off), or stay In Progress and go to Review when they clock out?",
+ "recommendation": "Fix it - follow R12: Complete as soon as the last line is completed with the Complete button.",
+ "evidence_chain": [
+  {
+   "step": "PRD",
+   "detail": "Simple Mode 646021121 (16 Jul 2026) R12 and R13"
+  },
+  {
+   "step": "newer PRD",
+   "detail": "Simple Flow V2 771391574 (11 Sep 2026) Story 9 - no rule for an open clock"
+  },
+  {
+   "step": "code",
+   "detail": "api/src/VehicleService/WorkOrders/Domain/Service/WorkOrderStatusRefresher.php decides the status; no commit found that names a decision for \"last line completed while someone is clocked in\""
+  },
+  {
+   "step": "build",
+   "detail": "S2-40391 (08:03-08:05 UTC) and S2-40397 (09:06-09:08 UTC) on 16 Nov 2026: In Progress after the last Complete, Review after clock-out; evidence/wo1/07..08, evidence/q-c2-clocked-in-completion/01..02"
+  }
+ ],
+ "evidence_files": [
+  "evidence/q-c2-clocked-in-completion/01-last-line-completed-by-button-while-clocked-in.json",
+  "evidence/q-c2-clocked-in-completion/02-after-clock-out.json",
+  "evidence/wo1/07-both-lines-complete.json",
+  "evidence/wo1/08-clocked-out.json"
+ ],
+ "environment": "Staging (app.staging.shopview.com), build v26.45.4-f3d3d2d, 16 Nov 2026, location \"ZZAUTOTEST R365 Location C with a name longer than the chip\", signed in as Admin. Browser and test machine set to the location's time zone (America/Edmonton).",
+ "duplicate_search": "Jira JQL (read-only, 16 Nov 2026 ~09:00 UTC): tax rounding / line-by-line; create invoice + approve/estimate/nothing; deposit + DEP/number - no open or closed ticket found for this exact behaviour (closest: SV-10762 deposit memo, SV-9867 deposit audit log, SV-11970 deposit date)"
+}

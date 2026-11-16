@@ -1,0 +1,31 @@
+{
+ "classification": "(c) question for Chris",
+ "question": "When Require Tech Story is Off, should Clock Out with \"Line Completed?\" switched on still demand a tech story?",
+ "recommendation": "Fix it - follow the setting: no story required at Clock Out when Require Tech Story is Off.",
+ "evidence_chain": [
+  {
+   "step": "PRD",
+   "detail": "Simple Mode 646021121 (16 Jul 2026) TS-R2: \"When Require tech story is on, every line needs a tech story before completion\" (silent on Off)"
+  },
+  {
+   "step": "newer PRD",
+   "detail": "Simple Flow V2 771391574 (11 Sep 2026) Story 5 - \"each only when its setting is on\" vs \"we will open current prod modal\" (two readings)"
+  },
+  {
+   "step": "code",
+   "detail": "app ClockOutDialog.vue: the story is required whenever Line Completed? is on (or for a department clock); the rule predates SV-8683 (seen in 000308fadb, 26 Mar 2026) and SV-8683 (ccb3ac7932, 27 Aug 2026) kept it - no later commit or ticket found that decides it"
+  },
+  {
+   "step": "build",
+   "detail": "S2-40396 09:05 UTC and S2-40391 08:04 UTC, 16 Nov 2026; evidence/q-c3-clock-out-story/03-line-completed-on-no-story-blocked.json, evidence/wo1/07b-clock-out-asks-tech-story.png"
+  }
+ ],
+ "evidence_files": [
+  "evidence/q-c3-clock-out-story/03-line-completed-on-no-story-blocked.json",
+  "evidence/q-c3-clock-out-story/03b-repro-dialog.png",
+  "evidence/q-c3-clock-out-story/04-after-clock-out-with-story.json",
+  "evidence/wo1/07b-clock-out-asks-tech-story.png"
+ ],
+ "environment": "Staging (app.staging.shopview.com), build v26.45.4-f3d3d2d, 16 Nov 2026, location \"ZZAUTOTEST R365 Location C with a name longer than the chip\", signed in as Admin. Browser and test machine set to the location's time zone (America/Edmonton).",
+ "duplicate_search": "Jira JQL (read-only, 16 Nov 2026 ~09:00 UTC): tax rounding / line-by-line; create invoice + approve/estimate/nothing; deposit + DEP/number - no open or closed ticket found for this exact behaviour (closest: SV-10762 deposit memo, SV-9867 deposit audit log, SV-11970 deposit date)"
+}
