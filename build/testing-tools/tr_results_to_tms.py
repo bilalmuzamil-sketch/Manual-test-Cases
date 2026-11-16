@@ -41,6 +41,9 @@ def main():
     ap.add_argument("--tr-run", type=int, required=True)
     ap.add_argument("--tms-run", type=int, required=True)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--protect-others", action="store_true",
+                    help="write only where the TMS entry has no result, or its current result is OUR OWN TestRail copy "
+                         "(comment 'Copied from TestRail run') and TestRail has a newer one; never touch a person's result")
     ap.add_argument("--only-untested", action="store_true",
                     help="never touch a TMS run item that already has ANY result (QA lead, 2026-11-12: do not overwrite anything)")
     a = ap.parse_args()
@@ -53,6 +56,14 @@ def main():
     items = {i["case_id"]: i for i in tms.get_all("/runs/%d/items" % a.tms_run)}
     in_run = set(items)
     has_result = {c for c, i in items.items() if i.get("latest_result")}
+    ours = set()  # entries whose CURRENT result is one of our TestRail copies (safe to refresh)
+    if a.protect_others:
+        for cid in has_result:
+            hist = tms.get_all("/run-items/%d/results" % items[cid]["id"])
+            if hist and "Copied from TestRail run" in (hist[0].get("comment") or ""):
+                ours.add(cid)
+        a.only_untested = True
+        has_result = has_result - ours
     names = {}
 
     def who(uid):
