@@ -1,0 +1,179 @@
+{
+ "steps": [
+  {
+   "label": "baseline Nov 10 (rate 135)",
+   "day": "2026-11-10",
+   "http": 200,
+   "internal_h": 2.0,
+   "est_lost_labor_cents": 27000,
+   "row_keys": [
+    "est_lost_labor_cents",
+    "internal_seconds",
+    "location",
+    "staff_id",
+    "technician_name",
+    "total_seconds",
+    "wo_seconds"
+   ],
+   "read_at_utc": "2026-11-16T06:57:26+00:00"
+  },
+  {
+   "set_rate": 100,
+   "http": 201,
+   "at_utc": "2026-11-16T06:57:27+00:00",
+   "resp": "{\"data\": []}"
+  },
+  {
+   "set_rate": 200,
+   "http": 201,
+   "at_utc": "2026-11-16T07:00:13+00:00",
+   "resp": "{\"data\": []}"
+  },
+  {
+   "label": "today after C1@100 and C2@200 (rate now 200)",
+   "day": "2026-11-16",
+   "http": 200,
+   "internal_h": 0.03,
+   "est_lost_labor_cents": 300,
+   "row_keys": [
+    "est_lost_labor_cents",
+    "internal_seconds",
+    "location",
+    "staff_id",
+    "technician_name",
+    "total_seconds",
+    "wo_seconds"
+   ],
+   "read_at_utc": "2026-11-16T07:03:14+00:00"
+  },
+  {
+   "label": "Nov 10 after both changes (rate now 200)",
+   "day": "2026-11-10",
+   "http": 200,
+   "internal_h": 2.0,
+   "est_lost_labor_cents": 27000,
+   "row_keys": [
+    "est_lost_labor_cents",
+    "internal_seconds",
+    "location",
+    "staff_id",
+    "technician_name",
+    "total_seconds",
+    "wo_seconds"
+   ],
+   "read_at_utc": "2026-11-16T07:03:14+00:00"
+  },
+  {
+   "set_rate": 135,
+   "http": 201,
+   "at_utc": "2026-11-16T07:03:15+00:00",
+   "resp": "{\"data\": []}"
+  },
+  {
+   "label": "today after restoring 135",
+   "day": "2026-11-16",
+   "http": 200,
+   "internal_h": 0.03,
+   "est_lost_labor_cents": 300,
+   "row_keys": [
+    "est_lost_labor_cents",
+    "internal_seconds",
+    "location",
+    "staff_id",
+    "technician_name",
+    "total_seconds",
+    "wo_seconds"
+   ],
+   "read_at_utc": "2026-11-16T07:03:16+00:00"
+  },
+  {
+   "label": "Nov 10 after restoring 135",
+   "day": "2026-11-10",
+   "http": 200,
+   "internal_h": 2.0,
+   "est_lost_labor_cents": 27000,
+   "row_keys": [
+    "est_lost_labor_cents",
+    "internal_seconds",
+    "location",
+    "staff_id",
+    "technician_name",
+    "total_seconds",
+    "wo_seconds"
+   ],
+   "read_at_utc": "2026-11-16T07:03:16+00:00"
+  },
+  {
+   "label": "Nov 10 after restore",
+   "day": "2026-11-10",
+   "http": 200,
+   "internal_h": 2.0,
+   "est_lost_labor_cents": 27000,
+   "row_keys": [
+    "est_lost_labor_cents",
+    "internal_seconds",
+    "location",
+    "staff_id",
+    "technician_name",
+    "total_seconds",
+    "wo_seconds"
+   ],
+   "read_at_utc": "2026-11-16T07:03:18+00:00"
+  }
+ ],
+ "rule99": {
+  "location": "ZZAUTOTEST V1R-87 Location C",
+  "zone": "America/Edmonton",
+  "process_TZ": "America/Edmonton",
+  "session_change_location_zone": "America/Edmonton"
+ },
+ "labour_types_before": [
+  {
+   "id": "3b859b48-794d-4bb0-ae78-806e4f0c9f36",
+   "name": "General Labor",
+   "labour_rate": 135,
+   "is_default": true
+  }
+ ],
+ "clocks": [
+  {
+   "start_local": "10/11/2026 08:00",
+   "end_local": "10/11/2026 10:00",
+   "http": 201,
+   "id": "ad2bd8d6-1c35-41df-bd38-8741e99ef2b7",
+   "deleted_http": 204
+  },
+  {
+   "start_local": "16/11/2026 00:58",
+   "end_local": "16/11/2026 01:00",
+   "http": 201,
+   "id": "d5d348b5-4d34-41cb-af3c-18eb05d6a0bf",
+   "deleted_http": 204
+  },
+  {
+   "start_local": "16/11/2026 01:01",
+   "end_local": "16/11/2026 01:03",
+   "http": 201,
+   "id": "9195552b-b276-4821-a646-b809e56ceb81",
+   "deleted_http": 204
+  }
+ ],
+ "delete_default": {
+  "http": 400,
+  "resp": "{\"errors\": [{\"error\": \"This labor rate cannot be deleted because it is set as the location default.\\n                           Please select another default labor rate before attempting to delete\\n                           it.\"}]}",
+  "labour_types_after_delete": [
+   {
+    "name": "General Labor",
+    "labour_rate": 135,
+    "is_default": true
+   }
+  ]
+ },
+ "labour_types_end": [
+  {
+   "name": "General Labor",
+   "labour_rate": 135,
+   "is_default": true
+  }
+ ]
+}

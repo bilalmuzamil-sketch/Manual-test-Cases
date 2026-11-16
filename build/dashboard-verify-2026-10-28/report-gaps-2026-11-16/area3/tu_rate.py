@@ -54,9 +54,9 @@ else:
     tu(today, 'today after C1@100 and C2@200 (rate now 200)'); tu(nov10, 'Nov 10 after both changes (rate now 200)')
     setrate(T0, 135, 'restore rate 135')
     tu(today, 'today after restoring 135'); tu(nov10, 'Nov 10 after restoring 135')
-# S2-E3: remove the location's only (default) labour type, read, then put it back
-s, b = call('POST', '/api/labour-types/delete', {'id': T0['id']}, 'S2-E3: location with no default labour rate')
-RES['delete_default'] = {'http': s, 'resp': json.dumps(b)[:300], 'labour_types_after_delete': [{k: x.get(k) for k in ('name', 'labour_rate', 'is_default')} for x in (lt() or [])]}
+# S2-E3: remove the location's only (default) labour type, read, then put it back (run 1 only; run 2 skips: refused 400)
+s, b = (0, None) if os.environ.get('SKIP_E3') else call('POST', '/api/labour-types/delete', {'id': T0['id']}, 'S2-E3: location with no default labour rate')
+if not os.environ.get('SKIP_E3'): RES['delete_default'] = {'http': s, 'resp': json.dumps(b)[:300], 'labour_types_after_delete': [{k: x.get(k) for k in ('name', 'labour_rate', 'is_default')} for x in (lt() or [])]}
 if s in (200, 201, 204):
     tu(today, 'today with NO rate'); tu(nov10, 'Nov 10 with NO rate')
     open('/tmp/cln/rg16/a3_norate.flag', 'w').write('1')
@@ -67,4 +67,5 @@ RES['labour_types_end'] = [{k: x.get(k) for k in ('name', 'labour_rate', 'is_def
 tu(nov10, 'Nov 10 after restore')
 for c in RES.get('clocks', []):
     if c.get('id'): s, _ = call('DELETE', f"/api/technician-tasks/{c['id']}", None, 'clean-up seeded clock'); c['deleted_http'] = s
-json.dump(RES, open(os.path.join(D, 'tu-rate-results.json'), 'w'), indent=1); print('DONE')
+RES['clock_workplaces'] = [((curl('GET', '/api/technician-tasks/list?' + urlencode([('pagination[page]', 1), ('pagination[rowsPerPage]', 50)]), extra_headers=H)[1] or {}).get('data') or {}).get('collection', [])[:0]]
+json.dump(RES, open(os.path.join(D, os.environ.get('OUTF', 'tu-rate-results.json')), 'w'), indent=1); print('DONE')

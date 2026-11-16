@@ -1,0 +1,103 @@
+{
+ "export": "Customer Payment",
+ "location": "Staging Heavy Duty - 9919",
+ "zone": "Asia/Karachi",
+ "process_TZ": "Asia/Karachi",
+ "window": [
+  "2026-09-01",
+  "2026-09-30"
+ ],
+ "rows": 181,
+ "customers_looked_up": 42,
+ "by_kind": {
+  "invoice_payment": {
+   "rows": 125,
+   "pass": 123,
+   "fail_count": 2,
+   "fail": [
+    {
+     "customer_name_matches": 2
+    },
+    {
+     "customer_name_matches": 2
+    }
+   ]
+  },
+  "no_invoice": {
+   "rows": 36,
+   "pass": 33,
+   "fail_count": 3,
+   "fail": [
+    {
+     "row": [
+      "09-22-2026",
+      "0.00",
+      "Cash"
+     ],
+     "record": [
+      [
+       "2026-09-16 19:20:41",
+       0,
+       "payment"
+      ],
+      [
+       "2026-09-18 16:13:48",
+       0,
+       "payment"
+      ],
+      [
+       "2026-09-18 16:16:50",
+       2024.21,
+       "refund"
+      ],
+      [
+       "2026-09-21 22:57:23",
+       22,
+       "refund"
+      ]
+     ]
+    },
+    {
+     "row": [
+      "09-18-2026",
+      "0.00",
+      "Cash"
+     ],
+     "record": [
+      [
+       "2026-09-18 13:51:58",
+       172.29,
+       "refund"
+      ]
+     ]
+    },
+    {
+     "row": [
+      "09-15-2026",
+      "0.00",
+      "Cash"
+     ],
+     "record": [
+      [
+       "2026-09-14 22:35:46",
+       2.1,
+       "refund"
+      ]
+     ],
+     "customer_name_matches": 2
+    }
+   ]
+  },
+  "deposit": {
+   "rows": 20,
+   "pass": 20,
+   "fail_count": 0,
+   "fail": []
+  }
+ },
+ "kinds_seen": {
+  "payment": 433,
+  "refund": 32,
+  "deposit": 25
+ }
+}

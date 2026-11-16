@@ -1,0 +1,2364 @@
+{
+"summary": {
+"rowsNumber = rows": {
+"pass": 49,
+"fail": 0
+},
+"as_of_date = requested day (snapshot exists or today live)": {
+"pass": 44,
+"fail": 0
+},
+"S2-R2/R3 one row per part per location": {
+"pass": 49,
+"fail": 0
+},
+"S9-R1 default sort Total Cost desc": {
+"pass": 49,
+"fail": 0
+},
+"S2-R1 qty > 0": {
+"pass": 128919,
+"fail": 179
+},
+"S3-R7 Total Cost = Qty x Unit Cost": {
+"pass": 129098,
+"fail": 0
+},
+"S3-R6 Total Sell = Qty x Unit Sell": {
+"pass": 129098,
+"fail": 0
+},
+"S3-R8 Margin = Total Sell - Total Cost": {
+"pass": 129098,
+"fail": 0
+},
+"S3-R9 Margin % = Margin / Total Sell": {
+"pass": 128563,
+"fail": 0
+},
+"S7-R7 Location names the row location": {
+"pass": 61557,
+"fail": 0
+},
+"S4-R2 totals qty = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R2 totals total_cost = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R2 totals total_sell = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R2 totals margin = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R3 totals Margin % = total Margin / total Total Sell": {
+"pass": 31,
+"fail": 0
+},
+"S4-N1/S5-N1 empty -> zero totals, Margin % null": {
+"pass": 18,
+"fail": 0
+},
+"S5-R1 future day is capped at today": {
+"pass": 5,
+"fail": 0
+},
+"S3-E3 Margin % blank when Total Sell <= 0": {
+"pass": 535,
+"fail": 0
+},
+"HTTP 200": {
+"pass": 0,
+"fail": 1
+},
+"S7-R3 All locations = union of each location (same day)": {
+"pass": 0,
+"fail": 2
+},
+"S2-R1 row present iff non-core and on-hand > 0 (parts list)": {
+"pass": 11330,
+"fail": 31
+},
+"S3-R3 Qty = parts-list on-hand": {
+"pass": 9698,
+"fail": 17
+},
+"S3-R4 Unit Cost = part cost (parts list)": {
+"pass": 9715,
+"fail": 0
+},
+"S3-R5 Unit Sell = parts-list sell price (\"resolved the same way the parts list resolves it\")": {
+"pass": 9715,
+"fail": 0
+},
+"S3-R5 Unit Sell = fixed price, else matrix markup on cost, else cost (recomputed)": {
+"pass": 9714,
+"fail": 1
+},
+"S3-R14 Category / Vendor names": {
+"pass": 9715,
+"fail": 0
+},
+"B every IV row exists in the parts list": {
+"pass": 4,
+"fail": 0
+}
+},
+"failed_rows": [
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"label": "future",
+"day": "2026-11-17",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"label": "today",
+"day": "2026-11-16",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "HKIT",
+"key": "6bf25119-59a6-428c-932e-0c2b390c11df",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "FAB1",
+"key": "be71027c-05a1-423f-83fc-efac5cfd816c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "WS2",
+"key": "e9dea256-4871-45f1-a807-1889df5e2ef8",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "ES1",
+"key": "66eb3c08-f43c-4a44-a569-8981d7e278e1",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -86
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "MISCFEE",
+"key": "28e5b043-490c-40e6-a518-6260911e0e40",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "CXT-10-LV6",
+"key": "3db0141e-3bfb-4db6-aad8-7003fa2f0844",
+"loc": "Staging Lethbridge - 4310",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "NL4905-250",
+"key": "5cbed25d-8c84-4a9e-926c-67e2c33c345a",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "30084-205L",
+"key": "6038b6ca-8b30-4837-8c94-3f9228b2c7e5",
+"loc": "Staging Lethbridge - 4310",
+"qty": -14
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "1000-31RC925C",
+"key": "18c34f57-ad8c-47dc-a01b-c312d21a705c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "1603957K",
+"key": "45ad2309-d2ce-4b45-8a81-8d44d76905d6",
+"loc": "Staging Lethbridge - 4310",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -9989
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "HKIT",
+"key": "6bf25119-59a6-428c-932e-0c2b390c11df",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "FAB1",
+"key": "be71027c-05a1-423f-83fc-efac5cfd816c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "WS2",
+"key": "e9dea256-4871-45f1-a807-1889df5e2ef8",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "ES1",
+"key": "66eb3c08-f43c-4a44-a569-8981d7e278e1",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -86
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "MISCFEE",
+"key": "28e5b043-490c-40e6-a518-6260911e0e40",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "CXT-10-LV6",
+"key": "3db0141e-3bfb-4db6-aad8-7003fa2f0844",
+"loc": "Staging Lethbridge - 4310",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "NL4905-250",
+"key": "5cbed25d-8c84-4a9e-926c-67e2c33c345a",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "30084-205L",
+"key": "6038b6ca-8b30-4837-8c94-3f9228b2c7e5",
+"loc": "Staging Lethbridge - 4310",
+"qty": -14
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "1000-31RC925C",
+"key": "18c34f57-ad8c-47dc-a01b-c312d21a705c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "1603957K",
+"key": "45ad2309-d2ce-4b45-8a81-8d44d76905d6",
+"loc": "Staging Lethbridge - 4310",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -9989
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "HKIT",
+"key": "6bf25119-59a6-428c-932e-0c2b390c11df",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "FAB1",
+"key": "be71027c-05a1-423f-83fc-efac5cfd816c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "WS2",
+"key": "e9dea256-4871-45f1-a807-1889df5e2ef8",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "ES1",
+"key": "66eb3c08-f43c-4a44-a569-8981d7e278e1",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -86
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "MISCFEE",
+"key": "28e5b043-490c-40e6-a518-6260911e0e40",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "CXT-10-LV6",
+"key": "3db0141e-3bfb-4db6-aad8-7003fa2f0844",
+"loc": "Staging Lethbridge - 4310",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "NL4905-250",
+"key": "5cbed25d-8c84-4a9e-926c-67e2c33c345a",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "30084-205L",
+"key": "6038b6ca-8b30-4837-8c94-3f9228b2c7e5",
+"loc": "Staging Lethbridge - 4310",
+"qty": -14
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "1000-31RC925C",
+"key": "18c34f57-ad8c-47dc-a01b-c312d21a705c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "1603957K",
+"key": "45ad2309-d2ce-4b45-8a81-8d44d76905d6",
+"loc": "Staging Lethbridge - 4310",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "future",
+"day": "2026-11-17",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -9989
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "HKIT",
+"key": "6bf25119-59a6-428c-932e-0c2b390c11df",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "FAB1",
+"key": "be71027c-05a1-423f-83fc-efac5cfd816c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "WS2",
+"key": "e9dea256-4871-45f1-a807-1889df5e2ef8",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "ES1",
+"key": "66eb3c08-f43c-4a44-a569-8981d7e278e1",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -86
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "MISCFEE",
+"key": "28e5b043-490c-40e6-a518-6260911e0e40",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "CXT-10-LV6",
+"key": "3db0141e-3bfb-4db6-aad8-7003fa2f0844",
+"loc": "Staging Lethbridge - 4310",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "NL4905-250",
+"key": "5cbed25d-8c84-4a9e-926c-67e2c33c345a",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"loc": "DVI Test",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "30084-205L",
+"key": "6038b6ca-8b30-4837-8c94-3f9228b2c7e5",
+"loc": "Staging Lethbridge - 4310",
+"qty": -14
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "1000-31RC925C",
+"key": "18c34f57-ad8c-47dc-a01b-c312d21a705c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "1603957K",
+"key": "45ad2309-d2ce-4b45-8a81-8d44d76905d6",
+"loc": "Staging Lethbridge - 4310",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "ALL",
+"label": "today",
+"day": "2026-11-16",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -9989
+},
+{
+"check": "HTTP 200",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-1",
+"day": "2026-11-15"
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -86
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -9989
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -86
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "future",
+"day": "2026-11-17",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -9989
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -86
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"label": "today",
+"day": "2026-11-16",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"loc": "Staging Heavy Duty - 9919",
+"qty": -9989
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "HKIT",
+"key": "6bf25119-59a6-428c-932e-0c2b390c11df",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "FAB1",
+"key": "be71027c-05a1-423f-83fc-efac5cfd816c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "WS2",
+"key": "e9dea256-4871-45f1-a807-1889df5e2ef8",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "ES1",
+"key": "66eb3c08-f43c-4a44-a569-8981d7e278e1",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "MISCFEE",
+"key": "28e5b043-490c-40e6-a518-6260911e0e40",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "CXT-10-LV6",
+"key": "3db0141e-3bfb-4db6-aad8-7003fa2f0844",
+"loc": "Staging Lethbridge - 4310",
+"qty": -2
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "NL4905-250",
+"key": "5cbed25d-8c84-4a9e-926c-67e2c33c345a",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "30084-205L",
+"key": "6038b6ca-8b30-4837-8c94-3f9228b2c7e5",
+"loc": "Staging Lethbridge - 4310",
+"qty": -14
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "1000-31RC925C",
+"key": "18c34f57-ad8c-47dc-a01b-c312d21a705c",
+"loc": "Staging Lethbridge - 4310",
+"qty": -1
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-1",
+"day": "2026-11-15",
+"part": "1603957K",
+"key": "45ad2309-d2ce-4b45-8a81-8d44d76905d6",
+"loc": "Staging Lethbridge - 4310",
+"qty": -8
+},
+{
+"check": "S2-R1 qty > 0",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"label": "d-2",
+"day": "2026-11-14",
+"part": "HKIT",
+"key": "6bf25119-59a6-428c-932e-0c2b390c11df",
+"loc": "Staging Lethbridge - 4310",
+"qty": -3
+},
+{
+"check": "S7-R3 All locations = union of each location (same day)",
+"ok": false,
+"day": "2026-11-15",
+"n_all": 9715,
+"n_union": 4720,
+"diff": 4995
+},
+{
+"check": "S7-R3 All locations = union of each location (same day)",
+"ok": false,
+"day": "2026-11-14",
+"n_all": 9705,
+"n_union": 9715,
+"diff": 12
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "NBOR-04",
+"key": "f68f9f6b-fba7-4543-beb1-f17c452b8352",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "8WS-050",
+"key": "dbf1bf82-1171-4669-8d7e-cea4c3e87da1",
+"qty": -8,
+"list_qty": -8,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "8WS-050",
+"key": "42b0065b-fe6e-4b24-ad64-d1e8dae1734a",
+"got": 32,
+"exp": 36,
+"bins": [
+36,
+-4
+]
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "84-4006",
+"key": "da4d5f01-ffdf-43f6-a41d-54085f6c66ff",
+"got": 8,
+"exp": 9,
+"bins": [
+9,
+-1
+]
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "HDEO13",
+"key": "5a8a6703-e72b-41d3-8d18-7b2e575713cf",
+"got": 908,
+"exp": 909,
+"bins": [
+909,
+-1
+]
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "76-2404",
+"key": "3b921cb2-a1ca-4fa0-8ad3-c78f6bfb66e0",
+"got": 839,
+"exp": 840,
+"bins": [
+840,
+-1
+]
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "N35-50PLA",
+"key": "2836cdd6-3b7c-4c51-bc6c-5d904129b2fa",
+"got": 3,
+"exp": 4,
+"bins": [
+4,
+-1
+]
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "S100",
+"key": "4c5b5bf7-aa3d-49a6-8494-e14eb1ef7cad",
+"got": 16,
+"exp": 20,
+"bins": [
+20,
+-4
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "KN24000-G",
+"key": "5a5cadbd-20eb-4bfb-9055-42e8591826ab",
+"qty": 1,
+"list_qty": 1,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "123456",
+"key": "9d647e3d-9595-470e-95d3-83aa54c34bc9",
+"qty": -2,
+"list_qty": -2,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "BRAKECLEAN",
+"key": "94abe8e2-a36a-4e5d-a5ec-26d1436fe83e",
+"got": 375,
+"exp": 376,
+"bins": [
+376,
+-1
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "FLTPRO24715QP23K",
+"key": "a1d7b9ce-d439-4291-872d-e8433ca53854",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "N79-125",
+"key": "4fc8b7d0-27dc-4cff-b2d0-1c5d61ebe6b7",
+"got": 5,
+"exp": 7,
+"bins": [
+7,
+-2
+]
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "76-3327PK",
+"key": "e37f4f48-bf6f-4079-910c-9f6c280e0723",
+"got": -2,
+"exp": 1,
+"bins": [
+1,
+-3
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "LF3973",
+"key": "120736bf-106e-4984-a9b0-ad59e1dc7cb6",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "LF3818",
+"key": "6985211c-2a8b-4786-93de-3e949635d298",
+"qty": 1,
+"list_qty": 1,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "Fuel",
+"key": "50e128fc-3773-4f0a-89e0-41b0e76388f4",
+"qty": -86,
+"list_qty": -86,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "13M35152-PTO",
+"key": "0a07f3a7-000d-42fb-81d6-3df093b7bf5d",
+"got": 6,
+"exp": 8,
+"bins": [
+8,
+-2
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "179.1005",
+"key": "63ef1911-6820-45a1-b6a2-7ad65a05bd1d",
+"qty": 1,
+"list_qty": 1,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "S31S-950",
+"key": "31051084-b1ce-4e72-823d-46ad20d8f93e",
+"got": -3,
+"exp": 11,
+"bins": [
+-14,
+4,
+4,
+3
+]
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "45210125",
+"key": "ddc9c5ed-21b5-4690-a99f-05cdfdc5a751",
+"got": 11,
+"exp": 13,
+"bins": [
+13,
+-2
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "571.LG21A",
+"key": "4440f8e5-1bc6-4405-a2c6-a5b53c4751b8",
+"qty": 1,
+"list_qty": 1,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "LF16046",
+"key": "36242324-899c-435c-ae3a-5e1f7631d920",
+"qty": 1,
+"list_qty": 1,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "QASMK-1111-V0",
+"key": "4e03e286-6cfb-4864-9d01-06831cfbc02d",
+"qty": 5,
+"list_qty": 5,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "QASMK-1111-VN",
+"key": "31a786ae-8935-4f93-810d-6431513f70fa",
+"got": -9989,
+"exp": 5,
+"bins": [
+3,
+2,
+-9994
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "6382096RX",
+"key": "d111938c-93ee-4630-bf89-481b95bc323c",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "6382091RX",
+"key": "be2f1e89-bb4b-46ca-ba0e-f714da3f99e0",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "WS1",
+"key": "5027d711-7f80-4e54-a42d-59a7b1222be7",
+"qty": -2,
+"list_qty": -2,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "ZZRN-T1",
+"key": "eb6d6331-93de-43f3-818a-816fe3e2e390",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "QASMK-1111-CG",
+"key": "74ec9fd1-fc33-4820-97f5-cde7de63e98d",
+"qty": 1,
+"list_qty": 1,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "QASMK-1111-TD",
+"key": "8f632947-2d2e-4c59-875e-09dd914f3941",
+"qty": 2,
+"list_qty": 2,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Heavy Duty - 9919",
+"part": "QASMK-1111-UA",
+"key": "a318eec2-b4dc-4a3d-a5a3-0139c2fef842",
+"qty": 5,
+"list_qty": 5,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "REC15204",
+"key": "bba41d95-0483-415c-a32b-9f48b683d199",
+"got": 180,
+"exp": 181,
+"bins": [
+181,
+-1
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "1000-31RC925C",
+"key": "18c34f57-ad8c-47dc-a01b-c312d21a705c",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "NL4905-250",
+"key": "5cbed25d-8c84-4a9e-926c-67e2c33c345a",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "30084-205L",
+"key": "6038b6ca-8b30-4837-8c94-3f9228b2c7e5",
+"qty": -14,
+"list_qty": -14,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "ES1",
+"key": "66eb3c08-f43c-4a44-a569-8981d7e278e1",
+"qty": -3,
+"list_qty": -3,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "FAB1",
+"key": "be71027c-05a1-423f-83fc-efac5cfd816c",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "HKIT",
+"key": "6bf25119-59a6-428c-932e-0c2b390c11df",
+"qty": -3,
+"list_qty": -3,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S3-R5 Unit Sell = fixed price, else matrix markup on cost, else cost (recomputed)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "2599273C92",
+"key": "9b9f0a2c-6c05-421a-9f1a-808e2393c8e8",
+"got": 75244,
+"exp": 86341.931,
+"how": "default-matrix",
+"cost": 526.7
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "CXT-10-LV6",
+"key": "3db0141e-3bfb-4db6-aad8-7003fa2f0844",
+"qty": -2,
+"list_qty": -2,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "MISCFEE",
+"key": "28e5b043-490c-40e6-a518-6260911e0e40",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "LF14001NN",
+"key": "e00a0cc0-bea3-40a3-853f-46d6fd8815d6",
+"got": 1,
+"exp": 2,
+"bins": [
+2,
+-1
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "7202MP",
+"key": "f4e3e10c-473e-46ab-ba35-500de4196498",
+"qty": 1,
+"list_qty": 1,
+"is_core": 0,
+"present": false
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "14-22079-000",
+"key": "589d0e30-787c-43b7-98a6-810d745e7fd3",
+"got": 3,
+"exp": 4,
+"bins": [
+4,
+-1
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "1603957K",
+"key": "45ad2309-d2ce-4b45-8a81-8d44d76905d6",
+"qty": -8,
+"list_qty": -8,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S3-R3 Qty = parts-list on-hand",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "8T7838",
+"key": "9edb8a4f-00cf-4fd6-9e6c-02a253ecef25",
+"got": 11,
+"exp": 15,
+"bins": [
+15,
+-4
+]
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "WS2",
+"key": "e9dea256-4871-45f1-a807-1889df5e2ef8",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+},
+{
+"check": "S2-R1 row present iff non-core and on-hand > 0 (parts list)",
+"ok": false,
+"loc": "DVI Test",
+"part": "ZZAUTOTEST-SO2-10282011",
+"key": "75ae2bb1-852c-4f55-bd02-aa390afd75e2",
+"qty": -1,
+"list_qty": -1,
+"is_core": 0,
+"present": true
+}
+],
+"note": "failed_rows capped at 150 per check; full rows in /tmp/cln/rg16/w3/full/results-iv.json (not committed)."
+}

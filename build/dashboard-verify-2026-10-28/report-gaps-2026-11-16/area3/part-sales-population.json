@@ -1,0 +1,73 @@
+{
+ "source": "Dashboard PRD 788430850 v53: Revenue = \"Sum of invoice subtotals in the selected range\" (Sales report); S3-E2 void excluded",
+ "locations": {
+  "Staging Heavy Duty - 9919": {
+   "zone": "Asia/Karachi",
+   "part_sales_listed": 523,
+   "pages": 7,
+   "statuses": {
+    "invoiced": 169,
+    "estimate": 120,
+    "paid": 91,
+    "complete": 63,
+    "approved": 73,
+    "declined": 7
+   },
+   "population_invoiced_or_paid_since_2025": 260,
+   "found_in_sales": 259,
+   "missing": [
+    {
+     "number": "P2-2248",
+     "status": "paid",
+     "start": "2026-09-25 14:10:54",
+     "view_http": 404,
+     "record_dates": {}
+    }
+   ],
+   "missing_count": 1,
+   "missing_explained": {
+    "P2-2248": "status Paid but no invoice exists (work order record: is_invoice_created false, invoice_id empty, total $0.00; customer ZZAUTOTEST Bridgeport Hauling). Revenue/Sales count invoices, so it is correctly absent."
+   }
+  },
+  "Staging Lethbridge - 4310": {
+   "zone": "America/Edmonton",
+   "part_sales_listed": 169,
+   "pages": 3,
+   "statuses": {
+    "invoiced": 99,
+    "estimate": 15,
+    "paid": 50,
+    "declined": 3,
+    "complete": 1,
+    "approved": 1
+   },
+   "population_invoiced_or_paid_since_2025": 149,
+   "found_in_sales": 149,
+   "missing": [],
+   "missing_count": 0
+  },
+  "QB Location": {
+   "zone": "America/Vancouver",
+   "part_sales_listed": 5,
+   "pages": 2,
+   "statuses": {
+    "invoiced": 5
+   },
+   "population_invoiced_or_paid_since_2025": 5,
+   "found_in_sales": 5,
+   "missing": [],
+   "missing_count": 0
+  },
+  "DVI Test": {
+   "zone": "Pacific/Fiji",
+   "part_sales_listed": 0,
+   "pages": 1,
+   "statuses": {},
+   "population_invoiced_or_paid_since_2025": 0,
+   "found_in_sales": 0,
+   "missing": [],
+   "missing_count": 0
+  }
+ },
+ "verdict": "PASS: every invoiced or paid part sale with an invoice (HD 259, Lethbridge 149, QB 5, DVI 0 = 413) is listed in the Sales report; 1 paid part sale with no invoice explained"
+}
