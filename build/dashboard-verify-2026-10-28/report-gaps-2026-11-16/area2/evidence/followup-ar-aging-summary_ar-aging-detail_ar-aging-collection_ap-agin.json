@@ -1,0 +1,1410 @@
+{
+ "start": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-16T07:32:28.201Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ },
+ "reports": {
+  "ar-aging-summary": {
+   "report": "ar-aging-summary",
+   "heads0": [
+    {
+     "i": 0,
+     "t": "Customer",
+     "aria": "ascending",
+     "cls": "text-left"
+    },
+    {
+     "i": 1,
+     "t": "Location",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 2,
+     "t": "Current",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 3,
+     "t": "1-30 Days",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 4,
+     "t": "31-60 Days",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 5,
+     "t": "61-90 Days",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 6,
+     "t": "91 And Over",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 7,
+     "t": "Total",
+     "aria": null,
+     "cls": "text-right report-col-pinned text-weight-bold"
+    }
+   ],
+   "sorting": [
+    {
+     "header": "Customer",
+     "before": "ascending",
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Location",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Current",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=current&pagination%5Bdescending%5D=true"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=current&pagination%5Bdescending%5D=fals"
+      }
+     ]
+    },
+    {
+     "header": "1-30 Days",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_1_to_30&pagination%5Bdescending%5D"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_1_to_30&pagination%5Bdescending%5D"
+      }
+     ]
+    },
+    {
+     "header": "31-60 Days",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_31_to_60&pagination%5Bdescending%5"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_31_to_60&pagination%5Bdescending%5"
+      }
+     ]
+    },
+    {
+     "header": "61-90 Days",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_61_to_90&pagination%5Bdescending%5"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_61_to_90&pagination%5Bdescending%5"
+      }
+     ]
+    },
+    {
+     "header": "91 And Over",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_91_plus&pagination%5Bdescending%5D"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_91_plus&pagination%5Bdescending%5D"
+      }
+     ]
+    },
+    {
+     "header": "Total",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "91 And Over:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "91 And Over:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-summary.pdf",
+     "seconds": 12,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ar-aging-summary/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdesce"
+     ],
+     "bytes": 133552
+    },
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-summary.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close 2"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ar-aging-summary/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdesce"
+     ],
+     "bytes": 25314
+    }
+   ]
+  },
+  "ar-aging-detail": {
+   "report": "ar-aging-detail",
+   "heads0": [
+    {
+     "i": 0,
+     "t": "keyboard_arrow_right Date",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 1,
+     "t": "Location",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 2,
+     "t": "Transaction Type",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 3,
+     "t": "ID",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 4,
+     "t": "Customer Full Name",
+     "aria": "ascending",
+     "cls": "text-left"
+    },
+    {
+     "i": 5,
+     "t": "Due Date",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 6,
+     "t": "Amount",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 7,
+     "t": "Open Balance",
+     "aria": null,
+     "cls": "text-right report-col-pinned text-weight-bold"
+    }
+   ],
+   "sorting": [
+    {
+     "header": "keyboard_arrow_right Date",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Location",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Transaction Type",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "ID",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Customer Full Name",
+     "before": "ascending",
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Due Date",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Amount",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Customer Full Name:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Open Balance",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-detail.pdf",
+     "seconds": 23,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ar-aging-detail/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescen"
+     ],
+     "bytes": 406081
+    },
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-detail.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close 2"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ar-aging-detail/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=customer_name&pagination%5Bdescen"
+     ],
+     "bytes": 222915
+    }
+   ]
+  },
+  "ar-aging-collection": {
+   "report": "ar-aging-collection",
+   "heads0": [
+    {
+     "i": 0,
+     "t": "keyboard_arrow_right Date",
+     "aria": "ascending",
+     "cls": "text-left"
+    },
+    {
+     "i": 1,
+     "t": "Location",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 2,
+     "t": "Transaction Type",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 3,
+     "t": "ID",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 4,
+     "t": "Due Date",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 5,
+     "t": "Past Due",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 6,
+     "t": "Amount",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 7,
+     "t": "Open Balance",
+     "aria": null,
+     "cls": "text-right report-col-pinned text-weight-bold"
+    }
+   ],
+   "sorting": [
+    {
+     "header": "keyboard_arrow_right Date",
+     "before": "ascending",
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Location",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Transaction Type",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "ID",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Due Date",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Past Due",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=past_due&pagination%5Bdescending%5D="
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=past_due&pagination%5Bdescending%5D="
+      }
+     ]
+    },
+    {
+     "header": "Amount",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=amount&pagination%5Bdescending%5D=tr"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=amount&pagination%5Bdescending%5D=fa"
+      }
+     ]
+    },
+    {
+     "header": "Open Balance",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=open_balance&pagination%5Bdescending"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ar-aging-collection?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=open_balance&pagination%5Bdescending"
+      }
+     ]
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (PDF)",
+     "filename": "ar-aging-collection.pdf",
+     "seconds": 20,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ar-aging-collection/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%"
+     ],
+     "bytes": 354915
+    },
+    {
+     "item": "Download (CSV)",
+     "filename": "ar-aging-collection.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close 2"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ar-aging-collection/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%"
+     ],
+     "bytes": 194100
+    }
+   ]
+  },
+  "ap-aging-summary": {
+   "report": "ap-aging-summary",
+   "heads0": [
+    {
+     "i": 0,
+     "t": "Vendor",
+     "aria": "ascending",
+     "cls": "text-left"
+    },
+    {
+     "i": 1,
+     "t": "Location",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 2,
+     "t": "Current",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 3,
+     "t": "1-30 Days",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 4,
+     "t": "31-60 Days",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 5,
+     "t": "61-90 Days",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 6,
+     "t": "91 And Over",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 7,
+     "t": "Total",
+     "aria": null,
+     "cls": "text-right report-col-pinned text-weight-bold"
+    }
+   ],
+   "sorting": [
+    {
+     "header": "Vendor",
+     "before": "ascending",
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Location",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Vendor:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Vendor:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Current",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=current&pagination%5Bdescending%5D=true"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=current&pagination%5Bdescending%5D=fals"
+      }
+     ]
+    },
+    {
+     "header": "1-30 Days",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_1_to_30&pagination%5Bdescending%5D"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_1_to_30&pagination%5Bdescending%5D"
+      }
+     ]
+    },
+    {
+     "header": "31-60 Days",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_31_to_60&pagination%5Bdescending%5"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_31_to_60&pagination%5Bdescending%5"
+      }
+     ]
+    },
+    {
+     "header": "61-90 Days",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_61_to_90&pagination%5Bdescending%5"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_61_to_90&pagination%5Bdescending%5"
+      }
+     ]
+    },
+    {
+     "header": "91 And Over",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_91_plus&pagination%5Bdescending%5D"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-aging-summary?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=days_91_plus&pagination%5Bdescending%5D"
+      }
+     ]
+    },
+    {
+     "header": "Total",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "91 And Over:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "91 And Over:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (PDF)",
+     "filename": "ap-aging-summary.pdf",
+     "seconds": 21,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ap-aging-summary/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescend"
+     ],
+     "bytes": 180138
+    },
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-aging-summary.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close 2"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ap-aging-summary/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescend"
+     ],
+     "bytes": 38825
+    }
+   ]
+  },
+  "ap-aging-detail": {
+   "report": "ap-aging-detail",
+   "heads0": [
+    {
+     "i": 0,
+     "t": "keyboard_arrow_right Date",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 1,
+     "t": "Location",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 2,
+     "t": "Transaction Type",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 3,
+     "t": "No.",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 4,
+     "t": "Vendor Name",
+     "aria": "ascending",
+     "cls": "text-left"
+    },
+    {
+     "i": 5,
+     "t": "Due Date",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 6,
+     "t": "Past Due",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 7,
+     "t": "Amount",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 8,
+     "t": "Open Balance",
+     "aria": null,
+     "cls": "text-right report-col-pinned text-weight-bold"
+    }
+   ],
+   "sorting": [
+    {
+     "header": "keyboard_arrow_right Date",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Location",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Transaction Type",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "No.",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Vendor Name",
+     "before": "ascending",
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Due Date",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Past Due",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Amount",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Past Due:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Past Due:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Open Balance",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": null
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (PDF)",
+     "filename": null,
+     "seconds": 150,
+     "toasts": [],
+     "export_requests": [
+      "/api/reporting/reports/ap-aging-detail/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescendi"
+     ]
+    },
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-aging-detail.csv",
+     "seconds": 1,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ap-aging-detail/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=vendor_name&pagination%5Bdescendi"
+     ],
+     "bytes": 2118521
+    }
+   ]
+  },
+  "ap-unpaid-invoices": {
+   "report": "ap-unpaid-invoices",
+   "heads0": [
+    {
+     "i": 0,
+     "t": "keyboard_arrow_right Date",
+     "aria": "ascending",
+     "cls": "text-left"
+    },
+    {
+     "i": 1,
+     "t": "Location",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 2,
+     "t": "Transaction Type",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 3,
+     "t": "No.",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 4,
+     "t": "Vendor Name",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 5,
+     "t": "Due Date",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 6,
+     "t": "Past Due",
+     "aria": null,
+     "cls": "text-left"
+    },
+    {
+     "i": 7,
+     "t": "Amount",
+     "aria": null,
+     "cls": "text-right"
+    },
+    {
+     "i": 8,
+     "t": "Open Balance",
+     "aria": null,
+     "cls": "text-right report-col-pinned text-weight-bold"
+    }
+   ],
+   "sorting": [
+    {
+     "header": "keyboard_arrow_right Date",
+     "before": "ascending",
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5D=true"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Location",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "keyboard_arrow_right Date:ascending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Transaction Type",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=type&pagination%5Bdescending%5D=false"
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=type&pagination%5Bdescending%5D=true"
+      }
+     ]
+    },
+    {
+     "header": "No.",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Vendor Name",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Transaction Type:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Due Date",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=due_date&pagination%5Bdescending%5D=f"
+      },
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=due_date&pagination%5Bdescending%5D=t"
+      }
+     ]
+    },
+    {
+     "header": "Past Due",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Due Date:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Due Date:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Amount",
+     "before": null,
+     "clicks": [
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Due Date:descending"
+       ],
+       "sortReq": null
+      },
+      {
+       "aria": null,
+       "others_with_aria": [
+        "Due Date:descending"
+       ],
+       "sortReq": null
+      }
+     ]
+    },
+    {
+     "header": "Open Balance",
+     "before": null,
+     "clicks": [
+      {
+       "aria": "descending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=open_balance&pagination%5Bdescending%"
+      },
+      {
+       "aria": "ascending",
+       "others_with_aria": [],
+       "sortReq": "/api/reporting/reports/ap-unpaid-invoices?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=open_balance&pagination%5Bdescending%"
+      }
+     ]
+    }
+   ],
+   "downloads": [
+    {
+     "item": "Download (PDF)",
+     "filename": null,
+     "seconds": 150,
+     "toasts": [],
+     "export_requests": [
+      "/api/reporting/reports/ap-unpaid-invoices/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5"
+     ]
+    },
+    {
+     "item": "Download (CSV)",
+     "filename": "ap-unpaid-invoices.csv",
+     "seconds": 3,
+     "toasts": [
+      "check_circle Success Data exported successfully. Close"
+     ],
+     "export_requests": [
+      "/api/reporting/reports/ap-unpaid-invoices/export?asOfDate=2026-11-16&timezone=Asia%2FKarachi&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=date&pagination%5Bdescending%5"
+     ],
+     "bytes": 1723174
+    }
+   ]
+  }
+ },
+ "end": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-16T07:48:29.853Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.4-f3d3d2d"
+ }
+}

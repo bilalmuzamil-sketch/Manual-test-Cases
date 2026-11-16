@@ -232,7 +232,7 @@
   "quote": "The active sort column header exposes its sort state to assistive technology (aria-sort = ascending/descending on the active header, none on the others).",
   "observed": [
    [
-    "keyboard_double_arrow_down Technician",
+    "Technician",
     "ascending"
    ],
    [
@@ -256,7 +256,7 @@
     null
    ]
   ],
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "evidence": "evidence/screen-facts.json"
  },
  {
@@ -267,7 +267,7 @@
   "observed": {
    "sortable": 0,
    "headers": [
-    "keyboard_double_arrow_down Technician",
+    "Technician",
     "Total Hours",
     "WO Hours",
     "Internal Hours",
@@ -535,7 +535,7 @@
   "quote": "Every column is sortable except the chevron column.",
   "observed": [
    [
-    "keyboard_double_arrow_down",
+    "",
     false
    ],
    [
@@ -726,6 +726,1319 @@
     "56283.20",
     "99.52",
     "62029.23"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-representative",
+  "req": "S14-R1",
+  "source": "SBR spec, Confluence 585629698 v30 (21 Oct 2026)",
+  "quote": "The toolbar's \u22ef overflow menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\"",
+  "observed": [
+   "Download Summary (PDF)",
+   "Download Expanded View (PDF)",
+   "Download Summary (CSV)",
+   "Download Expanded View (CSV)"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-representative",
+  "req": "S14-R11/R15/R16",
+  "source": "SBR spec, Confluence 585629698 v30 (21 Oct 2026)",
+  "quote": "sales-by-representative-summary.pdf / -expanded.pdf / -summary.csv / -expanded.csv",
+  "observed": [
+   "sales-by-representative-summary.pdf",
+   "sales-by-representative-expanded.pdf",
+   "sales-by-representative-summary.csv",
+   "sales-by-representative-expanded.csv"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-representative",
+  "req": "S20-R3",
+  "source": "SBR spec, Confluence 585629698 v30 (21 Oct 2026)",
+  "quote": "The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.",
+  "observed": [
+   "Labor Delta",
+   "Labor Invoiced",
+   "Labor Margin",
+   "Parts Invoiced",
+   "Parts Margin",
+   "Shop Supplies",
+   "Adjustments",
+   "Margin",
+   "Margin %"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-representative",
+  "req": "S20-R5",
+  "source": "SBR spec, Confluence 585629698 v30 (21 Oct 2026)",
+  "quote": "Column visibility is persisted and restored per Story 23.",
+  "observed": null,
+  "verdict": "NOT VERIFIED",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-representative",
+  "req": "S14-R20a",
+  "source": "SBR spec, Confluence 585629698 v30 (21 Oct 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"Date Range: Nov 1, 2026 - Nov 16, 2026\"",
+   "\"Product Type: Parts & Service\"",
+   "\"Invoice Status: All Statuses\"",
+   "\"Locations: Staging Heavy Duty - 9919\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales-by-representative",
+  "req": "facts",
+  "source": "SBR spec, Confluence 585629698 v30 (21 Oct 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download Summary (PDF)",
+    "Download Expanded View (PDF)",
+    "Download Summary (CSV)",
+    "Download Expanded View (CSV)"
+   ],
+   "files": [
+    "sales-by-representative-summary.pdf",
+    "sales-by-representative-expanded.pdf",
+    "sales-by-representative-summary.csv",
+    "sales-by-representative-expanded.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close",
+    "check_circle Success Data exported successfully. Close 2",
+    "check_circle Success Data exported successfully. Close 3"
+   ],
+   "column_control": true,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 15,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": true,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "sales-by-representative-summary.csv": {
+     "header": [
+      "Representative",
+      "Labor Delta",
+      "Labor Invoiced",
+      "Labor Margin",
+      "Parts Invoiced",
+      "Parts Margin",
+      "Shop Supplies",
+      "Adjustments",
+      "Margin",
+      "Margin %",
+      "Subtotal"
+     ],
+     "data_rows": 1,
+     "totals_row_numbers": [
+      "14.10",
+      "2734.64",
+      "2734.64",
+      "454.25",
+      "270.58",
+      "287.14",
+      "0.00",
+      "3005.22",
+      "94.24",
+      "3476.03"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"Date Range",
+      "\"Product Type",
+      "\"Invoice Status",
+      "\"Locations"
+     ]
+    },
+    "sales-by-representative-expanded.csv": {
+     "header": [
+      "Representative",
+      "Date",
+      "Invoice #",
+      "Customer",
+      "Status",
+      "Hrs Worked",
+      "Hrs Invoiced",
+      "Labor Delta",
+      "Labor Invoiced",
+      "Labor Margin",
+      "Parts Invoiced",
+      "Parts Margin",
+      "Shop Supplies",
+      "Adjustments",
+      "Margin",
+      "Margin %",
+      "Subtotal"
+     ],
+     "data_rows": 8,
+     "totals_row_numbers": [
+      "0.00",
+      "14.10",
+      "14.10",
+      "2734.64",
+      "2734.64",
+      "454.25",
+      "270.58",
+      "287.14",
+      "0.00",
+      "3005.22",
+      "94.24",
+      "3476.03"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"Date Range",
+      "\"Product Type",
+      "\"Invoice Status",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {
+    "sales-by-representative-summary.pdf": {
+     "pages": 1,
+     "has_Locations": true,
+     "has_total_word": true,
+     "first_line": "Sales By Representative Report"
+    },
+    "sales-by-representative-expanded.pdf": {
+     "pages": 1,
+     "has_Locations": true,
+     "has_total_word": true,
+     "first_line": "Sales By Representative Report"
+    }
+   },
+   "screen_totals_numbers": [
+    "14.10",
+    "2734.64",
+    "2734.64",
+    "454.25",
+    "270.58",
+    "287.14",
+    "0.00",
+    "3005.22",
+    "94.24",
+    "3476.03"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "sales",
+  "req": "\u2014",
+  "source": "NO SOURCE",
+  "quote": "No written spec found for this report's downloads, column chooser, sorting or accessibility (28 Oct searches; Jira-only sources describe calculations).",
+  "observed": {
+   "export_menu": [],
+   "files": [],
+   "toasts": [],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 13,
+   "headers": 13,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": false,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": null,
+   "error": null,
+   "csv": {},
+   "pdf": {},
+   "screen_totals_numbers": [
+    "358.60",
+    "132814.81",
+    "54854.82",
+    "99.95",
+    "1376.90",
+    "244.67",
+    "82.23",
+    "55959.77",
+    "99.52",
+    "61721.23"
+   ]
+  },
+  "verdict": "NO SOURCE (facts recorded)",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "service-advisor-analysis",
+  "req": "\u2014",
+  "source": "NO SOURCE",
+  "quote": "No written spec found for this report's downloads, column chooser, sorting or accessibility (28 Oct searches; Jira-only sources describe calculations).",
+  "observed": {
+   "export_menu": [],
+   "files": [],
+   "toasts": [],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 4,
+   "headers": 18,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": false,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": null,
+   "error": null,
+   "csv": {},
+   "pdf": {},
+   "screen_totals_numbers": [
+    "0.27",
+    "358.60",
+    "358.33",
+    "132814.81",
+    "203166.00",
+    "244.67",
+    "1684.90",
+    "1440.23",
+    "85.48",
+    "56267.77",
+    "99.52",
+    "62029.23"
+   ]
+  },
+  "verdict": "NO SOURCE (facts recorded)",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "technician-efficiency",
+  "req": "\u2014",
+  "source": "NO SOURCE",
+  "quote": "No written spec found for this report's downloads, column chooser, sorting or accessibility (28 Oct searches; Jira-only sources describe calculations).",
+  "observed": {
+   "export_menu": [
+    "Download Summary",
+    "Download Expanded View"
+   ],
+   "files": [
+    "Technician-Efficiency-summary.pdf",
+    "Technician-Efficiency-expandedView.pdf"
+   ],
+   "toasts": [],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 4,
+   "headers": 8,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {},
+   "pdf": {
+    "Technician-Efficiency-summary.pdf": {
+     "pages": 1,
+     "has_Locations": false,
+     "has_total_word": true,
+     "first_line": "Technician Efficiency (Invoiced)"
+    },
+    "Technician-Efficiency-expandedView.pdf": {
+     "pages": 2,
+     "has_Locations": false,
+     "has_total_word": true,
+     "first_line": "Technician Efficiency (Invoiced)"
+    }
+   },
+   "screen_totals_numbers": [
+    "0.27",
+    "10.53"
+   ]
+  },
+  "verdict": "NO SOURCE (facts recorded)",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-summary",
+  "req": "S3-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each of the six reports has the native report Export menu (the \u22ef button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\".",
+  "observed": {
+   "button": {
+    "aria": "Export report",
+    "text": "more_horiz",
+    "tooltip": null
+   },
+   "menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-summary",
+  "req": "S2-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Every column on all six reports sorts when its header is clicked, except A/P Unpaid Invoices' Vendor Name column (S2-N1).",
+  "observed": [
+   [
+    "Customer",
+    false
+   ],
+   [
+    "Location",
+    false
+   ],
+   [
+    "Current",
+    false
+   ],
+   [
+    "1-30 Days",
+    false
+   ],
+   [
+    "31-60 Days",
+    false
+   ],
+   [
+    "61-90 Days",
+    false
+   ],
+   [
+    "91 And Over",
+    false
+   ],
+   [
+    "Total",
+    false
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-summary",
+  "req": "S3-R4/S3-R8",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "the CSV \"As of: Oct 15, 2026\" \u2026 The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-summary",
+  "req": "S3-R10",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "On a successful download the user sees a success notification with the caption \"Data exported successfully.\"",
+  "observed": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-summary",
+  "req": "S3-R5",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-summary",
+  "req": "facts",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "files": [
+    "ar-aging-summary.pdf",
+    "ar-aging-summary.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 8,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "ar-aging-summary.csv": {
+     "header": [
+      "Customer",
+      "Location",
+      "Current",
+      "1-30 Days",
+      "31-60 Days",
+      "61-90 Days",
+      "91 And Over",
+      "Total"
+     ],
+     "data_rows": 315,
+     "totals_row_numbers": [
+      "38569.49",
+      "139740.52",
+      "294360.06",
+      "136859.84",
+      "134029.83",
+      "743559.74"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"As of",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {
+    "ar-aging-summary.pdf": {
+     "pages": 28,
+     "has_Locations": true,
+     "has_total_word": true,
+     "first_line": "A/R Aging Summary"
+    }
+   },
+   "screen_totals_numbers": [
+    "38569.49",
+    "139740.52",
+    "294360.06",
+    "136859.84",
+    "134029.83",
+    "743559.74"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-detail",
+  "req": "S3-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each of the six reports has the native report Export menu (the \u22ef button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\".",
+  "observed": {
+   "button": {
+    "aria": "Export report",
+    "text": "more_horiz",
+    "tooltip": null
+   },
+   "menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-detail",
+  "req": "S2-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Every column on all six reports sorts when its header is clicked, except A/P Unpaid Invoices' Vendor Name column (S2-N1).",
+  "observed": [
+   [
+    "keyboard_arrow_right Date",
+    false
+   ],
+   [
+    "Location",
+    false
+   ],
+   [
+    "Transaction Type",
+    false
+   ],
+   [
+    "ID",
+    false
+   ],
+   [
+    "Customer Full Name",
+    false
+   ],
+   [
+    "Due Date",
+    false
+   ],
+   [
+    "Amount",
+    false
+   ],
+   [
+    "Open Balance",
+    false
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-detail",
+  "req": "S3-R4/S3-R8",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "the CSV \"As of: Oct 15, 2026\" \u2026 The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-detail",
+  "req": "S3-R10",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "On a successful download the user sees a success notification with the caption \"Data exported successfully.\"",
+  "observed": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-detail",
+  "req": "S3-R5",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-detail",
+  "req": "facts",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "files": [
+    "ar-aging-detail.pdf",
+    "ar-aging-detail.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 8,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "ar-aging-detail.csv": {
+     "header": [
+      "Aging Bucket",
+      "Date",
+      "Location",
+      "Transaction Type",
+      "ID",
+      "Customer Full Name",
+      "Due Date",
+      "Amount",
+      "Open Balance"
+     ],
+     "data_rows": 1790,
+     "totals_row_numbers": [
+      "773432.72",
+      "743559.74"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"As of",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {
+    "ar-aging-detail.pdf": {
+     "pages": 162,
+     "has_Locations": true,
+     "has_total_word": false,
+     "first_line": "A/R Aging Detail"
+    }
+   },
+   "screen_totals_numbers": [
+    "773432.72",
+    "743559.74"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-collection",
+  "req": "S3-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each of the six reports has the native report Export menu (the \u22ef button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\".",
+  "observed": {
+   "button": {
+    "aria": "Export report",
+    "text": "more_horiz",
+    "tooltip": null
+   },
+   "menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-collection",
+  "req": "S2-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Every column on all six reports sorts when its header is clicked, except A/P Unpaid Invoices' Vendor Name column (S2-N1).",
+  "observed": [
+   [
+    "keyboard_arrow_right Date",
+    false
+   ],
+   [
+    "Location",
+    false
+   ],
+   [
+    "Transaction Type",
+    false
+   ],
+   [
+    "ID",
+    false
+   ],
+   [
+    "Due Date",
+    false
+   ],
+   [
+    "Past Due",
+    false
+   ],
+   [
+    "Amount",
+    false
+   ],
+   [
+    "Open Balance",
+    false
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-collection",
+  "req": "S3-R4/S3-R8",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "the CSV \"As of: Oct 15, 2026\" \u2026 The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-collection",
+  "req": "S3-R10",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "On a successful download the user sees a success notification with the caption \"Data exported successfully.\"",
+  "observed": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-collection",
+  "req": "S3-R5",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ar-aging-collection",
+  "req": "facts",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "files": [
+    "no file and no new tab within 45 s",
+    "ar-aging-collection.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 8,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "ar-aging-collection.csv": {
+     "header": [
+      "Date",
+      "Location",
+      "Transaction Type",
+      "ID",
+      "Customer",
+      "Phone",
+      "Credit Term",
+      "Due Date",
+      "Past Due",
+      "Amount",
+      "Open Balance"
+     ],
+     "data_rows": 1674,
+     "totals_row_numbers": [
+      "734194.73",
+      "704990.25"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"As of",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {},
+   "screen_totals_numbers": [
+    "734194.73",
+    "704990.25"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-summary",
+  "req": "S3-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each of the six reports has the native report Export menu (the \u22ef button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\".",
+  "observed": {
+   "button": {
+    "aria": "Export report",
+    "text": "more_horiz",
+    "tooltip": null
+   },
+   "menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-summary",
+  "req": "S2-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Every column on all six reports sorts when its header is clicked, except A/P Unpaid Invoices' Vendor Name column (S2-N1).",
+  "observed": [
+   [
+    "Vendor",
+    false
+   ],
+   [
+    "Location",
+    false
+   ],
+   [
+    "Current",
+    false
+   ],
+   [
+    "1-30 Days",
+    false
+   ],
+   [
+    "31-60 Days",
+    false
+   ],
+   [
+    "61-90 Days",
+    false
+   ],
+   [
+    "91 And Over",
+    false
+   ],
+   [
+    "Total",
+    false
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-summary",
+  "req": "S3-R4/S3-R8",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "the CSV \"As of: Oct 15, 2026\" \u2026 The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-summary",
+  "req": "S3-R10",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "On a successful download the user sees a success notification with the caption \"Data exported successfully.\"",
+  "observed": [
+   "check_circle Success Data exported successfully. Close",
+   "check_circle Success Data exported successfully. Close 2"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-summary",
+  "req": "S3-R5",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-summary",
+  "req": "facts",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "files": [
+    "ap-aging-summary.pdf",
+    "ap-aging-summary.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close",
+    "check_circle Success Data exported successfully. Close 2"
+   ],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 8,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "ap-aging-summary.csv": {
+     "header": [
+      "Vendor",
+      "Location",
+      "Current",
+      "1-30 Days",
+      "31-60 Days",
+      "61-90 Days",
+      "91 And Over",
+      "Total"
+     ],
+     "data_rows": 497,
+     "totals_row_numbers": [
+      "4310286.65",
+      "286.65"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"As of",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {
+    "ap-aging-summary.pdf": {
+     "pages": 48,
+     "has_Locations": true,
+     "has_total_word": true,
+     "first_line": "A/P Aging Summary"
+    }
+   },
+   "screen_totals_numbers": [
+    "37020.21",
+    "120540.61",
+    "265133.72",
+    "330176.28",
+    "4093631.14",
+    "4846501.96"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-detail",
+  "req": "S3-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each of the six reports has the native report Export menu (the \u22ef button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\".",
+  "observed": {
+   "button": {
+    "aria": "Export report",
+    "text": "more_horiz",
+    "tooltip": null
+   },
+   "menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-detail",
+  "req": "S2-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Every column on all six reports sorts when its header is clicked, except A/P Unpaid Invoices' Vendor Name column (S2-N1).",
+  "observed": [
+   [
+    "keyboard_arrow_right Date",
+    false
+   ],
+   [
+    "Location",
+    false
+   ],
+   [
+    "Transaction Type",
+    false
+   ],
+   [
+    "No.",
+    false
+   ],
+   [
+    "Vendor Name",
+    false
+   ],
+   [
+    "Due Date",
+    false
+   ],
+   [
+    "Past Due",
+    false
+   ],
+   [
+    "Amount",
+    false
+   ],
+   [
+    "Open Balance",
+    false
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-detail",
+  "req": "S3-R4/S3-R8",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "the CSV \"As of: Oct 15, 2026\" \u2026 The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-detail",
+  "req": "S3-R10",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "On a successful download the user sees a success notification with the caption \"Data exported successfully.\"",
+  "observed": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-detail",
+  "req": "S3-R5",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-aging-detail",
+  "req": "facts",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "files": [
+    "no file and no new tab within 45 s",
+    "ap-aging-detail.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 9,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "ap-aging-detail.csv": {
+     "header": [
+      "Aging Bucket",
+      "Date",
+      "Location",
+      "Transaction Type",
+      "No.",
+      "Vendor Name",
+      "Due Date",
+      "Past Due",
+      "Amount",
+      "Open Balance"
+     ],
+     "data_rows": 14732,
+     "totals_row_numbers": [
+      "4846817.76",
+      "4846501.96"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"As of",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {},
+   "screen_totals_numbers": [
+    "4846817.76",
+    "4846501.96"
+   ]
+  },
+  "verdict": "INFO",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-unpaid-invoices",
+  "req": "S3-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each of the six reports has the native report Export menu (the \u22ef button at the right of the title row, labelled \"Export report\") with \"Download (PDF)\" and \"Download (CSV)\".",
+  "observed": {
+   "button": {
+    "aria": "Export report",
+    "text": "more_horiz",
+    "tooltip": null
+   },
+   "menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ]
+  },
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-unpaid-invoices",
+  "req": "S2-R1",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Every column on all six reports sorts when its header is clicked, except A/P Unpaid Invoices' Vendor Name column (S2-N1).",
+  "observed": [
+   [
+    "keyboard_arrow_right Date",
+    false
+   ],
+   [
+    "Location",
+    false
+   ],
+   [
+    "Transaction Type",
+    false
+   ],
+   [
+    "No.",
+    false
+   ],
+   [
+    "Vendor Name",
+    false
+   ],
+   [
+    "Due Date",
+    false
+   ],
+   [
+    "Past Due",
+    false
+   ],
+   [
+    "Amount",
+    false
+   ],
+   [
+    "Open Balance",
+    false
+   ]
+  ],
+  "verdict": "FAIL",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-unpaid-invoices",
+  "req": "S3-R4/S3-R8",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "the CSV \"As of: Oct 15, 2026\" \u2026 The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-unpaid-invoices",
+  "req": "S3-R10",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "On a successful download the user sees a success notification with the caption \"Data exported successfully.\"",
+  "observed": [
+   "check_circle Success Data exported successfully. Close"
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-unpaid-invoices",
+  "req": "S3-R5",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "Each download includes a \"Locations:\" line naming the location or locations the report is scoped to (CSV)",
+  "observed": [
+   "\"As of: Nov 16, 2026\"",
+   "\"Locations: All locations\""
+  ],
+  "verdict": "PASS",
+  "evidence": "evidence/screen-facts.json"
+ },
+ {
+  "report": "ap-unpaid-invoices",
+  "req": "facts",
+  "source": "A/R and A/P Report Sorting, Export and Location Filter, Confluence 947650561 (last modified 13 Nov 2026)",
+  "quote": "(facts recorded for the record; not a requirement)",
+  "observed": {
+   "export_menu": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "files": [
+    "no file and no new tab within 45 s",
+    "ap-unpaid-invoices.csv"
+   ],
+   "toasts": [
+    "check_circle Success Data exported successfully. Close"
+   ],
+   "column_control": false,
+   "column_remembered": null,
+   "sortable_headers": 0,
+   "headers": 9,
+   "unnamed_controls": 0,
+   "keyboard_reaches_export": true,
+   "keyboard_reaches_columns": false,
+   "enter_opens_export_menu": true,
+   "error": null,
+   "csv": {
+    "ap-unpaid-invoices.csv": {
+     "header": [
+      "Date",
+      "Location",
+      "Transaction Type",
+      "No.",
+      "Vendor Name",
+      "Due Date",
+      "Past Due",
+      "Amount",
+      "Open Balance"
+     ],
+     "data_rows": 14732,
+     "totals_row_numbers": [
+      "4846817.76",
+      "4846501.96"
+     ],
+     "bom": false,
+     "preamble_keys": [
+      "\"As of",
+      "\"Locations"
+     ]
+    }
+   },
+   "pdf": {},
+   "screen_totals_numbers": [
+    "4846817.76",
+    "4846501.96"
    ]
   },
   "verdict": "INFO",

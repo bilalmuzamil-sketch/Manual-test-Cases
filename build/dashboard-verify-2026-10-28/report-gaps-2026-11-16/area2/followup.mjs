@@ -23,14 +23,15 @@ for (const rep of process.argv.slice(2)) {
       await colBtn().click(); await sleep(1000); R.colmenu = await menu();
       const opt = [...R.colmenu].reverse().find(x => x.on === 'true' && !x.disabled);
       if (opt) {
-        await page.locator(`[data-fu="${opt.i}"]`).click(); await sleep(1500); R.colmenu_after_click = (await menu()).find(x => x.i === opt.i); await page.keyboard.press('Escape'); await sleep(900);
+        await page.locator(`[data-fu="${opt.i}"] .q-toggle__inner, [data-fu="${opt.i}"] [role="switch"], [data-fu="${opt.i}"] [role="checkbox"], [data-fu="${opt.i}"] .q-toggle`).first().click().catch(() => page.locator(`[data-fu="${opt.i}"]`).click()); await sleep(1500); R.colmenu_after_click = (await menu()).find(x => x.i === opt.i); await page.keyboard.press('Escape'); await sleep(900);
         const h1 = (await heads()).map(h => h.t); await load(rep); const h2 = (await heads()).map(h => h.t);
         await colBtn().click(); await sleep(1000); const m2 = await menu(); const back = m2.find(x => x.t === opt.t);
-        if (back) { await page.locator(`[data-fu="${back.i}"]`).click(); await sleep(1500); } await page.keyboard.press('Escape'); await sleep(900);
+        if (back) { await page.locator(`[data-fu="${back.i}"] .q-toggle__inner, [data-fu="${back.i}"] [role="switch"], [data-fu="${back.i}"] [role="checkbox"], [data-fu="${back.i}"] .q-toggle`).first().click().catch(() => {}); await sleep(1500); } await page.keyboard.press('Escape'); await sleep(900);
         const h3 = (await heads()).map(h => h.t);
         R.columns = { toggled: opt.t, hidden_after_toggle: !h1.includes(opt.t), hidden_after_reload: !h2.includes(opt.t), switch_after_reload: back?.on, shown_after_restore: h3.includes(opt.t), heads_toggle: h1, heads_reload: h2, heads_restore: h3 };
       } else { await page.keyboard.press('Escape'); R.columns = { note: 'no switched-on toggle found' }; }
     }
+    if (process.env.COLS_ONLY) { save(OUTF, out); continue; }
     // ---- sorting: click every visible header twice
     await load(rep); R.sorting = [];
     const H = (await heads()).filter(h => h.t).slice(0, 12);

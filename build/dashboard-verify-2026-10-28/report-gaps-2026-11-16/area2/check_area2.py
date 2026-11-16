@@ -19,7 +19,7 @@ def pdfinfo(p):
         r = pypdf.PdfReader(p); t = '\n'.join((pg.extract_text() or '') for pg in r.pages[:3])
         return {'pages': len(r.pages), 'has_Locations': 'Locations:' in t, 'has_total_word': bool(re.search(r'\bTotals?\b|\bSummary\b', t)), 'first_line': t.strip().splitlines()[0][:60] if t.strip() else ''}
     except Exception as e: return {'error': str(e)[:100]}
-clean = lambda h: re.sub(r'\s+', ' ', h).strip()
+clean = lambda h: re.sub(r'\s+', ' ', re.sub(r'\b(keyboard_double_arrow_down|keyboard_double_arrow_up|arrow_drop_up|arrow_drop_down|info)\b', ' ', h)).strip()
 out = []
 def row(rep, req, src, quote, observed, verdict, ev='evidence/screen-facts.json'): out.append({'report': rep, 'req': req, 'source': src, 'quote': quote, 'observed': observed, 'verdict': verdict, 'evidence': ev})
 def common(rep, f):
@@ -77,7 +77,7 @@ for rep, f in F.items():
         chk('S3-R1', 'Each of the six reports has the native report Export menu (the ⋯ button at the right of the title row, labelled "Export report") with "Download (PDF)" and "Download (CSV)".', (fi.get('export_btn') or {}).get('aria') == 'Export report' and sorted(menu) == ['Download (CSV)', 'Download (PDF)'], {'button': fi.get('export_btn'), 'menu': menu})
         chk('S2-R1', "Every column on all six reports sorts when its header is clicked, except A/P Unpaid Invoices' Vendor Name column (S2-N1).", bool(fi.get('heads')) and all(h.get('sortable') or (rep == 'ap-unpaid-invoices' and 'Vendor' in h['t']) for h in fi['heads'] if clean(h['t'])), [(clean(h['t']), h.get('sortable')) for h in fi.get('heads', [])])
         c = next(iter(csvs.values()), None)
-        chk('S3-R4/S3-R8', 'the CSV "As of: Oct 15, 2026" … The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations', None if not c else bool(c['preamble']) and c['preamble'][0].startswith('As of:') and any(p.startswith('Locations:') for p in c['preamble'][1:2]), c['preamble'] if c else 'no CSV downloaded')
+        chk('S3-R4/S3-R8', 'the CSV "As of: Oct 15, 2026" … The CSV starts with the lines of S3-R5, each in its own row, in this order: As of, Locations', None if not c else bool(c['preamble']) and c['preamble'][0].strip('"').startswith('As of:') and any(p.strip('"').startswith('Locations:') for p in c['preamble'][1:2]), c['preamble'] if c else 'no CSV downloaded')
         want = list(csvs)[:1]
     # shared download checks (where the family's spec has them)
     succ = {'WIP': 'S9-R11', 'ARAP': 'S3-R10'}.get(fam)
