@@ -50,7 +50,7 @@ These are stated here **in full** because a session that gets only this far must
   **Amendment 6 Nov: the same zone NAME is not enough — the browser's, machine's and server's UTC OFFSETS must agree for the tested dates** (Chromium 153 is an hour off for Edmonton/Vancouver/Winnipeg, 1 Nov 2026–13 Mar 2027). Run `build/testing-tools/tz_rules_check.py`; a result inside the gap hour is NOT VERIFIED until re-checked on the server side; ticket times are given under the server's rules.
 - **🔴 TICKETS ARE WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER (100).** QA lead, 2026-10-28: *"keep the issue clear ... so that it
   can be understood by a lay man ... or by a person who is look at the ticket for the first time."* What the screen shows and what it
-  means · one example with the arithmetic · where on screen to look · plain steps · source quote · few pictures · **no technical/developer section (29 Oct)**.
+  means · one example with the arithmetic · where on screen to look · plain steps · source quote · few pictures · **no technical/developer section (29 Oct)** **Amendment 16 Nov: the ticket DESCRIPTION always has an inline annotated screenshot.**
 - **🔴 EVERY "WAITING FOR AN ANSWER" NAMES WHERE IT WAS ASKED (101).** QA lead, 2026-11-02: *"When you say waiting for the answer
   also confirm the document name too."* Give the document's full title (+ section/question, link) or the ticket key + comment id + date,
   and **re-check that place first** — an answered question is never reported as waiting.

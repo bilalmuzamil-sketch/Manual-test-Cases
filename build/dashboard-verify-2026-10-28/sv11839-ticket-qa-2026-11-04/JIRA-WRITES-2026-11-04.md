@@ -320,3 +320,4 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 - **SV-12855** "Reports - Technician Utilization spreadsheets leave out the Summary row". Same fields. Links: relates to SV-8950 and SV-8654. Chris comment **81458** with picture d93ea850-0f13-409b-95ee-2db852722146.
 - One-JQL read-back 08:29 UTC: both Open, type Bug, parent SV-11936, Medium, QA_found, Product Area set, 2 links each, 1 comment each with the mention and the picture.
 - SV-8956 and SV-8950 left in OBSOLETE, unchanged.
+- 16 Nov 08:32 UTC (QA lead: "the ticket description should always have inline screenshots"): SV-12854 and SV-12855 descriptions re-sent in html with a "Picture:" line and the annotated screenshot inline (media b004faa0… and d93ea850…). Read back from the edit response: picture present at the end of each description; text unchanged otherwise.

@@ -1,0 +1,10 @@
+# Inventory Value cases vs SV-10380 (negative stock) — read-only scan, 16 Nov 2026
+
+QA lead, 16 Nov: "1. OK" to "let me list the affected cases first, without changing anything".
+Source that changed the expectation: SV-10380 (created 22 Sep 2026, newer than IV spec v10 of 13 Aug): "Include negative-quantity parts with their signed values." / "A net-zero part contributes zero; this bug does not mandate displaying a zero-quantity row." / "Product decisions are complete".
+
+Scan (`scan.py`, live TestRail, 15 Inventory Value sections, 85 cases, 74 ours): 20 cases mention stock-sign words (`hits.json`).
+- **Out of date — 1 case:** C30540 "A part appears only if not a core charge and on-hand quantity is above zero" (Reports Suite > Inventory Value > IV — Row Scope; ours; not Automated; AUTOMATION: READY). Expected says "The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued." SV-10380 reverses the negative part. (Zero-quantity: SV-10380 does not require showing a net-zero row, so that sentence still stands. Core-charge line: SV-10379 is still Blocked, unchanged.)
+- **Not affected:** C30535 and C30541 only use parts WITH stock as their setup; the other Report Suite hits mention "negative" for Margin %, formats or totals, or "bin" in an unrelated word.
+- **Already covered:** the new behaviour has its own cases in Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380): ours C425662, C425663, C425667, C425668, C839451; Mudassir Qamar's (user 6, the project's tester) C855967–C855970, C897144–C897146.
+- No TestRail writes made.

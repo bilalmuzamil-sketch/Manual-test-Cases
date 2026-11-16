@@ -2402,6 +2402,13 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     under two minutes? If not, cut and rewrite.
     **TIES:** Rules 7/9 (plain wording), 52 (evidence bar), 73 [3]/[7] (runnable, concise), 99 (time zone stated in the ticket).
     **RECORDED 2026-10-28 on the QA lead's instruction in the same message**, which satisfies Rule 72 for this rule.
+    **⇒ DATED AMENDMENT, 2026-11-16 (QA lead, explicit standing directive, verbatim):** *"the ticket description should always
+    have inline screenshots"*. **Every ticket I file carries at least one annotated screenshot INSIDE ITS DESCRIPTION (inline, not
+    only as an attachment and not only in a comment).** Place it after the plain text under a "Picture:" line that says what each
+    numbered box shows. Method: upload with `uploadAttachmentToJiraIssue` → run its curl → `editJiraIssue` (contentFormat html,
+    the FULL description re-sent, `inlineFileId` + `inlineFileCollection`), or create then edit, since media cannot be added on
+    create. A description holding media is no longer editable as markdown, so every later edit is html and keeps the media node.
+    The Rule 103 Chris comment still carries its own picture as well. First applied: SV-12854, SV-12855 (16 Nov 2026).
 
 101. **EVERY "WAITING FOR AN ANSWER" NAMES WHERE THE QUESTION WAS ASKED — THE DOCUMENT OR THE TICKET COMMENT (all projects, permanent).**
     **THE QA LEAD'S WORDS (2026-11-02, verbatim):** *"When you say waiting for the answer also confirm the document name too."*

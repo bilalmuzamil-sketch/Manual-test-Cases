@@ -1,0 +1,333 @@
+[
+ {
+  "id": 30535,
+  "title": "One row per in-stock part at the selected locations valued at the resolved date",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Access & Display",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "positive on-hand"
+  ],
+  "snips": [
+   " are signed in to the ShopView App on a desktop browser. 2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location. 1. Open the Inventory Value report. 2. Compare th"
+  ]
+ },
+ {
+  "id": 30540,
+  "title": "A part appears only if not a core charge and on-hand quantity is above zero",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Row Scope",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "above zero",
+   "greater than zero",
+   "negative",
+   "positive on-hand",
+   "positive quantit",
+   "s2-r1",
+   "zero on-hand"
+  ],
+  "snips": [
+   "A part appears only if not a core charge and on-hand quantity is above zero    You are signed in to the ShopView App on a desktop browser.   ZZAUTOTEST parts exist a",
+   "n a desktop browser.   ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand q",
+   " active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-h",
+   "sitive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity.        Open the Inven"
+  ]
+ },
+ {
+  "id": 30541,
+  "title": "A part stocked at two selected locations shows as two rows; never merged",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Row Scope",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "bin",
+   "positive quantit"
+  ],
+  "snips": [
+   "as a user with access to at least two locations. 2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations. 1. Open the Inventory Value report and select both locations",
+   "each with that location's own quantity and values. 2. The rows are NOT merged into one combined row; this is the documented v1 behavior.  --- This is the expected behaviour as per epi"
+  ]
+ },
+ {
+  "id": 30550,
+  "title": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Valuation & Columns",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "negative"
+  ],
+  "snips": [
+   "2. The report shows: a part with a normal positive margin, a part whose Margin % computes negative (unit sell below unit cost), and \u2014 if producible \u2014 a part whose Total Sell is zero. 1. Re",
+   "ad the normal part's Margin % and check it against Margin \u00f7 Total Sell \u00d7 100. 2. Read the negative-margin part's Margin %. 3. Read the zero-Total-Sell part's Margin % if one exists. 1. Mar",
+   "ent sign \u2014 for example \"39.7%\". 2. A Margin % that computes to a real number, including a negative one, shows its signed value. 3. Margin % shows \"\u2014\" when Total Sell is zero or negative (t",
+   " a negative one, shows its signed value. 3. Margin % shows \"\u2014\" when Total Sell is zero or negative (the percentage is undefined).  --- This is the expected behaviour as per epic SV-8582, r"
+  ]
+ },
+ {
+  "id": 30552,
+  "title": "Value formats: Qty to two decimals; money as US-dollar currency",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Valuation & Columns",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "negative"
+  ],
+  "snips": [
+   " quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value. 1. Read the Qty cell of the fractional-quantity part. 2. Read a money value ",
+   "nit Cost, Unit Sell, Total Sell, or Total Cost). 3. Read a genuine zero money value and a negative one if present. 1. Qty shows the on-hand quantity to two decimal places, with no currency",
+   " a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\". "
+  ]
+ },
+ {
+  "id": 30558,
+  "title": "Totals-row Margin % is recomputed from the totals; not an average of rows",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Totals Row",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "negative"
+  ],
+  "snips": [
+   " the average of the row percentages. 3. It shows \"\u2014\" when the total Total Sell is zero or negative.  --- This is the expected behaviour as per epic SV-8582, read on 17 August 2026, and the"
+  ]
+ },
+ {
+  "id": 30573,
+  "title": "\"As of\" date, Location, Category, Vendor and part search combine with AND",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Filters & Part Search",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "bin"
+  ],
+  "snips": [
+   "\"As of\" date, Location, Category, Vendor and part search combine with AND 1. You are signed in to the ShopView App on a desktop browser. 2. In-stock part",
+   "ktop browser. 2. In-stock parts exist with a known mix of categories and vendors, so a combined filter isolates a known subset. 1. Select a Category, then also a Vendor that only some",
+   "d the search to appear \u2014 the \"as of\" date, Location, Category, Vendor, and part search combine with AND. 2. The totals row matches the combined filtered set after each step.  --- This",
+   "ion, Category, Vendor, and part search combine with AND. 2. The totals row matches the combined filtered set after each step.  --- This is the expected behaviour as per epic SV-8582, "
+  ]
+ },
+ {
+  "id": 30593,
+  "title": "An over-cap set produces no file and shows the too-large-to-export message",
+  "section": "Reports Suite > Inventory Value > IV \u2014 Exports",
+  "created_by": 3,
+  "automated": null,
+  "terms": [
+   "bin"
+  ],
+  "snips": [
+   "e  1. You are signed in to the ShopView App on a desktop browser. 2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk "
+  ]
+ },
+ {
+  "id": 425662,
+  "title": "Bins of +5 and -5 leave the part out of Inventory Value and add nothing to the totals",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 3,
+  "automated": 2,
+  "terms": [
+   "below zero",
+   "bin",
+   "negative"
+  ],
+  "snips": [
+   "Bins of +5 and -5 leave the part out of Inventory Value and add nothing to the totals   Preco",
+   "t location.  Create two tracked parts for this test at a cost of $10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 4 in its bin, so part A has two bins ",
+   "tracked parts for this test at a cost of $10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 4 in its bin, so part A has two bins to add up.  Add 5 of par",
+   "$10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 4 in its bin, so part A has two bins to add up.  Add 5 of part A to a work order line from bin locatio"
+  ]
+ },
+ {
+  "id": 425663,
+  "title": "Bins of +5 and +3 still show quantity 8 and $80 in Inventory Value",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 3,
+  "automated": 2,
+  "terms": [
+   "below zero",
+   "bin",
+   "negative",
+   "positive quantit"
+  ],
+  "snips": [
+   "Bins of +5 and +3 still show quantity 8 and $80 in Inventory Value   Preconditions    Sign in",
+   "st location.  Create a tracked part, part A, for this test at a cost of $10.00, with 5 in bin location A and 3 in bin location B, so the report has two bins to add up.  Start on the I",
+   "racked part, part A, for this test at a cost of $10.00, with 5 in bin location A and 3 in bin location B, so the report has two bins to add up.  Start on the Inventory Value report (R",
+   "a cost of $10.00, with 5 in bin location A and 3 in bin location B, so the report has two bins to add up.  Start on the Inventory Value report (Reports in the top bar, then Inventory "
+  ]
+ },
+ {
+  "id": 425667,
+  "title": "The Inventory Value CSV download shows the same net figures as the screen",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 3,
+  "automated": 2,
+  "terms": [
+   "below zero",
+   "bin",
+   "negative"
+  ],
+  "snips": [
+   "t location.  Create two tracked parts for this test at a cost of $10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two ",
+   "tracked parts for this test at a cost of $10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two bins to add up.  Add 2 o",
+   "0: part A with 5 in bin location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two bins to add up.  Add 2 of part A to a work order line from bin locatio",
+   " location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two bins to add up.  Add 2 of part A to a work order line from bin location B while it holds 0, a"
+  ]
+ },
+ {
+  "id": 425668,
+  "title": "Inventory Value location and category filters still scope the net figures",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 3,
+  "automated": 2,
+  "terms": [
+   "below zero",
+   "bin",
+   "negative"
+  ],
+  "snips": [
+   "for this test at the test location in category A, at a cost of $10.00, with 0 in its only bin.  Create a tracked part, part B, for this test at location B in another category, at a co",
+   ", part B, for this test at location B in another category, at a cost of $10.00, with 5 in bin location A and 0 in bin location B, so the report has two bins to add up.  Add 2 of part ",
+   "at location B in another category, at a cost of $10.00, with 5 in bin location A and 0 in bin location B, so the report has two bins to add up.  Add 2 of part A to a work order line a",
+   "a cost of $10.00, with 5 in bin location A and 0 in bin location B, so the report has two bins to add up.  Add 2 of part A to a work order line at the test location while its bin hold"
+  ]
+ },
+ {
+  "id": 839451,
+  "title": "The Inventory Value PDF download shows the same net figures as the screen",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 3,
+  "automated": 2,
+  "terms": [
+   "below zero",
+   "bin",
+   "negative"
+  ],
+  "snips": [
+   "t location.  Create two tracked parts for this test at a cost of $10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two ",
+   "tracked parts for this test at a cost of $10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two bins to add up.  Add 2 o",
+   "0: part A with 5 in bin location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two bins to add up.  Add 2 of part A to a work order line from bin locatio",
+   " location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two bins to add up.  Add 2 of part A to a work order line from bin location B while it holds 0, a"
+  ]
+ },
+ {
+  "id": 855967,
+  "title": "Sorting Qty ascending lists negative parts first, in parentheses, with a dash for Margin %",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 6,
+  "automated": 2,
+  "terms": [
+   "below zero",
+   "bin",
+   "negative"
+  ],
+  "snips": [
+   "Sorting Qty ascending lists negative parts first, in parentheses, with a dash for Margin %   Several tracked parts whose bins ",
+   "ative parts first, in parentheses, with a dash for Margin %   Several tracked parts whose bins net below zero (e.g. -86, -8, and one with bins -14/4/4/3).  Reports &gt; Inventory Valu",
+   "ts first, in parentheses, with a dash for Margin %   Several tracked parts whose bins net below zero (e.g. -86, -8, and one with bins -14/4/4/3).  Reports &gt; Inventory Value, As of today, ",
+   "or Margin %   Several tracked parts whose bins net below zero (e.g. -86, -8, and one with bins -14/4/4/3).  Reports &gt; Inventory Value, As of today, one location.     Click the Qty "
+  ]
+ },
+ {
+  "id": 855968,
+  "title": "An inactive part with stock is still listed in Inventory Value",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 6,
+  "automated": 2,
+  "terms": [
+   "bin"
+  ],
+  "snips": [
+   "An inactive part with stock is still listed in Inventory Value   A tracked part with bins +5 and -2 (net 3) at this location.     Reports &gt; Inventory Value, today: search the "
+  ]
+ },
+ {
+  "id": 855969,
+  "title": "An untracked part with bins netting below zero is left out of Inventory Value",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 6,
+  "automated": 2,
+  "terms": [
+   "below zero",
+   "bin",
+   "negative"
+  ],
+  "snips": [
+   "An untracked part with bins netting below zero is left out of Inventory Value   An untracked part (Track quantities ",
+   "An untracked part with bins netting below zero is left out of Inventory Value   An untracked part (Track quantities off) with bins +2 an",
+   "below zero is left out of Inventory Value   An untracked part (Track quantities off) with bins +2 and -5 (net -3) at this location.     Reports &gt; Inventory Value, today: search the",
+   " &gt; Inventory Value, today: search the part number.  Sort Qty ascending and look at the negative rows.     Step 1:    The part is not listed.    Step 2:    It does not appear among the n"
+  ]
+ },
+ {
+  "id": 855970,
+  "title": "Parts Velocity On Hand still counts only positive bins for a part with a negative bin",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 6,
+  "automated": 2,
+  "terms": [
+   "bin",
+   "negative",
+   "positive bin"
+  ],
+  "snips": [
+   "Parts Velocity On Hand still counts only positive bins for a part with a negative bin   A tracked part with sales in the date range and bins +1",
+   "Parts Velocity On Hand still counts only positive bins for a part with a negative bin   A tracked part with sales in the date range and bins +1 and -3 (e.g. 76-3327PK).   ",
+   "Parts Velocity On Hand still counts only positive bins for a part with a negative bin   A tracked part with sales in the date range and bins +1 and -3 (e.g. 76-3327PK).     Re",
+   "ive bins for a part with a negative bin   A tracked part with sales in the date range and bins +1 and -3 (e.g. 76-3327PK).     Reports &gt; Inventory Value, today: search the part.  R"
+  ]
+ },
+ {
+  "id": 897144,
+  "title": "Bins of +3, +2 and -9994 show the net -9989, not 5, in Inventory Value",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 6,
+  "automated": 2,
+  "terms": [
+   "bin",
+   "negative"
+  ],
+  "snips": [
+   "Bins of +3, +2 and -9994 show the net -9989, not 5, in Inventory Value  Env https://sv10647.q",
+   "-ID = the current location. Data: QAPL-N5, tracked and active at Staging Heavy Duty, with bins +3, +2 and -9994. No category, vendor or search filter on the report.    Parts &gt; Inve",
+   " the report.    Parts &gt; Inventory &gt; open QAPL-N5; note its Average Cost {c} and its bins; Cancel.  Reports &gt; Inventory Value (/reports/inventory-value): location Staging Heav",
+   "le and sum its Total Cost column.  Export (button_iv_export) &gt; PDF; open the file.     Bins +3, +2 and -9994; Average Cost {c} noted.  QAPL-N5 is listed with Qty -9,989 shown in pa"
+  ]
+ },
+ {
+  "id": 897145,
+  "title": "Dark mode and 1024 px: negative Inventory Value figures in parentheses read correctly",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 6,
+  "automated": 2,
+  "terms": [
+   "negative"
+  ],
+  "snips": [
+   "Dark mode and 1024 px: negative Inventory Value figures in parentheses read correctly  Env https://sv10647.qa.shopview.co",
+   "tals).  Resize the window to 1024 px.  Profile menu &gt; Light, still at 1024 px.     The negative rows (QAPL-N5, QAPL-N2) come first; their Qty and Total Cost in parentheses and their \"\u2014\"",
+   "nd their \"\u2014\" Margin % are legible on the dark background.  The totals row is legible; any negative total shows its parentheses in full.  Every column fits; no parentheses, \"\u2014\" or totals-ro"
+  ]
+ },
+ {
+  "id": 897146,
+  "title": "Regression: the work order pick Available chip still counts only positive bins for a part with a negative bin",
+  "section": "Founder Mode (September 2026) > Part Lifecycle > Inventory Value net quantity (SV-10380)",
+  "created_by": 6,
+  "automated": 2,
+  "terms": [
+   "bin",
+   "negative",
+   "positive bin"
+  ],
+  "snips": [
+   "Regression: the work order pick Available chip still counts only positive bins for a part with a negative bin  Env https://sv10647.qa.shopview.com (S2 shop; locations ",
+   "ion: the work order pick Available chip still counts only positive bins for a part with a negative bin  Env https://sv10647.qa.shopview.com (S2 shop; locations Staging Heavy Duty and Stagi",
+   "work order pick Available chip still counts only positive bins for a part with a negative bin  Env https://sv10647.qa.shopview.com (S2 shop; locations Staging Heavy Duty and Staging L",
+   "p; Edit and Delete, and See Financial Data. Reports View. Data: QAPL-N1 (tracked, active, bins +5 and -2) at Staging Heavy Duty; an open work order at Staging Heavy Duty. Known mismat"
+  ]
+ }
+]
