@@ -313,3 +313,10 @@ Filed under the QA lead's account by another session, not on my branch: SV-12193
 
 ## 16 Nov 2026: SV-8951 question to Chris (QA lead, 16 Nov: "3. I will follow your recomendation so when you type the message for Chris ask him to bring it back from Obsolete status if it is in obsolete status.")
 - Comment **81456** on SV-8951 (status OBSOLETE, left unchanged): @Chris Ward; what happens today; the TU spec v9 parts that disagree (S7-R4a vs S7-R12/S7-R7); fix or leave; please bring it back from Obsolete if he wants it fixed. Annotated picture inline (media 71373ab5-249f-4ace-9cb2-2e2a12c9c86e). Read back 08:26 UTC: mention, text and picture present.
+
+## 16 Nov 2026: two new Bugs under SV-11936 (QA lead's go-ahead: AskUserQuestion answer "New Bugs under SV-11936 (Recommended)", after "1. OK make this the part of the Reports Parking epic 2. DO the same as above")
+- Why new tickets: SV-8956 and SV-8950 are Story Defect sub-tasks; Jira cannot put a sub-task under an epic, and converting is a UI-only Move.
+- **SV-12854** "Reports - Sales By Customer spreadsheet file names leave out the date range". Bug, parent SV-11936, Medium, label QA_found, Product Area "Reports & Dashboards" (required by Jira on create). Links: relates to SV-8956 and SV-8612. Chris comment **81457** with picture b004faa0-673e-43c5-bd84-44e25b78a161.
+- **SV-12855** "Reports - Technician Utilization spreadsheets leave out the Summary row". Same fields. Links: relates to SV-8950 and SV-8654. Chris comment **81458** with picture d93ea850-0f13-409b-95ee-2db852722146.
+- One-JQL read-back 08:29 UTC: both Open, type Bug, parent SV-11936, Medium, QA_found, Product Area set, 2 links each, 1 comment each with the mention and the picture.
+- SV-8956 and SV-8950 left in OBSOLETE, unchanged.
