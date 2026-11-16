@@ -1,0 +1,11 @@
+import {sess} from './common.mjs';
+const s=await sess({dir:'/tmp/qa90'}); const p=s.page; const reqs=[];
+p.on('request',r=>{const u=r.url(); if(u.includes('/api/reporting/reports/')) reqs.push(decodeURIComponent(u.slice(0,600)));});
+await s.go('/reports/ar-aging-collection'); await p.waitForTimeout(4000);
+await p.click('[data-test-id="filter_chip_locationIds"]'); await p.waitForTimeout(1500);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id], .q-menu .q-item')].map(e=>(e.getAttribute('data-test-id')||'')+'|'+(e.innerText||'').replace(/\n/g,' ').slice(0,60)).slice(0,30));
+console.log(opts.join('\n'));
+await p.click('[data-test-id="filter_option_locationIds_b3c8c820-f815-4cf1-8938-10956c5ee71a"]'); await p.waitForTimeout(3000);
+await p.keyboard.press('Escape'); await p.waitForTimeout(2500);
+console.log(reqs.slice(-4).join('\n'));
+await s.close(); process.exit(0);

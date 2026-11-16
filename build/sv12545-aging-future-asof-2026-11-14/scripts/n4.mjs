@@ -1,0 +1,15 @@
+import {sess} from './common.mjs'; import fs from 'fs';
+const s=await sess({dir:'/tmp/qa90'}); const p=s.page; const reqs=[];
+p.on('request',r=>{const u=r.url(); if(u.includes('/api/reporting/reports/ar-aging-detail')) reqs.push(decodeURIComponent(u));});
+await s.go('/reports/ar-aging-detail'); await p.waitForTimeout(4000);
+await p.click('[data-test-id="filter_chip_customerIds"]'); await p.waitForTimeout(2000);
+await p.keyboard.type('10 Trucking'); await p.waitForTimeout(2500);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="filter_option_customerIds_"]')].map(e=>e.getAttribute('data-test-id')+'|'+e.innerText.trim()).slice(0,5));
+console.log(opts.join('\n')); const id=opts.find(o=>/\|10 Trucking$/.test(o))||opts[0]; await p.click(`[data-test-id="${id.split('|')[0]}"]`); await p.waitForTimeout(3000);
+await p.keyboard.press('Escape'); await p.waitForTimeout(2000);
+const last=reqs.filter(u=>!u.includes('/locations')&&!u.includes('/customers')).pop(); console.log('REQ',last);
+const u=last.replace('/ar-aging-detail?','/ar-aging-detail/export?')+'&format=pdf';
+const r=await p.evaluate(async u=>{const r=await fetch(u,{credentials:'include'}); const a=new Uint8Array(await r.arrayBuffer()); let s=''; for(let i=0;i<a.length;i++) s+=String.fromCharCode(a[i]); return {st:r.status,b:btoa(s)}},u);
+fs.writeFileSync('../ev/n/ar-aging-detail-10trucking.pdf',Buffer.from(r.b,'base64')); console.log('export',r.st);
+await p.screenshot({path:'../ev/n/screen-detail-10trucking.png'});
+await s.close(); process.exit(0);
