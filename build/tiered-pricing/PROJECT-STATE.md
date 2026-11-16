@@ -76,3 +76,15 @@ the QA people it should have the access to edit and for the rest of @shopview pe
 - Share plan after his look: matthew@shopview.com writer (notified), nebojsa.glavinic@shopview.com writer, shopview.com domain reader.
 - 16 Nov 2026 SHARED (QA lead: "Share, Glavinic (Recommended)"); permissions read back: matthew@shopview.com writer,
   nebojsa.glavinic@shopview.com writer, domain shopview.com reader, owner bilal.muzamil. Waiting on Matt: questions 1-31 (41 cases held).
+
+## 16 Nov 2026 — Matt Barge's 31 answers and PRD v38 WRITTEN (QA lead: "Named set, write it (Recommended)"; "Wait for his canvas (Recommended)"; "Add both to the sheet (Recommended)")
+- Rule 59 at the start (13:14Z): PRD 938213378 page v38 (12:28:08Z), reports PRD 968687617 page v21 — unchanged. Epic: only the 10 stories edited 12:30Z (ticket_sweep.py exits 0, PRD v38 handled).
+- Library on PRD v38 (requirements.json: 18 rows changed, S19-R24 added); 735 other cases byte-identical (po-answers-2026-11-16/v38/prove-unchanged.json).
+- TestRail: 49 cases updated and read back (30 changed, 11 rewritten and released, 5 released, 3 refs-only); 9 new cases C1211712-C1211720 (20 pictures);
+  25 held design-version cases deleted (before-copies in po-answers-2026-11-16/write/deleted/); 0 cases edited outside our library.
+- Suite now 802 cases (787 in run 560, all assigned to Mudassir; 15 held: 11 staging data from before the release, 2 AccountingHub, 1 timing target, S3-40 on question 33).
+- Run 560: 763 -> 787 (+16 released, +9 new, -S3-40). Folder note "current as of 11/16/2026" (already stamped, earlier text kept below).
+- Questions: 1-31 answered and closed; 32 (F1) and 33 (F2) drafted in questions-2026-11-16/F1-F2-rows.json for the coordinator to add to the sheet (rows 37-39, light green).
+  Held on 33: S3-40 C1211562 ("Waiting on Matt Barge's answers"). 32 holds no case (check added when answered).
+- Pictures untouched (waiting for Matt's canvas): 370 cases listed in po-answers-2026-11-16/PICTURES-TO-REFRESH-WHEN-CANVAS-CHANGES.json; board 10.6 to add to S3-17/S3-18.
+- Report: po-answers-2026-11-16/PASS-REPORT.md.
