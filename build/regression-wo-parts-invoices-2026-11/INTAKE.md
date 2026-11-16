@@ -52,3 +52,22 @@
    - Test each behaviour under the setting value(s) that change it. Record the setting state with every result.
    - Restore any setting changed (staging is shared).
 4. **Bugs:** ask the QA lead per ticket which epic.
+
+## QA lead, 16 Nov 2026 (verbatim): never call a feature a bug from an outdated test or ticket
+> "Make sure that you do not create any ticket without my review, as whe you will be looking at the repo, you will notice that even the test cases for work orders might also be outdated against the REPO. So you have to be super intelligent here NOT to call a feature as a BUG basd on an outaded test or based on an outdated jira ticket/Epic."
+
+### How this run obeys it (a mismatch is NEVER a bug until it passes every step)
+1. **Nothing reaches Jira without his review.** Every candidate is a draft in this folder. He reviews it, and only then is it filed (Rules 62, 94).
+2. **A TestRail case is a checklist, never a source of truth.** Many of the 861 Work Orders cases (S4) and the part-sale cases are older than later changes. A failing TestRail step only starts an investigation.
+3. **Supersession check against the product repo (ShopView/shopview, read-only)** for every mismatch between the build and a test or ticket:
+   - Find the code that produces the behaviour. Read its git history (`git log -L`, `git log -S`, blame) and the ticket keys in those commits and PRs.
+   - If a later commit deliberately changed the behaviour (it cites a newer ticket, PRD or decision), the behaviour is the CURRENT intended one.
+   - Then the old test or ticket is OUTDATED. Report it as "outdated test/ticket" (TestRail cases are not edited without his go-ahead, Rule 6/38/71). It is NOT a bug.
+   - **Code is evidence of what was CHANGED and WHEN. It is never by itself the expectation** (Rule 57/96). The chain is completed by the newer ticket or PRD the commit points to.
+4. **Then the document chain:** the latest ticket, PRD or Chris Ward answer on that behaviour wins (Rule 32), and is quoted.
+5. **Classification of every mismatch, one of:**
+   - (a) BUG CANDIDATE: the current source says X, the build does Y, and no later deliberate change exists. Draft only.
+   - (b) OUTDATED TEST/TICKET: a later deliberate change exists. Report it, do not file.
+   - (c) QUESTION FOR CHRIS: the chain is unclear, or code and document disagree with no decision recorded (Rule 96: a PO decision item). Annotated picture; never ask him to change a document.
+   - (d) SETTINGS-DEPENDENT: the behaviour follows a setting. Record the setting and re-test under the other value.
+6. **Every candidate states its evidence chain:** test/ticket → newer ticket(s) → commit(s) and PR → current source quote → build observation (with build, time, location and the four zones).
