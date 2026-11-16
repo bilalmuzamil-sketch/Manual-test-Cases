@@ -33,3 +33,22 @@
 - **IN scope:** the work order lifecycle, and the accuracy of the invoices it creates.
 - **Asked of the QA lead (open):** are part-sale invoices (over-the-counter part sales) also out?
   - Recommended: treat them as out until he says otherwise.
+
+## QA lead's answers, 16 Nov 2026 (verbatim)
+> "1. No
+> 2. NO - when this feature was created we used to have small epics and tickets - but most of those tickets are now outdated so we have to be very careful when taking evidece of expected behavior from the tickets as we might end up taking evidences from the outdated ticket which once was an expected behavior but now after the changes is an obsolete behavior, also note that how work order behaves also depends on how we have set it up from settings -> https://app.staging.shopview.com/administration/settings
+> 3. [TestRail key: stored in /tmp/testrail/creds.json only, chmod 600; works as user 3 Bilal Muzamil, 07:07 UTC]
+> 4. yes"
+
+## What that means for the run
+1. **Part-sale invoices are IN scope.** Scope = the work order lifecycle + the accuracy of every invoice created from a work order or a part sale. The parts lifecycle stays OUT.
+2. **There is no work order lifecycle PRD. Expected behaviour comes from tickets, and most of them are outdated.** Rules for using a ticket as a source:
+   - **Supersession chain.** For every expectation, find every ticket that touched the same behaviour and take the LATEST statement (Rule 32). Record the chain (older ticket → newer ticket), not just one ticket.
+   - **A ticket is only a source if nothing later contradicts it.** Check later tickets, PRDs (Fees & Discounts, Simple Mode, Invoice UI Refresh, Create Invoice payment window, Invoice Status reference) and Chris Ward's answers.
+   - **Where the chain is unclear, or the only source is old**, do not assume. It becomes a question for Chris (Rule 58), with an annotated picture. Never ask him to change a document.
+   - **The build is never the source** (Rule 57).
+3. **Work order behaviour depends on Settings** (Administration → Settings).
+   - Before testing, record every work-order- and invoice-related setting at the test location(s): a screenshot plus values.
+   - Test each behaviour under the setting value(s) that change it. Record the setting state with every result.
+   - Restore any setting changed (staging is shared).
+4. **Bugs:** ask the QA lead per ticket which epic.
