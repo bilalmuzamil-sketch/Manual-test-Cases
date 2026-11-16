@@ -56,7 +56,7 @@ Karachi case under "Known mismatches (not bugs)". So this is a **Product decisio
 ## 3. Everything else matches
 
 - Same documents and amounts, except: 6 partly-used credits whose **Amount** now holds the original amount (PRD v13 S5-R18a, intended); 1–3 credits dated on the as-of date now in Current with Past Due 0 (PRD section 2, intended); the three 4Refuel $100 bills paid by the E2E automation on 12 Nov (`../4refuel-consistency-2026-11-12/`); documents created after the snapshot.
-- **Unexplained, small:** two Stillwater Diesel Repair bills (055-541861, 069-855902) had an open balance 2 cents above their amount on 12 Nov (before and after the release); today it equals the amount. Cause not established.
+- **Explained 16 Nov (`../stillwater-2-cents-2026-11-16/`):** two Stillwater Diesel Repair bills (055-541861, 069-855902) read 2 cents lower as of 11/12 today than on 12 Nov. Nothing changed on the bills: they were edited after receiving and keep a stale Amount (known bug **SV-12538**), and the report uses the stored balance only when the as-of date is today (production does the same). Not caused by this release.
 - Summary reports: only customers/vendors with documents added after the snapshot differ (§3 of `RECHECK-*.md`).
 
 ## Files
