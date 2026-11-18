@@ -61,7 +61,7 @@ Karachi case under "Known mismatches (not bugs)". So this is a **Product decisio
 
 ## 3. Everything else matches
 
-- Same documents and amounts, except: 6 partly-used credits whose **Amount** now holds the original amount (PRD v13 S5-R18a, intended); 1–3 credits dated on the as-of date now in Current with Past Due 0 (PRD section 2, intended); the three 4Refuel $100 bills paid by the E2E automation on 12 Nov (`../4refuel-consistency-2026-11-12/`); documents created after the snapshot.
+- Same documents and amounts, except: 6 partly-used credits whose **Amount** now holds the original amount (PRD S5-R18a says so, but "What changes for existing users" does not list it — **held question 2 of 12 Nov, still undecided by the QA lead**; "intended" here on 16 Nov was my reading, corrected 18 Nov); 1–3 credits dated on the as-of date now in Current with Past Due 0 (PRD section 2, intended); the three 4Refuel $100 bills paid by the E2E automation on 12 Nov (`../4refuel-consistency-2026-11-12/`); documents created after the snapshot.
 - **Explained 16 Nov (`../stillwater-2-cents-2026-11-16/`):** two Stillwater Diesel Repair bills (055-541861, 069-855902) read 2 cents lower as of 11/12 today than on 12 Nov. Nothing changed on the bills: they were edited after receiving and keep a stale Amount (known bug **SV-12538**), and the report uses the stored balance only when the as-of date is today (production does the same). Not caused by this release.
 - Summary reports: only customers/vendors with documents added after the snapshot differ (§3 of `RECHECK-*.md`).
 
@@ -84,3 +84,32 @@ Karachi case under "Known mismatches (not bugs)". So this is a **Product decisio
   ⚠ 617276/617277 carry the Defects value "S,V,-,1,2,8,5,3" (my mistake M14, cannot be edited by API); 617278/617279 carry SV-12853.
 - Case markers left as `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`
   (a genuine hold; these cases never carried an EXPECT FAIL block).
+
+## Like-for-like re-run, 18 Nov 2026 (Rule 125 discipline) — `RECHECK-UTC.md`, `summary-UTC.json`
+
+Approved by the QA lead 18 Nov ("1. Ok"). Same settings on both sides, written down before comparing:
+
+| Setting | Before (12 Nov capture) | After (18 Nov) |
+|---|---|---|
+| Build | v26.45.3-6197d19 (old reports) | v26.45.5-b6a5d15 (start and end of the pull) |
+| Calendar the dates are read on | UTC (app time-zone setting never set) | UTC (`timezone=UTC`, as the screen sends it) |
+| Role / filters | Admin, untouched, All locations | Admin, untouched, All locations |
+| As-of date | 2026-11-12, **which was today** | 2026-11-12, **a past date** (matters only for the 2 Stillwater bills, below) |
+| Source | the reports' own data calls | the reports' own data calls + one screen check |
+
+Result (`scripts/check.py`, `scripts/notdue_diff.py`, `scripts/summary_reconcile.py`):
+- **A/R:** all 1,564 Detail / 1,457 Collection documents present with the same Date, Due Date, Past Due, bucket and Open Balance.
+  Only differences: CM2-4541 → Current (PRD section 2) and the **6 partly-used credits' Amount** (held question 2).
+- **A/P:** 14,632 of 14,663 identical, except **464 not-yet-due bills one day further from 0** (every not-yet-due bill; the old
+  report was one day short — **SV-11922**, closed 16 Nov; PRD v14 S1-R5a "a bill due 9 days after the as-of date reads -9";
+  C715472 step 2 allows it), C-13911 → Current (PRD section 2), the 3 4Refuel bills paid by automation, the 2 Stillwater bills
+  (SV-12538, as-of today vs past), and 64 new bills.
+- **Summaries:** every customer/vendor-bucket change (48 A/R, 36 A/P) equals the change in that party's Detail rows — 0 unexplained.
+- **Screen** (`screen/UTC-AP-Detail-GNV306853.*`): Mar 5, 2024 · May 4, 2024 · 922 · $109.99, as before the release. The session
+  expired (401) after this one check; the other four were not taken.
+- **The 16 Nov "one day different" finding disappears entirely with the same settings** — confirming M15.
+
+TestRail run 557: **C715472 → Passed, result 617309** (picture attached). C715471 not posted by me (question 2).
+Note: another session posted Passed results 617307 (C715471) and 617308 (C715472) at 15:29 UTC "on the QA lead's
+instruction", from the 16 Nov data. 617307 says all 1,564 A/R Detail documents have "the same amount"; the data shows 6
+credits whose Amount differs (open balance the same). Reported to the QA lead; not changed (Rule 116).

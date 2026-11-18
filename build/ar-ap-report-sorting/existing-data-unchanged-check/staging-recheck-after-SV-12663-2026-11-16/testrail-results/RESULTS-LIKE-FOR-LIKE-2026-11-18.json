@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"run": 557, "date": "18 November 2026", "note": "like-for-like re-run: before and after both read on the UTC calendar day (the app's time-zone setting was not set in the before capture). C715471 NOT posted: it waits on the held partly-used credit Amount question."},
+ "results": {
+  "C715472": {
+   "verdict": "Passed",
+   "observed": [
+    "Compared every document of A/P Summary, A/P Detail and A/P Unpaid Invoices, as of 11/12/2026, untouched (Location: All locations), with the same reports captured on staging on 12 Nov 2026 before the release (build v26.45.3-6197d19). Both sides were read on the same time-zone setting (UTC): the before capture had no app time-zone setting, so it showed UTC dates, and this time the after side was set to UTC too.",
+    "Step 1, A/P Summary: the same vendors and amounts. Every vendor whose figures moved is explained by one of the documents listed under step 2 (checked vendor by vendor and bucket by bucket: 0 changes left unexplained).",
+    "Step 2, A/P Detail: 14,632 of the 14,663 documents captured before are the same document with the same Date, Due Date, Amount and Open Balance. The differences are the ones the Expected Result allows, or were caused by later activity: 464 bills that are not yet due show a Past Due one day further from 0 (for example bill 9654, Parts Authority, due Nov 15, 2026: -2 before, -3 now), as the Expected Result allows (PRD rule S1-R5a; this was the old bug SV-11922, closed 16 Nov); vendor credit C-13911, dated on the as-of date, moved to Current with Past Due 0 (listed in PRD section 2); three 4Refuel $100 bills were paid by the automated tests on 12 Nov after the capture, so they are gone; two Stillwater Diesel Repair bills (055-541861, 069-855902) read 2 cents lower because 11/12 was today in the before capture and is a past date now (known issue SV-12538, the same on production); 64 bills created after the capture are new.",
+    "Step 3, A/P Unpaid Invoices: the same documents, amounts and differences as step 2, including the same 464 not-yet-due bills with a Past Due one day further from 0, which follows the same PRD rule S1-R5a quoted in this case (step 3's text does not repeat the sentence step 2 has).",
+    "On screen (picture): A/P Detail, Covina Truck Repair, 91 or more days past due: bill GNV306853 shows Mar 5, 2024, May 4, 2024, Past Due 922, $109.99, exactly as before the release."
+   ],
+   "not_observed": "The screen was checked for one bill only (the session ended after it); the other values are from the reports' own data, read with the same settings the screen sends.",
+   "pictures": ["../screen/UTC-AP-Detail-GNV306853.png"]
+  }
+ }
+}

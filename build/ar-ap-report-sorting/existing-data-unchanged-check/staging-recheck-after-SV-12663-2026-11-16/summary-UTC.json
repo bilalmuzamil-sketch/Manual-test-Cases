@@ -1,0 +1,38 @@
+{
+ "rule_check": {
+  "TODAY, timezone=UTC sent, dates read in UTC | A/R Detail": 0,
+  "TODAY, timezone=UTC sent, dates read in UTC | A/P Detail": 0,
+  "TODAY, timezone=UTC sent, dates read in UTC | A/R Collection": 0,
+  "TODAY, timezone=UTC sent, dates read in UTC | A/P Unpaid": 0
+ },
+ "before_vs_today": {
+  "A/R Detail": {
+   "matched": 1564,
+   "amount or open balance differs": 6,
+   "bucket moved - INTENDED (credit dated on the as-of date -> Current, PRD section 2)": 1,
+   "new today (not in the before snapshot)": 196
+  },
+  "A/P Detail": {
+   "Past Due differs (-1) - NOT intended": 464,
+   "matched": 14632,
+   "missing today": 3,
+   "bucket moved - INTENDED (credit dated on the as-of date -> Current, PRD section 2)": 1,
+   "Past Due differs - INTENDED (credit dated on the as-of date -> 0)": 1,
+   "amount or open balance differs": 2,
+   "new today (not in the before snapshot)": 64
+  },
+  "A/R Collection": {
+   "matched": 1457,
+   "amount or open balance differs": 6,
+   "Past Due differs - INTENDED (credit dated on the as-of date -> 0)": 1,
+   "new today (not in the before snapshot)": 152
+  },
+  "A/P Unpaid": {
+   "matched": 14632,
+   "Past Due differs (-1) - NOT intended": 464,
+   "missing today": 3,
+   "amount or open balance differs": 2,
+   "new today (not in the before snapshot)": 64
+  }
+ }
+}
