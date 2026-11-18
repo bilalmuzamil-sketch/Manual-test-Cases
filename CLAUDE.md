@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **104 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **105 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -68,6 +68,12 @@ These are stated here **in full** because a session that gets only this far must
   retest: comment opening **"QA passed."** · labels = existing + **`QAcomplete`** · **QA Assignee** (`customfield_10385`) = existing + **Bilal Muzamil**
   · transition **QA Complete** (`10`) · read back with ONE JQL (labels + cf[10385] + status) before reporting. Failed → **Rejected from Testing** (`15`)
   with a plain annotated comment. Only partly tested → stay put; say what passed, what is left and why.
+- **🔴 NO COMPARISON-BASED TICKET WITHOUT PROOF ON BOTH SIDES (105).** QA lead, 17–18 Nov 2026, after SV-12853 (a false
+  "one day different from production" that the PO called a release blocker and the developer disproved). A before/after or
+  staging/production comparison counts only if BOTH sides were observed at the same location with all four zones and
+  screenshots recorded on BOTH sides. **Never write "production shows" unless production was looked at that day.** Every
+  date/day/time-zone finding passes the time-zone challenge (stored value · day in the location's zone · same record on the
+  reference side). A contradicting developer/PO statement is settled first; a fresh worker tries to disprove it before filing.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -161,7 +167,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 104 rules, and where each one lives
+## 2 · THE RULE INDEX — all 105 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -242,7 +248,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-97.md` — rules 61–104 (Rules 98–104 are appended at the end of this file)
+### `build/rules/RULES-61-97.md` — rules 61–105 (Rules 98–105 are appended at the end of this file)
 
 | # | Rule (short title) |
 |---|---|
@@ -290,6 +296,7 @@ rule. Generated from the split files' own headers.
 | **102** | EVERY QUESTION TO THE QA LEAD NAMES ITS TICKET (with link, or "no ticket yet" + the related one) AND CARRIES MY RECOMMENDATION |
 | **103** | EVERY NEW TICKET GETS A COMMENT TAGGING CHRIS WARD (the PO) — what happens, what should happen, fix or leave? **amended 9 Nov: never ask him to change the PRD; still report every difference** |
 | **104** | A TICKET GOES TO QA COMPLETE ONLY WHEN IT PASSED QA — same pass: "QA passed" comment, `QAcomplete` label, Bilal as QA Assignee, one-JQL read-back |
+| **105** | NO COMPARISON-BASED TICKET WITHOUT PROOF ON BOTH SIDES — same location, four zones and screenshots on BOTH sides; no "production shows" unless production was observed; every date/time-zone finding passes the time-zone challenge; a contradicting statement is resolved first; disprove before filing |
 
 **Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-97.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
