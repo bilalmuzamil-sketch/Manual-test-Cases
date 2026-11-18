@@ -162,3 +162,73 @@ Parts Velocity on production at any location, Date **Last 90 days** (clear the r
 the location's zone: the request's `start_date`/`end_date` and the **Date Range** line of the CSV/PDF download; count the
 days on the location's calendar. (Not needed to keep the ticket — it makes no production claim — but it tells the PO
 whether production has the same 91 days.)
+
+---
+
+## SV-11950 and SV-11951 — Sales Tax Collected (one shared run)
+
+Both Open (re-read 15:36 UTC; last comments 80593 and 80594, 10 Nov, parked in SV-11936 waiting for Milos / Chris).
+
+**SV-11950 claim (quoted):** *"An invoice for **$0.00** … Sales Tax Collected still lists it, marks it **Paid**, and gives
+it an **Invoice Paid Date** (the moment the invoice was made)."* Example S1-38218 at DVI Test, This month (October).
+Expected (Chris, Q31(a)): leave $0.00 invoices off the report.
+
+**SV-11951 claim (quoted):** *"**Invoice Status** reads **Paid**, so the invoice is missing when you filter on **Partially
+Paid**"* and *"**Invoice Paid Date** is the day the invoice was made, not the day the money came in (the deposit's
+date)."* Example S1-38221: $30 deposit dated Oct 26, invoice made Oct 28, $105 owed; Expected paid date **Oct 26, 2026**
+(Chris, Q31(b), SV-4573 "for partially paid invoices, show the date of the latest payment").
+
+### Capture audit (Rule 105 (1)–(4)) — same capture for both
+
+| Item | Result | Where |
+|---|---|---|
+| Comparison of two environments? | **No.** One build; "Not checked on Production or on a QA branch" is stated | tickets |
+| All four zones recorded | **YES** — DVI Test on America/Toronto (its zone then): process `TZ`, browser zone, app key `"America/Toronto"`; change-location 200; in the first capture and in the re-check on the next build | `dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SV-11950_51/screen-meta.json:5,569-572` (v26.43.2-9272076, 09:41 UTC 29 Oct); `…/RECHECK-b8ad4001/SV-11950_51/screen-meta.json:5,569-572` (v26.43.3-8ad4001, 10:20 UTC); `…/SV-11950_51/server-tax.json:10` |
+| Offsets | Not checked at capture (before 6 Nov). Toronto MATCHES for 25 Jul–31 Oct → not affected | `tz_rules_check-2026-11-18.txt` |
+| Stored values | **YES** — report rows `createdOn` / `paidDate` / `status` for S1-38218, S1-38219, S1-38221 | `…/SV-11950_51/server-tax.json` (`runs.custom_oct28.targets`) |
+| Pictures | **YES** — `F3-SV11950-1`, `F3-SV11951-1`, `F3-SV11951-2` (screen) and the work order's Finance tab | `…/evidence/f3/SV-11950_51/*.png` |
+| Contradicting statement | **None** | tickets |
+
+### Time-zone challenge on staging (Rule 105 (3) a+b)
+
+Run `SV-11950_51/staging-DVI-2026-11-18T1619Z.json`, 16:18:37–16:19:15 UTC, DVI Test, all four zones **Pacific/Fiji**
+(DVI Test's zone since ~3 Nov), offsets agree, v26.45.5-b6a5d15 at start and end. Today in Fiji = 19 Nov, so
+**Last month = October**. Stored values read inside the page (`/api/work-orders/view/{id}` and the report rows the
+screen received).
+
+| Record | Stored value (UTC) | Day at DVI now (Fiji) | Day at filing (Toronto) | Staging screen (Sales Tax Collected, Last month) |
+|---|---|---|---|---|
+| **S1-38218** ($0.00) — invoice created | `2026-10-29 00:19:52` | Oct 29 | Oct 28 | Invoice Created Date **Oct 29, 2026** |
+| S1-38218 — report `paidDate` | `2026-10-29 00:20:00` (8 s after creation; no payment exists: `customer_payments` [], `deposits` []) | Oct 29 | Oct 28 | **Paid**, Invoice Paid Date **Oct 29, 2026**, $0.00 in every money column |
+| **S1-38221** — work order's own status | `invoice_status: partially_paid`, `open_balance 105`, `deposit_total 30` | — | — | **Paid** |
+| S1-38221 — deposit DEP-4818 (`depositDate` and `customer_payments.payment_date`) | `2026-10-27 00:46:11` | **Oct 27** | **Oct 26** (8:46 PM) | — |
+| S1-38221 — invoice created | `2026-10-29 00:46:32` | Oct 29 | Oct 28 | Invoice Created Date Oct 29, 2026 |
+| S1-38221 — report `paidDate` | `2026-10-29 00:46:41` (9 s after creation) | Oct 29 | Oct 28 | Invoice Paid Date **Oct 29, 2026** |
+| S1-38219 (same set-up) | partially_paid, $105 open; deposit DEP-4817 `2026-10-26 00:14:36`; paidDate `2026-10-29 00:15:06` | deposit Oct 26 / paid Oct 29 | Oct 25 / Oct 28 | **Paid**, paid Oct 29, 2026 |
+| Invoice Status: **Partially Paid** (request `statuses[0]=partially_paid`, last_month) | 0 rows returned | — | — | **"No record matches these filters"** |
+
+Pictures: `SV-11950_51/sales-tax-DVI-last-month.png`, `SV-11950_51/sales-tax-DVI-partially-paid.png`.
+
+Every screen date equals the independently worked-out Fiji day of the stored value, so the screen itself is consistent
+with the location's zone. The ticket dates (Oct 28 / Oct 26) were the Toronto days and were right when filed; DVI Test's
+zone has since moved, so the same records now read one day later. That is a change of the location's setting, not of the
+product, and it does not touch either claim.
+
+### Verdicts — staging half
+
+- **SV-11950: STILL REPRODUCES on staging.** S1-38218 ($0.00, no payment of any kind) is listed as **Paid** with an
+  Invoice Paid Date equal to the moment it was invoiced.
+- **SV-11951: STILL REPRODUCES on staging.** S1-38221 reads **Paid** although the work order itself stores
+  `partially_paid` with $105.00 open; it is missing under **Partially Paid**; its Invoice Paid Date is the invoice's own
+  creation moment (Oct 29 in Fiji), not the deposit (stored `2026-10-27 00:46:11`). **Wording note (fact only, no
+  action taken):** the ticket's expected paid date "Oct 26, 2026" is the deposit's day **in Toronto**; at DVI Test today
+  (Fiji) the same deposit is on **Oct 27**. Any retest at DVI Test must expect **Oct 27** now, or use a location still on
+  a North-American zone. (Related: the Finance tab showed this deposit as Oct 27 already on 29 Oct — side finding SF1,
+  filed as SV-11970.)
+
+### What the production half must look at
+Neither ticket makes a production claim; the production half only tells the PO whether production behaves the same:
+Sales Tax Collected on production at one location (four zones on its zone), a range that holds (a) a **$0.00 invoice
+with no payment** and (b) an invoice **part-paid by a deposit only** (status on the work order = Partially Paid). Read
+the row's Invoice Status and Invoice Paid Date, the stored `createdOn` / `paidDate`, and the deposit's stored date; and
+whether (b) appears under Invoice Status: Partially Paid. Existing production records only; if none exist, say so.

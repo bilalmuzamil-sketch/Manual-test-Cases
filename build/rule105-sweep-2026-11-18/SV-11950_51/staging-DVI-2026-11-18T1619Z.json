@@ -1,0 +1,233 @@
+{
+ "tickets": [
+  "SV-11950",
+  "SV-11951"
+ ],
+ "location": "DVI Test",
+ "zone": "Pacific/Fiji",
+ "rule99_start": {
+  "location": "DVI Test",
+  "location_zone": "Pacific/Fiji",
+  "session_change_location_zone": "Pacific/Fiji",
+  "process_TZ": "Pacific/Fiji",
+  "browser_zone": "Pacific/Fiji",
+  "browser_offset_min": 720,
+  "app_timezone_key": "\"Pacific/Fiji\"",
+  "app_location_key": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+  "at_utc": "2026-11-18T16:18:37.069Z",
+  "machine_offset_min": 720,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.5-b6a5d15"
+ },
+ "stored": {
+  "S1-38218": {
+   "status": 200,
+   "display_number": "S1-38218",
+   "invoice_status": "paid",
+   "open_balance": 0,
+   "deposit_total": 0,
+   "invoice_balance": 0,
+   "payments_applied": 0,
+   "customer_payments": [],
+   "deposits": []
+  },
+  "S1-38221": {
+   "status": 200,
+   "display_number": "S1-38221",
+   "invoice_status": "partially_paid",
+   "open_balance": 105,
+   "deposit_total": 30,
+   "invoice_balance": 105,
+   "payments_applied": 30,
+   "customer_payments": [
+    {
+     "payment_date": {
+      "stored_utc": "2026-10-27 00:46:11",
+      "local": "2026-10-27T12:46:11+12:00",
+      "day_in_location_zone": "2026-10-27",
+      "day_in_toronto": "2026-10-26"
+     },
+     "applied_amount": 30,
+     "amount": 30,
+     "is_deposit": true
+    }
+   ],
+   "deposits": [
+    {
+     "creditNumber": "DEP-4818",
+     "amount": 30,
+     "appliedAmount": 30,
+     "overflowCreditNumber": null,
+     "paymentMethod": "Cash",
+     "depositDate": {
+      "stored_utc": "2026-10-27 00:46:11",
+      "local": "2026-10-27T12:46:11+12:00",
+      "day_in_location_zone": "2026-10-27",
+      "day_in_toronto": "2026-10-26"
+     },
+     "referenceNumber": null,
+     "status": "fully_consumed"
+    }
+   ]
+  },
+  "S1-38219": {
+   "status": 200,
+   "display_number": "S1-38219",
+   "invoice_status": "partially_paid",
+   "open_balance": 105,
+   "deposit_total": 30,
+   "invoice_balance": 105,
+   "payments_applied": 30,
+   "customer_payments": [
+    {
+     "payment_date": {
+      "stored_utc": "2026-10-26 00:14:36",
+      "local": "2026-10-26T12:14:36+12:00",
+      "day_in_location_zone": "2026-10-26",
+      "day_in_toronto": "2026-10-25"
+     },
+     "applied_amount": 30,
+     "amount": 30,
+     "is_deposit": true
+    }
+   ],
+   "deposits": [
+    {
+     "creditNumber": "DEP-4817",
+     "amount": 30,
+     "appliedAmount": 30,
+     "overflowCreditNumber": null,
+     "paymentMethod": "Cash",
+     "depositDate": {
+      "stored_utc": "2026-10-26 00:14:36",
+      "local": "2026-10-26T12:14:36+12:00",
+      "day_in_location_zone": "2026-10-26",
+      "day_in_toronto": "2026-10-25"
+     },
+     "referenceNumber": null,
+     "status": "fully_consumed"
+    }
+   ]
+  }
+ },
+ "screen": {
+  "last_month_picked": true,
+  "last_month": {
+   "chips": [
+    "Date Range: Last month",
+    "Invoice Status keyboard_arrow_down",
+    "Invoice Status keyboard_arrow_down",
+    "Invoice Status"
+   ],
+   "rows": [
+    "Paid Oct 29, 2026 Oct 29, 2026 S1-38221 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00",
+    "Paid Oct 29, 2026 Oct 29, 2026 S1-38218 ZZAUTOTEST P2C ZERO $0.00 $0.00 $0.00 $0.00 Zero Rated 0% $0.00 $0.00",
+    "Paid Oct 29, 2026 Oct 29, 2026 S1-38219 ZZAUTOTEST P2C DEP $135.00 $0.00 $0.00 $135.00 Zero Rated 0% $0.00 $135.00"
+   ],
+   "picture": "SV-11950_51/sales-tax-DVI-last-month.png"
+  },
+  "partially_picked": true,
+  "partially_paid": {
+   "chips": [
+    "Date Range: Last month",
+    "Invoice Status: Partially Paid keyboard_arrow_down cancel",
+    "Invoice Status: Partially Paid keyboard_arrow_down cancel",
+    "Invoice Status: Partially Paid"
+   ],
+   "rows": [],
+   "body_no_record": true,
+   "picture": "SV-11950_51/sales-tax-DVI-partially-paid.png"
+  }
+ },
+ "report_requests": [
+  {
+   "at": "2026-11-18T16:18:39.301Z",
+   "u": "/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=this_month&search=",
+   "n": 0,
+   "targets": []
+  },
+  {
+   "at": "2026-11-18T16:18:50.914Z",
+   "u": "/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=last_month&search=",
+   "n": 9,
+   "targets": [
+    {
+     "invoiceNumber": "S1-38221",
+     "status": "paid",
+     "subTotalWithTax": 135,
+     "tax": 0,
+     "createdOn": {
+      "stored_utc": "2026-10-29 00:46:32",
+      "local": "2026-10-29T12:46:32+12:00",
+      "day_in_location_zone": "2026-10-29",
+      "day_in_toronto": "2026-10-28"
+     },
+     "paidDate": {
+      "stored_utc": "2026-10-29 00:46:41",
+      "local": "2026-10-29T12:46:41+12:00",
+      "day_in_location_zone": "2026-10-29",
+      "day_in_toronto": "2026-10-28"
+     }
+    },
+    {
+     "invoiceNumber": "S1-38218",
+     "status": "paid",
+     "subTotalWithTax": 0,
+     "tax": 0,
+     "createdOn": {
+      "stored_utc": "2026-10-29 00:19:52",
+      "local": "2026-10-29T12:19:52+12:00",
+      "day_in_location_zone": "2026-10-29",
+      "day_in_toronto": "2026-10-28"
+     },
+     "paidDate": {
+      "stored_utc": "2026-10-29 00:20:00",
+      "local": "2026-10-29T12:20:00+12:00",
+      "day_in_location_zone": "2026-10-29",
+      "day_in_toronto": "2026-10-28"
+     }
+    },
+    {
+     "invoiceNumber": "S1-38219",
+     "status": "paid",
+     "subTotalWithTax": 135,
+     "tax": 0,
+     "createdOn": {
+      "stored_utc": "2026-10-29 00:14:58",
+      "local": "2026-10-29T12:14:58+12:00",
+      "day_in_location_zone": "2026-10-29",
+      "day_in_toronto": "2026-10-28"
+     },
+     "paidDate": {
+      "stored_utc": "2026-10-29 00:15:06",
+      "local": "2026-10-29T12:15:06+12:00",
+      "day_in_location_zone": "2026-10-29",
+      "day_in_toronto": "2026-10-28"
+     }
+    }
+   ]
+  },
+  {
+   "at": "2026-11-18T16:19:03.671Z",
+   "u": "/api/reporting/sales-tax-report?pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=&pagination[descending]=false&dateRange=last_month&statuses[0]=partially_paid&search=",
+   "n": 0,
+   "targets": []
+  }
+ ],
+ "rule99_end": {
+  "location": "DVI Test",
+  "location_zone": "Pacific/Fiji",
+  "session_change_location_zone": "Pacific/Fiji",
+  "process_TZ": "Pacific/Fiji",
+  "browser_zone": "Pacific/Fiji",
+  "browser_offset_min": 720,
+  "app_timezone_key": "\"Pacific/Fiji\"",
+  "app_location_key": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+  "at_utc": "2026-11-18T16:19:15.795Z",
+  "machine_offset_min": 720,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.5-b6a5d15"
+ }
+}
