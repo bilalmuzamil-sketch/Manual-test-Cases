@@ -35,3 +35,28 @@ Every line below is observed, measured or quoted this session (Rule 126).
    orders, filters — scripts in `../existing-data-unchanged-check/staging-recheck-after-SV-12663-2026-11-16/scripts/`.
 4. The 92-test screen run (`../v1-regression/STAGING-RUN-CARD.md`), only between 07:15 and 17:45 UTC.
 5. Verdict: green, or defect drafts that pass Rules 121, 125, 126 (shown to the QA lead before filing).
+
+
+## 5. Results, 18 Nov 20:30–21:00 UTC (staging v26.45.5-e93e93b — no report-code change from b6a5d15)
+
+| Area | What was checked | Result |
+|---|---|---|
+| Whole data, both zones | every document of all six reports as of 11/18/2026, Asia/Karachi and America/Edmonton: Past Due rule S1-R5a, buckets, bucket order S1-R5, totals S5-R18, Summary = Detail per bucket and per party S5-R18a, opening sort S1-R1..R6 with ties S2-R4, paging repeats/skips S1-R8, Collection/Unpaid documents = Detail documents | **all pass** — 32 + 28 checks, 0 wrong (`data-as-of-2026-11-18-*/INVARIANTS.md`) |
+| Exports (Story 3) | 6 CSVs untouched + filtered; PDFs: both Summaries, A/R Detail/Collection (2 customers), A/P Detail/Unpaid (3 vendors), long names, 1,000-row boundary | **all pass** — header lines, headings, one row per document, plain money, YYYY-MM-DD, Totals, on-screen order, "Total for", no "Subtotal", "Nov 04 2026", "(-$…)", every column on every page; **exactly 1,000 rows → PDF (21.9 s), 1,001 → refused with the one S3-N1 message** (`exports/EXPORT-CHECKS.md`, pictures in `exports/png/`) |
+| SV-12723 blank cells sort last | both Summaries, every money column, both directions | **pass** (`SORT-AND-FUTURE-DATE.md`) |
+| SV-12545 as-of after today | all six reports as of 11/25/2026; Past Due counted to Nov 25 | **pass** |
+| SV-12722 (C1145247, C1145248) | screen, 1440 px, case steps 1–5 | **pass** — previously Failed (`screen/`) |
+| SV-12764 (C1145253) | screen, 1440 px, case steps 1–2 | **pass** — previously Failed |
+| SV-12763 (C1145255–58) | not re-run | ticket Open, moved out of the epic; dev notes: "Kept by the developer" — stays Failed, not a blocker |
+
+**My own check errors this run (corrected, none was the app's):** A/P name order with "-", " ", "." in bill numbers (my sort key), A/R
+Collection membership (I first wrote my own rule; PRD S8-R1 + old code `CollectionsItem.php:31` decide it), a $0.00 Total read as blank,
+and step 4 of the menu tests clicking the wrong row. Each was re-checked against the source before being set aside.
+
+**Observation, not a release defect:** in the Customer/Vendor menu's search box, the first selected tag's "×" is squeezed to a sliver
+when the name is very long (`screen/C1145247-5-tags-zoom.png`). Shared component `FilterSearchListPanel.vue`, already on production;
+this release does not change how tags are drawn (git diff main..develop: 5 lines, selection logic only). No Jira ticket found.
+Not checked on a production screen.
+
+**Not yet covered (the 92-test screen run, from 07:15 UTC 19 Nov):** permissions by role, location prompt, document links, loading and
+error states, info icons, header-click sorting on screen, Expand/Collapse all, pinned rows.
