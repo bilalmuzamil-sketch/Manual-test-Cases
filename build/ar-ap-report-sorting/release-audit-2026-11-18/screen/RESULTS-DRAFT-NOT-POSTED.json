@@ -1,0 +1,19 @@
+{
+ "pass_meta": {"run": 557, "date": "18 November 2026", "note": "DRAFT — not posted. Needs the QA lead's go-ahead (Rule 6). Re-test of the three Failed tests on staging v26.45.5-e93e93b, 1440 px, 18 Nov 20:58 UTC."},
+ "results": {
+  "C1145247": {"verdict": "Passed", "observed": [
+    "A/R Aging Summary, Customer menu, searched \"ZZAUTOTESTA\": customer A (120 letters, no spaces) wraps onto 3 lines inside its own row; the row under it (\"ZZAUTOTESTAbcdefghijNeighbourRow\") and its tick box are clear and readable.",
+    "Ticked customer A: the chip reads \"Customer: ZZAUTOTESTAbcde...\". Ticked the row under it: the chip reads \"Customer: 2 customers\" and customer A stays ticked.",
+    "Customer B (\"ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Customer One Long Name\") wraps inside its own row with every & \" ' < > character shown; the next row is clear."],
+   "pictures": ["C1145247-2-row-A.png", "C1145247-4-ticked-two.png", "C1145247-5-row-B.png"]},
+  "C1145248": {"verdict": "Passed", "observed": [
+    "A/P Aging Detail, Vendor menu, searched \"ZZAUTOTESTA\": vendor A (120 letters, no spaces) wraps onto 3 lines inside its own row; the other row and its tick box are clear.",
+    "Ticked vendor A: \"Vendor: ZZAUTOTESTAbcde...\". Ticked the row next to it: \"Vendor: 2 vendors\", vendor A stays ticked.",
+    "Vendor B (\"ZZAUTOTEST Special & \"Quoted\" 'Single' <Less> Greater> Vendor One Long Name\") wraps inside its own row; the next row is clear."],
+   "pictures": ["C1145248-2-row-A.png", "C1145248-4-ticked-two.png", "C1145248-5-row-B.png"]},
+  "C1145253": {"verdict": "Passed", "observed": [
+    "A/R Aging Collection with only customer A ticked, group closed: the name wraps onto 2 lines in the group row; every heading from Date to Open Balance is visible on one line; no sideways scroll bar (table 1132 px wide in a 1132 px area); the Totals row shows $410.00 and $410.00.",
+    "Group opened: the 6 documents show under it; every heading still visible, no sideways scroll bar; \"Total for <name>\" shows $410.00 / $410.00. Opened, the name fits on one line in the wider row and does not overflow."],
+   "pictures": ["C1145253-1-collapsed.png", "C1145253-2-expanded.png"]}
+ }
+}
