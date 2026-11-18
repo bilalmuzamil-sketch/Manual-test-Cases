@@ -1,0 +1,117 @@
+- PASS — ar-aging-summary CSV S3-R4/R8 line 1 "As of: Nov 18, 2026": ['As of: Nov 18, 2026']
+- PASS — ar-aging-summary CSV S3-R5 line 2 "Locations: All locations": ['Locations: All locations']
+  - headings: ['Customer', 'Location', 'Current', '1-30 Days', '31-60 Days', '61-90 Days', '91 And Over', 'Total']
+- PASS — ar-aging-summary CSV last row is the Totals row: ['Totals', '', '44954.79']
+- PASS — ar-aging-summary CSV S3-R8 one row per party: 335 rows vs 335 on screen
+- PASS — ar-aging-summary CSV S3-R8 money is a plain number with two decimals: 3 money columns; bad []
+- PASS — ar-aging-summary CSV S3-R8 dates are YYYY-MM-DD: 0 date columns; bad []
+- PASS — ar-aging-summary CSV S3-R7 last bucket headed "91 And Over": ['Customer', 'Location', 'Current', '1-30 Days', '31-60 Days', '61-90 Days', '91 And Over', 'Total']
+- PASS — ar-aging-summary CSV S3-R8 an empty bucket is a blank cell: blank cells present
+- PASS — ar-aging-summary CSV S3-R3 rows in the on-screen order: first difference at -
+- PASS — ap-aging-summary CSV S3-R4/R8 line 1 "As of: Nov 18, 2026": ['As of: Nov 18, 2026']
+- PASS — ap-aging-summary CSV S3-R5 line 2 "Locations: All locations": ['Locations: All locations']
+  - headings: ['Vendor', 'Location', 'Current', '1-30 Days', '31-60 Days', '61-90 Days', '91 And Over', 'Total']
+- PASS — ap-aging-summary CSV last row is the Totals row: ['Totals', '', '32565.33']
+- PASS — ap-aging-summary CSV S3-R8 one row per party: 498 rows vs 498 on screen
+- PASS — ap-aging-summary CSV S3-R8 money is a plain number with two decimals: 3 money columns; bad []
+- PASS — ap-aging-summary CSV S3-R8 dates are YYYY-MM-DD: 0 date columns; bad []
+- PASS — ap-aging-summary CSV S3-R7 last bucket headed "91 And Over": ['Vendor', 'Location', 'Current', '1-30 Days', '31-60 Days', '61-90 Days', '91 And Over', 'Total']
+- PASS — ap-aging-summary CSV S3-R8 an empty bucket is a blank cell: blank cells present
+- PASS — ap-aging-summary CSV S3-R3 rows in the on-screen order: first difference at -
+- PASS — ar-aging-detail CSV S3-R4/R8 line 1 "As of: Nov 18, 2026": ['As of: Nov 18, 2026']
+- PASS — ar-aging-detail CSV S3-R5 line 2 "Locations: All locations": ['Locations: All locations']
+  - headings: ['Aging Bucket', 'Date', 'Location', 'Transaction Type', 'ID', 'Customer Full Name', 'Due Date', 'Amount', 'Open Balance']
+- PASS — ar-aging-detail CSV last row is the Totals row: ['Totals', '', '']
+- PASS — ar-aging-detail CSV S3-R8 one row per document: 1828 rows vs 1828 on screen
+- PASS — ar-aging-detail CSV S3-R8 money is a plain number with two decimals: 2 money columns; bad []
+- PASS — ar-aging-detail CSV S3-R8 dates are YYYY-MM-DD: 2 date columns; bad []
+- PASS — ar-aging-detail CSV S3-R8b party column heading "Customer Full Name": ['Aging Bucket', 'Date', 'Location', 'Transaction Type', 'ID', 'Customer Full Name', 'Due Date', 'Amount', 'Open Balance']
+- PASS — ar-aging-detail CSV S3-R8b "Aging Bucket" column with the screen bucket names: Counter({'31-60 days past due': 719, '1-30 days past due': 483, '61-90 days past due': 424, 'Current': 141, '91 or more days past due': 61})
+- PASS — ar-aging-detail CSV S3-R3 rows in the on-screen order: first difference at -
+- PASS — ap-aging-detail CSV S3-R4/R8 line 1 "As of: Nov 18, 2026": ['As of: Nov 18, 2026']
+- PASS — ap-aging-detail CSV S3-R5 line 2 "Locations: All locations": ['Locations: All locations']
+  - headings: ['Aging Bucket', 'Date', 'Location', 'Transaction Type', 'No.', 'Vendor Name', 'Due Date', 'Past Due', 'Amount', 'Open Balance']
+- PASS — ap-aging-detail CSV last row is the Totals row: ['Totals', '', '']
+- PASS — ap-aging-detail CSV S3-R8 one row per document: 14743 rows vs 14743 on screen
+- PASS — ap-aging-detail CSV S3-R8 money is a plain number with two decimals: 2 money columns; bad []
+- PASS — ap-aging-detail CSV S3-R8 dates are YYYY-MM-DD: 2 date columns; bad []
+- PASS — ap-aging-detail CSV S3-R8b party column heading "Vendor Name": ['Aging Bucket', 'Date', 'Location', 'Transaction Type', 'No.', 'Vendor Name', 'Due Date', 'Past Due', 'Amount', 'Open Balance']
+- PASS — ap-aging-detail CSV S3-R8b "Aging Bucket" column with the screen bucket names: Counter({'91 or more days past due': 12123, '31-60 days past due': 1000, '61-90 days past due': 680, '1-30 days past due': 569, 'Current': 371})
+- FAIL — ap-aging-detail CSV S3-R3 rows in the on-screen order: first difference at 12126
+- PASS — ar-aging-collection CSV S3-R4/R8 line 1 "As of: Nov 18, 2026": ['As of: Nov 18, 2026']
+- PASS — ar-aging-collection CSV S3-R5 line 2 "Locations: All locations": ['Locations: All locations']
+  - headings: ['Date', 'Location', 'Transaction Type', 'ID', 'Customer', 'Phone', 'Credit Term', 'Due Date', 'Past Due', 'Amount', 'Open Balance']
+- PASS — ar-aging-collection CSV last row is the Totals row: ['Totals', '', '']
+- PASS — ar-aging-collection CSV S3-R8 one row per document: 1689 rows vs 1689 on screen
+- PASS — ar-aging-collection CSV S3-R8 money is a plain number with two decimals: 2 money columns; bad []
+- PASS — ar-aging-collection CSV S3-R8 dates are YYYY-MM-DD: 2 date columns; bad []
+- PASS — ar-aging-collection CSV S3-R8b party column heading "Customer": ['Date', 'Location', 'Transaction Type', 'ID', 'Customer', 'Phone', 'Credit Term', 'Due Date', 'Past Due', 'Amount', 'Open Balance']
+- PASS — ar-aging-collection CSV S3-R3 rows in the on-screen order: first difference at -
+- PASS — ar-aging-collection CSV S3-R8a "Phone" (and "Credit Term") right after "Customer": ['Date', 'Location', 'Transaction Type', 'ID', 'Customer', 'Phone', 'Credit Term', 'Due Date', 'Past Due', 'Amount', 'Open Balance']
+- PASS — ap-unpaid-invoices CSV S3-R4/R8 line 1 "As of: Nov 18, 2026": ['As of: Nov 18, 2026']
+- PASS — ap-unpaid-invoices CSV S3-R5 line 2 "Locations: All locations": ['Locations: All locations']
+  - headings: ['Date', 'Location', 'Transaction Type', 'No.', 'Vendor Name', 'Due Date', 'Past Due', 'Amount', 'Open Balance']
+- PASS — ap-unpaid-invoices CSV last row is the Totals row: ['Totals', '', '']
+- PASS — ap-unpaid-invoices CSV S3-R8 one row per document: 14743 rows vs 14743 on screen
+- PASS — ap-unpaid-invoices CSV S3-R8 money is a plain number with two decimals: 2 money columns; bad []
+- PASS — ap-unpaid-invoices CSV S3-R8 dates are YYYY-MM-DD: 2 date columns; bad []
+- PASS — ap-unpaid-invoices CSV S3-R8b party column heading "Vendor Name": ['Date', 'Location', 'Transaction Type', 'No.', 'Vendor Name', 'Due Date', 'Past Due', 'Amount', 'Open Balance']
+- FAIL — ap-unpaid-invoices CSV S3-R3 rows in the on-screen order: first difference at 689
+- PASS — A/P Detail CSV S3-R5 location + Past due lines: [['As of: Nov 18, 2026'], ['Locations: Staging Lethbridge - 4310'], ['Past due: 31-60 days, 91+ days']]
+- PASS — A/R Collection CSV S3-R5 "Customers: " names in the order ticked: Customers: 4 Star Truck Repair,   ZZBREAK <b>bold</b> "q" & 'x' Superlongunbrokencustomern
+- PASS — ar-aging-summary-all.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ar-aging-summary-all.pdf S3-R5 "Locations: All locations"
+- PASS — ar-aging-summary-all.pdf S3-R7b never prints "Subtotal"
+- PASS — ar-aging-summary-all.pdf S3-R7a dates print as "Nov 04 2026": 1 dates; not in that form: []
+- PASS — ar-aging-summary-all.pdf S3-R7a negatives in brackets "(-$11,111.00)": 38 bracketed, 0 in screen form
+- PASS — ar-aging-summary-all.pdf S3-R7 heading "91 And Over" on one line
+- PASS — ar-aging-summary-all.pdf S3-R7c every column heading on every page: pages missing: []
+- PASS — ap-aging-summary-all.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ap-aging-summary-all.pdf S3-R5 "Locations: All locations"
+- PASS — ap-aging-summary-all.pdf S3-R7b never prints "Subtotal"
+- PASS — ap-aging-summary-all.pdf S3-R7a dates print as "Nov 04 2026": 1 dates; not in that form: []
+- PASS — ap-aging-summary-all.pdf S3-R7a negatives in brackets "(-$11,111.00)": 22 bracketed, 0 in screen form
+- PASS — ap-aging-summary-all.pdf S3-R7 heading "91 And Over" on one line
+- PASS — ap-aging-summary-all.pdf S3-R7c every column heading on every page: pages missing: []
+- PASS — ar-aging-detail-2cust.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ar-aging-detail-2cust.pdf S3-R5 "Locations: All locations"
+- PASS — ar-aging-detail-2cust.pdf S3-R7b never prints "Subtotal"
+- PASS — ar-aging-detail-2cust.pdf S3-R7a dates print as "Nov 04 2026": 35 dates; not in that form: []
+- PASS — ar-aging-detail-2cust.pdf S3-R7a negatives in brackets "(-$11,111.00)": 22 bracketed, 0 in screen form
+  - ar-aging-detail-2cust.pdf: 2 pages, 4 "Total for" rows
+- PASS — ar-aging-detail-2cust.pdf S3-R7c every column heading on every page: pages missing: []
+- PASS — ar-aging-collection-2cust.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ar-aging-collection-2cust.pdf S3-R5 "Locations: All locations"
+- PASS — ar-aging-collection-2cust.pdf S3-R7b never prints "Subtotal"
+- PASS — ar-aging-collection-2cust.pdf S3-R7a dates print as "Nov 04 2026": 29 dates; not in that form: []
+- PASS — ar-aging-collection-2cust.pdf S3-R7a negatives in brackets "(-$11,111.00)": 22 bracketed, 0 in screen form
+  - ar-aging-collection-2cust.pdf: 2 pages, 2 "Total for" rows
+- PASS — ar-aging-collection-2cust.pdf S3-R7c every column heading on every page: pages missing: []
+- PASS — ap-aging-detail-3vend.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ap-aging-detail-3vend.pdf S3-R5 "Locations: All locations"
+- PASS — ap-aging-detail-3vend.pdf S3-R7b never prints "Subtotal"
+- PASS — ap-aging-detail-3vend.pdf S3-R7a dates print as "Nov 04 2026": 225 dates; not in that form: []
+- PASS — ap-aging-detail-3vend.pdf S3-R7a negatives in brackets "(-$11,111.00)": 32 bracketed, 0 in screen form
+  - ap-aging-detail-3vend.pdf: 9 pages, 5 "Total for" rows
+- PASS — ap-aging-detail-3vend.pdf S3-R7c every column heading on every page: pages missing: []
+- PASS — ap-unpaid-invoices-3vend.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ap-unpaid-invoices-3vend.pdf S3-R5 "Locations: All locations"
+- PASS — ap-unpaid-invoices-3vend.pdf S3-R7b never prints "Subtotal"
+- PASS — ap-unpaid-invoices-3vend.pdf S3-R7a dates print as "Nov 04 2026": 209 dates; not in that form: []
+- PASS — ap-unpaid-invoices-3vend.pdf S3-R7a negatives in brackets "(-$11,111.00)": 32 bracketed, 0 in screen form
+  - ap-unpaid-invoices-3vend.pdf: 9 pages, 3 "Total for" rows
+- PASS — ap-unpaid-invoices-3vend.pdf S3-R7c every column heading on every page: pages missing: []
+- PASS — ar-aging-summary-longname.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ar-aging-summary-longname.pdf S3-R5 "Locations: All locations"
+- PASS — ar-aging-summary-longname.pdf S3-R7b never prints "Subtotal"
+- PASS — ar-aging-summary-longname.pdf S3-R7a dates print as "Nov 04 2026": 1 dates; not in that form: []
+- PASS — ar-aging-summary-longname.pdf S3-R7a negatives in brackets "(-$11,111.00)": 0 bracketed, 0 in screen form
+- PASS — ar-aging-summary-longname.pdf S3-R7 heading "91 And Over" on one line
+- PASS — ar-aging-summary-longname.pdf S3-R7c every column heading on every page: pages missing: []
+- PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R4 "As of Nov 18, 2026"
+- PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R5 "Locations: All locations"
+- PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R7b never prints "Subtotal"
+- PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R7a dates print as "Nov 04 2026": 1830 dates; not in that form: []
+- PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R7a negatives in brackets "(-$11,111.00)": 342 bracketed, 0 in screen form
+  - ap-unpaid-invoices-exactly-1000.pdf: 43 pages, 2 "Total for" rows
+- PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R7c every column heading on every page: pages missing: []
