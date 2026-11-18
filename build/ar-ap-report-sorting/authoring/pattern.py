@@ -327,6 +327,4 @@ def pattern(c):
     # 10 Nov 2026: the currency-check layer (PRD version 11, design of 5 Nov 2026) comes after the read-through layer
     import v13_layout as V13L
     # 14 Nov 2026: the PRD version 13 currency layer comes last
-    # 18 Nov 2026 (Rule 141): a case rewritten top to bottom in v13_layout.REWRITE_141 skips the older layers, whose anchors no longer exist
-    if c["key"] in V13L.REWRITE_141: return V13L.apply(c, convert(c))
     return V13L.apply(c, V11.apply(c, RTL.readthrough(c, relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL), L)))
