@@ -252,5 +252,7 @@ for c in L.CASES:
     out[c["key"]] = dict(sec=c["sec"], section_id=SECS.get(c["sec"]), title=c["title"], refs=f["refs"], codes=sorted(L.codes_of(c)),
                          automation=c["marker"], held=c["marker"] != L.MARKER, api=c["api"], fields=f)
 json.dump(out, open(f"{L.D}/proposals.json", "w"), indent=1, ensure_ascii=False)
+import sys as _s141, os as _o141; _s141.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import rule141_gate as _R141   # Rule 141 (QA lead 18 Nov 2026)
+_p141 = _R141.problems(_o141.path.dirname(_o141.path.dirname(_o141.path.abspath(__file__)))); [print("PROBLEM", _x) for _x in _p141]; probs += _p141
 print("PROBLEM lines:", len(probs))
 sys.exit(1 if probs else 0)

@@ -71,6 +71,10 @@ def main():
             if m: hard.append(f"{k}: {name}: …{src[max(0, m.start() - 60):m.end() + 40]}…".replace("\n", " "))
         for line in t["exp"].splitlines():
             if re.search(NEG, line, re.I): neg.append(f"{k}: {line.strip()[:160]}")
+    # Rule 141 (QA lead 18 Nov 2026): a comparison or date case that fails the Rule 141 gate is a hard problem, except the 442 cases of the
+    # 18 Nov 2026 audit while their text is unchanged (rule141_gate.py, rule141-baseline-2026-11-18.json)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import rule141_gate as _R141
+    hard += _R141.problems(folder, quiet=True)
     print(f"cases {len(P)} | hard problems {len(hard)} | 'does not / never' results to read for a control {len(neg)}")
     for h in hard: print("PROBLEM", h)
     for x in neg: print("READ-CONTROL", x)

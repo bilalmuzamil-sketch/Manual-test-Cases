@@ -323,5 +323,7 @@ print("bundled steps kept whole (flows no source draws):", len(KEPT_WHOLE), dict
 json.dump([{"case": k, "step": i, "text": s, "why": w} for k, i, s, w in KEPT_WHOLE], open(f"{D}/kept-whole-steps.json", "w"), indent=1, ensure_ascii=False)
 print("markers", dict(Counter(re.sub(r" - .*", "", c["marker"]) if c["marker"].startswith("AUTOMATION: HOLD") else c["marker"] for c in L.CASES)))
 for p in probs: print("PROBLEM", p)
+import sys as _s141, os as _o141; _s141.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import rule141_gate as _R141   # Rule 141 (QA lead 18 Nov 2026)
+_p141 = _R141.problems(_o141.path.dirname(_o141.path.dirname(_o141.path.abspath(__file__)))); [print("PROBLEM", _x) for _x in _p141]; probs += _p141
 print("PROBLEM lines:", len(probs))
 sys.exit(1 if probs else 0)

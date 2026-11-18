@@ -124,4 +124,6 @@ print("read-through gate: fixes for", len(_RT.RT), "cases applied (readthrough.p
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
 json.dump(out, open(f"{ssr_lib.D}/proposals.json", "w"), indent=1, ensure_ascii=False)
+import sys as _s141, os as _o141; _s141.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import rule141_gate as _R141   # Rule 141 (QA lead 18 Nov 2026)
+_p141 = _R141.problems(_o141.path.dirname(_o141.path.dirname(_o141.path.abspath(__file__)))); [print("PROBLEM", _x) for _x in _p141]; probs += _p141   # checked on the proposals just written
 sys.exit(1 if probs else 0)

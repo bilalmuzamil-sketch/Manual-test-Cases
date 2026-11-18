@@ -189,5 +189,7 @@ for _v in out.values():
         if isinstance(_f, str): _v["fields"][_k] = _f.replace("✓", "&#10003;")
 json.dump(out, open(f"{D}/proposals.json", "w"), indent=1, ensure_ascii=False)
 for p in probs: print("PROBLEM", p)
+import sys as _s141, os as _o141; _s141.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import rule141_gate as _R141   # Rule 141 (QA lead 18 Nov 2026)
+_p141 = _R141.problems(_o141.path.dirname(_o141.path.dirname(_o141.path.abspath(__file__)))); [print("PROBLEM", _x) for _x in _p141]; probs += _p141
 print("PROBLEM lines:", len(probs))
 sys.exit(1 if probs else 0)
