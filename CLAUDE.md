@@ -150,6 +150,7 @@ These are stated here **in full** because a session that gets only this far must
 Every line below is a mistake that really happened. Apply each one that fits the task. **When a new mistake is found,
 in the same turn: fix it, add it to `build/rules/MISTAKES-AND-CHECKS.md`, add its line here, and tell the QA lead.**
 
+- **Regression tickets (M15 — SV-12853 closed OBSOLETE):** both sides of a before/after measured with the SAME settings (app time-zone setting, location, role, as-of "today" or past, build) in a written table; the claim reproduced on PRODUCTION with a normal sign-in and a picture; the innocent explanation tested first; no production picture = no ticket. (M15)
 - **Run results:** in the dry run read EVERY field that will be sent (Defects, status), not only the comment; `defects` is a list. (M14)
 - **Call it like the screen:** send the same parameters the screen sends (read the handoff and the front-end request) before treating an API answer as what the user sees; open the screen once to confirm. (M13)
 - **Field names:** read one real record's keys before scripting against a file; every special case asserts it was applied, never falls through silently. (M12)

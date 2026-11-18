@@ -1,3 +1,9 @@
+> 🔴 **CORRECTION, 18 Nov 2026 — §2 of this file and ticket SV-12853 are WRONG.** SV-12853 was closed OBSOLETE by Chris Ward on
+> 17 Nov as expected behaviour: production shows the same Date, Due Date and Past Due when signed in at the same location
+> (Nemanja, against build 75f8b2e). The "before" values came from a capture whose app time-zone setting was never set (so
+> UTC), compared with an "after" capture set to the location's zone. My error — `build/rules/MISTAKES-AND-CHECKS.md` M15.
+> The C715471 / C715472 "Failed" results of 16 Nov rest on it and need correcting. §1 (SV-12663 fixed) still stands.
+
 # C715471 / C715472 re-check after SV-12663 (staging, 16 Nov 2026)
 
 Ordered by the QA lead 16 Nov 2026 ("1. Yes" to re-running C715471 and C715472 on staging).
