@@ -482,3 +482,5 @@ the Rule 27 tie), skills `00-COMMON-CORE.md` (×2) and `13-CROSS-SESSION-SAFETY.
 - 2026-11-12: Rule 141 added (ticket + run links with every question/statement), QA lead's explicit instruction; plain_check.py allows linked keys (self-test 36/36 before and after).
 
 - 2026-11-13: **Rule 142** added at the end of `RULES-61-ONWARD.md` (QA lead: "yes add them to the rule book") — developer "kept / not a bug" notes accept nothing; layout tests carry a long value with no spaces; a suite ends with every "kept" item decided. Index row added to CLAUDE.md §2.
+
+- 2026-11-18: **Rule 143** added at the end of `RULES-61-ONWARD.md` (QA lead: "1. A") — comparisons need both sides on screen on the same clock, production only from production seen that day; enforced by `build/testing-tools/comparison_gate.py`; index row 143 and a clause on §1 bullet (f) in CLAUDE.md; pointers in skills 06 and 09; self-test check added.

@@ -190,6 +190,7 @@ def main(quick=False):
     for stem in ('APP-ACTIONS-PLAYBOOK', 'LEARNINGS-LOG'):
         nums = [os.path.basename(x)[:3] for x in glob.glob(os.path.join(ROOT, 'build/kb', stem, '[0-9][0-9][0-9]-*.md'))]
         check(f'knowledge: part numbers of {stem} are unique', len(nums) == len(set(nums)), str(sorted(n for n in set(nums) if nums.count(n) > 1)))
+    rc, out = run(['python3', f'{T}/comparison_gate.py', '--selftest']); check('gates: comparison_gate refuses the SV-12853 shape and accepts a complete comparison (Rule 143)', rc == 0, out[-200:])
     hot = len(re.findall(r'^#{2,3} L\d{4}', open(os.path.join(ROOT, 'build/LEARNINGS-LOG.md')).read(), re.M))
     check('knowledge: the learnings log still holds recent entries for the session-start summary', hot > 0, f'{hot} entries', level='WARN')
     for name, ok, detail, level in RESULTS:

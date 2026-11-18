@@ -1,0 +1,41 @@
+{
+ "pass_meta": {
+  "note": "18 Nov 2026, run 557, g24: C715471/C715472 re-marked Passed after SV-12853 closed Obsolete (QA lead: A)"
+ },
+ "results": {
+  "C715471": {
+   "verdict": "Passed",
+   "observed": [
+    "Re-recorded 18 Nov 2026 on the QA lead's instruction: SV-12853 (https://shopview.atlassian.net/browse/SV-12853), which had re-marked this test Failed on 16 Nov, was closed Obsolete by the product owner on 17 Nov as expected behaviour - production shows the same dates when signed in at the same location. The result below is the 16 Nov staging run, read with the same time-zone setting on both sides.",
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, browser on Pakistan time; the three A/R reports opened with no filter touched except the as-of date, set to 11/12/2026 - the day the before-release copy was saved - and compared document by document with that copy.",
+    "Re-run after SV-12663 (https://shopview.atlassian.net/browse/SV-12663, Ready for Production) was fixed and passed by QA on 13 Nov.",
+    "Step 1: A/R Summary - every customer in the copy shows the same amounts in the same columns (264 customers with nothing new since the copy: all identical); Location chip \"Location: All locations\".",
+    "Step 2: A/R Detail - every one of the 1564 documents in the copy is still there with the same amount and open balance and in the same aging column; the only move is the one PRD section 2 lists: credit memo CM2-4541, dated on the as-of day, now in Current. The 196 other documents were all made after the copy (new customers or dated 12 Nov).",
+    "The document from SV-12663, S3-17147 (Tucson Truck Center, Due Date Sep 12, 2026), is back in \"61-90 days past due\" with Past Due 61 (on 12 Nov it was wrongly in 31-60 with 60).",
+    "Step 3: A/R Collection - same customers and amounts; Location chip \"Location: All locations\".",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-1116-01-ar-aging-summary.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-1116-02-ar-aging-detail.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715471-1116-03-ar-aging-collection.png"
+   ]
+  },
+  "C715472": {
+   "verdict": "Passed",
+   "observed": [
+    "Re-recorded 18 Nov 2026 on the QA lead's instruction: SV-12853 (https://shopview.atlassian.net/browse/SV-12853), which had re-marked this test Failed on 16 Nov, was closed Obsolete by the product owner on 17 Nov as expected behaviour - production shows the same dates when signed in at the same location. The result below is the 16 Nov staging run, read with the same time-zone setting on both sides.",
+    "Set up: staging (build v26.45.4-f3d3d2d), Admin, browser on Pakistan time; the three A/P reports opened with no filter touched except the as-of date, set to 11/12/2026 (the day the before-release copy was saved), and compared document by document with that copy.",
+    "Re-run after SV-12663 (https://shopview.atlassian.net/browse/SV-12663, Ready for Production) was fixed and passed by QA on 13 Nov: every one of the 14724 bills now shows a Past Due that matches the Due Date on screen.",
+    "Steps 1-3: the same vendors and documents with the same amounts and in the same aging columns; the only column move is the one PRD section 2 lists (vendor credit C-13911, dated on the as-of day, now in Current with Past Due 0). Location chip \"Location: All locations\".",
+    "Past Due: 464 bills that are not yet due read one day further away than in the old copy (for example, due Nov 27, as of Nov 12: -15, the old report said -14). The new number is the calendar-day count PRD v13 rule S1-R5a sets (\"a bill due 9 days after the as-of date reads -9\"); the QA lead accepted this on 16 Nov.",
+    "Two Stillwater Diesel Repair bills (055-541861, 069-855902) show an open balance 2 cents lower as of 11/12 than in the old copy; as of today they show exactly what the old report showed ($643.38 and $4.31), so no money changed. Why the 11/12 figure moved was not observed (the item behind it was not looked at); it is noted here, not explained.",
+    "Test run 557: https://shopview.testrail.io/index.php?/runs/view/557"
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715472-1116-01-stillwater-2026-11-12.png",
+    "/home/user/Manual-test-Cases/build/aging-reports/staging/pics/C715472-1116-02-stillwater-today.png"
+   ]
+  }
+ }
+}
