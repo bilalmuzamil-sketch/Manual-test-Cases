@@ -298,3 +298,59 @@ are still under Oct 07. A retest following the ticket's steps at DVI Test must l
 Sales By Representative on production, a representative with several invoices on one day at one location (four zones on
 that location's zone): the stored `created_on` of each, the day they fall on in that zone, and the order shown inside the
 day heading. (The ticket makes no production claim; this tells the PO whether production orders the same way.)
+
+---
+
+## SV-9977 — Legacy invoice on production verified against the QA branch (15-area comparison)
+
+Status **Board Backlog** (re-read 15:36 UTC; one comment, 76394, ours, 12–13 Sep: the annotated pictures). A QA record
+(Task), not a defect: *"the Legacy invoice PRINTED on production matches the one printed on the QA branch, and every type
+size is identical on both"*, 14 of 15 printed areas identical, plus three differences: on-screen text **~11% larger** on
+production, the logo **prints ~11% smaller** on production, and two template style rules changed. Compared: production
+`app.shopview.com` **v26.36.4-3e1c643** against QA branch **sv9901 v26.35.10-7b9a47d**, *"both read live on 12 September
+2026."*
+
+Evidence lives on another session's branch, read for facts only (Rule 98):
+`origin/claude/heic-upload-iphone-test-sz7h5p` (at `f545a4fa0`), folder `build/invoice-legacy-qa-vs-prod-2026-09-12/`.
+
+### Capture audit (Rule 105 (1)–(4)) — this IS an environment comparison
+
+| Rule 105 item | Result | Where (other branch) |
+|---|---|---|
+| (1) Both sides observed | **YES.** The first pass compared two PDFs the QA lead supplied; it was then re-done **live on both** on 12 Sep with production credentials and QA-branch cookies, build markers read live; logo and stylesheet re-measured live on 13 Sep with production switched to Legacy | `FINDINGS.md:367` (§5 LIVE VERIFICATION); `SV-9979-FONT-SIZE-CHECK.md:121` (addendum), `:229` |
+| (1) Same location on both sides | **NO** — production org "Bilal-Trucks", Trucks Hill 2 (Ajman) vs QA Staging Heavy Duty - 9919; different invoices (INV-S2-194 vs INV-S99999-16518 / INV-S2-4219). The comparison is of the **template** (positions, sizes, fonts), so different data is expected; the logo difference was re-done with **one identical logo file** on both (13 Sep) | `FINDINGS.md:9-14`; `SV-9979-FONT-SIZE-CHECK.md:121-140`; comment 76394 picture 18 |
+| (1) Four zones recorded on both sides | **NO** — not recorded on either side (12–13 Sep, before Rule 99 existed). **No bearing on the claims**, which are about layout and type sizes; the date block (area 2) was compared for position and size, not for the date values. But under Rule 105 (1) as written a side missing the zones "is NOT a reference" — a formal gap for the QA lead to rule on | — |
+| (1) Pictures of both sides | **YES** — 18 annotated side-by-side pairs (QA left, production right); picture 17 (preview zoom) is one build with the new zoom rule off/on, the rule itself read from production's live stylesheet | comment 76394; `SV-9979-FONT-SIZE-CHECK.md:229-245` |
+| (2) "Production shows …" only if observed that day | **YES** — production observed live 12 Sep (and 13 Sep), build marker v26.36.4-3e1c643 recorded | `FINDINGS.md:367-377`; `TICKETS-FILED.md:47` |
+| (3) Time-zone challenge | **Not applicable** — no date, day or time-zone claim | — |
+| (4) Contradicting statement | **None on the ticket.** Caveat recorded at the time: on 13 Sep morning production had been switched back to the Modern design by someone; the addendum switched it to Legacy before measuring | `SV-9979-FONT-SIZE-CHECK.md:85-101`, `:121-124` |
+
+### Staging half / reference side now
+
+**CANNOT BE CHECKED.** Staging is neither side of this comparison. The reference side, QA branch **sv9901**, is **not
+reachable** from this container (`curl: (56) CONNECT tunnel failed, response 502`, probed 16:14–16:16 UTC 18 Nov — the
+retired-branch signature, `build/BLOCKED-qa-branch-sv8582.md`; whether sv9901 is retired is not confirmed). The production
+build it was compared with (v26.36.4) has also been replaced since. The ticket is a dated snapshot (12–13 Sep) and reads
+as one.
+
+### What the production half must look at (only if the QA lead wants the record refreshed)
+- Today's production Legacy invoice: printed type sizes, printed logo width, and the in-app preview zoom
+  (`.invoice-sheet { zoom }` in the InvoiceDisplay stylesheet), with the build marker. Note: switching production's
+  invoice design (Legacy/Modern) is a **production write** on a shared account — ask first.
+- A v26.35.10 reference would need a QA branch on that build to be raised again; without one, only "production today vs
+  production 12 Sep" can be compared.
+
+---
+
+## Summary (staging half, 18 Nov 2026)
+
+| Ticket | Claim in one line | Capture audit (zones · offsets · stored values · both pictured · production observed) | Staging verdict | Production half must check |
+|---|---|---|---|---|
+| SV-12207 | Remittance slip prints a different day from the screen for evening payments/credits | zones ✅ · offsets ❌ at capture, corrected 6/9 Nov, unaffected · stored ✅ · pictures ✅ · not a comparison | **STILL REPRODUCES** (Karachi): slip = UTC day for payment Date and bill dates; Credit Date not verified | Evening (after 6 PM Edmonton) vendor payment + credit on production; slip vs Payments/Unpaid tabs |
+| SV-11940 | Parts Velocity "Last 90 days" covers 91 days | zones ✅ (app key incl.) · offsets ✅ (Toronto matches) · window ✅ · pictures ✅ · no production claim | **STILL REPRODUCES** (Fiji and Karachi): 91 location days | Request window + Date Range line on production |
+| SV-11950 | $0.00 invoice listed as Paid with a paid date | zones ✅ · offsets ✅ · stored ✅ · pictures ✅ · no production claim | **STILL REPRODUCES** (Fiji) | A $0.00 no-payment invoice on production's Sales Tax Collected |
+| SV-11951 | Deposit-part-paid invoice shown Paid, paid date = invoice date | zones ✅ · offsets ✅ · stored ✅ · pictures ✅ · no production claim | **STILL REPRODUCES** (Fiji); expected deposit day at DVI is now **Oct 27** (zone moved), was Oct 26 in Toronto | A deposit-only part-paid invoice on production: status, paid date, Partially Paid filter |
+| SV-11952 | Same-day invoices newest first instead of by number | zones ✅ · offsets ✅ · stored ❌ at capture (recorded now) · picture ✅ · no production claim | **STILL REPRODUCES** (Karachi and Fiji); at DVI the group is now **Oct 08** | Same-day order on production SBR |
+| SV-9977 | Production Legacy invoice = QA branch in 14/15 areas, 3 differences | both observed live ✅ · same location ❌ (template comparison; logo controlled) · zones ❌ (no bearing on a layout claim) · pictures ✅ · production observed ✅ | **CANNOT BE CHECKED** — not a staging claim; sv9901 unreachable (CONNECT 502) | Only if refreshed: today's production Legacy invoice; design switch is a production write — ask |
+
+None of the six looks like a test set-up error.
