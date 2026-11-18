@@ -232,3 +232,69 @@ Sales Tax Collected on production at one location (four zones on its zone), a ra
 with no payment** and (b) an invoice **part-paid by a deposit only** (status on the work order = Partially Paid). Read
 the row's Invoice Status and Invoice Paid Date, the stored `createdOn` / `paidDate`, and the deposit's stored date; and
 whether (b) appears under Invoice Status: Partially Paid. Existing production records only; if none exist, say so.
+
+---
+
+## SV-11952 — Sales By Representative lists invoices on the same day newest first instead of by invoice number
+
+Status Open (re-read 15:36 UTC; last comment 80595, 10 Nov, parked in SV-11936 waiting for Milos / Chris).
+
+**The claim (quoted):** *"invoices made on the **same day** are listed **newest first, by the minute they were made**. The
+written rule is that invoices on the same day are listed by **invoice number, lowest first**."* Example: Viktoria
+Videnovic, This month (October), All locations, viewed from DVI Test on Toronto time: *"Oct 07 2026: S2-34681, S2-34864,
+S2-33689, S2-33735, S2-34873, S2-34874 (newest invoice first)"*; expected S2-33689, S2-33735, S2-34681, S2-34864,
+S2-34873, S2-34874. Source: SBR spec v30, S6-R9.
+
+The date part of this claim is **which calendar day each invoice falls on** — the ordering rule only applies inside a day.
+
+### Capture audit (Rule 105 (1)–(4))
+
+| Item | Result | Where |
+|---|---|---|
+| Comparison of two environments? | **No.** One build; "Not checked on Production or on a QA branch" is stated | ticket |
+| All four zones recorded | **YES** — DVI Test on America/Toronto: process `TZ`, browser zone, app key; runs without the location key were caught by the worker and renamed `INVALID-…`, no verdict uses them | `dashboard-verify-2026-10-28/tickets-2026-10-29/filter-recheck/evidence/f3/SV-11952/screen-meta-alllocs.json:5,7,22444-22445` (10:04 UTC 29 Oct, v26.43.2-9272076); `…/RECHECK-b8ad4001/SV-11952/screen-meta-alllocs.json:5,7,22444-22445` (10:40 UTC, v26.43.3-8ad4001); `filter-recheck/RESULT-f3.md:15` |
+| Offsets | Not checked at capture (before 6 Nov). Toronto MATCHES; and the six invoices sit 4–6 hours from any Toronto midnight (see below) → not affected | `tz_rules_check-2026-11-18.txt` |
+| Stored values | Not recorded in the ticket; recorded now (below) | — |
+| Pictures | **YES** — `F3-SV11952-1-viktoria-oct07-all-locations.png` | `…/evidence/f3/SV-11952/` |
+| Contradicting statement | **None** | ticket |
+
+### Time-zone challenge on staging (Rule 105 (3) a+b)
+
+Runs: `SV-11952/staging-HD-2026-11-18T1622Z.json` (Heavy Duty — the invoices' own location — all four zones
+Asia/Karachi) and `SV-11952/staging-DVI-2026-11-18T1623Z.json` (DVI Test, as in the ticket's steps — all four zones
+Pacific/Fiji). Both: Date: Last month (October in both zones today), Location: All locations, Show Unassigned off,
+Viktoria Videnovic opened; offsets agree; v26.45.5-b6a5d15 at start and end. The window the screen sent follows the
+session's location: Karachi `2026-09-30T19:00Z … 2026-10-31T18:59:59.999Z`, Fiji `2026-09-30T12:00Z … 2026-10-31T11:59:59.999Z`.
+
+| Invoice | Stored `created_on` (UTC) | Day in Karachi (HD) | Day in Fiji (DVI now) | Day in Toronto (at filing) |
+|---|---|---|---|---|
+| S2-34681 | 2026-10-07T17:42:09Z | Oct 07 (10:42 PM) | Oct 08 (5:42 AM) | Oct 07 (1:42 PM) |
+| S2-34864 | 2026-10-07T17:17:00Z | Oct 07 | Oct 08 | Oct 07 |
+| S2-33689 | 2026-10-07T16:28:15Z | Oct 07 | Oct 08 | Oct 07 |
+| S2-33735 | 2026-10-07T16:27:34Z | Oct 07 | Oct 08 | Oct 07 |
+| S2-34873 | 2026-10-07T16:26:41Z | Oct 07 | Oct 08 | Oct 07 |
+| S2-34874 | 2026-10-07T15:21:23Z | Oct 07 (8:21 PM) | Oct 08 (3:21 AM) | Oct 07 (11:21 AM) |
+
+All six fall on ONE day in every zone used (Oct 07 at Karachi and Toronto, Oct 08 at Fiji), so the "same day" premise
+holds whatever the zone. Their stored times run newest-first exactly in the order the ticket reported.
+
+| Staging screen | Day heading shown | Order shown | Lowest number first? |
+|---|---|---|---|
+| Heavy Duty (Karachi) — `SV-11952/sbr-HD-viktoria-last-month.png` | **Oct 07 2026** | S2-34681, S2-34864, S2-33689, S2-33735, S2-34873, S2-34874 | **No** — newest time first |
+| DVI Test (Fiji) — `SV-11952/sbr-DVI-viktoria-last-month.png` | **Oct 08 2026** | S2-34681, S2-34864, S2-33689, S2-33735, S2-34873, S2-34874 | **No** — newest time first |
+
+Other days with more than one invoice under this representative behave the same (HD: 3 of 4 such days not in number
+order — Oct 29, Oct 07, Oct 01; DVI: 3 of 3), in the JSON.
+
+### Verdict — staging half
+
+**STILL REPRODUCES on staging**, under two zones, all four zones matched, offsets agreeing. Not a test set-up error: the
+six invoices share one calendar day in every zone, and the order within that day follows their stored time, not their
+number. **Wording note (fact only, no action taken):** viewed from DVI Test today, the same six invoices are under
+**Oct 08 2026**, not "Oct 07 2026" as the ticket's step 7 says, because DVI Test's zone moved to Fiji; at Heavy Duty they
+are still under Oct 07. A retest following the ticket's steps at DVI Test must look under Oct 08, or run from Heavy Duty.
+
+### What the production half must look at
+Sales By Representative on production, a representative with several invoices on one day at one location (four zones on
+that location's zone): the stored `created_on` of each, the day they fall on in that zone, and the order shown inside the
+day heading. (The ticket makes no production claim; this tells the PO whether production orders the same way.)
