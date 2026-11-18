@@ -365,6 +365,10 @@ developer could make for refusing this ticket** — all six, each one answered:
 **Be willing to lose here.** The argument gets made either way: **either we make it first, in private,
 or the engineering manager makes it in public.**
 
+### A11 · **RULE 125 — A REGRESSION TICKET ("differs from production / from before the release") PASSES THE GATE FIRST**
+
+Run `python3 build/testing-tools/regression_ticket_gate.py <gate.json>` on a gate file committed with the evidence. It refuses unless both sides were measured with the SAME settings (app time-zone setting, location, role, as-of date and whether it was "today", browser zone, data source), the claim is reproduced on PRODUCTION with a normal sign-in and a picture, the record's own page agrees, two innocent explanations were tested and ruled out, and the doubts are listed for the QA lead. Then show him the draft with all of that BEFORE filing. Why: SV-12853 (M15), closed OBSOLETE.
+
 ### A10 · **RULE 62 — CREATION IS ON HOLD. PREPARE TO THE BUTTON, THEN ASK.**
 
 - **The 2026-08-10 hold is active** (QA lead, verbatim: *"Do not create anything until my next

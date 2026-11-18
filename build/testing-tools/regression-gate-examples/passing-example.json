@@ -1,0 +1,64 @@
+{
+ "claim": "WORKED EXAMPLE ONLY (not a real finding): shape of a gate file that passes.",
+ "settings": {
+  "before": {
+   "build": "v26.45.3-6197d19",
+   "environment": "production",
+   "app_time_zone_setting": "America/Edmonton",
+   "location": "Staging Lethbridge - 4310",
+   "role": "Admin",
+   "as_of_date": "2026-11-12",
+   "as_of_is_today": "no",
+   "browser_time_zone": "America/Edmonton",
+   "data_source": "screen"
+  },
+  "after": {
+   "build": "v26.45.4-f3d3d2d",
+   "environment": "staging",
+   "app_time_zone_setting": "America/Edmonton",
+   "location": "Staging Lethbridge - 4310",
+   "role": "Admin",
+   "as_of_date": "2026-11-12",
+   "as_of_is_today": "no",
+   "browser_time_zone": "America/Edmonton",
+   "data_source": "screen"
+  },
+  "how_measured": {
+   "build": "read on both pages the same way (example)",
+   "environment": "read on both pages the same way (example)",
+   "app_time_zone_setting": "read on both pages the same way (example)",
+   "location": "read on both pages the same way (example)",
+   "role": "read on both pages the same way (example)",
+   "as_of_date": "read on both pages the same way (example)",
+   "as_of_is_today": "read on both pages the same way (example)",
+   "browser_time_zone": "read on both pages the same way (example)",
+   "data_source": "read on both pages the same way (example)"
+  }
+ },
+ "production_check": {
+  "reproduced": true,
+  "build": "v26.45.4-75f8b2e",
+  "signed_in_normally_at": "Staging Lethbridge - 4310",
+  "picture": "example-production-picture.png",
+  "checked_utc": "2026-11-18T13:00Z"
+ },
+ "own_record_page": {
+  "what": "the bill's own page at the same location",
+  "agrees_with_claim": true
+ },
+ "innocent_explanations": [
+  {
+   "explanation": "the two sides used different time-zone settings",
+   "how_tested": "settings table, both read from the page",
+   "result": "ruled out"
+  },
+  {
+   "explanation": "production behaves the same today",
+   "how_tested": "production screen at the same location",
+   "result": "ruled out"
+  }
+ ],
+ "doubts_for_qa_lead": [
+  "example doubt"
+ ]
+}

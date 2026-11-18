@@ -1,0 +1,14 @@
+{
+ "claim": "Aging reports show Date, Due Date and Past Due one day different from production (SV-12853, 16 Nov 2026 - as it actually was).",
+ "settings": {
+  "before": {"build": "v26.45.3-6197d19", "environment": "staging", "app_time_zone_setting": "not set", "location": "Staging Heavy Duty - 9919",
+             "role": "Admin", "as_of_date": "2026-11-12", "as_of_is_today": "yes", "browser_time_zone": "Asia/Karachi", "data_source": "screen + data call (UTC end of day)"},
+  "after":  {"build": "v26.45.4-f3d3d2d", "environment": "staging", "app_time_zone_setting": "America/Edmonton", "location": "Staging Lethbridge - 4310",
+             "role": "Admin", "as_of_date": "2026-11-12", "as_of_is_today": "no", "browser_time_zone": "America/Edmonton", "data_source": "screen"},
+  "how_measured": {"build": "app-version meta on both pages"}
+ },
+ "production_check": {"reproduced": false},
+ "own_record_page": {},
+ "innocent_explanations": [],
+ "doubts_for_qa_lead": []
+}

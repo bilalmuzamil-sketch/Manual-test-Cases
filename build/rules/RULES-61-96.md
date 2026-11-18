@@ -2873,3 +2873,30 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     **Scope confirmed by the QA lead, 2026-11-13** (asked whether rule and skill changes should also be automatic),
     verbatim: *"I will follow your suggestion."* — only the mistakes ledger and §1B update automatically; every other
     rule or skill change prompted by a mistake is proposed first (Rule 72).
+
+125. **THE REGRESSION-TICKET GATE — A "DIFFERS FROM PRODUCTION / FROM BEFORE THE RELEASE" TICKET IS PROVED LIKE FOR LIKE,
+    ON PRODUCTION, AND SHOWN TO THE QA LEAD BEFORE IT IS FILED (all projects, permanent).** Approved by the QA lead on
+    **2026-11-18** ("1. Ok 2. Ok") after **SV-12853** was closed OBSOLETE as expected behaviour on 17 Nov: its "before"
+    screen had no app time-zone setting (so UTC), its "after" screen had the location's zone, production was never
+    checked, and the ticket went to Product and the developers under his name (MISTAKES-AND-CHECKS.md **M15**). His words:
+    *"This has fucked my reputation and tarnished my image of seniority and leadership"* — this rule exists so that
+    never happens again, on any feature.
+    **THE RULE.** No regression ticket is drafted for him until `python3 build/testing-tools/regression_ticket_gate.py
+    <gate.json>` says **PASS** on a gate file committed with the evidence. The gate refuses unless:
+    (a) **SAME SETTINGS, MEASURED** — both sides carry every setting that can change what is shown (build, environment,
+    the app's own time-zone setting, location, role, as-of date and whether it was "today", browser time zone, data
+    source: screen, data call or export), each MEASURED and with how it was measured; only build and environment may
+    differ. A different, unknown or assumed value refuses — the difference may be ours.
+    (b) **PRODUCTION PROVES IT** — the claim is reproduced on PRODUCTION itself, signed in normally at the same location,
+    with a picture and the build. "Pictures of production: not attached" is a STOP, never a note in a ticket.
+    (c) **THE RECORD'S OWN PAGE AGREES** — the record (bill, invoice, work order) opened on its own page at the same
+    location shows the claim.
+    (d) **TWO INNOCENT EXPLANATIONS TESTED** — at least two plausible "it is not a bug" explanations written down, each
+    with how it was tested and "ruled out".
+    (e) **DOUBTS SAID PLAINLY** — every unproved point listed for him; never "I think so".
+    **Then (approved with the rule):** the draft is shown to him WITH the settings table, the production picture, the
+    ruled-out explanations and the doubts, BEFORE it is filed; filing still needs his per-ticket go-ahead (Rule 62).
+    Applies on top of Rules 110, 119, 120 and 121. Worked refusal: `build/testing-tools/regression-gate-examples/
+    SV-12853-as-it-was.json` (20 refusals). A finding that cannot pass the gate is reported to him as **unproven**, with
+    what is missing — it is never filed "for Product to decide".
+

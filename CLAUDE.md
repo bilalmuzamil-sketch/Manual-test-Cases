@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123 and 124** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124 and 125** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -37,6 +37,7 @@ These are stated here **in full** because a session that gets only this far must
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
   freely there, tag throwaway data `ZZAUTOTEST`, restore what you change.
+- **🔴 NO REGRESSION TICKET WITHOUT THE GATE (125).** "Differs from production / from before the release" is drafted only after `build/testing-tools/regression_ticket_gate.py` passes: same measured settings on both sides, reproduced on PRODUCTION with a picture, the record's own page agreeing, two innocent explanations ruled out — then shown to him before filing. SV-12853 (M15) is why.
 - **NO JIRA TICKET CREATION WITHOUT PERMISSION, AND A CREATION HOLD IS ACTIVE (62).** Permission is
   **PER ASK** — an earlier batch approval never covers a later ticket, and a finding being real and
   obviously worth filing is not permission. **ACTIVE HOLD (QA lead, 2026-08-10, verbatim: *"Do not
@@ -510,6 +511,8 @@ production after the release is a short confirmation. Name folders and TestRail 
 (end of `build/rules/RULES-61-96.md`): before any claim that the PRD covers, asks for or is silent on something, fetch the
 current version, search it for the behaviour's own words and quote what is found; "the PRD does not say" needs the same
 fresh read. It exists because a held question said the PRD did not define the Detail "Amount" column when S5-R18a did.
+
+**🔴 Rule 125 (the regression-ticket gate)** was approved by the QA lead **2026-11-18** after SV-12853 was closed OBSOLETE (end of `build/rules/RULES-61-96.md`): a "differs from production / from before the release" ticket is not drafted until `python3 build/testing-tools/regression_ticket_gate.py <gate.json>` says PASS — both sides measured with the SAME settings (app time-zone setting, location, role, as-of "today" or past, data source), the claim reproduced on PRODUCTION with a normal sign-in and a picture, the record's own page agreeing, two innocent explanations ruled out, doubts listed — and the draft is shown to him with all of that before it is filed (62 still applies per ticket).
 
 **Rule 124 (learn from every mistake — automatically, in the same turn)** was ordered by the QA lead **2026-11-12**
 (end of `build/rules/RULES-61-96.md`): fix it, log it in `build/rules/MISTAKES-AND-CHECKS.md`, add its check to §1B above

@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "run": 557,
+  "date": "18 November 2026",
+  "note": "withdraw SV-12853 results (M15)"
+ },
+ "results": {
+  "C715471": {
+   "verdict": "Retest",
+   "failed_steps": "Retest: the Failed result of 16 Nov is withdrawn; this test will be re-run with the same time-zone setting before and after.",
+   "observed": [
+    "The Failed result of 16 Nov 2026 (ticket SV-12853) is withdrawn. Product closed SV-12853 on 17 Nov as expected behaviour: production shows the same Date, Due Date and Past Due when signed in at the same location.",
+    "The cause was our comparison, not the release: the screens captured before the release showed dates in UTC (the app's time-zone setting was not set), while the screens after the release were set to the location's time zone.",
+    "SV-12663 (Past Due counted from a different day than the Due Date shown) is fixed, as reported on 16 Nov."
+   ],
+   "todo": "What needs to be done: nothing for the tester now. This test will be re-run on staging with the same time-zone setting on both sides, and its result posted here."
+  },
+  "C715472": {
+   "verdict": "Retest",
+   "failed_steps": "Retest: the Failed result of 16 Nov is withdrawn; this test will be re-run with the same time-zone setting before and after.",
+   "observed": [
+    "The Failed result of 16 Nov 2026 (ticket SV-12853) is withdrawn. Product closed SV-12853 on 17 Nov as expected behaviour: production shows the same Date, Due Date and Past Due when signed in at the same location.",
+    "The cause was our comparison, not the release: the screens captured before the release showed dates in UTC (the app's time-zone setting was not set), while the screens after the release were set to the location's time zone.",
+    "SV-12663 (Past Due counted from a different day than the Due Date shown) is fixed, as reported on 16 Nov."
+   ],
+   "todo": "What needs to be done: nothing for the tester now. This test will be re-run on staging with the same time-zone setting on both sides, and its result posted here."
+  }
+ }
+}
