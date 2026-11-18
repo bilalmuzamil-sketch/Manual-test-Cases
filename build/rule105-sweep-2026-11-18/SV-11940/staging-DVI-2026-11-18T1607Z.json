@@ -1,0 +1,81 @@
+{
+ "ticket": "SV-11940",
+ "location": "DVI Test",
+ "zone": "Pacific/Fiji",
+ "rule99_start": {
+  "location": "DVI Test",
+  "location_zone": "Pacific/Fiji",
+  "session_change_location_zone": "Pacific/Fiji",
+  "process_TZ": "Pacific/Fiji",
+  "browser_zone": "Pacific/Fiji",
+  "browser_offset_min": 720,
+  "app_timezone_key": "\"Pacific/Fiji\"",
+  "app_location_key": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+  "at_utc": "2026-11-18T16:07:07.780Z",
+  "machine_offset_min": 720,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.5-b6a5d15"
+ },
+ "chips": [
+  "AS",
+  "calendar_today Date: Last 90 days keyboard_arrow_down",
+  "Date: Last 90 days",
+  "Date",
+  ": Last 90 days",
+  "keyboard_arrow_down",
+  "keyboard_arrow_down",
+  "category Type: All types keyboard_arrow_down cancel"
+ ],
+ "screenshot": "SV-11940/parts-velocity-DVI-last90.png",
+ "request_windows": [
+  {
+   "start": "2026-08-20T12:00:00.000Z",
+   "end": "2026-11-19T11:59:59.999Z",
+   "u": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-08-20T12%3A00%3A00.000Z&end_date=2026-11-19T11%3A59%3A59.999Z&locations=39522bc6-ab"
+  },
+  {
+   "start": "2026-08-20T12:00:00.000Z",
+   "end": "2026-11-19T11:59:59.999Z",
+   "u": "/api/reporting/reports/parts-velocity/export?format=pdf&type=both&range=custom&start_date=2026-08-20T12%3A00%3A00.000Z&end_date=2026-11-19T11%3A59%3A59.999Z&loc"
+  },
+  {
+   "start": "2026-08-20T12:00:00.000Z",
+   "end": "2026-11-19T11:59:59.999Z",
+   "u": "/api/reporting/reports/parts-velocity/export?format=csv&type=both&range=custom&start_date=2026-08-20T12%3A00%3A00.000Z&end_date=2026-11-19T11%3A59%3A59.999Z&loc"
+  }
+ ],
+ "independent_count": {
+  "first_day_local": "2026-08-21",
+  "last_day_local": "2026-11-19",
+  "start_local": "2026-08-21T00:00:00+12:00",
+  "end_local": "2026-11-19T23:59:59.999000+12:00",
+  "days_inclusive": 91,
+  "today_local": "2026-11-19",
+  "expected_first_day_today_minus_89": "2026-08-22"
+ },
+ "pdf": {
+  "name": "parts-velocity-report.pdf",
+  "date_range_line": "Date Range: Aug 21, 2026 - Nov 19, 2026",
+  "picture": "SV-11940/parts-velocity-DVI-pdf-top.png"
+ },
+ "csv": {
+  "name": "parts-velocity-report.csv",
+  "date_range_line": "\"Date Range: Aug 21, 2026 - Nov 19, 2026\""
+ },
+ "rule99_end": {
+  "location": "DVI Test",
+  "location_zone": "Pacific/Fiji",
+  "session_change_location_zone": "Pacific/Fiji",
+  "process_TZ": "Pacific/Fiji",
+  "browser_zone": "Pacific/Fiji",
+  "browser_offset_min": 720,
+  "app_timezone_key": "\"Pacific/Fiji\"",
+  "app_location_key": "\"39522bc6-abca-4f67-bd12-2840043c2d68\"",
+  "at_utc": "2026-11-18T16:07:30.008Z",
+  "machine_offset_min": 720,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.5-b6a5d15"
+ }
+}

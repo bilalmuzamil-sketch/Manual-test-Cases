@@ -109,3 +109,56 @@ Two points for the coordinator — facts, no ticket action taken:
 - If a production location east of UTC exists, a payment between midnight and the UTC offset hour (as above).
 - Only existing records may be read on production unless the QA lead says otherwise; if no evening payment exists there,
   say so — do not infer.
+
+---
+
+## SV-11940 — Reports - Parts Velocity "Last 90 days" covers 91 days
+
+Status Open (re-read 15:36 UTC; last comment 80583, 10 Nov, parked in SV-11936 waiting for Milos / Chris).
+
+**The claim (quoted):** *"On **Parts Velocity**, the date option **Last 90 days** covers **91 days**: it starts one day too
+early."* Example: *"on 28 Oct 2026 the download says **Date Range: Jul 30, 2026 - Oct 28, 2026**, which is 91 days."*
+Expected (Chris Ward, question 13, 28 Oct): *"exactly 90 days: today and the 89 before it."* Seen at DVI Test on Toronto
+time, staging v26.43.2-f8698cb.
+
+### Capture audit (Rule 105 (1)–(4))
+
+| Item | Result | Where |
+|---|---|---|
+| Comparison of two environments? | **No.** A day count on one build. "Not checked on Production or on a QA branch" is stated, nothing is claimed about production | ticket "Where it was seen" |
+| All four zones recorded | **YES** — capture `PV_B1`, 29 Oct 00:10:48 UTC (= 28 Oct 8:10 PM Toronto): location, browser, process and the app's own key all `America/Toronto`; change-location 200 | `dashboard-verify-2026-10-28/tickets-2026-10-29/phase2/pictures/P2-B-meta.json:16`; `phase2/SUMMARY-p2b.md:12-15,22`; draft header `phase2/P2-B1-…md:7` |
+| Offsets | Not checked at capture (amendment came 6 Nov). Checked now: Toronto browser = machine for 25 Jul–31 Oct (**MATCH**), and the capture was ~4 hours from midnight → **not affected** | `tz_rules_check-2026-11-18.txt` |
+| Server side of the window | **YES**, in the 29 Oct re-check: the page sent `start_date=2026-07-31T04:00Z … end_date=2026-10-30T03:59Z` (Toronto midnights, offset −4) → Jul 31–Oct 29 = 91 days | `filter-recheck/RESULT-f2.md:65-66` |
+| Pictures | **YES** — screen (Last 90 days) and the PDF's Date Range line | `phase2/pictures/P2-B1-1-…png`, `P2-B1-2-…png` |
+| Contradicting statement | **None** | ticket comments |
+
+Note on the zone risk: a wrong zone shifts BOTH ends of the window by the same amount, so it cannot turn 90 days into 91.
+The claim is a count, not a calendar date, which is why it is robust — but it was still re-checked below.
+
+### Time-zone challenge on staging (Rule 105 (3) a+b)
+
+| | DVI Test (Pacific/Fiji, UTC+12) | Heavy Duty (Asia/Karachi, UTC+5) |
+|---|---|---|
+| Run (JSON) | `SV-11940/staging-DVI-2026-11-18T1607Z.json` | `SV-11940/staging-HD-2026-11-18T1610Z.json` |
+| Four zones / offsets | all Pacific/Fiji, offsets agree (+720 min) | all Asia/Karachi, offsets agree (+300 min) |
+| "Today" in the location (machine tz db) | **19 Nov 2026** (16:07 UTC = 4:07 AM Fiji) | **18 Nov 2026** (16:10 UTC = 9:10 PM Karachi) |
+| Screen chip | Date: Last 90 days (remembered range cleared first) | Date: Last 90 days |
+| Window the screen sent (stored request) | `start_date=2026-08-20T12:00:00.000Z`, `end_date=2026-11-19T11:59:59.999Z` | `start_date=2026-08-19T19:00:00.000Z`, `end_date=2026-11-18T18:59:59.999Z` |
+| Same window as days in the location (worked out) | **Aug 21 – Nov 19 = 91 days** | **Aug 20 – Nov 18 = 91 days** |
+| Download Date Range | PDF and CSV: **"Date Range: Aug 21, 2026 - Nov 19, 2026"** | CSV: **"Date Range: Aug 20, 2026 - Nov 18, 2026"** (the PDF download did not arrive within 120 s in this run) |
+| Expected (today and the 89 days before) | Aug 22 – Nov 19 | Aug 21 – Nov 18 |
+| Pictures | `SV-11940/parts-velocity-DVI-last90.png`, `SV-11940/parts-velocity-DVI-pdf-top.png` | `SV-11940/parts-velocity-HD-last90.png` |
+
+The window's ends sit exactly on the location's midnights (the server's offset equals the location's offset), so the
+window is built in the right zone; it is simply one day too long.
+
+### Verdict — staging half
+
+**STILL REPRODUCES on staging** on the current build (v26.45.5-b6a5d15), at two locations in two zones, all four zones
+matched, offsets agreeing: Last 90 days = 91 location days. Not a test set-up error.
+
+### What the production half must look at
+Parts Velocity on production at any location, Date **Last 90 days** (clear the remembered range first), four zones on
+the location's zone: the request's `start_date`/`end_date` and the **Date Range** line of the CSV/PDF download; count the
+days on the location's calendar. (Not needed to keep the ticket — it makes no production claim — but it tells the PO
+whether production has the same 91 days.)

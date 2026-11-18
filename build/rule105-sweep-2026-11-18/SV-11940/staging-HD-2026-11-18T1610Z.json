@@ -1,0 +1,74 @@
+{
+ "ticket": "SV-11940",
+ "location": "Staging Heavy Duty - 9919",
+ "zone": "Asia/Karachi",
+ "rule99_start": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-18T16:07:38.858Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.5-b6a5d15"
+ },
+ "chips": [
+  "AS",
+  "calendar_today Date: Last 90 days keyboard_arrow_down",
+  "Date: Last 90 days",
+  "Date",
+  ": Last 90 days",
+  "keyboard_arrow_down",
+  "keyboard_arrow_down",
+  "category Type: All types keyboard_arrow_down cancel"
+ ],
+ "screenshot": "SV-11940/parts-velocity-HD-last90.png",
+ "request_windows": [
+  {
+   "start": "2026-08-19T19:00:00.000Z",
+   "end": "2026-11-18T18:59:59.999Z",
+   "u": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-08-19T19%3A00%3A00.000Z&end_date=2026-11-18T18%3A59%3A59.999Z&locations=b3c8c820-f8"
+  },
+  {
+   "start": "2026-08-19T19:00:00.000Z",
+   "end": "2026-11-18T18:59:59.999Z",
+   "u": "/api/reporting/reports/parts-velocity/export?format=csv&type=both&range=custom&start_date=2026-08-19T19%3A00%3A00.000Z&end_date=2026-11-18T18%3A59%3A59.999Z&loc"
+  }
+ ],
+ "independent_count": {
+  "first_day_local": "2026-08-20",
+  "last_day_local": "2026-11-18",
+  "start_local": "2026-08-20T00:00:00+05:00",
+  "end_local": "2026-11-18T23:59:59.999000+05:00",
+  "days_inclusive": 91,
+  "today_local": "2026-11-18",
+  "expected_first_day_today_minus_89": "2026-08-21"
+ },
+ "pdf": {
+  "error": "no download"
+ },
+ "csv": {
+  "name": "parts-velocity-report.csv",
+  "date_range_line": "\"Date Range: Aug 20, 2026 - Nov 18, 2026\""
+ },
+ "rule99_end": {
+  "location": "Staging Heavy Duty - 9919",
+  "location_zone": "Asia/Karachi",
+  "session_change_location_zone": "Asia/Karachi",
+  "process_TZ": "Asia/Karachi",
+  "browser_zone": "Asia/Karachi",
+  "browser_offset_min": 300,
+  "app_timezone_key": "\"Asia/Karachi\"",
+  "app_location_key": "\"b3c8c820-f815-4cf1-8938-10956c5ee71a\"",
+  "at_utc": "2026-11-18T16:10:02.351Z",
+  "machine_offset_min": 300,
+  "offsets_agree": true,
+  "all_zones_match": true,
+  "app_version": "v26.45.5-b6a5d15"
+ }
+}
