@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **"DIFFERENT FROM PRODUCTION" MUST BE READ ON PRODUCTION THE SAME DAY, SAME RECORD/LOCATION/TIME ZONE, ONLY THE BUILD CHANGED (Standing Rule 130).**
 > - **EVERY SENTENCE IN A TICKET IS A CLAIM — PROVE THE "SUPPORTING" LINES TOO; CLICK A BUTTON BEFORE SAYING WHAT IT CAN'T DO (Standing Rule 129).**
 > - **A FOLLOW-UP TICKET IS TRIED ON THE QA ENV AND ON PRODUCTION; IT SAYS "ONLY ON QA <link>" OR "PRODUCTION TOO", AND WHEN PRODUCTION TOO ALL STEPS + PICTURES COME FROM PRODUCTION (Standing Rule 128).**
 > - **ANYTHING REPORTED FROM A QA BRANCH IS ALSO CHECKED ON PRODUCTION — say whether it is QA-branch-only or on production too, with annotated screenshots of both (Standing Rule 126).**
@@ -5851,6 +5852,14 @@ deliver the 7-tab management report.
     **(b) COMPARISON / REASSURANCE LINES ARE CLAIMS TOO.** "The other reports already do it right", "production is safe", "this only affects X" are proven the same way as the bug itself — against a known-good version, counted over every page, across every variant (each filter, each location). If it isn't proven, leave it out: an extra sentence that sounds helpful is the one most likely to be repeated by a PO and come back as an embarrassment.
     **(c) BEFORE POSTING, WALK EVERY SENTENCE AND NAME THE EVIDENCE BEHIND IT.** No evidence, no sentence. Part of the pre-post gate (Rule 72).
     **RATIONALE:** our SV-12831 description said production was safe (it only "has a Print button") and that the Detail and Collection PDFs "already keep all their columns". The Print button builds the same kind of PDF and loses 91 And Over + Total; our own Detail PDF had no Amount column on any of its 161 pages; the Collection PDF fails with one location chosen. Chris repeated the second line in his ruling and Nemanja corrected both. Ties to Rules 12, 50, 68, 72, 93, 96, 126.
+
+130. **"DIFFERENT FROM PRODUCTION" MUST BE SEEN ON PRODUCTION, THE SAME DAY, WITH ONLY ONE THING CHANGED (all projects).**
+    Earned 2026-11-18 on SV-12853 (filed by another session under the shared account; the QA lead: *"This has fucked my reputation and tarnished my image of seniory and leadership"*). The ticket said the aging reports show dates "one day different from production" and asked Chris to confirm before the release. Chris ruled it a bug and assigned it; Nemanja then showed production, signed in at the same location, shows exactly what staging shows, and Chris closed it Obsolete. The "production" values had never been read on production: they were copied from an older staging build captured four days earlier, at a different location and time zone, and the ticket itself said "Not checked: … production pictures".
+    **(a) A comparison claim names its "before" by where it was actually seen.** "Production shows X" needs X read on production at the moment of writing, with a picture. An older capture from another environment is "staging on 12 Nov showed X", never "production shows X". A ticket title or PO question may not say "different from production" without that read.
+    **(b) Change one thing at a time.** Both sides use the same record, the same as-of date, the same location, the same user/app time-zone setting and the same filters; only the build differs. If anything else differs, the comparison proves nothing and is not reported.
+    **(c) A date or time shift is a time-zone question first.** Before calling a one-day difference a defect, read the location's time zone, the user's/app's time-zone setting and the stored timestamp on both sides (Rule 75: configuration first).
+    **(d) Before tagging a PO with "confirm before the release", every sentence passes Rule 129.** A wrong urgent question to a PO costs a PO ruling, a developer assignment and a public reversal.
+    Ties to Rules 12, 64, 73, 75, 86, 126, 128 and 129.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
