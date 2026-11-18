@@ -115,3 +115,8 @@
 - PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R7a negatives in brackets "(-$11,111.00)": 342 bracketed, 0 in screen form
   - ap-unpaid-invoices-exactly-1000.pdf: 43 pages, 2 "Total for" rows
 - PASS — ap-unpaid-invoices-exactly-1000.pdf S3-R7c every column heading on every page: pages missing: []
+
+**The two "rows in the on-screen order" FAILs above are not order problems (checked 18 Nov).** The order is identical; the only
+difference is bill "+8989+" (Adams Diesel Repair), which the CSV writes as "'+8989+": a leading apostrophe added on purpose so a
+spreadsheet does not run a cell starting with + - = @ as a formula (`injectionSafeMask`, AgingDetailExportQueryHandler.php:77,
+AgingGroupedExportQueryHandler.php:72). Not a defect.

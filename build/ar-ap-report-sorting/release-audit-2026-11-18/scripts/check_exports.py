@@ -4,11 +4,13 @@ import csv, json, re, subprocess, sys, io, collections
 E, D = sys.argv[1], sys.argv[2]; out = []; nfail = 0
 def res(name, ok, detail=''):
     global nfail; nfail += (not ok); out.append(f"- {'PASS' if ok else 'FAIL'} — {name}{(': ' + detail) if detail else ''}")
-J = lambda s: json.load(open(f'{D}/{s}.json'))
+import gzip, os
+def _open(f, **k): return gzip.open(f + '.gz', 'rt', **k) if not os.path.exists(f) and os.path.exists(f + '.gz') else open(f, **k)
+J = lambda s: json.load(_open(f'{D}/{s}.json'))
 MONEY = re.compile(r'^-?\d+\.\d{2}$'); DATE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 HEAD = {'ar-aging-detail': 'Customer Full Name', 'ar-aging-collection': 'Customer', 'ap-aging-detail': 'Vendor Name', 'ap-unpaid-invoices': 'Vendor Name', 'ar-aging-summary': 'Customer', 'ap-aging-summary': 'Vendor'}
 def readcsv(f):
-    return list(csv.reader(io.StringIO(open(f'{E}/{f}', encoding='utf-8-sig').read())))
+    return list(csv.reader(io.StringIO(_open(f'{E}/{f}', encoding='utf-8-sig').read())))
 # ---- CSV, untouched
 opening = {'ar-aging-detail': json.load(open(f'{D}/ar-aging-detail-opening-order.json')), 'ap-aging-detail': json.load(open(f'{D}/ap-aging-detail-opening-order.json'))} if False else {}
 for slug in ['ar-aging-summary', 'ap-aging-summary', 'ar-aging-detail', 'ap-aging-detail', 'ar-aging-collection', 'ap-unpaid-invoices']:
@@ -41,7 +43,7 @@ for slug in ['ar-aging-summary', 'ap-aging-summary', 'ar-aging-detail', 'ap-agin
         res(f'{slug} CSV S3-R8b party column heading "{HEAD[slug]}"', HEAD[slug] in head, str(head))
         if 'detail' in slug:
             res(f'{slug} CSV S3-R8b "Aging Bucket" column with the screen bucket names', 'Aging Bucket' in head and {r[head.index('Aging Bucket')] for r in body} <= {'91 or more days past due', '61-90 days past due', '31-60 days past due', '1-30 days past due', 'Current'}, str(collections.Counter(r[head.index('Aging Bucket')] for r in body) if 'Aging Bucket' in head else head))
-            op = json.load(open(f'{D}/{slug}-opening-order.json')); scr = [x['documentNumber'] for x in op]
+            op = json.load(_open(f'{D}/{slug}-opening-order.json')); scr = [x['documentNumber'] for x in op]
         else:
             scr = [x['documentNumber'] for g in data['rows'] for x in g['rows']]
         got = [r[nc] for r in body]

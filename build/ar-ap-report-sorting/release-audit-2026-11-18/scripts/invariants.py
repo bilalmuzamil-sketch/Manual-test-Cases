@@ -4,7 +4,9 @@ Every rule checked is quoted in RULES below; a check either PASSES with a count 
 import json, sys, re, unicodedata, collections, datetime, subprocess, urllib.parse
 from zoneinfo import ZoneInfo
 D, Z = sys.argv[1], sys.argv[2]; FETCH = '--fetch-detail-opening' in sys.argv
-J = lambda s: json.load(open(f'{D}/{s}.json'))
+import gzip, os
+def _open(f): return gzip.open(f + '.gz', 'rt') if not os.path.exists(f) and os.path.exists(f + '.gz') else open(f)
+J = lambda s: json.load(_open(f'{D}/{s}.json'))
 out, fails = [], collections.OrderedDict()
 def check(rule, bad, n, note=''):
     fails[rule] = (len(bad), n); out.append(f'- **{rule}** — {"PASS" if not bad else "FAIL"}: {len(bad)} wrong of {n} {note}')
