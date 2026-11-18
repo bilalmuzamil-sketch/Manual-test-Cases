@@ -110,3 +110,21 @@ cannot switch to a second one.
 3. Check that it now lists both locations, and take a screenshot of it open. Save it in the same folder, `5-location-switcher`,
    replacing the old one (or name it "location switcher open - two locations").
 4. Run the after-release check of C715480 with this same user.
+
+---
+
+## Added 18 Nov 2026 (Rule 141): record the conditions, and a control invoice and bill, before the release
+
+Used by: C715471 (A/R) and C715472 (A/P), if they stay production release-day cases (QA lead to decide). Without these pictures the
+"before" and "after" cannot be proved to be on the same clock (what went wrong in SV-12853).
+
+1. In the top-right location switcher, choose the location you will use (choose it again even if it is already selected). Take a
+   screenshot showing the switcher with that location.
+2. Open Settings, then Locations, and take a screenshot showing that location's time zone.
+3. Take a screenshot of the computer's time zone (the clock / date and time settings).
+4. Write down the user you are signed in as, and the date and time you take the report pictures.
+5. Create one invoice (A/R) and one bill (A/P) for this test at about 12:00 noon location time, put ZZAUTOTEST in the memo or reference,
+   date them on or before the as-of date you use, and write their dates down.
+6. If section 1's report pictures were taken before steps 1-5, take them again now (same as-of date, untouched), so the control invoice
+   and bill are in them.
+7. Keep all of it in the same folder, "A-R A-P before release 2026-11-19".
