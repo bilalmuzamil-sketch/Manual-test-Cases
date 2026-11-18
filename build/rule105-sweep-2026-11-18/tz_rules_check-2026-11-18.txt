@@ -1,0 +1,21 @@
+# tz_rules_check run 2026-11-18T15:39:17Z
+$ tz_rules_check.py America/Toronto --from 2026-07-25 --to 2026-10-31
+browser: HeadlessChrome/153.0.8010.12 | machine tz database: version 2026e | dates 2026-07-25..2026-10-31 (noon UTC samples)
+MATCH    America/Toronto
+exit=0
+$ tz_rules_check.py Pacific/Fiji --from 2026-07-25 --to 2026-11-20
+browser: HeadlessChrome/153.0.8010.12 | machine tz database: version 2026e | dates 2026-07-25..2026-11-20 (noon UTC samples)
+MATCH    Pacific/Fiji
+exit=0
+$ tz_rules_check.py Asia/Karachi --from 2026-10-01 --to 2026-11-20
+browser: HeadlessChrome/153.0.8010.12 | machine tz database: version 2026e | dates 2026-10-01..2026-11-20 (noon UTC samples)
+MATCH    Asia/Karachi
+exit=0
+$ tz_rules_check.py America/Edmonton --from 2026-11-01 --to 2026-11-20
+browser: HeadlessChrome/153.0.8010.12 | machine tz database: version 2026e | dates 2026-11-01..2026-11-20 (noon UTC samples)
+MISMATCH America/Edmonton: 2026-11-01..2026-11-20 browser UTC-7 vs machine UTC-6
+exit=1
+$ tz_rules_check.py America/Vancouver --from 2026-11-01 --to 2026-11-20
+browser: HeadlessChrome/153.0.8010.12 | machine tz database: version 2026e | dates 2026-11-01..2026-11-20 (noon UTC samples)
+MISMATCH America/Vancouver: 2026-11-01..2026-11-20 browser UTC-8 vs machine UTC-7
+exit=1
