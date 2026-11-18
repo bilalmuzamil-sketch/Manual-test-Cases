@@ -7,6 +7,12 @@ Newest first. Each entry: what happened · what it cost · why it happened · **
 
 ## 2026-11-12 — A/R and A/P staging run (SV-11315)
 
+**M17. "Nobody has decided this" without searching Jira (18 Nov).** I told the QA lead the credit-Amount question was
+undecided and drafted a ticket for Chris; the epic SV-11315 already held his own 12 Nov comment raising it as "not a bug,
+add one PRD line", answered by Milos "will do". Found only when Rule 121 forced the search. *Check:* before saying a
+question is open, or drafting any ticket, search the epic's comments, its children and his own past comments for the
+behaviour's words (Rule 126.2).
+
 **M16. A held question written up as settled (16 Nov, found 18 Nov).** The 12 Nov question on the 6 partly-used
 credits' Amount was held for the QA lead and never answered; my 16 Nov evidence README called it "intended" from my own
 reading of PRD S5-R18a, and the next reader took that as decided. *Check:* an open question stays labelled "HELD —

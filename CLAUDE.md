@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124 and 125** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125 and 126** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -37,6 +37,7 @@ These are stated here **in full** because a session that gets only this far must
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
   freely there, tag throwaway data `ZZAUTOTEST`, restore what you change.
+- **🔴 NEVER ASSUME (126).** Ordered 2026-11-18: *"you do not assume anything ever again when reporting something or drafting a ticket."* Every fact in a report, result or ticket is OBSERVED this session, MEASURED by a committed script, or QUOTED from a source read this session; anything else says "not checked". Before drafting any ticket, search Jira (closed too, the epic's comments and shared notes, his own past comments) — an existing comment ends the draft. "Please confirm" tickets: in the relevant epic, Chris tagged at the top (confirm or mark Obsolete), annotated screenshots, plain and concise without skipping anything useful.
 - **🔴 NO REGRESSION TICKET WITHOUT THE GATE (125).** "Differs from production / from before the release" is drafted only after `build/testing-tools/regression_ticket_gate.py` passes: same measured settings on both sides, reproduced on PRODUCTION with a picture, the record's own page agreeing, two innocent explanations ruled out — then shown to him before filing. SV-12853 (M15) is why.
 - **NO JIRA TICKET CREATION WITHOUT PERMISSION, AND A CREATION HOLD IS ACTIVE (62).** Permission is
   **PER ASK** — an earlier batch approval never covers a later ticket, and a finding being real and
@@ -152,6 +153,7 @@ Every line below is a mistake that really happened. Apply each one that fits the
 in the same turn: fix it, add it to `build/rules/MISTAKES-AND-CHECKS.md`, add its line here, and tell the QA lead.**
 
 - **Regression tickets (M15 — SV-12853 closed OBSOLETE):** both sides of a before/after measured with the SAME settings (app time-zone setting, location, role, as-of "today" or past, build) in a written table; the claim reproduced on PRODUCTION with a normal sign-in and a picture; the innocent explanation tested first; no production picture = no ticket. (M15)
+- **Before "undecided" or any ticket:** search the epic's comments, its children and his own past comments for the behaviour's words; an existing comment ends the draft (126). (M17)
 - **Held questions:** a difference covered by an unanswered question stays "HELD — undecided" in every later note and result; never call it "intended" on my own reading. (M16)
 - **Run results:** in the dry run read EVERY field that will be sent (Defects, status), not only the comment; `defects` is a list. (M14)
 - **Call it like the screen:** send the same parameters the screen sends (read the handoff and the front-end request) before treating an API answer as what the user sees; open the screen once to confirm. (M13)

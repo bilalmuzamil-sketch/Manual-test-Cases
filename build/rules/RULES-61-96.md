@@ -2900,3 +2900,22 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     SV-12853-as-it-was.json` (20 refusals). A finding that cannot pass the gate is reported to him as **unproven**, with
     what is missing — it is never filed "for Product to decide".
 
+126. **NEVER ASSUME — EVERY STATEMENT IN A REPORT OR A TICKET IS OBSERVED, MEASURED OR QUOTED, AND A TICKET FOR PRODUCT
+    FOLLOWS HIS FORMAT (all projects, permanent).** Ordered by the QA lead **2026-11-18**, verbatim: *"you do not assume
+    anything ever again when reporting something or drafting a ticket. Make it your permanent rule."*
+    **126.1 Nothing assumed.** Every fact in a report, a TestRail result or a ticket is one of: (a) OBSERVED in this
+    session (screen, picture, data call — with build and time), (b) MEASURED by a committed script, or (c) QUOTED from
+    a source read in this session (PRD version, ticket, comment, code at a named commit with file:line). Anything else
+    is written as **"not checked"** — never filled in, never "probably", never carried over from an earlier note or a
+    summary. "Intended", "expected", "decided", "same as production" and "not a bug" each need (a), (b) or (c).
+    **126.2 Look for what is already said BEFORE drafting.** Search Jira (open AND closed, the epic's own comments and
+    shared notes, every child's comments, and the QA lead's own past comments) for the behaviour's own words; read any
+    "known mismatches / not bugs / decided by Product" list. A comment that already raised or settled it ends the draft:
+    report it to him with the link instead (it happened: 18 Nov, his own 12 Nov comment on SV-11315 had raised the
+    partly-used credit Amount and Milos had answered "will do").
+    **126.3 His ticket format for "please confirm" items** (his words, 18 Nov): the ticket is *"part of the relevant
+    epic"*; it *"tag[s] him at the top in the description asking him to confirm the behavior or mark this ticket as
+    Obsolete if this is an expected behavior"*; it keeps *"the annotated screenshots"*; it is *"super simple for the
+    non technical people and the manual QA people to understand"*; *"the detail and title should be concise but must
+    not skip anything that is helpful to understand what is being reported."* Rules 62 (permission per ticket), 121
+    and 125 still apply; the draft is shown to him first (125).

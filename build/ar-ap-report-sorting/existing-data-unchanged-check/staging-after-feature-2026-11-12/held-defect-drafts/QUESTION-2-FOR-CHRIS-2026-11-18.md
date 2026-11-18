@@ -1,6 +1,6 @@
 # Question for Chris Ward — A/R and A/P Report Sorting (epic SV-11315): the "Amount" of a partly-used credit
 
-Status: **drafted 18 Nov 2026, not sent.** The QA lead did not know the answer ("1. I dont know", 18 Nov), so it goes to
+Status: **NOT SENT — superseded 18 Nov: already raised by the QA lead on SV-11315 (12 Nov, comment 81069), Milos "will do" (81072). See `../../../v1-regression/partly-used-credit-2026-11-18/README.md`.** Original draft: The QA lead did not know the answer ("1. I dont know", 18 Nov), so it goes to
 Product. It is a question, not a ticket (Rules 58, 121). Pictures: `../../../v1-regression/partly-used-credit-2026-11-12/annotated/`
 PIC1 (production) and PIC3 (staging).
 
