@@ -3695,3 +3695,25 @@ suite. You can make words better and statement shorter though."* Recorded on his
 2. The date is the day of the last full source check that the cases were written or updated to (a currency pass, a new PRD version
    applied, a full design pass). Every such pass re-stamps the date in the same session as its TestRail writes.
 3. The description replaces any earlier main-folder text only with the QA lead's knowledge; text he wrote himself is kept below it.
+
+
+## 141 · A COMPARISON IS ONLY VALID WHEN BOTH SIDES WERE SEEN UNDER THE SAME CONDITIONS (all projects, permanent)
+
+Ordered by the QA lead, 18 Nov 2026 ("Ok"), after SV-12853 (filed 16 Nov 2026 from his Jira account by another Claude session, closed
+Obsolete 17 Nov: the "before" dates had been captured with the app's time-zone setting on UTC and the "after" dates on Mountain and
+Pakistan time, production was never looked at, and the developer's warning was overruled by our data; the PO had publicly committed to a
+fix before release). Lesson L-22.
+
+1. **Comparison cases name identical conditions for both sides.** Every case that compares before and after, staging and production,
+   an old and a new build, or checks "must not change" behaviour says in its preconditions: the same location, the same user, the same
+   app time-zone setting and browser time zone, the same as-of date or date range, and that the tester opens both sides in the same
+   sitting and screenshots both. "As production shows" / "as today" is never written without a step that opens the reference side.
+2. **Date and day results name the time zone they are judged in**, and include a control record whose day cannot move with the time zone
+   (for example one saved at midday local time), so a one-day shift is seen for what it is.
+3. **Nothing is reported as "different from production / before / the old version" unless both sides were observed on screen that day,
+   under the same conditions, with screenshots of both** (Rules 12, 110). A source or developer statement that contradicts the finding is
+   checked on screen first, never overruled by our data. Before anything is shared, a fresh worker who was not part of the finding tries to
+   disprove it.
+4. **Titles say what the screen shows, never a verdict** ("… shows Aug 16" rather than "… different from production").
+5. **Anything that could lead the PO to change or block a release goes to the QA lead first**, with both sides' screenshots.
+6. Every suite's build.py checks point 1 on cases that mention production, "before the release", "today's", "unchanged" or an old build.

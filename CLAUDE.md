@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–140** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–141** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -128,6 +128,12 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 EVERY SUITE'S MAIN TESTRAIL FOLDER CARRIES A CURRENCY NOTE (140, 12 Nov 2026, PERMANENT).** Description: "Test cases are current
   as of MM/DD/YYYY. Before you start testing, check whether the PRD, design or any other source has changed since then; if it has, update
   the test cases first." Re-stamped by every pass that brings the cases up to date.
+- **🔴 A COMPARISON IS ONLY VALID WHEN BOTH SIDES WERE SEEN UNDER THE SAME CONDITIONS (141, 18 Nov 2026, PERMANENT).** Every
+  before/after, staging/production or "must not change" case names identical conditions for both sides (same location, user, app
+  time-zone setting and browser time zone, as-of date; both opened in one sitting, both screenshotted); date results name their time zone
+  and carry a control record. Nothing is called "different from production/before" unless both sides were seen on screen that day under
+  the same conditions; a contradicting developer statement is checked on screen first; a fresh worker tries to disprove it; titles state
+  what the screen shows; anything that could block a release goes to the QA lead first. Why: SV-12853 (L-22).
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
