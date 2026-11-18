@@ -572,3 +572,9 @@
 - The pre-release A/P report counted a not-yet-due bill's Past Due by truncating time of day (due Nov 27 21:13 UTC, as of Nov 12 → -14); the new report counts calendar days (-15), as PRD S1-R5a's example says. 464 bills differ that way; a question, not a defect.
 - Staging sign-in: a set of values can be dead on arrival (401 on api.staging for every combination) — test with curl against `/api/iam/view-profile/` (status only, never print values) and ask again; the second set worked.
 - #aging #staging #timezone #sv-12663 → L0716
+
+## L0718 — 2026-11-18 — SV-12853 (filed by another session from the QA lead's login) closed Obsolete: two clocks compared, production never observed
+- Claim "dates one day different from production" came from a "before" copy taken with the app's own time-zone setting on UTC versus "after" screens on Mountain/Pakistan time. Production at the same location shows the same as staging (Nemanja, 17 Nov). Chris had already said "good catch, needs a fix" publicly — the QA lead's reputation took the hit.
+- This session knew the cause 77 min before filing (L0717: the page sends `&timezone=UTC`) but kept it on its own branch. Two sessions also wrote to the same run tests within 72 min of each other.
+- Full post-mortem and proposed prevention: `build/aging-reports/POSTMORTEM-SV-12853-2026-11-18.md`.
+- #aging #timezone #rule140 #cross-session → L0717
