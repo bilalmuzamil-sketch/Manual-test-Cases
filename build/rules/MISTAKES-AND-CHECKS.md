@@ -7,6 +7,12 @@ Newest first. Each entry: what happened · what it cost · why it happened · **
 
 ## 2026-11-12 — A/R and A/P staging run (SV-11315)
 
+**M22. A run card trusted without checking that its first step could work (19 Nov, release morning).** The scheduled run
+said "seed, then run all tests"; the seeder uses fixed document numbers, so on a staging that still holds the old records
+84 of 85 creations were refused and the 92-test run could not start - discovered 90 minutes before release. *Check:* the
+evening before a time-boxed run, dry-run every step that writes (`--check`, or create ONE record) and confirm the runner
+accepts the data's date; if not, plan the fallback (targeted screen checks) in advance and tell him.
+
 **M21. A screen test that clicked by a shared prefix (18 Nov).** "ZZAUTOTESTAbcdefghij" matched two vendors, so step 4
 clicked vendor A a second time (untick) and the chip read "All vendors" — nearly reported as a failure of SV-12722.
 *Check:* pick rows by their exact full text, then click by position; look at the step's picture before believing a FAIL.

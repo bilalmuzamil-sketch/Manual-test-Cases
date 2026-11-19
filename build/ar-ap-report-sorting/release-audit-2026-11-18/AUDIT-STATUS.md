@@ -60,3 +60,18 @@ Not checked on a production screen.
 
 **Not yet covered (the 92-test screen run, from 07:15 UTC 19 Nov):** permissions by role, location prompt, document links, loading and
 error states, info icons, header-click sorting on screen, Expand/Collapse all, pinned rows.
+
+
+## 6. Release morning, 19 Nov 07:20–07:35 UTC (staging v26.45.5-e93e93b, unchanged; production v26.45.5-0b53dd5, old reports)
+
+| Step | Result |
+|---|---|
+| Session / build | staging session 200; build unchanged since the overnight checks |
+| Status board (run card step 1) | 47 of 47 seeded parties answered by the reports |
+| Reseed for today (step 2) | **FAILED, our kit:** 84 of 85 refused ("There is already invoice with number: ZZT-P61-BILL_LATE") - the seeder uses fixed document numbers, so it can only reseed a wiped environment. One record was created: direct vendor credit "ZZT-DIRECT-P93" ($7.00, test data). The 12 Nov ledger was restored; the failed attempt is kept as `seeded-staging-failed-reseed-2026-11-19.json` |
+| 92-test screen run | **NOT RUN** - the runner refuses a seed anchored on another day (dates in the cases move with the seed). Its 12 Nov staging results (84 on b8c04e2) stand for areas whose code did not change; the only aging-report code changes since are the six fixes re-tested overnight (git log b8c04e2..e93e93b) |
+| Screen smoke, all six reports (`scripts/smoke_screens.js`) | 0 console errors, 0 server errors; Expand all / Collapse all work (e.g. A/R Detail 8 -> 475 -> 8 rows); document links have targets; Export menu "Download (PDF)", "Download (CSV)"; info icons; no sideways scroll |
+| Header sort inside open groups (`scripts/sort_in_group.js`) | works on all four grouped reports, both directions; groups stay in order (PRD Key Decisions: "Groups never move; header clicks sort the rows inside each group") |
+
+**Verdict: GREEN for the A/R and A/P aging reports release** - no release-blocking defect found. Not covered this morning:
+the role/permission cases and the cross-location prompt (passed on staging 12 Nov; their code is unchanged since).

@@ -154,6 +154,7 @@ Every line below is a mistake that really happened. Apply each one that fits the
 in the same turn: fix it, add it to `build/rules/MISTAKES-AND-CHECKS.md`, add its line here, and tell the QA lead.**
 
 - **Regression tickets (M15 — SV-12853 closed OBSOLETE):** both sides of a before/after measured with the SAME settings (app time-zone setting, location, role, as-of "today" or past, build) in a written table; the claim reproduced on PRODUCTION with a normal sign-in and a picture; the innocent explanation tested first; no production picture = no ticket. (M15)
+- **Time-boxed runs:** the evening before, prove every step that writes can actually run (a reseed on a non-wiped site failed 84/85 on release morning) and have the fallback ready. (M22)
 - **My own checks:** a FAIL from my script is first broken against the rows behind it and the quoted source (sort keys from the PRD example, rules quoted not invented, how a value is SHOWN, rows picked by exact text) — 5 of 5 overnight flags were mine. (M18–M21)
 - **Before "undecided" or any ticket:** search the epic's comments, its children and his own past comments for the behaviour's words; an existing comment ends the draft (126). (M17)
 - **Held questions:** a difference covered by an unanswered question stays "HELD — undecided" in every later note and result; never call it "intended" on my own reading. (M16)
