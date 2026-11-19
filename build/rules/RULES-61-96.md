@@ -2919,3 +2919,19 @@ rules, and the two handoff lines that said other lanes "pick up" the main sessio
     non technical people and the manual QA people to understand"*; *"the detail and title should be concise but must
     not skip anything that is helpful to understand what is being reported."* Rules 62 (permission per ticket), 121
     and 125 still apply; the draft is shown to him first (125).
+
+127. **USE WHAT WAS ALREADY LEARNED — AUTOMATICALLY, AT THE START OF EVERY TASK; SAVE WHAT IS NEW, AT THE END (all
+    projects, permanent).** Ordered by the QA lead **2026-11-19**, verbatim: *"everything which you have learned from this
+    testing make sure you keep the learning automated for every learning to ensure that you do not make the same mistake
+    again and what you have discovered is not needed to re discover afterwards for new work. So whatever you save after
+    learning from mistakes should be reusable for you. You should have a mechanism to make use of your learnings when you
+    are on new tasks so that your old experience is always helpful for you."*
+    **127.1 Step 0 of every task:** `python3 build/testing-tools/lessons.py "<the task in its own words>"` and read every
+    hit (knowledge cards, M-entries, playbook sections by line). A session started in this repo also gets the hits on every
+    request from the UserPromptSubmit hook in `.claude/settings.json`; the manual step stays mandatory because sessions
+    started elsewhere do not load that hook.
+    **127.2 Last step of every task:** each durable fact, recipe, tool or trap that had to be discovered becomes a card in
+    `build/knowledge/` (`lessons.py --new`), with keywords and committed evidence; each mistake becomes an M-entry plus its
+    CLAUDE.md §1B line (Rule 124). Reusable scripts are named in a card, not left in a dated folder unannounced.
+    **127.3 The check:** `lessons.py --check` says OK before the commit. A card that turns out wrong is corrected in place
+    with the date, never left to mislead.

@@ -114,3 +114,5 @@ tracked **and** untracked) · `--all` / `--tracked` (every tracked file) ·
 Genuine false positives are marked on the line with `scan-secrets:allow`.
 
 - **`regression_ticket_gate.py`** (Rule 125, 2026-11-18) — refuses a "differs from production" ticket unless both sides used the same measured settings, production reproduces it with a picture, the record's own page agrees and two innocent explanations were ruled out. Examples: `regression-gate-examples/` (`SV-12853-as-it-was.json` = the refusal that would have stopped M15; `passing-example.json` = the shape that passes, once its production picture file is present).
+
+- `lessons.py` (Rule 127) — step 0 of every task: `python3 build/testing-tools/lessons.py "<task>"` ranks knowledge cards, mistakes and playbook sections by the task's words; `--new` scaffolds a card, `--check` validates them, `--hook` serves the UserPromptSubmit hook.

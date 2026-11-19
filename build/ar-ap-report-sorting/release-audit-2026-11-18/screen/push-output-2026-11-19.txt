@@ -1,0 +1,12 @@
+  C1145248 result 617311 <- /home/user/Manual-test-Cases/build/ar-ap-report-sorting/release-audit-2026-11-18/screen/C1145248-5-row-B.png: 200
+  C1145253 result 617312 <- /home/user/Manual-test-Cases/build/ar-ap-report-sorting/release-audit-2026-11-18/screen/C1145253-1-collapsed.png: 200
+  C1145253 result 617312 <- /home/user/Manual-test-Cases/build/ar-ap-report-sorting/release-audit-2026-11-18/screen/C1145253-2-expanded.png: 200
+  C1145247: title prefix removed (Rule 133) -> Design: A/R Customer menu keeps a long no-space name inside its row
+  C1145248: title prefix removed (Rule 133) -> Design: A/P Vendor menu keeps a long no-space name inside its row
+  C1145253: title prefix removed (Rule 133) -> Design: A/R Collection with a long no-space customer name shows every column
+run now: untested 0 | passed 485 | failed 4 | blocked 0 | retest 0
+
+NOW VERIFY THE RENDERING — a 200 says nothing about what the tester sees:
+  https://shopview.testrail.io/index.php?/tests/view/4877787
+  Count <p> and <br> in the container holding the comment.
+  One <p> and no line breaks = the wall-of-text trap; the paragraphs collapsed.

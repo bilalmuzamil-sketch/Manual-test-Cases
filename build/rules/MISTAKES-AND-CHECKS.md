@@ -7,6 +7,22 @@ Newest first. Each entry: what happened · what it cost · why it happened · **
 
 ## 2026-11-12 — A/R and A/P staging run (SV-11315)
 
+**M21. A screen test that clicked by a shared prefix (18 Nov).** "ZZAUTOTESTAbcdefghij" matched two vendors, so step 4
+clicked vendor A a second time (untick) and the chip read "All vendors" — nearly reported as a failure of SV-12722.
+*Check:* pick rows by their exact full text, then click by position; look at the step's picture before believing a FAIL.
+
+**M20. A $0.00 Total read as an empty cell (18 Nov).** My sort check treated Total 0 as blank and flagged A/P Summary.
+*Check:* read the export/screen to learn how a value is SHOWN (Total $0.00 prints "0.00") before deciding what "blank" means.
+
+**M19. An expected rule written in my own words (18 Nov).** I checked "A/R Collection = customers with an overdue invoice"
+and flagged 4 customers; PRD S8-R1 includes unused credits and deposits. *Check:* every automated check quotes the PRD or
+case sentence it encodes (Rule 113) — a rule I wrote myself is not an expectation; when the PRD is ambiguous, the old code at
+the pinned commit says what users have today.
+
+**M18. A sort-order check with the wrong idea of "number order" (18 Nov).** My natural-sort key put "BN250…" before
+"BN-260…"; the app follows PRD S1-R2 character order ("-" before digits). 14 false flags. *Check:* build sort keys from the
+PRD's own example ("S1-99 before S1-100"; punctuation by character code) and print the first offending pair before reporting.
+
 **M17. "Nobody has decided this" without searching Jira (18 Nov).** I told the QA lead the credit-Amount question was
 undecided and drafted a ticket for Chris; the epic SV-11315 already held his own 12 Nov comment raising it as "not a bug,
 add one PRD line", answered by Milos "will do". Found only when Rule 121 forced the search. *Check:* before saying a
