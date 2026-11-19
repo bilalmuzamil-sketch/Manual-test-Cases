@@ -133,8 +133,9 @@ const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','
 const PDFD = (iso) => { const [y, m, d] = iso.split('-'); return `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m - 1]} ${d} ${y}`; };
 const FMT = (iso) => { const [y, m, d] = iso.split('-'); return `${MON[+m - 1]} ${+d}, ${y}`; };
 const L0 = () => require('./' + E.ledgerFile);
-const CUST = (k) => require('./manifest.json').customers.find((c) => c.key === k).name;
-const VEND = (k) => require('./manifest.json').vendors.find((c) => c.key === k).name;
+// names are read from the ledger (a seed from 19 Nov on tags every name, M22); the manifest name is the fallback
+const CUST = (k) => (L0()[`cust:${k}`] || {}).name || require('./manifest.json').customers.find((c) => c.key === k).name;
+const VEND = (k) => (L0()[`vendor:${k}`] || {}).name || require('./manifest.json').vendors.find((c) => c.key === k).name;
 const num = (key) => { const r = L0()[key]; if (!r) return null; const s = E.shop(r.at || 'A'); if (r.wo_number) return `S${s}-` + r.wo_number.split('-')[1];
   if (r.type === 'credit_memo' && r.number) return r.number.startsWith('CM-') ? `CM${s}-` + r.number.split('-')[1] : r.number;
   if (r.number && r.number.startsWith('DEP-')) return `DEP${s}-` + r.number.split('-')[1]; return r.number || r.memo; };

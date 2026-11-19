@@ -4,6 +4,8 @@
     python3 seed.py qa            # find-or-create everything in manifest.json, resumable
     python3 seed.py qa --check    # read-only: say what exists in the ledger (status.py proves it on the report)
     python3 seed.py staging       # the same on staging (ledger seeded-staging.json - never mixed with QA's)
+    python3 seed.py staging --fresh   # a NEW day on a staging that still holds older seeds: keeps the old ledger,
+                                      # starts a new one with its own tag on every name and number (M22)
     python3 seed.py staging --dates [HH:MMZ ...]   # read-only: print the date table for runs at those UTC hours
 
 Idempotent and resumable: every created record is written to seeded-<env>.json the moment it exists;
@@ -29,6 +31,17 @@ def _arg(flag):
 UNIVERSE = _arg('--universe')
 M = json.load(open(_arg('--manifest') or f'{HERE}/manifest.json'))
 L = Ledger(ENV, UNIVERSE)
+# --fresh (19 Nov 2026, M22): start a NEW day's seed. The current ledger is kept, renamed after its anchor date
+# (seeded-<env>-anchor-<A date>.json), and a new one is begun. Safe to repeat: it never deletes a ledger.
+if '--fresh' in sys.argv and not ('--check' in sys.argv or '--dates' in sys.argv) and L.d:
+    _a = (L.get('anchor_dates') or {}).get('A') or L.get('anchor') or 'unanchored'
+    _to = L.path[:-5] + f'-anchor-{_a}.json'
+    if os.path.exists(_to) and open(_to, 'rb').read() == open(L.path, 'rb').read():
+        os.remove(L.path); print(f'--fresh: the old ledger is already kept, byte for byte, as {os.path.basename(_to)}; starting a new day')
+    else:
+        if os.path.exists(_to): _to = L.path[:-5] + f'-anchor-{_a}-moved-{datetime.datetime.now(datetime.timezone.utc):%H%M%S}.json'
+        os.rename(L.path, _to); print(f'--fresh: kept the old ledger as {os.path.basename(_to)}; starting a new day')
+    L = Ledger(ENV, UNIVERSE)
 # a third location (C) the universe made itself (prep_r365.py writes 'loc:C' into the universe's ledger)
 if L.get('loc:C'): WP[ENV]['C'] = (L.get('loc:C')['id'], L.get('loc:C')['timezone'])
 UTC = datetime.timezone.utc
@@ -40,6 +53,17 @@ LEGACY = datetime.date.fromisoformat(L.get('anchor')) if L.get('anchor') and not
 ANCHOR_UTC = (datetime.datetime.fromisoformat(L.get('anchor_utc').replace('Z', '+00:00')) if L.get('anchor_utc')
               else datetime.datetime.now(UTC).replace(microsecond=0))
 def tz(loc): return WP[ENV][loc][1]
+# THE GENERATION (19 Nov 2026, M22). A staging that is not wiped still holds the records of every earlier seed, and
+# the app refuses a second bill or vendor credit with the same number ("There is already invoice with number"),
+# finds the earlier vendor by name (so new bills would sit beside old ones), and allows a second customer with
+# the same name (so a case picking a customer by name would see two). So every new ledger gets a tag made from
+# its anchor date - 'G' + three letters, letters only so the cases' name patterns ([A-Za-z ]+) still match, and
+# no I/O/Q so it is safe inside a VIN - and the tag goes on every name, number, e-mail, VIN and plate it creates.
+# A ledger from before 19 Nov has no tag and is read exactly as before (names = manifest names).
+_GA = 'ABCDEFGHJKLMNPRSTUVWXYZ'
+def gen_for(d):
+    n = (d - datetime.date(2026, 1, 1)).days % (23 ** 3)
+    return 'G' + _GA[n // 529] + _GA[n // 23 % 23] + _GA[n % 23]
 def today(loc='A'): return LEGACY or ANCHOR_UTC.astimezone(ZoneInfo(tz(loc))).date()
 def one_day(t):
     """True when A and B show the same calendar date at t AND 75 minutes either side of it. The margin is because
@@ -62,7 +86,16 @@ if not LEGACY and not L.get('anchor_utc') and not CHECK:
     L.put('anchor_utc', ANCHOR_UTC.strftime('%Y-%m-%dT%H:%M:%SZ'))
     L.put('anchor_dates', {r: today(r).isoformat() for r in ('A', 'B')})
     L.put('anchor_tz', {r: tz(r) for r in ('A', 'B')})
+    L.put('gen', gen_for(today('A')))
 TODAY = today('A')
+GEN = L.get('gen') or ''
+def NAME(p): return p['name'] + (' ' + GEN if GEN else '')
+def DOCNO(*parts): return '-'.join(['ZZT'] + ([parts[0]] if parts[0] else []) + ([GEN] if GEN else []) + list(parts[1:])).upper()
+# A bill's number is its vendor invoice number, and staging refuses one over 21 characters ("Invoice number is too long.
+# Max length is 21 characters.", 19 Nov 2026: ZZT-GARA-P52-BILL_LATE = 22). So a tagged bill number is compact:
+# ZZT + the tag's 3 letters (ZZTARA-P52-BILL_LATE). Untagged numbers are unchanged (ZZT-P52-BILL_LATE).
+BILL_MAX = 21
+def BILLNO(key, k): return (f'ZZT{GEN[1:]}-{key}-{k}' if GEN else f'ZZT-{key}-{k}').upper()
 CUR = {'loc': 'A' if ENV == 'qa' else None}   # staging: the session's active location is unknown, so switch first
 def day(ago, loc=None): return today(loc or CUR['loc'] or 'A') - datetime.timedelta(days=ago)
 def instant(ago, loc=None, now=None):
@@ -148,7 +181,7 @@ def vendor(v):
     rec = L.get(f'vendor:{v["key"]}')
     if rec: return rec
     body = {"name": v['name'], "address_1": "1 ZZAUTOTEST Way", "city": "Calgary", "state_or_province": "Alberta",
-            "postal_code": "T2C 4M5", "telephone": "(403) 555-0102", "email": f"{v['key'].lower()}@zzautotest.test",
+            "postal_code": "T2C 4M5", "telephone": "(403) 555-0102", "email": f"{v['key'].lower()}{GEN.lower()}@zzautotest.test",
             "credit_limit": 25000, "tax_id": EXEMPT_TAX[ENV]}
     term = v.get('term', 'Net 30')
     if term: body['credit_term'] = term
@@ -173,18 +206,18 @@ def bill(v, key, d):
         'description': 'ZZAUTOTEST Aging Bill Part'}]}), 'po')['order_id']
     order = ok(call(ENV, f'/api/inventory/orders/{o}'), 'po view')['order']
     items = [dict(it, quantity_received=float(it['quantity_ordered']), total=float(it['total_cost'])) for it in order['items']]
-    num = f'ZZT-{key}-{d["k"]}'.upper()
+    num = BILLNO(key, d['k'])
     ok(call(ENV, '/api/inventory/orders/accept', 'POST', {'id': o, 'invoice_number': num, 'invoice_date': iso(d['ago']),
         'note': 'ZZAUTOTEST', 'items': json.dumps(items), 'total': d['amount'], 'tax': 0, 'order_status': 'fulfilled'}), 'accept')
     t = [x for x in unpaid_vendor(v['account']) if x['invoice_number'] == num]
     return {'order': o, 'po_number': order.get('order_number'), 'number': num, 'txn': t[0]['id'] if t else None,
             'delivery': t[0]['reference_id'] if t else None, 'due_date': t[0]['due_date'] if t else None}
 def vendor_credit(v, key, d):
-    r = ok(call(ENV, '/api/part/manual-return-request/create', 'POST', {'vendorId': v['id'], 'packagingSlip': f'ZZT-{key}',
+    r = ok(call(ENV, '/api/part/manual-return-request/create', 'POST', {'vendorId': v['id'], 'packagingSlip': DOCNO('', key),
         'items': [{'inventoryPartId': None, 'partNumber': 'ZZAGING-RET', 'partDescription': 'ZZAUTOTEST return',
                    'quantity': 1, 'costDecimal': d['amount'], 'restockingFeeDecimal': 0, 'returnReason': 'ZZAUTOTEST'}]}), 'manual return')
     rid = r.get('id') or r.get('manual_return_id') or r.get('return_id')
-    memo = f'ZZT-VC-{key}-{d["k"]}'.upper()
+    memo = DOCNO('VC', key, d['k'])
     x = ok(call(ENV, f'/api/part/manual-return/{rid}/create', 'POST', {'creditMemoNumber': memo, 'creditDate': iso(d['ago']),
         'tax': 0, 'note': 'ZZAUTOTEST'}), 'manual return credit')
     return {'manual_return': rid, 'return': x.get('return_id'), 'memo': memo}
@@ -203,6 +236,9 @@ def vpay(v, txn, amount, ago, credit_txn=None, credit_amount=0):
             'applied_deposits': [], 'applied_credits': applied}
     return {'resp': ok(call(ENV, '/api/parts-catalogue/vendor/payment/create', 'POST', body), 'vendor payment')}
 def run():
+    # PRE-FLIGHT (M22): prove every number this seed will write fits, before the first write - never find it halfway
+    long_ = [BILLNO(v['key'], d['k']) for v in M['vendors'] for d in v['docs'] if d['type'] == 'bill' and len(BILLNO(v['key'], d['k'])) > BILL_MAX]
+    if long_: raise SystemExit(f'refused before any write: bill numbers over {BILL_MAX} characters: {long_}')
     todo = []
     for c in M['customers']:
         for d in c['docs']: todo.append(('c', c, d))
@@ -223,7 +259,7 @@ def run():
         try:
             at(d.get('at', 'A') if d else 'A')
             if kind == 'c':
-                c = customer(ENV, L, p['key'], p['name'], phone=p.get('phone', True))
+                c = customer(ENV, L, p['key'], NAME(p), phone=p.get('phone', True), tag=GEN)
                 if p.get('term') and not L.get(f'term:{p["key"]}'):
                     view = ok(call(ENV, f"/api/customers/view/{c['id']}"), 'view')['company']
                     # the payload CustomerDialog.vue sends (tax block included - without it the API answers 500)
@@ -277,12 +313,12 @@ def run():
                 if d and d.get('void'):
                     ok(call(ENV, f"/api/credit-memos/{rec['id']}/void", 'POST', {}), 'void'); rec['voided_now'] = True
             else:
-                v = vendor(p)
+                v = vendor(dict(p, name=NAME(p)))
                 if d['type'] == 'bill': rec = bill(v, p['key'], d)
                 elif d['type'] == 'vendor_credit': rec = vendor_credit(v, p['key'], d)
                 elif d['type'] == 'vendor_credit_direct':
-                    ok(call(ENV, '/api/parts-catalogue/vendor/credit/create', 'POST', {'vendorId': v['id'], 'amount': d['amount'], 'memo': f"ZZT-DIRECT-{p['key']}"}), 'direct vendor credit')
-                    rec = {'memo': f"ZZT-DIRECT-{p['key']}", 'note': 'dated now by the API (no date field)'}
+                    ok(call(ENV, '/api/parts-catalogue/vendor/credit/create', 'POST', {'vendorId': v['id'], 'amount': d['amount'], 'memo': DOCNO('DIRECT', p['key'])}), 'direct vendor credit')
+                    rec = {'memo': DOCNO('DIRECT', p['key']), 'note': 'dated now by the API (no date field)'}
                 elif d['type'] == 'vpayment':
                     b = L.get(f"doc:{p['key']}:{d['on']}"); rec = vpay(v, b['txn'], d['amount'], d['ago'])
                 elif d['type'] == 'vapply_credit':
@@ -295,7 +331,7 @@ def run():
         except Exception as e:
             fail += 1; print(f'  FAIL {dk}: {e}')
     at('A')
-    print(f"anchor {L.get('anchor_utc') or TODAY} | A {today('A')} ({tz('A')}) | B {today('B')} ({tz('B')}) | done {done} | failed {fail} | total {len(todo)}" + (' | READ-ONLY CHECK, nothing created' if CHECK else ''))
+    print(f"anchor {L.get('anchor_utc') or TODAY} | tag {GEN or 'none'} | A {today('A')} ({tz('A')}) | B {today('B')} ({tz('B')}) | done {done} | failed {fail} | total {len(todo)}" + (' | READ-ONLY CHECK, nothing created' if CHECK else ''))
 def date_table(hours):
     """--dates: pure calculation, no writes. For a seed run at each UTC hour today, what each location's
     'today' is and the instant + local date a document dated today / yesterday / 30 days ago would carry."""

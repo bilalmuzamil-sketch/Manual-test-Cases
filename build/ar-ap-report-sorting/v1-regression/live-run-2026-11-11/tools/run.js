@@ -8,7 +8,7 @@ process.env.RUN_ENV = env;                       // envctx.js / lib.js read it: 
 const E = require('./envctx.js');
 const lib = require('./lib.js');
 const CASES = require(`./cases_${env === 'prod' ? 'prod' : 'qa'}.js`);
-const OUT = path.join(__dirname, `run-${env}.json`);
+const OUT = process.env.RUN_DIR ? path.join(path.resolve(process.env.RUN_DIR), `run-${env}.json`) : path.join(__dirname, `run-${env}.json`);
 const L = E.L;
 const APP = { qa: 'https://sv11315.qa.shopview.com/', staging: 'https://app.staging.shopview.com/', prod: 'https://app.shopview.com/' }[env];
 const marker = () => { try { return execSync(`curl -s ${APP} | grep -o 'app-version" content="[^"]*"'`).toString().split('"')[2]; } catch (e) { return 'unread'; } };
@@ -21,7 +21,7 @@ const marker = () => { try { return execSync(`curl -s ${APP} | grep -o 'app-vers
     if (E.unseeded) console.log('WARNING: no seeded-staging.json - run `python3 seed.py staging` first; record-based cases will ERROR');
     const nowA = E.WP.A ? E.localToday(E.WP.A.timezone) : null;
     if (!E.unseeded && nowA && nowA !== E.anchor.A) {
-      console.log(`STOP: today at location A is ${nowA} but the seed is anchored on ${E.anchor.A}. Move seeded-staging.json aside, reseed, then run.`);
+      console.log(`STOP: today at location A is ${nowA} but the seed is anchored on ${E.anchor.A}. Reseed for today with: python3 seed.py staging --fresh  (keeps the old ledger), then run.`);
       if (!process.env.ALLOW_OTHER_DAY) process.exit(3);
     }
     console.log(`anchor A ${E.anchor.A} / B ${E.anchor.B} | shop A ${E.shop('A')} / B ${E.shop('B')} | browser zone ${E.WP.A && E.WP.A.timezone}`);

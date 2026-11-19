@@ -27,7 +27,7 @@ def ok(r, what):
     if r['status'] not in (200, 201):
         raise RuntimeError(f"{what}: HTTP {r['status']} {r['raw'][:300]}")
     return (r['json'] or {}).get('data')
-def customer(env, L, key, name, phone=True):
+def customer(env, L, key, name, phone=True, tag=''):
     """customer + contact + vehicle. Returns dict(id, contact, vehicle, account). phone=False leaves the customer's
     Phone empty (a case asks for 'leave Phone empty'); the contact keeps its own telephone."""
     c = L.get(f'cust:{key}')
@@ -38,10 +38,11 @@ def customer(env, L, key, name, phone=True):
     d = ok(call(env, '/api/customers/create', 'POST', body), 'customer')
     cid = d['company_id']
     ct = ok(call(env, '/api/contacts/create', 'POST', {"first_name": "Zed", "last_name": "Aging", "title": "AP",
-        "telephone": "(403) 555-0101", "email": f"zed.{key.lower()}@zzautotest.test", "company_id": cid}), 'contact')['contact_id']
-    vin = ('1ZZAT' + ''.join(ch for ch in key.upper() if ch.isalnum()) + '0000000000000')[:17]
+        "telephone": "(403) 555-0101", "email": f"zed.{key.lower()}{tag.lower()}@zzautotest.test", "company_id": cid}), 'contact')['contact_id']
+    # tag (seed.py GEN): a later seed on a non-wiped staging must not repeat an earlier VIN or plate
+    vin = (('1ZZ' + tag if tag else '1ZZAT') + ''.join(ch for ch in key.upper() if ch.isalnum()) + '0000000000000')[:17]
     v = ok(call(env, '/api/vehicles/create', 'POST', {"maker_name": "Freightliner", "model_name": "Cascadia", "year": "2019",
-        "unit": f"ZZT {key}"[:20], "vin": vin, "licence_plate": ("ZZ" + key)[:8], "company_id": cid, "customer_id": ct}), 'vehicle')['id']
+        "unit": f"ZZT {key}"[:20], "vin": vin, "licence_plate": (("Z" + tag[1:] if tag else "ZZ") + key)[:8], "company_id": cid, "customer_id": ct}), 'vehicle')['id']
     view = ok(call(env, f'/api/customers/view/{cid}'), 'view')['company']
     c = {'id': cid, 'name': name, 'contact': ct, 'vehicle': v, 'account': view.get('customer_account_id')}
     L.put(f'cust:{key}', c); return c

@@ -16,7 +16,7 @@ Anything else = it is there. The board also prints the build marker. On 12 Nov 2
 |---|---|---|
 | 0 | Lift the read-only hold, **only once the "before the feature" staging snapshot is finished** | `rm /tmp/staging/NO-WRITES` |
 | 1 | Status board: build marker, **gate**, each location's time zone / shop number / today, what survived (read-only) | `python3 status.py staging` |
-| 2 | Seed everything the tests need. Resumable: run it again until only the 2 refusals in step 3 are left | `python3 seed.py staging` |
+| 2 | Seed everything the tests need, **for today**. If the board in step 1 shows a seed from another day (or none), use `--fresh`: it keeps the old ledger as `seeded-staging-anchor-<date>.json` and starts a new one whose names and numbers carry that day's tag (e.g. `GARA` on 19 Nov: `ZZAUTOTEST AP P12 Bill Dates GARA`, bill `ZZT-GARA-P12-BILLD1`), so it never collides with an older seed still on staging. Takes about 30 minutes. Resumable: if it stops, run it again **without** `--fresh` until only the 2 refusals in step 3 are left | `python3 seed.py staging --fresh` (new day) · `python3 seed.py staging` (resume) |
 | 3 | Confirm the seed: expect `done 83 … total 85`. The missing 2 are `doc:R76:pay` and `doc:P27:pay`: overpayments the app refuses ("cannot be overpaid"), the developer-data preconditions of V1R-76 / V1R-27 (same on QA) | `python3 seed.py staging --check` |
 | 4 | Prove it: expect `47 of 47 parties answered`. Before the upgrade it asks the payment screens' unpaid lists; after, the aging reports themselves | `python3 status.py staging` |
 | 5 | Run all tests through the screens (about 30 minutes) | `node run.js staging $(seq -f 'V1R-%02g' 1 93 \| grep -vx V1R-72 \| sed 's/^V1R-35$/V1R-35v2 V1R-35chev/')` |
@@ -77,7 +77,7 @@ Re-check that SV-12544, SV-12545 and SV-12547 are still open.
 
 ## What is seeded on staging now (12 Nov 2026, build v26.45.3-6197d19, before the upgrade)
 
-- **Anchor** `2026-11-12T07:15:30Z`: location A's day and B's day are both **12 Nov 2026**. Run the tests on 12 Nov between 07:15Z and 17:45Z, or reseed on the day you run. To reseed, move `tools/seeded-staging.json` aside first; `run.js` stops if the day differs.
+- **Anchor** `2026-11-12T07:15:30Z`: location A's day and B's day are both **12 Nov 2026**. Run the tests on 12 Nov between 07:15Z and 17:45Z, or reseed on the day you run with `python3 seed.py staging --fresh` (19 Nov 2026: replaces "move the ledger aside", which failed on a staging that kept the records, M22); `run.js` stops if the day differs.
 - **83 of 85** documents for 47 customers and vendors (`ZZAUTOTEST AR …` / `ZZAUTOTEST AP …`), created 07:15:42–07:31:28Z. Every id, number and creation time is in `tools/seeded-staging.json`.
 - **Location C, roles, tech**: see the held-tests table above.
 - Every write is in `live-run-2026-11-11/staging-seed-2026-11-12/` (`oplog.jsonl`, `seed-run-1.log`, `seed-run-2.log`, `status-after-seed.txt`).

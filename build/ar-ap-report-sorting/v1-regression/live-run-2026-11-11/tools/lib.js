@@ -3,7 +3,8 @@
 const fs = require('fs'); const path = require('path');
 const { open } = require('./env.js');
 // staging pictures go to their own folder so they never mix with the QA branch's (prod and qa keep ../evidence)
-const EVID = path.resolve(__dirname, process.env.RUN_ENV === 'staging' ? '../evidence-staging' : '../evidence');
+// RUN_DIR (19 Nov 2026): a re-run on another day writes its pictures and verdicts to its own folder, never over an earlier run's
+const EVID = process.env.RUN_DIR ? path.resolve(process.env.RUN_DIR, 'evidence') : path.resolve(__dirname, process.env.RUN_ENV === 'staging' ? '../evidence-staging' : '../evidence');
 try { fs.mkdirSync(EVID, { recursive: true }); } catch (e) {}
 const NAV = { 'A/R Aging Summary': 'report_nav_aging_summary_report', 'A/R Aging Detail': 'report_nav_aging_detail_report',
   'A/R Aging Collection': 'report_nav_aging_collection_report', 'A/P Aging Summary': 'report_nav_ap_aging_summary_report',

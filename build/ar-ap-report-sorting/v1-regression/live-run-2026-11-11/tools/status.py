@@ -33,6 +33,7 @@ L = json.load(open(LP)) if os.path.exists(LP) else {}
 if not L: print(f'no ledger seeded-{ENV}.json: nothing has been seeded on {ENV} by this kit')
 elif L.get('anchor_dates'): print(f"seeded anchor {L['anchor_utc']} -> A {L['anchor_dates']['A']}, B {L['anchor_dates']['B']}")
 elif L.get('anchor'): print(f"seeded anchor {L['anchor']} (one date, both locations)")
+if L.get('gen'): print(f"tag on every name and number of this seed: {L['gen']} (e.g. '{M['customers'][0]['name']} {L['gen']}')")
 if gate == 404:
     # Before the upgrade lands the aging report cannot be asked, so prove each party through the screens that exist
     # on every build: the customer and vendor PAYMENT screens' unpaid-transaction lists (the calls seed.py uses).
