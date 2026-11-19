@@ -20,6 +20,7 @@ Anything else = it is there. The board also prints the build marker. On 12 Nov 2
 | 3 | Confirm the seed: expect `done 83 … total 85`. The missing 2 are `doc:R76:pay` and `doc:P27:pay`: overpayments the app refuses ("cannot be overpaid"), the developer-data preconditions of V1R-76 / V1R-27 (same on QA) | `python3 seed.py staging --check` |
 | 4 | Prove it: expect `47 of 47 parties answered`. Before the upgrade it asks the payment screens' unpaid lists; after, the aging reports themselves | `python3 status.py staging` |
 | 5 | Run all tests through the screens (about 30 minutes) | `node run.js staging $(seq -f 'V1R-%02g' 1 93 \| grep -vx V1R-72 \| sed 's/^V1R-35$/V1R-35v2 V1R-35chev/')` |
+|   | On another day, keep the earlier run's verdicts and pictures: prefix the command with `RUN_DIR=../rerun-staging-<date>` (19 Nov 2026: 31 minutes) | `RUN_DIR=../rerun-staging-2026-11-19 node run.js staging …` |
 | 6 | Build the results file + annotated pictures (local only) | `python3 results_for_testrail.py staging` |
 | 7 | Dry run of the TestRail post: prints, writes nothing. Step 6 prints this exact command | `python3 <scratchpad>/xtools/push_results_to_run.py --run 557 --lead "Re-Ran on staging" --results ../testrail-results-staging/RESULTS-STAGING.json --build-marker <marker> --date "<d Month yyyy>" --env "Staging" --screenshots yes --dry-run` |
 | 8 | Post to **run 557** (QA lead, 12 Nov 2026: "The results should go in the same test run with the head line something like this: \"Re-Ran on staging\" and then post the staging results in the new comment."). Every staging result is a NEW result whose first line reads "Re-Ran on staging" (`--lead`). | the same command without `--dry-run` |
@@ -75,7 +76,14 @@ Re-check that SV-12544, SV-12545 and SV-12547 are still open.
 - The results builder **refuses** if verdicts come from more than one build.
 - The seeded ids are re-read after every reseed. `seeded-staging.json` is committed with each seed; it holds no secrets.
 
-## What is seeded on staging now (12 Nov 2026, build v26.45.3-6197d19, before the upgrade)
+## Re-seed and re-run on 19 Nov 2026 (build v26.45.5-e93e93b) - the kit works on any day
+
+- `python3 seed.py staging --fresh` at 08:34Z: tag **GARA**, anchor `2026-11-19T08:34:17Z` (A and B both 19 Nov). **83 of 85**, the same two refusals. First attempt found staging's **21-character limit on bill numbers**; bill numbers are now compact (`ZZTARA-P52-BILL_LATE`) and checked before any write. Status board **47 of 47**, the same 6 parties with nothing open as on 12 Nov. Logs: `tools/logs/reseed-2026-11-19-fresh.log`, `tools/logs/status-after-reseed-2026-11-19.txt`.
+- Full screen run 08:58-09:29Z into `rerun-staging-2026-11-19/`: of the 90 tests (retired V1R-25/26/27 left out) **87 give the same verdict as 12 Nov** (85 pass; V1R-35chev fails as before, for review only; V1R-69 blocked as before). The 3 differences are V1R-32, V1R-53, V1R-87: they need the separate tech sign-in, which was not done on 19 Nov (the 12 Nov permission was for that run).
+- V1R-79 and V1R-82 first failed: **my scripts**, not the product. PRD v14 (16 Nov, SV-12539) lowered the PDF limit to 1,000 rows; the whole-company A/R Detail now has 1,969 lines, and staging refuses its PDF with the PRD message (seen on screen at 1.8 s). The scripts now narrow the A/R Detail to one seeded customer when it is over the limit, and both pass (re-run 19 Nov). **The case texts still say 2,000 (V1R-82 quotes PRD v13) and V1R-79 says "Data needed: None" - updating them to v14 is a TestRail write, held for the QA lead.**
+- Older seeds (12 Nov, no tag) remain on staging as extra customers and vendors; they did not change any verdict.
+
+## What was seeded on staging on 12 Nov 2026 (build v26.45.3-6197d19, before the upgrade) - kept as `tools/seeded-staging-anchor-2026-11-12.json`
 
 - **Anchor** `2026-11-12T07:15:30Z`: location A's day and B's day are both **12 Nov 2026**. Run the tests on 12 Nov between 07:15Z and 17:45Z, or reseed on the day you run with `python3 seed.py staging --fresh` (19 Nov 2026: replaces "move the ledger aside", which failed on a staging that kept the records, M22); `run.js` stops if the day differs.
 - **83 of 85** documents for 47 customers and vendors (`ZZAUTOTEST AR …` / `ZZAUTOTEST AP …`), created 07:15:42–07:31:28Z. Every id, number and creation time is in `tools/seeded-staging.json`.

@@ -660,15 +660,29 @@ C['V1R-36'] = async (x) => {
   const others = (txt.match(/ZZAUTOTEST AR R\d+[A-Z]? [A-Za-z ]+/g) || []).filter((n) => !n.startsWith(CUST('R36X')));
   return verdict([chk('Step 7: only customer X, with its lines, "Total for" X and a Totals row', txt.includes(CUST('R36X')) && txt.includes(num('doc:R36X:inv')) && new RegExp('Total for ' + CUST('R36X')).test(txt.replace(/\s+/g, ' ')) && /Totals/.test(txt) && !txt.includes(CUST('R36Z')) && others.length === 0, `customer X present: ${txt.includes(CUST('R36X'))}; Z present: ${txt.includes(CUST('R36Z'))}; other ZZAUTOTEST customers: ${others.join(', ') || 'none'}; lines: ${txt.split('\n').filter((l) => l.trim()).length}`)]);
 };
+// PRD v14 (16 Nov 2026, Chris Ward, SV-12539) S3-N1: "Over 1,000 rows, the PDF is refused ... Exactly 1,000 rows is allowed."
+// (v13 said 2,000.) On 19 Nov the whole-company A/R Aging Detail on staging held 1,969 lines, so asking its PDF is refused -
+// correctly. A step that needs the A/R Detail PDF to download therefore narrows it to one seeded customer first, and only
+// when the report is over the limit; the observation says so (Rule 110: attributed). The case text still says 2,000 /
+// "Data needed: None" - its update to v14 is held for the QA lead (TestRail write, Rule 6).
+const PDF_LIMIT = 1000;
+async function arDetailUnderPdfLimit(x) {
+  const heads = (await x.lib.rows(x.page)).filter((r) => /_row_(days_[0-9a-z_]+|current)$/.test(r.tid));
+  const n = heads.map((h) => Number((h.text.match(/\((\d+)\)/) || [])[1]) || 0).reduce((a, b) => a + b, 0);
+  if (n <= PDF_LIMIT) return `A/R Detail ${n} lines, not narrowed`;
+  await x.lib.pickParty(x.page, 'customerIds', CUST('R36X')); await x.lib.settle(x.page, 1500);
+  return `A/R Detail ${n} lines (over the PRD v14 limit of ${PDF_LIMIT}), narrowed to customer ${CUST('R36X')}`;
+}
 C['V1R-79'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Detail');
   const printer = await page.locator('main i:has-text("print"), main [aria-label*="Print" i]').count();
   await page.click('[data-test-id="btn_dropdown_ardet_export"]'); await lib.sleep(700);
   const items = await page.evaluate(() => [...document.querySelectorAll('.q-menu .q-item')].map((e) => e.innerText.trim())); const aria = await page.locator('[data-test-id="btn_dropdown_ardet_export"]').getAttribute('aria-label');
   x.ev.push(await lib.shot(page, x.key, 'step 4 Export menu')); await page.keyboard.press('Escape');
+  const narrowed = await arDetailUnderPdfLimit(x);
   const f = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 5 PDF'); const txt = f.ok ? pdfText(f.path) : ''; const p1 = (txt.split('\f')[0] || '').split('\n').filter((l) => l.trim());
   return verdict([chk('Step 3: no printer button', printer === 0, `${printer} printer controls`), chk('Step 4 (PRD): Export menu with "Download (PDF)" and "Download (CSV)" (labelled "Export report")', JSON.stringify(items) === JSON.stringify(['Download (PDF)', 'Download (CSV)']), `${JSON.stringify(items)}; button label: ${aria}`),
-    chk('Step 5 (PRD): the PDF downloads as a file', f.ok, f.ok ? f.suggested : 'no download'), chk('Step 7: report name, organization name, "As of"', /A\/R Aging Detail/.test(p1.slice(0, 4).join(' ')) && /As of/.test(p1.slice(0, 5).join(' ')), p1.slice(0, 4).join(' / ')),
+    chk('Step 5 (PRD): the PDF downloads as a file', f.ok, (f.ok ? f.suggested : 'no download') + ' [' + narrowed + ']'), chk('Step 7: report name, organization name, "As of"', /A\/R Aging Detail/.test(p1.slice(0, 4).join(' ')) && /As of/.test(p1.slice(0, 5).join(' ')), p1.slice(0, 4).join(' / ')),
     chk('Step 8: "Software Powered by ShopView" and "Page 1 of N"', /Software Powered by ShopView/.test(p1.slice(-3).join(' ')) && /Page 1 of \d+/.test(p1.slice(-3).join(' ')), p1.slice(-2).join(' / '))]);
 };
 C['V1R-80'] = async (x) => {
@@ -693,10 +707,10 @@ C['V1R-82'] = async (x) => {
   const csv = await lib.exportFile(page, 'apdet', 'csv', x.key, 'step 7 A-P Detail CSV'); let docRowsN = null, sample = [];
   if (csv.ok) { const lines = require('fs').readFileSync(csv.path, 'utf8').split(/\r?\n/).filter((l) => l.trim()); sample = lines.slice(0, 8); docRowsN = lines.filter((l) => /^\uFEFF?"?(91 or more days past due|\d+-\d+ days past due|Current)"?,/.test(l)).length; }
   x.ev.push(lib.saveText(x.key, 'CSV head and counts', { bucket_counts: counts, sum: counts.reduce((a, b) => a + b, 0), csv_document_rows: docRowsN, first_lines: sample }));
-  await lib.nav(page, 'A/R Aging Detail'); await lib.settle(page, 2000); const ar = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 12 A-R Detail PDF', 180000); if (!ar.ok) { ar.notices = await lib.notices(page); x.ev.push(await lib.shot(page, x.key, 'step 12 after asking for the A-R Detail PDF')); }
+  await lib.nav(page, 'A/R Aging Detail'); await lib.settle(page, 2000); const narrowed = await arDetailUnderPdfLimit(x); const ar = await lib.exportFile(page, 'ardet', 'pdf', x.key, 'step 12 A-R Detail PDF', 180000); if (!ar.ok) { ar.notices = await lib.notices(page); x.ev.push(await lib.shot(page, x.key, 'step 12 after asking for the A-R Detail PDF')); }
   const sum = counts.reduce((a, b) => a + b, 0);
   return { ...verdict([chk('Precondition: A/P Detail over 2,000 lines', sum > 2000, `${counts.join(' + ')} = ${sum}`), chk('Step 5 (PRD): no download and "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again."', !dl && msgs.some((m) => m.includes('This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.')), `download: ${JSON.stringify(dlInfo)}; messages ${JSON.stringify(msgs)}`),
-    chk('Step 9: CSV has one row per document = sum of bucket counts', docRowsN === sum, `CSV document rows ${docRowsN} vs ${sum}`), chk('Step 12: A/R Detail (under 2,000 lines) still gives a PDF', ar.ok, ar.ok ? ar.suggested : 'no download within 3 minutes; message: ' + JSON.stringify(ar.notices || []))]), facts: { counts } };
+    chk('Step 9: CSV has one row per document = sum of bucket counts', docRowsN === sum, `CSV document rows ${docRowsN} vs ${sum}`), chk('Step 12: A/R Detail (under the PDF limit) still gives a PDF', ar.ok, (ar.ok ? ar.suggested : 'no download within 3 minutes; message: ' + JSON.stringify(ar.notices || [])) + ' [' + narrowed + ']')]), facts: { counts } };
 };
 C['V1R-83'] = async (x) => {
   const { page, lib } = x; await go(x, 'A/R Aging Summary'); const s = await lib.setDate(page, MID_LAST_MONTH);

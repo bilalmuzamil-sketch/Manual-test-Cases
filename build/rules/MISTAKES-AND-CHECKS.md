@@ -8,6 +8,8 @@ Newest first. Each entry: what happened · what it cost · why it happened · **
 ## 2026-11-12 — A/R and A/P staging run (SV-11315)
 
 **M22. A run card trusted without checking that its first step could work (19 Nov, release morning).** The scheduled run **Kit fixed 19 Nov:** `seed.py staging --fresh` tags every name and number with the day (knowledge card aging-staging-run-kit-reseed-trap).
+
+**M23. A source change learned but not carried into the scripts (19 Nov).** On 18 Nov the audit measured the PDF limit at 1,000 rows (PRD v14) and marked it a pass, but V1R-79 and V1R-82 still assumed 2,000 and failed on 19 Nov when the whole-company A/R Detail reached 1,969 lines. **Check:** when a source version changes a number, grep every script and case for the old number the same day (`grep -rn '2,000\|2000'`), and list the cases whose quote is now stale for the QA lead.
 said "seed, then run all tests"; the seeder uses fixed document numbers, so on a staging that still holds the old records
 84 of 85 creations were refused and the 92-test run could not start - discovered 90 minutes before release. *Check:* the
 evening before a time-boxed run, dry-run every step that writes (`--check`, or create ONE record) and confirm the runner

@@ -18,5 +18,8 @@ evidence: build/ar-ap-report-sorting/v1-regression/live-run-2026-11-11/tools/see
   Never wrap it in a 15-minute timeout (19 Nov: my own `timeout 900` cut it at 59 of 85).
 - Expected end state: done 83 of 85. `doc:R76:pay` and `doc:P27:pay` are overpayments the app refuses ("Transaction cannot be overpaid") - same on every seed.
 - run.js still refuses a seed from another day (correct: case dates move with the anchor). The STOP message now names the --fresh command.
-- Older seeds stay on staging as extra "other" customers and vendors (the 12 Nov seed has no tag). Whether any case is disturbed by them is proved only by the full run after the reseed (see the run card), never assumed.
+- Staging refuses a bill (vendor invoice) number over 21 characters, so tagged bill numbers are compact (ZZTARA-P52-BILL_LATE) and seed.py checks every planned number before its first write.
+- PROVED 19 Nov: reseed 83/85, board 47/47, full screen run 87 of 90 verdicts the same as 12 Nov (the 3 others need the tech sign-in, a separate permission). Older seeds on staging changed no verdict.
+- Re-run on another day with RUN_DIR=../rerun-staging-<date> so the earlier run's verdicts and pictures stay.
+- PDF limit is 1,000 rows since PRD v14 (16 Nov, SV-12539); the whole-company A/R Detail is over it (1,969 lines on 19 Nov), so a test that needs its PDF narrows to one customer first (cases_qa.js arDetailUnderPdfLimit).
 - Fallback that worked in 10 minutes on release morning: release-audit-2026-11-18/scripts/smoke_screens.js + sort_in_group.js.
